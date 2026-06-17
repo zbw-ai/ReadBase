@@ -1,0 +1,22 @@
+category,title,year,primary_link,notes,status
+foundation,Attention Is All You Need,2017,https://arxiv.org/abs/1706.03762,Transformer 架构起点；重点看并行化友好计算图,draft
+foundation,BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,2018,https://arxiv.org/abs/1810.04805,Encoder-only 预训练；理解 MLM 训练负载,todo
+foundation,Language Models are Few-Shot Learners,2020,https://arxiv.org/abs/2005.14165,GPT-3；dense decoder-only scaling,todo
+parallelism,Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism,2019,https://arxiv.org/abs/1909.08053,Tensor Parallel 工程起点,draft
+parallelism,Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM,2021,https://arxiv.org/abs/2104.04473,TP/PP/DP 组合和 interleaved pipeline,todo
+parallelism,GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism,2018,https://arxiv.org/abs/1811.06965,Micro-batch pipeline,todo
+parallelism,PipeDream: Generalized Pipeline Parallelism for DNN Training,2018,https://arxiv.org/abs/1806.03377,1F1B pipeline 和 weight stashing,todo
+parallelism,Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning,2022,https://arxiv.org/abs/2201.12023,自动并行搜索,todo
+memory,ZeRO: Memory Optimizations Toward Training Trillion Parameter Models,2019,https://arxiv.org/abs/1910.02054,DP state redundancy elimination,draft
+memory,ZeRO-Offload: Democratizing Billion-Scale Model Training,2021,https://arxiv.org/abs/2101.06840,CPU offload,todo
+memory,ZeRO-Infinity: Breaking the GPU Memory Wall for Extreme Scale Deep Learning,2021,https://arxiv.org/abs/2104.07857,NVMe/CPU/GPU 分层内存,todo
+memory,PyTorch Fully Sharded Data Parallel,2023,https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/,PyTorch 原生 FSDP,todo
+kernel,FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness,2022,https://arxiv.org/abs/2205.14135,IO-aware attention,draft
+kernel,FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning,2023,https://arxiv.org/abs/2307.08691,更好的并行划分,todo
+kernel,FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision,2024,https://arxiv.org/abs/2407.08608,Hopper/FP8/tensor core,todo
+moe,GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding,2020,https://arxiv.org/abs/2006.16668,Expert Parallel 早期系统,todo
+moe,Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity,2021,https://arxiv.org/abs/2101.03961,top-1 routing,todo
+moe,DeepSpeed-MoE: Advancing Mixture-of-Experts Inference and Training,2022,https://arxiv.org/abs/2201.05596,MoE training/inference system,todo
+scale,PaLM: Scaling Language Modeling with Pathways,2022,https://arxiv.org/abs/2204.02311,540B dense training,todo
+scale,OPT: Open Pre-trained Transformer Language Models,2022,https://arxiv.org/abs/2205.01068,开放训练日志和故障经验,todo
+
