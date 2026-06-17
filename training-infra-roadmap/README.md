@@ -60,6 +60,15 @@ training-infra-roadmap/
 
 - [Tensor Parallelism Engineering Handbook](topics/tensor_parallelism.md)：解释 TP 解决什么问题、Megatron Column/Row Parallel、forward/backward 通信、NVLink/NVSwitch 拓扑、TP=1/2/4/8 配置建议、NCCL hang/rank mapping/shape mismatch 排障，以及 TP 与 SP/CP/FSDP/MoE/FlashAttention/Checkpoint 的关系。
 - [Checkpointing Engineering Handbook](topics/checkpointing.md)：解释 checkpoint 为什么是训练 infra 核心问题、full/sharded/distributed/async/incremental/elastic checkpoint 差异、保存内容、Megatron/DeepSpeed/FSDP 差异、容错恢复、存储分层、checksum/validation 和恢复演练。
+- 建设中入口：[FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
+
+## 学习计划与面试入口
+
+- [30 天计划](roadmaps/30_day_plan.md)：恢复论文阅读习惯，每周两篇，不追求数量。
+- [90 天计划](roadmaps/90_day_plan.md)：建立完整训练系统知识图谱。
+- [一年计划](roadmaps/yearly_plan.md)：成长为高级 AI Training Infra 工程师。
+- [Tensor Parallelism 面试手册](interview/tensor_parallelism.md)
+- [Checkpoint 面试手册](interview/checkpoint.md)
 
 配套索引：
 
@@ -96,7 +105,7 @@ graph LR
 
 这是从资料库升级成工程手册的进行中版本。优先补强顺序：
 
-1. 以 [Tensor Parallelism](topics/tensor_parallelism.md) 和 [Checkpointing](topics/checkpointing.md) 为模板，继续扩写 FSDP、MoE、FP8、NCCL。
+1. 以 [Tensor Parallelism](topics/tensor_parallelism.md) 和 [Checkpointing](topics/checkpointing.md) 为模板，继续扩写 [FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
 2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
 3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
 4. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。

@@ -33,6 +33,9 @@ Inside `training-infra-roadmap/`:
 
 **`interview/` template** (see `interview/tensor_parallelism.md`): 高频面试题 → 追问问题 → 生产环境案例 → 常见错误回答 → 优秀回答示例.
 
+**`tech_reports/` template** (see `tech_reports/deepseek_v3.md`, `tech_reports/llama3.md`, and `tech_reports/megascale.md`) — sections in order:
+论文信息 → 架构概览 → 训练系统设计 → 并行策略 → 显存优化 → 通信优化 → 集群规模 → 工程经验 → 对行业的影响 → 我的收获 → 后续演进 → 面试高频问题 → 生产环境思考题.
+
 **`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.
 
 ## Linking discipline (the thing most likely to break)

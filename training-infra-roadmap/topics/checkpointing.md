@@ -472,6 +472,7 @@ Checkpoint 面试不应停在“保存哪些字段”，更要能解释为什么
 
 - [ZeRO](../papers/zero.md)
 - [MegaScale](../tech_reports/megascale.md)
+- [Checkpoint 面试手册](../interview/checkpoint.md)
 - [Megatron Core dist_checkpointing 官方文档](https://docs.nvidia.com/megatron-core/developer-guide/latest/api-guide/dist_checkpointing.html)
 - [DeepSpeed Model Checkpointing 官方文档](https://deepspeed.readthedocs.io/en/latest/model-checkpointing.html)
 - [PyTorch FSDP 官方文档](https://docs.pytorch.org/docs/stable/fsdp.html)

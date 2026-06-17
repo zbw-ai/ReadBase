@@ -1,5 +1,7 @@
 # Interview: Tensor Parallelism
 
+相关手册章节：[Tensor Parallelism](../topics/tensor_parallelism.md)
+
 ## 高频面试题
 
 1. Tensor Parallel 解决什么问题？

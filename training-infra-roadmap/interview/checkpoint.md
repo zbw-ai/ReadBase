@@ -1,5 +1,7 @@
 # Interview: Checkpoint
 
+相关手册章节：[Checkpointing](../topics/checkpointing.md)
+
 ## 高频面试题
 
 1. 大模型 checkpoint 需要保存哪些状态？

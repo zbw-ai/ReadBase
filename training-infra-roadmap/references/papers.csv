@@ -19,4 +19,3 @@ moe,Switch Transformers: Scaling to Trillion Parameter Models with Simple and Ef
 moe,DeepSpeed-MoE: Advancing Mixture-of-Experts Inference and Training,2022,https://arxiv.org/abs/2201.05596,MoE training/inference system,todo
 scale,PaLM: Scaling Language Modeling with Pathways,2022,https://arxiv.org/abs/2204.02311,540B dense training,todo
 scale,OPT: Open Pre-trained Transformer Language Models,2022,https://arxiv.org/abs/2205.01068,开放训练日志和故障经验,todo
-

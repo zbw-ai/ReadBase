@@ -8,6 +8,10 @@
 
 Gemini 是多模态 foundation model 报告。重点看多模态数据 pipeline、TPU/GPU 训练系统、模型规模、评估和安全流程。
 
+## 在本手册中的定位
+
+Gemini 不是第一轮 training-infra 主线材料。它保留在 `tech_reports/` 中，是为了后续扩展“多模态训练基础设施”时使用：重点会放在多模态数据 pipeline、跨模态 batch construction、评估系统和大规模训练组织方式，而不是 Gemini 模型能力本身。
+
 ## 与知识图谱的关系
 
 Transformer → multimodal foundation model → 大规模数据/训练/评估系统。
