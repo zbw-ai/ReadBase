@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+For shared repository rules that apply to Codex, Claude Code, and other agents, read `AGENTS.md` first. This file adds Claude Code-specific context and mirrors some core conventions for convenience.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What this repo is
@@ -22,7 +24,7 @@ Inside `training-infra-roadmap/`:
 - `references/` — `papers.csv` and `reports.csv`, structured indexes (columns: `category,title,year,primary_link,notes,status`; status ∈ `draft`/`todo`).
 - `MASTER_READING_LIST.md`, `KNOWLEDGE_GRAPH.md` — the navigation/index layer.
 
-`assets/` holds shared images (e.g. the homepage knowledge-map SVG).
+`assets/` holds shared images (e.g. the homepage knowledge-map SVG). Paper-specific or chapter-specific figures should live near the handbook they support, such as `training-infra-roadmap/assets/papers/`.
 
 ## Document conventions (follow these when adding or editing notes)
 
@@ -45,6 +47,7 @@ This repo lives and dies on its internal Markdown links — keep them clickable 
 - Use **relative** links between docs. Cross-directory links from inside a subfolder go up one level: from `papers/x.md` to a topic, use a path like `../topics/tensor_parallelism.md`; same-folder links omit the path. From the repo root, use paths like `training-infra-roadmap/topics/tensor_parallelism.md`.
 - Links are **bidirectional by design**. `KNOWLEDGE_GRAPH.md` maintains a "双向索引" section and `MASTER_READING_LIST.md` maps each source to the topic notes it supports. When you add a doc or a relationship, update both the source note's "相关..." sections **and** these two index files so the graph stays consistent.
 - Diagrams in `KNOWLEDGE_GRAPH.md` and READMEs are **Mermaid** (`flowchart`/`graph`). The graph is intentionally kept "少而清楚" (sparse and clear) — do not re-bloat it into a full dependency mesh; the textual index, not the main diagram, carries fine-grained relationships.
+- For core paper/topic explanations, prefer **research-paper-style SVG figures** when a diagram carries real conceptual weight: model blocks, data flow, communication patterns, checkpoint layouts, parallel groups, kernel IO paths. Keep them light-toned, readable in GitHub, with consistent colors and explicit meaning for arrows/boundaries. Layout quality matters: avoid overlapping elements, especially overlapping text; place secondary annotations in whitespace or side callouts; keep arrow crossings rare and meaningful; size labels so they remain legible without crowding. Mermaid is acceptable for quick indexes, but not the default for polished handbook figures.
 
 ## Maintenance principles (from README.md)
 

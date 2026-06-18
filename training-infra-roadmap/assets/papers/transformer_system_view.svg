@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1120" viewBox="0 0 1280 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Transformer block from a training systems view</title>
+  <desc id="desc">A clean research-paper-style diagram of a pre-LN Transformer block. The main tensor flow follows the original Transformer figure direction, bottom to top. QKV and FFN internals are simplified into readable blocks, with residual bypasses shown as right-side orthogonal dashed arrows.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#41506a"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#3468a6"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#d98a00"/>
+    </marker>
+    <style>
+      .bg { fill: #fbfcfb; }
+      .frame { fill: #ffffff; stroke: #d9e1e8; stroke-width: 1.5; }
+      .region { fill: #ffffff; stroke: #cfd9e3; stroke-width: 1.4; }
+      .title { font: 700 30px Arial, "Noto Sans SC", sans-serif; fill: #162033; }
+      .subtitle { font: 500 15px Arial, "Noto Sans SC", sans-serif; fill: #5a687a; }
+      .region-title { font: 700 17px Arial, "Noto Sans SC", sans-serif; fill: #223044; }
+      .label { font: 700 15px Arial, "Noto Sans SC", sans-serif; fill: #223044; }
+      .small { font: 500 13px Arial, "Noto Sans SC", sans-serif; fill: #5a687a; }
+      .tiny { font: 500 12px Arial, "Noto Sans SC", sans-serif; fill: #647386; }
+      .gemm { fill: #e9f7f2; stroke: #2a9d8f; stroke-width: 2; }
+      .attn { fill: #edf5ff; stroke: #3468a6; stroke-width: 2; }
+      .state { fill: #f3eefb; stroke: #7a5195; stroke-width: 2; }
+      .residual { fill: #fff7e6; stroke: #d98a00; stroke-width: 2; }
+      .note { fill: #ffffff; stroke: #cbd5df; stroke-width: 1.3; }
+      .focus-tp { fill: #e5f6f2; stroke: #2a9d8f; stroke-width: 1.4; }
+      .focus-fa { fill: #e9f2ff; stroke: #3468a6; stroke-width: 1.4; }
+      .focus-ckpt { fill: #f5eafb; stroke: #7a5195; stroke-width: 1.4; }
+      .wire { fill: none; stroke: #41506a; stroke-width: 1.6; marker-end: url(#arrow); }
+      .wire-blue { fill: none; stroke: #3468a6; stroke-width: 1.7; marker-end: url(#arrowBlue); }
+      .skip { fill: none; stroke: #d98a00; stroke-width: 1.6; stroke-dasharray: 7 7; marker-end: url(#arrowOrange); }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="1120"/>
+  <text class="title" x="64" y="58">Transformer Block: Training Systems View</text>
+  <text class="subtitle" x="64" y="88">Pre-LN view: read bottom-up like the original paper figure; complex branches are folded for readability.</text>
+
+  <rect class="frame" x="54" y="116" width="1172" height="928" rx="12"/>
+
+  <rect class="note" x="82" y="154" width="240" height="104" rx="10"/>
+  <text class="label" x="102" y="184">Reading Rule</text>
+  <text class="tiny" x="102" y="210">Solid arrows: tensor data flow</text>
+  <text class="tiny" x="102" y="234">Dashed orange: residual bypass</text>
+  <text class="tiny" x="102" y="252">Side boxes: system concerns</text>
+
+  <g transform="translate(92,306)">
+    <rect class="gemm" x="0" y="0" width="28" height="18" rx="4"/>
+    <text class="tiny" x="38" y="14">Linear / GEMM</text>
+    <rect class="attn" x="0" y="34" width="28" height="18" rx="4"/>
+    <text class="tiny" x="38" y="48">Attention / kernel</text>
+    <rect class="state" x="0" y="68" width="28" height="18" rx="4"/>
+    <text class="tiny" x="38" y="82">State boundary</text>
+    <rect class="residual" x="0" y="102" width="28" height="18" rx="4"/>
+    <text class="tiny" x="38" y="116">Residual merge</text>
+  </g>
+
+  <rect class="region" x="378" y="612" width="464" height="360" rx="14"/>
+  <text class="region-title" x="400" y="642">Attention sublayer</text>
+
+  <rect class="region" x="378" y="232" width="464" height="326" rx="14"/>
+  <text class="region-title" x="400" y="262">FFN sublayer</text>
+
+  <rect class="state" x="544" y="1008" width="132" height="52" rx="8"/>
+  <text class="label" x="593" y="1030">H_l</text>
+  <text class="tiny" x="570" y="1048">hidden state</text>
+
+  <rect class="state" x="548" y="920" width="124" height="50" rx="8"/>
+  <text class="label" x="590" y="948">LN</text>
+  <text class="tiny" x="574" y="964">boundary</text>
+
+  <rect class="gemm" x="510" y="832" width="200" height="58" rx="8"/>
+  <text class="label" x="556" y="858">QKV Projection</text>
+  <text class="tiny" x="548" y="876">column TP, 3 logical branches</text>
+
+  <rect class="attn" x="474" y="724" width="272" height="90" rx="12"/>
+  <text class="region-title" x="553" y="756">Attention core</text>
+  <text class="small" x="522" y="784">score -> softmax -> P·V</text>
+
+  <rect class="gemm" x="535" y="634" width="150" height="54" rx="8"/>
+  <text class="label" x="570" y="660">Output Proj</text>
+  <text class="tiny" x="559" y="678">row TP + reduce</text>
+
+  <rect class="residual" x="540" y="566" width="140" height="36" rx="8"/>
+  <text class="label" x="566" y="589">Residual Add</text>
+
+  <rect class="state" x="548" y="500" width="124" height="50" rx="8"/>
+  <text class="label" x="590" y="528">LN</text>
+  <text class="tiny" x="574" y="544">boundary</text>
+
+  <rect class="gemm" x="500" y="420" width="220" height="54" rx="8"/>
+  <text class="label" x="551" y="446">FFN Up / Gate*</text>
+  <text class="tiny" x="560" y="464">column TP</text>
+
+  <rect class="attn" x="544" y="340" width="132" height="54" rx="8"/>
+  <text class="label" x="568" y="366">Activation</text>
+  <text class="tiny" x="566" y="384">GELU / SwiGLU</text>
+
+  <rect class="gemm" x="524" y="260" width="172" height="54" rx="8"/>
+  <text class="label" x="566" y="286">FFN Down</text>
+  <text class="tiny" x="562" y="304">row TP + reduce</text>
+
+  <rect class="residual" x="540" y="196" width="140" height="36" rx="8"/>
+  <text class="label" x="566" y="219">Residual Add</text>
+
+  <rect class="state" x="544" y="136" width="132" height="52" rx="8"/>
+  <text class="label" x="586" y="158">H_l+1</text>
+  <text class="tiny" x="582" y="176">output state</text>
+
+  <rect class="focus-tp" x="904" y="186" width="250" height="116" rx="10"/>
+  <text class="label" x="926" y="216">Tensor Parallel</text>
+  <text class="tiny" x="926" y="242">QKV / FFN Up: column split</text>
+  <text class="tiny" x="926" y="264">Output / FFN Down: row split</text>
+  <text class="tiny" x="926" y="286">row split usually needs reduce</text>
+
+  <rect class="note" x="904" y="336" width="250" height="108" rx="10"/>
+  <text class="label" x="926" y="366">FFN Note</text>
+  <text class="tiny" x="926" y="392">Original FFN has W1 / W2.</text>
+  <text class="tiny" x="926" y="414">Modern gated FFN adds</text>
+  <text class="tiny" x="926" y="436">an extra Gate branch.</text>
+
+  <rect class="focus-fa" x="904" y="638" width="250" height="96" rx="10"/>
+  <text class="label" x="926" y="668">Kernel Focus</text>
+  <text class="tiny" x="926" y="694">FlashAttention reduces IO</text>
+  <text class="tiny" x="926" y="716">around score, softmax, P·V.</text>
+
+  <rect class="focus-ckpt" x="904" y="770" width="250" height="96" rx="10"/>
+  <text class="label" x="926" y="800">Checkpoint Cuts</text>
+  <text class="tiny" x="926" y="826">Common cuts are near LN</text>
+  <text class="tiny" x="926" y="848">or sublayer boundaries.</text>
+
+  <path class="wire" d="M 610 1008 L 610 970"/>
+  <path class="wire" d="M 610 920 L 610 890"/>
+  <path class="wire" d="M 610 832 L 610 814"/>
+  <path class="wire-blue" d="M 610 724 L 610 688"/>
+  <path class="wire" d="M 610 634 L 610 602"/>
+  <path class="wire" d="M 610 566 L 610 550"/>
+  <path class="wire" d="M 610 500 L 610 474"/>
+  <path class="wire" d="M 610 420 L 610 394"/>
+  <path class="wire" d="M 610 340 L 610 314"/>
+  <path class="wire" d="M 610 260 L 610 232"/>
+  <path class="wire" d="M 610 196 L 610 188"/>
+
+  <path class="skip" d="M 676 1034 L 820 1034 L 820 584 L 680 584"/>
+  <path class="skip" d="M 680 584 L 820 584 L 820 214 L 680 214"/>
+</svg>
