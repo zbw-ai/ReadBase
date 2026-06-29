@@ -6,6 +6,7 @@
 
 1. **第一轮主线**：你现在应该按什么顺序读。
 2. **能力分区**：每条主线背后分别对应哪些训练 infra 能力。
+3. **工程信号层**：paper 没覆盖的实现细节，来自 engineering blogs、官方文档和 release note。
 
 ## 第一轮主线
 
@@ -166,6 +167,16 @@ flowchart LR
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
 - [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
+
+## 工程博客索引
+
+`engineering_blogs/` 是第三类一等材料来源：它不按论文历史组织，而按厂商工程栈和训练系统能力组织。
+
+- [NVIDIA Engineering Blogs](engineering_blogs/nvidia/README.md) ↔ [Transformer Engine](topics/transformer_engine.md) ↔ [FP8](topics/fp8.md) ↔ [NCCL](topics/nccl.md)
+- [Microsoft Engineering Blogs](engineering_blogs/microsoft/README.md) ↔ [ZeRO](topics/zero.md) ↔ [FSDP](topics/fsdp.md) ↔ [Checkpointing](topics/checkpointing.md)
+- [Meta Engineering Blogs](engineering_blogs/meta/README.md) ↔ [Llama 3](tech_reports/llama3.md) ↔ [FSDP](topics/fsdp.md)
+- [DeepSeek Engineering Blogs](engineering_blogs/deepseek/README.md) ↔ [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)
+- [Google Engineering Blogs](engineering_blogs/google/README.md) ↔ [Gemini](tech_reports/gemini.md) ↔ [Distributed Training](topics/distributed_training.md)
 
 ## 下一步补图
 

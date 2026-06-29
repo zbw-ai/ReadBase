@@ -24,6 +24,7 @@ training-infra-roadmap/
   KNOWLEDGE_GRAPH.md
   papers/
   tech_reports/
+  engineering_blogs/
   topics/
   roadmaps/
   interview/
@@ -76,6 +77,8 @@ training-infra-roadmap/
 - [Knowledge Graph](KNOWLEDGE_GRAPH.md)
 - [Papers CSV](references/papers.csv)
 - [Reports CSV](references/reports.csv)
+- [Engineering Blogs](engineering_blogs/README.md)
+- [Blogs CSV](references/blogs.csv)
 
 ## 推荐阅读路径
 
@@ -96,6 +99,7 @@ graph LR
 
 - `papers/`：论文笔记，统一使用工程视角模板。
 - `tech_reports/`：模型/系统技术报告，重点看训练系统设计和经验。
+- `engineering_blogs/`：工程博客、官方技术文档和 release note，重点补足 paper 没有覆盖的真实实现与生产经验。
 - `topics/`：横向主题，把多篇材料串起来。
 - `interview/`：面试手册，强调追问、错误回答和生产案例。
 - `roadmaps/`：学习计划，控制阅读节奏，避免只收藏不消化。
@@ -108,4 +112,5 @@ graph LR
 1. 以 [Tensor Parallelism](topics/tensor_parallelism.md) 和 [Checkpointing](topics/checkpointing.md) 为模板，继续扩写 [FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
 2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
 3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
-4. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。
+4. 建立 `engineering_blogs/` 的高质量入口，优先收录 NVIDIA / Megatron-Core / Transformer Engine / NCCL / PyTorch / DeepSpeed 等没有正式 paper 但工程价值很高的材料。
+5. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。

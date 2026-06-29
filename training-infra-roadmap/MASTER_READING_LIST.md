@@ -7,7 +7,25 @@
 - 每篇先读 `解决的问题`、`工程价值`、`生产环境思考题`，再决定是否深读公式和实验。
 - 每周最多两篇核心材料，重点写下“如果我在维护训练平台，会改哪个模块”。
 - 读完论文后同步更新对应 `topics/` 文档，避免知识停在单篇材料里。
-- 面试准备走 `interview/`，生产复盘走 `topics/`，论文历史走 `papers/` 和 `tech_reports/`。
+- 面试准备走 `interview/`，生产复盘走 `topics/`，论文历史走 `papers/` 和 `tech_reports/`，工程实现细节走 `engineering_blogs/`。
+
+## 0.1 Engineering Blog 入口
+
+2026 年以后，很多训练基础设施信息不会以 paper 形式出现，而是出现在工程博客、官方文档、release note 和厂商技术文章里。它们不替代论文，但会补足真实实现细节。
+
+| 来源 | 入口 | 重点关注 |
+|---|---|---|
+| NVIDIA | [NVIDIA Engineering Blogs](engineering_blogs/nvidia/README.md) | Megatron-Core、Transformer Engine、NCCL、FP8、distributed checkpointing |
+| OpenAI | [OpenAI Engineering Blogs](engineering_blogs/openai/README.md) | post-training、reasoning、evaluation、infra signals |
+| Anthropic | [Anthropic Engineering Blogs](engineering_blogs/anthropic/README.md) | long context、post-training、安全和评估系统 |
+| DeepSeek | [DeepSeek Engineering Blogs](engineering_blogs/deepseek/README.md) | DeepSeekMoE、FP8、DualPipe、reasoning RL |
+| Google | [Google Engineering Blogs](engineering_blogs/google/README.md) | TPU、Pathways、Gemini、JAX/PAX |
+| Meta | [Meta Engineering Blogs](engineering_blogs/meta/README.md) | Llama、PyTorch Distributed、FSDP、数据与训练平台 |
+| Microsoft | [Microsoft Engineering Blogs](engineering_blogs/microsoft/README.md) | DeepSpeed、ZeRO、Azure training infra |
+| ByteDance | [ByteDance Engineering Blogs](engineering_blogs/bytedance/README.md) | 训练平台、MoE、调度、稳定性 |
+| Zhipu | [Zhipu Engineering Blogs](engineering_blogs/zhipu/README.md) | GLM、中文大模型、长上下文、国产集群适配 |
+
+结构化索引：[Blogs CSV](references/blogs.csv)。
 
 ## 1. 基础模型
 

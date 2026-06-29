@@ -18,6 +18,7 @@ Inside `training-infra-roadmap/`:
 
 - `papers/` — paper notes, all using the same engineering-perspective template (see below).
 - `tech_reports/` — model/system reports (Llama, DeepSeek, MegaScale...); emphasis on training-system design and operational lessons, not the model itself.
+- `engineering_blogs/` — engineering blogs, official docs, release notes, and vendor technical posts. This is a first-class source category because many training-stack details (Megatron-Core, Transformer Engine, NCCL, FP8 recipes, checkpoint APIs) may not have papers.
 - `topics/` — cross-cutting engineering handbook chapters that weave multiple sources together. These are the highest-value docs and the intended "deep" reference (e.g. `tensor_parallelism.md`, `checkpointing.md` are the quality templates to imitate).
 - `interview/` — interview handbook: high-frequency questions, follow-ups (追问), production cases, wrong-answer vs. good-answer examples.
 - `roadmaps/` — `30_day_plan.md`, `90_day_plan.md`, `yearly_plan.md`; pace reading so material gets digested, not just collected.
@@ -38,6 +39,8 @@ Inside `training-infra-roadmap/`:
 **`tech_reports/` template** (see `tech_reports/deepseek_v3.md`, `tech_reports/llama3.md`, and `tech_reports/megascale.md`) — sections in order:
 论文信息 → 架构概览 → 训练系统设计 → 并行策略 → 显存优化 → 通信优化 → 集群规模 → 工程经验 → 对行业的影响 → 我的收获 → 后续演进 → 面试高频问题 → 生产环境思考题.
 
+**`engineering_blogs/` template** — source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary. Do not preserve marketing language; extract implementation details and production judgment.
+
 **`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.
 
 ## Linking discipline (the thing most likely to break)
@@ -52,7 +55,7 @@ This repo lives and dies on its internal Markdown links — keep them clickable 
 ## Maintenance principles (from README.md)
 
 - `topics/` must read as engineering handbook chapters, not concept excerpts.
-- `papers/` and `tech_reports/` serve system understanding, not exhaustive academic coverage.
+- `papers/`, `tech_reports/`, and `engineering_blogs/` serve system understanding; do not restrict the handbook to papers.
 - Each handbook directory should have its own `README.md`, reading list, and knowledge graph.
 - Current build priority: deepen the ~7 seed drafts to be recitable/interview-ready/design-grade, using `tensor_parallelism.md` and `checkpointing.md` as the bar; then extend FSDP, MoE, FP8, NCCL; then fill `interview/` (NCCL, RDMA, RoCE, InfiniBand); then turn the reading list / CSVs / graph into a searchable entry point.
 

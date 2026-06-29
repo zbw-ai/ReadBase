@@ -34,6 +34,7 @@ ReadBase/
     KNOWLEDGE_GRAPH.md
     papers/
     tech_reports/
+    engineering_blogs/
     topics/
     roadmaps/
     interview/
@@ -54,7 +55,7 @@ ReadBase/
 
 - 每个专题目录都应该有自己的 `README.md`、reading list 和知识图谱。
 - `topics/` 写成工程手册章节，而不是概念摘抄。
-- `papers/` 和 `tech_reports/` 服务于系统理解，不追求学术摘要式覆盖。
+- `papers/`、`tech_reports/` 和 `engineering_blogs/` 共同服务于系统理解；不要把知识来源限制在论文。
 - `interview/` 聚焦高频题、追问、生产案例、错误回答和优秀回答。
 - 尽量保持内部 Markdown 链接可点击、可长期维护。
 

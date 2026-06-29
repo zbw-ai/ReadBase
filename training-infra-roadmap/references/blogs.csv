@@ -1,0 +1,10 @@
+category,source,title,year,primary_link,topics,notes,status
+nvidia,NVIDIA,TBD,,,Megatron-Core / Transformer Engine / NCCL / FP8,engineering blog backlog,todo
+openai,OpenAI,TBD,,,post-training / reasoning / eval / infra,engineering blog backlog,todo
+anthropic,Anthropic,TBD,,,long context / post-training / safety infra,engineering blog backlog,todo
+deepseek,DeepSeek,TBD,,,MoE / FP8 / reasoning RL,engineering blog backlog,todo
+google,Google,TBD,,,TPU / Pathways / Gemini / JAX,engineering blog backlog,todo
+meta,Meta,TBD,,,Llama / PyTorch / FSDP / data infra,engineering blog backlog,todo
+microsoft,Microsoft,TBD,,,DeepSpeed / ZeRO / Azure training infra,engineering blog backlog,todo
+bytedance,ByteDance,TBD,,,training platform / MoE / scheduling,engineering blog backlog,todo
+zhipu,Zhipu,TBD,,,GLM / Chinese LLM / long context,engineering blog backlog,todo

@@ -21,6 +21,7 @@ Write for a software engineer growing into a senior AI/LLM training infrastructu
 - `training-infra-roadmap/README.md` is the Training Infra Handbook entry point.
 - `training-infra-roadmap/papers/` contains engineering-perspective paper notes.
 - `training-infra-roadmap/tech_reports/` contains model/system technical reports.
+- `training-infra-roadmap/engineering_blogs/` contains engineering blogs, official docs, release notes, and vendor technical posts that expose implementation details not captured by papers.
 - `training-infra-roadmap/topics/` contains long-form engineering handbook chapters.
 - `training-infra-roadmap/interview/` contains interview handbook notes.
 - `training-infra-roadmap/roadmaps/` contains staged learning plans.
@@ -37,6 +38,8 @@ For `papers/`, follow this section order:
 For `tech_reports/`, follow this section order:
 
 论文信息 → 架构概览 → 训练系统设计 → 并行策略 → 显存优化 → 通信优化 → 集群规模 → 工程经验 → 对行业的影响 → 我的收获 → 后续演进 → 面试高频问题 → 生产环境思考题.
+
+For `engineering_blogs/`, do not summarize marketing copy. Extract the engineering signal: source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary.
 
 For `topics/`, write as engineering handbook chapters: problem framing → mechanism → config guidance → production pitfalls → troubleshooting → adjacent-system relationships.
 
