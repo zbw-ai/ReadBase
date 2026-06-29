@@ -25,6 +25,7 @@ training-infra-roadmap/
   papers/
   tech_reports/
   engineering_blogs/
+  tracking/
   topics/
   roadmaps/
   interview/
@@ -79,6 +80,7 @@ training-infra-roadmap/
 - [Reports CSV](references/reports.csv)
 - [Engineering Blogs](engineering_blogs/README.md)
 - [Blogs CSV](references/blogs.csv)
+- [Tracking Radar](tracking/README.md)
 
 ## 推荐阅读路径
 
@@ -100,6 +102,7 @@ graph LR
 - `papers/`：论文笔记，统一使用工程视角模板。
 - `tech_reports/`：模型/系统技术报告，重点看训练系统设计和经验。
 - `engineering_blogs/`：工程博客、官方技术文档和 release note，重点补足 paper 没有覆盖的真实实现与生产经验。
+- `tracking/`：研究雷达，持续记录新论文、工程博客、release note、infra trends 和 Agentic RL 信号。
 - `topics/`：横向主题，把多篇材料串起来。
 - `interview/`：面试手册，强调追问、错误回答和生产案例。
 - `roadmaps/`：学习计划，控制阅读节奏，避免只收藏不消化。

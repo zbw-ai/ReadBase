@@ -8,6 +8,20 @@
 - 每周最多两篇核心材料，重点写下“如果我在维护训练平台，会改哪个模块”。
 - 读完论文后同步更新对应 `topics/` 文档，避免知识停在单篇材料里。
 - 面试准备走 `interview/`，生产复盘走 `topics/`，论文历史走 `papers/` 和 `tech_reports/`，工程实现细节走 `engineering_blogs/`。
+- 新资料先进入 [Tracking Radar](tracking/README.md)，再筛选进 reading queue 或 topics，避免 reading list 被热点淹没。
+
+## 0.0 Tracking Radar
+
+`tracking/` 是持续更新的研究雷达，不要求完整解读，只记录信号和判断。
+
+| 入口 | 用途 |
+|---|---|
+| [Daily Report Template](tracking/daily_report_template.md) | 每日/每周信号报告模板 |
+| [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
+| [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
+| [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
+| [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
+| [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
 
 ## 0.1 Engineering Blog 入口
 
