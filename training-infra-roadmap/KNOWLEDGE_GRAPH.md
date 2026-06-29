@@ -215,6 +215,8 @@ flowchart LR
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
 - [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
+- [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
+- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md) ↔ [P0 Queue](reading_queue/P0.md) ↔ [Agentic RL Insight](insights/001_agentic_rl_will_change_training_infra.md)
 
 ## 工程博客索引
 

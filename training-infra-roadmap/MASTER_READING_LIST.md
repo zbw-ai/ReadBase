@@ -22,6 +22,7 @@
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
+| [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md) | 第一条真实闭环：Agentic RL Infra |
 
 ## 0.2 Research OS 工作流
 
@@ -35,6 +36,14 @@
 | Experiments | [experiments](experiments/README.md) | 实验验证 |
 | Playbooks | [playbooks](playbooks/README.md) | 生产排障 runbook |
 | Learning Log | [learning_log](learning_log/README.md) | 月度复盘 |
+
+## 0.3 Active Closed Loops
+
+这里记录已经跑通的 Research OS 闭环。它们不是单篇论文阅读，而是从信号判断进入工程沉淀。
+
+| 主题 | Signal | Queue | Topic | Insight | Playbook | Log |
+|---|---|---|---|---|---|---|
+| Agentic RL Infra | [2026-W26](tracking/weekly_signal_2026-06-28.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
 
 ## 0.1 Engineering Blog 入口
 

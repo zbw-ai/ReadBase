@@ -69,6 +69,7 @@ training-infra-roadmap/
 
 - [Tensor Parallelism Engineering Handbook](topics/tensor_parallelism.md)：解释 TP 解决什么问题、Megatron Column/Row Parallel、forward/backward 通信、NVLink/NVSwitch 拓扑、TP=1/2/4/8 配置建议、NCCL hang/rank mapping/shape mismatch 排障，以及 TP 与 SP/CP/FSDP/MoE/FlashAttention/Checkpoint 的关系。
 - [Checkpointing Engineering Handbook](topics/checkpointing.md)：解释 checkpoint 为什么是训练 infra 核心问题、full/sharded/distributed/async/incremental/elastic checkpoint 差异、保存内容、Megatron/DeepSpeed/FSDP 差异、容错恢复、存储分层、checksum/validation 和恢复演练。
+- [Agentic RL Infrastructure](topics/agentic_rl.md)：第一条 Research OS 闭环主题，解释 rollout、reward/verifier、policy update、weight sync、trajectory store 和 agent runtime 如何改变训练平台边界。
 - 建设中入口：[FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
 
 ## 学习计划与面试入口
@@ -88,6 +89,7 @@ training-infra-roadmap/
 - [Engineering Blogs](engineering_blogs/README.md)
 - [Blogs CSV](references/blogs.csv)
 - [Tracking Radar](tracking/README.md)
+- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md)
 - [Reading Queue](reading_queue/README.md)
 - [Learning Log](learning_log/README.md)
 - [Insights](insights/README.md)
@@ -133,5 +135,5 @@ graph LR
 2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
 3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
 4. 建立 `engineering_blogs/` 的高质量入口，优先收录 NVIDIA / Megatron-Core / Transformer Engine / NCCL / PyTorch / DeepSpeed 等没有正式 paper 但工程价值很高的材料。
-5. 让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
+5. 继续复用 [Agentic RL Infra 闭环](tracking/weekly_signal_2026-06-28.md) 的方式，让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
 6. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。

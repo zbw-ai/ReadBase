@@ -79,6 +79,7 @@ ReadBase/
 
 - [Tensor Parallelism](training-infra-roadmap/topics/tensor_parallelism.md)
 - [Checkpointing](training-infra-roadmap/topics/checkpointing.md)
+- [Agentic RL Infrastructure](training-infra-roadmap/topics/agentic_rl.md)
 - [FSDP](training-infra-roadmap/topics/fsdp.md)（建设中）
 - [MoE](training-infra-roadmap/topics/moe.md)（建设中）
 - [NCCL](training-infra-roadmap/topics/nccl.md)（建设中）
