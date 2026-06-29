@@ -71,6 +71,7 @@ grep -E "trajectory|store|upload|download|serialize|deserialize" train.log
 - trajectory 序列化太重，写入存储慢。
 - rollout worker 使用旧 policy 太久，样本被 trainer 丢弃。
 - weight sync 阻塞 rollout worker，导致生成停顿。
+- vLLM engine 和 training actor 的 placement group / GPU fraction 配置不合理，导致资源碎片或互相抢占。
 - tokenizer / chat template 不一致，导致 rollout 结果被训练侧过滤。
 - 训练 GPU 和 rollout GPU 配比不合理。
 
@@ -91,7 +92,7 @@ grep -E "trajectory|store|upload|download|serialize|deserialize" train.log
 2. 将 rollout worker pool、reward worker pool、training worker pool 分离调度。
 3. 对 trajectory store 做分片写入，避免单点 metadata 或对象存储瓶颈。
 4. 建立 policy version 和 reward version 追踪。
-5. 为 inference worker 做增量或低停顿 weight sync。
+5. 为 inference worker 做增量或低停顿 weight sync，参考 vLLM + OpenRLHF 中 CUDA IPC / NCCL 的同步路径。
 6. 对高频 prompt / system prefix 使用 prefix cache。
 
 长期设计：
@@ -139,6 +140,10 @@ grep -E "trajectory|store|upload|download|serialize|deserialize" train.log
 - [AReaL](https://arxiv.org/abs/2505.24298)
 - [HybridFlow / verl](https://arxiv.org/abs/2409.19256)
 - [Agent Lightning](https://arxiv.org/abs/2508.03680)
+- [Historical Backfill](../tracking/historical_backfill.md)
+- [vLLM + OpenRLHF Integration](https://vllm.ai/blog/2025-04-23-openrlhf-vllm)
+- [OpenRLHF](https://arxiv.org/abs/2405.11143)
+- [NVIDIA NeMo RL](https://docs.nvidia.com/nemo/rl/latest/index.html)
 
 ## 关联 Experiments
 

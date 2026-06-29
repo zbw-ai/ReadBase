@@ -24,7 +24,7 @@ North Star: build a production-grade understanding of Large-Scale AI Systems thr
 - `training-infra-roadmap/papers/` contains engineering-perspective paper notes.
 - `training-infra-roadmap/tech_reports/` contains model/system technical reports.
 - `training-infra-roadmap/engineering_blogs/` contains engineering blogs, official docs, release notes, and vendor technical posts that expose implementation details not captured by papers.
-- `training-infra-roadmap/tracking/` is the research radar: recent papers, engineering blogs, release notes, infra trends, and agentic RL signals. It records signal and triage, not full notes.
+- `training-infra-roadmap/tracking/` is the research radar: recent papers, engineering blogs, release notes, infra trends, agentic RL signals, and historical backfill. It records signal and triage, not full notes.
 - `training-infra-roadmap/reading_queue/` turns tracking signals into P0/P1 reading decisions.
 - `training-infra-roadmap/learning_log/` records monthly learning progress, questions, and next steps.
 - `training-infra-roadmap/insights/` stores original engineering judgments.
@@ -51,6 +51,8 @@ For `engineering_blogs/`, do not summarize marketing copy. Extract the engineeri
 
 For `tracking/`, keep entries lightweight and judgment-heavy. Each item should include source/type/link, impact level, `Decision` (`Ignore` / `Observe` / `Read` / `Deep Dive`), `Reason`, related topics, one-sentence value, and next step. Tracking is an inbox/radar; promote only important items into `reading_queue/`, `papers/`, `tech_reports/`, `engineering_blogs/`, `topics/`, `insights/`, `experiments/`, or `playbooks/`.
 
+For `tracking/historical_backfill.md`, do not chase recency. Backfill only past materials that fill a current engineering judgment gap. Each entry should explain original time, backfill time, why it is backfilled now, historical impact, current value, Decision, Reason, suggested action, related topics, target destination, and lifecycle status. Do not mix historical backfill into weekly signal reports.
+
 For `playbooks/`, write runbooks, not concept explanations: symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 For `topics/`, write as engineering handbook chapters: problem framing → mechanism → config guidance → production pitfalls → troubleshooting → adjacent-system relationships.
@@ -75,7 +77,7 @@ OBSOLETE    outdated or superseded
 
 When adding a new material:
 
-1. Add it to `tracking/` with impact, Decision, and Reason.
+1. Add it to `tracking/` with impact, Decision, and Reason. Use weekly signal for new material and historical backfill for older classics.
 2. If important, move it to `reading_queue/P0.md` or `reading_queue/P1.md`.
 3. After reading, create or update the relevant paper/report/blog note.
 4. Update at least one `topics/` chapter if the material changes system understanding.

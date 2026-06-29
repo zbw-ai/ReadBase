@@ -27,6 +27,12 @@ Pretraining 的系统目标相对清楚：让 GPU 以稳定 batch 消费 token�
 
 这三条信号共同说明：Agentic RL Infra 的主战场不是单个算法，而是 pipeline architecture。
 
+## Historical Backfill 后的补充判断
+
+[Historical Backfill](../tracking/historical_backfill.md) 让我更确定一件事：Agentic RL Infra 不是 2026 年突然冒出来的新方向，而是 RLHF pipeline、distributed RL dataflow、serving engine、Ray-style orchestration 和大型训练栈长期汇合的结果。
+
+OpenRLHF / DeepSpeed-Chat 解释了早期 RLHF 为什么已经是多模型、多组件调度问题；vLLM + OpenRLHF 解释了推理引擎如何进入训练闭环；Ray RLlib/Ray Train 解释了底层调度思维；NeMo RL 则说明厂商训练栈正在把这些能力产品化。AReaL、verl、Agent Lightning 是当前最值得精读的三条主线，但不是孤立信号。
+
 ## 对工程决策的影响
 
 如果我要设计下一代训练平台，我会提前预留这些能力：
@@ -52,6 +58,7 @@ Pretraining 的系统目标相对清楚：让 GPU 以稳定 batch 消费 token�
 - 精读 AReaL，重点拆 rollout/training 解耦和 staleness 控制。
 - 精读 HybridFlow，重点拆 RLHF dataflow 和 actor resharding。
 - 阅读 Agent Lightning，重点看 agent trace 如何进入 trainer。
+- 阅读 OpenRLHF 和 vLLM + OpenRLHF integration，补齐 Ray/vLLM/DeepSpeed 多组件调度细节。
 - 用 [Rollout Latency Playbook](../playbooks/rollout_latency.md) 反推一套最小观测指标。
 
 ## 结论

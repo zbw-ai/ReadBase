@@ -17,6 +17,7 @@
 | 入口 | 用途 |
 |---|---|
 | [Weekly Signal Report Template](tracking/weekly_signal_report_template.md) | 每周信号报告模板 |
+| [Historical Backfill](tracking/historical_backfill.md) | 历史精华补录：补当前工程判断缺口 |
 | [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
 | [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
@@ -44,6 +45,23 @@
 | 主题 | Signal | Queue | Topic | Insight | Playbook | Log |
 |---|---|---|---|---|---|---|
 | Agentic RL Infra | [2026-W26](tracking/weekly_signal_2026-06-28.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
+
+## 0.4 Historical Backfill 入口
+
+[Historical Backfill](tracking/historical_backfill.md) 用来补录历史精华材料。它不代表本周新趋势，而是回答：过去有哪些材料已经被行业验证重要，但当前仓库还没有充分吸收？
+
+第一批补录主题是 Agentic RL / Rollout Infra Classics。当前筛选结果：
+
+| 队列 | 材料 | 为什么 |
+|---|---|---|
+| P0 | AReaL | 补异步 rollout/train 解耦和 staleness 控制 |
+| P0 | HybridFlow / verl | 补 RLHF dataflow 和 actor resharding |
+| P0 | Agent Lightning | 补 agent runtime 与 trainer 解耦 |
+| P1 | OpenRLHF | 补 Ray + vLLM + DeepSpeed 多组件调度 |
+| P1 | vLLM + OpenRLHF Integration | 补 rollout inference / weight sync / placement group |
+| P1 | SkyRL | 补 long-horizon tool-use agent training |
+| P1 | DAPO | 补 reasoning RL recipe 如何落到系统栈 |
+| P1 | NVIDIA NeMo RL | 补 NVIDIA post-training stack 演进 |
 
 ## 0.1 Engineering Blog 入口
 

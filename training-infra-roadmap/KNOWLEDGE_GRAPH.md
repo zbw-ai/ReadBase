@@ -16,6 +16,7 @@
 ```mermaid
 flowchart LR
   S["Signals<br/>tracking"]
+  H["Backfill<br/>historical classics"]
   Q["Queue<br/>reading_queue"]
   N["Notes<br/>papers / reports / blogs"]
   T["Topics<br/>engineering handbook"]
@@ -25,6 +26,7 @@ flowchart LR
   L["Learning Log<br/>growth trace"]
 
   S -->|Decision + Reason| Q
+  H -->|Decision + Reason| Q
   Q -->|Read / Deep Dive| N
   N -->|Digest| T
   T --> I
@@ -39,7 +41,7 @@ flowchart LR
   classDef note fill:#eef8f6,stroke:#2a9d8f,color:#102033,stroke-width:1.5px
   classDef product fill:#f6f0fa,stroke:#7a5195,color:#102033,stroke-width:1.5px
   classDef loop fill:#f1f5f9,stroke:#5b677a,color:#102033,stroke-width:1.5px
-  class S signal
+  class S,H signal
   class Q queue
   class N note
   class T,I,E,P product
@@ -217,6 +219,7 @@ flowchart LR
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
 - [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md) ↔ [P0 Queue](reading_queue/P0.md) ↔ [Agentic RL Insight](insights/001_agentic_rl_will_change_training_infra.md)
+- [Historical Backfill](tracking/historical_backfill.md) ↔ [P1 Queue](reading_queue/P1.md) ↔ [Agentic RL](topics/agentic_rl.md)
 
 ## 工程博客索引
 

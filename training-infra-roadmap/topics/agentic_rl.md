@@ -193,6 +193,16 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [HybridFlow / verl](https://arxiv.org/abs/2409.19256)：重点看 RLHF dataflow、hierarchical API、3D-HybridEngine、actor resharding。
 - [Agent Lightning](https://arxiv.org/abs/2508.03680)：重点看 Training-Agent Disaggregation、trace schema、agent runtime integration。
 
+## Historical Backfill 发现的新关联
+
+[Historical Backfill](../tracking/historical_backfill.md) 补充了几个不该混入 weekly signal、但对理解 Agentic RL Infra 很关键的历史材料：
+
+- OpenRLHF 和 vLLM + OpenRLHF integration 说明 rollout inference、Ray placement group、vLLM engine、DeepSpeed ZeRO-3、weight sync 是一组系统问题。
+- SkyRL 说明 long-horizon tool-use agent training 需要 environment、agent layer、training stack 和 evaluation 一起设计。
+- DeepSpeed-Chat 是早期端到端 RLHF pipeline 的历史起点，适合用来理解 SFT/RM/RLHF 三阶段如何进入工程系统。
+- Ray RLlib / Ray Train 提供了 actor/dataflow 调度背景，解释为什么许多 RLHF/Agentic RL 框架会建立在 Ray-style orchestration 上。
+- NVIDIA NeMo RL 代表厂商训练栈开始把 GRPO、DAPO、reward environment、vLLM rollout、Megatron backend 统一进 post-training stack。
+
 ## 面试高频问题
 
 1. 为什么 Agentic RL 不能简单复用 pretraining infra？

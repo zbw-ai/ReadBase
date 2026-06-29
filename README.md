@@ -68,6 +68,7 @@ ReadBase/
 - 每个专题目录都应该有自己的 `README.md`、reading list 和知识图谱。
 - `topics/` 写成工程手册章节，而不是概念摘抄。
 - `tracking/` 作为研究雷达，记录近期值得关注的新论文、工程博客、release note 和 infra 趋势。
+- `tracking/historical_backfill.md` 负责历史精华补录，只补当前工程判断缺口，不污染 weekly signal。
 - `playbooks/` 写成生产排障 runbook，而不是原理说明。
 - `papers/`、`tech_reports/` 和 `engineering_blogs/` 共同服务于系统理解；不要把知识来源限制在论文。
 - `interview/` 聚焦高频题、追问、生产案例、错误回答和优秀回答。
@@ -80,6 +81,7 @@ ReadBase/
 - [Tensor Parallelism](training-infra-roadmap/topics/tensor_parallelism.md)
 - [Checkpointing](training-infra-roadmap/topics/checkpointing.md)
 - [Agentic RL Infrastructure](training-infra-roadmap/topics/agentic_rl.md)
+- [Historical Backfill](training-infra-roadmap/tracking/historical_backfill.md)
 - [FSDP](training-infra-roadmap/topics/fsdp.md)（建设中）
 - [MoE](training-infra-roadmap/topics/moe.md)（建设中）
 - [NCCL](training-infra-roadmap/topics/nccl.md)（建设中）

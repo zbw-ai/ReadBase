@@ -2,7 +2,7 @@
 
 `tracking/` 是 AI Training Infra 的研究雷达。
 
-它不追求完整解读，也不替代 `papers/`、`tech_reports/`、`engineering_blogs/` 或 `topics/`。它的职责是持续记录最近值得关注的新论文、工程博客、release note、模型发布和 infra 趋势，然后把少数真正重要的内容推进到阅读队列和工程手册。
+它不追求完整解读，也不替代 `papers/`、`tech_reports/`、`engineering_blogs/` 或 `topics/`。它的职责是记录两类输入：一类是每周新出现的信号，另一类是过去已经证明重要但仓库还没吸收的历史精华材料。两者都必须经过判断，再把少数真正重要的内容推进到阅读队列和工程手册。
 
 ## 知识流转
 
@@ -23,15 +23,27 @@
 ## 文件说明
 
 - [Weekly Signal Report Template](weekly_signal_report_template.md)：每周日高质量信号判断模板，适合 HuggingFace、arXiv、GitHub、厂商博客和 release note。
+- [Historical Backfill](historical_backfill.md)：补录过去几年已被验证有长期价值、但仓库还没吸收的经典材料。
 - [Weekly Papers](weekly_papers.md)：每周值得关注的新论文。
 - [Engineering Blogs](engineering_blogs.md)：大厂技术博客和官方文档追踪。
 - [Release Notes](release_notes.md)：模型、框架、训练栈发布记录。
 - [Infra Trends](infra_trends.md)：训练基础设施技术演进时间线。
 - [Agentic RL](agentic_rl.md)：Agentic RL、long-context RL、rollout infra、verifier/reward pipeline 专题追踪。
 
+## Weekly Signal vs Historical Backfill
+
+| 类型 | 作用 | 是否代表本周新趋势 |
+|---|---|---|
+| Weekly Signal | 捕捉本周新出现、可能改变工程判断的信号 | 是 |
+| Historical Backfill | 补录过去已经证明重要、但仓库还没吸收的经典材料 | 否 |
+| Reading Queue | 从 weekly/backfill 中筛选本周真正要读的 P0/P1 | 否 |
+
+Backfill 不按时间补，按“它能补哪个工程判断缺口”来补。
+
 ## 记录原则
 
 - 不追求全量，只记录可能改变工程判断的信号。
+- 不把历史材料混入 weekly signal，避免污染“本周趋势”判断。
 - 每条材料必须有“一句话价值”。
 - 每条材料必须给出 `Decision`：`Ignore`、`Observe`、`Read`、`Deep Dive`。
 - 每条材料必须给出 `Reason`：为什么做这个决策。

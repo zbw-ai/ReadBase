@@ -19,7 +19,7 @@ Inside `training-infra-roadmap/`:
 - `papers/` — paper notes, all using the same engineering-perspective template (see below).
 - `tech_reports/` — model/system reports (Llama, DeepSeek, MegaScale...); emphasis on training-system design and operational lessons, not the model itself.
 - `engineering_blogs/` — engineering blogs, official docs, release notes, and vendor technical posts. This is a first-class source category because many training-stack details (Megatron-Core, Transformer Engine, NCCL, FP8 recipes, checkpoint APIs) may not have papers.
-- `tracking/` — research radar for recent papers, engineering blogs, release notes, infra trends, and agentic RL signals. It records triage and judgment, not full notes.
+- `tracking/` — research radar for recent papers, engineering blogs, release notes, infra trends, agentic RL signals, and historical backfill. It records triage and judgment, not full notes.
 - `reading_queue/` — P0/P1/Done reading decisions.
 - `learning_log/` — monthly learning progress and open questions.
 - `insights/` — original technical judgments.
@@ -48,6 +48,8 @@ Inside `training-infra-roadmap/`:
 **`engineering_blogs/` template** — source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary. Do not preserve marketing language; extract implementation details and production judgment.
 
 **`tracking/` template** — source/type/link → impact level → Decision (`Ignore` / `Observe` / `Read` / `Deep Dive`) → Reason → related topics → one-sentence value → next step. Keep it lightweight; this is for discovery and triage before material becomes a note or topic.
+
+**`tracking/historical_backfill.md` template** — original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. This file is for older classics that fill current engineering judgment gaps; do not mix it into weekly signal reports.
 
 **`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
