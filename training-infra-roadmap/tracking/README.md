@@ -22,7 +22,7 @@
 
 ## 文件说明
 
-- [Daily Report Template](daily_report_template.md)：每日/每周信号报告模板，适合 HuggingFace、arXiv、GitHub、厂商博客批量更新。
+- [Weekly Signal Report Template](weekly_signal_report_template.md)：每周日高质量信号判断模板，适合 HuggingFace、arXiv、GitHub、厂商博客和 release note。
 - [Weekly Papers](weekly_papers.md)：每周值得关注的新论文。
 - [Engineering Blogs](engineering_blogs.md)：大厂技术博客和官方文档追踪。
 - [Release Notes](release_notes.md)：模型、框架、训练栈发布记录。
@@ -33,8 +33,12 @@
 
 - 不追求全量，只记录可能改变工程判断的信号。
 - 每条材料必须有“一句话价值”。
-- 每条材料必须给出建议动作：`立即精读`、`加入阅读队列`、`观察即可`、`忽略`。
+- 每条材料必须给出 `Decision`：`Ignore`、`Observe`、`Read`、`Deep Dive`。
+- 每条材料必须给出 `Reason`：为什么做这个决策。
+- 每条材料建议标记 `Status`：`NEW`、`READING`、`SUMMARIZED`、`DIGESTED`、`VERIFIED`、`IMPLEMENTED`、`OBSOLETE`。
+- 每条材料必须给出建议动作：`进入 P0`、`进入 P1`、`观察`、`忽略`。
 - 影响等级用 `★★★★★` 到 `★`，帮助每周筛选。
+- 每周最多 Top 10 signals，其中最多 3 条进入 P0。
 - tracking 里的内容可以粗糙，但不能没有判断。
 
 ## 从 Tracking 到沉淀
@@ -45,3 +49,4 @@
 - 形成工程观点后进入 `insights/`。
 - 可以实验验证的内容进入 `experiments/`。
 - 被消化为可复用工程知识后进入 `topics/`。
+- 进入真实工程实践或生产方案后，状态可以标记为 `IMPLEMENTED`。

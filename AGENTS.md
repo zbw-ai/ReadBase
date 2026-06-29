@@ -4,9 +4,11 @@ This file is the shared working guide for AI coding agents in this repository. I
 
 ## Repository Purpose
 
-ReadBase is a Chinese-language, content-first engineering knowledge base. It is not an application repo and has no product build pipeline. The current primary handbook is `training-infra-roadmap/`, whose goal is to become an **AI Training Infrastructure Engineering Handbook**.
+ReadBase is a Chinese-language, content-first Personal Research Operating System for Large-Scale AI Systems. It is not an application repo and has no product build pipeline. The current primary handbook is `training-infra-roadmap/`, which is Phase 1: Training Infrastructure.
 
 Write for a software engineer growing into a senior AI/LLM training infrastructure engineer. Prefer engineering judgment, system design, production troubleshooting, and interview readiness over academic-style summaries.
+
+North Star: build a production-grade understanding of Large-Scale AI Systems through a human-AI maintained Personal Research Operating System.
 
 ## Working Style
 
@@ -23,6 +25,11 @@ Write for a software engineer growing into a senior AI/LLM training infrastructu
 - `training-infra-roadmap/tech_reports/` contains model/system technical reports.
 - `training-infra-roadmap/engineering_blogs/` contains engineering blogs, official docs, release notes, and vendor technical posts that expose implementation details not captured by papers.
 - `training-infra-roadmap/tracking/` is the research radar: recent papers, engineering blogs, release notes, infra trends, and agentic RL signals. It records signal and triage, not full notes.
+- `training-infra-roadmap/reading_queue/` turns tracking signals into P0/P1 reading decisions.
+- `training-infra-roadmap/learning_log/` records monthly learning progress, questions, and next steps.
+- `training-infra-roadmap/insights/` stores original engineering judgments.
+- `training-infra-roadmap/experiments/` records practical verification and benchmarks.
+- `training-infra-roadmap/playbooks/` stores production troubleshooting runbooks.
 - `training-infra-roadmap/topics/` contains long-form engineering handbook chapters.
 - `training-infra-roadmap/interview/` contains interview handbook notes.
 - `training-infra-roadmap/roadmaps/` contains staged learning plans.
@@ -42,11 +49,42 @@ For `tech_reports/`, follow this section order:
 
 For `engineering_blogs/`, do not summarize marketing copy. Extract the engineering signal: source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary.
 
-For `tracking/`, keep entries lightweight and judgment-heavy. Each item should include source/type/link, impact level, recommended action, related topics, one-sentence value, and next step. Tracking is an inbox/radar; promote only important items into `papers/`, `tech_reports/`, `engineering_blogs/`, `topics/`, or future reading queues.
+For `tracking/`, keep entries lightweight and judgment-heavy. Each item should include source/type/link, impact level, `Decision` (`Ignore` / `Observe` / `Read` / `Deep Dive`), `Reason`, related topics, one-sentence value, and next step. Tracking is an inbox/radar; promote only important items into `reading_queue/`, `papers/`, `tech_reports/`, `engineering_blogs/`, `topics/`, `insights/`, `experiments/`, or `playbooks/`.
+
+For `playbooks/`, write runbooks, not concept explanations: symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 For `topics/`, write as engineering handbook chapters: problem framing → mechanism → config guidance → production pitfalls → troubleshooting → adjacent-system relationships.
 
 For `interview/`, include: 高频面试题 → 追问问题 → 生产环境案例 → 常见错误回答 → 优秀回答示例.
+
+## Knowledge Lifecycle
+
+Use these statuses when tracking important materials:
+
+```text
+NEW         just discovered
+READING     actively reading
+SUMMARIZED  converted into a paper/report/blog note
+DIGESTED    reflected in topics or insights
+VERIFIED    validated by experiment or reproduction
+IMPLEMENTED used in real engineering practice or production design
+OBSOLETE    outdated or superseded
+```
+
+## Human-AI Workflow Protocol
+
+When adding a new material:
+
+1. Add it to `tracking/` with impact, Decision, and Reason.
+2. If important, move it to `reading_queue/P0.md` or `reading_queue/P1.md`.
+3. After reading, create or update the relevant paper/report/blog note.
+4. Update at least one `topics/` chapter if the material changes system understanding.
+5. If it forms a technical judgment, add or update `insights/`.
+6. If it can be validated, create or update an `experiments/` record.
+7. If it changes production troubleshooting, add or update a `playbooks/` runbook.
+8. Update `KNOWLEDGE_GRAPH.md` / `MASTER_READING_LIST.md` when navigation changes.
+
+Important: if a paper does not change engineering judgment, experiment design, or system implementation, it is not really finished.
 
 ## Linking Rules
 

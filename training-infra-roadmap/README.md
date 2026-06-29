@@ -1,8 +1,10 @@
 # AI Training Infrastructure Handbook
 
-`training-infra-roadmap` 是一个长期维护的 AI Training Infrastructure 知识库，目标不是收集论文，而是把大模型训练系统的演进整理成工程师能用的手册。
+`training-infra-roadmap` 是 ReadBase 的 Phase 1：Training Infrastructure。
 
-它服务于一个核心目标：成为能够设计、优化、排障和扩展超大规模训练平台的高级 AI Infra 工程师。
+它不是孤立的知识库，而是 Personal Research Operating System 的第一阶段：通过 tracking、reading queue、notes、topics、experiments、playbooks 和 learning log，建立能够支撑超大规模训练平台设计、优化、排障和长期技术判断的工程体系。
+
+项目哲学：[Philosophy](philosophy.md)
 
 ## 核心问题
 
@@ -26,6 +28,11 @@ training-infra-roadmap/
   tech_reports/
   engineering_blogs/
   tracking/
+  reading_queue/
+  learning_log/
+  insights/
+  experiments/
+  playbooks/
   topics/
   roadmaps/
   interview/
@@ -81,6 +88,11 @@ training-infra-roadmap/
 - [Engineering Blogs](engineering_blogs/README.md)
 - [Blogs CSV](references/blogs.csv)
 - [Tracking Radar](tracking/README.md)
+- [Reading Queue](reading_queue/README.md)
+- [Learning Log](learning_log/README.md)
+- [Insights](insights/README.md)
+- [Experiments](experiments/README.md)
+- [Playbooks](playbooks/README.md)
 
 ## 推荐阅读路径
 
@@ -103,6 +115,11 @@ graph LR
 - `tech_reports/`：模型/系统技术报告，重点看训练系统设计和经验。
 - `engineering_blogs/`：工程博客、官方技术文档和 release note，重点补足 paper 没有覆盖的真实实现与生产经验。
 - `tracking/`：研究雷达，持续记录新论文、工程博客、release note、infra trends 和 Agentic RL 信号。
+- `reading_queue/`：把 tracking 中的信号筛选成 P0/P1 阅读计划。
+- `learning_log/`：记录每月读了什么、理解了什么、还有什么疑问。
+- `insights/`：沉淀个人技术判断，不写论文摘要。
+- `experiments/`：用实验验证工程判断。
+- `playbooks/`：生产排障 runbook，回答线上问题怎么查、怎么恢复、怎么复盘。
 - `topics/`：横向主题，把多篇材料串起来。
 - `interview/`：面试手册，强调追问、错误回答和生产案例。
 - `roadmaps/`：学习计划，控制阅读节奏，避免只收藏不消化。
@@ -116,4 +133,5 @@ graph LR
 2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
 3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
 4. 建立 `engineering_blogs/` 的高质量入口，优先收录 NVIDIA / Megatron-Core / Transformer Engine / NCCL / PyTorch / DeepSpeed 等没有正式 paper 但工程价值很高的材料。
-5. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。
+5. 让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
+6. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。

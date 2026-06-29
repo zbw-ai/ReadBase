@@ -1,22 +1,29 @@
-# Daily Report Template
+# Weekly Signal Report Template
 
-这个模板用于记录每天或每周的 AI Training Infra 信号。它适合 HuggingFace Trending、arXiv、GitHub Trending、NVIDIA/Meta/Google/Microsoft/OpenAI/Anthropic/DeepSeek 等工程博客和 release note。
+这个模板用于每周日输出高质量 AI Systems / AI Training Infra 信号判断。它适合 HuggingFace Trending、arXiv、GitHub Trending、NVIDIA/Meta/Google/Microsoft/OpenAI/Anthropic/DeepSeek 等工程博客和 release note。
 
-不要把它写成新闻摘要。它应该回答：今天有哪些东西可能改变训练 infra 的判断？
+不要把它写成新闻摘要。它应该回答：本周有哪些东西可能改变工程决策？
+
+原则：
+
+- 每周最多记录 Top 10 signals。
+- 最多 3 条进入 `reading_queue/P0.md`。
+- 每条必须给出 `Decision` 和 `Reason`。
+- 数量在精不在多。
 
 ---
 
-# Source Daily Report, YYYY-MM-DD
+# Weekly Signal Report, YYYY-WW
 
-## 今日核心信号
+## 本周核心信号
 
-用 1 段话总结今天最重要的趋势，不超过 150 字。
+用 1 段话总结本周最重要的趋势，不超过 150 字。
 
 示例写法：
 
 > MoE 正在从模型创新变成训练/推理基础设施的默认约束；agentic 能力不再是 demo 卖点，而开始反向影响模型结构、上下文长度、rollout 系统和评估方式。
 
-## 最值得关注
+## Top 3: 进入 P0
 
 ### 项目 / 论文 / 博客标题
 
@@ -24,7 +31,10 @@
 - 类型：paper / model / engineering blog / release note / repo / report
 - 链接：
 - 影响等级：★★★★★
-- 建议动作：立即精读 / 加入阅读队列 / 观察即可 / 忽略
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
+- Status：NEW / READING / SUMMARIZED / DIGESTED / VERIFIED / IMPLEMENTED / OBSOLETE
+- 建议动作：进入 P0 / 进入 P1 / 观察 / 忽略
 - 预计阅读：30min / 1h / 2h / 4h
 - 关联主题：
   - `topics/...`
@@ -38,7 +48,7 @@
 - 它是否说明某个方向从 paper 走向 production？
 - 它会影响哪些主题：MoE、FP8、context parallel、checkpoint、rollout、scheduler、NCCL？
 
-## 也值得关注
+## Top 10 Signals
 
 ### 1. 标题
 
@@ -46,6 +56,9 @@
 - 类型：
 - 链接：
 - 影响等级：★★★★
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
+- Status：
 - 建议动作：
 - 关联主题：
 
@@ -57,6 +70,9 @@
 - 类型：
 - 链接：
 - 影响等级：★★★
+- Decision：
+- Reason：
+- Status：
 - 建议动作：
 - 关联主题：
 
@@ -68,18 +84,21 @@
 - 类型：
 - 链接：
 - 影响等级：★★★
+- Decision：
+- Reason：
+- Status：
 - 建议动作：
 - 关联主题：
 
 一句话价值：
 
-## 今日观察
+## 本周观察
 
 用 1-2 段写自己的判断。这里最重要。
 
 可以回答：
 
-- 今天的信号说明哪个方向在加速？
+- 本周的信号说明哪个方向在加速？
 - 哪些技术正在从 paper 进入可运行系统？
 - 哪些能力正在从模型卖点变成基础设施约束？
 - 哪些内容值得进入 `reading_queue/P0.md`？

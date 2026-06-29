@@ -1,8 +1,10 @@
 # ReadBase
 
-ReadBase 是我的长期工程知识库，用来沉淀 AI Infra、LLM Infra、分布式训练、GPU 集群、推理系统和相关工程实践。
+ReadBase 是一个面向 Large-Scale AI Systems 的 Personal Research Operating System。
 
-这个仓库不是论文收藏夹，而是面向工程判断、系统设计、生产排障和面试复习的 handbook 集合。
+它不是论文收藏夹，也不是普通笔记仓库，而是一个由人和 AI Agent 长期协作维护的研究系统：持续输入 signals，形成 decisions，沉淀 topics，通过 experiments 验证，再转化为 playbooks 和 learning log。
+
+**North Star:** Build a production-grade understanding of Large-Scale AI Systems through a human-AI maintained Personal Research Operating System.
 
 ## 知识地图
 
@@ -12,7 +14,11 @@ ReadBase 是我的长期工程知识库，用来沉淀 AI Infra、LLM Infra、�
 
 | 专题 | 状态 | 入口 |
 |---|---|---|
-| AI Training Infrastructure Handbook | 建设中 | [training-infra-roadmap](training-infra-roadmap/README.md) |
+| Phase 1: Training Infrastructure | Ongoing | [training-infra-roadmap](training-infra-roadmap/README.md) |
+| Phase 2: Inference Infrastructure | Planned | - |
+| Phase 3: Agent Infrastructure | Planned | - |
+| Phase 4: AI Engineering | Planned | - |
+| Phase 5: Large-Scale AI Systems | Vision | - |
 
 ## 学习入口
 
@@ -36,6 +42,11 @@ ReadBase/
     tech_reports/
     engineering_blogs/
     tracking/
+    reading_queue/
+    learning_log/
+    insights/
+    experiments/
+    playbooks/
     topics/
     roadmaps/
     interview/
@@ -57,6 +68,7 @@ ReadBase/
 - 每个专题目录都应该有自己的 `README.md`、reading list 和知识图谱。
 - `topics/` 写成工程手册章节，而不是概念摘抄。
 - `tracking/` 作为研究雷达，记录近期值得关注的新论文、工程博客、release note 和 infra 趋势。
+- `playbooks/` 写成生产排障 runbook，而不是原理说明。
 - `papers/`、`tech_reports/` 和 `engineering_blogs/` 共同服务于系统理解；不要把知识来源限制在论文。
 - `interview/` 聚焦高频题、追问、生产案例、错误回答和优秀回答。
 - 尽量保持内部 Markdown 链接可点击、可长期维护。

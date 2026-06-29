@@ -22,7 +22,10 @@
 - 类型：paper / blog / repo / report
 - 链接：
 - 影响等级：
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
 - 建议动作：
+- Status：
 - 关联主题：rollout / verifier / reward / scheduler / long context / checkpoint / distributed training
 - 一句话价值：
 - 需要追问：

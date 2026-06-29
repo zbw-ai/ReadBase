@@ -13,7 +13,10 @@
 - 链接：
 - 类型：engineering blog / official docs / release note
 - 影响等级：
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
 - 建议动作：
+- Status：
 - 关联主题：
 - 一句话价值：
 - 是否需要进入 engineering_blogs/：

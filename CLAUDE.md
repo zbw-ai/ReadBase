@@ -6,9 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-ReadBase is a **content-first knowledge base** (Chinese-language Markdown), not a software application. There is no product build, unit-test suite, lint pipeline, or dependency tooling. Most files under `training-infra-roadmap/` are hand-authored Markdown or CSV. "Working in this repo" means writing, restructuring, and cross-linking engineering handbook notes; verification usually means checking Markdown links, SVG/XML validity, CSV parseability, and Git status.
+ReadBase is a **Personal Research Operating System for Large-Scale AI Systems** (Chinese-language Markdown), not a software application. There is no product build, unit-test suite, lint pipeline, or dependency tooling. Most files under `training-infra-roadmap/` are hand-authored Markdown or CSV. "Working in this repo" means writing, restructuring, and cross-linking engineering notes, signals, runbooks, and research workflow artifacts; verification usually means checking Markdown links, SVG/XML validity, CSV parseability, and Git status.
 
-The stated purpose (README.md): this is an engineering *handbook* for AI/LLM training infrastructure, oriented toward engineering judgment, system design, production troubleshooting, and interview prep — explicitly **not** an academic paper collection or concept-summary dump.
+The stated purpose: build a production-grade understanding of Large-Scale AI Systems through a human-AI maintained Personal Research Operating System. Training Infrastructure is Phase 1.
 
 ## Structure
 
@@ -20,6 +20,11 @@ Inside `training-infra-roadmap/`:
 - `tech_reports/` — model/system reports (Llama, DeepSeek, MegaScale...); emphasis on training-system design and operational lessons, not the model itself.
 - `engineering_blogs/` — engineering blogs, official docs, release notes, and vendor technical posts. This is a first-class source category because many training-stack details (Megatron-Core, Transformer Engine, NCCL, FP8 recipes, checkpoint APIs) may not have papers.
 - `tracking/` — research radar for recent papers, engineering blogs, release notes, infra trends, and agentic RL signals. It records triage and judgment, not full notes.
+- `reading_queue/` — P0/P1/Done reading decisions.
+- `learning_log/` — monthly learning progress and open questions.
+- `insights/` — original technical judgments.
+- `experiments/` — practical verification and benchmark notes.
+- `playbooks/` — production troubleshooting runbooks.
 - `topics/` — cross-cutting engineering handbook chapters that weave multiple sources together. These are the highest-value docs and the intended "deep" reference (e.g. `tensor_parallelism.md`, `checkpointing.md` are the quality templates to imitate).
 - `interview/` — interview handbook: high-frequency questions, follow-ups (追问), production cases, wrong-answer vs. good-answer examples.
 - `roadmaps/` — `30_day_plan.md`, `90_day_plan.md`, `yearly_plan.md`; pace reading so material gets digested, not just collected.
@@ -42,7 +47,9 @@ Inside `training-infra-roadmap/`:
 
 **`engineering_blogs/` template** — source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary. Do not preserve marketing language; extract implementation details and production judgment.
 
-**`tracking/` template** — source/type/link → impact level → recommended action → related topics → one-sentence value → next step. Keep it lightweight; this is for discovery and triage before material becomes a note or topic.
+**`tracking/` template** — source/type/link → impact level → Decision (`Ignore` / `Observe` / `Read` / `Deep Dive`) → Reason → related topics → one-sentence value → next step. Keep it lightweight; this is for discovery and triage before material becomes a note or topic.
+
+**`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 **`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.
 
@@ -59,6 +66,8 @@ This repo lives and dies on its internal Markdown links — keep them clickable 
 
 - `topics/` must read as engineering handbook chapters, not concept excerpts.
 - `papers/`, `tech_reports/`, and `engineering_blogs/` serve system understanding; do not restrict the handbook to papers.
+- Every important material should move through a lifecycle where possible: `NEW` → `READING` → `SUMMARIZED` → `DIGESTED` → `VERIFIED` → `IMPLEMENTED`; use `OBSOLETE` when superseded.
+- A paper is not really finished if it does not change engineering judgment, experiment design, or system implementation.
 - Each handbook directory should have its own `README.md`, reading list, and knowledge graph.
 - Current build priority: deepen the ~7 seed drafts to be recitable/interview-ready/design-grade, using `tensor_parallelism.md` and `checkpointing.md` as the bar; then extend FSDP, MoE, FP8, NCCL; then fill `interview/` (NCCL, RDMA, RoCE, InfiniBand); then turn the reading list / CSVs / graph into a searchable entry point.
 

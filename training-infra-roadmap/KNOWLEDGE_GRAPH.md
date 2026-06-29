@@ -4,9 +4,57 @@
 
 新的表达方式分成两层：
 
-1. **第一轮主线**：你现在应该按什么顺序读。
-2. **能力分区**：每条主线背后分别对应哪些训练 infra 能力。
-3. **工程信号层**：paper 没覆盖的实现细节，来自 engineering blogs、官方文档和 release note。
+1. **Research OS 工作流**：新信息如何进入、筛选、沉淀和验证。
+2. **第一轮主线**：你现在应该按什么顺序读。
+3. **能力分区**：每条主线背后分别对应哪些训练 infra 能力。
+4. **工程信号层**：paper 没覆盖的实现细节，来自 engineering blogs、官方文档和 release note。
+
+## Research OS 工作流
+
+这张图回答的是：这个仓库不是静态资料库，而是人和 AI Agent 协同维护的研究操作系统。每条新信息最终都要流向工程判断、实验验证或生产排障资产。
+
+```mermaid
+flowchart LR
+  S["Signals<br/>tracking"]
+  Q["Queue<br/>reading_queue"]
+  N["Notes<br/>papers / reports / blogs"]
+  T["Topics<br/>engineering handbook"]
+  I["Insights<br/>personal judgment"]
+  E["Experiments<br/>benchmarks / repro"]
+  P["Playbooks<br/>production runbooks"]
+  L["Learning Log<br/>growth trace"]
+
+  S -->|Decision + Reason| Q
+  Q -->|Read / Deep Dive| N
+  N -->|Digest| T
+  T --> I
+  T --> E
+  E -->|Verified / Implemented| P
+  I --> L
+  P --> L
+  L -.feedback.-> S
+
+  classDef signal fill:#eef6ff,stroke:#3b6ea8,color:#102033,stroke-width:1.5px
+  classDef queue fill:#f9f3ea,stroke:#d98c38,color:#102033,stroke-width:1.5px
+  classDef note fill:#eef8f6,stroke:#2a9d8f,color:#102033,stroke-width:1.5px
+  classDef product fill:#f6f0fa,stroke:#7a5195,color:#102033,stroke-width:1.5px
+  classDef loop fill:#f1f5f9,stroke:#5b677a,color:#102033,stroke-width:1.5px
+  class S signal
+  class Q queue
+  class N note
+  class T,I,E,P product
+  class L loop
+```
+
+状态流转建议：
+
+- `NEW`：刚发现，还没有判断价值。
+- `READING`：已经进入阅读队列。
+- `SUMMARIZED`：形成 paper / report / blog note。
+- `DIGESTED`：已经沉淀进 topic 或 insight。
+- `VERIFIED`：通过 experiment 验证。
+- `IMPLEMENTED`：进入真实工程实践。
+- `OBSOLETE`：已过时或被新系统替代。
 
 ## 第一轮主线
 

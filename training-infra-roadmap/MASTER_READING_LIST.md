@@ -16,12 +16,25 @@
 
 | 入口 | 用途 |
 |---|---|
-| [Daily Report Template](tracking/daily_report_template.md) | 每日/每周信号报告模板 |
+| [Weekly Signal Report Template](tracking/weekly_signal_report_template.md) | 每周信号报告模板 |
 | [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
 | [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
+
+## 0.2 Research OS 工作流
+
+| 阶段 | 目录 | 作用 |
+|---|---|---|
+| Signals | [tracking](tracking/README.md) | 发现每周重要信号 |
+| Queue | [reading_queue](reading_queue/README.md) | 决定 P0 / P1 |
+| Notes | `papers/` / `tech_reports/` / `engineering_blogs/` | 消化原始资料 |
+| Topics | [topics](topics/) | 沉淀工程手册 |
+| Insights | [insights](insights/README.md) | 形成个人判断 |
+| Experiments | [experiments](experiments/README.md) | 实验验证 |
+| Playbooks | [playbooks](playbooks/README.md) | 生产排障 runbook |
+| Learning Log | [learning_log](learning_log/README.md) | 月度复盘 |
 
 ## 0.1 Engineering Blog 入口
 

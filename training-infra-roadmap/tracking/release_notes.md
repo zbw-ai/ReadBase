@@ -24,7 +24,10 @@
 - 链接：
 - 类型：release note
 - 影响等级：
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
 - 建议动作：
+- Status：
 - 影响模块：parallelism / memory / kernel / checkpoint / network / scheduler / RL rollout
 - 一句话价值：
 - 需要验证的点：

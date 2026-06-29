@@ -12,7 +12,10 @@
 - 链接：
 - 类型：paper
 - 影响等级：★★★★★ / ★★★★ / ★★★ / ★★ / ★
-- 建议动作：立即精读 / 加入阅读队列 / 观察即可 / 忽略
+- Decision：Ignore / Observe / Read / Deep Dive
+- Reason：
+- 建议动作：进入 P0 / 进入 P1 / 观察 / 忽略
+- Status：NEW / READING / SUMMARIZED / DIGESTED / VERIFIED / IMPLEMENTED / OBSOLETE
 - 预计阅读：
 - 关联主题：
 - 一句话价值：
