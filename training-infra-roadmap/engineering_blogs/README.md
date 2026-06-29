@@ -10,6 +10,8 @@
 
 2026 年以后，很多高价值信息不会以 paper 形式出现，而是出现在 Megatron-Core、Transformer Engine、NCCL、FSDP、checkpoint、serving/training platform、RL pipeline 等工程博客或官方文档里。这里的目标不是收藏链接，而是把博客转化成工程判断。
 
+当前 `references/blogs.csv` 仍是 backlog 索引，尚未代表已经完成的工程博客笔记。第一批真实条目建议从 NVIDIA Training Stack 和 vLLM/OpenRLHF 这类已经影响当前 topic/playbook 的材料开始补。
+
 ## 收录原则
 
 优先收录能回答以下问题的文章：

@@ -157,19 +157,19 @@ Agent Lightning 的信号是：Agentic RL 不一定要求重写 agent runtime。
 
 一句话价值：如果未来训练资源不是同构 H100/H200，异构 rollout/train mapping 会变重要。
 
-### 8. vLLM token-id / retokenization drift issue
+### 8. vLLM + OpenRLHF Integration
 
 - 来源：engineering blog
 - 类型：blog
-- 链接：https://blog.vllm.ai/
+- 链接：https://vllm.ai/blog/2025-04-23-openrlhf-vllm
 - 影响等级：★★★
-- Decision：Observe
-- Reason：Agent RL 中返回文本和返回 token ids 会影响训练/推理一致性，是容易被忽略的生产坑。
+- Decision：Read
+- Reason：这篇文章把 rollout inference、Ray placement group、vLLM Ray Executor、CUDA IPC/NCCL weight sync 放到同一个 RLHF pipeline 里解释，证据比博客首页更可追溯。
 - Status：NEW
-- 建议动作：观察
-- 关联主题：rollout correctness / tokenizer / inference engine
+- 建议动作：进入 P1
+- 关联主题：rollout inference / placement group / weight sync / inference engine
 
-一句话价值：Agentic RL 的正确性边界会下沉到 tokenizer 和 inference API。
+一句话价值：推理引擎已经不是外部 serving 组件，而是 RLHF/Agentic RL 训练闭环的一部分。
 
 ### 9. DeepSeek-R1
 
@@ -203,12 +203,13 @@ Agent Lightning 的信号是：Agentic RL 不一定要求重写 agent runtime。
 
 Agentic RL Infra 的主线已经很清楚：pretraining 是同步大规模矩阵计算，Agentic RL 是异步 producer-consumer 系统。前者的核心是 GPU collective、显存和 checkpoint；后者还要额外管理 rollout tail latency、reward/verifier 资源、trajectory schema、policy version、staleness 和 agent runtime observability。
 
-本周不应该贪多。P0 只保留三条：AReaL 看异步系统，verl/HybridFlow 看可编排 RL dataflow，Agent Lightning 看 agent execution 和 trainer 的边界。读完这三条，才有资格继续看 SkyRL、RLHFless、AReaL-Hex 这类扩展路线。
+本周不应该贪多。P0 只保留三条：AReaL 看异步系统，verl/HybridFlow 看可编排 RL dataflow，Agent Lightning 看 agent execution 和 trainer 的边界。读完这三条，再进入 OpenRLHF、vLLM + OpenRLHF、SkyRL、DAPO、NeMo RL 这类 P1 工程化材料；RLHFless 和 AReaL-Hex 暂时只观察。
 
 ## 下一步动作
 
 - [x] 加入 `reading_queue/P0.md`：AReaL、verl/HybridFlow、Agent Lightning。
-- [ ] 加入 `reading_queue/P1.md`：SkyRL、DAPO、RLHFless。
+- [x] 加入 `reading_queue/P1.md`：OpenRLHF、vLLM + OpenRLHF Integration、SkyRL、DAPO、NVIDIA NeMo RL。
+- [ ] 仅索引 / 观察：RLHFless、AReaL-Hex。
 - [x] 需要更新的 topic：[Agentic RL](../topics/agentic_rl.md)。
 - [x] 需要新增的 insight：[Agentic RL will change training infra](../insights/001_agentic_rl_will_change_training_infra.md)。
 - [x] 需要更新的 playbook：[Rollout Latency](../playbooks/rollout_latency.md)。

@@ -32,3 +32,9 @@
 
 ## Follow-up
 ```
+
+## Current Experiments
+
+- [FlashAttention Benchmark](flashattention/benchmark.md)：验证 IO-aware attention 在不同序列长度、batch size、dtype 下的收益边界。
+- [TP vs DP](tensor_parallelism/tp_vs_dp.md)：验证不同 parallelism 配置对 step time 和通信开销的影响。
+- [Async Checkpoint](checkpoint/async_checkpoint.md)：验证异步 checkpoint 对 step time spike 和恢复路径的影响。
