@@ -19,13 +19,13 @@ Pretraining 的系统目标相对清楚：让 GPU 以稳定 batch 消费 token�
 
 这些问题不是 PPO 参数能解决的。它们是平台问题。
 
-## 本周信号
+## 关键信号来源
 
 - [AReaL](https://arxiv.org/abs/2505.24298)：用 fully asynchronous RL 解耦 rollout 和 training，把 freshness 和 staleness 变成系统控制项。
 - [HybridFlow / verl](https://arxiv.org/abs/2409.19256)：把 RLHF 表达为复杂 dataflow，并正面处理 actor training/generation 之间的 resharding。
 - [Agent Lightning](https://arxiv.org/abs/2508.03680)：把 agent execution 和 trainer 解耦，让已有 agent runtime 通过 trace/transition 接入 RL。
 
-这三条信号共同说明：Agentic RL Infra 的主战场不是单个算法，而是 pipeline architecture。
+这些来自 historical backfill 的信号共同说明：Agentic RL Infra 的主战场不是单个算法，而是 pipeline architecture。
 
 ## Historical Backfill 后的补充判断
 
