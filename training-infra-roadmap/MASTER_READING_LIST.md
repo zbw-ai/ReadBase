@@ -17,19 +17,20 @@
 | 入口 | 用途 |
 |---|---|
 | [Weekly Signal Report Template](tracking/weekly_signal_report_template.md) | 每周信号报告模板 |
+| [Monthly Signal Report Template](tracking/monthly_signal_report_template.md) | 每月高质量正式信号沉淀模板 |
 | [Historical Backfill](tracking/historical_backfill.md) | 历史精华补录：补当前工程判断缺口 |
 | [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
 | [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
-| [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md) | 修正记录：本周无合格前沿信号 |
+| [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md) | 修正记录：本周无合格前沿信号 |
 
 ## 0.2 Research OS 工作流
 
 | 阶段 | 目录 | 作用 |
 |---|---|---|
-| Signals | [tracking](tracking/README.md) | 发现每周重要信号 |
+| Signals | [tracking](tracking/README.md) | weekly 扫描前沿，monthly 正式沉淀 |
 | Queue | [reading_queue](reading_queue/README.md) | 决定 P0 / P1 |
 | Notes | `papers/` / `tech_reports/` / `engineering_blogs/` | 消化原始资料 |
 | Topics | [topics](topics/) | 沉淀工程手册 |

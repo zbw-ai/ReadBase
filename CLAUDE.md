@@ -53,6 +53,10 @@ Inside `training-infra-roadmap/`:
 
 **Weekly signal rule** — do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only, and a week can legitimately have zero accepted signals. Important-but-not-new materials belong in `tracking/historical_backfill.md`.
 
+**Fixed signal windows** — weekly reports cover the previous Monday 00:00:00 through Sunday 23:59:59 in `Asia/Shanghai`, generated on Monday, named `weekly_signal_YYYY-Www.md`. Monthly reports cover the previous calendar month, generated on the 1st, named `monthly_signal_YYYY-MM.md`. Weekly is radar; monthly is the high-quality digest.
+
+**Personal focus filter** — weekly/monthly scanning is not generic AI news. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
+
 **`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 **`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.

@@ -55,6 +55,10 @@ For `tracking/historical_backfill.md`, do not chase recency. Backfill only past 
 
 For weekly signal reports, do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only. It is valid for a week to have zero accepted signals. If a material is important but not new, route it to historical backfill instead of pretending it is a weekly signal.
 
+Weekly reports use fixed windows in `Asia/Shanghai`: previous Monday 00:00:00 through previous Sunday 23:59:59, generated on Monday, named `weekly_signal_YYYY-Www.md`. Monthly reports use the previous calendar month, generated on the 1st, named `monthly_signal_YYYY-MM.md`. Monthly reports are the high-quality digest; weekly reports are only radar scans.
+
+Weekly/monthly signal scanning must use the repository owner's focus filter, not generic AI popularity. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
+
 For `playbooks/`, write runbooks, not concept explanations: symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 For `topics/`, write as engineering handbook chapters: problem framing → mechanism → config guidance → production pitfalls → troubleshooting → adjacent-system relationships.

@@ -220,6 +220,7 @@ flowchart LR
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
 - [Historical Backfill](tracking/historical_backfill.md) ↔ [P0 Queue](reading_queue/P0.md) ↔ [Agentic RL Insight](insights/001_agentic_rl_will_change_training_infra.md)
 - [Historical Backfill](tracking/historical_backfill.md) ↔ [P1 Queue](reading_queue/P1.md) ↔ [Agentic RL](topics/agentic_rl.md)
+- [Weekly Signal Template](tracking/weekly_signal_report_template.md) ↔ [Monthly Signal Template](tracking/monthly_signal_report_template.md) ↔ [Reading Queue](reading_queue/README.md)
 
 ## 工程博客索引
 

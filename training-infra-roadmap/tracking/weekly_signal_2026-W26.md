@@ -1,5 +1,10 @@
 # Weekly Signal Report, 2026-W26
 
+- Window: 2026-06-22 00:00:00 ~ 2026-06-28 23:59:59
+- Timezone: Asia/Shanghai
+- Generated at: 2026-06-29
+- Report type: weekly frontier radar
+
 ## 本周核心判断
 
 本周没有收录合格的 **frontier weekly signal**。
@@ -20,7 +25,7 @@
 
 ## Accepted Frontier Signals
 
-暂无。
+本窗口未收录 accepted frontier signal。
 
 本周不强行凑数量。宁缺毋滥。
 

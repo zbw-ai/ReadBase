@@ -90,7 +90,7 @@ training-infra-roadmap/
 - [Blogs CSV](references/blogs.csv)
 - [Tracking Radar](tracking/README.md)
 - [Historical Backfill](tracking/historical_backfill.md)
-- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md)：本周无合格前沿信号的修正记录
+- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md)：本周无合格前沿信号的修正记录
 - [Reading Queue](reading_queue/README.md)
 - [Learning Log](learning_log/README.md)
 - [Insights](insights/README.md)
@@ -117,7 +117,7 @@ graph LR
 - `papers/`：论文笔记，统一使用工程视角模板。
 - `tech_reports/`：模型/系统技术报告，重点看训练系统设计和经验。
 - `engineering_blogs/`：工程博客、官方技术文档和 release note，重点补足 paper 没有覆盖的真实实现与生产经验。
-- `tracking/`：研究雷达，持续记录新论文、工程博客、release note、infra trends 和 Agentic RL 信号。
+- `tracking/`：研究雷达。weekly 负责固定窗口扫描前沿，monthly 负责高质量正式沉淀，historical backfill 负责历史精华补录。
 - `tracking/historical_backfill.md`：历史精华补录，不追新，只补当前工程判断缺口。
 - `reading_queue/`：把 tracking 中的信号筛选成 P0/P1 阅读计划。
 - `learning_log/`：记录每月读了什么、理解了什么、还有什么疑问。
