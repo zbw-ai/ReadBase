@@ -90,7 +90,7 @@ training-infra-roadmap/
 - [Blogs CSV](references/blogs.csv)
 - [Tracking Radar](tracking/README.md)
 - [Historical Backfill](tracking/historical_backfill.md)
-- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md)
+- [Weekly Signal 2026-W26](tracking/weekly_signal_2026-06-28.md)：本周无合格前沿信号的修正记录
 - [Reading Queue](reading_queue/README.md)
 - [Learning Log](learning_log/README.md)
 - [Insights](insights/README.md)
@@ -137,5 +137,5 @@ graph LR
 2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
 3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
 4. 建立 `engineering_blogs/` 的高质量入口，优先收录 NVIDIA / Megatron-Core / Transformer Engine / NCCL / PyTorch / DeepSpeed 等没有正式 paper 但工程价值很高的材料。
-5. 继续复用 [Agentic RL Infra 闭环](tracking/weekly_signal_2026-06-28.md) 的方式，让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
+5. 继续复用 [Agentic RL Infra Backfill 闭环](tracking/historical_backfill.md) 的方式，让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
 6. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。

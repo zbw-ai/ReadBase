@@ -44,13 +44,14 @@ Backfill 不按时间补，按“它能补哪个工程判断缺口”来补。
 
 - 不追求全量，只记录可能改变工程判断的信号。
 - 不把历史材料混入 weekly signal，避免污染“本周趋势”判断。
+- Weekly signal 不强行凑数；0 条 accepted signal 是合法结果。
 - 每条材料必须有“一句话价值”。
 - 每条材料必须给出 `Decision`：`Ignore`、`Observe`、`Read`、`Deep Dive`。
 - 每条材料必须给出 `Reason`：为什么做这个决策。
 - 每条材料建议标记 `Status`：`NEW`、`READING`、`SUMMARIZED`、`DIGESTED`、`VERIFIED`、`IMPLEMENTED`、`OBSOLETE`。
 - 每条材料必须给出建议动作：`进入 P0`、`进入 P1`、`观察`、`忽略`。
 - 影响等级用 `★★★★★` 到 `★`，帮助每周筛选。
-- 每周最多 Top 10 signals，其中最多 3 条进入 P0。
+- P0 不超过 3 条，但不是每周都必须产生 P0。
 - tracking 里的内容可以粗糙，但不能没有判断。
 
 ## 从 Tracking 到沉淀

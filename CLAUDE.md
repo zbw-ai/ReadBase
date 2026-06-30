@@ -51,6 +51,8 @@ Inside `training-infra-roadmap/`:
 
 **`tracking/historical_backfill.md` template** — original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. This file is for older classics that fill current engineering judgment gaps; do not mix it into weekly signal reports.
 
+**Weekly signal rule** — do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only, and a week can legitimately have zero accepted signals. Important-but-not-new materials belong in `tracking/historical_backfill.md`.
+
 **`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 **`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.

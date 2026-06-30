@@ -53,6 +53,8 @@ For `tracking/`, keep entries lightweight and judgment-heavy. Each item should i
 
 For `tracking/historical_backfill.md`, do not chase recency. Backfill only past materials that fill a current engineering judgment gap. Each entry should explain original time, backfill time, why it is backfilled now, historical impact, current value, Decision, Reason, suggested action, related topics, target destination, and lifecycle status. Do not mix historical backfill into weekly signal reports.
 
+For weekly signal reports, do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only. It is valid for a week to have zero accepted signals. If a material is important but not new, route it to historical backfill instead of pretending it is a weekly signal.
+
 For `playbooks/`, write runbooks, not concept explanations: symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
 For `topics/`, write as engineering handbook chapters: problem framing → mechanism → config guidance → production pitfalls → troubleshooting → adjacent-system relationships.
