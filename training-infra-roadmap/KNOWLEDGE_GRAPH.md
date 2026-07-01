@@ -212,6 +212,8 @@ flowchart LR
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [NCCL](topics/nccl.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Sequence Parallelism](topics/sequence_parallelism.md) ↔ [Context Parallelism](topics/context_parallelism.md)
+- [Long-context Training](topics/long_context_training.md) ↔ [Context Parallelism](topics/context_parallelism.md) ↔ [FlashAttention](topics/flashattention.md)
+- [Long-context Training](topics/long_context_training.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [ZeRO](papers/zero.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [FSDP](topics/fsdp.md)
 - [Checkpointing](topics/checkpointing.md) ↔ [Fault Tolerance](topics/fault_tolerance.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)

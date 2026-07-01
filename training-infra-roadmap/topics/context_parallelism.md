@@ -1,11 +1,14 @@
 # Context Parallelism
 
+> 所属专题：[Long-context Training](long_context_training.md)。CP 是长上下文训练的核心机制之一，但长上下文训练还包括 pretraining/SFT/RL 的数据、kernel、checkpoint、rollout 和稳定性问题。
+
 ## 核心问题
 
 长上下文训练中，单卡无法承载完整 sequence 的 attention/activation。Context Parallelism 沿 context 维切分序列，让多个 GPU 协作处理一个样本的长上下文。
 
 ## 上游材料
 
+- [Long-context Training](long_context_training.md)
 - [FlashAttention](flashattention.md)
 - [Sequence Parallelism](sequence_parallelism.md)
 

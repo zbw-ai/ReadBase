@@ -388,6 +388,7 @@ MoE checkpoint 不仅有 dense weights，还有 expert weights、router、expert
 - [Tensor Parallelism](tensor_parallelism.md)：TP shard 保存和恢复必须记录 partition dim、offset、TP rank。
 - [Pipeline Parallelism](pipeline_parallelism.md)：PP 按 layer/stage 切分，恢复时 stage layout 改变需要 layer remap。
 - [Data Parallelism](data_parallelism.md)：DP 影响 optimizer/gradient 同步和数据进度保存。
+- [Long-context Training](long_context_training.md)：长 step time、超长样本和 RL trajectory 会放大 checkpoint 频率、异步保存和恢复时间的设计压力。
 - [MoE](moe.md)：expert state、router、expert placement 和 load balance metadata 都要保存。
 - [MegaScale](../tech_reports/megascale.md)：万卡训练把 checkpoint 从功能问题升级成吞吐、容错和运维问题。
 - [Fault Tolerance](fault_tolerance.md)：checkpoint 是故障恢复的锚点，但不是完整容错系统。

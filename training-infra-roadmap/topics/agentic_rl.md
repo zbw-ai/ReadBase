@@ -183,6 +183,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [Checkpointing](checkpointing.md)：checkpoint 不只保存 model/optimizer，还要保存 policy version、reward version、queue offset 和 rollout lineage。
 - [FSDP](fsdp.md)：training state 常用 FSDP/ZeRO，和 inference state 的切换需要 resharding。
 - [Tensor Parallelism](tensor_parallelism.md)：rollout inference 可能使用 TP，但跨节点 TP 会放大 decode latency。
+- [Long-context Training](long_context_training.md)：长 prompt/response 会把 KV cache、chunked prefill、reward/verifier 成本和 policy staleness 一起带入 RL infra。
 - [Context Parallelism](context_parallelism.md)：长上下文 trajectory 会推动 CP、KV cache 和 sequence 切分进入 RL 平台。
 - [NCCL](nccl.md)：训练侧 collective 仍然重要，但 rollout/reward 系统还会引入更多 RPC 和存储流量。
 - [DeepSeek-R1](../tech_reports/deepseek_r1.md)：reasoning RL 需求爆发的重要背景。

@@ -113,6 +113,20 @@
 | [Context Parallelism](topics/context_parallelism.md) | 长上下文下与 TP 互补 |
 | [NCCL / Network](topics/nccl.md) | TP 排障最终落到 collective 和拓扑 |
 
+### Long-context Training 支撑材料
+
+先读专题入口：[Long-context Training](topics/long_context_training.md)。它不是单一 paper 线，而是横跨 pretraining / SFT / RL 的系统主题。
+
+| 材料 | 为什么支撑长上下文训练 |
+|---|---|
+| [Transformer](papers/transformer.md) | attention/MLP 是长上下文训练的基本计算图 |
+| [FlashAttention](papers/flashattention.md) | 长上下文首先暴露 attention IO 和 kernel 瓶颈 |
+| [Context Parallelism](topics/context_parallelism.md) | 单条长序列跨 GPU 切分的核心机制 |
+| [Sequence Parallelism](topics/sequence_parallelism.md) | 降低 activation 显存，与 TP/CP 配合 |
+| [Checkpointing](topics/checkpointing.md) | 长 step time 下保存、恢复和异步 checkpoint 更关键 |
+| [Agentic RL](topics/agentic_rl.md) | RL 阶段把长 prompt/response、rollout、KV cache 和 reward/verifier 带入训练系统 |
+| [Llama 3](tech_reports/llama3.md) | 128K context 的大规模训练报告入口 |
+
 ## 3. 显存优化
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |

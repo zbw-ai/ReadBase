@@ -131,11 +131,9 @@ graph LR
 
 ## 当前状态
 
-这是从资料库升级成工程手册的进行中版本。优先补强顺序：
+Research OS v1.0 已进入使用期。未来一个月不继续扩结构，优先把现有闭环跑起来：
 
-1. 以 [Tensor Parallelism](topics/tensor_parallelism.md) 和 [Checkpointing](topics/checkpointing.md) 为模板，继续扩写 [FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
-2. 把 7 篇初稿加深到可复述、可面试、可指导系统设计。
-3. 补齐 `interview/` 中 NCCL、RDMA、RoCE、InfiniBand。
-4. 建立 `engineering_blogs/` 的高质量入口，优先收录 NVIDIA / Megatron-Core / Transformer Engine / NCCL / PyTorch / DeepSpeed 等没有正式 paper 但工程价值很高的材料。
-5. 继续复用 [Agentic RL Infra Backfill 闭环](tracking/historical_backfill.md) 的方式，让 `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`experiments/`、`playbooks/` 跑成闭环。
-6. 把 reading list、CSV 和 knowledge graph 变成可检索的知识入口。
+1. 每周跑一次 [Weekly Signal](tracking/weekly_signal_report_template.md)，只收高质量前沿信号，可以 0 条。
+2. 每周精读一个 [P0](reading_queue/P0.md)，读完必须流向 `topics/`、`insights/`、`playbooks/` 或 `experiments/`。
+3. 每两周做一次 [Historical Backfill](tracking/historical_backfill.md)，只补当前工程判断缺口。
+4. 当前只聚焦三条主线：[Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。
