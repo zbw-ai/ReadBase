@@ -196,7 +196,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 
 ## Historical Backfill 发现的新关联
 
-[Historical Backfill](../tracking/historical_backfill.md) 补充了几个不该混入 weekly signal、但对理解 Agentic RL Infra 很关键的历史材料：
+[Historical Backfill](../tracking/historical_backfill.md) 补充了几个不该混入 frontier scan、但对理解 Agentic RL Infra 很关键的历史材料：
 
 - OpenRLHF 和 vLLM + OpenRLHF integration 说明 rollout inference、Ray placement group、vLLM engine、DeepSpeed ZeRO-3、weight sync 是一组系统问题。
 - SkyRL 说明 long-horizon tool-use agent training 需要 environment、agent layer、training stack 和 evaluation 一起设计。

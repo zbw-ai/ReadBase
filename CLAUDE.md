@@ -19,7 +19,7 @@ Inside `training-infra-roadmap/`:
 - `papers/` — paper notes, all using the same engineering-perspective template (see below).
 - `tech_reports/` — model/system reports (Llama, DeepSeek, MegaScale...); emphasis on training-system design and operational lessons, not the model itself.
 - `engineering_blogs/` — engineering blogs, official docs, release notes, and vendor technical posts. This is a first-class source category because many training-stack details (Megatron-Core, Transformer Engine, NCCL, FP8 recipes, checkpoint APIs) may not have papers.
-- `tracking/` — research radar for recent papers, engineering blogs, release notes, infra trends, agentic RL signals, and historical backfill. It records triage and judgment, not full notes.
+- `tracking/` — research radar for frontier scans, scan logs, recent papers, engineering blogs, release notes, infra trends, agentic RL signals, monthly digests, and historical backfill. It records triage and judgment, not full notes.
 - `reading_queue/` — P0/P1/Done reading decisions.
 - `learning_log/` — monthly learning progress and open questions.
 - `insights/` — original technical judgments.
@@ -49,13 +49,15 @@ Inside `training-infra-roadmap/`:
 
 **`tracking/` template** — source/type/link → impact level → Decision (`Ignore` / `Observe` / `Read` / `Deep Dive`) → Reason → related topics → one-sentence value → next step. Keep it lightweight; this is for discovery and triage before material becomes a note or topic.
 
-**`tracking/historical_backfill.md` template** — original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. This file is for older classics that fill current engineering judgment gaps; do not mix it into weekly signal reports.
+**`tracking/frontier_scan_YYYY-MM-DD.md` template** — previous scan → scan window → sources scanned → scan completeness → accepted frontier signals → observed/rejected candidates → reading queue updates → dedupe record → next actions. Frontier scan is the default "latest update" workflow: scan from the previous cursor in `tracking/scan_log.md` to the current scan end time, then update the log. It can have zero accepted signals.
 
-**Weekly signal rule** — do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only, and a week can legitimately have zero accepted signals. Important-but-not-new materials belong in `tracking/historical_backfill.md`.
+**`tracking/historical_backfill.md` / `tracking/backfill/YYYY-MM.md` template** — historical_backfill is the index and rules page. Concrete backfill entries live in monthly files by original publication month. Each entry records original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. Do not mix historical material into frontier scans.
 
-**Fixed signal windows** — weekly reports cover the previous Monday 00:00:00 through Sunday 23:59:59 in `Asia/Shanghai`, generated on Monday, named `weekly_signal_YYYY-Www.md`. Monthly reports cover the previous calendar month, generated on the 1st, named `monthly_signal_YYYY-MM.md`. Weekly is radar; monthly is the high-quality digest.
+**Weekly signal compatibility rule** — do not force Top 3 or Top 10. Weekly signal is now only a compatibility format for fixed natural-week reviews, not the default scanning flow. If used, it must contain only recent frontier signals and may legitimately have zero accepted signals.
 
-**Personal focus filter** — weekly/monthly scanning is not generic AI news. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
+**Monthly signal rule** — monthly reports cover the previous calendar month and are named `monthly_signal_YYYY-MM.md`. Monthly is the high-quality digest; it summarizes frontier scans, backfill, release notes, and actual reading results, and should not rediscover material from scratch.
+
+**Personal focus filter** — frontier/monthly scanning is not generic AI news. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
 
 **`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 

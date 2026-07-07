@@ -1,5 +1,7 @@
 # Weekly Signal Report Template
 
+> 兼容说明：默认日常扫描请使用 [Frontier Scan Template](frontier_scan_template.md) 和 [Scan Log](scan_log.md)。本模板只在确实需要按自然周回顾时使用，例如固定周报、审计某一周是否漏扫、或保留旧 weekly 记录。
+
 这个模板用于每周一输出上一周的高质量 AI Systems / AI Training Infra 前沿信号判断。它适合 HuggingFace Trending、arXiv、GitHub Trending、NVIDIA/Meta/Google/Microsoft/OpenAI/Anthropic/DeepSeek 等工程博客和 release note。
 
 不要把它写成新闻摘要，也不要把它写成补课清单。它只回答：
@@ -16,7 +18,7 @@
 - 只收最近 7 到 14 天的材料；最多放宽到 30 天，但必须解释为什么现在是前沿信号。
 - 只有高质量、可核验、会改变工程判断的材料才进入 `Accepted Frontier Signals`。
 - P0 不超过 3 条，但不是每周都必须有 P0。
-- 历史重要材料进入 [Historical Backfill](historical_backfill.md)，不要混入 weekly signal。
+- 历史重要材料进入 [Historical Backfill](historical_backfill.md) 或 `backfill/YYYY-MM.md`，不要混入 weekly signal。
 - 每条 accepted signal 必须给出 `Decision` 和 `Reason`。
 
 ## Personal Focus Filter

@@ -24,7 +24,7 @@ North Star: build a production-grade understanding of Large-Scale AI Systems thr
 - `training-infra-roadmap/papers/` contains engineering-perspective paper notes.
 - `training-infra-roadmap/tech_reports/` contains model/system technical reports.
 - `training-infra-roadmap/engineering_blogs/` contains engineering blogs, official docs, release notes, and vendor technical posts that expose implementation details not captured by papers.
-- `training-infra-roadmap/tracking/` is the research radar: recent papers, engineering blogs, release notes, infra trends, agentic RL signals, and historical backfill. It records signal and triage, not full notes.
+- `training-infra-roadmap/tracking/` is the research radar: frontier scans, scan logs, recent papers, engineering blogs, release notes, infra trends, agentic RL signals, monthly digests, and historical backfill. It records signal and triage, not full notes.
 - `training-infra-roadmap/reading_queue/` turns tracking signals into P0/P1 reading decisions.
 - `training-infra-roadmap/learning_log/` records monthly learning progress, questions, and next steps.
 - `training-infra-roadmap/insights/` stores original engineering judgments.
@@ -51,13 +51,15 @@ For `engineering_blogs/`, do not summarize marketing copy. Extract the engineeri
 
 For `tracking/`, keep entries lightweight and judgment-heavy. Each item should include source/type/link, impact level, `Decision` (`Ignore` / `Observe` / `Read` / `Deep Dive`), `Reason`, related topics, one-sentence value, and next step. Tracking is an inbox/radar; promote only important items into `reading_queue/`, `papers/`, `tech_reports/`, `engineering_blogs/`, `topics/`, `insights/`, `experiments/`, or `playbooks/`.
 
-For `tracking/historical_backfill.md`, do not chase recency. Backfill only past materials that fill a current engineering judgment gap. Each entry should explain original time, backfill time, why it is backfilled now, historical impact, current value, Decision, Reason, suggested action, related topics, target destination, and lifecycle status. Do not mix historical backfill into weekly signal reports.
+For `tracking/frontier_scan_YYYY-MM-DD.md`, scan from the previous cursor in `tracking/scan_log.md` to the current scan end time. Do not force a natural week. A frontier scan can have zero accepted signals. Every accepted signal needs `Source ID`, `First seen`, scan window, `Decision`, and `Reason`. After each scan, update `tracking/scan_log.md` with the next cursor.
 
-For weekly signal reports, do not force Top 3 or Top 10. Weekly signal is for recent frontier signals only. It is valid for a week to have zero accepted signals. If a material is important but not new, route it to historical backfill instead of pretending it is a weekly signal.
+For `tracking/historical_backfill.md`, do not chase recency. It is an index and rules page. Backfill entries should live in `tracking/backfill/YYYY-MM.md`, where `YYYY-MM` is the material's original publication month. Backfill only past materials that fill a current engineering judgment gap. Each entry should explain original time, backfill time, why it is backfilled now, historical impact, current value, Decision, Reason, suggested action, related topics, target destination, and lifecycle status. Do not mix historical backfill into frontier scans.
 
-Weekly reports use fixed windows in `Asia/Shanghai`: previous Monday 00:00:00 through previous Sunday 23:59:59, generated on Monday, named `weekly_signal_YYYY-Www.md`. Monthly reports use the previous calendar month, generated on the 1st, named `monthly_signal_YYYY-MM.md`. Monthly reports are the high-quality digest; weekly reports are only radar scans.
+For weekly signal reports, do not force Top 3 or Top 10. Weekly signal is now a compatibility format for fixed natural-week reviews, not the default scanning flow. If used, it must still only contain recent frontier signals and may have zero accepted signals.
 
-Weekly/monthly signal scanning must use the repository owner's focus filter, not generic AI popularity. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
+Monthly reports use the previous calendar month, named `monthly_signal_YYYY-MM.md`. Monthly reports are the high-quality digest and should summarize frontier scans, backfill, release notes, and actual reading results; they should not rediscover material from scratch.
+
+Frontier/monthly signal scanning must use the repository owner's focus filter, not generic AI popularity. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
 
 For `playbooks/`, write runbooks, not concept explanations: symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
 
@@ -83,7 +85,7 @@ OBSOLETE    outdated or superseded
 
 When adding a new material:
 
-1. Add it to `tracking/` with impact, Decision, and Reason. Use weekly signal for new material and historical backfill for older classics.
+1. Add it to `tracking/` with impact, Decision, and Reason. Use frontier scan for new material and `tracking/backfill/YYYY-MM.md` for older classics.
 2. If important, move it to `reading_queue/P0.md` or `reading_queue/P1.md`.
 3. After reading, create or update the relevant paper/report/blog note.
 4. Update at least one `topics/` chapter if the material changes system understanding.

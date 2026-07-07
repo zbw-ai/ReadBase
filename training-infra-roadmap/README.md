@@ -89,7 +89,12 @@ training-infra-roadmap/
 - [Engineering Blogs](engineering_blogs/README.md)
 - [Blogs CSV](references/blogs.csv)
 - [Tracking Radar](tracking/README.md)
+- [Scan Log](tracking/scan_log.md)
+- [Frontier Scan Template](tracking/frontier_scan_template.md)
+- [Frontier Scan 2026-07-04](tracking/frontier_scan_2026-07-04.md)
+- [Frontier Scan 2026-07-07](tracking/frontier_scan_2026-07-07.md)
 - [Historical Backfill](tracking/historical_backfill.md)
+- [Backfill By Month](tracking/backfill/README.md)
 - [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md)：本周无合格前沿信号的修正记录
 - [Reading Queue](reading_queue/README.md)
 - [Learning Log](learning_log/README.md)
@@ -117,8 +122,9 @@ graph LR
 - `papers/`：论文笔记，统一使用工程视角模板。
 - `tech_reports/`：模型/系统技术报告，重点看训练系统设计和经验。
 - `engineering_blogs/`：工程博客、官方技术文档和 release note，重点补足 paper 没有覆盖的真实实现与生产经验。
-- `tracking/`：研究雷达。weekly 负责固定窗口扫描前沿，monthly 负责高质量正式沉淀，historical backfill 负责历史精华补录。
-- `tracking/historical_backfill.md`：历史精华补录，不追新，只补当前工程判断缺口。
+- `tracking/`：研究雷达。frontier scan 负责从上次扫描游标到现在的前沿扫描，monthly 负责高质量正式沉淀，historical backfill 负责历史精华补录。
+- `tracking/scan_log.md`：扫描账本，记录每次扫描窗口和下一次游标，保证不重不漏。
+- `tracking/historical_backfill.md`：历史精华补录总入口；具体条目按原始月份放入 `tracking/backfill/YYYY-MM.md`。
 - `reading_queue/`：把 tracking 中的信号筛选成 P0/P1 阅读计划。
 - `learning_log/`：记录每月读了什么、理解了什么、还有什么疑问。
 - `insights/`：沉淀个人技术判断，不写论文摘要。
@@ -133,7 +139,7 @@ graph LR
 
 Research OS v1.0 已进入使用期。未来一个月不继续扩结构，优先把现有闭环跑起来：
 
-1. 每周跑一次 [Weekly Signal](tracking/weekly_signal_report_template.md)，只收高质量前沿信号，可以 0 条。
-2. 每周精读一个 [P0](reading_queue/P0.md)，读完必须流向 `topics/`、`insights/`、`playbooks/` 或 `experiments/`。
-3. 每两周做一次 [Historical Backfill](tracking/historical_backfill.md)，只补当前工程判断缺口。
+1. 有空时跑一次 [Frontier Scan](tracking/frontier_scan_template.md)：窗口从 [Scan Log](tracking/scan_log.md) 的上次游标到本次扫描结束，只收高质量前沿信号，可以 0 条。
+2. 每周尽量精读一个 [P0](reading_queue/P0.md)，读完必须流向 `topics/`、`insights/`、`playbooks/` 或 `experiments/`。
+3. 每两周做一次 [Historical Backfill](tracking/historical_backfill.md)：按材料原始月份倒序补课，每个月一个文件，只补当前工程判断缺口。
 4. 当前只聚焦三条主线：[Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。

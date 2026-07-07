@@ -1,8 +1,8 @@
 # Monthly Signal Report Template
 
-这个模板用于每月 1 日输出上个月的高质量 AI Systems / AI Training Infra 信号沉淀。
+这个模板用于输出上个月的高质量 AI Systems / AI Training Infra 信号沉淀。
 
-Monthly signal 不是更长的 weekly，也不是链接汇总。它只从当月 weekly、release note、backfill 和真实阅读结果中筛选少量高价值材料，回答：
+Monthly signal 不是更长的 frontier scan，也不是链接汇总。它只从当月 frontier scans、release note、backfill 和真实阅读结果中筛选少量高价值材料，回答：
 
 > 这个月真正值得改变工程判断的信号是什么？
 
@@ -12,7 +12,7 @@ Monthly signal 不是更长的 weekly，也不是链接汇总。它只从当月 
 - 文件名使用月份：`monthly_signal_YYYY-MM.md`。
 - Accepted signals 通常 3 到 5 条；可以更少，可以为 0。
 - P0 通常不超过 1 到 2 条，P1 通常不超过 3 到 5 条。
-- Monthly 不重新发现材料，只汇总当月 weekly / backfill / release note / 已读材料。
+- Monthly 不重新发现材料，只汇总当月 frontier scans / backfill / release note / 已读材料。
 - 宁缺毋滥。没有高质量判断就明确写无。
 
 ---
@@ -37,7 +37,7 @@ Monthly signal 不是更长的 weekly，也不是链接汇总。它只从当月 
 - Signal ID：YYYY-MM-001
 - Source ID：
 - First seen：
-- 来源窗口：weekly / backfill / release note / reading
+- 来源窗口：frontier scan / backfill / release note / reading
 - 类型：paper / repo / engineering blog / release note / report
 - 链接：
 - 影响等级：★★★★★ / ★★★★☆ / ★★★☆☆

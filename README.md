@@ -67,8 +67,9 @@ ReadBase/
 
 - 每个专题目录都应该有自己的 `README.md`、reading list 和知识图谱。
 - `topics/` 写成工程手册章节，而不是概念摘抄。
-- `tracking/` 作为研究雷达，记录近期值得关注的新论文、工程博客、release note 和 infra 趋势。
-- `tracking/historical_backfill.md` 负责历史精华补录，只补当前工程判断缺口，不污染 weekly signal。
+- `tracking/` 作为研究雷达，用 frontier scan 记录从上次扫描至今的新论文、工程博客、release note 和 infra 趋势。
+- `tracking/scan_log.md` 记录每次扫描窗口和下一次游标，保证不重不漏。
+- `tracking/historical_backfill.md` 负责历史精华补录，具体条目按原始月份放入 `tracking/backfill/YYYY-MM.md`，不污染 frontier scan。
 - `playbooks/` 写成生产排障 runbook，而不是原理说明。
 - `papers/`、`tech_reports/` 和 `engineering_blogs/` 共同服务于系统理解；不要把知识来源限制在论文。
 - `interview/` 聚焦高频题、追问、生产案例、错误回答和优秀回答。
@@ -78,6 +79,6 @@ ReadBase/
 
 Research OS v1.0 进入使用期，近期只保留 3 个焦点：
 
-- [Agentic RL / Rollout Infra](training-infra-roadmap/topics/agentic_rl.md)：把 weekly signal、P0 精读、insight 和 playbook 跑成闭环。
+- [Agentic RL / Rollout Infra](training-infra-roadmap/topics/agentic_rl.md)：把 frontier scan、P0 精读、insight 和 playbook 跑成闭环。
 - [Long-context Training Infra](training-infra-roadmap/topics/long_context_training.md)：围绕 pretraining / SFT / RL 的长上下文训练、CP、packing、checkpoint 和 rollout latency 建立工程判断。
 - [Megatron / CP / Checkpointing](training-infra-roadmap/topics/checkpointing.md)：继续用 [Tensor Parallelism](training-infra-roadmap/topics/tensor_parallelism.md) 与 checkpointing 两篇旗舰章节作为训练系统主线。
