@@ -53,6 +53,8 @@ For `tracking/`, keep entries lightweight and judgment-heavy. Each item should i
 
 For `tracking/frontier_scan_YYYY-MM-DD.md`, scan from the previous cursor in `tracking/scan_log.md` to the current scan end time. Do not force a natural week. A frontier scan can have zero accepted signals. Every accepted signal needs `Source ID`, `First seen`, scan window, `Decision`, and `Reason`. After each scan, update `tracking/scan_log.md` with the next cursor.
 
+For every accepted signal and every new paper/report note, verify title, authors, publication date, and key numeric claims against the primary source page before writing them as facts. For arXiv sources, the arXiv ID resolving is not enough: the `citation_title`, `citation_author`, `citation_date`, and abstract/method details must match the note. If a detail is inferred rather than directly sourced, label it as an inference.
+
 For `tracking/historical_backfill.md`, do not chase recency. It is an index and rules page. Backfill entries should live in `tracking/backfill/YYYY-MM.md`, where `YYYY-MM` is the material's original publication month. Backfill only past materials that fill a current engineering judgment gap. Each entry should explain original time, backfill time, why it is backfilled now, historical impact, current value, Decision, Reason, suggested action, related topics, target destination, and lifecycle status. Do not mix historical backfill into frontier scans.
 
 For weekly signal reports, do not force Top 3 or Top 10. Weekly signal is now a compatibility format for fixed natural-week reviews, not the default scanning flow. If used, it must still only contain recent frontier signals and may have zero accepted signals.

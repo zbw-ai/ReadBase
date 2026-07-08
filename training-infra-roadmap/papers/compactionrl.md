@@ -7,6 +7,7 @@
 - 时间：2026
 - 链接：https://arxiv.org/abs/2607.05378
 - 相关主题：[Agentic RL](../topics/agentic_rl.md), [Long-context Training](../topics/long_context_training.md), [Rollout Latency](../playbooks/rollout_latency.md)
+- 核验说明：标题、作者、日期和摘要已按 arXiv abstract 页元信息核验；方法细节来自论文 HTML 正文。
 
 ---
 

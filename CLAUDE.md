@@ -51,6 +51,8 @@ Inside `training-infra-roadmap/`:
 
 **`tracking/frontier_scan_YYYY-MM-DD.md` template** — previous scan → scan window → sources scanned → scan completeness → accepted frontier signals → observed/rejected candidates → reading queue updates → dedupe record → next actions. Frontier scan is the default "latest update" workflow: scan from the previous cursor in `tracking/scan_log.md` to the current scan end time, then update the log. It can have zero accepted signals.
 
+**Primary-source verification rule** — for every accepted signal and every new paper/report note, verify title, authors, publication date, and key numeric claims against the primary source page before writing them as facts. For arXiv sources, do not treat "the ID exists" as enough: match `citation_title`, `citation_author`, `citation_date`, and abstract/method details. Label inferred relationships explicitly.
+
 **`tracking/historical_backfill.md` / `tracking/backfill/YYYY-MM.md` template** — historical_backfill is the index and rules page. Concrete backfill entries live in monthly files by original publication month. Each entry records original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. Do not mix historical material into frontier scans.
 
 **Weekly signal compatibility rule** — do not force Top 3 or Top 10. Weekly signal is now only a compatibility format for fixed natural-week reviews, not the default scanning flow. If used, it must contain only recent frontier signals and may legitimately have zero accepted signals.

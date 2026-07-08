@@ -81,7 +81,7 @@
 
 | 材料 | Source ID | Focus Match | Decision | 原因 |
 |---|---|---|---|---|
-| DeadPool: Resilient LLM Training with Hot-Swapping via Zero-Overhead Checkpoint | arxiv:2607.01646 | P0 Focus | Read | checkpoint / fault tolerance 方向强相关，进入 P1 更合适 |
+| PHOENIX: Resilient LLM Training with Hot-Swapping via Zero-Overhead Checkpoint | arxiv:2607.01646 | P0 Focus | Read | checkpoint / fault tolerance 方向强相关，进入 P1 更合适 |
 | Mixture-of-Parallelisms: Towards Memory-Efficient Training Stack for Mixture-of-Experts Models | arxiv:2607.01844 | P0 Focus | Read | MoE training stack 与并行组合相关，进入 P1 |
 | HCMS: Head-Chunked Multi-Stream Pipeline for Communication-Computation Overlap in Long-Sequence Parallel Attention | arxiv:2607.01817 | P0 Focus | Read | 长序列 attention 通信计算 overlap，与 CP/128k 训练相关，进入 P1 |
 | Adaptive Inference Batching using Policy Gradients | arxiv:2607.05272 | P1 Focus | Observe | 推理 batching/routing 与 rollout serving 相关，但目前更像模拟器验证，不进入 P0 |
@@ -96,7 +96,7 @@
 
 - [ ] 建议加入 `reading_queue/P0.md`：arxiv:2607.01415，待替换当前 P0 时确认
 - [x] arxiv:2607.05378 已完成初读并生成 [paper note](../papers/compactionrl.md)
-- [ ] 加入 `reading_queue/P1.md`：LLM-as-a-Verifier, DeadPool, Mixture-of-Parallelisms, HCMS
+- [x] 加入 `reading_queue/P1.md`：LLM-as-a-Verifier, PHOENIX, Mixture-of-Parallelisms, HCMS
 - [ ] 仅观察：Adaptive Inference Batching, Communication-Aware MoE Placement/Pruning, Direct Model State Migration, Adaptive Space-efficient Collectives, Latent Programming Horizons, SCAPE, Load-Aware Prefill Deflection
 - [ ] 转入 `tracking/backfill/YYYY-MM.md`：无
 
@@ -121,5 +121,5 @@
 - [ ] 阅读 arxiv:2607.01415
 - [x] 阅读 arxiv:2607.05378
 - [ ] 评估 LLM-as-a-Verifier 是否进入 [P1](../reading_queue/P1.md)
-- [ ] 评估 DeadPool 是否进入 checkpointing / fault tolerance topic
+- [ ] 评估 PHOENIX 是否进入 checkpointing / fault tolerance topic
 - [ ] 评估 HCMS 是否进入 [Long-context Training](../topics/long_context_training.md)
