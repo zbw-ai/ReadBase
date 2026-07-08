@@ -49,7 +49,7 @@ tracking/backfill/2025-05.md
 已开始整理：
 
 - [2026-02](backfill/2026-02.md)：RLHF 资源弹性
-- [2025-08](backfill/2025-08.md)：agent runtime 与 RL trainer 解耦
+- [2025-08](backfill/2025-08.md)：agent runtime 与 RL trainer 解耦、GLM-4.5 ARC 基座
 - [2025-05](backfill/2025-05.md)：异步 RL 系统
 - [2025-04](backfill/2025-04.md)：vLLM 进入 RLHF rollout
 - [2025-03](backfill/2025-03.md)：reasoning RL recipe 与系统栈

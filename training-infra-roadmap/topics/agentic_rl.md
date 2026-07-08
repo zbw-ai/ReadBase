@@ -91,6 +91,26 @@ Agentic RL 中 reward 不总是一个简单函数。它可能来自：
 - tool/environment reward 要设置 timeout、retry budget 和失败分类；
 - verifier 输出要保留原始 trace，不能只保存 scalar reward。
 
+## Context Compaction 进入 RL 训练
+
+[CompactionRL](../papers/compactionrl.md) 提醒我们：long-horizon agent 的上下文管理不能只当成 inference-time prompt engineering。对于 coding agent、terminal agent 这类任务，trajectory 里包含错误日志、文件路径、失败命令、partial patch 和环境反馈；一旦 context 被压缩，summary 的质量会直接决定后续 action 是否还能继续有效探索。
+
+工程上，compaction-aware RL 会改变 trajectory schema：
+
+```text
+execution segment
+  ↓
+summary segment
+  ↓
+reconstructed context = summary + recent turns
+  ↓
+execution segment
+```
+
+这意味着 rollout store 不能只保存 prompt/response/reward，还要保存 compaction trigger、summary tokens、segment boundary、full trace、compacted trace 和 policy version。trainer 也不能把每个 segment 当成独立 episode，否则会破坏 final reward 的 credit assignment。
+
+CompactionRL 的核心判断是：summary generation 也是 policy action，应该和 task execution 一起接受最终任务 reward 的训练信号。这把“长上下文压缩”从推理优化问题推进到了 RL 训练系统问题。
+
 ## Training / Inference 双态模型
 
 RL post-training 里同一个 actor model 会在两种状态之间切换：
@@ -194,6 +214,10 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [HybridFlow / verl](https://arxiv.org/abs/2409.19256)：重点看 RLHF dataflow、hierarchical API、3D-HybridEngine、actor resharding。
 - [Agent Lightning](https://arxiv.org/abs/2508.03680)：重点看 Training-Agent Disaggregation、trace schema、agent runtime integration。
 
+## 前沿精读：来自 Frontier Scan
+
+- [CompactionRL](../papers/compactionrl.md)：重点看 context compaction 如何进入 rollout collection、summary tokens 如何进入 RL objective、token-level loss normalization 和 cross-trajectory GAE 如何处理 compacted trajectory。
+
 ## Historical Backfill 发现的新关联
 
 [Historical Backfill](../tracking/historical_backfill.md) 补充了几个不该混入 frontier scan、但对理解 Agentic RL Infra 很关键的历史材料：
@@ -214,8 +238,9 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 6. 为什么 actor resharding 会成为 RLHF 系统瓶颈？
 7. reward/verifier 为什么要独立扩缩容？
 8. 长上下文 trajectory 对 KV cache 和 checkpoint 有什么影响？
-9. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
-10. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
+9. context compaction 为什么不能只当作 inference-time heuristic？
+10. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
+11. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
 
 ## 生产环境思考题
 
@@ -228,7 +253,8 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 7. 如果 agent runtime 返回文本但不返回 token ids，会有哪些一致性风险？
 8. 如果 rollout GPU 很忙但 trainer idle，第一步看什么指标？
 9. 如果 policy update 很快但效果不涨，是否可能是样本质量或 freshness 问题？
-10. 如果要支持多 agent task，trajectory storage schema 怎么设计？
+10. 如果 compaction summary 丢掉关键错误日志，如何定位是 summary 失败还是 execution policy 失败？
+11. 如果要支持多 agent task，trajectory storage schema 怎么设计？
 
 ## 我的总结
 

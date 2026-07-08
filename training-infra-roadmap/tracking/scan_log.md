@@ -18,4 +18,4 @@
 | Scan | Window | Sources | Accepted | Observed | Next cursor | Notes |
 |---|---|---|---:|---:|---|---|
 | [2026-07-04](frontier_scan_2026-07-04.md) | 2026-06-29 00:00 ~ 2026-07-04 23:59 | arXiv / GitHub / blogs / releases | 1 | 6 | 2026-07-04 23:59 | 根据对话记录补建扫描账本，完整扫描结果待整理成文件 |
-| [2026-07-07](frontier_scan_2026-07-07.md) | 2026-07-05 00:00 ~ 2026-07-07 23:59 | arXiv / GitHub / blogs / releases | 1 | 4 | 2026-07-07 23:59 | 根据对话记录补建扫描账本，完整扫描结果待整理成文件 |
+| [2026-07-07](frontier_scan_2026-07-07.md) | 2026-07-05 00:00 ~ 2026-07-07 23:59 | arXiv recent / prior GitHub / blogs / releases | 3 | 10 | 2026-07-07 23:59 | 已补扫 Tue, 7 Jul 2026 latest paper entries；accepted 新增 CompactionRL 与 LLM-as-a-Verifier |

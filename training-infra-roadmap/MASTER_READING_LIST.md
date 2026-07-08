@@ -16,21 +16,24 @@
 
 | 入口 | 用途 |
 |---|---|
-| [Weekly Signal Report Template](tracking/weekly_signal_report_template.md) | 每周信号报告模板 |
+| [Scan Log](tracking/scan_log.md) | 记录每次扫描窗口和下一次游标 |
+| [Frontier Scan Template](tracking/frontier_scan_template.md) | 从上次扫描游标到现在的最新前沿扫描模板 |
 | [Monthly Signal Report Template](tracking/monthly_signal_report_template.md) | 每月高质量正式信号沉淀模板 |
 | [Historical Backfill](tracking/historical_backfill.md) | 历史精华补录：补当前工程判断缺口 |
+| [Backfill By Month](tracking/backfill/README.md) | 历史材料按原始月份倒序归档 |
 | [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
 | [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
-| [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md) | 修正记录：本周无合格前沿信号 |
+| [Frontier Scan 2026-07-07](tracking/frontier_scan_2026-07-07.md) | 最新 frontier scan 记录 |
+| [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md) | 旧 weekly 修正记录 |
 
 ## 0.2 Research OS 工作流
 
 | 阶段 | 目录 | 作用 |
 |---|---|---|
-| Signals | [tracking](tracking/README.md) | weekly 扫描前沿，monthly 正式沉淀 |
+| Signals | [tracking](tracking/README.md) | frontier scan 扫描前沿，monthly 正式沉淀 |
 | Queue | [reading_queue](reading_queue/README.md) | 决定 P0 / P1 |
 | Notes | `papers/` / `tech_reports/` / `engineering_blogs/` | 消化原始资料 |
 | Topics | [topics](topics/) | 沉淀工程手册 |
@@ -125,6 +128,7 @@
 | [Sequence Parallelism](topics/sequence_parallelism.md) | 降低 activation 显存，与 TP/CP 配合 |
 | [Checkpointing](topics/checkpointing.md) | 长 step time 下保存、恢复和异步 checkpoint 更关键 |
 | [Agentic RL](topics/agentic_rl.md) | RL 阶段把长 prompt/response、rollout、KV cache 和 reward/verifier 带入训练系统 |
+| [CompactionRL](papers/compactionrl.md) | long-horizon agent 在固定 context budget 下训练可压缩 trajectory |
 | [Llama 3](tech_reports/llama3.md) | 128K context 的大规模训练报告入口 |
 
 ## 3. 显存优化
@@ -190,3 +194,12 @@
 | 28 | Transformer Engine FP8 | [Transformer Engine](topics/transformer_engine.md) | FP8 recipe、amax、scaling |
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
 | 30 | NCCL / Network | [NCCL](topics/nccl.md) | collective、拓扑、straggler 诊断 |
+
+## 8. Agentic RL / Rollout Infra
+
+| 顺序 | 材料 | 仓库笔记 | 关注点 |
+|---|---|---|---|
+| 31 | CompactionRL | [CompactionRL](papers/compactionrl.md) | long-horizon agent 的 context compaction、segment loss 和 cross-trajectory credit assignment |
+| 32 | AReaL | Tracking / P0 | 异步 rollout/train 解耦、staleness、sample freshness |
+| 33 | HybridFlow / verl | Tracking / P0 | RLHF dataflow、actor training/generation resharding |
+| 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |

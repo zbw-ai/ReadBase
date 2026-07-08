@@ -80,6 +80,16 @@ SFT 里最常见的问题不是“放不下”，而是：
 
 长上下文 RL 的核心不是单纯把模型训到 128k，而是让 **rollout producer、trainer consumer、reward/verifier、checkpoint/recovery** 在长序列下仍然能稳定协同。
 
+[CompactionRL](../papers/compactionrl.md) 给出了一个很好的系统信号：长上下文 RL 可以不只依赖更长的 max context，而是训练 agent 在固定 context budget 下主动压缩历史状态。这样 long-context training 的问题就从“单条序列放不放得下”扩展成：
+
+- 什么时候触发 compaction；
+- summary 是否保留了 task-relevant state；
+- compacted trajectory 如何保存和回放；
+- summary segment 如何参与 RL loss；
+- final reward 如何跨 compaction boundary 做 credit assignment。
+
+因此，长上下文 RL 的基础设施不只需要 CP、KV cache 和 chunked prefill，还需要 compaction-aware trajectory schema 和 rollout observability。
+
 相关章节：
 
 - [Agentic RL Infrastructure](agentic_rl.md)
@@ -101,6 +111,7 @@ SFT 里最常见的问题不是“放不下”，而是：
 3. 接着读 [Tensor Parallelism](tensor_parallelism.md) 与 [Context Parallelism](context_parallelism.md)，理解序列和算子怎么切。
 4. 然后读 [Checkpointing](checkpointing.md)，理解长 step time 下如何保存和恢复训练状态。
 5. 最后读 [Agentic RL Infrastructure](agentic_rl.md)，把长上下文从 SFT 扩展到 rollout / RL 系统。
+6. 再读 [CompactionRL](../papers/compactionrl.md)，理解 long-horizon agent 如何在固定 context budget 下训练可压缩的 trajectory。
 
 ## 待补实验
 
