@@ -23,12 +23,17 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次结束时间。
+- [Frontier Scan 2026-07-10](frontier_scan_2026-07-10.md)：当前最新扫描，覆盖到 2026-07-10 10:48。
+- [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
 - [Monthly Signal Report Template](monthly_signal_report_template.md)：每月输出上个月的高质量正式信号沉淀。
+- [Monthly Signal 2026-06](monthly_signal_2026-06.md)：2026 年 6 月高质量前沿信号沉淀。
+- [Monthly Signal 2026-05](monthly_signal_2026-05.md)：2026 年 5 月高质量前沿信号沉淀。
+- [Monthly Signal 2026-04](monthly_signal_2026-04.md)：2026 年 4 月高质量前沿信号沉淀。
+- [Monthly Signal 2026-03](monthly_signal_2026-03.md)：2026 年 3 月高质量前沿信号沉淀。
+- [Monthly Signal 2026-02](monthly_signal_2026-02.md)：2026 年 2 月高质量前沿信号沉淀。
+- [Monthly Signal 2026-01](monthly_signal_2026-01.md)：2026 年 1 月高质量前沿信号沉淀。
 - [Historical Backfill](historical_backfill.md)：历史补录总入口。
 - [Backfill By Month](backfill/README.md)：按材料原始发布时间月份倒序补录历史精华材料，每个月一个文件。
-- [Weekly Signal Report Template](weekly_signal_report_template.md)：旧固定周报模板，仅在确实要按自然周回顾时使用。
-- [Weekly Papers](weekly_papers.md)：每周值得关注的新论文。
 - [Engineering Blogs](engineering_blogs.md)：大厂技术博客和官方文档追踪。
 - [Release Notes](release_notes.md)：模型、框架、训练栈发布记录。
 - [Infra Trends](infra_trends.md)：训练基础设施技术演进时间线。
@@ -38,7 +43,7 @@
 
 | 类型 | 作用 | 时间窗口 | 是否正式收录 |
 |---|---|---|---|
-| Frontier Scan | 捕捉从上次扫描游标到现在的新前沿信号 | 上次 `Next cursor` 到本次扫描结束 | 否，主要是雷达 |
+| Frontier Scan | 捕捉从上次扫描游标到现在的新前沿信号 | 上次 `Next cursor` 到本次实际扫描结束时刻 | 否，主要是雷达 |
 | Monthly Signal | 从当月 frontier/backfill/reading 中筛选高质量信号 | 上月 1 日到月末 | 是，正式沉淀 |
 | Historical Backfill | 补录过去已经证明重要、但仓库还没吸收的经典材料 | 按材料原始发布时间月份归档 | 视质量进入队列 |
 | Reading Queue | 从 frontier/monthly/backfill 中筛选本周真正要读的 P0/P1 | 当前学习周期 | 是，决定阅读 |
@@ -47,12 +52,13 @@ Backfill 不按时间补，按“它能补哪个工程判断缺口”来补。
 
 ## 扫描窗口与游标
 
-- Frontier Scan：从 [Scan Log](scan_log.md) 上一次 `Next cursor` 开始，到本次扫描结束时间为止。文件名为 `frontier_scan_YYYY-MM-DD.md`。
+- Frontier Scan：从 [Scan Log](scan_log.md) 上一次 `Next cursor` 开始，到本次实际扫描结束时刻为止。文件名为 `frontier_scan_YYYY-MM-DD.md`。
 - Scan Log：每次扫描后必须更新，记录 `Window`、`Sources`、`Accepted`、`Observed`、`Next cursor` 和完整性说明。
+- `Window` 结束时间和 `Next cursor` 不能预填未来时间。白天扫描就写白天的实际时刻；如果精确时刻缺失，下次扫描应回退到最后可确认时间点并去重。
 - Monthly Signal：上月 1 日 00:00:00 到上月最后一天 23:59:59，时区 `Asia/Shanghai`。文件名为 `monthly_signal_YYYY-MM.md`。
 - Monthly 不重新发现材料，只从当月 frontier scans、backfill、release note 和实际阅读结果中筛选。
 - Historical Backfill：按材料原始发布时间月份归档到 `backfill/YYYY-MM.md`，另记录“补录时间”，不和 frontier scan 混。
-- Weekly Signal：仅作为旧固定周报或特殊周回顾兼容入口，不再是默认扫描方式。
+- Weekly Signal：只保留历史记录，不再维护固定周报模板或 weekly papers 占位文件。需要看最新内容时使用 Frontier Scan，需要正式沉淀时使用 Monthly Signal。
 
 ## 记录原则
 
@@ -70,6 +76,23 @@ Backfill 不按时间补，按“它能补哪个工程判断缺口”来补。
 - 影响等级用 `★★★★★` 到 `★`，帮助筛选。
 - P0 不超过 3 条，但不是每次扫描都必须产生 P0。
 - tracking 里的内容可以粗糙，但不能没有判断。
+
+## Vendor Watch
+
+每次 frontier scan 和 monthly signal 都必须显式维护 `OpenAI / Anthropic / NVIDIA Watch`。
+
+- OpenAI / Anthropic / NVIDIA 是一级关注源：paper、technical report、official docs、engineering blog、release note、research post 都要进入扫描视野。
+- 三家来源不是自动进入 Accepted；仍然按照是否改变 Training/RL/Inference Infra 工程判断来筛选。
+- 如果材料重要，进入 Accepted；如果相关但不够硬，进入 Observed；如果没有系统细节，写明 Rejected / Ignore。
+- 如果本次未发现可核验高质量信号，或者来源端点不可用，也要在 Vendor Watch 写出来，避免三家动态在记录里“隐身”。
+- NVIDIA Training Stack 相关内容优先看 Megatron-Core、Transformer Engine、NCCL、FP8/NVFP4、MoE kernel、distributed checkpointing、scheduling、observability。
+- OpenAI / Anthropic 相关内容优先看 training infrastructure、post-training/RL、agent runtime、evaluation/verifier、安全训练、推理/serving、compute/network/cluster 线索。
+
+Hugging Face 作为独立重点生态源，每次扫描还应显式维护 `Hugging Face Watch`：
+
+- 优先扫描 Hugging Face Blog，以及 TRL、Transformers、Accelerate、PEFT、Kernels 等官方 release / docs。
+- 重点关注 agentic RL、rollout correctness、training-serving integration、long context、distributed training 和 inference backend。
+- 区分 Hugging Face 官方团队文章、厂商联合文章与 community post；来源级别不等于自动 Accepted，仍按工程信号筛选。
 
 ## Personal Focus Filter
 

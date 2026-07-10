@@ -1,12 +1,14 @@
 # Frontier Scan, 2026-07-07
 
 - Previous scan：[2026-07-04](frontier_scan_2026-07-04.md)
-- Window：2026-07-05 00:00 ~ 2026-07-07 23:59
+- Window：2026-07-04 00:00 ~ 2026-07-07 scan-time unknown
 - Timezone：Asia/Shanghai
 - Generated at：2026-07-07
 - Report type：flexible frontier scan
 - Sources scanned：arXiv cs.LG / cs.AI / cs.DC / cs.CL recent；GitHub / blogs / releases 沿用本轮前次扫描，未在本次论文补扫中新增
-- Scan completeness：arXiv 重点方向完成扫描；部分 API 查询受 rate limit 影响，已用 recent list 补查。已补扫 Tue, 7 Jul 2026 latest paper entries。
+- Scan completeness：arXiv 重点方向完成扫描；部分 API 查询受 rate limit 影响，已用 recent list 补查。旧记录曾误写为 `2026-07-07 23:59`，但实际扫描发生在 7 日白天，精确结束时刻未记录。下一次 scan 应从 `2026-07-07 00:00` 回退覆盖并去重，避免漏掉 7 日下午/晚上的条目。
+
+> 审计说明：该文件保留为中间扫描记录。2026-07-01 到 2026-07-04 的 paper 窗口已由 [2026-07-04 rescan](frontier_scan_2026-07-04.md) 修正；2026-07-07 00:00 到 2026-07-08 10:58 的最新窗口由 [2026-07-08 scan](frontier_scan_2026-07-08.md) 承担。后续以这两份记录和 [Scan Log](scan_log.md) 为准。
 
 ## 本次核心判断
 
@@ -91,6 +93,14 @@
 | Latent Programming Horizons in Coding Agents | arxiv:2607.05188 | P1 Focus | Observe | coding agent 表征分析有趣，但更偏可解释性，不直接改变 infra 判断 |
 | SCAPE: Accurate and Efficient LLM Training with Extreme Sparse Communication | arxiv:2607.01678 | P0 Focus | Observe | sparse communication optimizer 方向值得观察，但需要验证规模与代码成熟度 |
 | Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving | arxiv:2607.02043 | P1 Focus | Observe | PD disaggregation 和 prefill queue 对 rollout inference 有价值，先观察 |
+
+## OpenAI / Anthropic / NVIDIA Watch
+
+| Vendor | Sources checked | Decision | 结果 |
+|---|---|---|---|
+| OpenAI | Not fully scanned in this audit record | Deferred | 该文件保留为中间 arXiv 扫描记录，未完整覆盖官方博客；OpenAI official sources 以后续 [2026-07-08 scan](frontier_scan_2026-07-08.md) 为准。 |
+| Anthropic | Not fully scanned in this audit record | Deferred | 该文件未完整覆盖 Anthropic official sources；可用性限制在 [2026-07-08 scan](frontier_scan_2026-07-08.md) 记录。 |
+| NVIDIA | Not fully scanned in this audit record | Deferred | 该文件未完整覆盖 NVIDIA Technical Blog；NVIDIA Nonuniform TP 已在 [2026-07-08 scan](frontier_scan_2026-07-08.md) 进入 accepted。 |
 
 ## Reading Queue Updates
 

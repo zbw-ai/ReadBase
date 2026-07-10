@@ -224,7 +224,8 @@ flowchart LR
 - [CompactionRL](papers/compactionrl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [Trajectory Store / Context Budget]
 - [Historical Backfill](tracking/historical_backfill.md) ↔ [P0 Queue](reading_queue/P0.md) ↔ [Agentic RL Insight](insights/001_agentic_rl_will_change_training_infra.md)
 - [Historical Backfill](tracking/historical_backfill.md) ↔ [P1 Queue](reading_queue/P1.md) ↔ [Agentic RL](topics/agentic_rl.md)
-- [Weekly Signal Template](tracking/weekly_signal_report_template.md) ↔ [Monthly Signal Template](tracking/monthly_signal_report_template.md) ↔ [Reading Queue](reading_queue/README.md)
+- [Frontier Scan](tracking/frontier_scan_template.md) ↔ [Scan Log](tracking/scan_log.md) ↔ [Reading Queue](reading_queue/README.md)
+- [Monthly Signal Template](tracking/monthly_signal_report_template.md) ↔ [Historical Backfill](tracking/historical_backfill.md) ↔ [Reading Queue](reading_queue/README.md)
 
 ## 工程博客索引
 

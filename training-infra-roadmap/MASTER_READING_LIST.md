@@ -21,12 +21,19 @@
 | [Monthly Signal Report Template](tracking/monthly_signal_report_template.md) | 每月高质量正式信号沉淀模板 |
 | [Historical Backfill](tracking/historical_backfill.md) | 历史精华补录：补当前工程判断缺口 |
 | [Backfill By Month](tracking/backfill/README.md) | 历史材料按原始月份倒序归档 |
-| [Weekly Papers](tracking/weekly_papers.md) | 每周值得关注的新论文 |
 | [Engineering Blogs Tracking](tracking/engineering_blogs.md) | 大厂工程博客追踪 |
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
-| [Frontier Scan 2026-07-07](tracking/frontier_scan_2026-07-07.md) | 最新 frontier scan 记录 |
+| [Frontier Scan 2026-07-10](tracking/frontier_scan_2026-07-10.md) | 最新 frontier scan，覆盖到 2026-07-10 10:48 |
+| [Frontier Scan 2026-07-08](tracking/frontier_scan_2026-07-08.md) | 上一次 frontier scan 记录 |
+| [Frontier Scan 2026-07-04](tracking/frontier_scan_2026-07-04.md) | 2026-07-01 到 2026-07-04 的回补扫描记录 |
+| [Monthly Signal 2026-06](tracking/monthly_signal_2026-06.md) | 2026 年 6 月高质量前沿信号沉淀 |
+| [Monthly Signal 2026-05](tracking/monthly_signal_2026-05.md) | 2026 年 5 月高质量前沿信号沉淀 |
+| [Monthly Signal 2026-04](tracking/monthly_signal_2026-04.md) | 2026 年 4 月高质量前沿信号沉淀 |
+| [Monthly Signal 2026-03](tracking/monthly_signal_2026-03.md) | 2026 年 3 月高质量前沿信号沉淀 |
+| [Monthly Signal 2026-02](tracking/monthly_signal_2026-02.md) | 2026 年 2 月高质量前沿信号沉淀 |
+| [Monthly Signal 2026-01](tracking/monthly_signal_2026-01.md) | 2026 年 1 月高质量前沿信号沉淀 |
 | [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md) | 旧 weekly 修正记录 |
 
 ## 0.2 Research OS 工作流
@@ -76,6 +83,7 @@
 | NVIDIA | [NVIDIA Engineering Blogs](engineering_blogs/nvidia/README.md) | Megatron-Core、Transformer Engine、NCCL、FP8、distributed checkpointing |
 | OpenAI | [OpenAI Engineering Blogs](engineering_blogs/openai/README.md) | post-training、reasoning、evaluation、infra signals |
 | Anthropic | [Anthropic Engineering Blogs](engineering_blogs/anthropic/README.md) | long context、post-training、安全和评估系统 |
+| Hugging Face | [Hugging Face Blog](https://huggingface.co/blog) | TRL、Transformers、Accelerate、PEFT、Kernels、vLLM integration、rollout correctness |
 | DeepSeek | [DeepSeek Engineering Blogs](engineering_blogs/deepseek/README.md) | DeepSeekMoE、FP8、DualPipe、reasoning RL |
 | Google | [Google Engineering Blogs](engineering_blogs/google/README.md) | TPU、Pathways、Gemini、JAX/PAX |
 | Meta | [Meta Engineering Blogs](engineering_blogs/meta/README.md) | Llama、PyTorch Distributed、FSDP、数据与训练平台 |

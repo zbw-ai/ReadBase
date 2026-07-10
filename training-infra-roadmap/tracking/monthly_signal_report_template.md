@@ -67,6 +67,22 @@ Monthly signal 不是更长的 frontier scan，也不是链接汇总。它只从
 |---|---|---|
 | 标题 | Observe / Ignore / Backfill | 为什么没有进入 accepted signals |
 
+## OpenAI / Anthropic / NVIDIA Watch
+
+三家一手来源必须显式出现。不要自动收录，但要说明本月扫描结果。
+
+| Vendor | Sources checked | Decision | 结果 |
+|---|---|---|---|
+| OpenAI | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或为什么没有可收录信号 |
+| Anthropic | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或来源是否不可核验 |
+| NVIDIA | technical blog / docs / developer posts / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或为什么没有可收录信号 |
+
+### Hugging Face Watch
+
+| Sources checked | Decision | 结果 |
+|---|---|---|
+| Hugging Face Blog / TRL / Transformers / Accelerate / PEFT / Kernels | Accepted / Observe / Ignore / Not found | 本月哪些工程信号值得沉淀；同时区分官方团队、厂商联合与 community post |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：

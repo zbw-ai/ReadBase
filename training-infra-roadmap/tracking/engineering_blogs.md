@@ -9,7 +9,7 @@
 
 ### 标题
 
-- 来源：NVIDIA / OpenAI / Anthropic / DeepSeek / Google / Meta / Microsoft / ByteDance / Zhipu / Other
+- 来源：NVIDIA / OpenAI / Anthropic / Hugging Face / DeepSeek / Google / Meta / Microsoft / ByteDance / Zhipu / Other
 - 链接：
 - 类型：engineering blog / official docs / release note
 - 影响等级：

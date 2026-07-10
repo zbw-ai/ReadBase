@@ -3,7 +3,9 @@
 - Window: 2026-06-22 00:00:00 ~ 2026-06-28 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-06-29
-- Report type: weekly frontier radar
+- Report type: legacy corrected weekly record
+
+> 说明：这是从旧 weekly 流程迁移到 frontier scan 流程时保留的审计记录。后续默认使用 [Frontier Scan Template](frontier_scan_template.md) 和 [Scan Log](scan_log.md)，不再维护固定周报模板。
 
 ## 本周核心判断
 
@@ -37,7 +39,7 @@
 |---|---|---|
 | AReaL | [Historical Backfill](historical_backfill.md) / [P0](../reading_queue/P0.md) | 重要但不是本周新信号，补异步 rollout/train 解耦 |
 | verl / HybridFlow | [Historical Backfill](historical_backfill.md) / [P0](../reading_queue/P0.md) | 重要但不是本周新信号，补 RLHF dataflow 和 actor resharding |
-| Agent Lightning | [Historical Backfill](historical_backfill.md) / [P0](../reading_queue/P0.md) | 重要但不是本周新信号，补 agent runtime 与 trainer 解耦 |
+| Agent Lightning | [Historical Backfill](historical_backfill.md) / [P1](../reading_queue/P1.md) | 重要但不是本周新信号，补 agent runtime 与 trainer 解耦 |
 | OpenRLHF | [Historical Backfill](historical_backfill.md) / [P1](../reading_queue/P1.md) | 补 Ray + vLLM + DeepSpeed 多组件调度 |
 | vLLM + OpenRLHF Integration | [Historical Backfill](historical_backfill.md) / [P1](../reading_queue/P1.md) | 补 rollout inference / weight sync / placement group |
 | SkyRL | [Historical Backfill](historical_backfill.md) / [P1](../reading_queue/P1.md) | 补 long-horizon tool-use agent training |
@@ -50,14 +52,19 @@
 
 本周没有由 weekly signal 产生新的 P0。
 
-当前 P0 来自 historical backfill：
+本记录不再维护当前队列快照，最新队列以 [P0](../reading_queue/P0.md) 和 [P1](../reading_queue/P1.md) 为准。
+
+W26 当时的核心结论是：weekly signal 本身没有产生新的 P0；重要但不新的材料进入 historical backfill。
+
+迁移后的 P0 / P1 由 reading queue 统一维护，例如：
 
 - [AReaL](../reading_queue/P0.md)
 - [HybridFlow / verl](../reading_queue/P0.md)
-- [Agent Lightning](../reading_queue/P0.md)
+- [Rollout Infrastructure Tax](../reading_queue/P0.md)
 
-当前 P1 来自 historical backfill：
+P1 示例：
 
+- [Agent Lightning](../reading_queue/P1.md)
 - [OpenRLHF](../reading_queue/P1.md)
 - [vLLM + OpenRLHF Integration](../reading_queue/P1.md)
 - [SkyRL](../reading_queue/P1.md)
@@ -66,13 +73,13 @@
 
 ## 本周观察
 
-这次修正明确了一条规则：weekly signal 是前沿雷达，不是补课清单。
+这次修正明确了一条规则：最新前沿扫描应该使用 frontier scan，而不是固定 weekly 模板；历史补课材料应该进入 historical backfill，不应伪装成本周信号。
 
-Agentic RL / Rollout Infra 确实是当前最值得补的方向，但它应通过 historical backfill 进入系统。等未来出现新的论文、repo、release note 或官方技术博客，且它真的改变 rollout、scheduler、serving/training interface 或 post-training stack 的判断时，再进入 weekly signal。
+Agentic RL / Rollout Infra 确实是当前最值得补的方向，但它应通过 historical backfill 进入系统。等未来出现新的论文、repo、release note 或官方技术博客，且它真的改变 rollout、scheduler、serving/training interface 或 post-training stack 的判断时，再进入 frontier scan。
 
 ## 下一步动作
 
 - [x] 将 AReaL / verl / Agent Lightning 作为 historical backfill 的 P0，而不是 weekly signal 的 P0。
 - [x] 将 OpenRLHF / vLLM + OpenRLHF / SkyRL / DAPO / NeMo RL 作为 historical backfill 的 P1。
 - [x] 保留本文件作为 2026-W26 的 corrected weekly signal record。
-- [ ] 下次生成 weekly signal 时只接受最近前沿材料，允许 0 条 accepted signal。
+- [x] 后续停止使用固定 weekly 模板，改用 frontier scan + scan log 保证不重不漏。

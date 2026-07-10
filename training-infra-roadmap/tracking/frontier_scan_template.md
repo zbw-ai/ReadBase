@@ -8,7 +8,9 @@
 
 ## 使用原则
 
-- 扫描窗口不强行按自然周。窗口从 [Scan Log](scan_log.md) 的上一条 `Next cursor` 开始，到本次扫描结束时间为止。
+- 扫描窗口不强行按自然周。窗口从 [Scan Log](scan_log.md) 的上一条 `Next cursor` 开始，到本次实际扫描结束时刻为止。
+- `Window` 的结束时间必须是已经实际扫描过的时间点，例如 `2026-07-07 14:30`。不要在白天扫描时把结束时间写成当天 `23:59`，否则会假装覆盖了尚未发生的文章。
+- `Next cursor` 必须等于本次实际扫描结束时刻。若当次没有记录精确结束时刻，下次扫描应回退到最后一个可确认时间点，宁可重复观察，也不要漏扫。
 - 文件名使用生成日期：`frontier_scan_YYYY-MM-DD.md`。
 - 每次扫描必须更新 [Scan Log](scan_log.md)。
 - 可以 0 条 accepted signal；宁缺毋滥。
@@ -28,6 +30,7 @@
 - Memory / state：ZeRO、FSDP、activation checkpointing、distributed checkpointing、fault tolerance、elastic recovery。
 - Kernel / precision：FlashAttention、FP8 / NVFP4、CUTLASS、Grouped GEMM、MoE kernel。
 - Inference infra if it affects RL rollout：vLLM、SGLang、TensorRT-LLM、serving/training interface。
+- Hugging Face ecosystem：Hugging Face Blog、TRL、Transformers、Accelerate、PEFT、Kernels 及其与 vLLM / distributed training / Agentic RL 的集成。
 
 通常拒绝：
 
@@ -95,6 +98,24 @@
 | 材料 | Source ID | Focus Match | Decision | 原因 |
 |---|---|---|---|---|
 | 标题 | arxiv:xxxx.xxxxx | P0 / P1 / Out of Scope | Observe / Ignore / Backfill | 为什么没有进入 accepted signals |
+
+## OpenAI / Anthropic / NVIDIA Watch
+
+三家一手来源必须显式出现。不要自动收录，但要说明本次扫描结果。
+
+| Vendor | Sources checked | Decision | 结果 |
+|---|---|---|---|
+| OpenAI | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本次发现了什么，或为什么没有可收录信号 |
+| Anthropic | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本次发现了什么，或来源是否不可核验 |
+| NVIDIA | technical blog / docs / developer posts / reports | Accepted / Observe / Ignore / Not found | 本次发现了什么，或为什么没有可收录信号 |
+
+### Hugging Face Watch
+
+Hugging Face Blog 与核心框架 release 必须显式出现，但不自动进入 Accepted。
+
+| Sources checked | Decision | 结果 |
+|---|---|---|
+| Hugging Face Blog / TRL / Transformers / Accelerate / PEFT / Kernels | Accepted / Observe / Ignore / Not found | 本次发现了什么；同时标明是官方团队、厂商联合还是 community post |
 
 ## Reading Queue Updates
 

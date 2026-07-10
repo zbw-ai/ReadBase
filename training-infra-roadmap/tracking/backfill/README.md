@@ -16,6 +16,8 @@
 
 已开始整理：
 
+- [2026-06](2026-06.md)：PyTorch Miles / RL post-training infra
+- [2026-05](2026-05.md)：Hugging Face TiTo / Agentic RL token correctness
 - [2026-02](2026-02.md)
 - [2025-08](2025-08.md)：Agent Lightning / GLM-4.5 ARC
 - [2025-05](2025-05.md)
@@ -30,5 +32,5 @@
 待补：
 
 - SkyRL：原始月份待确认，暂存于 [Historical Backfill](../historical_backfill.md)。
-- 2026-06：NVIDIA NeMo RL / Megatron RL 等持续更新文档，需按具体 release 或文档版本确认。
+- NVIDIA NeMo RL / Megatron RL 等持续更新文档，需按具体 release 或文档版本确认。
 - Ray RLlib / Ray Train：属于长期演进材料，需拆到具体版本节点后再归档。

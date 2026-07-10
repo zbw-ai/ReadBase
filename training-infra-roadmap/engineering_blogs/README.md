@@ -27,6 +27,7 @@
 - [NVIDIA](nvidia/README.md)：Megatron-Core、Transformer Engine、NCCL、CUDA、FP8、Blackwell/Hopper training stack。
 - [OpenAI](openai/README.md)：scaling、post-training、reasoning、system safety、infrastructure signals。
 - [Anthropic](anthropic/README.md)：Claude training/post-training、interpretability、safety infra、long-context signals。
+- [Hugging Face Blog](https://huggingface.co/blog)：TRL、Transformers、Accelerate、PEFT、Kernels、vLLM integration、Agentic RL correctness；区分官方团队、厂商联合和 community post。
 - [DeepSeek](deepseek/README.md)：DeepSeek-V3/R1、MoE、FP8、DualPipe、reasoning training。
 - [Google](google/README.md)：TPU/Pathways、Gemini、JAX/PAX、large-scale training systems。
 - [Meta](meta/README.md)：Llama、PyTorch/FSDP、distributed training、data/infra practice。
