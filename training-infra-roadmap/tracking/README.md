@@ -23,7 +23,8 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-07-10](frontier_scan_2026-07-10.md)：当前最新扫描，覆盖到 2026-07-10 10:48。
+- [Frontier Scan 2026-07-13](frontier_scan_2026-07-13.md)：当前最新扫描，覆盖到 2026-07-13 15:35。
+- [Frontier Scan 2026-07-10](frontier_scan_2026-07-10.md)：上一次扫描，覆盖到 2026-07-10 10:48。
 - [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
 - [Monthly Signal Report Template](monthly_signal_report_template.md)：每月输出上个月的高质量正式信号沉淀。
 - [Monthly Signal 2026-06](monthly_signal_2026-06.md)：2026 年 6 月高质量前沿信号沉淀。
