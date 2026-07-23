@@ -219,6 +219,16 @@
 |---|---|---|
 | Hugging Face Blog / TRL / Transformers / Accelerate / PEFT / Kernels releases | Accepted / Observe | official-team attention profiling 进入 accepted；Transformers v5.13.1 作为 vLLM 0.25 兼容 patch 观察。窗口内未发现新的 TRL / Accelerate / PEFT / Kernels release；community posts 未达到当前 infra 筛选门槛。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按 `2026-07-10 10:48 ~ 2026-07-13 15:35`（Asia/Shanghai）复核。回补项不改变原扫描的论文与博客决策。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| verl | [PR #6999](https://github.com/verl-project/verl/pull/6999)：移除 TransferQueue 并恢复 RayPPOTrainer | training / data path / orchestration | merged；2026-07-11 01:35（Asia/Shanghai） | Read | 这是重要的反向信号：新数据通道若缺少完整语义与稳定性验证，架构抽象会被回滚；AReaL 引入 queue abstraction 时应先定义 ownership、backpressure、recovery 和 profiling contract |
+| NeMo RL | [PR #2828](https://github.com/NVIDIA-NeMo/RL/pull/2828)：Megatron policy worker 支持 async checkpoint | checkpoint / training | merged；2026-07-11 00:43（Asia/Shanghai） | Read | 对照 AReaL async save：保存线程、optimizer shard、训练 step 与 weight version 必须形成一致快照，不能只把磁盘写入移到后台 |
+| NeMo RL | [PR #2917](https://github.com/NVIDIA-NeMo/RL/pull/2917)：补充 async-GRPO starvation、dataloader exhaustion 诊断 | rollout / scheduler / observability | merged；2026-07-11 08:24（Asia/Shanghai） | Observe | AReaL 需要把“训练等不到完整 prompt group”显式区分为 rollout 长尾、queue quota、dataloader 耗尽和版本门限四类事件 |
+
 ## Reading Queue Updates
 
 - [ ] 保持 [P0](../reading_queue/P0.md) 不变，不用新鲜度替代当前学习优先级。

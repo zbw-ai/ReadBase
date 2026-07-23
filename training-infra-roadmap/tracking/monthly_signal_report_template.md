@@ -83,6 +83,14 @@ Monthly signal 不是更长的 frontier scan，也不是链接汇总。它只从
 |---|---|---|
 | Hugging Face Blog / TRL / Transformers / Accelerate / PEFT / Kernels | Accepted / Observe / Ignore / Not found | 本月哪些工程信号值得沉淀；同时区分官方团队、厂商联合与 community post |
 
+## RL Framework Watch
+
+本节不重新扫描 GitHub，只汇总本月 frontier scans 已筛选出的正式 release 与重大 PR。没有改变工程判断的框架活动不进入月报。
+
+| Framework | Release / PR | 子系统 | 本月判断 | 对 AReaL 的参考 | Decision |
+|---|---|---|---|---|---|
+| AReaL / verl / slime / ROLL / OpenRLHF / NeMo RL / emerging | tag / PR | rollout / training / scheduler / weight sync / data path / checkpoint / inference | 哪个系统边界发生变化 | 可复用设计、需验证或无直接关系 | Accepted / Observe / Ignore |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：

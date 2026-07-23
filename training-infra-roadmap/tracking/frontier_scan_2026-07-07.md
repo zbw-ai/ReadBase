@@ -102,6 +102,14 @@
 | Anthropic | Not fully scanned in this audit record | Deferred | 该文件未完整覆盖 Anthropic official sources；可用性限制在 [2026-07-08 scan](frontier_scan_2026-07-08.md) 记录。 |
 | NVIDIA | Not fully scanned in this audit record | Deferred | 该文件未完整覆盖 NVIDIA Technical Blog；NVIDIA Nonuniform TP 已在 [2026-07-08 scan](frontier_scan_2026-07-08.md) 进入 accepted。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按原扫描窗口复核。原文件没有记录精确扫描结束时刻，因此只保留能确认早于 7 月 7 日的 merged change，不把边界项硬塞进本窗口。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| AReaL | [PR #1471](https://github.com/areal-project/AReaL/pull/1471)：controller-managed rollout worker 不再错误膨胀 DP-scaling staleness capacity | rollout / scheduler / correctness | merged；2026-07-06 10:38（Asia/Shanghai） | Observe | staleness budget 必须按真正可并行的 worker capacity 计算；扩缩容控制面不能把逻辑 worker 数误当成可接受旧版本样本的额度 |
+
 ## Reading Queue Updates
 
 - [ ] 建议加入 `reading_queue/P0.md`：arxiv:2607.01415，待替换当前 P0 时确认

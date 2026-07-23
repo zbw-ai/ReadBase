@@ -144,6 +144,15 @@
 | Anthropic | attempted RSS / official entry points | Not verifiable | Anthropic RSS endpoint 返回错误页，未形成可解析 feed；本次不把缺失视为无信号，下次需要用稳定官方索引或手工 primary page 补查。 |
 | NVIDIA | Technical Blog RSS / primary pages | Accepted / Observe | `Nonuniform Tensor Parallelism` 进入 accepted；`Vera CPU boosts AI factory throughput` 等硬件/产品型内容进入 Observe。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按 `2026-07-07 00:00 ~ 2026-07-08 10:58`（Asia/Shanghai）复核，只收录窗口内已合入且会影响架构或正确性的改动。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| slime | [PR #2181](https://github.com/THUDM/slime/pull/2181)：disaggregated rollout engine 增加 `/pull_weights`，把权重拉取入口放到 inference engine 侧 | weight sync / inference backend | merged；2026-07-07 10:22（Asia/Shanghai） | Read | AReaL 可对照 push 与 pull 两种控制流：谁拥有版本推进权、失败重试由谁驱动、旧权重何时可回收 |
+| verl | [PR #6813](https://github.com/verl-project/verl/pull/6813)：checkpoint engine 使用独立 magic receive buffer，避免权重接收路径发生数据破坏 | weight sync / correctness | merged；2026-07-07 17:28（Asia/Shanghai） | Observe | 权重同步不能只测“传输完成”，还要验证 control marker 与 payload buffer 的隔离、校验和及 partial receive 恢复 |
+
 ## Reading Queue Updates
 
 - [ ] 保持 [P0](../reading_queue/P0.md) 不变：AReaL / HybridFlow / Rollout Infrastructure Tax。

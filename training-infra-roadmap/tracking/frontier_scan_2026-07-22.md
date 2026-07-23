@@ -273,6 +273,17 @@ ISO 的核心是 spectral inheritance：保留 base weight 的 singular values�
 | DeepSpeed | Not found | 无窗口内正式 release。 |
 | verl | Not found | 无窗口内正式 release。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按 `2026-07-20 11:12 ~ 2026-07-22 12:57`（Asia/Shanghai）复核。只保留能改变调度、refit 或 rollout 数据流判断的 merged change。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| verl | [PR #6556](https://github.com/verl-project/verl/pull/6556)：fully async trainer 支持 dynamic resource scheduling | scheduler / rollout / training | merged；2026-07-20 14:40（Asia/Shanghai） | Read | 与 BiDiRL 对照：AReaL 应评估资源计划是静态分区、阶段式借用还是运行时动态伸缩，以及每种方案对 staleness 和权重同步的约束 |
+| NeMo RL | [PR #2608](https://github.com/NVIDIA-NeMo/RL/pull/2608)：checkpoint-engine refit interface 并接入 NIXL | weight sync / inference backend | merged；2026-07-21 11:32（Asia/Shanghai） | Read | 可借鉴“统一 refit interface + 多 transport”边界，把传输机制与 policy version、quant metadata、cache invalidation 解耦 |
+| NeMo RL | [PR #3000](https://github.com/NVIDIA-NeMo/RL/pull/3000) + [PR #2999](https://github.com/NVIDIA-NeMo/RL/pull/2999)：按 prompt group 流式返回 rollout batch，并支持可随 policy refit 的 MTP drafter | rollout / scheduler / inference backend | merged；2026-07-22 07:10–08:24（Asia/Shanghai） | Read | 前者可减少 GRPO 等完整大 batch 的长尾等待；后者提醒 AReaL：speculative drafter 也属于 policy-dependent state，不能漏出 weight-sync contract |
+| AReaL | [PR #1441](https://github.com/areal-project/AReaL/pull/1441)：HTTP-based Ray Scheduler | scheduler / control plane | merged；2026-07-21 16:06（Asia/Shanghai） | Observe | 服务化 scheduler 可降低 controller 与 Ray 实现耦合，但需评估 RPC 开销、幂等、任务状态恢复和网络分区下的一致性 |
+
 ## Reading Queue Updates
 
 - [x] 保持 [P0](../reading_queue/P0.md) 不变，不把一次扫描的所有新材料塞进队列。

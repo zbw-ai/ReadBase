@@ -129,6 +129,16 @@
 |---|---|---|
 | Hugging Face Blog / TRL / Transformers releases | Accepted / Backfill | TRL v1.8.0 与 native-speed vLLM backend 进入 accepted；`TiTo` 经核验为 2026-05-29 历史材料，转入 [2026-05 Backfill](backfill/2026-05.md)，不混入 frontier。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按 `2026-07-08 10:58 ~ 2026-07-10 10:48`（Asia/Shanghai）复核。仅保留已合入的架构、性能或正确性变更。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| verl | [PR #6243](https://github.com/verl-project/verl/pull/6243)：vLLM Prefill-Decode disaggregated rollout，接入 NIXL 与 Mooncake | rollout / inference backend / data path | merged；2026-07-08 16:38（Asia/Shanghai） | Read | AReaL 若引入 PD-disaggregated rollout，需要把 KV transfer、request routing、weight version 和 failure recovery 放进同一状态机，而不是只替换 serving backend |
+| verl | [PR #6984](https://github.com/verl-project/verl/pull/6984)：FSDP actor update 不再保留每个 micro-batch 的 `model_output`，修复训练 OOM | training / memory | merged；2026-07-09 10:34（Asia/Shanghai） | Observe | 对照 AReaL actor update 的张量生命周期，确认累积阶段是否保存了只为统计而非反向所需的输出 |
+| verl | [PR #6951](https://github.com/verl-project/verl/pull/6951)：Megatron Bridge 成为默认 Megatron 接入层 | training / model integration | merged；2026-07-09 14:04（Asia/Shanghai） | Observe | 框架应收敛模型适配边界，减少 vanilla Megatron 与 Bridge 双路径造成的 checkpoint、parallel config 和 feature parity 分叉 |
+
 ## Reading Queue Updates
 
 - [ ] 保持 [P0](../reading_queue/P0.md) 不变，不因一次扫描强行替换。

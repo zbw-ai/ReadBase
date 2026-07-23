@@ -149,6 +149,16 @@
 | Anthropic | official news/research/engineering RSS endpoints | Not verifiable | 2026-07-08 回补扫描时，尝试的 Anthropic RSS endpoint 返回 HTML error page，未形成可解析 feed；本月需要后续用稳定官方索引补查。 |
 | NVIDIA | NVIDIA Technical Blog RSS / primary pages | Accepted / Observe | `NCCL Inspector and Prometheus` 进入 accepted；Dynamo Snapshot、Slurm Block Scheduling、Dynamo multi-turn agentic harness 等进入 Observe，后续启动 inference/cluster scheduling 主线时回看。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-05 自然月复核。保留服务化 AReaL、agent-first slime 和一条 loss aggregation correctness 信号。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| AReaL [v1.0.4](https://github.com/areal-project/AReaL/releases/tag/v1.0.4) | rollout / weight sync / inference service | official release；scaffolding rollout workflow、统一 rejection sampling、AWEX、Megatron PP/CP/EP weight update、inference onload/offload endpoint | Read | 重点不是支持更多 parallel mode，而是这些 shard 如何映射到 rollout engine、何时 onload/offload、失败后如何重建一致版本 |
+| slime [v0.3.0](https://github.com/THUDM/slime/releases/tag/v0.3.0) | agent runtime / async training / trajectory path / weight sync | official release；agent module、coding-agent RL、variable global batch、fully async path、delta weight sync、host-memory 优化 | Deep Dive | 对长轨迹 RL 很直接：AReaL 可比较 variable batch 对 sample efficiency/optimizer semantics 的影响，以及 agent adapter、trajectory merge、delta sync 的边界 |
+| OpenRLHF [v0.10.3](https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.10.3) | training / correctness | official release；修复 token-level loss aggregation | Observe | 这是小版本但高风险信号：变长序列和 gradient accumulation 下必须明确 token mean、sample mean 与 group mean，吞吐优化不能改变优化目标 |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[NCCL](../topics/nccl.md), [Distributed Training](../topics/distributed_training.md), [Agentic RL](../topics/agentic_rl.md), [Long-context Training](../topics/long_context_training.md), [MoE](../topics/moe.md)

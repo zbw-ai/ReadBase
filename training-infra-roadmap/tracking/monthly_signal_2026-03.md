@@ -109,6 +109,17 @@
 | Anthropic | attempted official news/research/engineering RSS endpoints | Not verifiable | 尝试的 Anthropic RSS endpoint 返回 HTML error page，未形成可解析 feed；后续需要稳定官方索引或手工 primary page 补查。 |
 | NVIDIA | NVIDIA RSS / technical blog cache | Not found | 当前 RSS 没有返回 3 月高相关 NVIDIA training/RL/inference infra 条目；本月不假装补录，后续如发现 3 月 NVIDIA 技术文档再进入 backfill。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-03 自然月复核官方 release。3 月是框架架构密集收敛月，保留四条彼此不同的系统信号。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| AReaL [v1.0.0](https://github.com/areal-project/AReaL/releases/tag/v1.0.0) → [v1.0.2](https://github.com/areal-project/AReaL/releases/tag/v1.0.2) | training / scheduler / weight sync / checkpoint | official releases；single-controller、PyTorch-native 5D parallel engine、XCCL weight update、Ray/Slurm、DCP/async checkpoint；随后补 rollout-training mismatch correction 与 FSDP per-layer optimizer streaming | Deep Dive | AReaL 1.x 的核心不是多一个算法 recipe，而是把控制面、并行训练、权重传播与容错放进统一 runtime |
+| verl [v0.7.1](https://github.com/verl-project/verl/releases/tag/v0.7.1) | rollout / weight sync / checkpoint | official release；R3 Router Replay、TensorRT-LLM backend、CUDA IPC refit、统一 checkpoint engine、partial rollout auto-resume | Read | 与 AReaL 对照 inference backend abstraction 和恢复语义：恢复不能丢弃所有未完成 trajectory，也不能让旧版本样本无限滞留 |
+| slime [v0.2.3](https://github.com/THUDM/slime/releases/tag/v0.2.3) → [v0.2.4](https://github.com/THUDM/slime/releases/tag/v0.2.4) | rollout / router / observability / correctness | official releases；PD/EPD 配置、consistent-hashing multi-turn routing、rollout timeline、ITL/TTFT、CUDA IPC cache leak 与 SP/CP gradient 修复 | Read | 长轨迹系统必须同时看 routing locality、尾延迟和训练正确性；AReaL 应把 timeline 与版本/trajectory ID 打通 |
+| ROLL [v0.2.1](https://github.com/alibaba/ROLL/releases/tag/v0.2.1) | rollout / scheduler | official release；统一 Router、PromptAffinityRouter、EnvAffinityRouter、sglang-router | Observe | Prompt/Env affinity 能减少 cache miss 与环境切换，但需要和公平性、长尾及 sticky-session 失衡一起评估 |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[NCCL](../topics/nccl.md), [Distributed Training](../topics/distributed_training.md), [Long-context Training](../topics/long_context_training.md), [FlashAttention](../topics/flashattention.md), [Agentic RL](../topics/agentic_rl.md)

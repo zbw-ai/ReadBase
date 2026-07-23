@@ -30,6 +30,7 @@
 - Memory / state：ZeRO、FSDP、activation checkpointing、distributed checkpointing、fault tolerance、elastic recovery。
 - Kernel / precision：FlashAttention、FP8 / NVFP4、CUTLASS、Grouped GEMM、MoE kernel。
 - Inference infra if it affects RL rollout：vLLM、SGLang、TensorRT-LLM、serving/training interface。
+- RL framework runtime：AReaL、verl、slime、ROLL、OpenRLHF、NeMo RL，以及具备真实代码和可运行训练链路的新框架；重点看 release 与重大架构 PR。
 - Hugging Face ecosystem：Hugging Face Blog、TRL、Transformers、Accelerate、PEFT、Kernels 及其与 vLLM / distributed training / Agentic RL 的集成。
 
 通常拒绝：
@@ -116,6 +117,16 @@ Hugging Face Blog 与核心框架 release 必须显式出现，但不自动进�
 | Sources checked | Decision | 结果 |
 |---|---|---|
 | Hugging Face Blog / TRL / Transformers / Accelerate / PEFT / Kernels | Accepted / Observe / Ignore / Not found | 本次发现了什么；同时标明是官方团队、厂商联合还是 community post |
+
+## RL Framework Watch
+
+核心检查 AReaL、verl、slime、ROLL、OpenRLHF、NeMo RL，并动态加入有真实实现和证据的新框架。只跟踪正式 release 与重大 PR，不罗列普通 commit。
+
+| Framework | Release / PR | 子系统 | 核心变化 | 证据 | 对 AReaL 的参考 | Decision |
+|---|---|---|---|---|---|---|
+| AReaL / verl / slime / ROLL / OpenRLHF / NeMo RL / emerging | tag / PR / Not found | rollout / training / scheduler / weight sync / data path / checkpoint / inference | 改了什么系统行为 | release note / diff / test / benchmark / production report | 可复用设计、需验证或无直接关系 | Accepted / Observe / Ignore / Not found |
+
+重大 PR 至少满足一项：改变进程或资源拓扑、训练与推理解耦方式、调度语义、权重同步、sample freshness、trajectory 数据流、并行/显存策略、checkpoint/recovery、核心 backend 或公开性能/正确性边界。PR 规模大不等于信号重要。
 
 ## Reading Queue Updates
 

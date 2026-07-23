@@ -165,6 +165,17 @@
 | Anthropic | official news/research/engineering RSS endpoints | Not verifiable | 2026-07-08 回补扫描时，尝试的 Anthropic RSS endpoint 返回 HTML error page，未形成可解析 feed；后续需要稳定官方索引或手工 primary page 补查。 |
 | NVIDIA | NVIDIA Technical Blog RSS / primary pages | Accepted / Observe | `MoE Fusion Kernels` 和 `Low-Precision Training` 进入 accepted；NVFP4 MaxText、Nemotron NVFP4 checkpoint、MLPerf Training 6.0 等作为 Observe 保留。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-06 自然月复核。框架主线已经从“能跑 GRPO”转向可组合 backend、异步数据流、Agent runtime 与生产正确性。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| verl [v0.8.0](https://github.com/verl-project/verl/releases/tag/v0.8.0) | training / rollout / weight sync / data path | official release；Megatron-FSDP、R2/R3、MXFP8、chunked NCCL/NIXL weight、SGLang PD rollout、TransferQueue | Deep Dive | 多 backend 与数据/控制面解耦是方向，但 TransferQueue 随后在 7 月被回滚，提醒 AReaL：新抽象必须先证明恢复、背压和可观测性语义 |
+| ROLL [v0.3.0](https://github.com/alibaba/ROLL/releases/tag/v0.3.0) | agent runtime / data path / observability | official release；AgentRunner 2.0、RemoteBatch、R3、MTP、OpenTelemetry、FSDP2/EP | Read | Agent interaction 与样本构造解耦、长上下文惰性传输和端到端 trace 都适合对照 AReaL 2.0 service boundary |
+| OpenRLHF [v0.10.4](https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.10.4) | training / correctness | official release；再次修正 gradient accumulation 下的 global token-mean loss | Read | 连续两个版本修同一问题说明这是跨框架风险；AReaL 应增加不等长 micro-batch 下 loss aggregation 的数值回归测试 |
+| [Miles](https://pytorch.org/blog/miles-a-pytorch-native-stack-for-large-scale-llm-rl-post-training/) | training / rollout / orchestration / fault tolerance | PyTorch official blog；Megatron-LM trainer、Ray orchestration、weight sync、observability 与 recovery 的可运行系统栈 | Read | 作为 emerging framework 对照项，重点看组件组合、故障域和 profiling contract，不因 PyTorch 官方身份自动替代 AReaL |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[Agentic RL](../topics/agentic_rl.md), [Long-context Training](../topics/long_context_training.md), [MoE](../topics/moe.md), [FP8](../topics/fp8.md), [Transformer Engine](../topics/transformer_engine.md)

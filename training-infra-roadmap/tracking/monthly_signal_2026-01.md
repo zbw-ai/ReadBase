@@ -138,6 +138,17 @@
 | Anthropic | official news page / attempted RSS endpoints | Observe | 官方 news 页面可访问，1 月可见 Claude new constitution、Anthropic Labs、Economic Index、scientific research/partnership 等条目；RSS 仍不可用，且本月未发现足够 Training/RL Infra 系统细节进入 accepted。 |
 | NVIDIA | NVIDIA technical blog RSS/cache | Not found | 当前可解析 RSS/cache 未覆盖到 1 月高相关 training/RL/inference infra 条目；本月未发现可核验 NVIDIA accepted signal。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-01 自然月复核官方 release。它是后验框架审计，不改写本月原始信号排序；只保留会改变架构、性能、正确性或运维判断的版本。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| verl [v0.7.0](https://github.com/verl-project/verl/releases/tag/v0.7.0) | training / rollout / scheduler / weight sync | official release；Model Engine、rollout server mode、TransferQueue、one-step-off-policy / fully async checkpoint-engine weight sync | Deep Dive | RL 框架开始把 trainer、serving、数据通道和版本传播拆成独立系统组件；AReaL 应重点对照 worker API、权重版本和 backpressure contract |
+| slime [v0.2.2](https://github.com/THUDM/slime/releases/tag/v0.2.2) | rollout / MoE / fault tolerance | official release；R3 Router Replay、async save、health monitor、PD-disaggregation 修复 | Read | rollout route、MTP 和 MoE router state 都可能成为训推一致性状态；不能只同步 dense weights |
+| NeMo RL [v0.5.0](https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.5.0) | rollout / precision / weight sync | official release；non-colocated startup overlap、inflight weight update、FP8 rollout、async-GRPO observability | Read | 大规模 RL 启动、refit 和 FP8 metadata 都是 pipeline latency 的组成部分；AReaL 需要端到端而非单 kernel profiling |
+| OpenRLHF [v0.9.1](https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.9.1) | agent runtime / trajectory path | official release；重构为 agent executor architecture，并清理 streaming async sampling | Observe | token-in/token-out agent executor 是清晰边界，但需继续验证多轮轨迹、外部环境故障与 trainer 消费语义是否完整 |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[Agentic RL](../topics/agentic_rl.md), [Checkpointing](../topics/checkpointing.md), [Distributed Training](../topics/distributed_training.md), [NCCL](../topics/nccl.md), [FlashAttention](../topics/flashattention.md)

@@ -137,6 +137,16 @@
 | Anthropic | official news page / attempted RSS endpoints | Observe | 官方 news 页面可访问，2 月可见 Claude Code Security、detecting/preventing distillation attacks、Claude model/product updates、Xcode Claude Agent SDK 等条目；RSS 仍不可用，且本月未发现足够 Training/RL Infra 系统细节进入 accepted。 |
 | NVIDIA | NVIDIA technical blog RSS/cache | Not found | 当前可解析 RSS/cache 未覆盖到 2 月高相关 training/RL/inference infra 条目；本月未发现可核验 NVIDIA accepted signal。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-02 自然月复核。宁缺毋滥：本月只保留一个足以改变资源调度判断的稳定 release。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| ROLL [v0.2.0](https://github.com/alibaba/ROLL/releases/tag/v0.2.0) | scheduler / rollout / training / weight sync | official release；rollout-training GPU partial overlap、DynamicSamplingScheduler coroutine refactor、sequence packing、SGLang server mode、跨机 weight-update overlap | Deep Dive | 这是“训练空闲 GPU 临时转 rollout”的早期可运行实现之一；应与 BiDiRL/AReaL 对照 hot switch 成本、staleness 修正和跨机权重广播 |
+
+其余核心 watchlist 在本月没有留下同等级稳定版本证据；AReaL `v1.0.0.rc1` 仅作为 3 月正式版前的候选信号，不单独形成结论。
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[Agentic RL](../topics/agentic_rl.md), [Long-context Training](../topics/long_context_training.md), [Distributed Training](../topics/distributed_training.md), [Checkpointing](../topics/checkpointing.md), [NCCL](../topics/nccl.md)

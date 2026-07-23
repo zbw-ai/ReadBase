@@ -23,8 +23,8 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-07-22](frontier_scan_2026-07-22.md)：当前最新扫描，合并 7 月 21 日记录，覆盖到 2026-07-22 12:57。
-- [Frontier Scan 2026-07-20](frontier_scan_2026-07-20.md)：上一次独立扫描，覆盖到 2026-07-20 11:12。
+- [Frontier Scan 2026-07-23](frontier_scan_2026-07-23.md)：当前最新扫描，覆盖到 2026-07-23 15:55，并首次显式执行 RL Framework Watch。
+- [Frontier Scan 2026-07-22](frontier_scan_2026-07-22.md)：上一次扫描，合并 7 月 21 日记录，覆盖到 2026-07-22 12:57。
 - [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
 - [Monthly Signal Report Template](monthly_signal_report_template.md)：每月输出上个月的高质量正式信号沉淀。
 - [Monthly Signal 2026-06](monthly_signal_2026-06.md)：2026 年 6 月高质量前沿信号沉淀。
@@ -94,6 +94,27 @@ Hugging Face 作为独立重点生态源，每次扫描还应显式维护 `Huggi
 - 优先扫描 Hugging Face Blog，以及 TRL、Transformers、Accelerate、PEFT、Kernels 等官方 release / docs。
 - 重点关注 agentic RL、rollout correctness、training-serving integration、long context、distributed training 和 inference backend。
 - 区分 Hugging Face 官方团队文章、厂商联合文章与 community post；来源级别不等于自动 Accepted，仍按工程信号筛选。
+
+## RL Framework Watch
+
+每次 frontier scan 必须显式维护 `RL Framework Watch`。它和厂商 Watch 的分工不同：厂商 Watch 判断技术方向，框架 Watch 判断代码、runtime 和工程能力是否已经发生可用变化。
+
+- 核心名单：AReaL、verl、slime、ROLL、OpenRLHF、NeMo RL。
+- 动态名单：新出现且具备真实代码、可运行训练链路或可复核 benchmark 的 RL Infra 框架。
+- 跟踪正式 release，以及会改变架构、性能、正确性或生产行为的重大 PR。
+- 不跟踪普通 commit、文档修正、小型 bugfix，避免 tracking 退化成 GitHub activity feed。
+- 宣传文章、仓库 README 或未经复核的 benchmark 不能单独构成 Accepted signal。
+
+每项保留变化至少回答四个问题：
+
+1. 改动发生在 `rollout`、`training`、`scheduler`、`weight sync`、`data/trajectory path`、`checkpoint/recovery` 还是 `inference backend`？
+2. 它解决性能、显存、稳定性、正确性还是可运维性问题？
+3. 证据来自 release note、代码 diff、测试、benchmark 还是 production report？
+4. 对 AReaL 当前架构是否存在可迁移的设计或实现？
+
+Monthly Signal 不重新扫描 GitHub，只汇总当月 frontier scans 已经筛出的框架变化。
+
+历史例外：2026-07-23 曾按用户明确要求，对 2026 年 1–6 月 Monthly Signal 和 7 月既有 Frontier Scan 做过一次 RL framework historical audit。所有回补段落都标记为 `Historical Audit`，不修改原 Accepted 数量、阅读决策或 cursor。后续不要把这种一次性迁移变成常规流程。
 
 ## Personal Focus Filter
 

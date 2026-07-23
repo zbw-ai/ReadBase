@@ -166,6 +166,16 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 | Anthropic | official news/research/engineering RSS endpoints | Not verifiable | 2026-07-08 回补扫描时，尝试的 Anthropic RSS endpoint 返回 HTML error page，未形成可解析 feed；本月不把 Anthropic 缺失视为无信号，后续需要用稳定官方索引或手工 primary page 补查。 |
 | NVIDIA | NVIDIA Technical Blog RSS / primary pages | Accepted | 本月 NVIDIA 有 3 条进入 accepted：FP8 RL、Megatron emerging optimizers、BioNeMo Context Parallelism；CUDA Tile / CompileIQ / sparse tensor 等放入 Observe。 |
 
+## RL Framework Monthly Highlights: Historical Audit
+
+> 本节于 2026-07-23 按 2026-04 自然月复核官方 release。只保留三条会改变服务边界、长上下文 rollout 或采样语义的更新。
+
+| Framework / change | Subsystem | Primary evidence | Decision | 工程判断与 AReaL 参考 |
+|---|---|---|---|---|
+| AReaL [v1.0.3](https://github.com/areal-project/AReaL/releases/tag/v1.0.3) | agent service / rollout gateway / weight sync | official release；Agent Service、controller/router/data proxy、Megatron Bridge、pipelined distributed weight sync、vLLM inference service | Deep Dive | AReaL 开始显式形成 service architecture；后续应关注 gateway backpressure、跨服务 tracing 与 refit failure recovery，而不只是吞吐 |
+| NeMo RL [v0.6.0](https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.6.0) | rollout / long context / precision / fault tolerance | official release；speculative rollout、SGLang backend、YaRN、chunked CE、sequence packing、LoRA GRPO/DPO、fault-tolerance launcher | Deep Dive | online drafter refit、长上下文内存和 generation backend 已进入同一 RL pipeline；AReaL 可重点借鉴 policy+drafters 的联合版本管理 |
+| OpenRLHF [v0.10.0](https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.10.0) | rollout / async sampling | official release；async mode 支持 `vLLM gen batch size > rollout batch size` oversampling，并加入 VLM RLHF | Observe | oversampling 能缓冲过滤/无效样本，但必须定义多生成样本如何进入 group normalization、如何限流以及未消费结果如何回收 |
+
 ## 对仓库的影响
 
 - 需要更新的 topic：[Agentic RL](../topics/agentic_rl.md), [Long-context Training](../topics/long_context_training.md), [Context Parallelism](../topics/context_parallelism.md), [FP8](../topics/fp8.md), [NCCL](../topics/nccl.md), [Distributed Training](../topics/distributed_training.md)

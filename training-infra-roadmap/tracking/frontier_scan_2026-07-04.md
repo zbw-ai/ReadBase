@@ -137,6 +137,15 @@
 | Anthropic | Not scanned in this correction file | Deferred | 本文件只修正 arXiv paper 窗口；Anthropic official sources 由 [2026-07-08 scan](frontier_scan_2026-07-08.md) 记录其可用性限制。 |
 | NVIDIA | Not scanned in this correction file | Deferred | 本文件不覆盖官方博客；7 月 NVIDIA Nonuniform TP 已在 [2026-07-08 scan](frontier_scan_2026-07-08.md) 进入 accepted。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按原扫描窗口复核官方 release 与 merged PR。它补充框架演进证据，不修改当时的 Accepted、P0/P1 或 cursor 记录。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| AReaL | [v2.0.0](https://github.com/areal-project/AReaL/releases/tag/v2.0.0)：训练、推理、Agent 与 weight update 服务化，并提供统一 CLI 和 Hermes RL 示例 | scheduler / rollout / training / weight sync | official release；2026-07-02 00:23（Asia/Shanghai）发布 | Read | 这是 AReaL 自身从单体训练框架走向 RL service architecture 的基线，后续优化应围绕 service boundary、failure domain 和跨服务状态一致性评估 |
+| slime | [PR #2089](https://github.com/THUDM/slime/pull/2089)：disaggregated rollout 的 disk-level delta weight sync | weight sync / inference backend | merged；2026-07-02 17:20（Asia/Shanghai） | Read | 对照 AReaL AWEX/disk mode：重点比较 delta 生成成本、全量 fallback、版本校验和远端 rollout 恢复语义 |
+
 ## Reading Queue Updates
 
 - [x] 保持 [P0](../reading_queue/P0.md)：arxiv:2607.01415 已进入 P0。

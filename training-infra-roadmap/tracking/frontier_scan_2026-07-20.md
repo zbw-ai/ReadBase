@@ -192,6 +192,17 @@ HeaRank 在线上将未来故障覆盖率从现网方案的 21% 提升到 top-5%
 | DeepSpeed | Not found | 无窗口内正式 release。 |
 | verl | Not found | 无窗口内正式 release。 |
 
+## RL Framework Watch: Historical Audit Backfill
+
+> 回补说明：本节于 2026-07-23 按 `2026-07-13 15:35 ~ 2026-07-20 11:12`（Asia/Shanghai）复核。上面的 Framework Release Watch 保留通用 runtime release；本节只看 RL training framework 的重大 merged PR。
+
+| Framework | Window change | Subsystem | Evidence / state | Decision | 对 AReaL 的参考 |
+|---|---|---|---|---|---|
+| verl | [PR #7037](https://github.com/verl-project/verl/pull/7037)：streaming dataloader 与 async trainer checkpoint recovery | checkpoint / data path / recovery | merged；2026-07-14 19:44（Asia/Shanghai） | Read | AReaL 恢复点需要同时覆盖 trainer state、流式数据 cursor、trajectory queue 和 policy version；否则“模型恢复”不等于“RL pipeline 恢复” |
+| NeMo RL | [PR #3138](https://github.com/NVIDIA-NeMo/RL/pull/3138) + [PR #3157](https://github.com/NVIDIA-NeMo/RL/pull/3157)：SingleController checkpoint save/restore 与 fault-tolerance retention | checkpoint / recovery | merged；2026-07-14 至 07-15（Asia/Shanghai） | Read | 可借鉴 `ft_save_period` / `keep_latest_k` 的故障恢复层，与 milestone checkpoint 分开，避免高频容错快照污染长期保留策略 |
+| verl | [PR #6974](https://github.com/verl-project/verl/pull/6974)：disaggregated rollout 的 sharded delta weight sync over NCCL | weight sync / rollout | merged；2026-07-16 12:57（Asia/Shanghai） | Read | 对照 AReaL AWEX：delta shard ownership、NCCL group 生命周期、版本一致性与全量同步 fallback 是评估重点 |
+| NeMo RL | [PR #3166](https://github.com/NVIDIA-NeMo/RL/pull/3166)：non-colocated generation 增加 NCCL refit backend | weight sync / inference backend | merged；2026-07-17 05:34（Asia/Shanghai） | Observe | AReaL 可把 weight-update transport 做成可替换 backend，但必须统一 metadata、dtype/quant scale 与完成确认协议 |
+
 ## Reading Queue Updates
 
 - [x] 保持 [P0](../reading_queue/P0.md) 不变：AReaL / HybridFlow / Rollout Infrastructure Tax 仍是当前学习主线。
