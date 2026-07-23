@@ -1,0 +1,369 @@
+{
+  "schema_version": "agentic-rl-performance-scorecard/v2",
+  "run_id": "bs2-eqtraj-C1b-v2",
+  "role": "diagnostic",
+  "source": {
+    "swanlab_run": "5jprfoiiydg0e2e4t8ru4",
+    "fuyao_job": "bifrost-2026070622090200-zengbw1",
+    "code_sha": "60b3b548431f146273d96d1f6e38628a14e4d06d",
+    "log_timestamp": "20260720_141521"
+  },
+  "workload": {
+    "model": "Qwen3.5-9B",
+    "max_sequence_length": 131072,
+    "cohorts_per_step": 2,
+    "trajectories_per_cohort": 8,
+    "trajectories_per_step": 16,
+    "total_gpus": 32,
+    "rollout_gpus": 16,
+    "train_gpus": 16,
+    "gpu_type": "A100-80GB"
+  },
+  "windows": {
+    "whole_training": {
+      "steps": "0-59",
+      "step_count": 60,
+      "trainer_consumed_cohorts": 120,
+      "trainer_consumed_trajectories": 960,
+      "status": "EXACT"
+    },
+    "step_performance": {
+      "steps": "1-59",
+      "step_count": 59,
+      "warmup_excluded": [
+        0
+      ],
+      "trainer_consumed_cohorts": 118,
+      "trainer_consumed_trajectories": 944,
+      "status": "EXACT"
+    },
+    "generation_pool": {
+      "generated_result_episodes": 2000,
+      "result_episode_id_min": 0,
+      "result_episode_id_max": 2044,
+      "result_episode_ids_contiguous": false,
+      "joined_trajectory_summaries": 1933,
+      "areal_start_session_begin": 1918,
+      "areal_start_session_end": 1906,
+      "without_start_session_begin": 82,
+      "start_session_begin_without_end": 12,
+      "llm_turns": 101068,
+      "join_completeness": 0.9665,
+      "result_artifact_termination": {
+        "completed": 1417,
+        "truncated": 484,
+        "error": 99
+      },
+      "status": "EXACT"
+    }
+  },
+  "step_critical_path": {
+    "unit": "seconds",
+    "accounting_error_sec": 0.0,
+    "components": [
+      {
+        "name": "e2e_step_wall",
+        "sum": 56568.883369,
+        "mean": 958.794633,
+        "p50": 805.445436,
+        "p90": 1705.224783,
+        "p95": 1952.627824,
+        "max": 2427.905783,
+        "step_share": 1.0,
+        "status": "EXACT"
+      },
+      {
+        "name": "rollout_wait_prepare_batch",
+        "sum": 53052.896927,
+        "mean": 899.201643,
+        "p50": 756.852234,
+        "p90": 1642.885669,
+        "p95": 1908.432410,
+        "max": 2375.362793,
+        "step_share": 0.937845928,
+        "status": "EXACT"
+      },
+      {
+        "name": "compute_advantage",
+        "sum": 13.034898,
+        "mean": 0.220930,
+        "p50": 0.182893,
+        "p90": 0.342411,
+        "p95": 0.368975,
+        "max": 0.829681,
+        "step_share": 0.000230425,
+        "status": "EXACT"
+      },
+      {
+        "name": "train_step",
+        "sum": 2580.369604,
+        "mean": 43.735078,
+        "p50": 44.319492,
+        "p90": 54.791606,
+        "p95": 56.845657,
+        "max": 62.987392,
+        "step_share": 0.045614646,
+        "status": "EXACT"
+      },
+      {
+        "name": "update_weights",
+        "sum": 118.610280,
+        "mean": 2.010344,
+        "p50": 2.001109,
+        "p90": 2.275627,
+        "p95": 2.302415,
+        "max": 2.716756,
+        "step_share": 0.002096741,
+        "status": "EXACT"
+      },
+      {
+        "name": "save",
+        "sum": 331.900760,
+        "mean": 5.625437,
+        "p50": 0.000609,
+        "p90": 27.638359,
+        "p95": 27.975337,
+        "max": 29.519859,
+        "step_share": 0.005867197,
+        "status": "EXACT"
+      },
+      {
+        "name": "checkpoint_recovery_and_other_recorded_phases_residual",
+        "sum": 472.070900,
+        "mean": 8.001202,
+        "p50": 8.001119,
+        "p90": 8.001533,
+        "p95": 8.001896,
+        "max": 8.002213,
+        "step_share": 0.008345063,
+        "status": "DERIVED"
+      }
+    ],
+    "async_overlap": {
+      "rollout_active_sec": null,
+      "train_rollout_overlap_sec": null,
+      "coordination_idle_sec": null,
+      "status": "UNKNOWN",
+      "reason": "No aligned rollout-active and train-active interval trace."
+    },
+    "total_allocated_gpu_hours": 502.834519,
+    "train_active_gpu_hours": 11.468309
+  },
+  "rollout_supply_demand": {
+    "required_cohorts_per_step": 2,
+    "required_trajectories_per_step": 16,
+    "generated_results": 2000,
+    "trainer_consumed": 960,
+    "aggregate_surplus": 1040,
+    "aggregate_surplus_share": 0.52,
+    "surplus_status": "EXACT_AGGREGATE",
+    "surplus_reason": "The manager ledger covers cohort seq 0-249 and closes the 2000 expected slots. Individual result IDs and per-disposition token/GPU cost are not joined.",
+    "cohort_ledger": {
+      "expected_cohorts": 250,
+      "terminal_cohorts": 248,
+      "exported_cohorts": 136,
+      "manager_rejected_cohorts": 112,
+      "open_at_shutdown_cohorts": 2,
+      "open_at_shutdown_seq": [
+        247,
+        249
+      ],
+      "export_age_seconds": {
+        "min": 677.0,
+        "mean": 1647.182353,
+        "max": 4282.6
+      },
+      "fifo_diagnostic_max": {
+        "open_cohorts": 15,
+        "ready_cohorts": 0,
+        "active_sessions": 58,
+        "pending_claims": 107
+      }
+    },
+    "disposition_partition": {
+      "trainer_consumed": 960,
+      "workflow_uniform_reward_filtered": 128,
+      "manager_rejected_rewarded": 798,
+      "open_at_shutdown_rewarded": 5,
+      "not_manager_rewarded_by_cutoff": 109,
+      "sum": 2000,
+      "status": "EXACT_AGGREGATE"
+    },
+    "manager_rejections": {
+      "staleness": {
+        "cohorts": 47,
+        "rewarded_trajectories": 376,
+        "by_drift": {
+          "3": {
+            "cohorts": 35,
+            "rewarded_trajectories": 280
+          },
+          "4": {
+            "cohorts": 8,
+            "rewarded_trajectories": 64
+          },
+          "5": {
+            "cohorts": 2,
+            "rewarded_trajectories": 16
+          },
+          "7": {
+            "cohorts": 2,
+            "rewarded_trajectories": 16
+          }
+        }
+      },
+      "partial_cohort_deadline": {
+        "cohorts": 54,
+        "admitted_slots": 365,
+        "ended_trajectories": 365,
+        "rewarded_trajectories": 364,
+        "missing_admission_slots": 67,
+        "missing_members_per_cohort": {
+          "1": 46,
+          "2": 4,
+          "3": 3,
+          "4": 1
+        },
+        "missing_original_rank_distribution": {
+          "0": 9,
+          "1": 9,
+          "2": 9,
+          "3": 7,
+          "4": 9,
+          "5": 9,
+          "6": 5,
+          "7": 10
+        },
+        "pre_session_failure_classes": {
+          "tmux_or_sandbox_command_setup": 49,
+          "openhands_install_or_bootstrap": 11,
+          "runtime_network_or_sdk_disconnect": 6,
+          "sandbox_internal_get_base_url": 1
+        },
+        "age_seconds": {
+          "min": 1002.2,
+          "mean": 2046.996296,
+          "p50": 1899.5,
+          "max": 5465.7
+        },
+        "lineage_evidence": "All 67 missing admission slots have result artifacts with infra errors and no areal_start_session_begin; joined_trajectory_summaries is not an admission event.",
+        "status": "EXACT"
+      },
+      "incomplete_cohort": {
+        "cohorts": 8,
+        "admitted_slots": 44,
+        "rewarded_trajectories": 43
+      },
+      "sandbox_internal_exception": {
+        "cohorts": 2,
+        "admitted_slots": 16,
+        "rewarded_trajectories": 14
+      },
+      "cohort_timeout": {
+        "cohorts": 1,
+        "admitted_slots": 3,
+        "rewarded_trajectories": 1,
+        "age_seconds": 10804.9
+      }
+    },
+    "workflow_filters": {
+      "uniform_reward": {
+        "cohorts": 16,
+        "trajectories": 128,
+        "reward_groups": {
+          "0.0": 2,
+          "0.9230769230769231": 1,
+          "0.989247311827957": 1,
+          "0.9953703703703703": 1,
+          "1.0": 11
+        }
+      }
+    },
+    "shutdown": {
+      "controller_wait_futures_cancelled": 6,
+      "pending_results_discarded": 0,
+      "note": "Cancelled controller futures are internal wait tasks, not six generated trajectories."
+    }
+  },
+  "training_participation": {
+    "whole_run": {
+      "trainer_consumed_cohorts": 120,
+      "trainer_consumed_trajectories": 960,
+      "full_sequence_tokens": 51717550,
+      "reward_positive_trajectories": 625,
+      "reward_nonpositive_trajectories": 335,
+      "reward_mean": 0.472019674,
+      "status": "EXACT"
+    },
+    "performance_window": {
+      "trainer_consumed_cohorts": 118,
+      "trainer_consumed_trajectories": 944,
+      "full_sequence_tokens": 51015838,
+      "reward_positive_trajectories": 619,
+      "reward_nonpositive_trajectories": 325,
+      "reward_mean": 0.481608991,
+      "status": "EXACT"
+    },
+    "loss_active_trajectories": null,
+    "loss_active_tokens": null,
+    "gradient_active_trajectories": null,
+    "gradient_active_tokens": null,
+    "active_status": "UNKNOWN",
+    "active_reason": "The run did not export final per-trajectory loss_mask and effective loss-weight counts."
+  },
+  "resource_efficiency": {
+    "consumed_cohorts_per_rollout_gpu_hour": 0.500443926,
+    "consumed_trajectories_per_rollout_gpu_hour": 4.003551404,
+    "consumed_trajectories_per_total_gpu_hour": 1.877357191,
+    "full_sequence_tokens_per_total_gpu_hour": 101456.515193,
+    "trainer_blocked_wait_gpu_hours": 235.790653,
+    "trainer_blocked_wait_share_of_total_allocated_gpu_hours": 0.468922964
+  },
+  "trajectory_pool": {
+    "joined_episodes": 1933,
+    "elapsed_min": {
+      "mean": 17.39,
+      "p50": 15.26,
+      "p95": 36.28,
+      "p99": 54.15,
+      "max": 180.70
+    },
+    "turns": {
+      "mean": 52.29,
+      "p50": 50,
+      "p90": 80,
+      "p95": 80,
+      "p99": 80,
+      "max": 80
+    },
+    "turn_cap_episodes": 375,
+    "turn_cap_positive": 10,
+    "reward_nonpositive": 629,
+    "reward_nonpositive_episode_wall_share": 0.4173,
+    "reward_nonpositive_llm_rpc_share": 0.4195,
+    "max_iterations": 364,
+    "loop_detector": 96,
+    "joined_termination": {
+      "completed": 1417,
+      "truncated": 484,
+      "error": 32
+    },
+    "retry_orphan_interactions": {
+      "export_events": 1088,
+      "dropped_interactions": 55397,
+      "mean_per_export_event": 50.91636,
+      "max_per_export_event": 79,
+      "ratio_to_logged_llm_turns": 0.54811,
+      "status": "EXACT_COUNT_DIAGNOSTIC_RATIO"
+    },
+    "status": "EXACT"
+  },
+  "observability_gaps": [
+    "result ID -> cohort rank -> manager disposition -> trainer step",
+    "per-disposition prompt/completion tokens, wall time, and GPU-hours",
+    "final loss-active and gradient-active trajectory/token counts",
+    "per-step time to final required cohort and ready queue depth",
+    "aligned rollout-active/train-active intervals",
+    "request -> engine queue/KV snapshot -> policy version"
+  ]
+}

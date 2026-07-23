@@ -31,6 +31,7 @@ training-infra-roadmap/
   reading_queue/
   learning_log/
   insights/
+  projects/
   experiments/
   playbooks/
   topics/
@@ -99,6 +100,7 @@ training-infra-roadmap/
 - [Reading Queue](reading_queue/README.md)
 - [Learning Log](learning_log/README.md)
 - [Insights](insights/README.md)
+- [Q3 Long-context Agentic RL Project](projects/2026-q3-long-context-agentic-rl/README.md)
 - [Experiments](experiments/README.md)
 - [Playbooks](playbooks/README.md)
 
@@ -128,6 +130,7 @@ graph LR
 - `reading_queue/`：把 tracking 中的信号筛选成 P0/P1 阅读计划。
 - `learning_log/`：记录每月读了什么、理解了什么、还有什么疑问。
 - `insights/`：沉淀个人技术判断，不写论文摘要。
+- `projects/`：持续数周或数月的工程实战主线，把 baseline、看板、tracing、实验和 decision 串成闭环。
 - `experiments/`：用实验验证工程判断。
 - `playbooks/`：生产排障 runbook，回答线上问题怎么查、怎么恢复、怎么复盘。
 - `topics/`：横向主题，把多篇材料串起来。
@@ -142,4 +145,4 @@ Research OS v1.0 已进入使用期。未来一个月不继续扩结构，优先
 1. 有空时跑一次 [Frontier Scan](tracking/frontier_scan_template.md)：窗口从 [Scan Log](tracking/scan_log.md) 的上次游标到本次扫描结束，只收高质量前沿信号，可以 0 条。
 2. 每周尽量精读一个 [P0](reading_queue/P0.md)，读完必须流向 `topics/`、`insights/`、`playbooks/` 或 `experiments/`。
 3. 每两周做一次 [Historical Backfill](tracking/historical_backfill.md)：按材料原始月份倒序补课，每个月一个文件，只补当前工程判断缺口。
-4. 当前只聚焦三条主线：[Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。
+4. 当前工程实战主线：[Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md)；知识输入继续聚焦 [Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。

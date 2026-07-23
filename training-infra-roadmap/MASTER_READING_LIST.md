@@ -46,6 +46,7 @@
 | Notes | `papers/` / `tech_reports/` / `engineering_blogs/` | 消化原始资料 |
 | Topics | [topics](topics/) | 沉淀工程手册 |
 | Insights | [insights](insights/README.md) | 形成个人判断 |
+| Projects | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | 用真实系统 baseline、tracing 和实验形成长期工程闭环 |
 | Experiments | [experiments](experiments/README.md) | 实验验证 |
 | Playbooks | [playbooks](playbooks/README.md) | 生产排障 runbook |
 | Learning Log | [learning_log](learning_log/README.md) | 月度复盘 |
@@ -54,9 +55,9 @@
 
 这里记录已经跑通的 Research OS 闭环。它们不是单篇论文阅读，而是从信号判断进入工程沉淀。
 
-| 主题 | Input | Queue | Topic | Insight | Playbook | Log |
-|---|---|---|---|---|---|---|
-| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
+| 主题 | Input | Queue | Topic | Insight | Project / experiment | Playbook | Log |
+|---|---|---|---|---|---|---|---|
+| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
 
 ## 0.4 Historical Backfill 入口
 

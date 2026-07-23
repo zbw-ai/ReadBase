@@ -1,0 +1,177 @@
+{
+  "schema_version": "agentic-rl-performance-scorecard/v2",
+  "run_id": "R8b",
+  "role": "canonical",
+  "source": {
+    "swanlab_run": "1b9mqas2ope3rando41kr",
+    "fuyao_job": "bifrost-2026070622090200-zengbw1",
+    "code_sha": null,
+    "log_timestamp": "20260706_221625"
+  },
+  "workload": {
+    "model": "Qwen3.5-9B",
+    "max_sequence_length": 131072,
+    "cohorts_per_step": 32,
+    "trajectories_per_cohort": 8,
+    "trajectories_per_step": 256,
+    "total_gpus": 32,
+    "rollout_gpus": 16,
+    "train_gpus": 16,
+    "gpu_type": "A100-80GB"
+  },
+  "windows": {
+    "whole_training": {
+      "steps": "0-6",
+      "step_count": 7,
+      "trainer_consumed_cohorts": 224,
+      "trainer_consumed_trajectories": 1792,
+      "status": "DERIVED"
+    },
+    "step_performance": {
+      "steps": "1-6",
+      "step_count": 6,
+      "warmup_excluded": [
+        0
+      ],
+      "trainer_consumed_cohorts": 192,
+      "trainer_consumed_trajectories": 1536,
+      "status": "DERIVED"
+    },
+    "generation_pool": {
+      "generated_trajectory_summaries": 2645,
+      "complete_cohorts": 267,
+      "vllm_periodic_records": 74112,
+      "sandbox_acquired": 2819,
+      "status": "EXACT"
+    }
+  },
+  "step_critical_path": {
+    "unit": "seconds",
+    "source_note": "Statistics are derived from six post-warmup rows rounded in the historical log table.",
+    "components": [
+      {
+        "name": "e2e_step_wall",
+        "sum": 30200.1,
+        "mean": 5033.35,
+        "p50": 5070.70,
+        "p90": 5486.80,
+        "p95": 5590.55,
+        "max": 5694.30,
+        "step_share": 1.0,
+        "status": "DERIVED"
+      },
+      {
+        "name": "rollout_wait_prepare_batch",
+        "sum": 26355.6,
+        "mean": 4392.60,
+        "p50": 4405.35,
+        "p90": 4847.60,
+        "p95": 4943.10,
+        "max": 5038.60,
+        "step_share": 0.872699097,
+        "status": "DERIVED"
+      },
+      {
+        "name": "train_step",
+        "sum": 3766.96,
+        "mean": 627.826667,
+        "p50": 636.04,
+        "p90": 655.155,
+        "p95": 661.5625,
+        "max": 667.97,
+        "step_share": 0.124733362,
+        "status": "DERIVED"
+      },
+      {
+        "name": "other_recorded_phases_residual",
+        "sum": 77.54,
+        "mean": 12.923333,
+        "p50": 12.705,
+        "p90": 13.575,
+        "p95": 13.6825,
+        "max": 13.79,
+        "step_share": 0.002567541,
+        "status": "DERIVED"
+      }
+    ],
+    "async_overlap": {
+      "rollout_active_sec": null,
+      "train_rollout_overlap_sec": null,
+      "coordination_idle_sec": null,
+      "status": "UNKNOWN",
+      "reason": "Historical tracing has no aligned rollout-active and train-active intervals."
+    },
+    "total_allocated_gpu_hours": 268.445333,
+    "train_active_gpu_hours": 16.742044
+  },
+  "rollout_supply_demand": {
+    "required_cohorts_per_step": 32,
+    "required_trajectories_per_step": 256,
+    "generated_trajectory_summaries": 2645,
+    "trainer_consumed": 1792,
+    "aggregate_surplus": 853,
+    "aggregate_surplus_share": 0.322495274,
+    "surplus_status": "INFERRED",
+    "surplus_reason": "Historical generated summaries cannot be joined to trainer consumption or end-of-run queue disposition."
+  },
+  "training_participation": {
+    "whole_run": {
+      "trainer_consumed_cohorts": 224,
+      "trainer_consumed_trajectories": 1792,
+      "reward_positive_trajectories": 867,
+      "reward_nonpositive_trajectories": 925,
+      "status": "DERIVED"
+    },
+    "performance_window": {
+      "trainer_consumed_cohorts": 192,
+      "trainer_consumed_trajectories": 1536,
+      "reward_positive_trajectories": 753,
+      "reward_nonpositive_trajectories": 783,
+      "status": "DERIVED"
+    },
+    "full_sequence_tokens": null,
+    "loss_active_trajectories": null,
+    "loss_active_tokens": null,
+    "gradient_active_trajectories": null,
+    "gradient_active_tokens": null,
+    "active_status": "UNKNOWN",
+    "active_reason": "Historical run did not preserve the required trainer token and final mask aggregates."
+  },
+  "resource_efficiency": {
+    "consumed_cohorts_per_rollout_gpu_hour": 1.639120339,
+    "consumed_trajectories_per_rollout_gpu_hour": 13.112962710,
+    "trainer_blocked_wait_gpu_hours": 117.136,
+    "trainer_blocked_wait_share_of_total_allocated_gpu_hours": 0.436349549
+  },
+  "trajectory_pool": {
+    "trajectory_summaries": 2645,
+    "elapsed_min": {
+      "mean": 28.1,
+      "p50": 24.4,
+      "p90": 48.7,
+      "p95": 60.0,
+      "p99": 97.0
+    },
+    "reward_nonpositive": 1341,
+    "reward_nonpositive_share": 0.5070,
+    "reward_nonpositive_episode_wall_share": 0.5986,
+    "max_iterations": 800,
+    "loop_detector": 402,
+    "status": "EXACT"
+  },
+  "sandbox": {
+    "acquired": 2819,
+    "provision_setup_failures": 74,
+    "terminal_errors": 15,
+    "explicit_abnormal_releases": 89,
+    "explicit_abnormal_share": 0.0316,
+    "status": "EXACT"
+  },
+  "observability_gaps": [
+    "generated trajectory -> trainer-consumed step/cohort/policy version",
+    "full-sequence, loss-active, and gradient-active token counts",
+    "per-step rollout supply and queue disposition",
+    "aligned rollout-active/train-active intervals",
+    "exact code/image/model/data manifest"
+  ]
+}
