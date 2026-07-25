@@ -213,3 +213,4 @@
 | 32 | AReaL | Tracking / P0 | 异步 rollout/train 解耦、staleness、sample freshness |
 | 33 | HybridFlow / verl | Tracking / P0 | RLHF dataflow、actor training/generation resharding |
 | 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |
+| 35 | Traditional KD → OPD → MOPD | [MOPD（研究中 / 原理第一版）](topics/mopd.md) | Student rollout、dense Teacher signal、domain routing、multi-teacher serving |
