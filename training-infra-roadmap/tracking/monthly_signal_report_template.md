@@ -13,6 +13,7 @@ Monthly signal 不是更长的 frontier scan，也不是链接汇总。它只从
 - Accepted signals 通常 3 到 5 条；可以更少，可以为 0。
 - P0 通常不超过 1 到 2 条，P1 通常不超过 3 到 5 条。
 - Monthly 不重新发现材料，只汇总当月 frontier scans / backfill / release note / 已读材料。
+- 核心模型厂商的 technical report、model card、工程博客和规模化部署报告属于一级工业证据，必须显式审视；但厂商身份不等于自动 Accepted，公开机制、代码、可复核 benchmark 和厂商自报数字要分层标注。
 - 宁缺毋滥。没有高质量判断就明确写无。
 
 ---
@@ -67,15 +68,20 @@ Monthly signal 不是更长的 frontier scan，也不是链接汇总。它只从
 |---|---|---|
 | 标题 | Observe / Ignore / Backfill | 为什么没有进入 accepted signals |
 
-## OpenAI / Anthropic / NVIDIA Watch
+## Industrial Evidence Watch
 
-三家一手来源必须显式出现。不要自动收录，但要说明本月扫描结果。
+核心厂商的技术报告和生产材料应单独说明证据等级，以及它验证或改变了哪条工程路线。
+
+## OpenAI / Anthropic / NVIDIA / DeepSeek Watch
+
+四家一手来源必须显式出现。不要自动收录，但要说明本月扫描结果。
 
 | Vendor | Sources checked | Decision | 结果 |
 |---|---|---|---|
 | OpenAI | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或为什么没有可收录信号 |
 | Anthropic | official blog / research / docs / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或来源是否不可核验 |
 | NVIDIA | technical blog / docs / developer posts / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，或为什么没有可收录信号 |
+| DeepSeek | official API changelog / Hugging Face organization / reports | Accepted / Observe / Ignore / Not found | 本月发现了什么，哪些细节已经公开，哪些仍不可验证 |
 
 ### Hugging Face Watch
 

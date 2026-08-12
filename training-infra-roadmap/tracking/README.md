@@ -23,10 +23,13 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-07-24](frontier_scan_2026-07-24.md)：当前最新扫描，合并 7 月 23 日记录，覆盖到 2026-07-24 09:52；新增 KV-cache correctness 与 NeMo RL TensorRT-LLM rollout backend 信号。
-- [Frontier Scan 2026-07-22](frontier_scan_2026-07-22.md)：上一次独立扫描，合并 7 月 21 日记录，覆盖到 2026-07-22 12:57。
+- [Frontier Scan 2026-08-12](frontier_scan_2026-08-12.md)：当前最新扫描，覆盖到 2026-08-12 09:51；重点包括 verl Dynamic CP、slime GLM-5 训推对齐、FlashBoot、OasisKV、Replay Gap 与 NVIDIA Nemotron 3.5。
+- [Frontier Scan 2026-08-09](frontier_scan_2026-08-09.md)：上一份扫描，覆盖到 2026-08-09 23:24；重点包括 K-EXAONE 2.0、TensorCast、SpecRoll、slime v0.3.1 与 AReaL AWEX colocation。
+- [Frontier Scan 2026-08-03](frontier_scan_2026-08-03.md)：前一份扫描，合并 8 月 4 日增量，覆盖到 2026-08-04 13:22。
+- [Frontier Scan 2026-07-28](frontier_scan_2026-07-28.md)：7 月最后一份独立扫描，覆盖到 2026-07-28 16:58。
 - [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
 - [Monthly Signal Report Template](monthly_signal_report_template.md)：每月输出上个月的高质量正式信号沉淀。
+- [Monthly Signal 2026-07](monthly_signal_2026-07.md)：2026 年 7 月工程判断与工业证据月报。
 - [Monthly Signal 2026-06](monthly_signal_2026-06.md)：2026 年 6 月高质量前沿信号沉淀。
 - [Monthly Signal 2026-05](monthly_signal_2026-05.md)：2026 年 5 月高质量前沿信号沉淀。
 - [Monthly Signal 2026-04](monthly_signal_2026-04.md)：2026 年 4 月高质量前沿信号沉淀。
@@ -80,10 +83,12 @@ Backfill 不按时间补，按“它能补哪个工程判断缺口”来补。
 
 ## Vendor Watch
 
-每次 frontier scan 和 monthly signal 都必须显式维护 `OpenAI / Anthropic / NVIDIA Watch`。
+每次 frontier scan 和 monthly signal 都必须显式维护 `OpenAI / Anthropic / NVIDIA / DeepSeek Watch`。
 
-- OpenAI / Anthropic / NVIDIA 是一级关注源：paper、technical report、official docs、engineering blog、release note、research post 都要进入扫描视野。
-- 三家来源不是自动进入 Accepted；仍然按照是否改变 Training/RL/Inference Infra 工程判断来筛选。
+- OpenAI / Anthropic / NVIDIA / DeepSeek 是一级关注源：paper、technical report、official docs、engineering blog、model card、weight release、release note、research post 都要进入扫描视野。
+- DeepSeek 需要同时检查官方 API changelog 与 Hugging Face organization；重要开放权重更新不一定配套独立博客。
+- 四家来源不是自动进入 Accepted；仍然按照是否改变 Training/RL/Inference Infra 工程判断来筛选。
+- 核心模型厂商的 technical report、model card、工程博客和规模化部署报告按一级工业证据处理：优先读其系统边界和生产证据，同时明确区分公开事实、厂商自报数字与仓库推断。
 - 如果材料重要，进入 Accepted；如果相关但不够硬，进入 Observed；如果没有系统细节，写明 Rejected / Ignore。
 - 如果本次未发现可核验高质量信号，或者来源端点不可用，也要在 Vendor Watch 写出来，避免三家动态在记录里“隐身”。
 - NVIDIA Training Stack 相关内容优先看 Megatron-Core、Transformer Engine、NCCL、FP8/NVFP4、MoE kernel、distributed checkpointing、scheduling、observability。
