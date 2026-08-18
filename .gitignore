@@ -32,3 +32,6 @@ node_modules/
 *.ckpt
 *.safetensors
 *.bin
+
+# Private career materials
+private_resume/
