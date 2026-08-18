@@ -23,8 +23,11 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-08-12](frontier_scan_2026-08-12.md)：当前最新扫描，覆盖到 2026-08-12 09:51；重点包括 verl Dynamic CP、slime GLM-5 训推对齐、FlashBoot、OasisKV、Replay Gap 与 NVIDIA Nemotron 3.5。
-- [Frontier Scan 2026-08-09](frontier_scan_2026-08-09.md)：上一份扫描，覆盖到 2026-08-09 23:24；重点包括 K-EXAONE 2.0、TensorCast、SpecRoll、slime v0.3.1 与 AReaL AWEX colocation。
+- [Frontier Scan 2026-08-18](frontier_scan_2026-08-18.md)：当前最新扫描，覆盖到 2026-08-18 09:31:44；重点包括 Rollplex、NVIDIA Nemotron QAD、Megatron RL Context Parallel、FreeBalance、verl vLLM state-lifecycle fix 与 SGLang DSpark accepted-token logprobs。
+- [Frontier Scan 2026-08-17](frontier_scan_2026-08-17.md)：上一份扫描，完整重扫 2026-08-14 17:39:50 到 2026-08-17 09:28:33；重点包括 DeepSeek-V4-Pro-0813、Megatron RL generation lag autotuning、NeMo rollout failure containment、Megatron disaggregated KV handoff 与 checkpoint distribution cache。
+- [Frontier Scan 2026-08-14](frontier_scan_2026-08-14.md)：上一份确认游标，覆盖到 2026-08-14 17:39:50；重点包括 TideRL、MISA-T、RoutePack、AReaL grouped colocation、verl multi-sender weight sync、NeMo RL async checkpoint 与 vToken。
+- [Frontier Scan 2026-08-12](frontier_scan_2026-08-12.md)：前一份扫描，覆盖到 2026-08-12 09:51；重点包括 verl Dynamic CP、slime GLM-5 训推对齐、FlashBoot、OasisKV、Replay Gap 与 NVIDIA Nemotron 3.5。
+- [Frontier Scan 2026-08-09](frontier_scan_2026-08-09.md)：前一份扫描，覆盖到 2026-08-09 23:24；重点包括 K-EXAONE 2.0、TensorCast、SpecRoll、slime v0.3.1 与 AReaL AWEX colocation。
 - [Frontier Scan 2026-08-03](frontier_scan_2026-08-03.md)：前一份扫描，合并 8 月 4 日增量，覆盖到 2026-08-04 13:22。
 - [Frontier Scan 2026-07-28](frontier_scan_2026-07-28.md)：7 月最后一份独立扫描，覆盖到 2026-07-28 16:58。
 - [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
