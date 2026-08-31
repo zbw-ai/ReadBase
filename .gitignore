@@ -33,5 +33,14 @@ node_modules/
 *.safetensors
 *.bin
 
-# Private career materials
-private_resume/
+# Career materials: track sources and final outputs, not local render caches or fonts.
+private_resume/tmp/chrome-pdf-render*/
+private_resume/tmp/final-a11y*.json
+private_resume/tmp/font-test-render*/
+private_resume/tmp/font-test.docx
+private_resume/tmp/fontcache/
+private_resume/tmp/fonts/
+private_resume/tmp/original-format-render*/
+private_resume/tmp/original-render/
+private_resume/tmp/rendered/
+private_resume/tmp/source-render/
