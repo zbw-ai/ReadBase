@@ -3,7 +3,7 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–120 万
 > - 使用窗口：首轮面试前 3 天
-> - 核验日期：2026-08-30
+> - 核验日期：2026-08-31
 > - 依据：[2026 版简历](output/曾柏炜-大模型训练推理Infra高级工程师-原格式版-2026.docx)、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 ## 0. 先看结论：面试官会如何评估你
@@ -28,7 +28,7 @@
 ### Day 1：先保证简历问不倒（约 4 小时）
 
 - 30 分钟：背熟 90 秒自我介绍和 30 秒职业定位。
-- 2 小时：完成 `RESUME-01` 至 `RESUME-10`，把每个数字补齐 workload 卡片。
+- 2 小时：完成全部简历 P0 题，把每个数字补齐 workload 卡片，优先口述 X1 MoE、Fully Async 和 Agentic RL 三个故事。
 - 60 分钟：口述 async RLVR、长上下文 SFT、Agentic RL/MOPD 三个故事，每个控制在 3 分钟。
 - 30 分钟：处理本手册“口径风险清单”。
 
@@ -72,38 +72,44 @@
 
 简历写的是“了解 Megatron 5D 并行、基于 Megatron-Core 交付和二次开发”。面试时应把自己定位为**训练系统集成、性能与正确性优化者**；只有确实改过底层 collective、parallel state 或调度实现时，才说自己是 Megatron 核心机制实现者。
 
-## 3. P0 Top 28 学习路径
+### 2.6 Fully Async 的同步对照口径尚未闭环
+
+`76 → 211–255` 是 Fully Async 内部从初始配置到优化配置的比较，`236–293` 是 `2T+2R` 候选窗口。目前“同步约 200”仍需补齐完全一致的 workload、统计窗口、warmup/异常步处理和 `tokens/s/GPU` 分母；补齐前不要声称 Fully Async 相比同步提升了多少，更不能把 `76 → 211–255` 说成同步到异步的三倍提升。
+
+## 3. P0 Top 30 学习路径
 
 | 顺序 | 题目 | 预计复习 | 通过标准 |
 |---:|---|---:|---|
 | 1 | [RESUME-01 自我介绍](#resume-01) | 12 分钟 | 90 秒内讲完，两条主线清楚 |
-| 2 | [RESUME-02 async RLVR 优化](#resume-02) | 20 分钟 | 能从瓶颈证据讲到资源重配 |
-| 3 | [RESUME-03 gen-TP 与资源配比](#resume-03) | 15 分钟 | 能解释为何减 TP 反而更快 |
-| 4 | [RESUME-04 吞吐指标可信度](#resume-04) | 15 分钟 | 能说明统计窗口和可比性 |
-| 5 | [RESUME-05 SFT 3.3x](#resume-05) | 20 分钟 | 能拆分数据和计算瓶颈 |
-| 6 | [RESUME-06 128K/256K 长上下文](#resume-06) | 18 分钟 | 能列显存账和并行选择 |
-| 7 | [RESUME-07 CP chunking 静默失效](#resume-07) | 15 分钟 | 能讲症状、根因、验证 |
-| 8 | [RESUME-08 Agentic RL 架构](#resume-08) | 20 分钟 | 能画完整数据流和关键路径 |
-| 9 | [RESUME-09 OPD/MOPD](#resume-09) | 20 分钟 | 能守住正确性与效果边界 |
-| 10 | [RESUME-10 千卡集群交付](#resume-10) | 15 分钟 | 能讲个人 ownership 和故障体系 |
-| 11 | [MEGATRON-01 5D 并行](#megatron-01) | 15 分钟 | 每个维度解决什么都说清 |
-| 12 | [MEGATRON-02 Row/Column TP](#megatron-02) | 18 分钟 | 能说通信点和原因 |
-| 13 | [MEGATRON-03 TP 负优化](#megatron-03) | 15 分钟 | 能结合 9B 项目解释 |
-| 14 | [MEGATRON-04 SP 与 CP](#megatron-04) | 15 分钟 | 不混淆两个 sequence 切分 |
-| 15 | [MEGATRON-05 Distributed Optimizer](#megatron-05) | 15 分钟 | 能说明分片对象和通信 |
-| 16 | [MEGATRON-06 MoE/EP](#megatron-06) | 18 分钟 | 能解释 all-to-all 和负载均衡 |
-| 17 | [VERL-01 HybridFlow 架构](#verl-01) | 18 分钟 | 能画 role/data/control flow |
-| 18 | [VERL-02 Colocate 与 Disaggregate](#verl-02) | 15 分钟 | 能做资源取舍 |
-| 19 | [VERL-03 训练/推理权重同步](#verl-03) | 18 分钟 | 能说布局转换和原子性 |
-| 20 | [VERL-04 Fully Async](#verl-04) | 18 分钟 | 能讲 producer-consumer 与 staleness |
-| 21 | [VERL-05 GRPO 正确性](#verl-05) | 18 分钟 | 能识别 logprob/mask/normalization 风险 |
-| 22 | [AREAL-01 为什么选 AReaL](#areal-01) | 15 分钟 | 不停留在“更异步” |
-| 23 | [AREAL-02 Off-policy 与 staleness](#areal-02) | 18 分钟 | 能讲性能-稳定性权衡 |
-| 24 | [AREAL-03 Agentic RL 服务链](#areal-03) | 18 分钟 | 能讲 agent/env/reward/trainer 边界 |
-| 25 | [AREAL-04 Trajectory lineage](#areal-04) | 18 分钟 | 能说明样本到底有没有训练贡献 |
-| 26 | [INFRA-01 MFU](#infra-01) | 15 分钟 | 会算、会解释、会识别假提升 |
-| 27 | [INFRA-02 OOM 定位](#infra-02) | 18 分钟 | 能按张量生命周期定位 |
-| 28 | [INFRA-03 NCCL/Checkpoint 故障](#infra-03) | 18 分钟 | 能给出生产排查顺序 |
+| 2 | [RESUME-01A X1 200B MoE 优化](#resume-01a) | 20 分钟 | 能用 Three Walls 讲完整因果链 |
+| 3 | [RESUME-01B 项目 Ownership](#resume-01b) | 10 分钟 | 能拆清个人、框架与团队贡献 |
+| 4 | [RESUME-01C 职业选择](#resume-01c) | 8 分钟 | 动机客观、稳定且不抱怨 |
+| 5 | [RESUME-02 Fully Async 对比与优化](#resume-02) | 20 分钟 | 先讲异步优势，再讲供需配平 |
+| 6 | [RESUME-03 gen-TP 与资源配比](#resume-03) | 15 分钟 | 能解释为何减 TP 反而更快 |
+| 7 | [RESUME-05 SFT 3.3x](#resume-05) | 20 分钟 | 能拆分数据和计算瓶颈 |
+| 8 | [RESUME-06 128K/256K 长上下文](#resume-06) | 18 分钟 | 能列显存账和并行选择 |
+| 9 | [RESUME-07 CP chunking 静默失效](#resume-07) | 15 分钟 | 能讲症状、根因、验证 |
+| 10 | [RESUME-08 Agentic RL 架构](#resume-08) | 20 分钟 | 能画完整数据流和关键路径 |
+| 11 | [RESUME-09 OPD/MOPD](#resume-09) | 20 分钟 | 能讲清 TIES→MOPD 选型和三层验证 |
+| 12 | [RESUME-10 千卡集群交付](#resume-10) | 15 分钟 | 能讲清国产卡模型适配与性能达标闭环 |
+| 13 | [MEGATRON-01 5D 并行](#megatron-01) | 15 分钟 | 每个维度解决什么都说清 |
+| 14 | [MEGATRON-02 Row/Column TP](#megatron-02) | 18 分钟 | 能说通信点和原因 |
+| 15 | [MEGATRON-03 TP 负优化](#megatron-03) | 15 分钟 | 能结合 9B 项目解释 |
+| 16 | [MEGATRON-04 SP 与 CP](#megatron-04) | 15 分钟 | 不混淆两个 sequence 切分 |
+| 17 | [MEGATRON-05 Distributed Optimizer](#megatron-05) | 15 分钟 | 能说明分片对象和通信 |
+| 18 | [MEGATRON-06 MoE/EP](#megatron-06) | 18 分钟 | 能解释 all-to-all 和负载均衡 |
+| 19 | [VERL-01 HybridFlow 架构](#verl-01) | 18 分钟 | 能画 role/data/control flow |
+| 20 | [VERL-02 Colocate 与 Disaggregate](#verl-02) | 15 分钟 | 能做资源取舍 |
+| 21 | [VERL-03 训练/推理权重同步](#verl-03) | 18 分钟 | 能说布局转换和原子性 |
+| 22 | [VERL-04 Fully Async](#verl-04) | 18 分钟 | 能讲 producer-consumer 与 staleness |
+| 23 | [VERL-05 GRPO 正确性](#verl-05) | 18 分钟 | 能识别 logprob/mask/normalization 风险 |
+| 24 | [AREAL-01 为什么选 AReaL](#areal-01) | 15 分钟 | 不停留在“更异步” |
+| 25 | [AREAL-02 Off-policy 与 staleness](#areal-02) | 18 分钟 | 能讲性能-稳定性权衡 |
+| 26 | [AREAL-03 Agentic RL 服务链](#areal-03) | 18 分钟 | 能讲 agent/env/reward/trainer 边界 |
+| 27 | [AREAL-04 Trajectory lineage](#areal-04) | 18 分钟 | 能说明样本到底有没有训练贡献 |
+| 28 | [INFRA-01 MFU](#infra-01) | 15 分钟 | 会算、会解释、会识别假提升 |
+| 29 | [INFRA-02 OOM 定位](#infra-02) | 18 分钟 | 能按张量生命周期定位 |
+| 30 | [INFRA-03 NCCL/Checkpoint 故障](#infra-03) | 18 分钟 | 能给出生产排查顺序 |
 
 ---
 
@@ -119,21 +125,96 @@
   > 我目前在小鹏机器人负责大模型后训练基础设施，主要有两条主线。第一条是基于 verl 和 Megatron-Core 建设 SFT/RLVR 能力，覆盖 Qwen3/Qwen3.5 dense/MoE、32K–256K 长上下文，以及 vLLM/SGLang rollout；我做过 fully async RLVR 资源解耦，把代表性稳态吞吐从 76 提升到 211–255 tokens/s/GPU，也做过 128K SFT 的数据、重计算和显存优化。第二条是基于 AReaL 建设 Agentic RL 和在线蒸馏链路，重点解决 rollout 长尾、trajectory 利用、policy staleness、跨引擎权重同步和多 Teacher 路由正确性。此前在华为负责大模型迁移、性能/精度优化和千卡级集群长稳交付。我擅长的不只是把任务跑通，而是用指标和实验同时闭环性能、数值正确性、模型效果与故障恢复。
 
 - **项目证据或知识边界**：所有数字必须能回到固定 workload；不要在自我介绍里主动说尚未闭环的 MOPD 最终效果。
-- **高概率追问**：最有代表性的优化是什么？你在项目中的 ownership？为什么从华为到小鹏、现在又看机会？
+- **高概率追问**：[最有代表性的优化](#resume-01a)是什么？你在项目中的 [ownership](#resume-01b)？[为什么从华为到小鹏、现在又看机会](#resume-01c)？
 - **危险回答**：连续罗列十几个框架；花一分钟讲学校和论文；说“全栈负责”却说不清代码和实验边界。
 
-<a id="resume-02"></a>
-### RESUME-02｜你如何把 fully async RLVR 吞吐从 76 提升到 211–255 tokens/s/GPU？（P0，20 分钟）
+<a id="resume-01a"></a>
+### RESUME-01A｜最有代表性的性能优化是什么？（P0，20 分钟）
 
-- **问题**：请完整讲一次这个优化，为什么一开始 async 反而很慢？
-- **面试官意图**：验证数字真实性、性能分析方法和端到端系统判断，而不只是调参能力。
+- **问题**：请讲一个你最有代表性的优化案例，最好能体现大模型训练 Infra 的系统能力。
+- **面试官意图**：验证你能否把超大 MoE 的性能问题拆成并行映射、kernel、通信、显存、精度和规模化稳定性问题；同时检查 `0.16x → 0.95x` 是否有明确口径和个人贡献。
+- **60–120 秒主答**：
+
+  > 我最有代表性的案例是在华为 X1 项目中，对一个约 200B 的 MoE 预训练模型做性能优化。我负责的范围从功能打通、精度对齐一直到性能达标和 3K 卡训练保障。接手时，相对客户对标口径的性能只有 0.16x；我没有从单个算子开始盲调，而是先固定模型、batch、序列长度、精度和卡数，用 profile 定位瓶颈。用 NVIDIA 2026 年报告的后验框架概括，就是 Memory Wall、Communication Wall 和 Compute Efficiency Wall。第一类是并行和显存：联合评估 TP、PP、DP、EP 等切分，目标是在模型可放下的前提下，避免把 expert GEMM 切得过碎。第二类是计算效率：使用 Grouped MatMul 聚合多个 expert 的小矩阵计算，并使能实际验证过的融合算子，减少中间张量、内存搬运和 kernel launch。第三类是通信：分别分析 TP/DP collective、EP token dispatch 和 PP P2P，把没有依赖的通信与计算做 overlap，同时检查额外 buffer 和带宽竞争。每轮优化后都重新 profile，并通过逐层精度对齐和长稳训练验收。最终相对性能从 0.16x 提升到 0.95x，MFU 达到 35%，并支撑 3K 卡训练。这个项目最重要的不是某个开关，而是持续识别瓶颈迁移并同时守住性能、精度和稳定性。
+
+- **2–3 分钟展开版**：按下面五层展开，不要把未确认项说成已经实施。
+
+  1. **先固定 benchmark**：补齐 `0.16x/0.95x` 的分母，以及模型层数、专家数/top-k、global/micro batch、sequence length、precision、卡数、warmup 和统计窗口；否则数字没有解释力。
+  2. **并行与拓扑**：从容量可行的 TP/PP/DP/EP 候选中选择吞吐更高的组合。MoE 的 expert 通常已经是小 GEMM，过高 expert-TP 可能进一步碎片化计算；但最终映射必须结合当时实际 HCCS/RoCE 拓扑、collective 频率和消息量说明。面试前补齐真实并行度和通信 group 到物理拓扑的映射。
+  3. **计算效率**：Grouped MatMul 把不同 expert 的可变 token batch 聚合调度，提高硬件利用率；融合算子要解释具体融合了什么、减少了哪些读写或 launch。准备实际使用过的 2–3 个算子名，以及各自 A/B 收益，不能泛称“各种融合算子”。
+  4. **通信掩盖**：按 TP/DP collective、EP dispatch/combine 和 PP P2P 分别看 exposed time。准备一条当时真实的 overlap timeline，说明 compute/communication 的依赖如何解除、使用了什么 stream/chunk/schedule，以及为什么 overlap 后没有因资源争用拖慢 GEMM。
+  5. **显存、精度和规模化**：只讲确认使用过的显存手段，例如实际的 optimizer 分片、sequence parallel、recompute 或 buffer 复用；融合和低精度路径用逐层 dump 找 first divergence。最后从小规模功能/精度基线扩到 3K 卡，验证 loss、吞吐、checkpoint 和故障恢复。
+
+- **结合 NVIDIA 2026 MoE 报告可以补充什么**：以下是今天继续演进时会评估的方向，不是 X1 当时已经落地的成果。NVIDIA 将 MoE 优化概括为 Memory Wall、Communication Wall 和 Compute Efficiency Wall，并强调三者会互相迁移。[技术报告](https://arxiv.org/abs/2603.07685)、[Megatron Core MoE README](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/transformer/moe/README.md)
+
+  - **Parallel Folding**：把 attention 的 TP/CP/DP 与 MoE 的 ETP/EP/EDP 解耦，让 dense attention 和 sparse expert 分别使用适合自己的并行映射。
+  - **Optimized dispatcher**：根据 GPU 拓扑评估 DeepEP/HybridEP，减少 EP 跨节点冗余搬运并提高带宽利用率。
+  - **更细的 EP overlap**：用 merged FWD-BWD、独立 compute/comm stream 和 Wgrad/Dgrad split 扩大 all-to-all 的隐藏窗口。
+  - **显存换并行效率**：fine-grained recomputation、pipeline-aware activation offloading 和 precision-aware optimizer 不只是为了避免 OOM，也可能让系统降低 TP/PP、恢复更大的 GEMM。
+  - **kernel 与低精度**：router/permutation fusion、FP8/FP4 grouped quantization + Grouped GEMM，以及对 dropless MoE 采用 partial CUDA Graph；回答时要说明动态 expert shape 与静态 graph 的冲突。
+
+- **项目证据或知识边界**：可以口述 X1、约 200B、`0.16x → 0.95x`、MFU 35% 和 3K 卡；对外简历继续脱敏。客户真实名称不写入或展示。上述 NVIDIA 新方案必须使用“今天会评估”，不能倒灌成 2023–2024 年项目事实。
+- **高概率追问**：`0.16x` 的分母是什么？实际 TP/PP/DP/EP 怎么配？Grouped MatMul 为什么有效？EP all-to-all 占比多少？load imbalance 怎么测？哪项优化收益最大？为什么 MFU 只有 35%？
+- **危险回答**：从头到尾罗列开关；把总收益全部归因给 Grouped MatMul；无法给出真实并行配置和融合算子名；把 NVIDIA 2026 的 DeepEP、Parallel Folding 或 CUDA Graph 说成当时已实施。
+
+<a id="resume-01b"></a>
+### RESUME-01B｜你在项目中的 Ownership 是什么？（P0，10 分钟）
+
+- **问题**：Ownership 是什么意思？X1 项目里哪些事情是你负责的，哪些是框架或团队完成的？
+- **面试官意图**：判断你是否达到高级工程师所需的端到端责任能力，同时拆分个人贡献、开源能力和团队红利。
+- **Ownership 的含义**：
+
+  > Ownership 不是“所有代码都是我写的”，而是我对一个边界清晰的问题从目标定义、技术方案、关键实现、跨团队推进到上线验收承担端到端责任；出现风险时，我负责暴露问题、组织决策并把结果闭环。
+
 - **精准回答**：
 
-  > 我先按阶段拆解同步基线，发现约 79% 时间在 rollout，因此 async 的关键不是“打开异步开关”，而是平衡样本生产率和 trainer 消费率。初始 3T+1R、gen-TP=4 时，8 张 rollout GPU 只能形成 2 个实例，稳态约 76 tokens/s/GPU，trainer idle ratio 0.41，说明 rollout 供给不足。第一步把 gen-TP 从 4 调到 2，在相同 rollout GPU 上增加实例数，吞吐到 211–255；第二步尝试 2T+2R，达到 236–293，idle ratio 降到 0.10–0.14，此时瓶颈转向 actor update。我的判断依据是 gen wait、actor update、ref、parameter sync、queue depth、idle ratio 和显存，而不是单看 GPU utilization。
+  > 在 X1 约 200B MoE 项目里，我的 scope 是把模型从功能和精度可用推进到性能达标，并保障大规模训练落地。技术决策上，我负责建立性能基线和瓶颈分解，主导并行配置实验、Grouped MatMul 和融合算子的接入验证，以及通信 profile 和 overlap 方案收敛；执行上，我亲自做关键配置、A/B 实验、精度对齐和问题定位。项目依赖 Megatron/MindSpeed 框架、底层算子团队、硬件和集群运维，这些不是我一个人实现的；我的责任是定义接口和验收标准，把框架、算子和客户侧问题拉到同一条因果链上。结果上，我对 0.16x 到 0.95x、MFU 35%、上线门禁和 3K 卡训练保障负责。上线后出现性能回退或训练故障，我也是第一接口人，负责组织定位、回归和复盘。没有我并不是“没人能写代码”，而是项目会缺少一个对端到端结果负责、能让多个团队围绕同一基线收敛的 owner。
 
-- **项目证据或知识边界**：项目底稿记录的 workload 是 Qwen3-30B-A3B、32K、4×8 A100-80GB；`211–255` 是代表性稳态 step 区间，不是全程平均。
-- **高概率追问**：为什么 gen-TP=2 更快？2T+2R 为什么不是最终答案？staleness 怎么控制？parameter sync 占多少？
-- **危险回答**：把不同资源配比的单卡吞吐直接横比；只报最高点 293；把 async 等价为严格 on-policy。
+- **回答模板**：`Scope → Decision → Execution → Coordination → Outcome`。每一层至少准备一个“我”开头的具体动作。
+- **项目证据或知识边界**：准备一项亲自改动、一项关键实验、一项被你否决的方案和一次跨团队闭环。明确哪些融合算子是直接使用、哪些是适配或修改，不能把 Megatron/MindSpeed 原生能力说成自研。
+- **高概率追问**：最终方案谁拍板？你写了哪些模块？底层算子不是你写的，为什么结果算你的？如果没有你项目最可能卡在哪里？失败时你承担什么责任？
+- **危险回答**：“我全栈负责”“基本都是我做的”；只讲协调不讲技术判断；只讲代码不讲上线结果；用团队总成果替代个人边界。
+
+<a id="resume-01c"></a>
+### RESUME-01C｜为什么从华为到小鹏，现在为什么又看机会？（P0，8 分钟）
+
+- **问题**：两次职业选择的原因是什么？如何证明你加入后会稳定发展？
+- **面试官意图**：判断离职动机是否客观、职业主线是否连续，以及地点、组织变化和岗位期望是否与招聘岗位匹配。
+- **精准回答**：
+
+  > 从华为到小鹏主要有两个原因。首先是客观地点因素：当时部门有整体搬迁上海的安排，而我的家庭和长期定居规划都在深圳，所以我希望选择一个能在深圳长期发展的机会。其次是职业发展因素：华为让我积累了大模型迁移、昇腾性能和精度优化、千卡集群交付经验，但工作与特定硬件和客户交付场景结合较深；我希望把能力扩展到更通用的 GPU、Megatron-Core、后训练和 RL Infra 技术栈。小鹏当时在地点和技术方向上都比较匹配，所以我选择加入。
+  >
+  > 这次看机会的直接触发因素是当前部门正在进行比较大的组织架构调整，团队方向和岗位边界存在一定不确定性。但我不是单纯因为调整就离开，我真正寻找的是深圳长期稳定的机会，能够继续深耕大模型训练、后训练和训练推理 Infra，并对核心系统承担清晰、完整的 ownership。地点、技术方向和职责如果匹配，我倾向于长期发展。
+
+- **项目证据或知识边界**：面试只说“家庭和长期定居规划在深圳”，不主动展开结婚、生娃和买房；只看深圳可以坦诚，但宝安、南山及周边的通勤范围留到 HR 确认办公地点时再说。
+- **高概率追问**：如果小鹏组织稳定是否还会看机会？为什么入职不到一年？你只看深圳会不会限制发展？什么条件能让你长期留下？
+- **危险回答**：“在华为是螺丝钉、自由度低、会的太少”“小鹏现在很不稳定”；过度讨论家庭安排；把组织调整说成唯一原因；表示只要薪资更高就离开。
+
+<a id="resume-02"></a>
+### RESUME-02｜Fully Async 相比同步 RLVR 有什么优势？你如何把初始吞吐从 76 优化到 211–255 tokens/s/GPU？（P0，20 分钟）
+
+- **问题**：为什么要从同步改为 Fully Async？它解决了哪些等待？为什么初始 async 反而只有 76？
+- **面试官意图**：验证你是否理解异步架构的系统收益、供需模型和 off-policy 代价，而不只是调了 gen-TP 和资源配比。
+
+| 维度 | 本项目/典型 phased 同步基线 | Fully Async |
+|---|---|---|
+| 调度 | logical batch 组装完成后才能进入对应 update，新 policy rollout 前完成相应 weight sync | Rollouter 持续生产，Trainer 按可用 batch 消费 |
+| 暴露等待 | 主要 rollout 窗口 Trainer 等待，主要 update/sync 窗口 Rollouter 等待；长 trajectory 放大 logical batch wait | rollout 与训练时间重叠，长尾不再阻塞整个同步 step，但仍受 group/batch 完整性约束 |
+| 资源 | 阶段共享或固定编排，单阶段资源利用高但容易产生 phase bubble | Trainer/Rollouter 可独立扩缩容，但固定分池错误会造成一侧长期空闲 |
+| Policy 语义 | policy freshness 和 step 边界更直接 | 需要 queue、policy version、staleness、backpressure 和恢复协议 |
+
+- **精准回答**：
+
+  > 我先说明 Fully Async 的核心价值：它不是让 rollout 或 actor update 单阶段自动变快，而是把 Rollouter 变成持续 producer、Trainer 变成持续 consumer，通过 queue 解耦两者生命周期，让生成和训练在时间上重叠，减少同步 phase bubble，并降低长 trajectory 对整个同步 step 的阻塞。同时，两类资源可以独立扩缩容。代价是会引入跨池权重同步、queue/backpressure、policy staleness 和更复杂的恢复语义。
+  >
+  > 在我们的 Qwen3-30B-A3B、32K、32 张 A100 场景里，同步阶段拆解显示约 79% 时间消耗在 rollout，所以理论上 async 有明显 overlap 空间。但最初直接使用 `3T+1R`、`gen-TP=4` 时，24 张卡给 Trainer、只有 8 张卡给 Rollouter，而且 8 张 rollout GPU 只能部署 2 个 vLLM 实例；producer rate 明显低于 trainer consumer rate，queue 经常供给不足，trainer idle ratio 达到 0.41，吞吐只有 76。第一步把 `gen-TP` 从 4 降到 2，相同 8 张卡的实例数从 2 增到 4，扩大独立 continuous batching 的并发池，吞吐提升到 211–255。第二步尝试 `2T+2R`，Rollouter 增加到 16 张卡、8 个实例，候选窗口达到 236–293，trainer idle ratio 降到 0.10–0.14；这时瓶颈转移到 actor update，继续增加 rollout 资源已经不是最优方向。
+  >
+  > 所以这个项目的核心不是“打开 Fully Async”，而是把异步系统当成生产者—消费者流水线，通过 gen wait、actor/ref/update、parameter sync、queue depth、idle ratio、显存和 policy version lag 持续配平。最终配置要让两侧 exposed idle 尽量小，同时保证样本新鲜度和模型效果。
+
+- **Benchmark 门禁**：先声明分子、分母和窗口，固定模型/checkpoint、prompt-response 长度分布、采样参数、硬件、并发上限和统计区间；warmup、checkpoint、validation、失败重试和过滤样本要明确是否包含。除吞吐外同时报告 queue depth、trainer idle、policy version lag 和 rejected/stale ratio，防止用堆积旧样本换表面吞吐。
+- **项目证据或知识边界**：`76 → 211–255` 是 async 初始配置与优化配置的比较；`236–293` 是 `2T+2R` 候选窗口，二者都不是全程平均。同步“约 200”只有在相同 workload、窗口和 `tokens/s/GPU` 分母确认后才能比较；确认前不要说 Fully Async 超过同步，更不能说相比同步提升三倍。
+- **高概率追问**：同步链路中哪些阶段真的串行、哪些可以重叠？为什么 gen-TP=2 更快？queue 空/满分别说明什么？2T+2R 为什么不是最终答案？staleness 怎么控制？parameter sync 占多少？generated token 和 effective training token 有何区别？
+- **危险回答**：“异步一定比同步快”；把所有同步实现说成完全串行；把不同资源配比的单卡吞吐直接横比；只报最高点 293；把 async 等价为严格 on-policy；用堆积旧 policy 样本换吞吐。
 
 <a id="resume-03"></a>
 ### RESUME-03｜为什么减小 gen-TP、增加实例数会提高 rollout 吞吐？（P0，15 分钟）
@@ -147,19 +228,6 @@
 - **项目证据或知识边界**：你有直接项目证据；但面试前应补一张 `TP × 实例数 × 并发 × token/s × p95` 表。
 - **高概率追问**：何时 TP=1 更好？什么时候必须增大 TP？长上下文 KV cache 会怎样改变结论？
 - **危险回答**：“TP 通信多，所以越小越好。”模型放不下、KV cache 不够或单实例计算太慢时并不成立。
-
-<a id="resume-04"></a>
-### RESUME-04｜如何证明 76→211–255 的数据可信且可比？（P0，15 分钟）
-
-- **问题**：你的吞吐口径是什么？是否换了 batch、数据或硬件？
-- **面试官意图**：识别 benchmark cherry-pick，判断你有没有实验设计和数据治理能力。
-- **精准回答**：
-
-  > 我会先声明分子、分母和窗口：生成或有效训练 token 数，除以 GPU 数和稳态墙钟时间；再固定模型、checkpoint、prompt/response 长度分布、采样参数、硬件、并发上限和统计区间。warmup、checkpoint、validation、异常重试要单独剔除或明确包含。对 async 系统还要同时给 queue depth、trainer idle、policy version lag 和 rejected/stale ratio，避免用堆积旧样本换表面吞吐。最后至少重复多窗口，并报告区间而不是只报峰值。
-
-- **项目证据或知识边界**：简历数字是“代表性稳态吞吐”；不要说成完整训练平均或端到端 cost reduction。
-- **高概率追问**：为什么用 tokens/s/GPU？generated token 与 effective training token 有什么区别？如何做固定 logical batch A/B？
-- **危险回答**：只展示 GPU utilization；把输出长度变长带来的 token/s 变化当作系统优化；不记录失败/过滤样本。
 
 <a id="resume-05"></a>
 ### RESUME-05｜Qwen3.5-9B SFT 为什么能从 31s 降到 9.3s？（P0，20 分钟）
@@ -205,39 +273,150 @@
 
 - **问题**：从 task 到 policy update，一条 trajectory 经历哪些系统？
 - **面试官意图**：判断你是否拥有端到端视角，以及能否区分 agent、inference、reward、training 和 control plane。
+- **版本边界**：下面对齐的是项目实际使用的 **AReaL online proxy + controller-owned cohort admission 二次开发链路**。它不是普通离线 `RolloutWorkflow` 的串行图，也不要把后续 AReaL 2.0 的独立微服务架构倒推为项目当时的实现。
+- **系统流程图**：
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, PingFang SC, Microsoft YaHei, sans-serif",
+    "fontSize": "15px",
+    "lineColor": "#64748b"
+  },
+  "flowchart": {
+    "curve": "basis",
+    "nodeSpacing": 32,
+    "rankSpacing": 48
+  }
+}}%%
+flowchart TB
+
+    subgraph EPISODE["① External Episode Producer · 外部并发采样"]
+        direction LR
+        TASK["Task / Dataset"]
+        AGENT["Evals Agent Runtime<br/>启动 cohort × n trajectories"]
+        ENV["Tool / Sandbox<br/>维护多轮环境状态"]
+        REWARD["Terminal Reward<br/>结束 episode"]
+
+        TASK --> AGENT
+        AGENT <-->|"multi-turn"| ENV
+        ENV --> REWARD
+    end
+
+    subgraph AREAL["② AReaL Online Rollout & Control · 会话、推理与 Cohort 状态"]
+        direction LR
+        GATEWAY["Gateway + Cohort Admission<br/>grouping · capacity · rollout version · staleness"]
+        PROXY["Proxy + InteractionCache<br/>session · token · behavior logp · reward"]
+        INFERENCE["Inference Backend<br/>vLLM / SGLang"]
+        BARRIER{{"Ready Cohort Barrier<br/>完整 n_samples · rewarded + ended<br/>ready-time staleness gate"}}
+
+        GATEWAY -->|"bind session / route"| PROXY
+        PROXY <-->|"agenerate / model response"| INFERENCE
+        PROXY -->|"exportable interactions"| BARRIER
+    end
+
+    subgraph TRAIN["③ Trainer & Policy Feedback · 消费、更新与新策略发布"]
+        direction LR
+        PREPARE["Wait & Export<br/>actor.prepare_batch()<br/>OpenAIProxyWorkflow"]
+        BATCH["Trajectory Batch<br/>tensorize · redistribute · broadcast"]
+        OPTIMIZE["Score & Policy Update<br/>Ref / Teacher / Advantage<br/>PPO / GRPO"]
+        WEIGHTS["Versioned Weight Sync<br/>XCCL / transient disk<br/>transfer succeeds → set_version"]
+
+        PREPARE --> BATCH --> OPTIMIZE --> WEIGHTS
+    end
+
+    AGENT -->|"start_session + LLM requests"| GATEWAY
+    INFERENCE -. "model responses" .-> AGENT
+    REWARD -->|"set_reward + end_session"| GATEWAY
+    GATEWAY -. "cohort completeness / version gate" .-> BARRIER
+
+    BARRIER -->|"ready cohort"| PREPARE
+    WEIGHTS ==>|"publish new policy"| INFERENCE
+    WEIGHTS -.-> CKPT["Checkpoint / Eval<br/>旁路，非 trajectory 主链"]
+
+    BOTTLENECK["最大瓶颈 · ready-cohort wait<br/>① 128K late-turn inference<br/>② last-of-8 cohort straggler<br/>③ sandbox / retry / rejection"]
+    BARRIER --- BOTTLENECK
+
+    classDef producer fill:#eff6ff,stroke:#60a5fa,color:#1e3a5f,stroke-width:1.5px;
+    classDef rollout fill:#ecfdf5,stroke:#4caf78,color:#164e3b,stroke-width:1.5px;
+    classDef trainer fill:#fff7ed,stroke:#e7a23b,color:#6b3b0a,stroke-width:1.5px;
+    classDef bottleneck fill:#fff1f2,stroke:#e05260,color:#7f1d2d,stroke-width:2px;
+    classDef side fill:#f8fafc,stroke:#94a3b8,color:#475569,stroke-dasharray:4 3;
+
+    class TASK,AGENT,ENV,REWARD producer;
+    class GATEWAY,PROXY,INFERENCE rollout;
+    class PREPARE,BATCH,OPTIMIZE,WEIGHTS trainer;
+    class BARRIER,BOTTLENECK bottleneck;
+    class CKPT side;
+
+    style EPISODE fill:#f8fbff,stroke:#bfdbfe,stroke-width:1px
+    style AREAL fill:#f5fdf9,stroke:#bbf7d0,stroke-width:1px
+    style TRAIN fill:#fffbf5,stroke:#fed7aa,stroke-width:1px
+```
+
 - **精准回答**：
 
-  > 链路是 task/prompt source → agent workflow → tool/sandbox environment → vLLM/SGLang rollout → trajectory/reward → trainer → policy version/checkpoint → weight sync → 新一轮 rollout。项目初期一阶瓶颈是 rollout wait，历史基线中约占 step 的 87%；根因不是单一 decode 慢，而是长上下文 late-turn cost、8-way cohort straggler、sandbox 并发和样本供给。优化时我分别处理 decode（CUDA Graph）、prefill（prefix cache）、environment 并发和 Gateway 调度，并以固定 logical batch 的端到端 update interval、effective token goodput、rejected ratio 和 staleness 验收。
+  > 我项目使用的是 AReaL 的 online proxy/cohort 路径，rollout producer 是外部 evals/agent runtime，而不是 trainer 内部先跑一个 Agent Workflow。每个 task 会并发启动同一 cohort 的多条 trajectory；首次模型请求通过 Gateway 的 `start_session` 进入 CohortManager，完成容量与 staleness 检查，并绑定 cohort、group rank、rollout version 和 proxy worker。之后 agent 与 tool/sandbox 维护多轮环境状态，每次 LLM 调用经 Gateway、Proxy Worker 到 vLLM/SGLang；Proxy Worker 同时在 InteractionCache 中记录 token、behavior logp 和 token version。episode 结束时，环境提交 terminal reward 并 `end_session`；只有同组 trajectory 都 rewarded、ended 且通过 ready-time staleness 检查，cohort 才进入 ready 状态。训练侧 `actor.prepare_batch()` 通过 `OpenAIProxyWorkflow` 等待完整 cohort，导出并 tensorize interactions，经 DP 重分配后完成可选的 Ref/Critic/Teacher/Prox logp、advantage 和 PPO/GRPO update。最后先执行 versioned weight transfer，再在成功后更新 actor/rollout 的 policy version；checkpoint 和 eval 是旁路，不是 trajectory 主链路。
+  >
+  > 最大瓶颈不是一个抽象的“training queue”，而是 trainer 在 `prepare_batch()` 暴露出来的 **ready-cohort wait**。历史基线中 rollout wait 约占 step 的 87%；其根因是 128K 多轮后期 LLM 调用越来越贵、8-way cohort 等最后一条 trajectory 的 straggler 放大、sandbox 并发与失败重试，以及供给不足或 cohort rejection。我的优化分别覆盖 decode CUDA Graph、prefill prefix cache、sandbox 并发和 Gateway 流式补位/均衡调度，并用固定 logical batch 的端到端 update interval、effective-token goodput、cohort completion/rejection 和 policy staleness 验收，而不是只看模型服务器 tokens/s。
 
 - **项目证据或知识边界**：底稿记录 DeepSWE `6467s→2301s`、Seta Terminal `2240s→770s` 等更强数据，但它们未全部进入当前简历；使用前确认可对外披露和统计口径。
-- **高概率追问**：为什么 cache hit 高不一定 E2E 更快？cohort 为什么放大 tail？如何区分 reward 慢和 rollout 慢？
-- **危险回答**：把 Agentic RL 描述成“PPO 加 tool call”；只看模型服务器 token/s；忽略环境失败和样本版本。
+- **高概率追问**：为什么 online 模式没有 trainer 内部 Agent Workflow？cohort 为什么放大 tail？reward、session 和 trajectory 在哪里落盘/导出？为什么 weight sync 完成后才能推进 version？cache hit 高为什么不一定让 E2E 更快？
+- **危险回答**：把链路画成 `Agent Workflow → vLLM → Reward → Training Queue` 的固定串行管线；把 `policy version` 当成权重同步前独立生成的模型产物；把 checkpoint 画进每条 trajectory 的关键路径；只看模型服务器 token/s，忽略 session/cohort、环境失败和样本版本。
 
 <a id="resume-09"></a>
 ### RESUME-09｜OPD/MOPD 解决什么问题？你如何证明它正确且有效？（P0，20 分钟）
 
-- **问题**：多 Teacher 在线蒸馏的完整数据流、loss 和验证门禁是什么？
-- **面试官意图**：检查算法-系统联合能力，并重点识别效果夸大和 distributed correctness 风险。
-- **精准回答**：
+- **问题**：为什么不用 Model Merge 汇聚多个 RL Expert，而要做 MOPD？完整数据流和验证门禁是什么？
+- **面试官意图**：检查你能否从真实业务问题推导技术选型，讲清参数空间合并与 on-policy 行为蒸馏的差别，并识别多 Teacher 路由、distributed correctness 和效果夸大风险。
+- **60–120 秒主答**：
 
-  > OPD 让 Student 用当前 policy 生成 trajectory，再由 Teacher 对同一 token 路径打分，训练侧使用 teacher/student logp 构造蒸馏信号；MOPD 增加了按 `data_source` 的 Teacher 路由、scatter/scoring/gather、混域配额和 trajectory 级权重。我的验收分三层：FUNCTIONAL 看 rollout、score、backward、weight sync、checkpoint 能否闭环；NUMERIC 看同权重 logp、mask、token 对齐、normalization 和各 rank fail-consistent；EFFICACY 才看 held-out paired evaluation、置信区间和 General 回归。系统跑通不能替代数值正确，更不能替代模型效果。
+  > 我们先使用不同领域的数据分别进行 RL，得到多个领域 Expert，后续目标是把这些 Expert 的能力汇聚到一个统一模型，而不是部署多个模型。最初尝试的是 TIES-Merging，即 `TRIM, ELECT SIGN & MERGE`：它会裁剪不显著的 task-vector 参数变化、处理符号冲突，再合并方向一致的更新。但项目中的初步实验没有达到“一个模型同时接近各领域 Expert”的目标，所以我们转向 MOPD。
+  >
+  > MOPD 中，各领域 RL Expert 作为冻结 Teacher，Student 从 RL 之前的模型初始化，训练仍使用各领域原来做 RL 的数据，并保留 `data_source`。Student 用当前 policy 在对应环境中生成 trajectory；训练系统按 `data_source` 路由到匹配的 Teacher，Teacher 不重新生成答案，而是对 Student 实际生成的同一条 token 路径计算 logp。训练侧再利用 Teacher 与 Student 的 token-level logp 差异构造 OPD 信号，把多个 Teacher 的行为能力写入同一个 Student。Teacher 路由只发生在训练期间，最终部署的仍是一个不依赖 Teacher 路由的 Student。
+  >
+  > 选 MOPD 的核心原因是：TIES 在权重空间做一次静态合并，MOPD 则能在 Student 实际访问的状态分布上，根据训练数据的领域选择监督来源。但 MOPD 也不会天然消除共享参数上的跨域梯度冲突，所以还要控制混域配额、trajectory 权重和 General 回归。
 
-- **项目证据或知识边界**：这是当前最大口径风险。若无法拿出双 Teacher 正式评测，就明确说 early canary，不重复简历中的最终效果结论。
-- **高概率追问**：为什么 Teacher 弱于 Student 会失败？reverse KL 的 token advantage 怎么构造？为什么 equal-token weighting 可能偏向长 trajectory？
-- **危险回答**：用训练 loss 下降证明能力提升；把单 Teacher 和双 Teacher 结果混在一起；忽略数据污染和 Teacher headroom。
+- **为什么 TIES-Merging 仍可能失败**：TIES 能缓解冗余参数和 task vector 的符号冲突，但它仍是一次性参数合并，没有基于领域数据继续训练，也不能保证每个 Expert 的行为能力都稳定继承。项目没有确认可披露的分项数字前，只说“初步实验未达到多个领域能力同时保留的目标”，不要把 coefficient 敏感、某域下降多少等假设说成实测结论。[TIES-Merging 原论文](https://arxiv.org/abs/2306.01708)
+- **三层验证门禁**：
+
+  1. **FUNCTIONAL**：混域数据、`data_source` 路由、Teacher scoring、backward、weight sync、checkpoint/recovery 能闭环；各 Teacher 路由都有非零样本，失败不能静默串域。
+  2. **NUMERIC**：token、mask、Teacher/Student logp、scatter/gather 和 normalization 对齐；same-weight 条件下蒸馏信号应接近零；异常在各 rank 上 fail-consistent。
+  3. **EFFICACY**：在相同协议下比较 RL 前 Student、各领域 Expert、TIES-Merging、单 Teacher OPD 和多 Teacher MOPD；分别评测各领域能力和 General 回归，并看逐题配对、多个 checkpoint/seed 与置信区间。训练 loss 下降不能替代下游效果。
+
+- **Teacher headroom 的准确说法**：这是本项目的 Go/No-Go 门，不是普遍定理。如果 Teacher 在目标领域没有可测 headroom，same-path token 信号也没有显示稳定的局部互补能力，就先检查 Teacher、数据和评测协议，而不是直接增加蒸馏步数；但 Teacher 总分不高于 Student，并不严格排除它在部分状态上仍能提供有效监督。
+- **项目证据或知识边界**：多 Teacher 路由、score validation、`mopd_pg`、mixed-domain data、trajectory weighting、online drain、recovery 和评测工装，只有能映射到本人负责的 PR、设计或实验记录时才说“我设计并实现”；其余说成项目能力。若双 Teacher 正式评测没有闭环，就明确说 FUNCTIONAL、NUMERIC 或 early canary 到哪一层，不能声称已经提升多域能力。
+- **高概率追问**：TIES 的三步分别做什么？为什么 Student 从 RL 前模型而不是某个 Expert 初始化？Teacher 为什么对 Student 的同一 token path 打分？`mopd_pg` 的 token advantage 怎么构造？如何防止 `data_source` 串域？equal-token weighting 为什么可能偏向长 trajectory？
+- **危险回答**：把 `tile merge` 当成术语；暗示最终推理仍需动态路由 Teacher；用训练 loss 下降证明能力提升；把单 Teacher、受污染的探索实验和双 Teacher 正式结果混在一起；把代码仓库已有功能全部说成个人实现。
 
 <a id="resume-10"></a>
 ### RESUME-10｜你在千卡/万卡级交付里具体负责什么？（P0，15 分钟）
 
-- **问题**：不要讲团队成果，请讲你亲自做的决策、代码和故障闭环。
-- **面试官意图**：拆分个人贡献与平台/团队红利，评估项目 owner 和跨团队推动能力。
-- **精准回答**：
+- **问题**：你说参与过千卡/万卡级交付，个人具体负责哪一段？请不要只讲团队整体做了什么。
+- **面试官意图**：确认“千卡/万卡”是项目背景还是你承担了可验证职责；检查你能否独立完成模型从跑通到性能验收的闭环，并区分个人、框架及底层团队贡献。
+- **60–120 秒主答**：
 
-  > 在华为阶段我的职责不是单点模型适配，而是从需求澄清、并行/精度/性能方案、POC 到现网长稳保障的端到端接口。技术上我会把问题拆成模型图与算子、并行策略、HCCS/RoCE 通信、内存和数据链路；项目上负责风险清单、问题分级、人员协同和客户复现环境。以 MoE 项目为例，我参与/负责从功能打通、精度对齐到把相对性能从 0.16x 优化到 0.95x、MFU 达 35%，并保障 3K 卡训练。我的个人边界会明确到负责模块、关键实验和最终交付件，不把整个客户项目都算成个人代码成果。
+  > 这段经历主要发生在华为。我先限定个人边界：我不是整个千卡、万卡集群平台的总负责人，我主要负责 X1、TX 客户模型在国产卡上的功能适配与性能达标。
+  >
+  > 我的工作形成了一个反复迭代的闭环。首先固定客户模型、并行配置、batch size、sequence length、精度、卡数、统计窗口和目标性能口径，建立可复现 benchmark；然后完成模型跑通，包括算子兼容、并行策略、checkpoint/data 和精度链路适配。模型跑通后采集 step time、吞吐、算子、通信、pipeline idle 和显存等数据，通过 profiling 判断当前主瓶颈是在并行切分、kernel、通信暴露、显存，还是 Host/data 侧。
+  >
+  > 找到主瓶颈后再选择优化措施，例如调整 TP、PP、DP、EP 等并行策略，接入 Grouped MatMul 和实际验证过的融合算子，或者通过计算通信 overlap 减少 exposed communication。每项优化都在相同 workload 下做 A/B，同时检查 loss 和精度；之后重新采集数据，因为一个瓶颈解决后，新的瓶颈通常会迁移出来。这个过程持续迭代，直到达到客户性能验收目标。
+  >
+  > X1 的约 200B MoE 预训练模型是其中最有代表性的案例。我的 ownership 是模型侧从跑通、测量、归因到性能达标的交付闭环；如果问题落到编译器、算子库、集合通信、硬件或集群环境，我负责提供稳定复现和 profiling 证据，推动对应团队解决，并完成模型侧最终回归，而不是把底层实现也归为个人贡献。
 
-- **项目证据或知识边界**：客户、卡数和模型规模继续按简历 `x/xx` 脱敏；面试前准备一个可公开的故障案例和一张职责 RACI。
-- **高概率追问**：3K 卡最常见故障是什么？如何区分硬件、网络和框架问题？带 4–5 人如何分工？
-- **危险回答**：只说“协调资源、推动闭环”；把客户业务效果归因给自己；泄露客户或集群敏感信息。
+- **六步展开版**：
+
+  1. **固定验收口径**：模型版本、global/micro batch、sequence length、precision、卡数、warmup、统计窗口、精度阈值和性能目标。
+  2. **完成模型跑通**：处理算子兼容、分布式并行、checkpoint/data 和精度链路，先建立小规模可复现基线。
+  3. **采集性能证据**：记录 step time、吞吐、MFU/硬件利用、算子耗时、collective exposed time、pipeline idle 和显存峰值。
+  4. **识别当前主瓶颈**：区分并行切分、kernel/小 GEMM、通信暴露、显存与重计算、Host/data 和规模化 straggler。
+  5. **最小变量验证**：调整并行策略、融合算子或 overlap 时，保持 workload 不变，验证性能、loss、精度与稳定性。
+  6. **重新 profile 并继续迭代**：不能把单机收益线性外推到千卡规模；collective、拓扑和 straggler 会随规模放大，必须在目标规模重新验收。
+
+- **项目证据或知识边界**：X1 约 200B MoE 可以交叉引用 [RESUME-01A](#resume-01a) 的 `0.16x→0.95x`、MFU 35% 和 3K 卡训练证据；TX 没有确认可披露的模型与数字时，只作为第二个客户交付背景，不补造指标。客户继续使用代号。
+- **高概率追问**：你亲自改了什么、推动了什么？性能 benchmark 如何固定？讲一次“优化后瓶颈迁移”的完整迭代？为什么单机收益扩到千卡可能消失？X1 和 TX 中你的职责是否完全相同？
+- **危险回答**：把整个万卡平台、硬件运维和稳定性体系说成个人 ownership；只说“协调资源、推动闭环”而没有 profiling 和 A/B；把底层团队实现的算子或通信优化说成自己开发；泄露客户和集群敏感信息。
 
 ---
 
@@ -497,12 +676,12 @@
 
 ## 9. P1：简历二级追问
 
-### RESUME-11｜你如何定义自己在项目中的 ownership？（P1，8 分钟）
+### RESUME-11｜如何用第二个项目证明 Ownership 不是背模板？（P1，8 分钟）
 
-- **问题**：哪些是你设计/编码的，哪些来自开源框架或团队？
-- **面试官意图**：拆分个人能力、团队协作和平台红利。
-- **精准回答**：按“我定义的问题 → 我负责的模块/实验 → 依赖的团队能力 → 我推动的上线/验收”回答；给出一个代码改动、一个关键判断和一个交付结果。
-- **项目证据或知识边界**：可选 fully async 资源模型、CP chunking、trajectory lineage 或 MOPD 路由；不要把开源能力描述成自研。
+- **问题**：除了 X1，再用小鹏项目说明一次你的 ownership，哪些来自开源框架或团队？
+- **面试官意图**：验证 [RESUME-01B](#resume-01b) 的定义是否可以迁移到不同项目，而不是只会背一个华为案例。
+- **精准回答**：继续使用 `Scope → Decision → Execution → Coordination → Outcome`，但改讲 Fully Async 资源模型、CP chunking、trajectory lineage 或 MOPD 路由；必须给出一个亲自改动、一个关键判断、一个依赖团队和一个验收结果。
+- **项目证据或知识边界**：不要重复 X1 故事；不要把 verl/AReaL/Megatron 开源能力描述成自研。尚未闭环的 MOPD 效果只说当前证据层级。
 - **高概率追问**：关键设计谁拍板？如果没有你项目会怎样？你 review 过哪些核心模块？
 - **危险回答**：反复使用“我们”；用 PR 数代替技术贡献；把所有收益都归因给自己。
 
@@ -798,22 +977,40 @@
 
 > **Megatron-Core 决定“一个大模型如何高效训练”，verl 决定“RL 的多个模型与计算阶段如何编排”，AReaL 更强调“长时 agent 数据如何异步生产、控陈旧并在线接入训练”。**
 
-## 16. 四张项目证据卡：面试前必须手写补齐
+## 16. 五张项目证据卡：面试前必须手写补齐
 
-### 卡 1：Fully Async RLVR
+### 卡 1：X1 约 200B MoE
+
+```text
+模型：层数 / hidden / experts / top-k = ______
+性能口径：0.16x / 0.95x 的分母 = ______
+硬件与拓扑：单机卡数 / HCCS 域 / RoCE 域 = ______
+并行配置：TP / PP / DP / EP / SP = ______
+Grouped MatMul：原瓶颈、改动位置、独立收益 = ______
+实际融合算子 1/2/3：______
+实际通信 overlap：collective / stream / schedule / 收益 = ______
+显存手段与峰值变化：______
+精度门禁：逐层误差 / loss / gradient = ______
+3K 卡长稳：运行窗口 / 故障案例 / checkpoint = ______
+个人贡献与团队依赖：______
+```
+
+### 卡 2：Fully Async RLVR
 
 ```text
 模型/版本：Qwen3-30B-A3B（确认）
 硬件/拓扑：4×8 A100-80GB（确认是否可披露）
 上下文/长度分布：32K max；平均/p95 = ______
-基线：同步约 ______；async 初始 76 tok/s/GPU
+async 基线：初始 76 tok/s/GPU
+同步对照：精确值 / 相同 workload / 相同窗口 = ______
+tokens/s/GPU 分母：全集群 GPU / rollout GPU / 其他 = ______
 变量：gen-TP、实例数、3T+1R / 2T+2R
 结果窗口：211–255 / 236–293 的步数与时间 = ______
 正确性：staleness、reward、eval 是否一致 = ______
 个人贡献：代码模块/实验/决策 = ______
 ```
 
-### 卡 2：Qwen3.5-9B SFT 3.3x
+### 卡 3：Qwen3.5-9B SFT 3.3x
 
 ```text
 GPU/并行：______
@@ -824,7 +1021,7 @@ MFU 公式和峰值硬件 FLOPs：______
 峰值显存与 loss 对齐：______
 ```
 
-### 卡 3：Agentic RL / Rollout
+### 卡 4：Agentic RL / Rollout
 
 ```text
 任务：DeepSWE / Terminal（按可披露范围）
@@ -836,16 +1033,19 @@ Gateway/rejected group 的基线与窗口：______
 效果/正确性护栏：______
 ```
 
-### 卡 4：OPD/MOPD
+### 卡 5：OPD/MOPD
 
 ```text
-Student / Teacher：______
-训练数据与 held-out 数据：______
+业务目标与领域 Expert：______
+TIES-Merging 配置、结果和失败表现：______
+RL 前 Student / 各领域 Teacher 血缘：______
+各领域原 RL 数据与 held-out 数据：______
 路由字段和多 Teacher mapping：______
 loss / mask / normalization：______
 FUNCTIONAL 证据：______
 NUMERIC 证据：______
 EFFICACY 证据与置信区间：______
+个人 PR / 设计 / 实验记录：______
 当前能说/不能说：______
 ```
 
@@ -854,13 +1054,14 @@ EFFICACY 证据与置信区间：______
 按下面顺序录音，控制在 45–60 分钟：
 
 1. `RESUME-01` 自我介绍（90 秒）。
-2. `RESUME-02` async RLVR 主故事（3 分钟）→ `RESUME-03/04` 连续追问。
-3. `RESUME-08` Agentic RL 架构（3 分钟）→ `AREAL-02/04` 连续追问。
-4. `MEGATRON-01` 5D 并行 → `MEGATRON-03/04/06` 三选二。
-5. `VERL-01` 架构 → `VERL-03/05`。
-6. `INFRA-02` OOM 或 `INFRA-03` NCCL/checkpoint 故障题。
-7. `BEHAVIOR-01` 岗位匹配度和换工作动机。
-8. 向面试官反问两题。
+2. `RESUME-01A` X1 MoE 主答（90 秒，再展开到 3 分钟）→ `RESUME-01B` ownership 追问。
+3. `RESUME-02` Fully Async 主故事（3 分钟）→ `RESUME-03` 连续追问。
+4. `RESUME-08` Agentic RL 架构（3 分钟）→ `AREAL-02/04` 连续追问。
+5. `MEGATRON-01` 5D 并行 → `MEGATRON-03/04/06` 三选二。
+6. `VERL-01` 架构 → `VERL-03/05`。
+7. `INFRA-02` OOM 或 `INFRA-03` NCCL/checkpoint 故障题。
+8. `RESUME-01C` 职业选择 → `BEHAVIOR-01` 岗位与薪资档位匹配度。
+9. 向面试官反问两题。
 
 录音复盘只检查四点：是否先说结论；是否有数字但也有口径；是否说清个人贡献；是否主动限定证据边界。
 
@@ -879,7 +1080,10 @@ EFFICACY 证据与置信区间：______
 ## 19. 面试前最后一小时清单
 
 - [ ] 自我介绍能在 90 秒内完成，且只保留两条主线。
-- [ ] async RLVR 能解释 76、211–255、236–293、0.41、0.10–0.14 各自口径。
+- [ ] X1 MoE 能在 90 秒内讲清 Three Walls、关键动作和结果，并能补齐真实并行配置、融合算子和 overlap timeline。
+- [ ] Ownership 能区分个人决策、亲自实现、开源框架和团队依赖。
+- [ ] Fully Async 先解释同步边界和 producer-consumer overlap，再解释 76、211–255、236–293、0.41、0.10–0.14；同步口径未补齐前不报提升倍数。
+- [ ] 职业选择能在 60–90 秒内讲清上海搬迁、深圳长期规划、技术栈扩展和当前组织调整，不使用负面措辞。
 - [ ] SFT 31→9.3s 的前后 workload 完全一致，并能拆分两项改动贡献。
 - [ ] 双 Teacher MOPD 的最新效果证据已与简历口径统一。
 - [ ] CUDA Graph 14x 与 6–8x 不混用，且明确是 decode 阶段。
@@ -905,7 +1109,7 @@ EFFICACY 证据与置信区间：______
 
 ### 官方框架资料（核验于 2026-08-30）
 
-- NVIDIA Megatron-Core：[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)。Release 页面核验到 `core_v0.18.2`，commit `571370c`。
+- NVIDIA Megatron-Core：[Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)、[MoE README](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/transformer/moe/README.md)、[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)。Release 页面核验到 `core_v0.18.2`，commit `571370c`；MoE 技术报告核验于 2026-08-31。
 - verl：[GitHub](https://github.com/verl-project/verl)、[HybridFlow Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html)、[Engine Workers](https://verl.readthedocs.io/en/latest/workers/engine_workers.html)、[Fully Async](https://github.com/verl-project/verl/blob/main/docs/advance/fully_async.md)。Release 页面核验到 `v0.7.1`，commit `bec9ef7`；`fully_async_policy` 仍在 `verl.experimental`。
 - AReaL：[GitHub](https://github.com/areal-project/AReaL)、[Asynchronous RL Guide](https://github.com/areal-project/AReaL/blob/main/docs/en/algorithms/async.md)、[Online Proxy](https://github.com/areal-project/AReaL/blob/main/docs/en/tutorial/online_proxy.md)、[Releases](https://github.com/areal-project/AReaL/releases)。核验到 `v2.0.0`/AReaL 2.0（2026-07-01）；2.0 将 training、inference、agent、weight-update 拆为独立服务。
 - NVIDIA NCCL：[Collective Operations, NCCL 2.31.2](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html)。
@@ -921,7 +1125,7 @@ EFFICACY 证据与置信区间：______
 
 | 优先级 | 题量 | 建议投入 | 用法 |
 |---|---:|---:|---|
-| P0 | 28 | 6–8 小时 | 首轮前全部口述一遍 |
+| P0 | 30 | 6–8 小时 | 首轮前全部口述一遍；新增三道核心追问并合并原 RESUME-04 |
 | P1 | 24 | 3–4 小时 | 选择与目标 JD 最相关的 10–15 题 |
 | P2 | 6 | 不超过 1 小时 | 查漏补缺，不挤占项目复盘 |
 
