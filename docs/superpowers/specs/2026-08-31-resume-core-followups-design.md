@@ -64,6 +64,8 @@
 
 删除后文与 `RESUME-01B` 重复的简短 `RESUME-11` ownership 条目，或将其改成指向 P0 完整答案的交叉引用，避免维护两份相互漂移的答案。
 
+现有 `RESUME-10` 只保留千卡交付、长稳保障、故障域判断和团队协同，不再重复 ownership 的完整定义；需要说明个人责任边界时交叉引用 `RESUME-01B`。
+
 现有 `RESUME-02` 保留编号，但修改标题和回答重心：
 
 > `RESUME-02｜Fully Async 相比同步 RLVR 有什么优势？你如何把初始吞吐从 76 优化到 211–255 tokens/s/GPU？`
@@ -88,7 +90,8 @@
    - 强调当时是通过 profiler、算子耗时、collective 时间、pipeline bubble、tokens-per-expert 和显存峰值逐层定位，不是事后套概念。
 3. **并行与拓扑**
    - 在容量可行的候选中联合选择 TP/PP/DP/EP/sequence parallel。
-   - 避免把 expert GEMM 切得过碎；高频 TP/EP 通信优先留在 HCCS 高带宽域，跨节点主要使用更适合扩展的 PP/DP 通信。
+   - 先解释通用判断：避免把 expert GEMM 切得过碎，并根据实际 HCCS/RoCE 域、collective 频率和消息量放置 TP/EP/PP/DP；不能在项目配置尚未补齐时直接声称“TP/EP 留在 HCCS、PP/DP 跨节点”就是当时方案。
+   - 面试前补齐实际并行组合、通信 group 到物理拓扑的映射和关键 collective；只有核对完成后，才能把某个 topology-aware mapping 写入项目主答案。
    - 调整 micro-batch、gradient accumulation、VPP/层划分以降低 pipeline bubble，同时守住显存。
 4. **计算与 kernel**
    - 将多个 expert 的小 GEMM 聚合成 Grouped MatMul，提高矩阵规模和硬件利用率。
@@ -174,8 +177,9 @@ X1 例子需要明确：本人负责/核心负责从功能打通、精度对齐�
 ### 7.2 主回答结构
 
 1. **同步基线**
-   - 同步 RLVR 在 rollout、reward/ref、actor update、weight sync 之间存在 barrier。
-   - Trainer 在 rollout 阶段等待，Rollouter 在 update/sync 阶段等待；同一 batch 的最长 trajectory 会放大全局等待。
+   - 限定为“本项目同步基线或典型 phased baseline”，不能泛化为所有同步 RLVR 实现都将 rollout、reward/ref、actor update 和 weight sync 完全串行执行。
+   - 核心同步边界是：当前 logical batch 的 rollout/reward 数据未组装完成前不能进入对应 update；要用新 policy 继续生成时，需要先完成相应的 weight sync。reward/ref 是否能并行或与其他阶段重叠取决于具体实现。
+   - 在本项目 phased baseline 中，Trainer 在主要 rollout 窗口存在等待，Rollouter 在主要 update/sync 窗口存在等待；同一 logical batch 的长 trajectory 会放大 exposed wait。
    - 优点是 policy freshness 和 step 语义清晰，不能把同步说成一无是处。
 2. **Fully Async 的系统优势**
    - 将 Rollouter 作为持续 producer、Trainer 作为持续 consumer，通过 queue 解耦生命周期。
@@ -197,7 +201,8 @@ X1 例子需要明确：本人负责/核心负责从功能打通、精度对齐�
 ### 7.3 数字口径
 
 - `76 → 211–255`：fully async 初始错误/不匹配配置与调优后配置的比较。
-- `同步约 200 → async 211–255`：fully async 与同步基线的主要可比结论，需本人补齐同步精确值和统计窗口。
+- `同步约 200`：目前只是待核实线索。同步精确值、相同 workload、统计窗口、warmup/异常步处理和 `tokens/s/GPU` 分母全部补齐前，不得进入可口述主答案，也不得声称存在严格可比的 sync/async 提升倍数。
+- `76 → 211–255` 和 `236–293`：在口径确认前仅用于 fully async 不同配置之间的比较。
 - `236–293`：`2T+2R` 候选窗口，不能自动写成正式长期平均或最终生产配置。
 - 禁止说“fully async 相比同步提升 3 倍”。
 - 面试前必须确认 `tokens/s/GPU` 的分母是全集群 GPU、rollout GPU，还是框架特定口径。
@@ -212,6 +217,7 @@ X1 例子需要明确：本人负责/核心负责从功能打通、精度对齐�
 - Ownership 明确区分个人贡献、开源框架和团队依赖。
 - 职业选择不与技术题混写，地点诉求体现长期稳定性。
 - Fully Async 先讲 sync/async 机制，再用配置和数据验证，不把 `76` 误当同步基线。
+- 同步与 async 的 workload、统计窗口和吞吐分母未完全对齐前，主答案不包含 sync/async 倍数或“超过同步”的结论。
 
 ### 8.2 文件验收
 
@@ -220,4 +226,3 @@ X1 例子需要明确：本人负责/核心负责从功能打通、精度对齐�
 - 相对内部链接和外部主来源链接可解析。
 - `git diff --check` 无 whitespace error。
 - Git 状态能够区分本次文档修改与此前未提交的流程图修改。
-
