@@ -2,7 +2,7 @@
 
 ## 1. 目标
 
-在现有 [`private_resume/2026-08-llm-infra-interview-prep.md`](../../../private_resume/2026-08-llm-infra-interview-prep.md) 中补强四道高频问题，使回答既能在 60–120 秒内给出主结论，也能承受 10–20 分钟技术深挖：
+在现有 [`private_resume/2026-08-llm-infra-interview-prep.md`](../../../private_resume/2026-08-llm-infra-interview-prep.md) 中补强四道高频问题，使回答先用 60–120 秒给出主结论，再提供 2–3 分钟展开版，并能承受 10–20 分钟技术深挖：
 
 1. 最有代表性的性能优化：以华为 X1 约 200B MoE 预训练性能优化为主案例。
 2. 项目 ownership：解释概念，并用同一 X1 项目证明个人责任边界。
@@ -72,6 +72,8 @@
 
 同步更新开头的 3 天优先级表、问题索引和四张项目证据卡，不改动无关题目。
 
+为保持原 3 天冲刺的 `24–30` 道 P0 上限，将现有 `RESUME-04｜如何证明 76→211–255 的数据可信且可比？` 合并进新版 `RESUME-02` 的数字口径、实验门禁和高概率追问，不再作为独立 P0。新增三道、合并一道后，P0 从 28 道变为 30 道；不得继续扩题。
+
 ## 4. RESUME-01A：X1 约 200B MoE 性能优化
 
 ### 4.1 面试官意图
@@ -80,7 +82,7 @@
 
 ### 4.2 主回答结构
 
-回答控制在 2–3 分钟，采用“背景与指标 → profile → 四层优化 → 结果与复盘”：
+实现时生成两个层次：60–120 秒主答只覆盖“背景与指标 → 三类瓶颈 → 关键动作 → 结果”；2–3 分钟展开版再补充并行、kernel、通信、内存、精度和稳定性的完整因果链：
 
 1. **背景和口径**
    - X1 约 200B MoE 预训练模型，从功能打通、精度对齐进入性能优化。
@@ -92,7 +94,7 @@
    - 在容量可行的候选中联合选择 TP/PP/DP/EP/sequence parallel。
    - 先解释通用判断：避免把 expert GEMM 切得过碎，并根据实际 HCCS/RoCE 域、collective 频率和消息量放置 TP/EP/PP/DP；不能在项目配置尚未补齐时直接声称“TP/EP 留在 HCCS、PP/DP 跨节点”就是当时方案。
    - 面试前补齐实际并行组合、通信 group 到物理拓扑的映射和关键 collective；只有核对完成后，才能把某个 topology-aware mapping 写入项目主答案。
-   - 调整 micro-batch、gradient accumulation、VPP/层划分以降低 pipeline bubble，同时守住显存。
+   - micro-batch、gradient accumulation、VPP/层划分属于可检查的候选变量；只有本人核对当时确实调整过，才能写成项目动作或 ownership 贡献。
 4. **计算与 kernel**
    - 将多个 expert 的小 GEMM 聚合成 Grouped MatMul，提高矩阵规模和硬件利用率。
    - 使能实际使用过的融合算子，重点解释减少中间张量、内存读写和 kernel launch，而不是只报开关名。
@@ -102,7 +104,7 @@
    - 用独立 stream、chunking 或调度重排将无依赖的通信隐藏在 attention/expert/反向计算后面；回答必须明确当时真实采用的一种 overlap 机制。
    - overlap 后重新检查带宽争用、额外 buffer 和 GEMM 降速，不能用 timeline 重叠直接等价为收益。
 6. **内存、精度和稳定性**
-   - 使用实际采用的 distributed optimizer、sequence parallel、activation recomputation/重计算粒度或 buffer 复用来降低峰值显存，从而避免被迫使用过高 TP/PP。
+   - distributed optimizer、sequence parallel、activation recomputation/重计算粒度和 buffer 复用属于显存诊断候选；主答案只能保留本人确认实际采用的手段，并说明它如何改变峰值显存或并行选择。
    - 对融合算子和低精度路径做逐层 dump/first-divergence，对齐 loss 和梯度。
    - 从小规模功能/精度验证扩到 3K 卡长稳训练，补充 checkpoint、故障隔离和性能回归门禁。
 7. **结果和方法论**
@@ -212,12 +214,13 @@ X1 例子需要明确：本人负责/核心负责从功能打通、精度对齐�
 ### 8.1 内容验收
 
 - 四道题均包含：问题、面试官意图、精准回答、追问、项目证据/知识边界、危险回答。
-- 每道题第一段可以独立作为 60–120 秒回答，后续内容可以承接深挖。
+- 每道题先提供可独立口述的 60–120 秒主答；X1 另有 2–3 分钟展开版，后续内容继续承接深挖。
 - X1 回答以真实项目为主，NVIDIA 2026 技术明确标为后验演进方向。
 - Ownership 明确区分个人贡献、开源框架和团队依赖。
 - 职业选择不与技术题混写，地点诉求体现长期稳定性。
 - Fully Async 先讲 sync/async 机制，再用配置和数据验证，不把 `76` 误当同步基线。
 - 同步与 async 的 workload、统计窗口和吞吐分母未完全对齐前，主答案不包含 sync/async 倍数或“超过同步”的结论。
+- P0 总量为 30：新增 `RESUME-01A/01B/01C`，同时把原 `RESUME-04` 合并进 `RESUME-02`；不得突破原 3 天冲刺的 30 题上限。
 
 ### 8.2 文件验收
 
