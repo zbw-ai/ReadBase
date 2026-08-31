@@ -10,6 +10,7 @@
 - [ZeRO](../papers/zero.md)
 - [Llama 3](../tech_reports/llama3.md)
 - [MegaScale](../tech_reports/megascale.md)
+- [Agentic for Embodied](agentic_for_embodied.md)：把分布式训练扩展到 video data、GPU simulation、edge inference 和 robot fleet 的异构资源系统。
 
 ## 关键维度
 

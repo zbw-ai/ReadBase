@@ -23,8 +23,13 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-08-18](frontier_scan_2026-08-18.md)：当前最新扫描，覆盖到 2026-08-18 09:31:44；重点包括 Rollplex、NVIDIA Nemotron QAD、Megatron RL Context Parallel、FreeBalance、verl vLLM state-lifecycle fix 与 SGLang DSpark accepted-token logprobs。
-- [Frontier Scan 2026-08-17](frontier_scan_2026-08-17.md)：上一份扫描，完整重扫 2026-08-14 17:39:50 到 2026-08-17 09:28:33；重点包括 DeepSeek-V4-Pro-0813、Megatron RL generation lag autotuning、NeMo rollout failure containment、Megatron disaggregated KV handoff 与 checkpoint distribution cache。
+- [Frontier Scan 2026-08-30](frontier_scan_2026-08-30.md)：当前最新扫描，覆盖到 2026-08-30 21:04:46；重点包括 NeMo RL generation-shard recovery、AReaL truncation/GAE correctness、RL-for-LLM 并行性能方法论与长上下文 VPP。
+- [Frontier Scan 2026-08-28](frontier_scan_2026-08-28.md)：上一份扫描，覆盖到 2026-08-28 10:24:25；重点包括 OpenAI-Hugging Face incident technical report、psRL、Granite 4.2 异步 GRPO/128K 工业配方与 verl Liger fused PPO kernel。
+- [Frontier Scan 2026-08-26](frontier_scan_2026-08-26.md)：前一份扫描，覆盖到 2026-08-26 10:22:05；收录 OpenAI Jalapeño、Microsoft Maia 200 与 GPU Synchronization Tax，核心判断聚焦 hardware-software co-design、data movement 与 rank arrival skew。
+- [Frontier Scan 2026-08-24](frontier_scan_2026-08-24.md)：前一份扫描，覆盖到 2026-08-24 09:32:12；重点包括 FlashPrefill V2、CacheRoute、ReCache、verl trainer-GPU lending、AReaL AdamW delta transfer、vLLM Sharded RDT、SGLang DeepSeek-V4 Q8KV8、NeMo RL CPU RDMA 与 NVIDIA MaxLPS。
+- [Frontier Scan 2026-08-20](frontier_scan_2026-08-20.md)：前一份扫描，覆盖到 2026-08-20 10:21:56；重点包括 Agent Lightning v1.0、LEGO-RL、NeMo RL async recovery、TRL Async Distillation、Open-MOPD、Megatron multi-turn packing correctness 与 AReaL Qwen3-VL AWEX colocation。
+- [Frontier Scan 2026-08-18](frontier_scan_2026-08-18.md)：上一份扫描，覆盖到 2026-08-18 09:31:44；重点包括 Rollplex、NVIDIA Nemotron QAD、Megatron RL Context Parallel、FreeBalance、verl vLLM state-lifecycle fix 与 SGLang DSpark accepted-token logprobs。
+- [Frontier Scan 2026-08-17](frontier_scan_2026-08-17.md)：前一份扫描，完整重扫 2026-08-14 17:39:50 到 2026-08-17 09:28:33；重点包括 DeepSeek-V4-Pro-0813、Megatron RL generation lag autotuning、NeMo rollout failure containment、Megatron disaggregated KV handoff 与 checkpoint distribution cache。
 - [Frontier Scan 2026-08-14](frontier_scan_2026-08-14.md)：上一份确认游标，覆盖到 2026-08-14 17:39:50；重点包括 TideRL、MISA-T、RoutePack、AReaL grouped colocation、verl multi-sender weight sync、NeMo RL async checkpoint 与 vToken。
 - [Frontier Scan 2026-08-12](frontier_scan_2026-08-12.md)：前一份扫描，覆盖到 2026-08-12 09:51；重点包括 verl Dynamic CP、slime GLM-5 训推对齐、FlashBoot、OasisKV、Replay Gap 与 NVIDIA Nemotron 3.5。
 - [Frontier Scan 2026-08-09](frontier_scan_2026-08-09.md)：前一份扫描，覆盖到 2026-08-09 23:24；重点包括 K-EXAONE 2.0、TensorCast、SpecRoll、slime v0.3.1 与 AReaL AWEX colocation。

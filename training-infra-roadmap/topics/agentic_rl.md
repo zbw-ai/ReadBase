@@ -207,6 +207,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [Context Parallelism](context_parallelism.md)：长上下文 trajectory 会推动 CP、KV cache 和 sequence 切分进入 RL 平台。
 - [NCCL](nccl.md)：训练侧 collective 仍然重要，但 rollout/reward 系统还会引入更多 RPC 和存储流量。
 - [MOPD](mopd.md)：把 Student rollout、Teacher scoring、domain routing 和多领域 capability integration 接入 post-training dataflow。
+- [Agentic for Embodied](agentic_for_embodied.md)：把 Agentic RL 的 rollout、policy version、scheduler 和 tracing 扩展到 sensor-action trajectory、GPU simulation、robot fleet、edge deadline 与独立 safety authority。
 - [DeepSeek-R1](../tech_reports/deepseek_r1.md)：reasoning RL 需求爆发的重要背景。
 
 ## 重点精读：来自 Historical Backfill

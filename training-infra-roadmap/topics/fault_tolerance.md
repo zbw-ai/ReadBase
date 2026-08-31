@@ -9,6 +9,7 @@
 - [MegaScale](../tech_reports/megascale.md)
 - [Llama 3](../tech_reports/llama3.md)
 - [Checkpointing](checkpointing.md)
+- [Agentic for Embodied](agentic_for_embodied.md)：区分训练作业可重启、仿真可恢复与真实物理动作不可回滚三种故障语义。
 
 ## 关键机制
 

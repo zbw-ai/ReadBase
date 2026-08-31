@@ -16,18 +16,28 @@
 
 已开始整理：
 
+- [2026-07](2026-07.md)：NVIDIA GR00T end-to-end embodied platform
 - [2026-06](2026-06.md)：PyTorch Miles / RL post-training infra
 - [2026-05](2026-05.md)：Hugging Face TiTo / Agentic RL token correctness
 - [2026-02](2026-02.md)
+- [2025-11](2025-11.md)：Isaac Lab / GPU simulation infra
+- [2025-09](2025-09.md)：Gemini Robotics 1.5 / LeRobotDataset v3
 - [2025-08](2025-08.md)：Agent Lightning / GLM-4.5 ARC
+- [2025-06](2025-06.md)：Real-Time Action Chunking
 - [2025-05](2025-05.md)
 - [2025-04](2025-04.md)
 - [2025-03](2025-03.md)
 - [2025-01](2025-01.md)
 - [2024-12](2024-12.md)
+- [2024-10](2024-10.md)：π0 / flow-based VLA runtime
 - [2024-09](2024-09.md)
+- [2024-06](2024-06.md)：OpenVLA
 - [2024-05](2024-05.md)
+- [2023-10](2023-10.md)：Open X-Embodiment
 - [2023-08](2023-08.md)
+- [2023-07](2023-07.md)：RT-2 / VLA
+- [2023-03](2023-03.md)：Diffusion Policy
+- [2023-01](2023-01.md)：DreamerV3 / learned world-model rollout
 
 待补：
 

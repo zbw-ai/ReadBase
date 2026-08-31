@@ -71,6 +71,7 @@ training-infra-roadmap/
 - [Tensor Parallelism Engineering Handbook](topics/tensor_parallelism.md)：解释 TP 解决什么问题、Megatron Column/Row Parallel、forward/backward 通信、NVLink/NVSwitch 拓扑、TP=1/2/4/8 配置建议、NCCL hang/rank mapping/shape mismatch 排障，以及 TP 与 SP/CP/FSDP/MoE/FlashAttention/Checkpoint 的关系。
 - [Checkpointing Engineering Handbook](topics/checkpointing.md)：解释 checkpoint 为什么是训练 infra 核心问题、full/sharded/distributed/async/incremental/elastic checkpoint 差异、保存内容、Megatron/DeepSpeed/FSDP 差异、容错恢复、存储分层、checksum/validation 和恢复演练。
 - [Agentic RL Infrastructure](topics/agentic_rl.md)：第一条 Research OS 闭环主题，解释 rollout、reward/verifier、policy update、weight sync、trajectory store 和 agent runtime 如何改变训练平台边界。
+- [Agentic for Embodied](topics/agentic_for_embodied.md)：从 Infra 工程师视角梳理 VLA、trajectory data、GPU simulation、robot rollout、edge runtime、sim-to-real 和 safety，并从系统地图推导到可实施的生产平台蓝图。
 - 建设中入口：[FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
 
 ## 学习计划与面试入口
@@ -145,4 +146,4 @@ Research OS v1.0 已进入使用期。未来一个月不继续扩结构，优先
 1. 有空时跑一次 [Frontier Scan](tracking/frontier_scan_template.md)：窗口从 [Scan Log](tracking/scan_log.md) 的上次游标到本次扫描结束，只收高质量前沿信号，可以 0 条。
 2. 每周尽量精读一个 [P0](reading_queue/P0.md)，读完必须流向 `topics/`、`insights/`、`playbooks/` 或 `experiments/`。
 3. 每两周做一次 [Historical Backfill](tracking/historical_backfill.md)：按材料原始月份倒序补课，每个月一个文件，只补当前工程判断缺口。
-4. 当前工程实战主线：[Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md)；知识输入继续聚焦 [Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。
+4. 当前工程实战主线：[Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md)；知识输入继续聚焦 [Agentic RL / Rollout Infra](topics/agentic_rl.md)、[Long-context Training Infra](topics/long_context_training.md)、[Megatron / TP / Checkpointing](topics/tensor_parallelism.md)。[Agentic for Embodied](topics/agentic_for_embodied.md) 作为跨向物理 agent 的工程专题入口，不改变当前主线优先级。

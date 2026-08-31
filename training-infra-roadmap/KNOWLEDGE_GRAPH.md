@@ -222,6 +222,9 @@ flowchart LR
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [OPD / MOPD](topics/mopd.md) ↔ Teacher Prefill / Domain Routing
+- [Agentic RL](topics/agentic_rl.md) ↔ [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ Simulation / Robot Runtime / Safety
+- [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ [Distributed Training](topics/distributed_training.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
+- [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ [Long-context Training](topics/long_context_training.md) ↔ Planner Memory / Multimodal Trajectory
 - [Agentic RL](topics/agentic_rl.md) ↔ [Q3 Long-context Agentic RL Project](projects/2026-q3-long-context-agentic-rl/README.md) ↔ [R8b Performance Dashboard](projects/2026-q3-long-context-agentic-rl/dashboard.md)
 - [CompactionRL](papers/compactionrl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [Trajectory Store / Context Budget]
 - [Historical Backfill](tracking/historical_backfill.md) ↔ [P0 Queue](reading_queue/P0.md) ↔ [Agentic RL Insight](insights/001_agentic_rl_will_change_training_infra.md)

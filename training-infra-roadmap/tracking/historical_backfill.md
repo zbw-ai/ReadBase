@@ -48,16 +48,28 @@ tracking/backfill/2025-05.md
 
 已开始整理：
 
+- [2026-07](backfill/2026-07.md)：NVIDIA GR00T 端到端 embodied platform
+- [2026-06](backfill/2026-06.md)：PyTorch Miles 与 RL post-training infra
+- [2026-05](backfill/2026-05.md)：Hugging Face TiTo 与 token correctness
 - [2026-02](backfill/2026-02.md)：RLHF 资源弹性
+- [2025-11](backfill/2025-11.md)：Isaac Lab 与 GPU simulation infra
+- [2025-09](backfill/2025-09.md)：Gemini Robotics 1.5 与 LeRobotDataset v3
 - [2025-08](backfill/2025-08.md)：agent runtime 与 RL trainer 解耦、GLM-4.5 ARC 基座
+- [2025-06](backfill/2025-06.md)：Real-Time Action Chunking
 - [2025-05](backfill/2025-05.md)：异步 RL 系统
 - [2025-04](backfill/2025-04.md)：vLLM 进入 RLHF rollout
 - [2025-03](backfill/2025-03.md)：reasoning RL recipe 与系统栈
 - [2025-01](backfill/2025-01.md)：DeepSeek-R1 与 reasoning RL 需求爆发
 - [2024-12](backfill/2024-12.md)：DeepSeek-V3 与大规模训练工程底座
+- [2024-10](backfill/2024-10.md)：π0 与 flow-based VLA runtime
 - [2024-09](backfill/2024-09.md)：verl / HybridFlow 与 RLHF dataflow
+- [2024-06](backfill/2024-06.md)：OpenVLA 与开放 VLA training stack
 - [2024-05](backfill/2024-05.md)：OpenRLHF 与开源 RLHF pipeline
+- [2023-10](backfill/2023-10.md)：Open X-Embodiment 与跨机器人数据标准化
 - [2023-08](backfill/2023-08.md)：DeepSpeed-Chat 与早期 RLHF 工程化
+- [2023-07](backfill/2023-07.md)：RT-2 与 VLA action representation
+- [2023-03](backfill/2023-03.md)：Diffusion Policy 与 action decoder runtime
+- [2023-01](backfill/2023-01.md)：DreamerV3 与 learned world-model rollout
 
 待补：
 

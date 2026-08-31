@@ -112,6 +112,7 @@ SFT 里最常见的问题不是“放不下”，而是：
 4. 然后读 [Checkpointing](checkpointing.md)，理解长 step time 下如何保存和恢复训练状态。
 5. 最后读 [Agentic RL Infrastructure](agentic_rl.md)，把长上下文从 SFT 扩展到 rollout / RL 系统。
 6. 再读 [CompactionRL](../papers/compactionrl.md)，理解 long-horizon agent 如何在固定 context budget 下训练可压缩的 trajectory。
+7. [Agentic for Embodied](agentic_for_embodied.md) 把 long-horizon 扩展到视频历史、planner memory、动作反馈和物理环境状态。
 
 ## 待补实验
 

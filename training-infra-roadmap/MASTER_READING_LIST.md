@@ -214,3 +214,18 @@
 | 33 | HybridFlow / verl | Tracking / P0 | RLHF dataflow、actor training/generation resharding |
 | 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |
 | 35 | Traditional KD → OPD → MOPD | [MOPD（研究中 / 原理第一版）](topics/mopd.md) | Student rollout、dense Teacher signal、domain routing、multi-teacher serving |
+
+## 9. Agentic for Embodied / Physical Agent Infra
+
+先读系统地图：[Agentic for Embodied](topics/agentic_for_embodied.md)。这条路线不要求先掌握机器人控制理论，而是先理解数据、仿真、实时 runtime、安全和 fleet feedback 怎样改变 Agentic RL 的工程边界。
+
+| 顺序 | 材料 | 关注点 |
+|---|---|---|
+| 36 | [RT-2](https://robotics-transformer2.github.io/) | action tokenization 如何把 VLM 扩展为 VLA |
+| 37 | [Diffusion Policy](https://diffusion-policy.cs.columbia.edu/) | continuous action distribution、action chunk 与推理时延 |
+| 38 | [Open X-Embodiment](https://robotics-transformer-x.github.io/) | 跨 robot / sensor / action space 的数据标准化 |
+| 39 | [OpenVLA](https://openvla.github.io/) | 开放 VLA 训练 pipeline、checkpoint 和 adaptation |
+| 40 | [LeRobotDataset v3](https://huggingface.co/docs/lerobot/lerobot-dataset-v3) | video + Parquet + episode metadata 的工程数据布局 |
+| 41 | [Isaac Lab](https://developer.nvidia.com/isaac/lab) | GPU simulation、parallel environment、reset 与 evaluation |
+| 42 | [Real-Time Chunking](https://arxiv.org/abs/2506.07339) | action chunk 的异步实时执行与 deadline 问题 |
+| 43 | [GR00T end-to-end workflow](https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/) | 厂商 data -> sim -> train -> eval -> deploy 平台路线 |
