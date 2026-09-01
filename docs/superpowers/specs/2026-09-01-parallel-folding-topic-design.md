@@ -2,18 +2,30 @@
 
 ## 目标
 
-把 Parallel Folding 从面试文档中的零散解释，提升为 `training-infra-roadmap/topics/moe.md` 中可长期维护的工程知识章节，并在 `training-infra-roadmap/interview/moe.md` 提供 3-5 分钟面试回答与回链。
+把 Megatron 5D 并行及 Parallel Folding 从面试文档中的零散解释，提升为可长期维护的工程知识章节：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，并在 `training-infra-roadmap/interview/moe.md` 提供 3-5 分钟面试回答与回链。
 
-章节需要让读者回答四个核心问题：
+章节需要让读者回答五个核心问题：
 
 1. 为什么 Attention 和 MoE 不能总是共用一套最优并行布局？
 2. Parallel Folding 如何让同一批物理 ranks 同时承载两套逻辑网格？
 3. SP 和 CP 都切 sequence，为什么 SP 不是独立的 world-size 维度？
 4. 配置在数学上成立之后，如何判断 process group、通信拓扑、负载和 checkpoint 是否真的正确？
+5. DP、TP、PP、CP、EP 分别切什么，动机、实现、通信代价和面试考点是什么？
 
 ## 范围与边界
 
-### 详细知识源
+### 5D 并行详细知识源
+
+`training-infra-roadmap/topics/distributed_training.md` 是 5D 并行的唯一详细总览。它负责把已有 DP、TP、PP、CP、SP、MoE 专题串成一套统一决策框架，而不复制每个专题的全部实现细节。新增内容覆盖：
+
+- 5D 的统一定义：DP 切 batch、TP 切层内 tensor、PP 切模型深度、CP 切 context、EP 切 routed expert；
+- 每一维的动机、解决的问题、具体切分方法、核心 collective/P2P、显存收益和主要代价；
+- Dense world size、MoE rank 复用和 Parallel Folding 的计算边界；
+- 配置选择顺序：容量 -> GEMM 效率 -> 通信拓扑 -> profile 验证；
+- 面试从定义、通信、组合、场景设计到项目证据的五层考察方式；
+- 指向各单项 topic 的相对链接。
+
+### Parallel Folding 详细知识源
 
 `training-infra-roadmap/topics/moe.md` 是本知识点的唯一详细知识源。新增内容覆盖：
 
@@ -29,16 +41,39 @@
 
 `training-infra-roadmap/interview/moe.md` 只增加：
 
+- 一道 Megatron 5D 并行综合题；
 - 一道 Parallel Folding 高频题；
 - 一道 CP 与 SP 区分题；
 - 每题的考察意图、3-5 分钟回答、追问、错误回答；
 - 指向 topic 详细章节的相对链接。
 
-已有 `private_resume/2026-08-llm-infra-interview-prep.md` 不重复扩写，避免形成多个内容近似但容易漂移的详细版本。
+已有 `private_resume/2026-08-llm-infra-interview-prep.md` 不重复扩写，避免形成多个内容近似但容易漂移的详细版本。本次不新建额外 topic/interview 文件。
 
 ## 内容架构
 
-### 1. 前置概念：SP 与 CP
+### 1. 5D 总览：统一问题框架
+
+`distributed_training.md` 先用一张总表建立五维认知：
+
+| 维度 | 切分对象 | 主要动机 | 核心通信 | 主要代价 |
+| --- | --- | --- | --- | --- |
+| DP | batch/sample | 扩展吞吐 | gradient all-reduce，或 reduce-scatter + all-gather | 模型状态复制、跨节点带宽 |
+| TP | 单层 hidden/head/tensor | 单层容量和计算 | 每层 all-reduce/all-gather/reduce-scatter | 高频通信、小 GEMM |
+| PP | Transformer layers | 整体模型容量 | stage 间 activation/gradient P2P | bubble、stage imbalance |
+| CP | context/sequence | 长上下文 activation | Attention KV exchange | KV 通信和序列负载均衡 |
+| EP | routed expert identity | MoE 专家参数和计算分布 | token dispatch/combine all-to-all | load imbalance、小 expert GEMM |
+
+每一维统一按“含义 -> 动机 -> 具体做法 -> 通信 -> 代价 -> 配置判断 -> 面试追问”展开，但具体 Row/Column Parallel、pipeline schedule、CP 通信实现和 MoE dispatcher 细节回链已有专题。
+
+Dense 场景明确：
+
+```text
+world_size = TP x PP x CP x DP
+```
+
+同时明确 `SP` 不乘入 world size，`EP` 在传统 nested layout 或 Parallel Folding 下也不能不加判断地再乘一次。
+
+### 2. 前置概念：SP 与 CP
 
 先回答两者“都切 sequence，为什么不是一回事”：
 
@@ -50,7 +85,11 @@
 
 这里用一张对比表和一个小型 Mermaid 数据流图解释，不把具体 kernel/fusion 实现固定成唯一 tensor layout。
 
-### 2. 问题定义：Dense-Sparse Mismatch
+面试手册保留下列可直接口述的核心回答：
+
+> SP 和 CP 虽然都在 sequence 维度切 activation，但 SP 不是独立并行轴，它依附 TP，主要把 LayerNorm、Dropout、Residual 等位置原本在 TP ranks 上重复的 activation 沿 sequence 分摊，并用 all-gather/reduce-scatter 衔接 TP Linear，因此不计入 world size。CP 是独立并行轴，从输入开始把整个 context 和全部 activation 分给不同 CP ranks；因为 Attention 存在跨 token 依赖，需要在 CP group 内交换 KV。简单说，SP 是 TP 内部的显存和通信布局优化，CP 是面向长上下文的模型并行策略。
+
+### 3. 问题定义：Dense-Sparse Mismatch
 
 解释单个 Transformer block 中两种不同的性能诉求：
 
@@ -58,7 +97,7 @@
 - MoE 专家 GEMM 通常更小，过高 ETP 会继续碎片化 GEMM，而高 EP 有利于专家参数分布和 token 聚合；
 - 传统 `EP ⊆ DP` 布局把 expert group 限制在 dense DP 域内，可能导致 GPU 数量乘法膨胀或次优配置。
 
-### 3. 核心机制：同一 rank pool 上的双逻辑网格
+### 4. 核心机制：同一 rank pool 上的双逻辑网格
 
 使用 Mermaid 表达同一个 PP stage 内的物理 ranks 被两套 process-group mapping 重新解释：
 
@@ -83,7 +122,7 @@ TP x CP x DP x ETP x EP x EDP x PP
 
 PP 在两套布局中必须一致；同时说明“唯一结构约束”不等于没有模型 shape、专家数、grouped GEMM、通信实现等可整除约束。
 
-### 4. 两个算例
+### 5. 两个算例
 
 #### 8-rank 概念例
 
@@ -105,7 +144,7 @@ Expert:    ETP1 x EP64 x EDP1 x PP4 = 256
 
 每个 PP stage 都有 64 ranks。Attention 用 TP/CP/DP 解释这些 ranks，MoE 则把同一 rank pool 重新映射为 EP64。
 
-### 5. Process groups 与运行时数据流
+### 6. Process groups 与运行时数据流
 
 区分以下语义域，并明确 Expert mesh 只描述 routed expert 权重与计算，不能把整个 MoE layer 都归入该网格：
 
@@ -117,7 +156,7 @@ Expert:    ETP1 x EP64 x EDP1 x PP4 = 256
 - Parallel Folding 不要求在 Attention 与 Expert 层之间动态搬迁完整权重；跨布局流动的主要是 activation/token；
 - 跨布局流动的是 activation/token：Attention output -> Router -> EP dispatch all-to-all -> Expert compute -> combine all-to-all -> 下一层。
 
-### 6. 配置与拓扑判断
+### 7. 配置与拓扑判断
 
 先求出包含 TP、CP、PP、ETP、EP、派生 DP/EDP 的容量可行解，同时检查 expert 数、sequence/model shape 和 kernel 的整除约束，再按性能调整：
 
@@ -128,7 +167,7 @@ Expert:    ETP1 x EP64 x EDP1 x PP4 = 256
 5. 通过 profile 验证 GEMM shape、all-to-all 暴露时间、KV 通信、load imbalance、straggler 和跨节点流量，而不是只验证公式；
 6. 对 Dense 与 Expert 参数分别验证梯度规约 group、optimizer state 和 distributed checkpoint metadata。
 
-### 7. 代价与排障
+### 8. 代价与排障
 
 明确 Parallel Folding 不是免费优化：它没有消除 CP 的 KV 通信和 EP 的 all-to-all，还增加双网格 process-group 创建、dispatcher 映射、配置搜索以及 checkpoint/recovery metadata 的复杂度。检查顺序为：
 
@@ -172,9 +211,10 @@ Attention logical mesh     Expert logical mesh
 
 ## 验收标准
 
-- `topics/moe.md` 能独立回答 Parallel Folding、world size、CP/SP、process group、运行时流和排障问题；
+- `topics/distributed_training.md` 能独立回答 5D 各维的含义、动机、切分方法、通信、代价、组合和面试考察方式，并回链单项专题；
+- `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP；
 - 8-rank 与 256-GPU 示例算术正确，两套逻辑网格没有被误乘；
-- `interview/moe.md` 的两道题可在 3-5 分钟内口述，并回链到 topic；
+- `interview/moe.md` 的 5D、Parallel Folding、CP/SP 三道题可在 3-5 分钟内口述，并回链到 topic；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
 - 不改动无关文档，不重复扩写 private resume 主面试文档。
