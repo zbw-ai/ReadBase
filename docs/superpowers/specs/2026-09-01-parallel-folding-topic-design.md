@@ -140,7 +140,7 @@ Expert:    ETP1 x EP64 x EDP1 x PP4 = 256
 6. EP all-to-all、CP KV 通信是否跨越慢链路；
 7. ETP/EP 是否造成过小 GEMM；
 8. Dense/Expert 梯度规约、optimizer state 和参数 all-gather 是否使用正确 group；
-9. checkpoint 是否完整保存两套 mesh metadata，恢复和并行配置变更后的 reshard 是否一致。
+9. checkpoint 及其配套加载配置是否包含足以重建 Dense/Expert sharding、expert identity、optimizer shard 和 replica mapping 的信息，恢复和并行配置变更后的 reshard 是否一致；具体信息位于 checkpoint 还是外部配置，以实际 Megatron-Core 版本格式为准。
 
 ## 图示设计
 
@@ -162,7 +162,7 @@ Attention logical mesh     Expert logical mesh
 事实与数字优先引用：
 
 1. NVIDIA, *Scalable Training of Mixture-of-Experts Models with Megatron Core*；
-2. NVIDIA, *MoE Parallel Folding: Heterogeneous Parallelism for Training Giant Mixture-of-Experts Models*（arXiv:2504.14960；8-rank 示例标注为该论文附录中的映射示例）；
+2. NVIDIA, *MoE Parallel Folding: Heterogeneous Parallelism Mappings for Efficient Large-Scale MoE Model Training with Megatron Core*（arXiv:2504.14960；8-rank 示例标注为该论文附录中的映射示例）；
 3. Megatron Core 官方 MoE Parallel Folding 用户指南；
 4. Megatron-LM 官方 Context Parallelism 和 Parallelism Strategies 文档；
 5. Megatron-Core 官方 `parallel_state.py`、`ProcessGroupCollection` 和 Distributed Optimizer 相关 API/源码；记录引用的 tag/commit 或访问日期 `2026-09-01`，把实现细节标记为版本相关；
