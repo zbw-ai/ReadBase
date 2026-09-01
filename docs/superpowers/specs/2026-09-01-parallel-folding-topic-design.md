@@ -4,13 +4,14 @@
 
 把 Megatron 5D 并行及 Parallel Folding 从面试文档中的零散解释，提升为可长期维护的工程知识章节：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，并在 `training-infra-roadmap/interview/moe.md` 提供 3-5 分钟面试回答与回链。
 
-章节需要让读者回答五个核心问题：
+章节需要让读者回答六个核心问题：
 
 1. 为什么 Attention 和 MoE 不能总是共用一套最优并行布局？
 2. Parallel Folding 如何让同一批物理 ranks 同时承载两套逻辑网格？
 3. SP 和 CP 都切 sequence，为什么 SP 不是独立的 world-size 维度？
 4. 配置在数学上成立之后，如何判断 process group、通信拓扑、负载和 checkpoint 是否真的正确？
 5. DP、TP、PP、CP、EP 分别切什么，动机、实现、通信代价和面试考点是什么？
+6. 分布式通信算子分别执行什么数据变换，为什么用于不同并行维度，如何判断使用是否正确？
 
 ## 范围与边界
 
@@ -51,11 +52,27 @@
 
 已有 `private_resume/2026-08-llm-infra-interview-prep.md` 不重复扩写，避免形成多个内容近似但容易漂移的详细版本。本次不新建额外 topic/interview 文件。
 
+### 通信算子详细知识源
+
+`training-infra-roadmap/topics/nccl.md` 是通信算子的唯一详细知识源；`distributed_training.md` 只维护 5D 并行到通信模式的映射，不重复 collective 语义。`nccl.md` 新增内容覆盖：
+
+- Collective 与 point-to-point 的区别；communicator/process group、rank、root 的基本语义；
+- Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll 的输入输出变换；
+- Send/Recv 与 Barrier 的用途，并明确 Barrier 是同步语义，不等同于张量重分布；
+- `AllReduce = ReduceScatter + AllGather`、`AllReduce = Reduce + Broadcast` 的语义等价关系，以及“语义等价不代表底层一定机械执行两个算子”；
+- fixed-count AllToAll 与 variable-count AllToAllV/dispatcher 的边界；
+- DP/TP/PP/CP/EP/FSDP/Distributed Optimizer 中的典型使用位置；
+- latency/bandwidth、ring/tree、消息大小、拓扑、异步 stream/overlap 等性能判断；
+- group membership、count/dtype、调用顺序、shape、stream/wait 等正确性不变量和 hang 排障。
+
+`training-infra-roadmap/interview/tensor_parallelism.md` 增加一道跨并行维度的“常见通信算子及使用场景”面试题，包含考察意图、3-5 分钟回答、追问和错误回答，并回链 `topics/nccl.md`。`interview/moe.md` 只在 EP/Parallel Folding 问题中引用 AllToAll，不复制完整通信算子答案。
+
 ### 双向链接与导航
 
 由于 `distributed_training.md` 被提升为 5D 组合总览，本次允许对以下现有文件做最小导航修改：
 
 - `data_parallelism.md`、`tensor_parallelism.md`、`pipeline_parallelism.md`、`context_parallelism.md`、`sequence_parallelism.md`、`moe.md` 各增加一条回到 5D 总览的链接；
+- `distributed_training.md` 增加到 `nccl.md` 的通信语言入口，`nccl.md` 回链 5D 总览；
 - `KNOWLEDGE_GRAPH.md` 增加 5D 总览与各单项 topic、Parallel Folding 的关系；
 - `MASTER_READING_LIST.md` 收录 5D 总览入口；
 - 如 `training-infra-roadmap/README.md` 尚未提供该入口，增加一条导航链接。
@@ -77,6 +94,16 @@
 | EP | routed expert identity | MoE 专家参数和计算分布 | token dispatch/combine all-to-all | load imbalance、小 expert GEMM |
 
 每一维统一按“含义 -> 动机 -> 具体做法 -> 通信 -> 代价 -> 配置判断 -> 面试追问”展开，但具体 Row/Column Parallel、pipeline schedule、CP 通信实现和 MoE dispatcher 细节回链已有专题。
+
+5D 到通信算子的简明映射为：
+
+```text
+DP  -> gradient AllReduce，或 ReduceScatter + parameter AllGather
+TP  -> layer-level AllReduce / AllGather / ReduceScatter
+PP  -> stage-boundary Send/Recv
+CP  -> Attention KV 的 P2P / AllGather / AllToAll
+EP  -> token dispatch/combine AllToAll；特定 dispatcher 可使用 AllGather 或 variable-count exchange
+```
 
 Dense 场景明确：
 
@@ -218,7 +245,9 @@ Attention logical mesh     Expert logical mesh
 3. Megatron Core 官方 MoE Parallel Folding 用户指南；
 4. Megatron-LM 官方 Context Parallelism 和 Parallelism Strategies 文档；
 5. Megatron-Core 官方 `parallel_state.py`、`ProcessGroupCollection` 和 Distributed Optimizer 相关 API/源码；记录引用的 tag/commit 或访问日期 `2026-09-01`，把实现细节标记为版本相关；
-6. 本仓库保存的论文中文译文第二部分。
+6. 本仓库保存的论文中文译文第二部分；
+7. NVIDIA NCCL 官方 Collective Operations 与 point-to-point 文档（记录访问日期 `2026-09-01`）；
+8. PyTorch Distributed 官方 collective API 文档，用于框架层异步 handle、Barrier 和 variable-size API 边界。
 
 对代码实现相关描述使用“当前 Megatron-Core 实现”表述，避免把版本相关细节写成永恒定义。
 
@@ -228,6 +257,7 @@ Attention logical mesh     Expert logical mesh
 - `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP，但不复制 SP/CP 机制细节；
 - 8-rank 与 256-GPU 示例算术正确，两套逻辑网格没有被误乘；
 - `interview/moe.md` 的 5D、Parallel Folding、CP/SP 三道题可在 3-5 分钟内口述，并回链到 topic；
+- `topics/nccl.md` 能用输入输出语义解释常见 collective/P2P，给出 5D/FSDP 使用映射、性能模型和正确性排障；`interview/tensor_parallelism.md` 包含可口述的通信算子综合题；
 - DP/TP/PP/CP/SP/MoE 单项 topic 都能回到 5D 总览；`KNOWLEDGE_GRAPH.md`、`MASTER_READING_LIST.md` 和必要时的 handbook README 已更新导航；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
