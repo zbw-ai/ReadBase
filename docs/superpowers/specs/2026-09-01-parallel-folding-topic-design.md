@@ -59,7 +59,7 @@
 实施前按当前会话做逐项覆盖审计：
 
 1. **自我介绍与职业选择**：教育背景一句话；华为 X1 约 200B MoE 代表性优化；Ownership 的定义和 `Scope -> Decision -> Execution -> Coordination -> Outcome`；华为部门搬迁上海、深圳长期规划、技术栈扩展；小鹏组织调整和只看深圳的边界表达。
-2. **简历项目**：Fully Async RLVR 相比同步的系统优势、`76 -> 211-255 tokens/s/GPU` 的正确口径和配置配平；AReaL Agentic RL 双泳道链路及瓶颈；OPD/MOPD 的多 expert 能力汇聚背景、用户明确的 TILE merge 基线命名和训练/验证方法（不得擅自改写成 TIES）；X1/TX 千卡/万卡交付中的模型跑通、profile、优化和迭代达标闭环。
+2. **简历项目**：Fully Async RLVR 相比同步的系统优势、`76 -> 211-255 tokens/s/GPU` 的正确口径和配置配平；AReaL Agentic RL 三层泳道链路及瓶颈；OPD/MOPD 的多 expert 能力汇聚背景、用户明确的 TILE merge 基线命名和训练/验证方法（不得擅自改写成 TIES）；X1/TX 千卡/万卡交付中的模型跑通、profile、优化和迭代达标闭环。
 3. **框架选型**：VeRL 与 AReaL 各一句话；最初比较 VeRL、slime、ROLL 后选择 VeRL 的时间点与评估维度；Agentic RL 阶段转向 AReaL 的 fully async、proxy/gateway 和 session 数据链优势；避免声称 VeRL 不支持 async；明确 AReaL gateway 更易改造但外围生产能力仍需补齐。
 4. **Megatron 基础与进阶**：5D 各维的含义、动机、实现、通信和考察方式；Dense/MoE world-size；SP 与 CP；PP bubble、1F1B 和 VPP；Parallel Folding；Megatron 训练显存账本和 OOM 生命周期定位。
 5. **通信算子**：Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll、Send/Recv、Barrier、AllToAllV 的输入输出、版本/API 边界、5D/DistOpt/FSDP 场景、性能与正确性排障。
@@ -68,6 +68,58 @@
 仓库命名、Git 操作、文档存储位置等元讨论不属于面试材料，不进入主面试手册。
 
 主文档已有题目采用“补强而非重复新增”的方式：例如扩写现有 `AREAL-01` 的 VeRL/slime/ROLL 选型背景，扩写现有 `INFRA-04` 的通信算子答案，复核 `MEGATRON-01/04/07`、`RESUME-01A/01B/01C/02/08/09/10` 是否覆盖本会话最终口径。
+
+#### TILE merge 事实门禁
+
+主文档当前仍存在多处 `TIES-Merging`、TIES 三步机制和对应论文引用，不能做字符串级重命名。实施时必须：
+
+1. 全文件把项目 baseline 统一为用户确认的 `TILE merge`；
+2. 删除所有只属于 TIES-Merging 的 trim/elect/sign merge 机制、论文引用和比较结论；
+3. TILE 只写用户已确认的项目事实：多个分别 RL 训练得到的 experts 需要汇聚能力，直接 model merge 效果不佳，因而转向以不同 expert 为 teachers、RL 前模型为 student、在对应 RL 数据上做 OPD/MOPD；
+4. 未得到用户进一步确认前，不发明 TILE 的算法展开、权重公式或论文来源；
+5. 全局验收 `TIES` 零残留，并逐项检查 P0 索引、`RESUME-09` 正文、追问、危险回答、项目证据卡、最后清单和资料来源。
+
+#### AReaL 三层泳道防回归门禁
+
+`RESUME-08` 保持三层语义，不退化成一条串行 pipeline 或含混的双泳道：
+
+```text
+External evals/Agent producer
+    -> AReaL online proxy/control plane
+    -> Trainer/policy feedback
+```
+
+必须保留以下顺序与状态不变量：
+
+- 外部 Agent/Tool/Sandbox 通过 OpenAI-compatible gateway 建立 session；
+- CohortManager 在 admission 时快照 rollout version；只有 session 同时 rewarded 和 ended、cohort 完整且通过 ready-time staleness gate 才进入 ready；
+- trainer 侧 `OpenAIProxyWorkflow` 消费 ready cohort 并导出/tensorize interactions；
+- PPO update 后先完成 versioned weight sync，成功后再对 actor/critic/rollout `set_version(new_version)`，checkpoint 是独立旁路；
+- SGLang/vLLM 是 `RemoteInfEngine` 后端，Tool/Sandbox 属于外部 Agent/environment，不写成 AReaL 固定 stage。
+
+#### 当前会话原子覆盖矩阵
+
+| 原子项 | 目标题号/章节 | 必须保留的事实、数字或公式 | 事实来源 | 禁止声称 | 实施前状态 |
+| --- | --- | --- | --- | --- | --- |
+| 教育背景与自我介绍 | `RESUME-01` | 厦大本科、清华硕士一句话；两条 Infra 主线 | 简历/用户确认 | 教育背景展开过长 | 已有，复核 |
+| X1 代表性优化 | `RESUME-01A` | 约 200B MoE、`0.16x -> 0.95x`、MFU 35%、3K 卡；并行、Grouped MatMul、融合、overlap 闭环 | 简历/用户确认 | 把 2026 新技术倒灌为当时事实 | 已有，复核 |
+| Ownership | `RESUME-01B` | `Scope -> Decision -> Execution -> Coordination -> Outcome`，拆开个人/团队/开源贡献 | 用户确认 | “所有代码都是我写的” | 已有，复核 |
+| 职业选择 | `RESUME-01C` | 华为部门搬迁上海、深圳长期规划、扩展通用 GPU/RL 技术栈；当前组织调整；只看深圳 | 用户确认 | 主动展开结婚生娃买房；负面评价原公司 | 已有，复核 |
+| Fully Async 主故事 | `RESUME-02/03`、`VERL-04` | 初始 `76`，优化稳态 `211-255 tokens/s/GPU`；`236-293` 仅为 `2T+2R` 候选窗口；先讲 sync barrier/长尾，再讲资源与配置配平 | 用户/项目底稿 | 把 `76 -> 211-255` 说成 sync-to-async 3x；同步约 200 未同 workload 闭环前报倍数 | 已有，补门禁 |
+| AReaL Agentic RL 链路 | `RESUME-08`、`AREAL-02/03/04` | 三层泳道、rewarded+ended complete cohort、ready staleness、OpenAIProxyWorkflow export、weight sync 后 set_version | AReaL 源码审查/项目事实 | 串行单链；version 在 sync 前；Tool/Sandbox 是固定组件 | 已有，防回归 |
+| MOPD 背景与方法 | `RESUME-09`、卡 5 | 不同数据分别 RL 得到多个 experts；TILE merge 效果不佳；RL 前模型为 student、experts 为 teachers、对应 RL 数据做 OPD/MOPD | 用户确认 | TIES 机制/论文；未闭环的最终效果 | 待迁移 |
+| 千卡/万卡交付 | `RESUME-10/16` | X1/TX 国产卡适配：跑通 -> 采集 -> 定位 -> 优化 -> 验证 -> 迭代达标 | 用户确认 | 只说“保障集群”不讲个人动作 | 已有，复核 |
+| 5D 并行 | `MEGATRON-01` | DP/TP/PP/CP/EP 的动机、切分、通信、代价；Dense `W=TP*PP*CP*DP` | 官方资料/用户要求 | 无条件写 `W=TP*PP*CP*DP*EP`；SP 作为独立维度 | 已有，补展开 |
+| SP 与 CP | `MEGATRON-04` | SP 依附 TP、局部 activation layout；CP 独立、切全 context/activation、Attention 交换 KV | 官方文档/用户确认回答 | “二者都切 sequence 所以等价” | 已有，复核原句 |
+| PP/VPP | `MEGATRON-01/07` | `bubble/useful=(p-1)/m`；总时间占比 `(p-1)/(m+p-1)`；VPP 理想再除 `v`，但增加 P2P/调度 | Megatron 论文/用户要求 | microbatch 越多永远越好 | 已有，复核 |
+| Parallel Folding | `MEGATRON-01`、`topics/moe.md` | `TP*CP*DP=ETP*EP*EDP`（每 PP stage）；8-rank `2*2*2=1*8*1`；256 GPU `4*2*8*4=1*64*1*4` | NVIDIA 报告/官方指南 | 两套 mesh 相乘；整个 MoE layer 都属于 expert mesh | 已有，补 topic |
+| Megatron 显存账本 | `INFRA-02` | per-rank persistent/transient、dtype、TP/PP/EP、`d_dense=DP*CP`、activation/PP in-flight、通信/workspace、生命周期峰值 | 官方代码/用户确认方案 A | 机械使用 `16/d`；把所有阶段峰值相加 | 已有，复核 |
+| VeRL 初始选型 | `AREAL-01`、三框架速查 | 最初比较 VeRL/slime/ROLL；当时按训练后端、RLVR 完整度、rollout、权重同步、稳定性、二开成本选择 VeRL | 用户确认/对应版本官方资料 | 对今天的 slime/ROLL 作永久排名 | 待补 |
+| VeRL -> AReaL | `AREAL-01/03` | VeRL 标准后训练成熟；Agentic RL 时 AReaL fully async、OpenAI proxy/gateway、session/trajectory 更匹配；gateway 好改但外围能力需补 | 用户确认/官方资料 | “VeRL 只能同步”“AReaL 所有方面更先进” | 待补 |
+| 通信算子 | `INFRA-04`、`topics/nccl.md` | 常见 collective/P2P 的输入输出；NCCL 2.31.2 API；DistOpt/FSDP 生命周期；AllToAllV/Barrier 边界 | NCCL/PyTorch 官方资料 | 把语义等价当 bitwise 等价；混淆 gradient 与 parameter tensor | 待扩写 |
+| PDF 与版本资料 | `继续阅读/资料来源` | 五份 NVIDIA MoE 译文入口；Megatron/VeRL/AReaL/NCCL 版本边界 | 仓库文件/官方资料 | 孤立文件无入口；把当前版本倒推项目版本 | 已有，补 NCCL |
+
+实施完成后将“实施前状态”逐项更新为已验证，且用 `rg` 检查关键数字、术语、禁止词和锚点；不能只凭人工通读声明无遗漏。
 
 ### 通信算子详细知识源
 
