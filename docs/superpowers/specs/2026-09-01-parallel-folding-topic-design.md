@@ -25,11 +25,13 @@
 - 面试从定义、通信、组合、场景设计到项目证据的五层考察方式；
 - 指向各单项 topic 的相对链接。
 
+其中，5D 总览只维护 SP/CP 的简要比较和组合边界；`sequence_parallelism.md` 与 `context_parallelism.md` 分别维护 activation 切分、tensor layout、KV exchange 等机制细节。
+
 ### Parallel Folding 详细知识源
 
 `training-infra-roadmap/topics/moe.md` 是本知识点的唯一详细知识源。新增内容覆盖：
 
-- SP 与 CP 的语义边界及组合后的 tensor shape；
+- 解释 Folding 等式所需的 SP/CP 前置结论及指向 5D、SP、CP 专题的回链，不维护第三套机制细节；
 - Dense/Attention 与 MoE/Expert 两套逻辑网格；
 - world-size 等式和传统 nested layout 的适用边界；
 - 8-rank 概念例和 NVIDIA 256-GPU 官方例；
@@ -48,6 +50,17 @@
 - 指向 topic 详细章节的相对链接。
 
 已有 `private_resume/2026-08-llm-infra-interview-prep.md` 不重复扩写，避免形成多个内容近似但容易漂移的详细版本。本次不新建额外 topic/interview 文件。
+
+### 双向链接与导航
+
+由于 `distributed_training.md` 被提升为 5D 组合总览，本次允许对以下现有文件做最小导航修改：
+
+- `data_parallelism.md`、`tensor_parallelism.md`、`pipeline_parallelism.md`、`context_parallelism.md`、`sequence_parallelism.md`、`moe.md` 各增加一条回到 5D 总览的链接；
+- `KNOWLEDGE_GRAPH.md` 增加 5D 总览与各单项 topic、Parallel Folding 的关系；
+- `MASTER_READING_LIST.md` 收录 5D 总览入口；
+- 如 `training-infra-roadmap/README.md` 尚未提供该入口，增加一条导航链接。
+
+这些修改只改变导航，不在各单项 topic 重复 5D 正文。
 
 ## 内容架构
 
@@ -73,17 +86,17 @@ world_size = TP x PP x CP x DP
 
 同时明确 `SP` 不乘入 world size，`EP` 在传统 nested layout 或 Parallel Folding 下也不能不加判断地再乘一次。
 
-### 2. 前置概念：SP 与 CP
+### 2. SP 与 CP：内容所有权和面试回答
 
-先回答两者“都切 sequence，为什么不是一回事”：
+`distributed_training.md` 用简表回答两者“都切 sequence，为什么不是一回事”：
 
 - SP 是 TP group 内的 activation layout 优化，没有独立 size，不乘入 world size；
 - SP 主要分摊 LayerNorm、Dropout、Residual 等在 TP ranks 间重复的 activation，并用 all-gather/reduce-scatter 衔接 TP Linear；
 - CP 是独立并行维度，从输入开始持久切分 context 和网络 activation；
 - Attention 的跨 token 依赖要求 CP ranks 交换 KV；
-- TP=T、CP=C 且开启 SP 时，部分 sequence-parallel activation 可抽象为 `[S/(C*T), B, H]`，但 Attention 的有效上下文仍为全局 `S`。
+- TP=T、CP=C 且开启 SP 时，部分 sequence-parallel activation 可抽象为 `[S/(C*T), B, H]`，但 Attention 的有效上下文仍为全局 `S`；具体 tensor layout 和通信实现回链 SP/CP 单项专题。
 
-这里用一张对比表和一个小型 Mermaid 数据流图解释，不把具体 kernel/fusion 实现固定成唯一 tensor layout。
+`moe.md` 只保留“SP 不进入 world size、CP 进入 Attention mesh”的一段结论，用于解释 Parallel Folding 公式，不放完整对比表和 SP/CP Mermaid。
 
 面试手册保留下列可直接口述的核心回答：
 
@@ -212,9 +225,10 @@ Attention logical mesh     Expert logical mesh
 ## 验收标准
 
 - `topics/distributed_training.md` 能独立回答 5D 各维的含义、动机、切分方法、通信、代价、组合和面试考察方式，并回链单项专题；
-- `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP；
+- `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP，但不复制 SP/CP 机制细节；
 - 8-rank 与 256-GPU 示例算术正确，两套逻辑网格没有被误乘；
 - `interview/moe.md` 的 5D、Parallel Folding、CP/SP 三道题可在 3-5 分钟内口述，并回链到 topic；
+- DP/TP/PP/CP/SP/MoE 单项 topic 都能回到 5D 总览；`KNOWLEDGE_GRAPH.md`、`MASTER_READING_LIST.md` 和必要时的 handbook README 已更新导航；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
 - 不改动无关文档，不重复扩写 private resume 主面试文档。
