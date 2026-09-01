@@ -2,7 +2,7 @@
 
 ## 目标
 
-把 Megatron 5D 并行及 Parallel Folding 从面试文档中的零散解释，提升为可长期维护的工程知识章节：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，并在 `training-infra-roadmap/interview/moe.md` 提供 3-5 分钟面试回答与回链。
+把当前会话中所有与面试有关的项目表达、框架选型和训练 Infra 知识完整汇总进 `private_resume/2026-08-llm-infra-interview-prep.md`，同时把可复用知识沉淀到 handbook：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，`training-infra-roadmap/topics/nccl.md` 负责通信算子，公开 interview 文档提供精炼回答与回链。
 
 章节需要让读者回答六个核心问题：
 
@@ -50,7 +50,24 @@
 - 每题的考察意图、3-5 分钟回答、追问、错误回答；
 - 指向 topic 详细章节的相对链接。
 
-已有 `private_resume/2026-08-llm-infra-interview-prep.md` 不重复扩写，避免形成多个内容近似但容易漂移的详细版本。本次不新建额外 topic/interview 文件。
+本次不新建额外 topic/interview 文件。
+
+### 主面试文档汇总
+
+`private_resume/2026-08-llm-infra-interview-prep.md` 是面向本次求职的完整阅读入口。它需要保留可独立口述的答案，不能只用 handbook 链接替代正文；handbook topic 负责进一步展开和长期维护。
+
+实施前按当前会话做逐项覆盖审计：
+
+1. **自我介绍与职业选择**：教育背景一句话；华为 X1 约 200B MoE 代表性优化；Ownership 的定义和 `Scope -> Decision -> Execution -> Coordination -> Outcome`；华为部门搬迁上海、深圳长期规划、技术栈扩展；小鹏组织调整和只看深圳的边界表达。
+2. **简历项目**：Fully Async RLVR 相比同步的系统优势、`76 -> 211-255 tokens/s/GPU` 的正确口径和配置配平；AReaL Agentic RL 双泳道链路及瓶颈；OPD/MOPD 的多 expert 能力汇聚背景、用户明确的 TILE merge 基线命名和训练/验证方法（不得擅自改写成 TIES）；X1/TX 千卡/万卡交付中的模型跑通、profile、优化和迭代达标闭环。
+3. **框架选型**：VeRL 与 AReaL 各一句话；最初比较 VeRL、slime、ROLL 后选择 VeRL 的时间点与评估维度；Agentic RL 阶段转向 AReaL 的 fully async、proxy/gateway 和 session 数据链优势；避免声称 VeRL 不支持 async；明确 AReaL gateway 更易改造但外围生产能力仍需补齐。
+4. **Megatron 基础与进阶**：5D 各维的含义、动机、实现、通信和考察方式；Dense/MoE world-size；SP 与 CP；PP bubble、1F1B 和 VPP；Parallel Folding；Megatron 训练显存账本和 OOM 生命周期定位。
+5. **通信算子**：Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll、Send/Recv、Barrier、AllToAllV 的输入输出、版本/API 边界、5D/DistOpt/FSDP 场景、性能与正确性排障。
+6. **资料与版本边界**：仓库内五份 NVIDIA MoE 译文入口；Megatron、VeRL、AReaL、NCCL 官方资料；项目发生版本与当前 upstream 能力分开描述。
+
+仓库命名、Git 操作、文档存储位置等元讨论不属于面试材料，不进入主面试手册。
+
+主文档已有题目采用“补强而非重复新增”的方式：例如扩写现有 `AREAL-01` 的 VeRL/slime/ROLL 选型背景，扩写现有 `INFRA-04` 的通信算子答案，复核 `MEGATRON-01/04/07`、`RESUME-01A/01B/01C/02/08/09/10` 是否覆盖本会话最终口径。
 
 ### 通信算子详细知识源
 
@@ -264,4 +281,5 @@ Attention logical mesh     Expert logical mesh
 - DP/TP/PP/CP/SP/MoE 单项 topic 都能回到 5D 总览；`KNOWLEDGE_GRAPH.md`、`MASTER_READING_LIST.md` 和必要时的 handbook README 已更新导航；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
-- 不改动无关文档，不重复扩写 private resume 主面试文档。
+- `private_resume/2026-08-llm-infra-interview-prep.md` 通过上述六类覆盖审计；每项都有可独立口述答案，链接只承担延伸阅读；
+- 保留工作区既有未提交内容，不覆盖或误提交来源不明的修改；不改动无关文档。
