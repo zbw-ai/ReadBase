@@ -23,8 +23,9 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-08-30](frontier_scan_2026-08-30.md)：当前最新扫描，覆盖到 2026-08-30 21:04:46；重点包括 NeMo RL generation-shard recovery、AReaL truncation/GAE correctness、RL-for-LLM 并行性能方法论与长上下文 VPP。
-- [Frontier Scan 2026-08-28](frontier_scan_2026-08-28.md)：上一份扫描，覆盖到 2026-08-28 10:24:25；重点包括 OpenAI-Hugging Face incident technical report、psRL、Granite 4.2 异步 GRPO/128K 工业配方与 verl Liger fused PPO kernel。
+- [Frontier Scan 2026-09-01](frontier_scan_2026-09-01.md)：当前最新扫描，覆盖到 2026-09-01 11:31:29；重点包括 Anthropic RL environment 治理、HARTS rollout-tree prefix sharing、CE-MoE、verl weight-sync admission gate 与 Megatron variable-length packing。
+- [Frontier Scan 2026-08-30](frontier_scan_2026-08-30.md)：上一份扫描，覆盖到 2026-08-30 21:04:46；重点包括 NeMo RL generation-shard recovery、AReaL truncation/GAE correctness、RL-for-LLM 并行性能方法论与长上下文 VPP。
+- [Frontier Scan 2026-08-28](frontier_scan_2026-08-28.md)：前一份扫描，覆盖到 2026-08-28 10:24:25；重点包括 OpenAI-Hugging Face incident technical report、psRL、Granite 4.2 异步 GRPO/128K 工业配方与 verl Liger fused PPO kernel。
 - [Frontier Scan 2026-08-26](frontier_scan_2026-08-26.md)：前一份扫描，覆盖到 2026-08-26 10:22:05；收录 OpenAI Jalapeño、Microsoft Maia 200 与 GPU Synchronization Tax，核心判断聚焦 hardware-software co-design、data movement 与 rank arrival skew。
 - [Frontier Scan 2026-08-24](frontier_scan_2026-08-24.md)：前一份扫描，覆盖到 2026-08-24 09:32:12；重点包括 FlashPrefill V2、CacheRoute、ReCache、verl trainer-GPU lending、AReaL AdamW delta transfer、vLLM Sharded RDT、SGLang DeepSeek-V4 Q8KV8、NeMo RL CPU RDMA 与 NVIDIA MaxLPS。
 - [Frontier Scan 2026-08-20](frontier_scan_2026-08-20.md)：前一份扫描，覆盖到 2026-08-20 10:21:56；重点包括 Agent Lightning v1.0、LEGO-RL、NeMo RL async recovery、TRL Async Distillation、Open-MOPD、Megatron multi-turn packing correctness 与 AReaL Qwen3-VL AWEX colocation。
@@ -37,6 +38,7 @@
 - [Frontier Scan 2026-07-28](frontier_scan_2026-07-28.md)：7 月最后一份独立扫描，覆盖到 2026-07-28 16:58。
 - [Frontier Scan Template](frontier_scan_template.md)：灵活执行的最新前沿扫描模板，从上次扫描游标扫到本次实际扫描结束时刻。
 - [Monthly Signal Report Template](monthly_signal_report_template.md)：每月输出上个月的高质量正式信号沉淀。
+- [Monthly Signal 2026-08](monthly_signal_2026-08.md)：2026 年 8 月工程判断，聚焦 Agent environment、异步正确性/恢复、长上下文调度、状态搬运与 MoE 联合设计。
 - [Monthly Signal 2026-07](monthly_signal_2026-07.md)：2026 年 7 月工程判断与工业证据月报。
 - [Monthly Signal 2026-06](monthly_signal_2026-06.md)：2026 年 6 月高质量前沿信号沉淀。
 - [Monthly Signal 2026-05](monthly_signal_2026-05.md)：2026 年 5 月高质量前沿信号沉淀。

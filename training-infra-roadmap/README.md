@@ -107,8 +107,8 @@ NVIDIA 88 页技术报告 `Scalable Training of Mixture-of-Experts Models with M
 - [Tracking Radar](tracking/README.md)
 - [Scan Log](tracking/scan_log.md)
 - [Frontier Scan Template](tracking/frontier_scan_template.md)
-- [Frontier Scan 2026-07-04](tracking/frontier_scan_2026-07-04.md)
-- [Frontier Scan 2026-07-07](tracking/frontier_scan_2026-07-07.md)
+- [Frontier Scan 2026-09-01](tracking/frontier_scan_2026-09-01.md)：当前最新扫描
+- [Monthly Signal 2026-08](tracking/monthly_signal_2026-08.md)：8 月高质量工程主线汇总
 - [Historical Backfill](tracking/historical_backfill.md)
 - [Backfill By Month](tracking/backfill/README.md)
 - [Weekly Signal 2026-W26](tracking/weekly_signal_2026-W26.md)：本周无合格前沿信号的修正记录
