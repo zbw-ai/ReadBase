@@ -1,8 +1,8 @@
-# Parallel Folding 工程知识章节设计
+# 大模型训练推理 Infra 面试主文档与专题知识设计
 
 ## 目标
 
-把当前会话中所有与面试有关的项目表达、框架选型和训练 Infra 知识完整汇总进 `private_resume/2026-08-llm-infra-interview-prep.md`，同时把可复用知识沉淀到 handbook：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，`training-infra-roadmap/topics/nccl.md` 负责通信算子，公开 interview 文档提供精炼回答与回链。
+把当前会话中所有与面试有关的项目表达、框架选型和训练 Infra 知识完整汇总进 `private_resume/2026-08-llm-infra-interview-prep.md`，把它建设成一份按优先级和三天准备节奏组织的系统面试框架；同时把可复用原理沉淀到 handbook：`training-infra-roadmap/topics/distributed_training.md` 负责 5D 总览，`training-infra-roadmap/topics/moe.md` 负责 Parallel Folding，`training-infra-roadmap/topics/nccl.md` 负责通信算子，公开 interview 文档提供精炼回答与回链。
 
 章节需要让读者回答六个核心问题：
 
@@ -54,7 +54,21 @@
 
 ### 主面试文档汇总
 
-`private_resume/2026-08-llm-infra-interview-prep.md` 是面向本次求职的完整阅读入口。它需要保留可独立口述的答案，不能只用 handbook 链接替代正文；handbook topic 负责进一步展开和长期维护。
+`private_resume/2026-08-llm-infra-interview-prep.md` 是面向本次求职的完整阅读入口和系统准备框架，而不是专题原理的全文合集。它需要让读者在不跳转的情况下完成第一轮口述准备，但不能把 topic 的长篇原理机械复制进来。
+
+主文档采用以下信息架构：
+
+1. **开篇使用说明**：明确岗位、三天倒计时、回答口径和数字边界；给出“今天先看什么”的最短路径。
+2. **P0：最高频、最关键、最贴简历**：自我介绍、代表性优化、Ownership、职业选择、Fully Async RLVR、AReaL Agentic RL、MOPD/TILE、千卡/万卡交付、Megatron 5D/显存/通信基本盘。P0 必须排在最前，支持第一天完整过一遍。
+3. **P1：高概率技术深挖**：VeRL/AReaL 框架选型、SP/CP、PP/VPP、Parallel Folding、collective、checkpoint/容错、性能分析方法等，供第二天补强。
+4. **P2：扩展与压力追问**：更细的框架源码、边界场景、系统设计和开放题，供第三天查漏补缺。
+5. **项目证据卡与最后清单**：统一数字、个人贡献边界、危险说法、反问面试官以及面试前快速复习入口。
+
+每道题统一使用紧凑模板：`问题 -> 优先级/建议时长 -> 面试官意图 -> 30 秒结论 -> 2-5 分钟精准回答 -> 项目证据或知识边界 -> 高频追问 -> 危险回答 -> 深入阅读`。简单问题不强行填满全部字段；复杂题把首屏答案控制在可口述范围，推导、图解、配置表、排障细节放入对应 topic，并在题目结尾提供语义明确的就近链接。主文档链接必须是补充阅读，不能代替核心答案。
+
+排序以“命中率 × 简历相关性 × 区分度 × 临场失分风险”为准，而不是按知识学科顺序排列。相同知识只保留一个主答案，其余题目用锚点回链，避免重复和口径漂移。P0/P1/P2 标记、目录、三天学习路径和正文顺序必须一致；不能出现目录写 P0、正文却埋在文末的情况。
+
+专题文档承担完整机制、公式推导、运行时数据流、配置建议、生产陷阱和排障；主文档只保留面试所需的结论、关键公式、项目证据和回答边界。主文档中的每个“深入阅读”链接都要能自然落到对应小节，而不是只链接到一个很长文件的顶部。
 
 实施前按当前会话做逐项覆盖审计：
 
@@ -77,7 +91,7 @@
 2. 删除所有只属于 TIES-Merging 的 trim/elect/sign merge 机制、论文引用和比较结论；
 3. TILE 只写用户已确认的项目事实：多个分别 RL 训练得到的 experts 需要汇聚能力，直接 model merge 效果不佳，因而转向以不同 expert 为 teachers、RL 前模型为 student、在对应 RL 数据上做 OPD/MOPD；
 4. 未得到用户进一步确认前，不发明 TILE 的算法展开、权重公式或论文来源；
-5. 全局验收 `TIES` 零残留，并逐项检查 P0 索引、`RESUME-09` 正文、追问、危险回答、项目证据卡、最后清单和资料来源。
+5. 仅针对主面试文档执行 `rg -n "TIES" private_resume/2026-08-llm-infra-interview-prep.md` 并要求零残留；逐项检查 P0 索引、`RESUME-09` 正文、追问、危险回答、项目证据卡、最后清单和资料来源。规格中的迁移说明可以保留 `TIES`，不能对全仓库错误执行零残留门禁。
 
 #### AReaL 三层泳道防回归门禁
 
@@ -94,7 +108,7 @@ External evals/Agent producer
 - 外部 Agent/Tool/Sandbox 通过 OpenAI-compatible gateway 建立 session；
 - CohortManager 在 admission 时快照 rollout version；只有 session 同时 rewarded 和 ended、cohort 完整且通过 ready-time staleness gate 才进入 ready；
 - trainer 侧 `OpenAIProxyWorkflow` 消费 ready cohort 并导出/tensorize interactions；
-- PPO update 后先完成 versioned weight sync，成功后再对 actor/critic/rollout `set_version(new_version)`，checkpoint 是独立旁路；
+- optimizer/PPO update 后先完成 versioned weight transfer，成功后再按项目实际 API 推进 policy/rollout version；不在缺少当前版本源码证据时枚举 actor/critic/rollout 对象，checkpoint 是独立旁路；
 - SGLang/vLLM 是 `RemoteInfEngine` 后端，Tool/Sandbox 属于外部 Agent/environment，不写成 AReaL 固定 stage。
 
 #### 当前会话原子覆盖矩阵
@@ -107,19 +121,28 @@ External evals/Agent producer
 | 职业选择 | `RESUME-01C` | 华为部门搬迁上海、深圳长期规划、扩展通用 GPU/RL 技术栈；当前组织调整；只看深圳 | 用户确认 | 主动展开结婚生娃买房；负面评价原公司 | 已有，复核 |
 | Fully Async 主故事 | `RESUME-02/03`、`VERL-04` | 初始 `76`，优化稳态 `211-255 tokens/s/GPU`；`236-293` 仅为 `2T+2R` 候选窗口；先讲 sync barrier/长尾，再讲资源与配置配平 | 用户/项目底稿 | 把 `76 -> 211-255` 说成 sync-to-async 3x；同步约 200 未同 workload 闭环前报倍数 | 已有，补门禁 |
 | AReaL Agentic RL 链路 | `RESUME-08`、`AREAL-02/03/04` | 三层泳道、rewarded+ended complete cohort、ready staleness、OpenAIProxyWorkflow export、weight sync 后 set_version | AReaL 源码审查/项目事实 | 串行单链；version 在 sync 前；Tool/Sandbox 是固定组件 | 已有，防回归 |
-| MOPD 背景与方法 | `RESUME-09`、卡 5 | 不同数据分别 RL 得到多个 experts；TILE merge 效果不佳；RL 前模型为 student、experts 为 teachers、对应 RL 数据做 OPD/MOPD | 用户确认 | TIES 机制/论文；未闭环的最终效果 | 待迁移 |
+| MOPD 背景与方法 | `RESUME-09`、`AREAL-08`、卡 5 | 不同数据分别 RL 得到多个 experts；TILE merge 效果不佳；RL 前模型为 Student、experts 为冻结 Teachers、对应 RL 数据做 OPD/MOPD；Student rollout，Teacher 对 Student 同一 token path scoring；Teacher 按 `data_source` 路由且只存在于训练期，最终 Student 推理不依赖 Teacher；保留 FUNCTIONAL/NUMERIC/EFFICACY 三层门禁、项目限定的 Teacher headroom Go/No-Go 和个人 PR/设计/实验贡献证据 | 用户确认/项目底稿 | TIES 机制/论文；Teacher 重新生成答案；最终推理依赖路由；用 loss 或 early canary 声称最终多域效果；把项目能力全部说成个人实现 | 待迁移 |
 | 千卡/万卡交付 | `RESUME-10/16` | X1/TX 国产卡适配：跑通 -> 采集 -> 定位 -> 优化 -> 验证 -> 迭代达标 | 用户确认 | 只说“保障集群”不讲个人动作 | 已有，复核 |
 | 5D 并行 | `MEGATRON-01` | DP/TP/PP/CP/EP 的动机、切分、通信、代价；Dense `W=TP*PP*CP*DP` | 官方资料/用户要求 | 无条件写 `W=TP*PP*CP*DP*EP`；SP 作为独立维度 | 已有，补展开 |
 | SP 与 CP | `MEGATRON-04` | SP 依附 TP、局部 activation layout；CP 独立、切全 context/activation、Attention 交换 KV | 官方文档/用户确认回答 | “二者都切 sequence 所以等价” | 已有，复核原句 |
-| PP/VPP | `MEGATRON-01/07` | `bubble/useful=(p-1)/m`；总时间占比 `(p-1)/(m+p-1)`；VPP 理想再除 `v`，但增加 P2P/调度 | Megatron 论文/用户要求 | microbatch 越多永远越好 | 已有，复核 |
+| PP/VPP | `MEGATRON-01/07` | classic interleaved 1F1B、forward/backward 与 model chunks 近似均衡时，`bubble/useful=(p-1)/m`，总时间占比 `(p-1)/(m+p-1)`，VPP 理想再除 `v`；同时保留 microbatch/layer divisibility 或 custom pipeline layout 条件，以及增加 P2P/调度/负载不均的代价 | Megatron 论文/用户要求 | 把理想公式用于不均衡 stage；microbatch 越多永远越好；忽略 layout 整除约束 | 已有，补条件 |
 | Parallel Folding | `MEGATRON-01`、`topics/moe.md` | `TP*CP*DP=ETP*EP*EDP`（每 PP stage）；8-rank `2*2*2=1*8*1`；256 GPU `4*2*8*4=1*64*1*4` | NVIDIA 报告/官方指南 | 两套 mesh 相乘；整个 MoE layer 都属于 expert mesh | 已有，补 topic |
-| Megatron 显存账本 | `INFRA-02` | per-rank persistent/transient、dtype、TP/PP/EP、`d_dense=DP*CP`、activation/PP in-flight、通信/workspace、生命周期峰值 | 官方代码/用户确认方案 A | 机械使用 `16/d`；把所有阶段峰值相加 | 已有，复核 |
+| Megatron 显存账本 | `INFRA-02` | per-rank persistent/transient；保留官方 dtype 表：FP16/FP16 `20` 与 `4+16/d`、BF16/FP32 `18` 与 `6+12/d`、FP32/FP32 `16` 与 `8+8/d` bytes/param；单 Distributed Optimizer instance 时 Dense `d=DP*CP`、Expert `d=EDP`，多 instances 分别取实际 `intra_dp_cp`/`intra_expt_dp` group size；再计 activation/PP in-flight、通信/workspace 和生命周期峰值 | 官方代码/用户确认方案 A | 无条件写 `d_dense=DP*CP`；机械使用 `16/d`；把所有阶段峰值相加 | 已有，复核 |
 | VeRL 初始选型 | `AREAL-01`、三框架速查 | 最初比较 VeRL/slime/ROLL；当时按训练后端、RLVR 完整度、rollout、权重同步、稳定性、二开成本选择 VeRL | 用户确认/对应版本官方资料 | 对今天的 slime/ROLL 作永久排名 | 待补 |
 | VeRL -> AReaL | `AREAL-01/03` | VeRL 标准后训练成熟；Agentic RL 时 AReaL fully async、OpenAI proxy/gateway、session/trajectory 更匹配；gateway 好改但外围能力需补 | 用户确认/官方资料 | “VeRL 只能同步”“AReaL 所有方面更先进” | 待补 |
 | 通信算子 | `INFRA-04`、`topics/nccl.md` | 常见 collective/P2P 的输入输出；NCCL 2.31.2 API；DistOpt/FSDP 生命周期；AllToAllV/Barrier 边界 | NCCL/PyTorch 官方资料 | 把语义等价当 bitwise 等价；混淆 gradient 与 parameter tensor | 待扩写 |
 | PDF 与版本资料 | `继续阅读/资料来源` | 五份 NVIDIA MoE 译文入口；Megatron/VeRL/AReaL/NCCL 版本边界 | 仓库文件/官方资料 | 孤立文件无入口；把当前版本倒推项目版本 | 已有，补 NCCL |
 
 实施完成后将“实施前状态”逐项更新为已验证，且用 `rg` 检查关键数字、术语、禁止词和锚点；不能只凭人工通读声明无遗漏。
+
+#### 主文档结构验收门禁
+
+- P0 内容必须覆盖上表中全部简历主线，并位于 P1/P2 之前；前三小时至少能完成自我介绍、X1、Ownership、Fully Async、AReaL、MOPD/TILE、5D 与显存八个核心主题。
+- 每道 P0 题必须有一句可先说出口的结论；完整回答默认 2-5 分钟，只有标注为系统设计/深挖的题目才允许更长。
+- 主文档不得用一整页原理背景挤压回答本身；超过口述需要的机制细节迁入 topic，并保留关键结论和定向锚点链接。
+- 对同一事实只维护一个权威口径：吞吐数字、world-size 公式、PP bubble、显存 bytes/param、AReaL version 顺序和 TILE 命名必须全文件一致。
+- `目录 -> 三天计划 -> 正文 -> 项目证据卡 -> 最后清单` 五处的题号、优先级和术语必须互相校验；随机从任一题进入时，都能回到上一级主题或进入对应专题。
+- 所有新增相对链接和锚点必须通过脚本检查；深入链接至少抽查一次目标小节，而不只检查目标文件存在。
 
 ### 通信算子详细知识源
 
