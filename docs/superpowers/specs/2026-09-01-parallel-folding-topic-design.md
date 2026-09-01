@@ -73,6 +73,7 @@
 
 - `data_parallelism.md`、`tensor_parallelism.md`、`pipeline_parallelism.md`、`context_parallelism.md`、`sequence_parallelism.md`、`moe.md` 各增加一条回到 5D 总览的链接；
 - `distributed_training.md` 增加到 `nccl.md` 的通信语言入口，`nccl.md` 回链 5D 总览；
+- `topics/nccl.md` 与 `interview/tensor_parallelism.md` 的通信算子综合题保持双向链接；
 - `KNOWLEDGE_GRAPH.md` 增加 5D 总览与各单项 topic、Parallel Folding 的关系；
 - `MASTER_READING_LIST.md` 收录 5D 总览入口；
 - 如 `training-infra-roadmap/README.md` 尚未提供该入口，增加一条导航链接。
@@ -87,7 +88,7 @@
 
 | 维度 | 切分对象 | 主要动机 | 核心通信 | 主要代价 |
 | --- | --- | --- | --- | --- |
-| DP | batch/sample | 扩展吞吐 | gradient all-reduce，或 reduce-scatter + all-gather | 模型状态复制、跨节点带宽 |
+| DP | batch/sample | 扩展吞吐 | classic DP 使用 gradient AllReduce；sharded DP 见 Distributed Optimizer/FSDP 生命周期 | 模型状态复制或分片、跨节点带宽 |
 | TP | 单层 hidden/head/tensor | 单层容量和计算 | 每层 all-reduce/all-gather/reduce-scatter | 高频通信、小 GEMM |
 | PP | Transformer layers | 整体模型容量 | stage 间 activation/gradient P2P | bubble、stage imbalance |
 | CP | context/sequence | 长上下文 activation | Attention KV exchange | KV 通信和序列负载均衡 |
@@ -100,7 +101,7 @@
 ```text
 classic DP -> gradient AllReduce
 Distributed Optimizer -> gradient ReduceScatter -> local optimizer update -> parameter AllGather
-FSDP -> pre-compute parameter AllGather -> post-backward gradient ReduceScatter / reshard
+FSDP（取决于 sharding strategy；FULL_SHARD 典型路径）-> pre-forward parameter AllGather -> optional post-forward parameter reshard -> pre-backward parameter AllGather -> post-backward gradient ReduceScatter / reshard
 TP  -> layer-level AllReduce / AllGather / ReduceScatter
 PP  -> stage-boundary Send/Recv
 CP  -> Attention KV 的 P2P / AllGather / AllToAll
@@ -259,7 +260,7 @@ Attention logical mesh     Expert logical mesh
 - `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP，但不复制 SP/CP 机制细节；
 - 8-rank 与 256-GPU 示例算术正确，两套逻辑网格没有被误乘；
 - `interview/moe.md` 的 5D、Parallel Folding、CP/SP 三道题可在 3-5 分钟内口述，并回链到 topic；
-- `topics/nccl.md` 能用输入输出语义解释常见 collective/P2P，区分 NCCL 2.31.2 原生 API 与框架/组合语义，给出 5D、Distributed Optimizer、FSDP 使用映射、性能模型和正确性排障；等价关系明确兼容条件和浮点归约边界，AllToAllV 验证 split 总量与逐 peer 收发一致性；`interview/tensor_parallelism.md` 包含可口述的通信算子综合题；
+- `topics/nccl.md` 能用输入输出语义解释常见 collective/P2P，区分 NCCL 2.31.2 原生 API 与框架/组合语义，给出 5D、Distributed Optimizer、带 sharding-strategy 边界的 FSDP 使用映射、性能模型和正确性排障；等价关系明确兼容条件和浮点归约边界，AllToAllV 验证 split 总量与逐 peer 收发一致性；`interview/tensor_parallelism.md` 包含可口述的通信算子综合题，且与 `topics/nccl.md` 双向链接；
 - DP/TP/PP/CP/SP/MoE 单项 topic 都能回到 5D 总览；`KNOWLEDGE_GRAPH.md`、`MASTER_READING_LIST.md` 和必要时的 handbook README 已更新导航；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
