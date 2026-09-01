@@ -82,11 +82,14 @@ NVIDIA 88 页技术报告 `Scalable Training of Mixture-of-Experts Models with M
 
 第二阶段开始，`topics/` 不再只是概念笔记，而是面向训练平台设计、排障和面试复习的工程手册章节。优先阅读：
 
+- [Megatron 5D Parallelism Engineering Handbook](topics/distributed_training.md)：用 DP/TP/PP/CP/EP 的切分对象、动机、通信和代价建立统一决策框架，并解释 SP、world-size、PP/VPP、拓扑映射和常见面试考法。
 - [Tensor Parallelism Engineering Handbook](topics/tensor_parallelism.md)：解释 TP 解决什么问题、Megatron Column/Row Parallel、forward/backward 通信、NVLink/NVSwitch 拓扑、TP=1/2/4/8 配置建议、NCCL hang/rank mapping/shape mismatch 排障，以及 TP 与 SP/CP/FSDP/MoE/FlashAttention/Checkpoint 的关系。
+- [MoE and Parallel Folding Engineering Handbook](topics/moe.md#parallel-folding)：解释 Attention/Expert 双逻辑网格、world-size、process group、8/256 GPU 示例、token 数据流、拓扑选择和排障。
+- [NCCL and Communication Operators](topics/nccl.md#collective-map)：从输入输出解释常见 collective/P2P，并映射到 5D、Distributed Optimizer、FSDP 和 hang 排障。
 - [Checkpointing Engineering Handbook](topics/checkpointing.md)：解释 checkpoint 为什么是训练 infra 核心问题、full/sharded/distributed/async/incremental/elastic checkpoint 差异、保存内容、Megatron/DeepSpeed/FSDP 差异、容错恢复、存储分层、checksum/validation 和恢复演练。
 - [Agentic RL Infrastructure](topics/agentic_rl.md)：第一条 Research OS 闭环主题，解释 rollout、reward/verifier、policy update、weight sync、trajectory store 和 agent runtime 如何改变训练平台边界。
 - [Agentic for Embodied](topics/agentic_for_embodied.md)：从 Infra 工程师视角梳理 VLA、trajectory data、GPU simulation、robot rollout、edge runtime、sim-to-real 和 safety，并从系统地图推导到可实施的生产平台蓝图。
-- 建设中入口：[FSDP](topics/fsdp.md)、[MoE](topics/moe.md)、[FP8](topics/fp8.md)、[NCCL](topics/nccl.md)。
+- 建设中入口：[FSDP](topics/fsdp.md)、[FP8](topics/fp8.md)。
 
 ## 学习计划与面试入口
 
@@ -94,6 +97,7 @@ NVIDIA 88 页技术报告 `Scalable Training of Mixture-of-Experts Models with M
 - [90 天计划](roadmaps/90_day_plan.md)：建立完整训练系统知识图谱。
 - [一年计划](roadmaps/yearly_plan.md)：成长为高级 AI Training Infra 工程师。
 - [Tensor Parallelism 面试手册](interview/tensor_parallelism.md)
+- [MoE / 5D / Parallel Folding 面试手册](interview/moe.md)
 - [Checkpoint 面试手册](interview/checkpoint.md)
 
 配套索引：

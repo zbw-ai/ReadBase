@@ -96,13 +96,15 @@ flowchart TB
 
     subgraph P["A. 并行切分"]
       M["Megatron-LM"]
+      D5["Megatron 5D Parallelism"]
       TP["Tensor Parallelism"]
       PP["Pipeline Parallelism"]
       DP["Data Parallelism"]
       SP["Sequence / Context Parallel"]
-      M --> TP
-      M --> PP
-      M --> DP
+      M --> D5
+      D5 --> TP
+      D5 --> PP
+      D5 --> DP
       TP --> SP
     end
 
@@ -121,9 +123,10 @@ flowchart TB
 
     subgraph E["D. MoE 稀疏化"]
       MOE["MoE Models"]
+      PF["Parallel Folding"]
       EP["Expert Parallelism"]
       LB["Load Balance"]
-      MOE --> EP --> LB
+      MOE --> PF --> EP --> LB
     end
   end
 
@@ -144,10 +147,12 @@ flowchart TB
   DModel --> FA
   SModel --> EP
   SModel --> MOE
+  D5 --> PF
   TP --> CKPT
   PP --> CKPT
   DP --> CKPT
   TP --> NCCL
+  D5 --> NCCL
   EP --> NCCL
   EP --> CKPT
   CKPT --> FT
@@ -162,10 +167,10 @@ flowchart TB
   classDef moe fill:#fff7ed,stroke:#c9822b,color:#102033,stroke-width:1.5px
   classDef prod fill:#f1f5f9,stroke:#5b677a,color:#102033,stroke-width:1.5px
   class T,DModel,SModel model
-  class M,TP,PP,DP,SP parallel
+  class M,D5,TP,PP,DP,SP parallel
   class Z,F,CKPT state
   class FA,FP8 kernel
-  class MOE,EP,LB moe
+  class MOE,PF,EP,LB moe
   class MS,NCCL,FT,OBS,STORE prod
 ```
 
@@ -201,7 +206,10 @@ flowchart LR
 
 - [Transformer](papers/transformer.md)
 - [Megatron-LM](papers/megatron_lm.md)
+- [Megatron 5D 并行](topics/distributed_training.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md)
+- [MoE 与 Parallel Folding](topics/moe.md#parallel-folding)
+- [NCCL 与通信算子](topics/nccl.md)
 - [Checkpointing](topics/checkpointing.md)
 - [MegaScale](tech_reports/megascale.md)
 
@@ -210,6 +218,8 @@ flowchart LR
 这里保留文字索引，不再强行画进主图。图负责建立方向，索引负责查关系。
 
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
+- [Megatron-LM](papers/megatron_lm.md) ↔ [5D 并行](topics/distributed_training.md) ↔ [DP](topics/data_parallelism.md) / [TP](topics/tensor_parallelism.md) / [PP](topics/pipeline_parallelism.md) / [CP](topics/context_parallelism.md) / [MoE](topics/moe.md)
+- [5D 并行](topics/distributed_training.md) ↔ [Parallel Folding](topics/moe.md#parallel-folding) ↔ [NCCL](topics/nccl.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [NCCL](topics/nccl.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Sequence Parallelism](topics/sequence_parallelism.md) ↔ [Context Parallelism](topics/context_parallelism.md)
 - [Long-context Training](topics/long_context_training.md) ↔ [Context Parallelism](topics/context_parallelism.md) ↔ [FlashAttention](topics/flashattention.md)

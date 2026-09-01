@@ -105,6 +105,8 @@
 
 ## 2. 并行训练
 
+先读统一工程入口：[Megatron 5D 并行](topics/distributed_training.md)。它先建立 DP/TP/PP/CP/EP 的决策框架，再按需要进入各单项专题。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 4 | Megatron-LM 2019 | [Megatron-LM](papers/megatron_lm.md) | Tensor Parallel 的工程起点 |
@@ -176,6 +178,8 @@
 | 15 | FlashAttention-3 | [FlashAttention-3](papers/flashattention3.md) | Hopper/FP8/异步流水 |
 
 ## 5. MoE
+
+先读工程手册章节：[MoE 与 Parallel Folding](topics/moe.md#parallel-folding)，重点理解同一批物理 ranks 上的 Attention/Expert 双逻辑网格、token AllToAll 数据流和拓扑代价。
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|

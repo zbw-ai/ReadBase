@@ -81,4 +81,4 @@ Research OS v1.0 进入使用期，近期只保留 3 个焦点：
 
 - [Agentic RL / Rollout Infra](training-infra-roadmap/topics/agentic_rl.md)：把 frontier scan、P0 精读、insight 和 playbook 跑成闭环。
 - [Long-context Training Infra](training-infra-roadmap/topics/long_context_training.md)：围绕 pretraining / SFT / RL 的长上下文训练、CP、packing、checkpoint 和 rollout latency 建立工程判断。
-- [Megatron / CP / Checkpointing](training-infra-roadmap/topics/checkpointing.md)：继续用 [Tensor Parallelism](training-infra-roadmap/topics/tensor_parallelism.md) 与 checkpointing 两篇旗舰章节作为训练系统主线。
+- [Megatron 5D / MoE / Communication](training-infra-roadmap/topics/distributed_training.md)：从 5D 总览进入 [Parallel Folding](training-infra-roadmap/topics/moe.md#parallel-folding)、[NCCL 通信算子](training-infra-roadmap/topics/nccl.md) 与 [Checkpointing](training-infra-roadmap/topics/checkpointing.md)，建立完整训练系统主线。

@@ -1,5 +1,7 @@
 # Data Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 ## 核心问题
 
 复制模型到多张 GPU，切分 batch，反向后同步梯度。它是吞吐扩展的基础，但会复制参数、梯度和 optimizer state。

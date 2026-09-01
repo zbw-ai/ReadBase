@@ -1,5 +1,7 @@
 # Tensor Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 Tensor Parallelism, TP, 是把 Transformer 单层里的大算子切到多张 GPU 上执行。它不是“多卡训练”的泛称，而是 intra-layer parallelism：一个 Linear、Attention projection、MLP projection 的权重和中间结果被多个 rank 共同持有、共同计算、共同通信。
 
 如果只能记一句话：TP 用频繁的高速 collective 换单层模型容量和单层 GEMM 吞吐，所以它最怕慢网络、错拓扑、错 rank mapping 和过大的 TP size。

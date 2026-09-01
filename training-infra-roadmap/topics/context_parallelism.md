@@ -1,5 +1,7 @@
 # Context Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 > 所属专题：[Long-context Training](long_context_training.md)。CP 是长上下文训练的核心机制之一，但长上下文训练还包括 pretraining/SFT/RL 的数据、kernel、checkpoint、rollout 和稳定性问题。
 
 ## 核心问题
