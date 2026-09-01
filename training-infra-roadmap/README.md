@@ -64,6 +64,20 @@ training-infra-roadmap/
 - [Llama 3](tech_reports/llama3.md)
 - [MegaScale](tech_reports/megascale.md)
 
+<a id="megatron-core-moe-2026-zh-pdf"></a>
+
+### Megatron Core MoE 2026 中文翻译（PDF）
+
+NVIDIA 88 页技术报告 `Scalable Training of Mixture-of-Experts Models with Megatron Core` 的中文翻译归档，按原文顺序阅读：
+
+1. [第一部分：摘要 + 第 1 节](<papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第一部分：摘要 + 第1节）.pdf>)
+2. [第二部分：第 2–3 节，架构与并行策略](<papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第二部分：第2-3节 架构与并行策略）.pdf>)
+3. [第三部分：第 4 节，突破三堵墙](<papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第三部分：第4节 突破三堵墙）.pdf>)
+4. [第四部分：第 5 节 FP8/FP4 低精度训练 + 第 6 节长上下文训练](<papers/sources/scalable-training-moe-megatron-core-2026/第四部分：第5节——FP8_FP4低精度训练 & 第6节——长上下文训练.pdf>)
+5. [第五部分：第 7–10 节，生产特性、性能评估、最佳实践与 RL 支持](<papers/sources/scalable-training-moe-megatron-core-2026/第五部分：第7–10节——生产特性、性能评估、最佳实践与RL支持.pdf>)
+
+[英文原始论文](https://arxiv.org/abs/2603.07685)用于核对术语、图表和关键数字；中文 PDF 用于快速通读。
+
 ## 工程手册章节
 
 第二阶段开始，`topics/` 不再只是概念笔记，而是面向训练平台设计、排障和面试复习的工程手册章节。优先阅读：

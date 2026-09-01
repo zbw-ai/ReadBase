@@ -1223,6 +1223,7 @@ EFFICACY 证据与置信区间：______
 - [FSDP 面试题](../training-infra-roadmap/interview/fsdp.md)
 - [FlashAttention 面试题](../training-infra-roadmap/interview/flashattention.md)
 - [Megatron-LM 论文笔记](../training-infra-roadmap/papers/megatron_lm.md)
+- [Megatron Core MoE 2026 中文翻译（5 部分 PDF）](../training-infra-roadmap/README.md#megatron-core-moe-2026-zh-pdf)
 
 ## 21. 资料来源与版本边界
 
