@@ -8,6 +8,7 @@
 # Local agent settings
 .claude/*.local.json
 .superpowers/
+.worktrees/
 
 # Python
 __pycache__/
