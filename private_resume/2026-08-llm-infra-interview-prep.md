@@ -108,7 +108,7 @@
 | 26 | [AREAL-03 Agentic RL 服务链](#areal-03) | 18 分钟 | 能讲 agent/env/reward/trainer 边界 |
 | 27 | [AREAL-04 Trajectory lineage](#areal-04) | 18 分钟 | 能说明样本到底有没有训练贡献 |
 | 28 | [INFRA-01 MFU](#infra-01) | 15 分钟 | 会算、会解释、会识别假提升 |
-| 29 | [INFRA-02 OOM 定位](#infra-02) | 18 分钟 | 能按张量生命周期定位 |
+| 29 | [INFRA-02 Megatron 显存账本/OOM](#infra-02) | 18 分钟 | 能手算每 rank 显存并按生命周期定位 |
 | 30 | [INFRA-03 NCCL/Checkpoint 故障](#infra-03) | 18 分钟 | 能给出生产排查顺序 |
 
 ---
@@ -122,11 +122,11 @@
 - **面试官意图**：判断你的职业主线、表达能力和 seniority；同时选择后续深挖入口。
 - **精准回答**：
 
-  > 我目前在小鹏机器人负责大模型后训练基础设施，主要有两条主线。第一条是基于 verl 和 Megatron-Core 建设 SFT/RLVR 能力，覆盖 Qwen3/Qwen3.5 dense/MoE、32K–256K 长上下文，以及 vLLM/SGLang rollout；我做过 fully async RLVR 资源解耦，把代表性稳态吞吐从 76 提升到 211–255 tokens/s/GPU，也做过 128K SFT 的数据、重计算和显存优化。第二条是基于 AReaL 建设 Agentic RL 和在线蒸馏链路，重点解决 rollout 长尾、trajectory 利用、policy staleness、跨引擎权重同步和多 Teacher 路由正确性。此前在华为负责大模型迁移、性能/精度优化和千卡级集群长稳交付。我擅长的不只是把任务跑通，而是用指标和实验同时闭环性能、数值正确性、模型效果与故障恢复。
+  > 面试官您好，我叫曾柏炜，本科毕业于厦门大学电气工程及其自动化专业，硕士毕业于清华大学电子信息专业，研究方向是人工智能。我目前在小鹏机器人负责大模型后训练基础设施，主要有两条主线。第一条是基于 verl 和 Megatron-Core 建设 SFT/RLVR 能力，覆盖 Qwen3/Qwen3.5 dense/MoE、32K–256K 长上下文，以及 vLLM/SGLang rollout；我做过 fully async RLVR 资源解耦，把代表性稳态吞吐从 76 提升到 211–255 tokens/s/GPU，也做过 128K SFT 的数据、重计算和显存优化。第二条是基于 AReaL 建设 Agentic RL 和在线蒸馏链路，重点解决 rollout 长尾、trajectory 利用、policy staleness、跨引擎权重同步和多 Teacher 路由正确性。此前在华为负责大模型迁移、性能/精度优化和千卡级集群长稳交付。我擅长的不只是把任务跑通，而是用指标和实验同时闭环性能、数值正确性、模型效果与故障恢复。
 
 - **项目证据或知识边界**：所有数字必须能回到固定 workload；不要在自我介绍里主动说尚未闭环的 MOPD 最终效果。
 - **高概率追问**：[最有代表性的优化](#resume-01a)是什么？你在项目中的 [ownership](#resume-01b)？[为什么从华为到小鹏、现在又看机会](#resume-01c)？
-- **危险回答**：连续罗列十几个框架；花一分钟讲学校和论文；说“全栈负责”却说不清代码和实验边界。
+- **危险回答**：连续罗列十几个框架；教育背景超过 10–15 秒或展开课程、论文和奖项；说“全栈负责”却说不清代码和实验边界。
 
 <a id="resume-01a"></a>
 ### RESUME-01A｜最有代表性的性能优化是什么？（P0，20 分钟）
@@ -249,7 +249,7 @@
 - **面试官意图**：检查是否真正做过长序列训练，能否从张量维度做 memory accounting。
 - **精准回答**：
 
-  > 长上下文首先放大 activation，attention 中间量、logits、loss upcast 和 packed sequence 元数据也可能形成峰值。我的顺序是：先做参数/梯度/optimizer/KV 或 activation/logits/临时 buffer 的显存账；再确认 FlashAttention、THD/packing 和 CP 是否真的生效；然后在 TP、CP、recompute、offload 之间做取舍。TP 解决权重和大 GEMM 切分，但 TP 过大会缩小 GEMM 并增加通信；CP 按序列切 activation，更适合 128K/256K，但 attention 需要交换 KV。最后用真实长度分布而非只用 max length 验证，覆盖长尾样本、checkpoint 和恢复。
+  > 我会先按 [INFRA-02](#infra-02) 的 Megatron 显存账本确认模型状态能否放下，再单独计算长序列放大的 activation、logits、loss upcast 和临时 workspace。对 128K/256K，CP 把每个 rank 的 local sequence 降为 `S/CP`，SP 在 TP 区域还能继续去掉部分重复 activation；PP 只减少本 stage 的层数，activation 峰值仍取决于同时在途的 microbatch，不能机械除以 PP。然后确认 FlashAttention、THD/packing、CP 和 fused cross entropy 的真实 tensor shape，避免配置写了但实际回退。最后才比较 selective/full recompute、CP、TP 和 offload：TP 解决权重和大 GEMM，但过大会让 GEMM 变碎；CP 更直接解决长序列 activation，但需要 KV 通信；offload 则可能把瓶颈转移到 PCIe。最终用真实长度分布验证峰值显存、loss、吞吐、checkpoint 和恢复，而不是只跑一个 max-length step。
 
 - **项目证据或知识边界**：简历包含 35B-MoE 256K、27B 128K/256K checkpoint 交付；应区分 working recipe、短跑交付和长期稳定基线。
 - **高概率追问**：activation 为何近似随 sequence length 增长？attention memory 是否仍是二次？CP 和 Ulysses SP 区别？offload 为什么可能严重拖慢？
@@ -427,13 +427,61 @@ flowchart TB
 
 - **问题**：TP、PP、DP、CP、EP 如何组合？总 GPU 数怎么计算？
 - **面试官意图**：检查分布式训练基本盘，以及你能否按模型/序列/拓扑选择并行策略。
-- **精准回答**：
+- **60–90 秒主答**：
 
-  > DP 切 batch、复制模型，用 collective 同步梯度；TP 切层内大矩阵，解决单层权重/计算，但通信频繁；PP 按层切深度，解决整模型容量但引入 bubble；CP 切 sequence 和 activation，主要服务长上下文，attention 需要跨 CP rank 交换 KV；EP 把 MoE experts 分布到不同 rank，引入动态 token dispatch/all-to-all。Dense 场景可写成 `world_size = TP × PP × CP × DP`。MoE 场景若把 expert data parallel 记作 EDP，则可写成 `world_size = TP × PP × CP × EP × EDP`；实际配置里 EP 常从数据并行域继续分组，所以不能把 EP 再乘到一个已经包含 EP 的“总 DP”上。选择时先满足容量，再把高频通信限制在高速拓扑域，最后用 profile 优化吞吐。
+  > DP 切 batch、复制模型；TP 切层内大矩阵，解决单层容量和计算，但每层都有高频 collective；PP 按层切深度，解决整模型容量但引入 pipeline bubble；CP 持久切分 sequence 和几乎全部 activation，服务长上下文，attention 需要跨 CP rank 交换 KV；EP 把 MoE experts 分散到不同 rank，引入动态 token dispatch/combine all-to-all。关键点是“5D”不等于五个轴在所有模块机械相乘。Parallel Folding 下，Attention 和 Expert 是同一批物理 rank 的两套 logical mapping：`TP_attn×CP_attn×DP_attn×PP = ETP_moe×EP_moe×EDP_moe×PP = world_size`。选型时先满足参数和 activation 容量，再把 TP 等高频通信放在 NVLink/NVSwitch 域，联合考虑 CP 的 KV 通信和 EP 的 all-to-all，最后用 profile 在通信、GEMM 粒度和 bubble 之间收敛。
+
+- **MoE world-size 的正确口径**：
+
+  ```text
+  Dense / Attention：world_size = TP × CP × DP × PP
+  MoE / Expert：     world_size = ETP × EP × EDP × PP
+
+  每个 PP stage 内：TP × CP × DP = ETP × EP × EDP
+  ```
+
+  左右两边是同一批 rank 的两套 process-group mapping，不能再彼此相乘。`ETP` 是 Expert Tensor Parallel，不能默认等于 Attention TP。Parallel Folding 论文的单 PP-stage 示例是：
+
+  ```text
+  Attention：TP=2 × CP=2 × DP=2 = 8
+  Expert：   ETP=1 × EP=8 × EDP=1 = 8
+  ```
+
+  论文端到端配置若再取 `PP=2`，完整作业就是 16 GPU。Megatron 官方 MoE Guide 还给出 256 GPU 示例：Attention 为 `TP4×CP2×DP8×PP4`，Expert 为 `ETP1×EP64×EDP1×PP4`，两边都等于 256。
+
+- **为什么有时又会看到 `DP=EP×EDP`**：传统嵌套布局中，如果 `ETP=TP`、EP 沿 Dense DP 轴分组、`EP | DP`，且没有 Parallel Folding，可以写：
+
+  ```text
+  DP = EP × EDP
+  world_size = TP × CP × PP × DP
+             = TP × CP × PP × EP × EDP
+  ```
+
+  这里 `CP` 可以大于 1；这个式子只是传统嵌套布局的特例，不是通用 MoE 公式。
+
+- **官方示例中的 DP、EP、EDP group 怎么理解**：
+
+  - 纯 Dense DP 轴：固定 `(PP, TP, CP)`，只改变 `DP`，表示不同数据副本；`m=GBS/(MBS×DP)` 中使用这个 DP。
+  - Dense `dp_cp` group：固定 `(PP, TP)`，覆盖 `DP×CP` ranks。CP ranks 也复制 Dense 参数并贡献局部 context 的梯度；Megatron 默认在该 group 上做 Dense 梯度归约和 Distributed Optimizer 分片。
+  - EP group：固定 `(PP, ETP, EDP)`，改变 `EP`，持有不同 expert shard，负责 token all-to-all。
+  - EDP group：固定 `(PP, ETP, EP)`，改变 `EDP`，持有同一 expert shard 的副本并同步梯度。
+
+- **TP/CP 哪个优先放单机**：TP 通信发生在每层、每个 microbatch，通常先保证 TP 在 NVLink/NVSwitch 域；若 `TP×CP` 能放进单机，再把二者一起留在高速域。放不下时优先保持 TP 单机，并考虑 hierarchical CP，让内层 CP 本地、外层 CP 跨节点；MoE 还要同时评估 EP all-to-all，不能脱离消息量、overlap 和实测 profile 给绝对答案。
+
+- **PP bubble 怎么算，VPP 解决什么问题**：设 `p` 是物理 PP stages，`m=GBS/(MBS×DP)` 是每次 iteration 的 microbatch 数，stage 均衡且忽略通信时，non-interleaved 1F1B 有：
+
+  ```text
+  useful_time = m × (t_f + t_b)
+  bubble_time = (p - 1) × (t_f + t_b)
+  bubble / useful = (p - 1) / m
+  bubble / total  = (p - 1) / (m + p - 1)
+  ```
+
+  面试官问“额外开销”常用第一式，问“占总时间比例”用第二式。优化顺序是减小 `p`、在 GEMM 和收敛允许时增加 `m`、按真实计算量平衡 stage、再使用 VPP/interleaved 1F1B 和 P2P overlap。`VPP=v` 不增加 GPU，而是把模型切成 `p×v` 个 virtual chunks，每个物理 rank 持有多个不连续 chunk；经典均匀调度下理想 `bubble/useful≈(p-1)/(m×v)`。代价是 P2P 次数约增大 `v` 倍、activation 生命周期和调度更复杂，chunk 太小还会损害 kernel efficiency；该近似假设 chunk 均衡、`m` 可满足经典 interleaved schedule 约束。
 
 - **项目证据或知识边界**：你有 Megatron 后端的配置、集成与调优经验；不要声称设计了全部并行算法。
-- **高概率追问**：官方示例中的 DP 是 dense DP 还是 expert DP？expert-DP group 如何得到？TP/CP 哪个优先放单机？
-- **危险回答**：把 SP 当成第六个独立 world-size 维度；认为各维完全正交；只背定义不谈通信。
+- **高概率追问**：为什么 Dense optimizer shard group 可能是 `DP×CP`，但 microbatch 数只除以 DP？ETP 为什么不一定等于 TP？VPP 与 Zero-Bubble 有何区别？
+- **危险回答**：把 `TP×CP×EP×DP` 当通用公式；把 Attention TP 和 ETP 混为一谈；把 SP/VPP 当成额外 world-size 维度；只背定义不谈通信、GEMM 粒度和拓扑。
 
 <a id="megatron-02"></a>
 ### MEGATRON-02｜Column Parallel 和 Row Parallel Linear 怎么切？通信在哪里？（P0，18 分钟）
@@ -468,11 +516,21 @@ flowchart TB
 - **面试官意图**：这是 Megatron 高频辨析题，能快速筛掉只背 5D 名词的人。
 - **精准回答**：
 
-  > Megatron 的 sequence parallel 通常和 TP 绑定，主要把 TP 区域中原本复制的 LayerNorm、Dropout 等 activation 沿 sequence 维分片，降低冗余，并把部分 TP all-reduce 拆成 reduce-scatter/all-gather；attention 的全序列语义并没有因此被完整分布。Context Parallel 则把网络输入和几乎所有 activation 沿 sequence 长度持久切分，每个 CP rank 只持有一段 token；attention 为让本地 Q 看到全局 KV，需要 ring/P2P/all-gather 等通信。因此 SP 是 TP 的 activation 去重优化，CP 是长上下文的独立并行轴。
+  > 两者在 tensor shape 上都沿 sequence dimension 切，但系统含义不同。Megatron 的 SP 复用 TP process group，只分片 TP 区域之间原本重复的 LayerNorm、Dropout、Residual 等 activation，并用 reduce-scatter/all-gather 替代部分 TP all-reduce；它不增加 world-size，也没有把 Attention 的完整上下文独立分布。CP 则是独立 mesh 轴，从网络输入开始持久切分 sequence 和几乎全部 activation，每个 CP rank 只持有 `S/CP` token；Attention 中本地 Q 要通过 P2P/ring/all-gather/all-to-all 等方式访问全局 KV。因此 SP 是 TP 配套的 activation 去重，CP 是长上下文的独立并行。
+
+  | 对比项 | SP | CP |
+  |---|---|---|
+  | process group | 复用 TP group | 独立 CP group |
+  | 切分范围 | LayerNorm、Dropout、Residual 等非 TP 区域的重复 activation | 输入和几乎全部 activation |
+  | Attention 语义 | 不独立分布完整 context | 本地 Q 通过 KV 通信访问全局 context |
+  | world-size | 不增加 | 乘入 world-size |
+  | 主要目标 | 减少 TP rank 的 activation 冗余 | 扩展长上下文显存与计算 |
+
+  Megatron Core 的 `sequence_parallel` 并不是字面意义上的默认开启，但官方建议 TP 时启用，并要求 TP 与 EP 同时使用时启用。TP、CP、SP 同开时，CP 先把语义 context 切为 `S/CP`；在 SP 覆盖的区域，activation 还可沿 TP group 形成近似 `S/(CP×TP)` 的本地分片，但 Attention 的全局上下文仍由 CP 通信保证。
 
 - **项目证据或知识边界**：你有 CP/THD/packed 配置经验；底层通信算法若未改过，应定位为使用与诊断。
-- **高概率追问**：CP 为什么能替代一部分 full recompute？GQA/MQA 下 KV 通信怎样变化？packed sequence 对 CP load balance 有何影响？
-- **危险回答**：“SP 切短序列，CP 切长序列”；认为 SP 会分片所有 attention activation；忽略 CP 的 KV 通信。
+- **高概率追问**：为什么 SP 不进入 world-size？为什么 TP+EP 要启用 SP？CP 为什么能替代一部分 full recompute？GQA/MQA 下 KV 通信怎样变化？
+- **危险回答**：“SP 切短序列，CP 切长序列”；把 `SP×CP` 都乘进 world-size；认为 SP 会持久分片全部 attention activation；忽略 CP 的 KV 通信。
 
 <a id="megatron-05"></a>
 ### MEGATRON-05｜Megatron Distributed Optimizer 与 ZeRO-1/2/3 怎么对应？（P0，15 分钟）
@@ -481,7 +539,7 @@ flowchart TB
 - **面试官意图**：验证 model-state memory accounting 和 DP 通信理解。
 - **精准回答**：
 
-  > 经典 Megatron distributed optimizer 主要在 DP 维分片 optimizer state 和 FP32 main parameters，梯度通过 reduce-scatter 让各 rank 得到自己负责的 shard，更新后再 all-gather 参数视图，思想接近 ZeRO-1，并通过 contiguous param/grad buffer 提高通信效率。现代 Megatron-FSDP 又可配置 `optim`、`optim_grads`、`optim_grads_params`，分别对应 ZeRO-1/2/3 式分片。显存不能只背 `16/d`，要看 param/grad dtype；官方示例中 fp16 param+grad 从每参数约 20 bytes 变为 `4+16/d`，bf16 param+fp32 grad 则是 `6+12/d`。
+  > 经典 Megatron distributed optimizer 主要分片 optimizer state 和 FP32 main parameters，梯度通过 reduce-scatter 让各 rank 得到自己负责的 shard，更新后再 all-gather 参数视图，思想接近 ZeRO-1，并通过 contiguous param/grad buffer 提高通信效率。开启 CP 时不能把 shard group 简化成纯 DP：Dense 参数默认使用 `DP×CP` 的 `dp_cp` group，Expert 参数使用 EDP group。现代 Megatron-FSDP 又可配置 `optim`、`optim_grads`、`optim_grads_params`，分别对应 ZeRO-1/2/3 式分片。显存不能只背 `16/d`，完整 dtype 表和每-rank 算法见 [INFRA-02](#infra-02)。
 
 - **项目证据或知识边界**：你做过 distributed checkpoint 和 optimizer 相关故障；若没改 optimizer 核心，明确为集成/排障经验。
 - **高概率追问**：DP=1 时还有什么冗余 buffer？overlap grad reduce 如何实现？ZeRO-3 与 TP/PP 怎么组合？
@@ -647,17 +705,78 @@ flowchart TB
 - **危险回答**：MFU=GPU utilization；使用不同 FLOPs 公式横比；只报百分比不报 throughput。
 
 <a id="infra-02"></a>
-### INFRA-02｜遇到 OOM，你的标准定位顺序是什么？（P0，18 分钟）
+### INFRA-02｜Megatron 训练显存如何计算？遇到 OOM 怎么定位？（P0，18 分钟）
 
-- **问题**：不要只列开关，请给出可复用排查方法。
-- **面试官意图**：检查生产问题定位和张量生命周期理解。
-- **精准回答**：
+- **问题**：请建立一份 Megatron 训练显存账本，并说明它如何指导 OOM 定位。
+- **面试官意图**：检查你能否把 dtype、并行组、张量 shape 和生命周期统一到每-rank peak memory，而不是只会尝试减 batch、重计算和 offload。
+- **60–90 秒主答**：
 
-  > 第一步固定复现并区分 initialization、forward、backward、optimizer、checkpoint/weight sync 哪个阶段 OOM；第二步读取 allocated/reserved/peak、各 rank 差异和 fragmentation；第三步按参数、梯度、optimizer、activation、logits、通信/临时 buffer、KV cache 做理论账并对照 snapshot；第四步检查 shape 异常、padding/packing、dtype upcast、CP/TP 是否生效、长尾样本和内存泄漏；第五步才按收益/代价选择减 batch、recompute、CP/TP、offload、fused op 或 allocator 调整。修复后验证同 workload 的 loss、吞吐和长稳，不以“没 OOM”结束。
+  > 我会先固定模型、dtype、MBS/GBS、sequence length、TP/PP/CP/EP/DP、recompute 和 kernel，再按每个 rank 建账，而不是用总参数量乘一个常数。总账分成 persistent model states 和 phase-local transient memory：参数、梯度、FP32 main param、Adam state 属于常驻项；saved activation、logits、通信 buffer 和 kernel workspace 要按 forward、backward、optimizer、checkpoint 的真实生命周期取最大并发峰值，不能把各阶段峰值机械相加。模型状态按本 rank 在 TP/PP/EP 后实际持有的参数量乘官方 bytes/param；Dense distributed optimizer 的 `d` 默认取 `DP×CP` 的 `dp_cp` group，Expert 则取 EDP group。activation 按 tensor shape、dtype、live copies 和 PP 在途 microbatch 算；CP/SP/recompute 只除它们真正分片或重算的张量。理论账完成后，我会按阶段采集 `allocated/reserved/max_memory_allocated` 和 memory snapshot，定位第一笔超出账本的 allocation，再选择对应优化，并同时回归 loss、吞吐和长稳。
 
-- **项目证据或知识边界**：可结合 fp32 logits、7.6GB buffer、长样本 OOM、CP=1 回退 CP=2 等案例。
-- **高概率追问**：reserved 很高但 allocated 不高怎么办？为什么某一 rank 单独 OOM？offload 为什么可能造成 step 巨慢？
-- **危险回答**：第一反应 `empty_cache()`；直接减 batch；把 fragmentation 当所有 OOM 的解释。
+- **总账公式：先按生命周期去重**：
+
+  ```text
+  M_peak ≈ M_persistent
+         + max_phase(
+             M_saved_activation
+           + M_phase_temp
+           + M_phase_workspace
+           + M_phase_comm
+           )
+         + M_allocator_overhead_at_peak
+
+  tensor_bytes = product(tensor_shape) × dtype_bytes × live_copies
+  ```
+
+  `phase` 至少区分 initialization、forward、backward、optimizer、checkpoint/weight sync。每块内存只归入一个生命周期；例如 forward workspace 不能再叠加到 optimizer 峰值。`reserved-allocated` 包含 allocator cache、rounding 和不可用碎片，不能全部叫 fragmentation。
+
+- **第一本账：参数、梯度和 Adam 状态**。Megatron Core Distributed Optimizer 官方理论值如下，`d` 是该类参数实际使用的 optimizer sharding group size：
+
+  | 参数/梯度 dtype | 普通 optimizer | Distributed Optimizer |
+  |---|---:|---:|
+  | FP16 param + FP16 grad | 20 bytes/param | `4 + 16/d` |
+  | BF16 param + FP32 grad | 18 bytes/param | `6 + 12/d` |
+  | FP32 param + FP32 grad | 16 bytes/param | `8 + 8/d` |
+
+  表里的 `/param` 乘的是**本 rank 在模型并行之后持有的参数量**，不是全模型参数量：
+
+  - Dense/Attention 参数按 TP、PP 和真实 layer placement 切；普通 DP/CP 不切参数。
+  - Expert 参数按 ETP、EP、PP 和 expert placement 切。
+  - Dense 状态默认 `d_dense=DP×CP`；若配置多个 distributed optimizer instances，取实际 `intra_dp_cp` group size。
+  - Expert 状态默认 `d_expert=EDP`；多个 instances 时取实际 `intra_expt_dp` group size。
+  - embedding、LM head、router、shared expert、MTP 和 uneven PP layout 单列；first/last stage 往往不能用“总参数/PP”估算。
+
+- **第二本账：activation**：
+
+  1. 从每层保存到 backward 的 tensor shape 开始，乘 dtype 和 live copies，再乘该 PP rank 同时在途的 microbatch 数。
+  2. CP 将 local sequence 降为 `S/CP`，参数显存不随 CP 降低；SP 只在 TP 配套区域分片部分重复 activation，不能把全部 activation 无条件再除以 TP。
+  3. PP 只减少本 stage 的层数；warmup/steady/cooldown 的 activation peak 取决于 schedule 和 in-flight microbatches，不能简单除以 PP。
+  4. selective/full recompute 减少 saved tensors，但会在 backward 前重算；FlashAttention 避免显式 materialize 完整 `S×S` attention matrix，但其他 activation 和 workspace 仍存在。
+
+  Megatron 的 [`theoretical_memory_usage.py`](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/theoretical_memory_usage.py) 可以作为估算起点，但它的 activation 公式带有 BF16、SP、selective recompute 和特定模型结构等假设；复杂 MoE 仍要回到真实 tensor shape。
+
+- **第三本账：logits、loss 和容易漏掉的 buffer**：
+
+  ```text
+  M_logits = local_active_tokens × local_vocab_size
+           × dtype_bytes × live_copies
+  ```
+
+  要确认 token 是否已按 CP/packing/chunking 变成本地值、vocab 是否仍是 TP shard、loss 是否把 BF16 logits upcast 到 FP32，以及 fused/vocab-parallel cross entropy 是否避免 full-vocab/all-token logits 常驻。除此之外还要单列 contiguous param/main-grad buffer、gradient accumulation、all-gather/reduce-scatter 和 NCCL overlap bucket、GEMM/FlashAttention/Grouped GEMM workspace、临时 cast、CUDA Graph private pool、checkpoint/权重转换临时副本和 allocator overhead。
+
+- **面试现场的手算顺序**：
+
+  1. 写出 parallel map，先算每个 PP rank 的 Dense 与 Expert `P_local`，找参数最重的 stage/rank。
+  2. 选 dtype 行，用 `P_local × bytes/param(d)` 算模型状态；注意 Dense 的 `d_dense` 和 Expert 的 `d_expert` 不同。
+  3. 用 `B_local、S/CP、H、num_layers_local、in-flight microbatches` 计算 saved activation，再应用 SP/recompute 的真实作用范围。
+  4. 单列 logits/loss、通信 bucket、kernel workspace、CUDA Graph 和 checkpoint 临时峰值。
+  5. 按 phase 取最大并发组合，加 allocator headroom；最后逐 rank 比较，重点看 first/last PP stage 和 hottest expert rank。
+
+- **理论账如何闭环 OOM**：固定 workload 后，分别记录 initialization、forward、backward、optimizer、checkpoint 的 `allocated/reserved/max_memory_allocated`；用 memory snapshot、tensor shape log 和 profiler 找出未入账 allocation。先修 shape 回退、dtype upcast、buffer 生命周期或泄漏，再根据峰值来源选择 MBS、recompute、CP/TP/PP、offload、fused op 或 allocator 配置。修复后同时验证 tensor shape、峰值显存、loss、吞吐、checkpoint 和长稳，不以“不再 OOM”为结束。
+
+- **项目证据或知识边界**：可结合 [RESUME-07](#resume-07) 的 FP32/full-sequence logits 7.6GB 案例、长样本 OOM、CP=1 回退 CP=2 和 checkpoint/weight sync 峰值；口述 7.6GB 前必须补齐实际 `tokens×vocab×dtype×live copies`。
+- **高概率追问**：为什么 CP 不切参数却能参与 Dense optimizer sharding？为什么 microbatch 数只除以 DP，而 `d_dense` 默认是 `DP×CP`？某一 rank 单独 OOM有哪些原因？reserved 很高但 allocated 不高怎么办？
+- **危险回答**：用全模型参数直接乘 bytes/param；把所有显存都除以 world-size；把每个 phase 峰值和 workspace 全部相加；第一反应 `empty_cache()` 或直接减 batch；把 `reserved-allocated` 全部解释为 fragmentation。
 
 <a id="infra-03"></a>
 ### INFRA-03｜多机训练 NCCL hang 或 checkpoint 恢复失败怎么排查？（P0，18 分钟）
@@ -736,7 +855,7 @@ flowchart TB
 
 - **问题**：microbatch、stage balance、1F1B 和 interleaving 有什么关系？
 - **面试官意图**：检查 PP 的调度与吞吐理解。
-- **精准回答**：PP 把层分 stage，fill/drain 产生 bubble；基础近似中 bubble 随 stage 数增加、随 microbatch 数增加而下降。优化包括增加 microbatch、均衡每 stage 计算/显存、1F1B、virtual/interleaved pipeline 和通信 overlap，但 microbatch 过多会改变 batch/optimizer 与内存。
+- **精准回答**：设物理 stages 为 `p`、microbatches 为 `m`，stage 均衡且忽略通信时，non-interleaved 1F1B 的 `bubble/useful=(p-1)/m`，占总时间比例为 `(p-1)/(m+p-1)`。优化优先级是减少 `p`、合理增加 `m`、按真实计算量平衡 stage，再使用 VPP/interleaved 1F1B 和 P2P overlap。VPP 不增加 GPU，而是让每个物理 rank 持有多个不连续 model chunks，理想 bubble 约再除以 VPP size，但会增加 P2P 次数和调度复杂度。完整推导见 [MEGATRON-01](#megatron-01)。
 - **项目证据或知识边界**：技能栏“了解/使用”；如项目未重点调 PP，明确无直接性能案例。
 - **高概率追问**：为什么 first/last stage 更容易不平衡？长上下文下 PP 是否更划算？
 - **危险回答**：只背 bubble 公式；认为 microbatch 越多越好；忽略不均衡 stage。
@@ -1087,8 +1206,10 @@ EFFICACY 证据与置信区间：______
 - [ ] SFT 31→9.3s 的前后 workload 完全一致，并能拆分两项改动贡献。
 - [ ] 双 Teacher MOPD 的最新效果证据已与简历口径统一。
 - [ ] CUDA Graph 14x 与 6–8x 不混用，且明确是 decode 阶段。
+- [ ] 能用 Attention/Expert 双视图算 MoE world-size，不再机械相乘 TP、CP、EP、DP。
 - [ ] 能画 Megatron TP/PP/CP/DP/EP，以及 verl/AReaL 两张数据流图。
 - [ ] 能用一句话区分 SP 与 CP、distributed optimizer 与 ZeRO-3、verl 与 AReaL。
+- [ ] 能从本 rank 参数量、bytes/param、activation、logits 和 phase peak 手算一遍 Megatron 显存账。
 - [ ] 准备一个 OOM、一个 NCCL/checkpoint、一个精度对齐真实案例。
 - [ ] 每个故事能说清“我做了什么”，不只说“团队做了什么”。
 - [ ] 不泄露联系方式、客户名、内部仓库、未公开模型和未脱敏集群数据。
@@ -1107,9 +1228,9 @@ EFFICACY 证据与置信区间：______
 
 技术结论优先使用官方资料；岗位题目概率来自当前公开 JD 与本简历暴露面，是面试准备判断，不是统计学结论。
 
-### 官方框架资料（核验于 2026-08-30）
+### 官方框架资料（Megatron 补充核验于 2026-09-01）
 
-- NVIDIA Megatron-Core：[Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)、[MoE README](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/transformer/moe/README.md)、[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)。Release 页面核验到 `core_v0.18.2`，commit `571370c`；MoE 技术报告核验于 2026-08-31。
+- NVIDIA Megatron-Core：[Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)、[MoE Parallel Folding](https://arxiv.org/abs/2504.14960)、[MoE Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/moe.html)、[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)、[Pipeline Schedules](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.pipeline_parallel.schedules.html)、[`theoretical_memory_usage.py`](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/theoretical_memory_usage.py)。Release 页面核验到 `core_v0.18.2`，commit `571370c`；MoE 技术报告和上述公式补充核验于 2026-09-01。
 - verl：[GitHub](https://github.com/verl-project/verl)、[HybridFlow Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html)、[Engine Workers](https://verl.readthedocs.io/en/latest/workers/engine_workers.html)、[Fully Async](https://github.com/verl-project/verl/blob/main/docs/advance/fully_async.md)。Release 页面核验到 `v0.7.1`，commit `bec9ef7`；`fully_async_policy` 仍在 `verl.experimental`。
 - AReaL：[GitHub](https://github.com/areal-project/AReaL)、[Asynchronous RL Guide](https://github.com/areal-project/AReaL/blob/main/docs/en/algorithms/async.md)、[Online Proxy](https://github.com/areal-project/AReaL/blob/main/docs/en/tutorial/online_proxy.md)、[Releases](https://github.com/areal-project/AReaL/releases)。核验到 `v2.0.0`/AReaL 2.0（2026-07-01）；2.0 将 training、inference、agent、weight-update 拆为独立服务。
 - NVIDIA NCCL：[Collective Operations, NCCL 2.31.2](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html)。
