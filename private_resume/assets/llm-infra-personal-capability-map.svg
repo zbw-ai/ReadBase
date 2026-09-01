@@ -62,14 +62,14 @@
 
     <!-- Left: training system -->
     <g>
-      <rect x="48" y="74" width="500" height="188" rx="24" fill="#edf6fc" stroke="#b9d9eb" class="panel"/>
-      <rect x="48" y="74" width="12" height="188" rx="6" fill="#3184b8"/>
-      <text x="84" y="116" class="domain" fill="#216d9b">训练系统 / Megatron</text>
-      <circle cx="86" cy="148" r="7" fill="#3184b8"/><text x="106" y="156" class="item">5D 并行配置与调优</text>
-      <circle cx="86" cy="180" r="7" fill="#3184b8"/><text x="106" y="188" class="item">Grouped MatMul · 融合算子</text>
-      <circle cx="86" cy="212" r="7" fill="#3184b8"/><text x="106" y="220" class="item">128K–256K · SP/CP · recompute</text>
-      <circle cx="86" cy="244" r="7" fill="#3184b8"/><text x="106" y="252" class="item">packing / prefetch</text>
-      <circle cx="326" cy="244" r="7" fill="#edf6fc" stroke="#3184b8" stroke-width="3"/><text x="344" y="252" class="item-soft">Parallel Folding</text>
+      <rect x="48" y="74" width="500" height="192" rx="24" fill="#edf6fc" stroke="#b9d9eb" class="panel"/>
+      <rect x="48" y="74" width="12" height="192" rx="6" fill="#3184b8"/>
+      <text x="84" y="108" class="domain" fill="#216d9b">训练系统 / Megatron</text>
+      <circle cx="86" cy="136" r="7" fill="#3184b8"/><text x="106" y="144" class="item">5D 并行配置与调优</text>
+      <circle cx="86" cy="164" r="7" fill="#3184b8"/><text x="106" y="172" class="item">Grouped MatMul · 融合算子</text>
+      <circle cx="86" cy="192" r="7" fill="#3184b8"/><text x="106" y="200" class="item">128K–256K · SP/CP · recompute</text>
+      <circle cx="86" cy="220" r="7" fill="#3184b8"/><text x="106" y="228" class="item">packing / DataLoader / prefetch</text>
+      <circle cx="86" cy="248" r="7" fill="#edf6fc" stroke="#3184b8" stroke-width="3"/><text x="106" y="256" class="item-soft">Folding · DeepEP · FP8/FP4</text>
     </g>
 
     <!-- Left: communication -->
@@ -85,8 +85,8 @@
 
     <!-- Left: correctness and delivery -->
     <g>
-      <rect x="48" y="486" width="500" height="188" rx="24" fill="#fbf0f1" stroke="#e9c4c8" class="panel"/>
-      <rect x="48" y="486" width="12" height="188" rx="6" fill="#b6606a"/>
+      <rect x="48" y="486" width="500" height="214" rx="24" fill="#fbf0f1" stroke="#e9c4c8" class="panel"/>
+      <rect x="48" y="486" width="12" height="214" rx="6" fill="#b6606a"/>
       <text x="84" y="528" class="domain" fill="#924650">正确性与规模化交付</text>
       <circle cx="86" cy="560" r="7" fill="#b6606a"/><text x="106" y="568" class="item">loss / logprob / mask · 精度对齐</text>
       <circle cx="86" cy="592" r="7" fill="#b6606a"/><text x="106" y="600" class="item">FUNCTIONAL · NUMERIC · EFFICACY</text>
@@ -118,14 +118,14 @@
 
     <!-- Right: memory and performance -->
     <g>
-      <rect x="1052" y="486" width="500" height="188" rx="24" fill="#eaf7f8" stroke="#b9dfe3" class="panel"/>
-      <rect x="1540" y="486" width="12" height="188" rx="6" fill="#188d9a"/>
-      <text x="1084" y="528" class="domain" fill="#116f79">显存与性能</text>
-      <circle cx="1086" cy="560" r="7" fill="#188d9a"/><text x="1106" y="568" class="item">参数 / 梯度 / 优化器 / activation</text>
-      <circle cx="1086" cy="592" r="7" fill="#188d9a"/><text x="1106" y="600" class="item">logits / KV / workspace · OOM 定位</text>
-      <circle cx="1086" cy="624" r="7" fill="#188d9a"/><text x="1106" y="632" class="item">profiling / MFU / 瓶颈迁移</text>
-      <circle cx="1086" cy="656" r="7" fill="#188d9a"/><text x="1106" y="664" class="item">recompute / fusion</text>
-      <circle cx="1308" cy="656" r="7" fill="#eaf7f8" stroke="#188d9a" stroke-width="3"/><text x="1326" y="664" class="item-soft">offload</text>
+      <rect x="1052" y="486" width="500" height="214" rx="24" fill="#eaf7f8" stroke="#b9dfe3" class="panel"/>
+      <rect x="1540" y="486" width="12" height="214" rx="6" fill="#188d9a"/>
+      <text x="1084" y="522" class="domain" fill="#116f79">显存与性能</text>
+      <circle cx="1086" cy="553" r="7" fill="#188d9a"/><text x="1106" y="561" class="item">参数 / 梯度 / 优化器 / activation</text>
+      <circle cx="1086" cy="585" r="7" fill="#188d9a"/><text x="1106" y="593" class="item">logits / KV / workspace · OOM 定位</text>
+      <circle cx="1086" cy="617" r="7" fill="#188d9a"/><text x="1106" y="625" class="item">profiling / MFU / 瓶颈迁移</text>
+      <circle cx="1086" cy="649" r="7" fill="#188d9a"/><text x="1106" y="657" class="item">recompute / fusion</text>
+      <circle cx="1086" cy="681" r="7" fill="#eaf7f8" stroke="#188d9a" stroke-width="3"/><text x="1106" y="689" class="item-soft">offload · Three Walls</text>
     </g>
 
     <!-- Core -->
@@ -159,16 +159,16 @@
       <text x="72" y="858" class="card-value">0.16x → 0.95x</text>
       <text x="72" y="897" class="card-value">MFU 35% · 3K 卡</text>
       <text x="72" y="936" class="card-body">跑通 · 精度 · 性能 · 长稳</text>
-      <text x="72" y="980" class="card-note">性能闭环与训练保障 owner</text>
+      <text x="72" y="980" class="card-note">模型侧：跑通 → 性能达标闭环</text>
     </g>
 
     <g>
       <rect x="556" y="772" width="488" height="245" rx="22" fill="#ffffff" stroke="#b8e1d7" stroke-width="2"/>
       <rect x="556" y="772" width="488" height="10" rx="5" fill="#15927e"/>
       <text x="580" y="818" class="card-title">Fully Async RLVR</text>
-      <text x="580" y="858" class="card-value">76 → 211–255</text>
-      <text x="580" y="897" class="card-body">tokens/s/GPU · 稳态窗口</text>
-      <text x="580" y="936" class="card-body">gen-TP 4→2 · 供需配平</text>
+      <text x="580" y="858" class="card-body">76 · async 初始 3T+1R / gen-TP=4</text>
+      <text x="580" y="897" class="card-value">211–255 tokens/s/GPU</text>
+      <text x="580" y="936" class="card-body">gen-TP 4→2 后稳态窗口</text>
       <text x="580" y="980" class="card-note">Async 内；236–293 = 2T+2R 候选</text>
     </g>
 
@@ -177,7 +177,7 @@
       <rect x="1064" y="772" width="488" height="10" rx="5" fill="#188d9a"/>
       <text x="1088" y="818" class="card-title">SFT / Long Context</text>
       <text x="1088" y="858" class="card-value">Qwen3 / Qwen3.5</text>
-      <text x="1088" y="897" class="card-value">32K → 256K</text>
+      <text x="1088" y="897" class="card-value">32K–256K</text>
       <text x="1088" y="936" class="card-body">data · recompute · memory · ckpt</text>
       <text x="1088" y="980" class="card-note">特定 workload 口径</text>
     </g>
