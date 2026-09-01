@@ -23,6 +23,19 @@
 
 如果一个问题没做过，不要把文档知识包装成项目经验。推荐说法是：“这个能力在项目里我主要是使用和调优，不是底层实现 owner；我能从机制和生产排障角度回答。”
 
+### 0.1 一张图看懂我的能力主线
+
+![大模型训练推理 Infra 个人能力地图：六个能力域与脱敏项目证据](assets/llm-infra-personal-capability-map.svg)
+
+> 图例：实心节点表示有项目证据的集成、调优或交付经验，但不自动等于底层算法/kernel 的实现者；空心节点表示原理掌握、证据尚待补齐或今天会评估的能力延伸。
+
+- **核心机制导航**：[Megatron 5D 并行](#megatron-01) · [verl/HybridFlow](#verl-01) · [AReaL 选型](#areal-01) · [Megatron 显存账本](#infra-02) · [通信算子](#infra-04)
+- **项目证据导航**：[X1 约 200B MoE](#resume-01a) · [Fully Async RLVR](#resume-02) · [AReaL Agentic RL](#resume-08) · [MOPD](#resume-09) · [国产卡规模交付](#resume-10)
+
+**20–30 秒口述版**：
+
+> 我的能力主线可以分成两部分：一部分是以 Megatron 为核心的超大模型训练系统，包括 MoE、多维并行、显存、通信和规模化性能交付；另一部分是以 verl 和 AReaL 为核心的后训练系统，包括 SFT/RLVR、异步 rollout、Agentic RL 和训练推理协同。前者有 X1 约 200B MoE 和长上下文交付作为证据，后者有 Fully Async RLVR、AReaL 与 MOPD 链路作为证据。我的定位是训练系统集成、性能与正确性优化及规模化交付 owner，不把底层框架原生能力包装成个人自研。
+
 ## 1. 三天冲刺安排
 
 ### 只剩 3 小时时：先完成这 10 题

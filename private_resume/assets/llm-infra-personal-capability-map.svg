@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1320" viewBox="0 0 1600 1320" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">曾柏炜的大模型训练推理 Infra 个人能力地图</title>
+  <desc id="map-desc">以训练系统、强化学习、推理与 Rollout、通信与拓扑、显存与性能、正确性与规模化交付六个能力域，连接 X1 约 200B MoE、Fully Async RLVR、长上下文、AReaL、MOPD 和国产卡交付项目证据。实心节点表示项目实战，空心节点表示原理掌握或能力延伸。</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fcfb"/>
+      <stop offset="0.55" stop-color="#f3faf8"/>
+      <stop offset="1" stop-color="#eef7f5"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#117c73"/>
+      <stop offset="1" stop-color="#0b5e5a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#174d49" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .base { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+      .eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 2px; fill: #4d7773; }
+      .domain { font-size: 30px; font-weight: 700; }
+      .item { font-size: 24px; font-weight: 500; fill: #244b49; }
+      .item-soft { font-size: 24px; font-weight: 500; fill: #52706e; }
+      .core-title { font-size: 34px; font-weight: 700; fill: #ffffff; }
+      .core-strong { font-size: 42px; font-weight: 750; fill: #ffffff; }
+      .core-sub { font-size: 24px; font-weight: 500; fill: #d9f2ee; letter-spacing: 0.2px; }
+      .core-line { font-size: 24px; font-weight: 600; fill: #e8f8f5; }
+      .legend { font-size: 24px; font-weight: 600; fill: #486866; }
+      .evidence-kicker { font-size: 24px; font-weight: 700; fill: #47706c; letter-spacing: 1px; }
+      .card-title { font-size: 24px; font-weight: 700; fill: #234845; }
+      .card-value { font-size: 28px; font-weight: 750; fill: #0d6d65; }
+      .card-body { font-size: 24px; font-weight: 500; fill: #4c6967; }
+      .card-note { font-size: 24px; font-weight: 600; fill: #78604f; }
+      .panel { stroke-width: 1.5; }
+      .branch { fill: none; stroke-width: 8; stroke-linecap: round; opacity: 0.72; }
+      .branch-tip { fill: none; stroke-width: 3; stroke-linecap: round; opacity: 0.5; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1320" fill="url(#bg)"/>
+  <path d="M0 730 C300 670 460 780 760 712 C1010 655 1260 720 1600 652 L1600 1320 L0 1320 Z" fill="#e9f5f2"/>
+  <circle cx="800" cy="363" r="270" fill="none" stroke="#dcefeb" stroke-width="1.5"/>
+  <circle cx="800" cy="363" r="224" fill="none" stroke="#e3f2ef" stroke-width="1.5" stroke-dasharray="5 11"/>
+
+  <g class="base">
+    <text x="58" y="50" class="eyebrow">PERSONAL SYSTEM MAP · 2026</text>
+
+    <!-- Branches: each color is a stable capability domain. -->
+    <path class="branch" stroke="#3184b8" d="M682 304 C610 236 587 169 528 156"/>
+    <path class="branch-tip" stroke="#3184b8" d="M528 156 C508 151 493 151 472 151"/>
+    <path class="branch" stroke="#d28342" d="M652 374 C585 374 568 374 522 374"/>
+    <path class="branch-tip" stroke="#d28342" d="M522 374 C502 374 489 374 469 374"/>
+    <path class="branch" stroke="#b6606a" d="M682 456 C610 514 582 585 526 590"/>
+    <path class="branch-tip" stroke="#b6606a" d="M526 590 C506 592 493 592 472 592"/>
+
+    <path class="branch" stroke="#15927e" d="M918 304 C990 236 1013 169 1072 156"/>
+    <path class="branch-tip" stroke="#15927e" d="M1072 156 C1092 151 1107 151 1128 151"/>
+    <path class="branch" stroke="#7558b7" d="M948 374 C1015 374 1032 374 1078 374"/>
+    <path class="branch-tip" stroke="#7558b7" d="M1078 374 C1098 374 1111 374 1131 374"/>
+    <path class="branch" stroke="#188d9a" d="M918 456 C990 514 1018 585 1074 590"/>
+    <path class="branch-tip" stroke="#188d9a" d="M1074 590 C1094 592 1107 592 1128 592"/>
+
+    <!-- Left: training system -->
+    <g>
+      <rect x="48" y="74" width="500" height="188" rx="24" fill="#edf6fc" stroke="#b9d9eb" class="panel"/>
+      <rect x="48" y="74" width="12" height="188" rx="6" fill="#3184b8"/>
+      <text x="84" y="116" class="domain" fill="#216d9b">训练系统 / Megatron</text>
+      <circle cx="86" cy="148" r="7" fill="#3184b8"/><text x="106" y="156" class="item">5D 并行配置与调优</text>
+      <circle cx="86" cy="180" r="7" fill="#3184b8"/><text x="106" y="188" class="item">Grouped MatMul · 融合算子</text>
+      <circle cx="86" cy="212" r="7" fill="#3184b8"/><text x="106" y="220" class="item">128K–256K · SP/CP · recompute</text>
+      <circle cx="86" cy="244" r="7" fill="#3184b8"/><text x="106" y="252" class="item">packing / prefetch</text>
+      <circle cx="326" cy="244" r="7" fill="#edf6fc" stroke="#3184b8" stroke-width="3"/><text x="344" y="252" class="item-soft">Parallel Folding</text>
+    </g>
+
+    <!-- Left: communication -->
+    <g>
+      <rect x="48" y="280" width="500" height="188" rx="24" fill="#fcf3eb" stroke="#ecd0b8" class="panel"/>
+      <rect x="48" y="280" width="12" height="188" rx="6" fill="#d28342"/>
+      <text x="84" y="322" class="domain" fill="#ac6327">通信与拓扑</text>
+      <circle cx="86" cy="354" r="7" fill="#d28342"/><text x="106" y="362" class="item">AR · RS · AG · A2A · P2P</text>
+      <circle cx="86" cy="386" r="7" fill="#d28342"/><text x="106" y="394" class="item">NCCL / XCCL 集成与排障</text>
+      <circle cx="86" cy="418" r="7" fill="#d28342"/><text x="106" y="426" class="item">compute–comm overlap / exposed</text>
+      <circle cx="86" cy="450" r="7" fill="#fcf3eb" stroke="#d28342" stroke-width="3"/><text x="106" y="458" class="item-soft">NVLink / IB / RoCE / HCCS 精细映射</text>
+    </g>
+
+    <!-- Left: correctness and delivery -->
+    <g>
+      <rect x="48" y="486" width="500" height="188" rx="24" fill="#fbf0f1" stroke="#e9c4c8" class="panel"/>
+      <rect x="48" y="486" width="12" height="188" rx="6" fill="#b6606a"/>
+      <text x="84" y="528" class="domain" fill="#924650">正确性与规模化交付</text>
+      <circle cx="86" cy="560" r="7" fill="#b6606a"/><text x="106" y="568" class="item">loss / logprob / mask · 精度对齐</text>
+      <circle cx="86" cy="592" r="7" fill="#b6606a"/><text x="106" y="600" class="item">FUNCTIONAL · NUMERIC · EFFICACY</text>
+      <circle cx="86" cy="624" r="7" fill="#b6606a"/><text x="106" y="632" class="item">checkpoint / recovery · lineage</text>
+      <circle cx="86" cy="656" r="7" fill="#b6606a"/><text x="106" y="664" class="item">国产卡适配 · 千卡性能交付闭环</text>
+    </g>
+
+    <!-- Right: RL and post-training -->
+    <g>
+      <rect x="1052" y="74" width="500" height="188" rx="24" fill="#eaf8f4" stroke="#b8e1d7" class="panel"/>
+      <rect x="1540" y="74" width="12" height="188" rx="6" fill="#15927e"/>
+      <text x="1084" y="116" class="domain" fill="#0d7667">RL 与后训练</text>
+      <circle cx="1086" cy="148" r="7" fill="#15927e"/><text x="1106" y="156" class="item">verl · SFT/RLVR · Fully Async</text>
+      <circle cx="1086" cy="180" r="7" fill="#15927e"/><text x="1106" y="188" class="item">AReaL · Gateway / Session / Cohort</text>
+      <circle cx="1086" cy="212" r="7" fill="#15927e"/><text x="1106" y="220" class="item">Agent/Tool/Sandbox · goodput</text>
+      <circle cx="1086" cy="244" r="7" fill="#15927e"/><text x="1106" y="252" class="item">MOPD 多 Teacher · efficacy 待闭环</text>
+    </g>
+
+    <!-- Right: inference and rollout -->
+    <g>
+      <rect x="1052" y="280" width="500" height="188" rx="24" fill="#f3f0fb" stroke="#d8cdee" class="panel"/>
+      <rect x="1540" y="280" width="12" height="188" rx="6" fill="#7558b7"/>
+      <text x="1084" y="322" class="domain" fill="#5e4498">推理与 Rollout</text>
+      <circle cx="1086" cy="354" r="7" fill="#7558b7"/><text x="1106" y="362" class="item">vLLM / SGLang rollout</text>
+      <circle cx="1086" cy="386" r="7" fill="#7558b7"/><text x="1106" y="394" class="item">gen-TP / 多实例 / batching</text>
+      <circle cx="1086" cy="418" r="7" fill="#7558b7"/><text x="1106" y="426" class="item">KV / Prefix Cache · CUDA Graph</text>
+      <circle cx="1086" cy="450" r="7" fill="#7558b7"/><text x="1106" y="458" class="item">weight sync · policy version</text>
+    </g>
+
+    <!-- Right: memory and performance -->
+    <g>
+      <rect x="1052" y="486" width="500" height="188" rx="24" fill="#eaf7f8" stroke="#b9dfe3" class="panel"/>
+      <rect x="1540" y="486" width="12" height="188" rx="6" fill="#188d9a"/>
+      <text x="1084" y="528" class="domain" fill="#116f79">显存与性能</text>
+      <circle cx="1086" cy="560" r="7" fill="#188d9a"/><text x="1106" y="568" class="item">参数 / 梯度 / 优化器 / activation</text>
+      <circle cx="1086" cy="592" r="7" fill="#188d9a"/><text x="1106" y="600" class="item">logits / KV / workspace · OOM 定位</text>
+      <circle cx="1086" cy="624" r="7" fill="#188d9a"/><text x="1106" y="632" class="item">profiling / MFU / 瓶颈迁移</text>
+      <circle cx="1086" cy="656" r="7" fill="#188d9a"/><text x="1106" y="664" class="item">recompute / fusion</text>
+      <circle cx="1308" cy="656" r="7" fill="#eaf7f8" stroke="#188d9a" stroke-width="3"/><text x="1326" y="664" class="item-soft">offload</text>
+    </g>
+
+    <!-- Core -->
+    <g filter="url(#shadow)">
+      <rect x="620" y="259" width="360" height="230" rx="34" fill="url(#core)"/>
+      <rect x="640" y="279" width="320" height="190" rx="25" fill="none" stroke="#8dd7cc" stroke-width="1.5" opacity="0.45"/>
+    </g>
+    <text x="800" y="315" text-anchor="middle" class="core-title">个人能力地图</text>
+    <text x="800" y="363" text-anchor="middle" class="core-strong">大模型训练推理</text>
+    <text x="800" y="411" text-anchor="middle" class="core-strong">Infra</text>
+    <text x="800" y="440" text-anchor="middle" class="core-sub">Megatron · verl · AReaL</text>
+    <text x="800" y="476" text-anchor="middle" class="core-line">性能 × 正确性 × 规模化交付</text>
+
+    <!-- Experience boundary legend -->
+    <g>
+      <rect x="608" y="530" width="384" height="92" rx="22" fill="#ffffff" stroke="#cde3df" stroke-width="1.5"/>
+      <circle cx="646" cy="562" r="8" fill="#157e73"/>
+      <text x="668" y="570" class="legend">项目实战：集成 / 调优 / 交付</text>
+      <circle cx="646" cy="596" r="8" fill="#ffffff" stroke="#157e73" stroke-width="3"/>
+      <text x="668" y="604" class="legend">原理掌握 / 能力延伸</text>
+    </g>
+
+    <!-- Evidence strip -->
+    <text x="48" y="730" class="evidence-kicker">脱敏项目证据 · NUMBERS WITH BOUNDARIES</text>
+    <path d="M48 746 H1552" stroke="#b9d9d4" stroke-width="2"/>
+
+    <g>
+      <rect x="48" y="772" width="488" height="245" rx="22" fill="#ffffff" stroke="#bdd8e8" stroke-width="2"/>
+      <rect x="48" y="772" width="488" height="10" rx="5" fill="#3184b8"/>
+      <text x="72" y="818" class="card-title">X1 · 约 200B MoE</text>
+      <text x="72" y="858" class="card-value">0.16x → 0.95x</text>
+      <text x="72" y="897" class="card-value">MFU 35% · 3K 卡</text>
+      <text x="72" y="936" class="card-body">跑通 · 精度 · 性能 · 长稳</text>
+      <text x="72" y="980" class="card-note">性能闭环与训练保障 owner</text>
+    </g>
+
+    <g>
+      <rect x="556" y="772" width="488" height="245" rx="22" fill="#ffffff" stroke="#b8e1d7" stroke-width="2"/>
+      <rect x="556" y="772" width="488" height="10" rx="5" fill="#15927e"/>
+      <text x="580" y="818" class="card-title">Fully Async RLVR</text>
+      <text x="580" y="858" class="card-value">76 → 211–255</text>
+      <text x="580" y="897" class="card-body">tokens/s/GPU · 稳态窗口</text>
+      <text x="580" y="936" class="card-body">gen-TP 4→2 · 供需配平</text>
+      <text x="580" y="980" class="card-note">Async 内；236–293 = 2T+2R 候选</text>
+    </g>
+
+    <g>
+      <rect x="1064" y="772" width="488" height="245" rx="22" fill="#ffffff" stroke="#b9dfe3" stroke-width="2"/>
+      <rect x="1064" y="772" width="488" height="10" rx="5" fill="#188d9a"/>
+      <text x="1088" y="818" class="card-title">SFT / Long Context</text>
+      <text x="1088" y="858" class="card-value">Qwen3 / Qwen3.5</text>
+      <text x="1088" y="897" class="card-value">32K → 256K</text>
+      <text x="1088" y="936" class="card-body">data · recompute · memory · ckpt</text>
+      <text x="1088" y="980" class="card-note">特定 workload 口径</text>
+    </g>
+
+    <g>
+      <rect x="48" y="1037" width="488" height="245" rx="22" fill="#ffffff" stroke="#d8cdee" stroke-width="2"/>
+      <rect x="48" y="1037" width="488" height="10" rx="5" fill="#7558b7"/>
+      <text x="72" y="1083" class="card-title">AReaL Agentic RL</text>
+      <text x="72" y="1123" class="card-value">Gateway · Session · Cohort</text>
+      <text x="72" y="1162" class="card-value">Version · ready-cohort</text>
+      <text x="72" y="1201" class="card-body">长尾 · trajectory goodput</text>
+      <text x="72" y="1245" class="card-note">外部 Agent / Env 边界清晰</text>
+    </g>
+
+    <g>
+      <rect x="556" y="1037" width="488" height="245" rx="22" fill="#ffffff" stroke="#e9c4c8" stroke-width="2"/>
+      <rect x="556" y="1037" width="488" height="10" rx="5" fill="#b6606a"/>
+      <text x="580" y="1083" class="card-title">MOPD</text>
+      <text x="580" y="1123" class="card-value">RL Experts → Teachers</text>
+      <text x="580" y="1162" class="card-value">Pre-RL model → Student</text>
+      <text x="580" y="1201" class="card-body">原 RL 数据 OPD · FUNCTIONAL ✓</text>
+      <text x="580" y="1245" class="card-note">NUMERIC / EFFICACY 待闭环</text>
+    </g>
+
+    <g>
+      <rect x="1064" y="1037" width="488" height="245" rx="22" fill="#ffffff" stroke="#ecd0b8" stroke-width="2"/>
+      <rect x="1064" y="1037" width="488" height="10" rx="5" fill="#d28342"/>
+      <text x="1088" y="1083" class="card-title">X1 / TX 国产卡规模交付</text>
+      <text x="1088" y="1123" class="card-value">适配 → Profile → 优化</text>
+      <text x="1088" y="1162" class="card-value">验证 → 扩容</text>
+      <text x="1088" y="1201" class="card-body">模型跑通与性能达标闭环</text>
+      <text x="1088" y="1245" class="card-note">非集群平台 / 运维总 owner</text>
+    </g>
+  </g>
+</svg>
