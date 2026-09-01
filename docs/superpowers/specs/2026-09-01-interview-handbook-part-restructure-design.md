@@ -19,7 +19,7 @@
 2. **Part II｜Megatron、大规模训练与长上下文**：X1 约 200B MoE、5D 并行、TP/SP/CP/PP/EP、SFT 31s→9.3s、128K/256K、显存账本、规模交付。
 3. **Part III｜verl 与 Fully Async RLVR**：框架选型、Actor/Rollout 编排、同步与异步、资源供需配平、权重同步和 RLVR 正确性。
 4. **Part IV｜AReaL、Agentic RL 与 MOPD**：online proxy/cohort 链路、rollout 长尾、staleness、trajectory lineage、CUDA Graph、Prefix Cache、TILE→MOPD 和三层门禁。
-5. **Part V｜通用 Infra、性能与生产排障**：MFU、通信算子、NCCL、checkpoint/recovery、推理/KV cache、可观测性和系统设计题。
+5. **Part V｜通用 Infra 与生产排障**：通信算子、NCCL、checkpoint/recovery、推理/KV cache、可观测性和系统设计题。MFU 作为训练性能口径唯一归入 Part II。
 6. **Part VI｜面试应变与查漏补缺**：三框架速查、项目证据卡、模拟面试、反问、最后一小时清单和延伸阅读。
 
 每个技术 Part 内固定采用：`Part 目标 → Core（核心十题在本 Part 的子集）→ P0 扩展 → P1 深挖 → P2 选学 → 追问路线`。Core 是 P0 的优先子集，不是另一套题库。某个层级没有题目时明确写“本 Part 无额外题目”，不复制题目凑层级。Part VI 是演练层，按 Core/P0/P1/P2 四种模拟强度组织，不新增技术题。
@@ -110,8 +110,8 @@
 - 文档中的“核心十题”正好十道，十个题号在各自 Part 只有一个完整正文位置；其他题目按迁移表唯一归入 Part 和优先级。
 - 六个 Part 均有学习目标和 Core/P0/P1/P2 导航；Part I 可明确无额外 P0，Part VI 按四种模拟强度组织。技术 Part 均有追问路线。
 - 全部 60 个现有题号都有且仅有一个归属，题号和 anchor 不变；跨 Part 只链接不复制。
-- 主文档和底稿不再残留 `6–8x`，并正向出现“35B 真实 RL decode 约 14x”及“不是端到端加速”。
-- 主文档、底稿和 SVG 不再把 MOPD 写成“EFFICACY 待闭环”，并正向出现允许口述的双域/General 结论；不把单 Teacher pp 数字当成双 Teacher 结果。
+- 主文档和底稿不再残留 `6–8x`、`6-8x` 等旧数字排版变体，并正向出现“35B 真实 RL decode 约 14x”及“不是端到端加速”。
+- 主文档、底稿和 SVG 不再把 MOPD 写成“EFFICACY 待闭环”“NUMERIC/EFFICACY 未完全闭环”“没有证明多域模型效果提升”“多域最终效果仍待严格评测”或“early canary 仍是最新结论”，并正向出现允许口述的双域/General 结论；不把单 Teacher pp 数字当成双 Teacher 结果。
 - `31s→9.3s` 正向包含 DataLoader/prefetch、selective recompute、TP/CP 联合过程和“无单项 A/B”边界；不借用另一 workload 的 `163s→102s` 作为独立贡献。
 - checkpoint 正向定义为“可支持算法实验并产出有质量权重的稳定训练验收”，同时保留“不等于无限期无人值守”的边界。
 - Megatron 正向定义 feature integration/application layer，并明确未实现 collective kernel、未修改 `parallel_state`/process-group construction、未编写 scheduler。
