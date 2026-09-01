@@ -54,13 +54,13 @@
 
 ### 通信算子详细知识源
 
-`training-infra-roadmap/topics/nccl.md` 是通信算子的唯一详细知识源；`distributed_training.md` 只维护 5D 并行到通信模式的映射，不重复 collective 语义。`nccl.md` 新增内容覆盖：
+`training-infra-roadmap/topics/nccl.md` 是通信算子的唯一详细知识源；`distributed_training.md` 只维护 5D 并行到通信模式的映射，不重复 collective 语义。章节以 NCCL `2.31.2` 和对应 PyTorch Distributed 在线文档（访问日期 `2026-09-01`）为版本基线，并明确区分“数学通信语义、框架 API、NCCL 原生 API、组合/派生实现”。`nccl.md` 新增内容覆盖：
 
 - Collective 与 point-to-point 的区别；communicator/process group、rank、root 的基本语义；
-- Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll 的输入输出变换；
-- Send/Recv 与 Barrier 的用途，并明确 Barrier 是同步语义，不等同于张量重分布；
-- `AllReduce = ReduceScatter + AllGather`、`AllReduce = Reduce + Broadcast` 的语义等价关系，以及“语义等价不代表底层一定机械执行两个算子”；
-- fixed-count AllToAll 与 variable-count AllToAllV/dispatcher 的边界；
+- Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll 的输入输出变换；在 NCCL 2.31.2 中它们均有 host collective API，其中 `ncclAlltoAll`、`ncclGather`、`ncclScatter` 是较新版本能力，必须标注版本边界；
+- Send/Recv 与 Barrier 的用途；NCCL 2.31.2 有 host Send/Recv，但没有与 PyTorch `dist.barrier()` 等价的通用 host collective Barrier，后者属于框架同步语义或由后端组合实现；
+- `AllReduce = ReduceScatter + AllGather`、`AllReduce = Reduce + Broadcast` 只在 count/partition、dtype、reduction op 等条件兼容时具有数学语义等价；底层不一定机械调用两个 API，浮点归约顺序不同也不保证 bitwise 或数值完全一致；
+- NCCL fixed-count AllToAll 与框架/dispatcher 的 variable-count AllToAllV 边界；AllToAllV 必须校验 split 总量和每对 peer 的 send/recv count 一致；
 - DP/TP/PP/CP/EP/FSDP/Distributed Optimizer 中的典型使用位置；
 - latency/bandwidth、ring/tree、消息大小、拓扑、异步 stream/overlap 等性能判断；
 - group membership、count/dtype、调用顺序、shape、stream/wait 等正确性不变量和 hang 排障。
@@ -98,7 +98,9 @@
 5D 到通信算子的简明映射为：
 
 ```text
-DP  -> gradient AllReduce，或 ReduceScatter + parameter AllGather
+classic DP -> gradient AllReduce
+Distributed Optimizer -> gradient ReduceScatter -> local optimizer update -> parameter AllGather
+FSDP -> pre-compute parameter AllGather -> post-backward gradient ReduceScatter / reshard
 TP  -> layer-level AllReduce / AllGather / ReduceScatter
 PP  -> stage-boundary Send/Recv
 CP  -> Attention KV 的 P2P / AllGather / AllToAll
@@ -246,8 +248,8 @@ Attention logical mesh     Expert logical mesh
 4. Megatron-LM 官方 Context Parallelism 和 Parallelism Strategies 文档；
 5. Megatron-Core 官方 `parallel_state.py`、`ProcessGroupCollection` 和 Distributed Optimizer 相关 API/源码；记录引用的 tag/commit 或访问日期 `2026-09-01`，把实现细节标记为版本相关；
 6. 本仓库保存的论文中文译文第二部分；
-7. NVIDIA NCCL 官方 Collective Operations 与 point-to-point 文档（记录访问日期 `2026-09-01`）；
-8. PyTorch Distributed 官方 collective API 文档，用于框架层异步 handle、Barrier 和 variable-size API 边界。
+7. NVIDIA NCCL `2.31.2` 官方 Collective Operations、C API 与 point-to-point 文档（访问日期 `2026-09-01`），并参考 NCCL `2.28.3` release notes 标注 AllToAll/Gather/Scatter host API 的版本边界；
+8. PyTorch Distributed 官方 collective API 文档（访问日期 `2026-09-01`），用于框架层异步 handle、Barrier 和 variable-size API 边界。
 
 对代码实现相关描述使用“当前 Megatron-Core 实现”表述，避免把版本相关细节写成永恒定义。
 
@@ -257,7 +259,7 @@ Attention logical mesh     Expert logical mesh
 - `topics/moe.md` 能独立回答 Parallel Folding、MoE world size、process group、运行时流和排障问题，并回链 5D 总览与 CP/SP，但不复制 SP/CP 机制细节；
 - 8-rank 与 256-GPU 示例算术正确，两套逻辑网格没有被误乘；
 - `interview/moe.md` 的 5D、Parallel Folding、CP/SP 三道题可在 3-5 分钟内口述，并回链到 topic；
-- `topics/nccl.md` 能用输入输出语义解释常见 collective/P2P，给出 5D/FSDP 使用映射、性能模型和正确性排障；`interview/tensor_parallelism.md` 包含可口述的通信算子综合题；
+- `topics/nccl.md` 能用输入输出语义解释常见 collective/P2P，区分 NCCL 2.31.2 原生 API 与框架/组合语义，给出 5D、Distributed Optimizer、FSDP 使用映射、性能模型和正确性排障；等价关系明确兼容条件和浮点归约边界，AllToAllV 验证 split 总量与逐 peer 收发一致性；`interview/tensor_parallelism.md` 包含可口述的通信算子综合题；
 - DP/TP/PP/CP/SP/MoE 单项 topic 都能回到 5D 总览；`KNOWLEDGE_GRAPH.md`、`MASTER_READING_LIST.md` 和必要时的 handbook README 已更新导航；
 - 所有本地 Markdown/PDF 链接存在，外部链接指向官方来源；
 - Mermaid 语法闭合，节点文字不拥挤；
