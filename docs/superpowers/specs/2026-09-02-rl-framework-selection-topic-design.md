@@ -26,7 +26,8 @@
 7. **个人项目决策复盘**：先比较 verl、slime、ROLL 后选择 verl；需求切换到 128K、多轮 tool/sandbox、外部 Agent 和 Gateway 改造后选择 AReaL；同时补齐外围生产能力。
 8. **验证方法**：如何用相同 workload 比较 goodput、tail latency、freshness、weight-sync exposed time、恢复与效果。
 9. **面试口述**：30 秒和 2 分钟两个版本，高频追问与危险回答。
-10. **版本与来源**：只引用官方文档/仓库，区分项目当时版本、verl 0.7 的 experimental Fully Async 路径、AReaL 2.0 架构里程碑和当前 AReaL 2.1；记录 2026-09-02 核验日和对应 tag/commit。
+10. **版本与来源**：只引用官方文档/仓库，区分项目当时使用/评估的 verl 0.7.1（Fully Async 尚处于演进期）、当前 verl 0.9.0、AReaL 项目链路、AReaL 2.0 架构里程碑和当前 AReaL 2.1；记录 2026-09-02 核验日和对应 tag/commit。
+11. **当前重评**：单列“如果今天重新选型”，说明 verl 0.9 已补强 Fully Async、Agentic RL、Uni-Agent Gateway 和 1,000+ stateful sessions 等能力，历史差距已经收窄；当前选择必须重新 benchmark，而不能机械复用项目当时结论。
 
 ## 主文档边界
 
@@ -43,7 +44,7 @@
 
 ## 关键事实与口径
 
-- 不说“AReaL 异步、verl 同步”；verl 0.7 已提供 Fully Async 路径，但截至 2026-09-02 仍位于 `verl.experimental`，不能写成稳定默认主路径。
+- 不说“AReaL 异步、verl 同步”；项目当时评估的 verl 0.7.1 中 Fully Async 仍在快速演进，而截至 2026-09-02 的最新 release 已是 v0.9.0（`483b8a0`），并进一步补强 Fully Async 与 Agentic RL。两套时点必须分开描述。
 - 不把 verl 简化为纯 single-controller；准确口径是 Hybrid-Controller：高层 single-controller/MPMD 编排，内部 model/rollout engine 以 SPMD/multi-controller 执行。
 - 不说“AReaL 全面更先进”；准确说法是它在长时 Agentic RL workload 下的架构起点更贴近项目问题。
 - “verl 较重”必须落到改动牵引范围：trainer、worker、数据协议、agent loop、推理后端和 placement 等层的联动，而不是笼统批评。
@@ -66,5 +67,5 @@
 - 专题能够独立回答架构、优劣、选择原因、版本边界和公平比较方法。
 - 所有新增相对链接和锚点可解析，Markdown 图片/图表不引入外部本地依赖。
 - 官方链接来自 verl/AReaL 官方文档或 GitHub 仓库。
-- 所有动态能力结论标注 `项目当时版本 / 当前官方版本 / 核验日期或 tag/commit`；选型矩阵的关键判断可追溯到官方来源，或明确标成个人项目判断。
+- 所有动态能力结论标注 `项目当时版本 / 当前官方版本 / 核验日期或 tag/commit`；选型矩阵的关键判断可追溯到官方来源，或明确标成个人项目判断。当前版本基线为 verl v0.9.0（`483b8a0`）与 AReaL v2.1.0（`ecc8b0e`）。
 - 变更不改动简历文件，不夸大个人对框架底层实现的 ownership。
