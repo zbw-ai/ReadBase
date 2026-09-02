@@ -57,7 +57,7 @@
 
 | 主题 | Input | Queue | Topic | Insight | Project / experiment | Playbook | Log |
 |---|---|---|---|---|---|---|---|
-| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
+| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) / [Framework Selection](topics/rl_framework_selection.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
 
 ## 0.4 Historical Backfill 入口
 
@@ -67,8 +67,8 @@
 
 | 队列 | 材料 | 为什么 |
 |---|---|---|
-| P0 | AReaL | 补异步 rollout/train 解耦和 staleness 控制 |
-| P0 | HybridFlow / verl | 补 RLHF dataflow 和 actor resharding |
+| P0 | AReaL | 补异步 rollout/train 解耦和 staleness 控制；沉淀到 [RL Framework Selection](topics/rl_framework_selection.md) |
+| P0 | HybridFlow / verl | 补 RLHF dataflow 和 actor resharding；沉淀到 [RL Framework Selection](topics/rl_framework_selection.md) |
 | P0 | Agent Lightning | 补 agent runtime 与 trainer 解耦 |
 | P1 | OpenRLHF | 补 Ray + vLLM + DeepSpeed 多组件调度 |
 | P1 | vLLM + OpenRLHF Integration | 补 rollout inference / weight sync / placement group |
@@ -214,8 +214,8 @@
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 31 | CompactionRL | [CompactionRL](papers/compactionrl.md) | long-horizon agent 的 context compaction、segment loss 和 cross-trajectory credit assignment |
-| 32 | AReaL | Tracking / P0 | 异步 rollout/train 解耦、staleness、sample freshness |
-| 33 | HybridFlow / verl | Tracking / P0 | RLHF dataflow、actor training/generation resharding |
+| 32 | AReaL | [RL Framework Selection](topics/rl_framework_selection.md) | 异步 rollout/train 解耦、staleness、sample freshness |
+| 33 | HybridFlow / verl | [RL Framework Selection](topics/rl_framework_selection.md) | RLHF dataflow、actor training/generation resharding |
 | 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |
 | 35 | Traditional KD → OPD → MOPD | [MOPD（研究中 / 原理第一版）](topics/mopd.md) | Student rollout、dense Teacher signal、domain routing、multi-teacher serving |
 

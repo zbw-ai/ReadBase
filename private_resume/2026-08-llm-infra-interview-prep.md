@@ -741,7 +741,7 @@ X1 MoE 优化 → 5D 并行选择 → 本 rank 显存账 → TP/SP/CP/EP/PP 追�
 
   > Rollouter 持续逐样本生成并按 freshness/capacity 写入 MessageQueue；Trainer 按训练所需 mini-batch 从队列消费，完成若干 update 后由 ParameterSynchronizer 把新权重同步到 rollout。收益来自训练与生成时间重叠、隔离长尾，而不是让单个阶段本身更快。关键控制量包括 queue depth、staleness threshold、parameter-sync cadence、partial rollout 和 actor/rollout 资源比。严格 on-policy 需要更强 barrier；fully async 常会产生 one-step 或 bounded off-policy，因此必须记录 behavior policy version/logprob 并使用 correction、拒绝或阈值控制。
 
-- **项目证据或知识边界**：截至核验日该功能仍在 `experimental`；你的项目分支可能与 upstream `v0.7.1` 不同，应明确版本。
+- **项目证据或知识边界**：你的项目基于当时的 v0.7.1/公司分支，Fully Async 仍在快速演进；当前官方已到 v0.9.0，并对 trainer、Agentic RL 和相关数据/权重链路继续重构。面试时必须区分项目实现与当前 upstream，不能把两者类名和能力直接混用。
 - **高概率追问**：queue 满/空分别说明什么？怎么 checkpoint in-flight samples？staleness=0 是否自动严格 on-policy？
 - **危险回答**：说“完全异步但没有陈旧样本”；只调队列大小；忽略恢复后的 pending/running prompt。
 
@@ -965,19 +965,18 @@ flowchart TB
 - **面试官意图**：评估你的选型方法、版本意识和二次开发判断；也会验证你是否只是同时列出多个热门框架。
 - **一句话区分**：
 
-  > verl 更像成熟的标准后训练编排层，把 Actor、Rollout、Ref、Critic、Reward 和不同训练/推理后端组合起来；AReaL 更像面向长时 Agent 的异步 trajectory 生产与训练系统，重点是 online proxy、session/cohort、staleness 和持续 policy feedback。
+  > verl 的系统中心是灵活编排 RL 的多角色计算图和训练/推理后端；项目当时采用的 AReaL 路径，系统中心是持续生产 Agent trajectory，并管理 session、cohort、policy version 和 staleness。
 
 - **精准回答**：
 
-  > 我做 RL Infra 的第一阶段，先对 verl、slime、ROLL 做过框架对比。当时的目标是尽快稳定交付 SFT 和标准 RLVR，所以我重点比较训练后端和模型支持、RL 算法/数据流完整度、vLLM/SGLang rollout、训练—推理权重同步、稳定性、可观测性和二次开发成本。基于当时我们实际评估的版本，verl 的标准后训练链路和生态更成熟，Megatron/FSDP 等后端组合也更符合已有基础，因此选择 verl。这个结论只代表当时 workload 和版本，不是对 slime、ROLL 当前能力的永久排名。
+  > 第一阶段的目标是稳定交付 SFT 和标准 RLVR。我比较了 verl、slime、ROLL 的模型/训练后端、算法 dataflow、vLLM/SGLang rollout、weight sync、correctness、恢复和二开成本。基于当时版本和团队已有的 Megatron 资产，verl 的标准后训练链路更匹配，因此选择 verl；这不是对另外两个框架的永久排名。
   >
-  > 后来需求转为 Agentic RL：episode 更长、多轮 tool/sandbox 交互更多，需要外部 evals/agent client 持续发请求，并管理 session、cohort、长尾、policy version 和 staleness。verl 也能做 async，但在我们当时的代码和改造路径里，完整框架抽象较重，修改 online gateway 与 trajectory lifecycle 的牵引范围更大。AReaL 的 fully async、OpenAI-compatible proxy/gateway 和 session/interaction 数据链更贴合这个 workload，Gateway 也更容易按项目需要二次开发，因此我们在 Agentic RL 阶段转向 AReaL。
-  >
-  > 代价是 AReaL 当时的外围生产能力不如 verl 完整，我们还需要补齐 Gateway 调度、online drain、lineage、监控、故障恢复、评测和多 Teacher 路由等能力。所以我的结论不是“AReaL 全面更先进”，而是：**标准 SFT/RLVR 优先选择成熟完整度；长时 Agentic RL 优先选择 session/trajectory 和异步控制面更匹配、改造半径更小的架构。**
+  > 后来需求转为 128K、多轮 Tool/Sandbox 和外部 Agent 在线请求，主要矛盾变成 session/cohort 生命周期、rollout 长尾、policy version、staleness 和 Gateway 改造。在项目当时的代码基础上，AReaL online proxy/cohort 路径更贴合，控制面改造半径也更小，所以转向 AReaL；同时我们补齐了 Gateway 调度、online drain、lineage、监控、恢复、评测和多 Teacher 路由等能力。这个结论不是“AReaL 异步、verl 同步”，也不是“AReaL 全面更先进”。当前 verl v0.9 已补强 Fully Async、Agentic RL 和 Uni-Agent Gateway；如果今天重新选型，我会用同一 workload 重做 PoC。
 
 - **选型维度**：`workload 形态 → 训练后端/模型支持 → rollout/agent 接口 → placement 与 weight sync → correctness → 可观测/恢复 → 二开半径与团队维护成本`。公开 benchmark 只能提供候选，最终要用自己的模型、长度分布、并发和故障场景做 A/B。
+- **详细专题**：[verl 与 AReaL：RL 框架架构选型指南](../training-infra-roadmap/topics/rl_framework_selection.md)——包含架构、优劣、当前选型矩阵、公平 benchmark 和 2 分钟回答。
 - **项目证据或知识边界**：你分别有 verl RLVR 和 AReaL Agentic RL 项目，是强项目证据；说明“当时评估的版本”和公司二次开发。对 slime、ROLL 只说当时评估维度与选择，不编造没有记录的排名或缺陷。
-- **高概率追问**：verl fully async 后差异是否还成立？所谓“框架重”具体体现在哪里？AReaL 还缺哪些生产能力？AReaL 2.0 与旧架构有何变化？同一任务怎么做公平选型 benchmark？
+- **高概率追问**：verl v0.9 后差异是否还成立？所谓“框架重”具体体现在哪里？AReaL 项目链路与 2.x 有何区别？同一任务怎么做公平选型 benchmark？
 - **危险回答**：“AReaL 异步、verl 同步”；“AReaL 所有方面更先进”；把当时版本结论外推到当前 slime/ROLL；只用社区 benchmark，不讲团队已有资产和改造成本。
 
 <a id="areal-02"></a>
@@ -1273,13 +1272,13 @@ collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/re
 | 维度 | Megatron-Core | verl | AReaL |
 |---|---|---|---|
 | 核心定位 | 大模型高性能训练组件与并行/模型实现 | LLM RL post-training dataflow 与多后端编排 | 面向 reasoning/agent 的异步 RL 与在线服务桥接 |
-| 主要抽象 | Transformer/parallel state/distributed optimizer/checkpoint | Trainer、WorkerGroup、DataProto、BaseEngine、Rollout | training/inference/agent/weight-update、staleness、online gateway |
+| 主要抽象 | Transformer/parallel state/distributed optimizer/checkpoint | Trainer、WorkerGroup、TensorDict/DataProto、Engine、Rollout/TransferQueue | training/inference/agent/weight-update、staleness、online gateway |
 | 训练后端 | 自身提供 Megatron 训练栈 | 可选 Megatron、FSDP/FSDP2 等 | 可接 Megatron/FSDP 等，版本相关 |
 | 推理角色 | 不是主要目标 | 集成 vLLM/SGLang 等 rollout | 独立 inference service/rollout，强调在线 agent 接入 |
-| 强项 | TP/PP/CP/EP、MoE、长上下文、规模扩展 | 算法流灵活、placement、多 engine/recipe 生态 | fully async、bounded off-policy、长时 Agentic RL、服务解耦 |
-| 核心代价 | 配置/模型适配复杂、通信与拓扑敏感 | role/版本/依赖矩阵复杂，async 部分仍 experimental | staleness、trajectory 状态、微服务一致性与运维复杂 |
+| 强项 | TP/PP/CP/EP、MoE、长上下文、规模扩展 | 算法流、placement、多 engine/recipe、sync/async/agent 生态 | async、bounded off-policy、session/trajectory、服务解耦 |
+| 核心代价 | 配置/模型适配复杂、通信与拓扑敏感 | role/service/版本/依赖矩阵复杂，多条新路径持续演进 | staleness、trajectory 状态、微服务一致性与运维复杂 |
 | 你的证据 | Megatron 后端 SFT/RLVR、长上下文、MoE、checkpoint | SFT/RLVR、fully async、vLLM/SGLang、性能/稳定性 | 128K Agentic RL、在线蒸馏、lineage、weight sync |
-| 诚实边界 | 位于 feature integration/application layer；未实现 collective kernel，未改 `parallel_state`/process-group construction，未写 pipeline scheduler | 项目分支可能不同于 upstream v0.7.1 | 项目版本可能早于 2.0，不能倒推使用新微服务架构 |
+| 诚实边界 | 位于 feature integration/application layer；未实现 collective kernel，未改 `parallel_state`/process-group construction，未写 pipeline scheduler | 项目判断基于当时代码；当前官方已到 v0.9.0 | 项目版本早于 2.x，不能倒推使用当前微服务架构 |
 
 一句话区分：
 
@@ -1288,6 +1287,8 @@ collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/re
 你的选型口径：
 
 > **标准 SFT/RLVR 阶段，在当时比较 verl、slime、ROLL 后选择了完整度和后端生态更匹配的 verl；Agentic RL 阶段因长时 session、外部 Agent、fully async 和 Gateway 改造需求转向 AReaL，同时自行补齐外围生产能力。**
+
+详细比较与当前版本重评：[verl 与 AReaL：RL 框架架构选型指南](../training-infra-roadmap/topics/rl_framework_selection.md)。
 
 ### VI.2 五张项目证据卡：面试前必须手写补齐
 
@@ -1435,8 +1436,8 @@ EFFICACY 证据与置信区间：______
 #### 官方框架资料（Megatron 补充核验于 2026-09-01）
 
 - NVIDIA Megatron-Core：[Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)、[MoE Parallel Folding](https://arxiv.org/abs/2504.14960)、[MoE Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/moe.html)、[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)、[Pipeline Schedules](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.pipeline_parallel.schedules.html)、[`theoretical_memory_usage.py`](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/theoretical_memory_usage.py)。Release 页面核验到 `core_v0.18.2`，commit `571370c`；MoE 技术报告和上述公式补充核验于 2026-09-01。
-- verl：[GitHub](https://github.com/verl-project/verl)、[HybridFlow Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html)、[Engine Workers](https://verl.readthedocs.io/en/latest/workers/engine_workers.html)、[Fully Async](https://github.com/verl-project/verl/blob/main/docs/advance/fully_async.md)。Release 页面核验到 `v0.7.1`，commit `bec9ef7`；`fully_async_policy` 仍在 `verl.experimental`。
-- AReaL：[GitHub](https://github.com/areal-project/AReaL)、[Asynchronous RL Guide](https://github.com/areal-project/AReaL/blob/main/docs/en/algorithms/async.md)、[Online Proxy](https://github.com/areal-project/AReaL/blob/main/docs/en/tutorial/online_proxy.md)、[Releases](https://github.com/areal-project/AReaL/releases)。核验到 `v2.0.0`/AReaL 2.0（2026-07-01）；2.0 将 training、inference、agent、weight-update 拆为独立服务。
+- verl：[GitHub](https://github.com/verl-project/verl)、[HybridFlow Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html)、[0.7 Architecture](https://verl.readthedocs.io/en/latest/blog/v0.7.html)、[v0.9.0 Fully Async](https://github.com/verl-project/verl/blob/v0.9.0/docs/advance/fully_async.md)。项目历史参照为 `v0.7.1`（`bec9ef7`）；截至 2026-09-02，当前 release 为 `v0.9.0`（`483b8a0`），已继续补强 Fully Async、Agentic RL 与 Uni-Agent Gateway。
+- AReaL：[GitHub](https://github.com/areal-project/AReaL)、[v2.1.0 Asynchronous RL Guide](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/algorithms/async.md)、[v2.1.0 Online Proxy](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/tutorial/online_proxy.md)、[Releases](https://github.com/areal-project/AReaL/releases)。`v2.0.0`（`fee938e`，2026-07-01）把 training、inference、agent、weight-update 拆为独立服务；截至 2026-09-02，当前 release 为 `v2.1.0`（`ecc8b0e`）。项目 online proxy/cohort 链路早于 2.x，不能倒推为当前架构。
 - NVIDIA NCCL：[Collective Operations, NCCL 2.31.2](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html)。
 - PyTorch：[Distributed Checkpoint Tutorial](https://docs.pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html)。
 

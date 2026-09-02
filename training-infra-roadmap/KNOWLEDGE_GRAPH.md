@@ -231,6 +231,7 @@ flowchart LR
 - [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
+- [Agentic RL](topics/agentic_rl.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md) ↔ HybridFlow / Async Agent Services
 - [Agentic RL](topics/agentic_rl.md) ↔ [OPD / MOPD](topics/mopd.md) ↔ Teacher Prefill / Domain Routing
 - [Agentic RL](topics/agentic_rl.md) ↔ [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ Simulation / Robot Runtime / Safety
 - [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ [Distributed Training](topics/distributed_training.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
