@@ -17,6 +17,56 @@ Agentic RL 不是“把 PPO/GRPO 换个任务继续跑”。它把训练系统�
 
 这意味着 Agentic RL Infra 的核心不是“更会调参”，而是设计一个能让 rollout、reward、training、weight sync、checkpoint 和 observability 长期稳定协同的系统。
 
+面试速答入口：[RL-ALGO-01｜PPO、GRPO、DAPO](../../private_resume/2026-08-llm-infra-interview-prep.md#rl-algo-01) · [VERL-04｜Fully Async、streaming、partial rollout 与 staleness](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-04) · [AREAL-09｜Gateway 二次开发](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-09) · [AREAL-10｜外部 Agent 接入](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-10)
+
+<a id="ppo-grpo-dapo"></a>
+## PPO、GRPO、DAPO：先用最简单的话讲清楚
+
+### PPO
+
+> **PPO 用旧 policy 采样，再限制新 policy 一次不要改得太远。**
+
+展开成训练链路：
+
+1. Actor 用 behavior/old policy 生成 trajectory；
+2. reward 与 Critic/value 估计共同产生 advantage，常见做法是 GAE；
+3. 计算 `ratio = π_new(a|s) / π_old(a|s)`；
+4. 用 clipped surrogate objective 限制 ratio，避免单次 update 过猛；
+5. 对同一批样本做若干 epoch/minibatch 更新，同时训练 Critic。
+
+LLM RLHF 中常加入 Reference model 的 KL penalty 约束策略不要偏离 base/SFT model，但 Reference/KL 是常见 RLHF recipe，不是 PPO 定义本身。面试时要把 old policy、Critic 和 Reference 三个角色分开。
+
+### GRPO
+
+> **GRPO 对同一个 prompt 采样一组答案，用组内相对好坏当 advantage，从而省掉 Critic。**
+
+典型过程是：同一 prompt 生成 `G` 条 response，得到一组 reward；用组内均值/标准差标准化 reward，构造 relative advantage，再做 PPO 风格的 ratio clipping，并按实现选择 reference KL。核心收益是少维护一个和 Actor 同规模的 Critic，代价是每个 prompt 要采多条样本，组内 reward 没有区分度时学习信号会消失，且 normalization、loss aggregation 和长短样本权重会显著影响结果。
+
+GRPO 是 PPO 的 group-relative 变体，不应说成“完全不用 old policy/logprob”，也不能说“没有 Critic 就没有 baseline”——组内统计量本身就是 baseline。
+
+### DAPO
+
+> **DAPO 是面向大规模 reasoning RL，把 GRPO 训练中容易塌掉的几个工程和目标函数细节系统修正的一套 recipe。**
+
+DAPO 论文的四个关键点是：
+
+- **Clip-Higher**：正负方向使用不对称 clip，上侧更宽，缓解低概率 token 难以被提升的问题；
+- **Dynamic Sampling**：过滤组内 reward 全相同、没有 advantage 信号的 prompt，并继续采样补足有效 batch；
+- **Token-level Policy Gradient Loss**：按有效 token 聚合，而不是先把每条 sequence 等权平均，避免长 response 的梯度被过度稀释；
+- **Overlong Reward Shaping**：对接近/超过长度上限的 response 平滑惩罚，减少硬截断带来的噪声。
+
+所以最稳妥的关系是：
+
+```text
+PPO：Critic/GAE + clipped policy update
+  ↓ 去掉显式 Critic，改用同 prompt 组内相对 reward
+GRPO
+  ↓ 对 clip、有效采样、token loss、超长样本做系统修正
+DAPO recipe
+```
+
+实际框架中的 GRPO/DAPO 可能在 KL 位置、loss aggregation、normalization、importance correction 上有变体。面试回答算法时，应把“论文定义”“框架实现”和“项目配置”分开。
+
 ## 为什么它会改变 Training Infra
 
 传统 LLM 训练平台假设训练数据已经准备好，GPU 只需要持续消费 token。Agentic RL 打破了这个假设：训练数据是在训练过程中由当前或近似当前 policy 生成的。
@@ -138,6 +188,164 @@ rollout workers 持续生产，training workers 持续消费，系统通过 stal
 
 适合 rollout latency tail 明显、GPU 利用率被同步 barrier 拖垮、且团队有能力建设完整 observability 和 freshness 控制的场景。
 
+<a id="async-streaming-partial-staleness"></a>
+## Fully Async、streaming、partial rollout 与 staleness
+
+这四个词经常被混用，但它们描述的是不同层次。
+
+### Fully Async：执行关系
+
+Fully Async 指 rollout producer 和 trainer consumer 不再以同一个 step barrier 串行推进：producer 持续写 queue/buffer，trainer 凑够可训练 batch 就更新，权重再按一定 cadence 发布给 rollout。它解决的是同步 phase bubble 和 trajectory 长尾阻塞。
+
+它不保证单个 rollout 或 actor update 更快，也不自动保证 on-policy。异步越强，越要处理 queue、backpressure、version、safe retry、checkpoint 和恢复。
+
+### Streaming：数据到达方式
+
+在 RL Infra 语境里，streaming 至少有两种含义：
+
+1. **token streaming**：OpenAI-compatible HTTP 请求逐 token/chunk 返回；它改善首 token 可见性和 Agent 交互，但不等于样本已可训练；
+2. **sample/prompt streaming**：prompt、trajectory 或训练 batch 持续进入 data plane，不要求先生成一个完整 epoch/batch 文件。verl v0.9 release 中的 streaming dataloader 属于这一类。
+
+面试时必须先说明所指对象。`stream=True` 只是 API 返回方式，不能据此宣称训练已经 Fully Async。
+
+### Partial rollout：trajectory 生命周期
+
+Partial rollout 指一条未完成 trajectory 可以在调度/权重更新边界被暂停、保存状态并继续，而不是为了等它而阻塞全局，也不是每次更新都丢弃整条长 episode。
+
+需要保存：
+
+- environment/session state；
+- messages/token IDs、tool outputs 和 RNG/sampling metadata；
+- segment boundary；
+- 每段或每 token 的 behavior policy version/logprob；
+- reward 是否 terminal、是否可跨 segment 回传。
+
+它提升长 trajectory 利用率，但同一 trajectory 可能跨 policy version，credit assignment 和 correction 会更复杂。它不是“把字符串截成两段继续生成”这么简单。
+
+### Staleness：算法距离的系统代理
+
+最常见的离散指标是：
+
+```text
+version lag = current trainer version - behavior rollout version
+```
+
+它容易观测，但只是 policy divergence 的代理：同样落后 1 个 version，不同 learning rate、update size 和 token 状态上的 KL 可能完全不同。更完整的诊断还包括 trajectory age、importance ratio、behavior/current logprob gap 和 KL 分布。
+
+处理策略通常是：
+
+- `wait`：producer 等新权重或 trainer 等新鲜样本；
+- `drop/reject`：丢弃超过阈值的 group/trajectory/token；
+- `mask`：只让满足约束的 token 进入 loss；
+- `correct/reweight`：用 importance sampling、rollout correction 或 decoupled loss；
+- 调整 weight-sync cadence、producer/consumer 资源比和 queue capacity。
+
+### 四者如何连起来
+
+```text
+Fully Async 去掉全局 barrier
+  → sample streaming 持续供给 trainer
+  → 长 episode 需要 partial rollout 才不被频繁丢弃
+  → trajectory/token 跨版本，形成 staleness
+  → wait/drop/mask/correct + weight sync 控制吞吐—效果前沿
+```
+
+不能只开一个 `max_staleness` 配置就宣布正确。必须同时看 effective-token goodput、version-lag 分布、stale rejection、importance ratio/KL、训练 reward 和 held-out eval。
+
+<a id="external-agent-gateway"></a>
+## 外部 Agent 如何通过 OpenAI-compatible Gateway 接入
+
+### 基础协议
+
+外部 Agent 不需要 import AReaL 内部 engine，只要能把模型调用指向 Gateway：
+
+```text
+Admin key
+  POST /rl/start_session
+      ↓ 返回 session_id + session API key
+Session key
+  POST /chat/completions | /responses | /v1/messages
+      ↓ 可多轮调用 Tool/Sandbox
+  POST /rl/set_reward
+  POST /rl/end_session
+```
+
+两级 key 的职责不同：admin key 保护 session 创建/管理，session key 只允许访问该 session 的推理、reward 和结束接口。这样第三方 OpenAI/Anthropic-compatible Agent framework 只需替换 `base_url` 和 `api_key`，多轮控制流、Tool/Sandbox 状态仍留在框架外部。
+
+这里列的是项目分支 `server.py` 的实际 route；OpenAI SDK 会在传入的 `base_url` 后追加 `chat/completions` 或 `responses`。如果外层 ingress 统一增加 `/v1` 前缀，应以部署路由为准，不能把 SDK 习惯路径直接写成项目服务端事实。
+
+### 项目 online proxy/cohort 数据流
+
+```text
+External Evals / Agent
+  → Gateway：鉴权、路由、admission
+  → CohortManager：task/cohort/group rank、capacity、rollout version、staleness
+  → Proxy Worker：OpenAI-compatible endpoint
+  → vLLM/SGLang：生成 token/logprob
+  → InteractionCache：interaction、token、behavior logp、version、reward
+  → rewarded + ended + complete cohort
+  → Trainer export/tensorize → advantage/loss/update
+```
+
+API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能不能正确训练”。训练系统仍必须保证：
+
+- session/interaction identity 不串；
+- terminal reward 写到权威 completion；
+- 重试不会重复创建或把一个 episode 路由到另一 cohort；
+- cohort/group 完整性和 domain 配额正确；
+- behavior logprob、token/version lineage 完整；
+- update/checkpoint/recovery 后 queue 和 fairness state 一致。
+
+<a id="project-gateway-ownership"></a>
+## 项目 Gateway 二次开发：逻辑到底改了什么
+
+### 先划清 ownership
+
+团队/上游已经提供 OpenAI-compatible proxy、online session/cohort 基础链路、Proxy Worker、InteractionCache、CohortManager 和 trainer consumer。项目基础提交 `64adce36` 的作者不是本人，因此面试中应说“项目基于这条链路”，不能说是自己从零设计。
+
+个人代码 ownership 可以归纳为四类。
+
+### 1. 从 supply-driven 变为 step-plan-driven admission
+
+原始风险：外部 producer 哪个 domain 来得快，哪个 domain 就可能占满训练供给；多 Teacher MOPD 中会静默饿死某个 Teacher route。
+
+逻辑变化：trainer 先生成本 step 的 exact domain quota plan；Gateway 用 reservation → claim → session → export 路由把 cohort 绑定到 domain、worker 和 step。optimizer update、weight sync 和 model save 成功后，trainer 才在内存中 `commit_pending()`；紧随其后的 recovery checkpoint 再持久化已推进的 fairness cursor。若在 commit 前失败，pending plan 不推进；若进程在 commit 后、recovery checkpoint 落盘前退出，恢复仍读取上一个持久化 cursor，从而重放这一步，而不是静默跳过配额。
+
+证据：`10a3e264` 与 `9979a0f6` 是不同分支/演进阶段的同类 exact-quota 实现，答题时合并为一项能力，不累计成两个成果。
+
+### 2. 把 session lifecycle 与 reward identity 变成 fail-closed contract
+
+原始风险：外部 marker 被误当作权威 completion、reward/end 到达顺序竞争、一个 rejected cohort 的 sibling 仍在运行却被过早清理，都会导致奖励写错、trajectory 丢失或串 session。
+
+逻辑变化：Proxy 选择权威 final completion，外部 marker 只做诊断；reward 与 end 两种顺序都进入同一生命周期状态机；rejected cohort 不再获得 trainer credit，但仍保留 active sibling route 直到自己的 terminal cleanup；zero-interaction 继续 fail closed。
+
+证据：`c83de5fa`、`e7373e8b`、`afb1882c`，以及对应 reward identity、session lifecycle 和 cohort rejection tests。
+
+### 3. 从“长时间等”改为“有边界、可证明安全的重试”
+
+原始风险：registration 在 domain lock 内 long-poll，且复用 multi-hour streaming timeout；一个 abandoned handler 或坏 backend 就能锁住整个 domain。另一类风险是 closed-domain episode 占满 worker slots，open-domain episode 永远拿不到执行机会。
+
+逻辑变化：
+
+- quota miss 立即返回，不在 domain lock 内等待；backend forward 移到锁外；
+- register/control 等小 RPC 使用 bounded timeout，真正的 streaming/ready wait 保留长 timeout；
+- trainer 对 group size 和 wrong-domain 做第二道 fail-fast gate；
+- Gateway 只对“尚未绑定、确定没有远端副作用”的 structured `quota_domain_closed` 返回 safe requeue；
+- bare 408/429/5xx、transport error 或可能已经 claim 的模糊失败，必须复用同一 task/cohort/rank 原地重试，不能换身份；
+- requeue 到队尾释放 worker slot，让当前开放 domain 获得执行机会。
+
+证据：`eb8bd492`、`1162029d`、`b117b570`、`690816eb`、`30ab40c4` 及 fault-injection/behavioral tests。
+
+### 4. 正确性修复后继续保护 goodput
+
+safe requeue 能打破死锁，但会产生 queue rotation tax；closed-domain 大队列反复轮转，还可能让同 cohort siblings 到达时间超过 partial deadline。
+
+项目进一步调小 requeue throttle、扩 reset/admission worker，并扩大 partial cohort deadline，目标是让 sibling co-arrival time 显著小于 deadline。`21bb4862` 能证明配置与机制改动；若没有改动后的统一 benchmark/run log，只表述为“实现了吞吐保护机制”，不把 commit 标题直接当成“吞吐已恢复”的结果证据。
+
+### 最适合面试的总结
+
+> 我没有把 Gateway 只当成 HTTP 转发层，而是把它改成 training-aware admission/control plane：它理解本 step 的 domain plan、cohort/session 生命周期、reward identity、policy version、safe retry 和 recovery。我的 ownership 主要是 exact quota、公平性、liveness、session correctness 和 fault-injection 验证；OpenAI proxy 和 online cohort 基础架构属于团队已有能力。
+
 ## 核心指标
 
 Agentic RL 平台至少要监控这些指标：
@@ -233,17 +441,21 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 
 ## 面试高频问题
 
-1. 为什么 Agentic RL 不能简单复用 pretraining infra？
-2. rollout latency 为什么会拖慢 policy update？
-3. 同步 RL 和异步 RL 的核心 trade-off 是什么？
-4. sample freshness 在 RL 训练里为什么重要？
-5. training state 和 generation state 的模型布局有什么区别？
-6. 为什么 actor resharding 会成为 RLHF 系统瓶颈？
-7. reward/verifier 为什么要独立扩缩容？
-8. 长上下文 trajectory 对 KV cache 和 checkpoint 有什么影响？
-9. context compaction 为什么不能只当作 inference-time heuristic？
-10. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
-11. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
+1. 用最简单的话描述 PPO、GRPO、DAPO，它们是什么关系？
+2. 为什么 Agentic RL 不能简单复用 pretraining infra？
+3. rollout latency 为什么会拖慢 policy update？
+4. Fully Async、streaming、partial rollout、staleness 分别是什么？
+5. sample freshness 在 RL 训练里为什么重要？
+6. training state 和 generation state 的模型布局有什么区别？
+7. 为什么 actor resharding 会成为 RLHF 系统瓶颈？
+8. reward/verifier 为什么要独立扩缩容？
+9. 外部 Agent 如何通过 OpenAI-compatible Gateway 接入训练？
+10. Gateway 兼容 OpenAI API 后，为什么仍可能“能跑但训错”？
+11. 你对项目 Gateway 做了哪些改造，个人 ownership 到哪里？
+12. 长上下文 trajectory 对 KV cache 和 checkpoint 有什么影响？
+13. context compaction 为什么不能只当作 inference-time heuristic？
+14. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
+15. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
 
 ## 生产环境思考题
 
@@ -258,6 +470,16 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 9. 如果 policy update 很快但效果不涨，是否可能是样本质量或 freshness 问题？
 10. 如果 compaction summary 丢掉关键错误日志，如何定位是 summary 失败还是 execution policy 失败？
 11. 如果要支持多 agent task，trajectory storage schema 怎么设计？
+
+## 主要来源
+
+- [PPO 原始论文](https://arxiv.org/abs/1707.06347)：clipped surrogate objective 与多 epoch minibatch update。
+- [DeepSeekMath](https://arxiv.org/abs/2402.03300)：GRPO 的 group-relative advantage 与去 Critic 动机。
+- [DAPO](https://arxiv.org/abs/2503.14476)：Clip-Higher、Dynamic Sampling、Token-level Policy Gradient Loss 与 Overlong Reward Shaping。
+- [AReaL v2.1 Online Proxy](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/tutorial/online_proxy.md)：外部应用的 session key、OpenAI-compatible endpoint、reward 与 end-session 协议。
+- [AReaL v2.1 Agent Workflow](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/reference/agent_workflow.md)：Proxy Worker、InteractionCache、token-level tracking 与 workflow export。
+- [AReaL v2.1 Async Guide](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/algorithms/async.md)：policy version、off-policyness 与 partial rollout。
+- [verl v0.9.0 release](https://github.com/verl-project/verl/releases/tag/v0.9.0)：V1 trainer、streaming dataloader、staleness control 与 Agentic RL 的当前版本边界。
 
 ## 我的总结
 

@@ -87,10 +87,11 @@ NVIDIA 88 页技术报告 `Scalable Training of Mixture-of-Experts Models with M
 - [MoE and Parallel Folding Engineering Handbook](topics/moe.md#parallel-folding)：解释 Attention/Expert 双逻辑网格、world-size、process group、8/256 GPU 示例、token 数据流、拓扑选择和排障。
 - [NCCL and Communication Operators](topics/nccl.md#collective-map)：从输入输出解释常见 collective/P2P，并映射到 5D、Distributed Optimizer、FSDP 和 hang 排障。
 - [Checkpointing Engineering Handbook](topics/checkpointing.md)：解释 checkpoint 为什么是训练 infra 核心问题、full/sharded/distributed/async/incremental/elastic checkpoint 差异、保存内容、Megatron/DeepSpeed/FSDP 差异、容错恢复、存储分层、checksum/validation 和恢复演练。
+- [FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](topics/fsdp.md)：用参数/梯度/优化器/activation 显存账统一解释 state sharding，给出 Megatron/FSDP2 决策顺序，并区分 mbridge 与 NVIDIA Megatron Bridge。
 - [Agentic RL Infrastructure](topics/agentic_rl.md)：第一条 Research OS 闭环主题，解释 rollout、reward/verifier、policy update、weight sync、trajectory store 和 agent runtime 如何改变训练平台边界。
 - [verl 与 AReaL：RL 框架架构选型指南](topics/rl_framework_selection.md)：从 workload、控制面、异步机制、Agent 接入、正确性和维护成本解释项目为何先选 verl、后转 AReaL，并区分历史版本判断与当前版本重评。
 - [Agentic for Embodied](topics/agentic_for_embodied.md)：从 Infra 工程师视角梳理 VLA、trajectory data、GPU simulation、robot rollout、edge runtime、sim-to-real 和 safety，并从系统地图推导到可实施的生产平台蓝图。
-- 建设中入口：[FSDP](topics/fsdp.md)、[FP8](topics/fp8.md)。
+- 建设中入口：[FP8](topics/fp8.md)。
 
 ## 学习计划与面试入口
 

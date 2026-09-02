@@ -226,6 +226,7 @@ flowchart LR
 - [Long-context Training](topics/long_context_training.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [CompactionRL](papers/compactionrl.md) ↔ [Long-context Training](topics/long_context_training.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [ZeRO](papers/zero.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [FSDP](topics/fsdp.md)
+- [Megatron 5D 并行](topics/distributed_training.md) ↔ [FSDP / ZeRO / Bridge 选型](topics/fsdp.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md)
 - [Checkpointing](topics/checkpointing.md) ↔ [Fault Tolerance](topics/fault_tolerance.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
 - [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)

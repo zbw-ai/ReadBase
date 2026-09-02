@@ -47,6 +47,7 @@
 
 框架差异往往不是“有没有某个 feature”，而是：这个 feature 是稳定主路径、实验 recipe，还是需要跨多个层次进行二次开发。
 
+<a id="verl-controller-spmd"></a>
 ## 3. verl 的系统思想
 
 ### 3.1 Hybrid-Controller，而不是纯 single-controller
@@ -65,6 +66,55 @@ RLTrainer / algorithm dataflow
   → Model Engine / Rollout Engine / Checkpoint Engine / TransferQueue
   → Megatron | FSDP | VeOmni / vLLM | SGLang | TensorRT-LLM
 ```
+
+#### single-controller 到底控制什么
+
+`single-controller` 不是“只有一个进程工作”，也不是让 controller 亲自执行 tensor collective。它表示高层 RL dataflow 由一个中心 driver/trainer 用普通 Python 控制流表达：
+
+```text
+for step:
+  rollout = rollout_wg.generate(prompts)
+  reward = reward_wg.score(rollout)
+  old_logp = actor_wg.compute_log_prob(rollout)
+  ref_logp = ref_wg.compute_log_prob(rollout)
+  actor_wg.update(rollout, advantage)
+  rollout_wg.update_weights(actor_version)
+```
+
+真实调用通常是异步 RPC/future；controller 决定依赖顺序、batch/role 路由、更新边界和异常策略，不直接做大矩阵计算。
+
+#### ResourcePool 与 WorkerGroup 管什么
+
+- **ResourcePool / placement**：把哪些 GPU/node 分给哪些 role，决定 Actor、Rollout、Ref、Critic、Reward 是共享还是独占资源；
+- **WorkerGroup**：把同一 role 的分布式 workers 作为一个逻辑对象暴露给 controller，负责 remote method dispatch、rank/world metadata、结果汇集和生命周期；
+- **DataProto/TensorDict/TransferQueue**：承载 role 之间的数据 contract，描述 batch、non-tensor metadata、分区和异步传输。
+
+Ray 在这里主要提供 actor 生命周期、placement group、RPC/object store 等分布式运行能力。算法“下一步调用谁”主要由 trainer/controller 决定；Ray scheduler 只在资源约束内放置和运行远程任务，不理解 PPO/GRPO 语义。
+
+#### worker 内部为什么又是 SPMD
+
+以 Megatron/FSDP engine 为例，同一个 `actor_wg.update()` 会触发多个 ranks 执行相同训练入口，每个 rank 持有不同 TP/PP/DP/EP shard，并通过 NCCL collective 协作：
+
+```text
+高层：一个 controller 编排多个不同角色（MPMD/dataflow）
+  ↓ RPC 调用某个 WorkerGroup
+底层：该角色内部 N 个 ranks 运行同一 engine 程序（SPMD）
+  ↓ all-reduce / all-gather / reduce-scatter / all-to-all
+```
+
+这就是 “high-level single-controller + internal SPMD engine”。它的价值是：修改 PPO/GRPO dataflow 时不必重写 Megatron/FSDP collective；替换训练或 rollout engine 时，也尽量不改上层算法控制流。
+
+#### 哪一层根据什么调度
+
+| 层次 | 决策对象 | 主要依据 |
+|---|---|---|
+| Trainer/controller | rollout、reward、logprob、update、validation、checkpoint 的先后和并发 | 算法 dataflow、batch 是否 ready、step/version 状态 |
+| ResourcePool/WorkerGroup | role 到 GPU/node 的 placement 与 remote call | 资源规格、colocate/disaggregate 配置、role world size |
+| TransferQueue/replay buffer | 数据何时可生产、传输、消费或淘汰 | partition、capacity、freshness、失败/stale/DAPO filter |
+| Model/Rollout engine | rank 内 kernel 和 ranks 间 collective | TP/PP/CP/EP/FSDP、模型 shape、backend scheduler |
+| vLLM/SGLang scheduler | inference request batching、KV cache 和 prefill/decode | token budget、cache、请求长度、优先级与后端配置 |
+
+面试官问“verl 根据什么调度”时，要先追问他指的是算法控制流、Ray placement，还是 inference scheduler；三者不是同一个 controller。
 
 ### 3.2 它擅长解决什么
 
@@ -90,6 +140,56 @@ RLTrainer / algorithm dataflow
 - 支持某个能力不等于该能力已覆盖目标模型、后端、硬件、恢复和长稳组合；版本与依赖矩阵仍需要实测。
 
 这里的“框架较重”不是贬义，也不是说代码量大，而是说一次控制面改动的影响面可能跨越多个抽象层。对于标准 dataflow，这种完整抽象是优势；对于需要快速重写 Gateway/session 语义的项目，它可能增加改造成本。
+
+<a id="placement-three-axes"></a>
+### 3.5 colocate 与 disaggregate：不要只理解成训推共卡
+
+至少要拆成三个维度：
+
+1. **逻辑角色是否分离**：Actor training、Rollout inference、Ref、Critic、Reward 是否是独立 worker/service；
+2. **物理资源是否共置**：不同角色是否映射到同一组 GPU/node；
+3. **时间上是否并发**：角色是分时复用 GPU，还是在不同资源池真正 overlap。
+
+#### Colocate
+
+Actor 与 Rollout 等逻辑角色仍然可以分开，但放在同一组 GPU 上，通过 offload、reshard、sleep/wakeup、释放 KV cache 等方式分时切换：
+
+```text
+同一 GPU pool
+  training phase：参数/optimizer/activation 主导
+  ↓ offload/reshard/sleep/update weights
+  rollout phase：inference weights/KV cache 主导
+```
+
+优点是 GPU 利用弹性、跨池传权成本低，资源少时容易起步；缺点是显存生命周期复杂，训练和 rollout 很难真正时间重叠，切换和 cache 重建也可能暴露。
+
+#### Disaggregate / separate
+
+Actor 与 Rollout 使用不同 GPU pool，可持续 producer-consumer overlap，并按两侧速率独立扩缩：
+
+```text
+Trainer pool ──versioned weight transfer──> Rollout pool
+      ↑                                      │
+      └──── trajectory queue / buffer ───────┘
+```
+
+代价是跨池 weight sync、queue/backpressure、policy staleness、双份权重显存和跨服务 recovery。
+
+#### 与“训推共卡、异构部署”的关系
+
+- colocate 通常对应训推共卡/分时复用，但定义重点是 placement，不保证同一进程或同一 engine；
+- disaggregate 通常对应训推分池，但两池仍可使用同型号 GPU，并不天然“异构”；
+- 异构部署是另一个维度，例如 trainer 用高带宽训练卡，rollout 用更适合推理或不同 backend 的资源；它会增加 dtype、layout、transport 和容量建模难度。
+
+选择公式不是看模型大小，而是比较：
+
+```text
+colocate 切换暴露时间 + 资源闲置
+vs
+separate 权重同步暴露时间 + staleness/双份资源成本
+```
+
+verl v0.9 的 V1 trainer 把 `sync`、`colocate_async`、`separate_async` 放进统一控制流，说明 placement 与 async 程度正在变成同一架构下的可选策略，而不是三套完全无关系统。
 
 ## 4. AReaL 的系统思想
 
@@ -178,9 +278,81 @@ External Agent / Evals + Tool / Sandbox
 | 二次开发半径 | 标准 dataflow 扩展强；深改控制面可能跨多层 | 项目当时改 Gateway/session/cohort 更直接 | 这是版本和团队代码基础相关结论 |
 | 运维复杂度 | Ray/WorkerGroup/engine/queue/checkpoint 组合复杂 | proxy/session/service/version/recovery 组合复杂 | 没有哪个框架天然“运维简单” |
 
-## 6. 项目中的真实选型过程
+<a id="vllm-sglang-selection"></a>
+## 6. vLLM 与 SGLang rollout 后端如何选
 
-### 6.1 第一阶段：为什么从 verl、slime、ROLL 中选择 verl
+### 6.1 先给结论
+
+> 两者都能做高吞吐 continuous batching、paged KV、prefix cache、structured output 和 OpenAI-compatible serving。不要背“vLLM 通用、SGLang Agent 快”作为固定答案；RL rollout 最终要看目标模型、版本、权重 refit、长上下文/多轮 cache、logprob correctness、故障恢复和团队已有栈。
+
+### 6.2 稳定差异
+
+| 维度 | vLLM | SGLang | 选型问题 |
+|---|---|---|---|
+| 基本定位 | 通用 LLM serving/rollout engine，OpenAI-compatible 生态成熟 | serving runtime + Agent/programming 生态，RadixAttention 与 cache-aware 调度是重要主线 | 现有平台、监控和模型支持在哪边更成熟？ |
+| Prefix reuse | Automatic Prefix Caching | RadixAttention/radix cache 显式面向共享前缀 | 真实 session/prompt 是否有足够 prefix overlap？ |
+| Agent/tool | tool parser、structured output、streaming 均可支持 | tool parser、structured output、streaming 和多轮前端能力丰富 | 目标模型的 parser/chat template 是否经过验证？ |
+| 分布式推理 | TP/PP/DP、P/D disaggregation 等持续演进 | TP/PP/EP/DP、P/D disaggregation 等持续演进 | 目标硬件、模型和版本组合哪条 CI/生产路径更稳？ |
+| RL 权重更新 | verl/AReaL 有多种 refit/broadcast/checkpoint 路径 | 同样有 NCCL/XCCL/custom loader/delta 路径 | weight update 是否原子，量化/MoE/LoRA 是否正确？ |
+| 版本风险 | engine V0/V1、loader/API 和依赖变化快 | scheduler、kernel/backend、parser 和依赖同样变化快 | 框架锁定版本与 rollout engine 是否严格兼容？ |
+
+### 6.3 为什么不能只跑一个 serving benchmark
+
+RL rollout 还要求 serving benchmark 很少检查的约束：
+
+- 返回 token ID、behavior logprob 与 trainer recompute logprob 对齐；
+- sampling、stop token、chat template、tool parser 一致；
+- weight update 后 cache/CUDA Graph/quantized weight 正确失效或重建；
+- TP/EP layout 与训练权重 export/refit 对齐；
+- session retry/abort 不重复记 trajectory；
+- 同一 effect/goodput 口径下比较，而不是只看 decode tokens/s。
+
+### 6.4 项目如何回答
+
+项目覆盖 vLLM/SGLang rollout，可说自己做过接入、配置调优、weight sync 和正确性验证；不能把两个开源引擎的 scheduler/kernel 说成个人实现。选型时按下面顺序：
+
+```text
+目标模型/硬件支持
+  → 训练框架锁定版本与 weight-update path
+  → same-weight token/logprob correctness
+  → 长度分布、并发、prefix/tool workload benchmark
+  → 故障注入、升级和运维成本
+```
+
+若 Agent 工作负载有强共享 prefix、多轮 tool call，可以优先把 SGLang 放入 PoC；若团队已有成熟 vLLM 资产、目标组合的权重同步/模型 CI 更完整，可以从 vLLM 起步。这是候选顺序，不是预设赢家。
+
+<a id="verl-release-evolution"></a>
+## 7. verl 0.7.0 之后的主要演进
+
+不要逐条背 release notes。最值得记的是架构主线：
+
+```text
+0.7：统一 engine 抽象、server-based rollout、async/TransferQueue 开始成形
+  ↓
+0.8：训练 engine/worker 迁移、sync trainer + TransferQueue、OPD/Agentic 能力扩张
+  ↓
+0.9：V1 trainer 统一 sync/colocate_async/separate_async，replay/staleness/recovery 成为主路径
+```
+
+| 版本 | 官方发布日期 | 主要系统变化 | 面试价值与升级风险 |
+|---|---|---|---|
+| v0.7.0 (`f9c855f`) | 2026-01-05 | FSDP/Megatron Model Engine 走向 production path；引入 Megatron Bridge/LoRA；rollout 默认转 server mode 并移除旧 SPMD rollout；TransferQueue、checkpoint-engine weight sync、one-step/fully async 和 server reward 继续成形 | 项目 v0.7.1/公司分支处在快速重构期；类名、配置和 async 行为不能套用当前版本 |
+| v0.8.0 (`7aed6b2`) | 2026-06-01 | legacy FSDP/Megatron workers 退场，统一 engine abstraction；新 sync trainer 用 TransferQueue 解耦 control/data flow；OPD 扩到多后端、多 Teacher、sync/fully-async；uni-agent、SGLang P/D、更多 fully-async recipe | `main_ppo.py` 等入口迁移；release 明确 Fully Async + TransferQueue 仍待下一版，不能提前当作 0.8 完成态 |
+| v0.9.0 (`483b8a0`) | 2026-08-14 | V1 PPO trainer 默认，统一 `sync/colocate_async/separate_async`、replay buffer 与指标；`drop/wait` staleness、streaming dataloader、pending/running prompt recovery、动态资源调度；Uni-Agent Gateway；vLLM P/D、`delta_sharded` weight update | 默认 trainer、mbridge/Megatron Bridge、vLLM 最低版本等均有 breaking change，升级必须重做 config、checkpoint、weight sync 与 correctness 门禁 |
+
+### 7.1 怎么回答“最近几个大版本”
+
+先说明项目历史基线是 v0.7.1/公司分支；然后只讲三条趋势：
+
+1. **engine/worker 统一**：训练后端从 legacy worker 向统一 Model Engine/V1 trainer 收敛；
+2. **control/data 解耦**：TransferQueue、replay buffer、streaming dataloader 把数据生命周期从 trainer Python 调用中抽离；
+3. **sync/async/Agentic 收敛**：从实验 recipe 走向统一 trainer、staleness/recovery、Gateway 与多种 placement。
+
+最后补一句：release 声称的 benchmark/并发数字不是项目复测结果，实际升级要固定 workload 验证。
+
+## 8. 项目中的真实选型过程
+
+### 8.1 第一阶段：为什么从 verl、slime、ROLL 中选择 verl
 
 当时的目标是尽快交付 SFT 和标准 RLVR，不是先做一个通用 Agent 平台。比较维度应当这样讲：
 
@@ -192,7 +364,7 @@ External Agent / Evals + Tool / Sandbox
 
 基于当时实际评估的版本和团队资产，verl 与已有 Megatron、vLLM/SGLang 体系更匹配，因此选择 verl。对 slime、ROLL 只说明参与过评估和比较维度，不编造没有实验记录支持的绝对排名。
 
-### 6.2 第二阶段：为什么 Agentic RL 转向 AReaL
+### 8.2 第二阶段：为什么 Agentic RL 转向 AReaL
 
 后来 workload 发生了结构性变化：
 
@@ -205,7 +377,7 @@ External Agent / Evals + Tool / Sandbox
 
 在项目当时的代码基础上，AReaL online proxy/cohort 路径更贴近这组需求，改造 Gateway、admission、session、interaction 和 trajectory lineage 的半径更小。因此转向 AReaL，不是因为“verl 做不了异步”，也不是因为“AReaL 所有方面更先进”。
 
-### 6.3 Ownership 应该怎么讲
+### 8.3 Ownership 应该怎么讲
 
 准确的 ownership 是：
 
@@ -216,7 +388,7 @@ External Agent / Evals + Tool / Sandbox
 
 不要把 HybridFlow、AReaL async algorithm、vLLM/SGLang 或 Megatron 底层实现说成个人自研。
 
-## 7. 如果今天重新选型
+## 9. 如果今天重新选型
 
 verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静态的“verl 做 RLVR，AReaL 做 Agentic RL”，而是下面这张决策表：
 
@@ -240,9 +412,9 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 + 后续升级和团队维护成本
 ```
 
-## 8. 如何做公平 benchmark
+## 10. 如何做公平 benchmark
 
-### 8.1 固定 workload
+### 10.1 固定 workload
 
 至少固定：
 
@@ -252,7 +424,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 - 算法、batch/token 口径、weight-sync cadence 和 staleness 约束；
 - warmup、统计窗口、异常步处理、验证频率和 checkpoint 频率。
 
-### 8.2 四层验收
+### 10.2 四层验收
 
 | 层次 | 必测内容 |
 |---|---|
@@ -261,7 +433,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 | PERFORMANCE | tokens/s/GPU、samples/hour、goodput、GPU utilization、p95/p99、weight-sync exposed time |
 | EFFICACY | 相同 eval 协议下的 reward、目标任务能力、General 回归和不同 seed/checkpoint |
 
-### 8.3 异步系统额外指标
+### 10.3 异步系统额外指标
 
 - rollout queue depth、enqueue/dequeue rate；
 - trainer idle 与 rollout idle；
@@ -273,7 +445,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 
 只比较框架官方 benchmark 没有意义；它们通常使用不同模型、长度、硬件、资源比和效果口径。真正的选型结果必须来自团队自己的 workload。
 
-## 9. 面试口述模板
+## 11. 面试口述模板
 
 ### 30 秒版本
 
@@ -287,7 +459,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 >
 > 代价是我们仍要补齐 Gateway 调度、online drain、监控、恢复、评测和多 Teacher 路由。我的结论不是“AReaL 异步、verl 同步”，也不是“AReaL 全面更先进”，而是架构要和主要矛盾匹配。现在 verl 0.9 已加入更完整的 Fully Async、Agentic RL 和 Uni-Agent Gateway，如果今天重新选，我会在同一模型、长度、资源和故障场景下同时做 PoC，再比较 goodput、staleness、correctness、恢复和维护成本。
 
-## 10. 高频追问
+## 12. 高频追问
 
 ### verl 现在也支持 Fully Async 和 Agentic RL，差异还成立吗？
 
@@ -309,7 +481,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 
 用相同 workload 做 PoC，至少比较 functional、numeric、performance、efficacy 四层，并加入 p99、staleness、weight-sync exposed time、故障恢复和团队维护成本。没有这些数据，只能叫技术调研，不能叫完成选型。
 
-## 11. 常见错误回答
+## 13. 常见错误回答
 
 - “AReaL 是异步框架，verl 是同步框架。”
 - “AReaL 架构全面更先进，所以后来替换 verl。”
@@ -319,23 +491,32 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 - 只比较官方吞吐数字，不统一模型、长度、资源、warmup 和效果口径。
 - 把开源框架原生能力说成个人设计，把团队能力全部说成个人 ownership。
 
-## 12. 相邻主题
+## 14. 相邻主题
 
 - [Agentic RL Infrastructure](agentic_rl.md)：理解 rollout、reward/verifier、weight sync、staleness 和 trajectory store 为什么改变训练系统边界。
+- [FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](fsdp.md)：理解训练 backend、MBridge/Megatron Bridge 和 rollout weight layout 的关系。
 - [Megatron 5D Parallelism](distributed_training.md)：理解训练 backend 的并行、显存和通信基础。
 - [Long-context Training](long_context_training.md)：理解 128K–256K 训练与 rollout 的 KV、activation 和 tail latency。
 - [Checkpointing](checkpointing.md)：理解 model/optimizer、policy version 和异步状态如何恢复。
 - [MOPD](mopd.md)：理解多 Teacher online distillation 如何进入 RL dataflow。
 
-## 13. 官方来源与版本边界
+## 15. 官方来源与版本边界
 
 ### verl
 
 - [官方文档首页](https://verl.readthedocs.io/en/latest/)：HybridFlow、训练/推理后端、Agentic RL 和 Async Training 导航。
 - [verl 0.7 架构说明](https://verl.readthedocs.io/en/latest/blog/v0.7.html)：Hybrid-Controller、Model/Rollout/Checkpoint Engine、TransferQueue 和 sync/async pipeline。
 - [v0.9.0 Fully Async 文档](https://github.com/verl-project/verl/blob/v0.9.0/docs/advance/fully_async.md)：staleness、partial rollout、资源分离与实验口径。
+- [v0.7.0 release](https://github.com/verl-project/verl/releases/tag/v0.7.0)：Model Engine、server rollout、TransferQueue 与 async/weight-sync 演进起点，commit `f9c855f`。
 - [v0.7.1 release](https://github.com/verl-project/verl/releases/tag/v0.7.1)：项目历史判断的公开版本参照，commit `bec9ef7`。
+- [v0.8.0 release](https://github.com/verl-project/verl/releases/tag/v0.8.0)：统一 engine migration、sync trainer/TransferQueue、OPD 与 Agentic RL，commit `7aed6b2`。
 - [v0.9.0 release](https://github.com/verl-project/verl/releases/tag/v0.9.0)：当前重评基线，commit `483b8a0`。
+
+### Rollout backend
+
+- [vLLM OpenAI-Compatible Server](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/)：API、streaming、structured output、prefix cache 与 serving 参数入口。
+- [SGLang 官方文档](https://docs.sglang.io/)：RadixAttention、continuous batching、tool parser、structured output 与 distributed serving。
+- [SGLang Tool Parser](https://docs.sglang.io/docs/advanced_features/tool_parser)：不同模型的 tool-call parser 与 OpenAI-compatible 调用边界。
 
 ### AReaL
 
@@ -346,7 +527,7 @@ verl v0.9 已经显著补齐此前的部分差距，因此当前推荐不是静�
 - [v2.0.0 release](https://github.com/areal-project/AReaL/releases/tag/v2.0.0)：微服务架构里程碑，commit `fee938e`。
 - [v2.1.0 release](https://github.com/areal-project/AReaL/releases/tag/v2.1.0)：当前重评基线，commit `ecc8b0e`。
 
-## 14. 我的总结
+## 16. 我的总结
 
 框架选型的本质不是比较 feature checklist，而是识别系统的主要矛盾。标准 SFT/RLVR 更关注多角色训练 dataflow、模型/后端生态和 correctness；长时 Agentic RL 会把 session、Tool/Sandbox、trajectory lifecycle、tail latency、policy version 和恢复推到控制面的中心。
 
