@@ -136,7 +136,7 @@ Core 10 的成员不变。三天冲刺表、Part 题量、最后一小时清单�
 
 > Dense 模型中，每个 token 都经过同一套 FFN 参数，执行规则、GEMM 形状和负载比较稳定；MoE 把 FFN 换成多个 expert，由 router 为每个 token 选择 top-k expert，因此总参数可以很大，但单 token 只激活少量参数。代价是多出 router、token 重排、all-to-all、Grouped GEMM、负载均衡和更复杂的 checkpoint/并行映射。总专家数 `E` 和每个 token 激活的 `top-k` 是两个概念；所谓大专家或小专家主要看单个 expert 的 FFN/intermediate width，更多、更窄的专家能细化专业化，但也更容易产生小 GEMM、通信和负载不均。shared expert 是每个 token 都会经过的公共 FFN，用来承载共性能力，routed experts 再负责专业化；它不是所有 MoE 都必有的结构。
 
-回答必须强调：具体模型到底有多少 expert、`top-k` 是多少、expert hidden 多大、有没有 shared expert，取决于模型配置，不能从“200B MoE”自动推断。
+回答必须强调：具体模型到底有多少 expert、`top-k` 是多少、expert FFN intermediate size 多大、有没有 shared expert，取决于模型配置，不能从“200B MoE”自动推断。
 
 ### 5.2 详细专题内容
 
@@ -162,7 +162,7 @@ router 与 balance 策略 / capacity 或 dropless / EP 与 topology 映射
 ### 5.3 项目证据边界
 
 - 项目可确认的是“X1 200B MoE 模型”的适配与性能优化；
-- 当前资料没有给出可公开且已核验的 `E / top-k / expert hidden / shared expert` 配置；
+- 当前资料没有给出可公开且已核验的 `E / top-k / expert FFN intermediate size / shared expert` 配置；
 - 主文档的项目证据卡新增这些字段并保留待本人补齐，实施者不得用论文、相似模型或经验值代填；
 - 不把“fine-grained expert 更先进”写成普遍结论，必须同时说明通信、kernel efficiency 和负载均衡代价。
 
@@ -292,7 +292,7 @@ TRAINING · RL · ROLLOUT
 ### 10.2 技术口径
 
 1. 不混淆总专家数与 active top-k，不把 shared expert 写成所有 MoE 必备；
-2. 不虚构 X1 的 expert 数、top-k、expert hidden 或 shared expert；
+2. 不虚构 X1 的 expert 数、top-k、expert FFN intermediate size 或 shared expert；
 3. 不把 disk weight transfer 等同于 recovery checkpoint；
 4. 不把 XCCL 描述成无条件优于 disk，也不声称 verl 与 AReaL 的实现完全相同；
 5. 正向说明本地分支中 actor–rollout colocation 和 SGLang LoRA 等支持矩阵边界，且不把 ref/critic colocation 混入该限制；
