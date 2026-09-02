@@ -102,7 +102,7 @@
       <circle cx="1086" cy="148" r="7" fill="#15927e"/><text x="1106" y="156" class="item">verl · SFT/RLVR · Fully Async</text>
       <circle cx="1086" cy="180" r="7" fill="#15927e"/><text x="1106" y="188" class="item">AReaL · Gateway / Session / Cohort</text>
       <circle cx="1086" cy="212" r="7" fill="#15927e"/><text x="1106" y="220" class="item">Agent/Tool/Sandbox · goodput</text>
-      <circle cx="1086" cy="244" r="7" fill="#15927e"/><text x="1106" y="252" class="item">MOPD 多 Teacher · efficacy 待闭环</text>
+      <circle cx="1086" cy="244" r="7" fill="#15927e"/><text x="1106" y="252" class="item">MOPD · 双域 ↑ · General ↔</text>
     </g>
 
     <!-- Right: inference and rollout -->
@@ -199,7 +199,7 @@
       <text x="580" y="1123" class="card-value">RL Experts → Teachers</text>
       <text x="580" y="1162" class="card-value">Pre-RL model → Student</text>
       <text x="580" y="1201" class="card-body">原 RL 数据 OPD · FUNCTIONAL ✓</text>
-      <text x="580" y="1245" class="card-note">NUMERIC / EFFICACY 待闭环</text>
+      <text x="580" y="1245" class="card-note">SWE / Terminal ↑ · General ↔</text>
     </g>
 
     <g>
