@@ -4,8 +4,8 @@
 
 在已确认的面试手册结构中新增一道独立 P1 题，用两项真实模型工作说明自研版 verl 的生产落地价值：
 
-1. LLM 路线：[Athena-Brain Technical Report](https://arxiv.org/abs/2607.18985)；
-2. MLLM/VLM 路线：[Capek 0.5](https://arxiv.org/abs/2608.06756)。
+1. LLM 路线：[Athena-Brain Technical Report v2](https://arxiv.org/abs/2607.18985v2)；
+2. MLLM/VLM 路线：[Capek 0.5 v1](https://arxiv.org/abs/2608.06756v1)。
 
 本题不展开论文公式、完整实验指标或算法创新史，只要求候选人能看图讲清两条后训练链路、它们的共同系统抽象和关键差异，并准确界定个人 ownership：
 
@@ -42,14 +42,16 @@
 - `private_resume/assets/papers/athena-brain-post-training-figure-3.png`
 - `private_resume/assets/papers/capek-0.5-specialization-consolidation-figure-6.png`
 
-两张图片直接取自用户本轮上传的 PNG，保持原始像素和宽高比，不二次压缩、不裁掉原始 Figure caption。主文档在图片下明确标注论文、Figure 编号和 arXiv 链接，不把论文原图描述成候选人个人绘制。
+两张图片直接取自用户本轮上传的 PNG，保持原始像素和宽高比，不二次压缩、不裁掉原始 Figure caption。持久化映射与机械验收值固定为：
 
-### 3.3 可选专题回链
+| 论文/图 | 本轮上传源 | 目标文件 | 原始尺寸 | SHA-256 |
+|---|---|---|---:|---|
+| Athena Figure 3 | `/var/folders/lg/k3h_42vs64g5rnjtl4_196sw0000gn/T/codex-clipboard-cf65a99b-2cae-40fb-a99f-4bc7fe6dabd2.png` | `private_resume/assets/papers/athena-brain-post-training-figure-3.png` | `2202 × 1198` | `1b81cba1dcb05cf855239cd60d323d0620e99aa3449929eb2dcd669165f5bcf5` |
+| Capek Figure 6 | `/var/folders/lg/k3h_42vs64g5rnjtl4_196sw0000gn/T/codex-clipboard-769bae6c-e612-489b-80e4-378a370ee8c1.png` | `private_resume/assets/papers/capek-0.5-specialization-consolidation-figure-6.png` | `2202 × 1088` | `c60de954ef61e1c9a28891423c1e1a185794b09b99e21fd40a3b977d9c277337` |
 
-- `training-infra-roadmap/topics/rl_framework_selection.md`
-- `training-infra-roadmap/topics/mopd.md`
+实施后目标文件的尺寸与 SHA-256 必须和上表一致。主文档在图片下明确标注论文、Figure 编号和版本锁定的 arXiv 链接，不把论文原图描述成候选人个人绘制。
 
-专题只在已有相关段落补充一条案例回链：框架选型页承接“自研版 verl 的真实 workload”，MOPD 页承接 Capek 的 `TIES + routed MOPD` 案例。不得复制主文档的两张大图，也不为本轮新建 paper note、tracking 条目或额外专题。
+本轮不修改 `training-infra-roadmap/topics/`、paper note、tracking、README 或知识图谱。用户明确要求的是在面试主文档中简要讲清两张图；保持这一最小范围。
 
 ## 4. 新题位置、编号与计数
 
@@ -135,7 +137,7 @@
 
 可用一句话解释为什么不是只做 TIES：parameter merge 能提供较好的统一初始化，但不保证每个 specialist 的行为都被保留；routed MOPD 继续在 Student 自己访问的前缀上补 policy-space transfer。
 
-本题不展开 reverse-KL 公式、Top-k approximation、TIES trimming 比例、全部 benchmark 和具体 gain；若面试官追问，再跳转到 `RESUME-09` 与 MOPD 专题。
+本题不展开 reverse-KL 公式、student-sampled token 的 sampled surrogate、token-level distillation advantage、TIES trimming 比例、全部 benchmark 和具体 gain；若面试官追问，再跳转到 `RESUME-09` 与 MOPD 专题。
 
 ### 6.4 两条路线的统一系统视角
 
@@ -178,8 +180,9 @@
 
 ## 8. 图片、来源与版权边界
 
-- 两张图片由用户明确要求保存到主文档，实施时保留原始截图，不从 PDF 再批量复制其他图；
-- Athena HTML 页面标注 CC BY 4.0；Capek arXiv 页面标注 arXiv perpetual non-exclusive license。无论许可证差异，主文档均按论文原图处理：注明论文标题、Figure 编号和 arXiv 原文链接；
+- 两张图片由用户明确要求保存到 `private_resume` 面试主文档，实施时保留原始截图，不从 PDF 再批量复制其他图；
+- Athena v2 HTML 页面标注 CC BY 4.0，可以在保留署名与来源的前提下复用；
+- Capek v1 的 arXiv perpetual non-exclusive license 是作者授予 arXiv 的分发许可，不把它写成第三方下游公开复用依据。远端仓库已核验为 public；用户在 2026-09-02 明确确认该团队论文原图可以公开直接使用，因此本轮按用户提供的授权，将上传截图放入公开仓库，并保留论文标题、Figure 编号、版本链接和原始 watermark；
 - 不擦除用户截图中的现有 watermark，不添加“本人绘制”等归属；
 - 图片只服务于面试讲解，不把论文全文或大量图表复制进仓库。
 
@@ -189,13 +192,14 @@
 2. 题量严格为 Part `7 / 22 / 15 / 17 / 8`，优先级 `38 / 26 / 5`，总计 69；
 3. 顶部全量索引、Part III 导航、Part III P1 和追问路线均可跳转到 `VERL-11`；
 4. Athena Figure 3 与 Capek Figure 6 没有配反，图片文件名、alt、caption 和论文链接一致；
-5. 两张 PNG 保持原始尺寸，可被图片库正常解码，Markdown 相对路径可解析；
+5. 两张 PNG 可被图片库正常解码，目标尺寸与 SHA-256 严格匹配第 3.2 节；Markdown 相对路径可解析；
 6. Athena 回答正向出现 `SFT anchor → domain RL experts → TIES → low-dose interpolation`，且不出现 Athena 使用 MOPD 的错误；
 7. Capek 回答正向出现 `four specialists → TIES init → Student rollout → routed frozen Teacher → one checkpoint`；
 8. ownership 明确写成“参与自研版 verl 框架建设，算法同学完成算法与论文”，不暗示本人是论文作者或算法提出者；
 9. 不在无代码证据时虚构自研框架的具体新增模块，也不把离线 model merge 自动归入 verl trainer；
 10. 主文档不堆论文公式、完整实验表和无关 benchmark；
-11. `git diff --check`、Markdown 链接检查和 PNG 解码检查通过，Git diff 不包含下载的临时 PDF、渲染页或 `.superpowers` 视觉草稿。
+11. Capek 图片只位于 `private_resume`，正文明确署名并链接 `2608.06756v1`；规格记录的公开使用授权、目标图片 hash 和实际提交内容一致；
+12. `git diff --check`、Markdown 链接检查和 PNG 解码检查通过，Git diff 不包含下载的临时 PDF、渲染页或 `.superpowers` 视觉草稿。
 
 ## 10. 提交
 
