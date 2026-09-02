@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1320" viewBox="0 0 1600 1320" role="img" aria-labelledby="map-title map-desc">
   <title id="map-title">曾柏炜的大模型训练推理 Infra 个人能力地图</title>
-  <desc id="map-desc">以训练系统、强化学习、推理与 Rollout、通信与拓扑、显存与性能、正确性与规模化交付六个能力域，连接 X1 约 200B MoE、Fully Async RLVR、长上下文、AReaL、MOPD 和国产卡交付项目证据。实心节点表示项目实战，空心节点表示原理掌握或能力延伸。</desc>
+  <desc id="map-desc">以训练系统、强化学习、推理与 Rollout、通信与拓扑、显存与性能、正确性与规模化交付六个能力域，连接 X1 200B MoE、Fully Async RLVR、长上下文、AReaL、MOPD 和国产卡交付项目证据。实心节点表示项目实战，空心节点表示原理掌握或能力延伸。</desc>
 
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -21,10 +21,9 @@
       .domain { font-size: 30px; font-weight: 700; }
       .item { font-size: 24px; font-weight: 500; fill: #244b49; }
       .item-soft { font-size: 24px; font-weight: 500; fill: #52706e; }
-      .core-title { font-size: 34px; font-weight: 700; fill: #ffffff; }
-      .core-strong { font-size: 42px; font-weight: 750; fill: #ffffff; }
-      .core-sub { font-size: 24px; font-weight: 500; fill: #d9f2ee; letter-spacing: 0.2px; }
-      .core-line { font-size: 24px; font-weight: 600; fill: #e8f8f5; }
+      .core-mark { font-size: 52px; font-weight: 760; fill: #ffffff; letter-spacing: -0.8px; }
+      .core-kicker { font-size: 18px; font-weight: 650; fill: #bde8e1; letter-spacing: 1.6px; }
+      .core-claim { font-size: 23px; font-weight: 650; fill: #effbf9; letter-spacing: 0.3px; }
       .legend { font-size: 24px; font-weight: 600; fill: #486866; }
       .evidence-kicker { font-size: 24px; font-weight: 700; fill: #47706c; letter-spacing: 1px; }
       .card-title { font-size: 24px; font-weight: 700; fill: #234845; }
@@ -131,13 +130,11 @@
     <!-- Core -->
     <g filter="url(#shadow)">
       <rect x="620" y="259" width="360" height="230" rx="34" fill="url(#core)"/>
-      <rect x="640" y="279" width="320" height="190" rx="25" fill="none" stroke="#8dd7cc" stroke-width="1.5" opacity="0.45"/>
+      <rect x="640" y="279" width="320" height="190" rx="25" fill="none" stroke="#8dd7cc" stroke-width="1.2" opacity="0.25"/>
     </g>
-    <text x="800" y="315" text-anchor="middle" class="core-title">个人能力地图</text>
-    <text x="800" y="363" text-anchor="middle" class="core-strong">大模型训练推理</text>
-    <text x="800" y="411" text-anchor="middle" class="core-strong">Infra</text>
-    <text x="800" y="440" text-anchor="middle" class="core-sub">Megatron · verl · AReaL</text>
-    <text x="800" y="476" text-anchor="middle" class="core-line">性能 × 正确性 × 规模化交付</text>
+    <text x="800" y="350" text-anchor="middle" class="core-mark">LLM Infra</text>
+    <text x="800" y="405" text-anchor="middle" class="core-kicker">TRAINING · RL · ROLLOUT</text>
+    <text x="800" y="454" text-anchor="middle" class="core-claim">性能 × 正确性 × 交付</text>
 
     <!-- Experience boundary legend -->
     <g>
@@ -155,7 +152,7 @@
     <g>
       <rect x="48" y="772" width="488" height="245" rx="22" fill="#ffffff" stroke="#bdd8e8" stroke-width="2"/>
       <rect x="48" y="772" width="488" height="10" rx="5" fill="#3184b8"/>
-      <text x="72" y="818" class="card-title">X1 · 约 200B MoE</text>
+      <text x="72" y="818" class="card-title">X1 · 200B MoE</text>
       <text x="72" y="858" class="card-value">0.16x → 0.95x</text>
       <text x="72" y="897" class="card-value">MFU 35% · 3K 卡</text>
       <text x="72" y="936" class="card-body">跑通 · 精度 · 性能 · 长稳</text>

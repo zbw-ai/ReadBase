@@ -296,6 +296,8 @@ External Agent / Evals + Tool / Sandbox
 | RL 权重更新 | verl/AReaL 有多种 refit/broadcast/checkpoint 路径 | 同样有 NCCL/XCCL/custom loader/delta 路径 | weight update 是否原子，量化/MoE/LoRA 是否正确？ |
 | 版本风险 | engine V0/V1、loader/API 和依赖变化快 | scheduler、kernel/backend、parser 和依赖同样变化快 | 框架锁定版本与 rollout engine 是否严格兼容？ |
 
+项目选型补充：verl 与 AReaL 两条项目链路最终都采用 XCCL，是因为固定 workload 下的权重更新时间更短，不代表文件路径在所有后端都更差。AReaL 的 XCCL 与临时 disk transfer 数据路径、colocation/LoRA 支持边界见 [AReaL 权重同步章节](agentic_rl.md#areal-weight-sync-xccl-disk)。
+
 ### 6.3 为什么不能只跑一个 serving benchmark
 
 RL rollout 还要求 serving benchmark 很少检查的约束：

@@ -346,6 +346,87 @@ safe requeue 能打破死锁，但会产生 queue rotation tax；closed-domain �
 
 > 我没有把 Gateway 只当成 HTTP 转发层，而是把它改成 training-aware admission/control plane：它理解本 step 的 domain plan、cohort/session 生命周期、reward identity、policy version、safe retry 和 recovery。我的 ownership 主要是 exact quota、公平性、liveness、session correctness 和 fault-injection 验证；OpenAI proxy 和 online cohort 基础架构属于团队已有能力。
 
+<a id="areal-weight-sync-xccl-disk"></a>
+## AReaL 权重同步：XCCL 与 disk 不是 checkpoint 的两种写法
+
+### 问题与共同状态机
+
+RL actor 在训练侧可能使用 Megatron/FSDP 的参数布局，rollout 在 vLLM/SGLang 中使用另一套 serving layout。一次更新不只是复制 `state_dict`，而是：训练参数收集/转换 → 传输 → inference engine load/refit → replica 验证 → policy version 切换。
+
+两种模式都应服从同一条状态机：
+
+```text
+optimizer step(version=N)
+  → pause/drain 需要隔离的 rollout
+  → build WeightUpdateMeta(version=N+1)
+  → convert + transfer + load/refit
+  → verify all participating replicas
+  → actor / critic / rollout set_version(N+1)
+  → resume admission/generation
+```
+
+`version` 是 behavior-policy/staleness metadata，不是另一份模型产物；只有权重传输成功后才能推进。HF Saver/DCP recovery checkpoint 是按保存周期持久化训练恢复状态，和每次 actor→rollout 权重发布不是一回事。
+
+### XCCL：直接分布式传输
+
+XCCL 路径由训练侧参与发送的 rank(s) 与 rollout ranks 建立权重更新通信组。训练 engine 按参数映射收集/转换张量，切成 buckets，通过 collective 直接送到 rollout engine，再由后端 refit。
+
+它的主要优势是避开共享文件系统、完整 HF 落盘和二次解析，适合高频同步；主要代价是：
+
+- trainer/rollout rank、global rank 与 group member 必须精确一致；
+- dtype、shape、参数顺序、tied weights、MoE expert identity 必须匹配；
+- group 建立或某个 bucket hang 会把 rollout pause 直接暴露在关键路径；
+- 后端需要提供 compatible distributed update/refit API；
+- 部分 replica 成功时不能直接推进 version，否则会混合 behavior policy。
+
+“trainer sender ranks”取决于训练分片和转换实现，不能默认所有 trainer ranks 都是 sender，也不能把它简化成 trainer rank 0 给所有 server 发一次普通 broadcast。
+
+### disk：临时 HF transfer artifact
+
+disk 路径先把当前 actor 权重转换并写入带版本的临时 HF transfer directory，rollout server 再通过 update/load endpoint 从该目录加载；LoRA 时也可能加载 versioned adapter path。
+
+它的优势是生产者和消费者解耦，manifest/文件可以独立检查，loader 失败时也较易重试；代价包括 export、共享存储带宽、metadata/小文件、可见性等待、load/refit 与目录清理。需要验证：
+
+- directory 是否以临时名写完后原子发布，避免读到半份权重；
+- manifest、version、参数数量/shape/checksum 是否一致；
+- 所有 rollout nodes 是否看到同一文件系统视图；
+- 失败/恢复后临时目录是否泄漏或被错误复用；
+- update 完成前旧 replica 是否继续服务，以及切换点是否一致。
+
+这里的 disk artifact 只服务训练态→推理态转换。它通常不含 optimizer、scheduler、RNG、data cursor、queue/cohort state，不能承担训练恢复 checkpoint 的语义。
+
+### 选择矩阵
+
+| 约束 | 更倾向 XCCL | 更倾向 disk |
+|---|---|---|
+| sync cadence | 高频、exposed pause 敏感 | 低频或可容忍较长 pause |
+| 网络/存储 | collective 域稳定、带宽充足 | 共享存储成熟，跨进程/跨故障域解耦更重要 |
+| inference backend | 有稳定 distributed refit | 只有文件 load/refit 或该路径验证更成熟 |
+| 调试/审计 | 已有 bucket/checksum/version telemetry | 需要保留可检查 transfer artifact |
+| colocation/LoRA | 必须看具体分支约束 | 常是兼容性回退路径，但不能一概而论 |
+
+项目口径：在相同项目 workload 下，verl 与 AReaL 最终都采用 XCCL，原因是实测权重更新时间更短；没有统一跨模型、后端、拓扑的 benchmark，就不说“XCCL 永远更快”。
+
+### 当前项目分支的支持边界
+
+- actor–rollout colocation 在该分支中显式要求 `weight_update_mode=disk`；这是这对 role 的调度/生命周期约束，不代表 ref/critic 其他 colocation 也同样受限；
+- SGLang 的 LoRA distributed/XCCL update 在该分支中不支持，需要 disk；vLLM 与 full-weight/LoRA 的支持矩阵不同；
+- XCCL group 只包含实际参与传输的 trainer sender rank(s) 与 rollout ranks；
+- 这些是项目分支事实，不应外推为所有 AReaL release 的永久限制。
+
+### 生产验收与排障
+
+至少记录四段时间：training-side collect/convert、transfer/export、rollout load/refit、pause 后 exposed time。正确性上做 parameter checksum/抽样 tensor diff、same-prompt same-weight logprob check，并记录每个 replica 的 desired/loaded/active version。
+
+故障时按边界排查：
+
+1. **卡在 connect/group init**：检查 rank list、端口、world size、重复/缺失 member；
+2. **卡在某个 bucket**：打印 parameter name/offset/shape/dtype、sender/receiver progress，判断顺序或尺寸不一致；
+3. **传完但 logprob 不一致**：检查参数转换、tied weights、router/expert mapping、tokenizer/chat template 与 cache；
+4. **disk load 看不到文件**：检查写完发布协议、共享挂载一致性、manifest 与目录权限；
+5. **只有部分 replica 新版本**：保持/回退旧 active version 或隔离失败 replica，禁止把混合版本 cohort 当成同一 behavior policy；
+6. **同步成功但 E2E 变慢**：拆开 sync latency 与 exposed pause，检查同步 cadence、drain、cache invalidation/re-prefill 和 producer/consumer 配平。
+
 ## 核心指标
 
 Agentic RL 平台至少要监控这些指标：
@@ -456,6 +537,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 13. context compaction 为什么不能只当作 inference-time heuristic？
 14. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
 15. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
+16. AReaL 的 XCCL 与 disk 权重同步如何选择，为什么 disk transfer 不等于 recovery checkpoint？
 
 ## 生产环境思考题
 
@@ -470,6 +552,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 9. 如果 policy update 很快但效果不涨，是否可能是样本质量或 freshness 问题？
 10. 如果 compaction summary 丢掉关键错误日志，如何定位是 summary 失败还是 execution policy 失败？
 11. 如果要支持多 agent task，trajectory storage schema 怎么设计？
+12. 如果 XCCL 某个 rollout rank 更新失败、其他 rank 已完成，version 和流量应该如何处理？
 
 ## 主要来源
 
