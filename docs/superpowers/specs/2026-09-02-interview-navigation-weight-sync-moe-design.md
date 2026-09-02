@@ -53,12 +53,13 @@
 
 ### 3.2 顶部导航区
 
-现有“使用方法”收敛为“整体视野与问题导航”，按以下顺序组织：
+现有“使用方法”收敛为“整体视野与问题导航”，顶层顺序严格按以下三项组织，随后直接进入各 Part 正文：
 
-1. **六个 Part 的系统角色**：用紧凑表格列出 Part、解决的系统问题、核心关键词和 Part 入口；
+1. **能力全景**：先展示现有能力图；紧接着用一个紧凑表格说明六个 Part 分别解决的系统问题、核心关键词和 Part 入口，并在同一区域给出最终题量与 P0/P1/P2 总览。Part 角色表和题量统计都是能力全景的内部元素，不形成插在 Core 10 或全量索引之间的新顶层；
 2. **Core 10**：保持现有十题和唯一正文位置不变，继续作为 P0 子集；
-3. **题量与优先级总览**：同步最终 Part 题量和 P0/P1/P2 数量；
-4. **全量问题索引**：按 Part 使用折叠块组织，块内再按 P0/P1/P2 列出所有题目的直接 anchor 链接。
+3. **全量问题索引**：按 Part 使用折叠块组织，块内再按 P0/P1/P2 列出所有题目的直接 anchor 链接。
+
+因此实际阅读顺序始终是“能力全景（含 Part 角色与题量）→ Core 10 → 全量问题索引 → 各 Part 正文/专题”，不能把 Part 表或题量表再次插入 Core 10 与全量索引之间。
 
 全量索引的要求是“可查、可跳、默认不压正文”：
 
@@ -152,7 +153,7 @@ Core 10 的成员不变。三天冲刺表、Part 题量、最后一小时清单�
 检查表至少包含：
 
 ```text
-总专家数 E / top-k / expert intermediate(hidden) / shared expert 数量
+总专家数 E / top-k / expert FFN intermediate size / shared expert 数量
 router 与 balance 策略 / capacity 或 dropless / EP 与 topology 映射
 ```
 
@@ -180,7 +181,7 @@ router 与 balance 策略 / capacity 或 dropless / EP 与 topology 映射
 ```text
 trainer weights
   → layout/name/dtype 对齐与分桶
-  → trainer/rollout 共同加入 XCCL process group
+  → 参与传输的 trainer sender rank(s) 与 rollout ranks 建立 XCCL process group
   → NCCL/XCCL broadcast 或点到多点的显存直传
   → rollout engine 更新权重
   → 成功后切换 policy version
@@ -210,13 +211,13 @@ trainer weights
 - producer/consumer 解耦，路径可观察、可重试、容易人工检查；
 - 对 backend、部署形态和部分 LoRA 路径的兼容范围更宽；
 - 代价是 save + filesystem + load 的额外时延、共享存储带宽和容量压力，以及临时完整权重副本；
-- 本地项目分支中，local colocation 调度显式要求 disk；SGLang 的 LoRA XCCL 路径不受支持，不能把 XCCL 说成所有组合都能用。
+- 本地项目分支中的 actor–rollout colocation 显式要求 disk；ref/critic 等其他 colocation 不自动触发该限制。SGLang 的 LoRA XCCL 路径也不受支持，不能把 XCCL 说成所有组合都能用。
 
 ### 6.4 选型结论与项目口径
 
 主文档允许使用的项目表述是：
 
-> 我们最终在 verl 和 AReaL 两条项目链路中都选择了 XCCL。原因不是“XCCL 永远更好”，而是在当时固定模型、并行布局、rollout backend 和网络条件下，更新频率较高，XCCL 避开了完整权重落盘和重新加载，实测同步更快；同时相关 backend 路径已经跑通，因此收益大于集成复杂度。若是低频更新、共享存储足够快、跨集群解耦、需要更易恢复/排障，或者 backend/LoRA/local-colocation 组合不支持 XCCL，我会重新评估 disk。
+> 我们最终在 verl 和 AReaL 两条项目链路中都选择了 XCCL。原因不是“XCCL 永远更好”，而是在当时固定模型、并行布局、rollout backend 和网络条件下，更新频率较高，XCCL 避开了完整权重落盘和重新加载，实测同步更快；同时相关 backend 路径已经跑通，因此收益大于集成复杂度。若是低频更新、共享存储足够快、跨集群解耦、需要更容易进行传输重试、artifact 检查或故障定位，或者 backend/LoRA/actor–rollout colocation 组合不支持 XCCL，我会重新评估 disk。
 
 没有已核验 benchmark 数字时，不填写具体加速倍数。`verl` 与 `AReaL` 都选择 XCCL 是项目事实；具体底层实现和支持矩阵分别归属于框架，不能因为选型相同就声称两者实现完全一致。
 
@@ -294,7 +295,7 @@ TRAINING · RL · ROLLOUT
 2. 不虚构 X1 的 expert 数、top-k、expert hidden 或 shared expert；
 3. 不把 disk weight transfer 等同于 recovery checkpoint；
 4. 不把 XCCL 描述成无条件优于 disk，也不声称 verl 与 AReaL 的实现完全相同；
-5. 正向说明本地分支中 local colocation 和 SGLang LoRA 等支持矩阵边界；
+5. 正向说明本地分支中 actor–rollout colocation 和 SGLang LoRA 等支持矩阵边界，且不把 ref/critic colocation 混入该限制；
 6. “verl 和 AReaL 最终使用 XCCL，因为项目 workload 下更快”明确标为项目选型结论，缺少 A/B 数字时不写倍数；
 7. 面试准备链路和能力图不再出现 `约 200B MoE`，正向出现 `200B MoE 模型`。
 
