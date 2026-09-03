@@ -3,8 +3,8 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–120 万
 > - 使用窗口：首轮面试前 3 天
-> - 核验日期：2026-09-02
-> - 依据：[2026 版简历](output/曾柏炜-大模型训练推理Infra高级工程师-原格式版-2026.docx)、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
+> - 核验日期：2026-09-03
+> - 依据：最新投递版 PDF 简历（2026-08-30，本地核验且不在公开仓库记录含手机号文件名）、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 ## 0. 先看结论：面试官会如何评估你
 
@@ -29,7 +29,7 @@
 
 > 图例：实心节点表示有项目证据的集成、调优或交付经验，但不自动等于底层算法/kernel 的实现者；空心节点表示原理掌握、证据尚待补齐或今天会评估的能力延伸。
 
-- **核心机制导航**：[Megatron 5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [Megatron/FSDP 选型](#megatron-11) · [PPO/GRPO/DAPO](#rl-algo-01) · [verl/HybridFlow](#verl-01) · [AReaL 选型](#areal-01) · [Gateway ownership](#areal-09) · [XCCL/disk](#areal-11) · [Megatron 显存账本](#infra-02) · [通信算子](#infra-04)
+- **核心机制导航**：[Megatron 5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [Megatron/FSDP 选型](#megatron-11) · [PPO/GRPO/DAPO](#rl-algo-01) · [verl/HybridFlow](#verl-01) · [AReaL 选型](#areal-01) · [Gateway ownership](#areal-09) · [XCCL/disk](#areal-11) · [Megatron 显存账本](#infra-02) · [通信算子](#infra-04) · [万卡稳定性](#infra-09)
 - **项目证据导航**：[X1 200B MoE 模型](#resume-01a) · [Fully Async RLVR](#resume-02) · [AReaL Agentic RL](#resume-08) · [MOPD](#resume-09) · [自研版 verl 模型落地](#verl-11) · [国产卡规模交付](#resume-10)
 
 **20–30 秒口述版**：
@@ -45,13 +45,13 @@
 | Part | 解决的核心问题 | 关键入口 | 优先级与题量 |
 |---|---|---|---:|
 | [Part I](#part-i) | 你是谁、做了什么、为什么值得信任 | 自我介绍、Ownership、职业选择 | Core 3 / P0 3 / P1 3 / P2 1，共 7 |
-| [Part II](#part-ii) | 大模型如何放得下、跑得快、扩得稳 | Megatron、5D、MoE、显存、长上下文 | Core 3 / P0 16 / P1 5 / P2 1，共 22 |
+| [Part II](#part-ii) | 大模型如何放得下、跑得快、扩得稳 | Megatron、5D、MoE、显存、长上下文 | Core 3 / P0 18 / P1 6 / P2 1，共 25 |
 | [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO、verl、Fully Async、真实模型落地 | Core 1 / P0 9 / P1 5 / P2 1，共 15 |
-| [Part IV](#part-iv) | Agent trajectory 如何在线生产、校验和消费 | AReaL、Gateway、staleness、MOPD、weight sync | Core 2 / P0 8 / P1 8 / P2 1，共 17 |
-| [Part V](#part-v) | 跨框架的通信、恢复、推理与生产排障 | Collective、NCCL、checkpoint、KV cache、可观测性 | Core 1 / P0 2 / P1 5 / P2 1，共 8 |
+| [Part IV](#part-iv) | Agent trajectory 如何在线生产、校验和消费 | AReaL、Gateway、staleness、MOPD、weight sync | Core 2 / P0 10 / P1 7 / P2 1，共 18 |
+| [Part V](#part-v) | 跨框架的通信、恢复、推理与生产排障 | Collective、万卡稳定性、NCCL、checkpoint、KV cache | Core 1 / P0 3 / P1 5 / P2 1，共 9 |
 | [Part VI](#part-vi) | 如何把知识变成首面表现 | 三天冲刺、口径校准、证据卡、模拟面试 | 不新增问题 |
 
-全文共 **69 道唯一问题**：P0 38 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数。
+全文共 **74 道唯一问题**：P0 43 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数。
 
 ### 1.2 Core 10：只剩 3 小时时必须会的十个入口
 
@@ -82,11 +82,11 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 </details>
 
 <details>
-<summary><strong>Part II｜Megatron、MoE、训练后端与长上下文（22）</strong></summary>
+<summary><strong>Part II｜Megatron、MoE、训练后端与长上下文（25）</strong></summary>
 
 - **P0 / Core**：[RESUME-01A X1 200B MoE 模型性能优化](#resume-01a) · [MEGATRON-01 5D 并行](#megatron-01) · [INFRA-02 Megatron 显存账本](#infra-02)
-- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP chunking](#resume-07) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 Column/Row Parallel](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 Megatron 与 FSDP 选型](#megatron-11)
-- **P1**：[MEGATRON-07 PP bubble](#megatron-07) · [MEGATRON-08 Packed Sequence](#megatron-08) · [MEGATRON-09 Recompute/Offload](#megatron-09) · [MEGATRON-10 Distributed checkpoint](#megatron-10) · [BRIDGE-01 MBridge/Megatron Bridge](#bridge-01)
+- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 Column/Row Parallel](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 Megatron 与 FSDP 选型](#megatron-11)
+- **P1**：[RESUME-18 视频 DiT/Ulysses](#resume-18) · [MEGATRON-07 PP bubble](#megatron-07) · [MEGATRON-08 Packed Sequence](#megatron-08) · [MEGATRON-09 Recompute/Offload](#megatron-09) · [MEGATRON-10 Distributed checkpoint](#megatron-10) · [BRIDGE-01 MBridge/Megatron Bridge](#bridge-01)
 - **P2**：[P2-02 FlashAttention](#p2-02)
 
 </details>
@@ -102,20 +102,20 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 </details>
 
 <details>
-<summary><strong>Part IV｜AReaL、Gateway、Agentic RL 与 MOPD（17）</strong></summary>
+<summary><strong>Part IV｜AReaL、Gateway、Agentic RL 与 MOPD（18）</strong></summary>
 
 - **P0 / Core**：[RESUME-08 Agentic RL 链路](#resume-08) · [RESUME-09 OPD/MOPD](#resume-09)
-- **P0 扩展**：[AREAL-01 verl/AReaL 选型](#areal-01) · [AREAL-02 off-policyness](#areal-02) · [AREAL-03 微服务化](#areal-03) · [AREAL-04 trajectory→gradient](#areal-04) · [AREAL-09 Gateway 改造](#areal-09) · [AREAL-11 XCCL 与 disk](#areal-11)
-- **P1**：[RESUME-13 CUDA Graph](#resume-13) · [RESUME-14 Prefix Cache](#resume-14) · [RESUME-15 Rejected Group](#resume-15) · [AREAL-05 Partial Rollout](#areal-05) · [AREAL-06 原子 weight sync](#areal-06) · [AREAL-07 Online Proxy/session drain](#areal-07) · [AREAL-10 外部 Agent 接入](#areal-10) · [AREAL-08 三层门禁](#areal-08)
+- **P0 扩展**：[AREAL-01 verl/AReaL 选型](#areal-01) · [AREAL-02 off-policyness](#areal-02) · [AREAL-03 微服务化](#areal-03) · [AREAL-04 trajectory→gradient](#areal-04) · [AREAL-09 Gateway 改造](#areal-09) · [AREAL-11 XCCL 与 disk](#areal-11) · [RESUME-13 CUDA Graph](#resume-13) · [RESUME-19 Gateway 调度收益](#resume-19)
+- **P1**：[RESUME-14 Prefix Cache](#resume-14) · [RESUME-15 Rejected Group](#resume-15) · [AREAL-05 Partial Rollout](#areal-05) · [AREAL-06 原子 weight sync](#areal-06) · [AREAL-07 Online Proxy/session drain](#areal-07) · [AREAL-10 外部 Agent 接入](#areal-10) · [AREAL-08 三层门禁](#areal-08)
 - **P2**：[P2-04 设计 256K Agentic RL 平台](#p2-04)
 
 </details>
 
 <details>
-<summary><strong>Part V｜通用 Infra 与生产排障（8）</strong></summary>
+<summary><strong>Part V｜通用 Infra 与生产排障（9）</strong></summary>
 
 - **P0 / Core**：[INFRA-04 通信算子](#infra-04)
-- **P0 扩展**：[INFRA-03 NCCL hang/checkpoint 恢复](#infra-03)
+- **P0 扩展**：[INFRA-09 万卡规模效应与优化](#infra-09) · [INFRA-03 NCCL hang/checkpoint 恢复](#infra-03)
 - **P1**：[RESUME-12 精度对齐](#resume-12) · [INFRA-05 64 卡 35B MoE 128K](#infra-05) · [INFRA-06 推理吞吐/延迟/KV](#infra-06) · [INFRA-07 可观测性指标树](#infra-07) · [INFRA-08 可恢复 checkpoint](#infra-08)
 - **P2**：[P2-03 kernel/带宽/通信瓶颈](#p2-03)
 
@@ -158,7 +158,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 
 - **精准回答**：
 
-  > 在 X1 200B MoE 模型项目里，我的 scope 是把模型从功能和精度可用推进到性能达标，并保障大规模训练落地。技术决策上，我负责建立性能基线和瓶颈分解，主导并行配置实验、Grouped MatMul 和融合算子的接入验证，以及通信 profile 和 overlap 方案收敛；执行上，我亲自做关键配置、A/B 实验、精度对齐和问题定位。项目依赖 Megatron/MindSpeed 框架、底层算子团队、硬件和集群运维，这些不是我一个人实现的；我的责任是定义接口和验收标准，把框架、算子和客户侧问题拉到同一条因果链上。结果上，我对 0.16x 到 0.95x、MFU 35%、上线门禁和 3K 卡训练保障负责。上线后出现性能回退或训练故障，我也是第一接口人，负责组织定位、回归和复盘。没有我并不是“没人能写代码”，而是项目会缺少一个对端到端结果负责、能让多个团队围绕同一基线收敛的 owner。
+  > 在 X1 200B MoE 模型项目里，我的 scope 是把模型从功能和精度可用推进到性能达标，并保障大规模训练落地。技术决策上，我负责建立性能基线和瓶颈分解，主导并行配置实验、Grouped MatMul 和融合算子的接入验证，以及通信 profile 和 overlap 方案收敛；执行上，我亲自做关键配置、A/B 实验、精度对齐和问题定位。项目依赖 Megatron/MindSpeed 框架、底层算子团队、硬件和集群运维，这些不是我一个人实现的；我的责任是定义接口和验收标准，把框架、算子和客户侧问题拉到同一条因果链上。结果上，我对 0.16x 到 0.95x、MFU 35%、上线门禁和 3K 卡连续稳定训练两个月的模型侧保障负责。上线后出现性能回退或训练故障，我也是第一接口人，负责组织定位、回归和复盘。没有我并不是“没人能写代码”，而是项目会缺少一个对端到端结果负责、能让多个团队围绕同一基线收敛的 owner。
 
 - **回答模板**：`Scope → Decision → Execution → Coordination → Outcome`。每一层至少准备一个“我”开头的具体动作。
 - **项目证据或知识边界**：准备一项亲自改动、一项关键实验、一项被你否决的方案和一次跨团队闭环。明确哪些融合算子是直接使用、哪些是适配或修改，不能把 Megatron/MindSpeed 原生能力说成自研。
@@ -239,7 +239,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 
 **学习目标**：用 X1 200B MoE 模型和长上下文 SFT 证明训练系统基本盘：并行、显存、算子、通信、精度与规模交付。
 
-**本 Part 导航**：Core：[RESUME-01A](#resume-01a) · [MEGATRON-01](#megatron-01) · [INFRA-02](#infra-02)；P0 扩展：[RESUME-05](#resume-05) · [RESUME-06](#resume-06) · [RESUME-07](#resume-07) · [RESUME-10](#resume-10) · [MEGATRON-02](#megatron-02) · [MEGATRON-03](#megatron-03) · [MEGATRON-04](#megatron-04) · [MEGATRON-05](#megatron-05) · [MOE-01](#moe-01) · [MEGATRON-06](#megatron-06) · [INFRA-01](#infra-01) · [DIST-01](#dist-01) · [MEGATRON-11](#megatron-11)；P1：[MEGATRON-07](#megatron-07) · [MEGATRON-08](#megatron-08) · [MEGATRON-09](#megatron-09) · [MEGATRON-10](#megatron-10) · [BRIDGE-01](#bridge-01)；P2：[P2-02](#p2-02)。
+**本 Part 导航**：Core：[RESUME-01A](#resume-01a) · [MEGATRON-01](#megatron-01) · [INFRA-02](#infra-02)；P0 扩展：[RESUME-05](#resume-05) · [RESUME-17](#resume-17) · [RESUME-06](#resume-06) · [RESUME-07](#resume-07) · [KERNEL-01](#kernel-01) · [RESUME-10](#resume-10) · [MEGATRON-02](#megatron-02) · [MEGATRON-03](#megatron-03) · [MEGATRON-04](#megatron-04) · [MEGATRON-05](#megatron-05) · [MOE-01](#moe-01) · [MEGATRON-06](#megatron-06) · [INFRA-01](#infra-01) · [DIST-01](#dist-01) · [MEGATRON-11](#megatron-11)；P1：[RESUME-18](#resume-18) · [MEGATRON-07](#megatron-07) · [MEGATRON-08](#megatron-08) · [MEGATRON-09](#megatron-09) · [MEGATRON-10](#megatron-10) · [BRIDGE-01](#bridge-01)；P2：[P2-02](#p2-02)。
 
 ### Core｜最高优先入口
 
@@ -250,7 +250,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **面试官意图**：验证你能否把超大 MoE 的性能问题拆成并行映射、kernel、通信、显存、精度和规模化稳定性问题；同时检查 `0.16x → 0.95x` 是否有明确口径和个人贡献。
 - **60–120 秒主答**：
 
-  > 我最有代表性的案例是在华为 X1 项目中，对一个 200B MoE 预训练模型做性能优化。我负责的范围从功能打通、精度对齐一直到性能达标和 3K 卡训练保障。接手时，相对客户对标口径的性能只有 0.16x；我没有从单个算子开始盲调，而是先固定模型、batch、序列长度、精度和卡数，用 profile 定位瓶颈。用 NVIDIA 2026 年报告的后验框架概括，就是 Memory Wall、Communication Wall 和 Compute Efficiency Wall。第一类是并行和显存：联合评估 TP、PP、DP、EP 等切分，目标是在模型可放下的前提下，避免把 expert GEMM 切得过碎。第二类是计算效率：使用 Grouped MatMul 聚合多个 expert 的小矩阵计算，并使能实际验证过的融合算子，减少中间张量、内存搬运和 kernel launch。第三类是通信：分别分析 TP/DP collective、EP token dispatch 和 PP P2P，把没有依赖的通信与计算做 overlap，同时检查额外 buffer 和带宽竞争。每轮优化后都重新 profile，并通过逐层精度对齐和长稳训练验收。最终相对性能从 0.16x 提升到 0.95x，MFU 达到 35%，并支撑 3K 卡训练。这个项目最重要的不是某个开关，而是持续识别瓶颈迁移并同时守住性能、精度和稳定性。
+  > 我最有代表性的案例是在华为 X1 项目中，对一个 200B MoE 预训练模型做性能优化。我负责的范围从功能打通、精度对齐一直到性能达标和 3K 卡训练保障。接手时，相对客户对标口径的性能只有 0.16x；我没有从单个算子开始盲调，而是先固定模型、batch、序列长度、精度和卡数，用 profile 定位瓶颈。用 NVIDIA 2026 年报告的后验框架概括，就是 Memory Wall、Communication Wall 和 Compute Efficiency Wall。第一类是并行和显存：联合评估 TP、PP、DP、EP 等切分，目标是在模型可放下的前提下，避免把 expert GEMM 切得过碎。第二类是计算效率：使用 Grouped MatMul 聚合多个 expert 的小矩阵计算，并使能实际验证过的融合算子，减少中间张量、内存搬运和 kernel launch。第三类是通信：分别分析 TP/DP collective、EP token dispatch 和 PP P2P，把没有依赖的通信与计算做 overlap，同时检查额外 buffer 和带宽竞争。每轮优化后都重新 profile，并通过逐层精度对齐和长稳训练验收。最终相对性能从 0.16x 提升到 0.95x，MFU 达到 35%，并支撑 3K 卡连续稳定训练两个月。这个项目最重要的不是某个开关，而是持续识别瓶颈迁移并同时守住性能、精度和稳定性。
 
 - **2–3 分钟展开版**：按下面五层展开，不要把未确认项说成已经实施。
 
@@ -268,7 +268,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
   - **显存换并行效率**：fine-grained recomputation、pipeline-aware activation offloading 和 precision-aware optimizer 不只是为了避免 OOM，也可能让系统降低 TP/PP、恢复更大的 GEMM。
   - **kernel 与低精度**：router/permutation fusion、FP8/FP4 grouped quantization + Grouped GEMM，以及对 dropless MoE 采用 partial CUDA Graph；回答时要说明动态 expert shape 与静态 graph 的冲突。
 
-- **项目证据或知识边界**：可以口述 X1、200B MoE 模型、`0.16x → 0.95x`、MFU 35% 和 3K 卡；对外简历继续脱敏。客户真实名称不写入或展示。上述 NVIDIA 新方案必须使用“今天会评估”，不能倒灌成 2023–2024 年项目事实。
+- **项目证据或知识边界**：可以口述 X1、200B MoE 模型、`0.16x → 0.95x`、MFU 35% 和 3K 卡连续稳定训练两个月；对外简历继续脱敏。客户真实名称不写入或展示。上述 NVIDIA 新方案必须使用“今天会评估”，不能倒灌成 2023–2024 年项目事实。
 - **高概率追问**：`0.16x` 的分母是什么？实际 TP/PP/DP/EP 怎么配？Grouped MatMul 为什么有效？EP all-to-all 占比多少？load imbalance 怎么测？哪项优化收益最大？为什么 MFU 只有 35%？
 - **危险回答**：从头到尾罗列开关；把总收益全部归因给 Grouped MatMul；无法给出真实并行配置和融合算子名；把 NVIDIA 2026 的 DeepEP、Parallel Folding 或 CUDA Graph 说成当时已实施。
 
@@ -405,7 +405,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **理论账如何闭环 OOM**：固定 workload 后，分别记录 initialization、forward、backward、optimizer、checkpoint 的 `allocated/reserved/max_memory_allocated`；用 memory snapshot、tensor shape log 和 profiler 找出未入账 allocation。先修 shape 回退、dtype upcast、buffer 生命周期或泄漏，再根据峰值来源选择 MBS、recompute、CP/TP/PP、offload、fused op 或 allocator 配置。修复后同时验证 tensor shape、峰值显存、loss、吞吐、checkpoint 和长稳，不以“不再 OOM”为结束。
 
 - **深入阅读**：[5D 并行如何改变每-rank 参数、activation 和通信](../training-infra-roadmap/topics/distributed_training.md#five-d-config)、[Data Parallelism](../training-infra-roadmap/topics/data_parallelism.md)。
-- **项目证据或知识边界**：可结合 [RESUME-07](#resume-07) 的 FP32/full-sequence logits 7.6GB 案例、长样本 OOM、CP=1 回退 CP=2 和 checkpoint/weight sync 峰值；口述 7.6GB 前必须补齐实际 `tokens×vocab×dtype×live copies`。
+- **项目证据或知识边界**：可结合 [RESUME-07](#resume-07) 的 full-sequence logits 7.6GB 冗余分配、长样本 OOM 和 checkpoint/weight sync 峰值；dtype 与 `tokens×vocab×dtype×live copies` 精确拆解必须以原始 shape/日志为准，不默认说成 FP32。
 - **高概率追问**：为什么 CP 不切参数却能参与 Dense optimizer sharding？为什么 microbatch 数只除以 DP，而 `d_dense` 默认是 `DP×CP`？某一 rank 单独 OOM有哪些原因？reserved 很高但 allocated 不高怎么办？
 - **危险回答**：用全模型参数直接乘 bytes/param；把所有显存都除以 world-size；把每个 phase 峰值和 workspace 全部相加；第一反应 `empty_cache()` 或直接减 batch；把 `reserved-allocated` 全部解释为 fragmentation。
 
@@ -416,15 +416,35 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 
 - **问题**：DataLoader/prefetch、选择性重计算和 TP/CP 调整各解决了什么？如何证明 `31s→9.3s` 不是换 workload？
 - **面试官意图**：验证你能否区分 input pipeline、GPU compute、显存与配置变化，并证明 3.3x 不是换 workload。
-- **精准回答**：
+- **60–90 秒主答**：
 
-  > 我先固定模型/checkpoint、GPU、sequence 和 packing 分布、GBS/MBS、有效 token、精度与统计窗口，再把 step 拆成 data wait、forward、backward、optimizer 和通信。第一步处理输入供给：`num_workers=0` 时主进程同步取数和预处理，GPU 有明显 data bubble；把 workers 调到 8 并配合 prefetch 后，让 Host 侧与 GPU 计算重叠。第二步处理显存—计算交换：原配置 recompute 偏重，虽然省显存，但把昂贵计算重复做了；按张量级显存账改为 selective recompute，优先保留重算代价高的 attention/SDPA 结果，把重计算预算放在更便宜、显存收益更高的部分。第三步收敛 TP/CP：9B 模型若 TP 过大，会切碎 GEMM 并增加层内高频 collective；长序列 activation 更适合由 CP 分摊，因此在容量允许下减少不必要 TP、把更多并行预算给 CP，再用 profile 确认通信暴露没有反超。
+  > 这不是一个开关带来的 3.3x，而是按 critical path 做的联合收敛。我先固定模型、卡数、有效 token、sequence/packing、GBS/MBS、精度、warmup 和统计窗口，把 step 拆成 data wait、forward、backward、optimizer 与通信。第一步，`num_workers=0` 时样本读取、tokenize/packing 和 host-to-device 在主进程串行，GPU 会等数据；把 DataLoader worker 调到 8，配合 pinned memory、persistent worker、prefetch 与 non-blocking H2D，使第 `n+1` 批数据准备和第 `n` 批 GPU 计算重叠。第二步，原配置的 activation recompute 范围偏大，我改为 Megatron selective recompute，只对 profile 证明“释放峰值显存划算、重算代价可接受”的子模块 checkpoint，避免整层 full recompute。第三步，重新搜索 TP/CP：9B 上 TP 过大会切碎 GEMM并增加逐层 collective；128K 的一阶压力在 sequence activation，所以在能放下参数的前提下减小不必要 TP、增加 CP，再验证 CP 通信没有反客为主。
   >
-  > 最终相同 workload 下 step time 从 31s 降到 9.3s，MFU 从 23% 提升到 29.6%。这是 DataLoader、recompute 和并行配置联合收敛后的结果；当前没有逐项同 workload A/B，所以我只解释每项解决的瓶颈，不编造各自贡献比例。另一个 `TP=4,CP=4 → TP=2,CP=8、163s→102s` 实验能证明并行选择机制，但不是这次 31s→9.3s 的拆分数据。
+  > 最新简历记录的联合结果是 step time `31s→9.3s`、MFU `23%→45.2%`。当前没有保留下来一套可公开的逐项同 workload 消融，所以我只说明三类优化分别消除了什么，不给每项硬拆收益。另一个 `TP=4,CP=4 → TP=2,CP=8、163s→102s` 是不同 workload，只能说明 TP/CP 的选择机制，不能并入 31s→9.3s。
 
-- **项目证据或知识边界**：当前简历确认总结果、`num_workers=0→8`、selective recompute 与 TP/CP 调整方向，但没有逐项收益。面试前仍要补硬件、sequence/packing、batch/effective-token 和统计窗口；不要把另一 workload 的 163s→102s 合并进来。上述 selective recompute 与 TP/CP 解释和 NVIDIA MoE 报告的工程原则一致：先建立内存可行性，再减少不必要模型并行；长上下文用 CP 分摊 sequence activation，重计算优先选择“显存收益高、重算代价低”的部分。参见 [NVIDIA MoE 报告：长上下文训练](../training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/第四部分：第5节——FP8_FP4低精度训练%20&%20第6节——长上下文训练.pdf)。
-- **高概率追问**：为什么 MFU 只升了 6.6pp、step 却快 3.3x？data wait 是否计入 MFU？怎样避免 workers 过多造成 CPU/内存压力？为什么不继续增大 TP？哪些模块适合 selective recompute？
-- **危险回答**：说“num_workers 提升了 GPU 算力”；不说明前后 batch/token 数；把总收益硬拆成三个未经 A/B 的百分比；把 `TP=2,CP=8` 说成 31s→9.3s 已确认配置；把峰值 MFU 当平均 MFU。
+- **Selective recompute 怎么选**：不要回答成“Attention 贵，所以不重算”。Megatron-Core 当前默认 selective 模块是 `core_attn`，原因是该区域保存的中间 activation 相对重算 FLOPs 更划算；现代版本还支持 `layernorm`、`moe_act`、`mlp`、`moe`、`shared_experts` 等模块。项目回答只确认“从偏重 full recompute 收敛到 selective”，具体 module list 必须以当时配置为准。选择方法是比较 `释放的峰值 bytes / 额外重算 FLOPs`，并确认它是否位于峰值存活窗口，再用 `none/selective/full` 三档同 workload sweep 验证 step time、peak memory、loss/grad 和 dropout/RNG 一致性。
+- **MFU 算术门禁**：标准 MFU 在模型 FLOPs 与每 step 有效 token 不变时应近似与 step time 成反比；`31/9.3≈3.33` 与 `45.2/23≈1.97` 不能自动闭合。因此面试前必须带上 MFU estimator、是否包含 data wait、有效 token、packing、microbatch 与平均窗口。补齐前可以分别陈述最新版简历数字，但不要声称二者来自完全相同的单一计时窗口，也不要用其中一个反推另一个。
+- **深入阅读**：[长上下文训练：SFT 优化、selective recompute 与验证顺序](../training-infra-roadmap/topics/long_context_training.md#qwen35-9b-sft)、[Megatron-Core TransformerConfig](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)。
+- **项目证据或知识边界**：最新版简历确认总结果、DataLoader 并发、selective recompute 与 TP/CP 调整方向，但没有逐项贡献。`num_workers=0→8` 来自底稿；若面试只按公开简历回答，可说“提高 DataLoader 并发并预取”。
+- **高概率追问**：为什么 MFU 与 step time 比值不闭合？prefetch 如何证明真的重叠？为什么 selective 默认会重算 `core_attn`？workers 过多有什么反作用？为什么不继续增大 TP？
+- **危险回答**：说“num_workers 提升 GPU 算力”；把 standard MFU 的算术矛盾糊过去；把总收益硬拆成未经 A/B 的百分比；虚构具体 `recompute_modules`；把另一 workload 的 `TP=2,CP=8` 说成这次最终配置。
+
+<a id="resume-17"></a>
+#### RESUME-17｜Qwen3.5-35B-A3B 在 128K 下为什么能把平均 step time 降低约 50%？（P0，18 分钟）
+
+- **问题**：MoE、长上下文和 loss/logprob 路径叠加后，你按什么顺序优化？
+- **面试官意图**：检查你能否把 headline 拆成“内存可行性 → 并行效率 → kernel/通信 → 数据供给”的因果链，而不是套用 9B 方案。
+- **90 秒主答**：
+
+  > 35B-A3B 的难点不是 active 参数只有 3B 就会很轻：总参数和 optimizer state 仍然影响放置，128K 又放大 activation、CP 通信和 logits/loss 临时张量，MoE 还增加 token dispatch 与 expert load balance。我先做张量级显存账和 stage breakdown，优先修掉非预期的全量 materialization——包括 THD+CP actor 路径的 full-sequence logits all-gather，只在 CP-local logits 上计算 logprob，再聚合标量；这类修复既解除 OOM 风险，也减少无效通信和内存搬运。然后联合搜索 TP/CP/EP，让 TP 不把 expert GEMM 切得过碎、CP 分摊 128K activation、EP group 尽量落在合适拓扑域，并检查每个 expert 的 token 负载。之后再收敛 packing/dynamic token batch、selective recompute、Grouped GEMM/融合算子、vocab-parallel loss chunk 和通信 overlap。
+  >
+  > 最新简历能确认的最终口径是 128K 场景平均 step time 降低约 50%。当前材料没有完整的逐项消融，所以我会把 CP-local logits 作为有代码证据的机制案例，把其余项说成联合优化路径，不把 50% 分摊给某个开关。
+
+- **验证顺序**：先看 peak allocated 与 tensor shape 是否符合 CP/TP/EP 理论；再看 `data wait / attention / expert GEMM / dispatch A2A / TP-CP collective / loss / backward / optimizer`；最后以相同有效 token、长度分布和统计窗口比较平均值与 p95，并验 loss、logprob、expert load、checkpoint/recovery。
+- **深入阅读**：[128K MoE 的优化账本与 CP-local logits](../training-infra-roadmap/topics/long_context_training.md#qwen35-35b-a3b-128k)。
+- **项目证据或知识边界**：确定事实是 Qwen3.5-35B-A3B、128K、平均 step time 约降低 50%，以及 [RESUME-07](#resume-07) 的代码级 CP-local logits 修复；具体 TP/CP/EP 数值、各项贡献和最终绝对 step time须以原始配置/日志补齐。
+- **高概率追问**：A3B 为什么仍会 OOM？TP 与 EP 怎样避免重复乘 world size？为什么 loss/logprob 会成为 128K 峰值？平均下降 50% 是否掩盖 p99？
+- **危险回答**：因为 active 参数只有 3B，所以按 3B dense 估显存；把 50% 全归给 CP 或 chunking；混用 9B 的 31s→9.3s；不给 workload 与统计窗口。
 
 <a id="resume-06"></a>
 #### RESUME-06｜128K/256K 长上下文训练的显存主要花在哪里？（P0，18 分钟）
@@ -440,13 +460,43 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **危险回答**：只说“开 FlashAttention 和重计算”；默认 max length 就是平均 workload；用更多 TP 机械解决所有 OOM。
 
 <a id="resume-07"></a>
-#### RESUME-07｜CP chunking 静默失效为什么会分配 7.6GB 全量 logits buffer？（P0，15 分钟）
+#### RESUME-07｜CP chunking 静默失效为什么会分配 7.6GB 冗余 logits？（P0，18 分钟）
 
 - **问题**：没有报错但显存异常，你怎么发现并证明 chunking 没生效？
 - **面试官意图**：验证源码阅读、张量形状推导和静默正确性/性能问题定位能力。
-- **精准回答**：
+- **90 秒主答**：
 
-  > 症状是显存峰值与按 CP 分片后的理论值不一致，但任务没有显式异常。我先用 dtype × batch × sequence × vocab 估算 logits buffer，7.6GB 更接近全序列 logits，而不是 CP local chunk；再通过 rank 级 shape/log、allocation snapshot 和关键函数 tracing 确认 loss/CE 路径没有继承 CP chunk 信息。修复后我会同时验证 local tensor shape、峰值显存、loss 数值和多 rank 一致性，避免只凭 OOM 消失判断正确。
+  > 这个问题发生在 THD packed sequence、`CP>1` 的 actor logprob 路径。模型前向本来已经让每个 CP rank 只持有 `[T/CP, V/TP]` 的 local logits，但通用 postprocess 又把 logits 沿 CP all-gather 成 `[T, V/TP]`，相当于把 CP 刚省下的长序列显存重新放大 CP 倍。后面的 logprob chunk 即使按 sequence 分块，也只能减少 CE 计算的临时张量，无法消除已经 materialize 的全量 logits，因此表现为“chunking 参数存在、程序不报错，但仍多出约 7.6GB”。
+  >
+  > 修复不是继续调小 chunk，而是改数据布局：actor 的 THD+CP 路径设置 `gather_thd_outputs=False`，保持 logits CP-local；labels 和 loss mask 按与模型完全相同的 causal zigzag 规则切到本地，在 TP vocab shard 上计算选中 token 的 logprob/entropy 等标量；最后只在 CP group all-gather `[T/CP]` 标量，恢复 packed 顺序并 unpad。因为 critic 路径语义不同，继续保留经过验证的 full gather。另加显式 output-layout stamp，避免只看 `cu_seqlens` 把携带 packed metadata 的 BSHD 路径误判成 THD。
+
+![CP-local logits 修复：保留分片 logits，只聚合标量](../training-infra-roadmap/assets/topics/cp-local-logits.svg)
+
+- **显存公式**：旧路径主张量近似 `T × (V/TP) × dtype_bytes × live_copies`；新路径是 `(T/CP) × (V/TP) × dtype_bytes` 加上可忽略得多的 `[T]` scalar gather。7.6GB 是最新简历确认的冗余分配结果，不在缺少原始 shape 日志时倒推出唯一 `T/V/dtype/live_copies` 组合。
+- **如何证明**：在 all-gather 前后记录 per-rank shape/stride/dtype 与 `max_memory_allocated`；确认 labels、mask、logits 的 zigzag 对齐；用 CP=1 参考和 CP>1 修复版比较 token logprob、entropy、loss、grad 与多 rank checksum；同时跑 train 和 forward-only/compute-logp 路径，并验证 BSHD/THD、padding/unpadding 与 critic 回归。
+- **代码证据**：本地项目提交 `be6fb98f`；核心接口是 `gather_thd_outputs=False`、`split_packed_labels_for_thd_cp`、`gather_packed_scalar_from_thd_cp` 与 `_pcp_output_layout`。
+- **深入阅读**：[CP-local logits、chunked logprob 与排障流程](../training-infra-roadmap/topics/long_context_training.md#cp-local-logits)。
+- **项目证据或知识边界**：可以把“为什么 chunk 无法挽救 full logits gather”和“只聚合标量”作为直接源码证据；没有公开原始 shape 记录时不虚构 7.6GB 的精确拆解。
+- **高概率追问**：为什么 sequence chunking 救不了已分配的 full logits？TP vocab shard 如何计算 exact logprob？zigzag split 为什么取头尾两段？为什么 critic 不复用 actor 路径？
+- **危险回答**：把 bug 说成 chunk size 没传进去；只改 allocator 或 `empty_cache()`；在 CP-local logits 上配 full-sequence labels；只看 OOM 消失，不验 logprob/loss。
+
+<a id="kernel-01"></a>
+#### KERNEL-01｜NVIDIA 卡上为什么还需要融合算子？常见融合如何接入？（P0，18 分钟）
+
+- **问题**：GEMM 已经由 cuBLAS/Transformer Engine 优化，为什么还要 fusion？是开参数还是替换接口？
+- **面试官意图**：检查你能否区分 compute-bound GEMM 与 memory/launch-bound 小算子，并能把融合落到框架接入、兼容和验证。
+- **60–90 秒主答**：
+
+  > NVIDIA 卡上当然需要融合，但不是“算子越融合越快”。大 GEMM 可能已经 compute-bound，真正适合融合的是它前后的 memory-bound/launch-bound 链：融合后减少中间 tensor 写回 HBM、kernel launch 和同步，也能降低 activation 峰值。常见类别包括 FlashAttention；fused QKV/RoPE、scaled masked softmax；bias+GeLU/SwiGLU、bias+dropout+residual、residual+RMSNorm；gradient accumulation fusion、fused optimizer/multi-tensor update、vocab-parallel cross entropy；MoE 的 permute/unpermute、router/top-k、Grouped GEMM 和 shared-expert overlap。
+  >
+  > 接入优先级是先用 Megatron-Core/Transformer Engine/Apex/FlashAttention 提供的配置与 layer spec，而不是直接改业务 forward。若模型实现绕开框架抽象，才通过 module factory/layer spec 替换标准 module，并保持 state-dict 名称、shape、dtype、TP/EP layout 和 checkpoint 兼容。启用后必须看 profiler 是否真的命中目标 kernel，再用小尺寸/不支持 dtype/shape 的 fallback 测试，以及 forward、loss、grad、长稳和峰值显存对照，不能只看 flag 为 true。
+
+- **速查分类**：Attention fusion 主要减少 `QKᵀ → scale/mask → softmax → dropout → PV` 的 HBM 往返；elementwise/norm fusion 合并短小链路；training fusion 合并多 tensor 更新或梯度累加；MoE fusion 把多个小 expert GEMM 聚合并减少 token 搬运。
+- **何时可能负优化**：shape 太小/太怪触发 fallback；为 fusion 做额外 layout conversion；register/shared-memory 压力降低 occupancy；graph/compiler 频繁重编译；数值精度或 dropout RNG 语义不一致。
+- **深入阅读**：[Transformer Engine 与 NVIDIA 融合算子工程清单](../training-infra-roadmap/topics/transformer_engine.md#fusion-map)。
+- **项目证据或知识边界**：项目可以讲 Grouped MatMul、融合算子接入与性能验证；不声称自己编写了底层 CUDA kernel。具体启用了哪些开关，以项目配置和 profiler kernel name 为准。
+- **高概率追问**：FlashAttention 与普通 elementwise fusion 的本质差异？fused cross entropy 如何避免 full-vocab logits？为什么开了 fused flag 可能没生效？如何做数值验收？
+- **危险回答**：“融合减少计算量，所以一定更快”；只列名词；把接口替换等同于 kernel 命中；不提供 unfused fallback 和精度对照。
 
 - **项目证据或知识边界**：简历只给出结论；面试前准备实际 tensor shape、dtype、vocab size 和修复位置。若无法公开代码，至少能画调用链。
 - **高概率追问**：为什么是“静默”失效？如果 logits 用 fp32 会怎样？fused CE 能如何避免 materialize 全量 logits？
@@ -459,7 +509,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **面试官意图**：确认“千卡/万卡”是项目背景还是你承担了可验证职责；检查你能否独立完成模型从跑通到性能验收的闭环，并区分个人、框架及底层团队贡献。
 - **60–120 秒主答**：
 
-  > 这段经历主要发生在华为。我先限定个人边界：我不是整个千卡、万卡集群平台的总负责人，我主要负责 X1、TX 客户模型在国产卡上的功能适配与性能达标。
+  > 这段经历主要发生在华为。我先限定规模和个人边界：TX、X1 项目所在集群总规模分别约 1.4 万卡和 1.2 万卡，但我不是整套集群平台负责人；我主要负责客户模型在国产卡上的功能适配、精度与性能达标，直接训练交付证据是 X1 200B MoE 的 3K 卡连续稳定训练两个月。
   >
   > 我的工作形成了一个反复迭代的闭环。首先固定客户模型、并行配置、batch size、sequence length、精度、卡数、统计窗口和目标性能口径，建立可复现 benchmark；然后完成模型跑通，包括算子兼容、并行策略、checkpoint/data 和精度链路适配。模型跑通后采集 step time、吞吐、算子、通信、pipeline idle 和显存等数据，通过 profiling 判断当前主瓶颈是在并行切分、kernel、通信暴露、显存，还是 Host/data 侧。
   >
@@ -476,7 +526,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
   5. **最小变量验证**：调整并行策略、融合算子或 overlap 时，保持 workload 不变，验证性能、loss、精度与稳定性。
   6. **重新 profile 并继续迭代**：不能把单机收益线性外推到千卡规模；collective、拓扑和 straggler 会随规模放大，必须在目标规模重新验收。
 
-- **项目证据或知识边界**：X1 200B MoE 模型可以交叉引用 [RESUME-01A](#resume-01a) 的 `0.16x→0.95x`、MFU 35% 和 3K 卡训练证据；TX 没有确认可披露的模型与数字时，只作为第二个客户交付背景，不补造指标。客户继续使用代号。
+- **项目证据或知识边界**：X1 200B MoE 模型可以交叉引用 [RESUME-01A](#resume-01a) 的 `0.16x→0.95x`、MFU 35% 和 3K 卡训练证据；TX 可说文生视频、文生图和 389B MoE 的迁移/功能/性能工作，并用最新简历的“开局性能提升 30%–50%、10+ 模型交付、80+ 生产问题、协同 4–5 人”作为项目总结果，但要能区分个人直接动作和团队总成果。如何把集群总规模与直接训练规模分开，见 [INFRA-09](#infra-09)。客户继续使用代号。
 - **高概率追问**：你亲自改了什么、推动了什么？性能 benchmark 如何固定？讲一次“优化后瓶颈迁移”的完整迭代？为什么单机收益扩到千卡可能消失？X1 和 TX 中你的职责是否完全相同？
 - **危险回答**：把整个万卡平台、硬件运维和稳定性体系说成个人 ownership；只说“协调资源、推动闭环”而没有 profiling 和 A/B；把底层团队实现的算子或通信优化说成自己开发；泄露客户和集群敏感信息。
 
@@ -581,7 +631,7 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 
   > MFU 是实际训练吞吐对应的模型理论 FLOPs 与硬件峰值 FLOPs 的比值，常写成 `model_FLOPs_per_token × tokens_per_second / aggregate_peak_FLOPs`。关键是 FLOPs 公式要匹配 dense/MoE、attention、activation checkpointing 的统计约定，峰值要匹配 dtype/Tensor Core 和硬件，tokens/s 要用真实有效 token。MFU 适合比较同模型同 workload 的计算利用，但它会忽略数据质量、padding、被 mask token、rollout 等非训练阶段；通过减少有效工作量也可能“提高”MFU。因此同时报告 effective tokens/s、step time、阶段 breakdown、显存和端到端 cost。
 
-- **项目证据或知识边界**：你有 MFU estimator 和 SFT `23%→29.6%` 的直接经验；准备公式和模型参数。
+- **项目证据或知识边界**：最新版简历数字是 SFT `23%→45.2%`；必须准备 MFU estimator、有效 token 和统计窗口，并能解释它为何不能直接由 `31s→9.3s` 反推。
 - **高概率追问**：MoE FLOPs 按 total parameters 还是 activated parameters？recompute FLOPs 是否计入 numerator？为什么 achieved TFLOPs 和 MFU 不等价？
 - **危险回答**：MFU=GPU utilization；使用不同 FLOPs 公式横比；只报百分比不报 throughput。
 
@@ -616,6 +666,27 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **危险回答**：“小模型 FSDP、大模型 Megatron”一句话结束；只看能否 OOM；忽略模型支持、保存恢复和 RL weight sync。
 
 ### P1 深挖｜面试官继续追问
+
+<a id="resume-18"></a>
+#### RESUME-18｜以 HunyuanVideo-14B 为例，640×640×3×129 帧如何用 Ulysses CP 优化？（P1，18 分钟）
+
+- **问题**：视频 DiT 的“长序列”从哪里来？Ulysses 具体切什么、通信什么，还能配哪些优化？
+- **面试官意图**：核对文生视频项目是否真正理解时空 token、attention 并行和国产卡拓扑，而不是把 LLM CP 原样套过来。
+- **90 秒主答**：
+
+  > 先纠正名称，是 **Ulysses sequence parallel/context-parallel implementation**。`640×640×3×129` 是原始视频输入，不是 Attention 的 sequence shape；它先经过 VAE 做时间/空间压缩，再 patchify 成 `T'×H'×W'` 个 latent tokens，准确 token 数必须按具体 VAE stride 和 patch size 计算。129 帧与高分辨率叠加后，DiT activation 和 attention 中间状态很大，单卡难以承载。
+  >
+  > Ulysses 先让每个 rank 持有 `S/SP` 的 sequence shard；Attention 前通过 All-to-All 把布局从“部分 sequence、全部 heads”转成“全部 sequence、部分 heads”，每个 rank 对自己的 head shard 做 FlashAttention，再用第二次 All-to-All 恢复 sequence-sharded 输出。这样长序列 activation 近似按 SP 分摊，但代价是两次 All-to-All，且 Ulysses degree 受 attention head 可整除性约束。工程上我会把高频 Ulysses group 优先放在 HCCS 等机内高速域；需要更大 degree 时再组合 Ring Attention/CP，把低频通信跨到 RoCE/IB。
+  >
+  > 优化闭环还包括：冻结的 text encoder/VAE 用 no-grad、缓存或阶段化运行；BF16/FP16、FlashAttention、QKV/RoPE/RMSNorm/MLP fusion；selective recompute；按分辨率和帧数 bucket 减少 padding；通信计算 overlap；最终按 DiT block 的 attention、MLP、All-to-All、VAE/text/data 和 step p95 重新 profile。
+
+![视频 DiT 的 Ulysses sequence parallel 数据流](../training-infra-roadmap/assets/topics/ulysses-video-cp.svg)
+
+- **配置约束**：`world_size = ulysses_degree × ring_degree` 只描述这组序列并行网格，不应与外层 DP/PP 重复计算；Ulysses degree 通常受 attention heads/KV heads 以及 kernel layout 约束。官方 HunyuanVideo 公开的是 xDiT/USP 推理示例，项目训练方案只能作为机制参照，不能拿官方推理数字冒充训练收益。
+- **深入阅读**：[视频 DiT：从原始帧到 Ulysses/Ring 并行](../training-infra-roadmap/topics/long_context_training.md#video-dit-ulysses)。
+- **项目证据或知识边界**：确认事实是华为 TX 阶段负责文生视频/文生图模型的国产卡迁移、功能/精度/性能闭环；HunyuanVideo-14B 与该输入 shape 是面试讲解例子。未核验的 VAE stride、patch size、head 数、并行 degree 和分项收益不要说成项目事实。
+- **高概率追问**：为什么原始 129 帧不等于 129 tokens？Ulysses 与 Megatron CP/Ring Attention 的区别？All-to-All 为什么容易受跨节点拓扑影响？head 数不够怎么扩？
+- **危险回答**：直接把 `640×640×3×129` 相乘当 Attention sequence；把 Ulysses 说成切模型参数；把官方推理配置当项目训练配置；声称所有通信都被完全 overlap。
 
 <a id="megatron-07"></a>
 #### MEGATRON-07｜Pipeline Parallel bubble 怎么估算和优化？（P1，10 分钟）
@@ -965,7 +1036,7 @@ Capek 不是“把四个 Teacher 的答案混在一起做 SFT”。TIES 先给�
 
 **学习目标**：从 online proxy/cohort 数据流出发，回答长时 agent rollout、版本控制、trajectory lineage、阶段优化和多 Teacher 蒸馏。
 
-**本 Part 导航**：Core：[RESUME-08](#resume-08) · [RESUME-09](#resume-09)；P0 扩展：[AREAL-01](#areal-01) · [AREAL-02](#areal-02) · [AREAL-03](#areal-03) · [AREAL-04](#areal-04) · [AREAL-09](#areal-09) · [AREAL-11](#areal-11)；P1：[RESUME-13](#resume-13) · [RESUME-14](#resume-14) · [RESUME-15](#resume-15) · [AREAL-05](#areal-05) · [AREAL-06](#areal-06) · [AREAL-07](#areal-07) · [AREAL-10](#areal-10) · [AREAL-08](#areal-08)；P2：[P2-04](#p2-04)。
+**本 Part 导航**：Core：[RESUME-08](#resume-08) · [RESUME-09](#resume-09)；P0 扩展：[AREAL-01](#areal-01) · [AREAL-02](#areal-02) · [AREAL-03](#areal-03) · [AREAL-04](#areal-04) · [AREAL-09](#areal-09) · [AREAL-11](#areal-11) · [RESUME-13](#resume-13) · [RESUME-19](#resume-19)；P1：[RESUME-14](#resume-14) · [RESUME-15](#resume-15) · [AREAL-05](#areal-05) · [AREAL-06](#areal-06) · [AREAL-07](#areal-07) · [AREAL-10](#areal-10) · [AREAL-08](#areal-08)；P2：[P2-04](#p2-04)。
 
 ### Core｜最高优先入口
 
@@ -1197,17 +1268,49 @@ flowchart TB
 - **高概率追问**：为什么 set_version 必须在传输成功后？部分 rollout rank 失败怎么办？何时宁可选 disk？colocate 为什么可能限制传输路径？
 - **危险回答**：“XCCL 就是 NCCL，一定比 disk 快”；把 version 当成另一份权重；把所有 trainer rank 都说成 sender；把 disk transfer 和持久 checkpoint 混为一谈。
 
-### P1 深挖｜面试官继续追问
-
 <a id="resume-13"></a>
-#### RESUME-13｜CUDA Graph 为什么能让 decode 快 14x，却不能说 E2E 快 14x？（P1，8 分钟）
+#### RESUME-13｜CUDA Graph 为什么能让 Agentic RL decode 加速 6–8x？（P0，12 分钟）
 
-- **问题**：它消除了什么开销，什么情况下收益小？
-- **面试官意图**：检查局部指标与端到端收益边界。
-- **精准回答**：CUDA Graph 复用静态执行图，降低逐 token decode 的 CPU launch、Python 和同步开销；小 batch、小 kernel、频繁 decode 时相对收益大。但 prefill、tool/env、queue、weight sync、trainer 都不在该阶段，且动态 shape/控制流会造成 graph miss 或多 graph 管理，因此 E2E 加速由 Amdahl 定律约束。
-- **项目证据或知识边界**：唯一对外数字是 35B 真实 RL workload 中 decode 阶段约 14x；必须明确模型、引擎、batch/concurrency 和测量窗口，不能外推为 rollout 或端到端训练 14x。
-- **高概率追问**：动态 batch 怎么 capture？权重更新后 graph 是否失效？graph 会额外占多少显存？
-- **危险回答**：把 kernel/阶段加速直接乘到 step；只报最大加速；忽略 graph capture 条件。
+- **问题**：它消除了什么开销？动态 batch/KV cache 如何 capture？为什么不能说 E2E 也快 6–8x？
+- **面试官意图**：验证 GPU execution model、推理引擎接入和局部指标边界；也会核对最新版简历数字。
+- **60–90 秒主答**：
+
+  > autoregressive decode 每一步只处理少量新 token，但会重复执行相似的 model forward，包含大量短 kernel。eager 模式下每个 token 都要经过 Python/runtime/driver 逐 kernel launch 和同步，小 batch 时 CPU submission 可能让 GPU 出现空隙。CUDA Graph 把固定 shape、固定地址的一组 kernel 与依赖先 capture/instantiate，后续每个 decode step 只更新静态 input buffer 中的 token id、position、KV block table 等元数据，再 replay 整张图，所以主要消除 host launch 和框架调度开销，而不是让 GEMM FLOPs 凭空减少。
+  >
+  > 推理引擎通常为若干 batch/sequence bucket 预捕获 graph；命中 bucket 才 replay，动态 shape、不可捕获算子或超出 bucket 时回退 eager。KV cache 内容在变，但 cache allocation 与 metadata buffer 地址必须稳定。graph 还会占 private memory pool，权重 refit/update 后也要保证参数地址与 graph 引用仍有效，否则重新 capture。最新简历口径是 AReaL Qwen3.5-9B 128K Agentic RL 的 decode 加速 `6–8x`；prefill、tool/sandbox、queue、reward、weight sync 和 trainer 都不在分母里，端到端受 Amdahl 定律约束。
+
+![CUDA Graph 将逐 kernel 提交变为静态执行图回放](../training-infra-roadmap/assets/topics/cuda-graph-decode.svg)
+
+- **两组数字不得混用**：AReaL Agentic RL decode 是 `6–8x`；另一个 verl 35B RLVR workload 的 decode 记录为约 `14x`。它们的模型、框架、batch/concurrency、graph coverage 和统计窗口不同，不能拼成同一结论。
+- **验证方法**：同模型、gen-TP、batch/concurrency、输入/输出长度和 sampling 配置，warmup 后比较 eager 与 graph 的 decode-only latency/token throughput；记录 graph hit/fallback、CPU launch gap、GPU utilization、private-pool 显存与 E2E rollout/step time。
+- **深入阅读**：[Agentic RL 中的 CUDA Graph：capture、bucket、失效与指标边界](../training-infra-roadmap/topics/agentic_rl.md#cuda-graph-decode)。
+- **项目证据或知识边界**：对外主数字使用最新简历 `6–8x`；`14x` 只能在明确说“另一项 verl 35B RLVR workload”时补充。
+- **高概率追问**：continuous batching 为什么还能用 graph？权重同步后是否必须 recapture？graph 为什么可能额外 OOM？GPU 已经 compute-bound 时收益多大？
+- **危险回答**：说 CUDA Graph 融合了所有 kernel 或减少模型计算量；把 decode 倍数外推到 rollout/E2E；忽略 graph miss、静态地址和额外显存。
+
+<a id="resume-19"></a>
+#### RESUME-19｜Gateway 如何通过流式补位、均衡分发和失败管理把 Rollout 吞吐提升 60%？（P0，20 分钟）
+
+- **问题**：三项机制分别解决什么？Rejected Group 为什么会从 33.18% 降到 2.73%？
+- **面试官意图**：核对你是否理解调度 critical path、cohort 完整性和失败状态机，而不是只复述结果数字。
+- **90 秒主答**：
+
+  > 原链路更接近 wave/batch 调度：一次发出固定数量请求，快请求完成后并发槽会空着，却要等这一波的长尾或失败请求收尾，导致 vLLM 实际并发低于配置并发；group-based RL 还要求同一 prompt 的 sibling trajectories 凑齐，任一成员 timeout、失败或丢失，都可能让整组拒绝，前面已经生成的 token 也无法进入训练。
+  >
+  > 重构后第一是**流式补位**：这里不是 HTTP token streaming，而是某个 rollout 完成、失败或释放 capacity 后立刻从有界 pending queue 补一个新请求，使 active sessions 持续贴近目标水位。第二是**均衡分发**：项目代码对新 route 采用 round-robin 分散到多个 Proxy Worker，并结合 worker capacity/backpressure；reservation、cohort、claim、session 一旦绑定便保持 affinity，后续多轮请求回到同一 worker，避免状态、prefix cache 和 InteractionCache 被打散。第三是**失败请求管理**：把 in-flight、completed、retryable、terminal/aborted 状态显式化；超时释放 slot，安全重试复用 identity/idempotency key，终止失败清理 sibling/session，避免重复 trajectory、capacity leak 和半组永久占槽。
+  >
+  > 在最新简历口径中，这组联合改造使 Rollout 阶段平均推理吞吐提升 `60%`，Rejected Group 从 `33.18%` 降到 `2.73%`，即下降 `30.45` 个百分点，若换算相对降幅约 `91.8%`。它证明的是供给效率和 group 完整性改善，不自动证明模型效果提高；还要同时看 staleness、retry、有效训练 token、reward distribution 和 E2E trainer wait。
+
+![Gateway 流式补位、均衡分发与失败请求分流](../training-infra-roadmap/assets/topics/gateway-streaming-refill.svg)
+
+- **三项机制的因果链**：`slot 及时释放/补位 → active concurrency 上升 → 单位时间 completed trajectories 增加`；`sticky + balanced routing → worker skew 与 cache/state 迁移减少`；`失败显式终结/幂等重试 → incomplete cohort 和 capacity leak 降低 → ready cohorts 增加`。
+- **与 AREAL-09 的区别**：本题回答早期 Rollout 性能重构和量化结果；[AREAL-09](#areal-09) 回答后续 exact quota、reward/session fail-closed、safe retry 与 liveness 的个人代码 ownership。不要把不同阶段的提交和收益强行归为一次 A/B。
+- **深入阅读**：[Gateway 调度：从 wave barrier 到流式补位](../training-infra-roadmap/topics/agentic_rl.md#gateway-streaming-refill)。
+- **项目证据或知识边界**：`+60%` 是 Rollout 阶段平均推理吞吐，不是端到端训练；`-30.45pp` 是绝对百分点，不是相对下降 30.45%。三项是联合改造，缺少独立消融时不拆分贡献。
+- **高概率追问**：round-robin 为什么不等于实时 least-load？session affinity 为什么优先于重新均衡？失败后为什么必须复用 identity？partial group 能不能训练？补位会不会让样本更 stale？
+- **危险回答**：把 token streaming 当调度补位；每次失败随机换 worker；只追求并发而无 bounded queue/backpressure；把 Rejected Group 下降直接等同于训练效果提升。
+
+### P1 深挖｜面试官继续追问
 
 <a id="resume-14"></a>
 #### RESUME-14｜为什么 Prefix Cache 命中率更高，训练可能反而更慢？（P1，10 分钟）
@@ -1225,7 +1328,7 @@ flowchart TB
 - **问题**：group 为什么会被拒绝，降低拒绝率是否一定提高训练质量？
 - **面试官意图**：验证 group-based RL 的数据完整性和指标解释。
 - **精准回答**：先定义 rejection 原因，如 cohort 未完整、timeout、stale、reward 无效或路由失败；调度补位/均衡可以降低因长尾导致的 incomplete groups，提高样本供给。但若为了凑齐 group 放宽超时或接受更旧样本，质量可能下降，需同时看 staleness、reward distribution、effective tokens 和 eval。
-- **项目证据或知识边界**：该数字来自项目底稿而非当前简历；对外使用前确认。
+- **项目证据或知识边界**：最新版简历已确认 `33.18%→2.73%（-30.45pp）`；这是联合调度改造后的 group 供给指标，详细因果链见 [RESUME-19](#resume-19)。
 - **高概率追问**：partial group 能不能训练？uniform reward group 怎么处理？
 - **危险回答**：把 rejected 全称为坏样本；只优化比例不看原因分布。
 
@@ -1308,7 +1411,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 **学习目标**：把训练与 rollout 项目上升为可迁移的生产能力：通信协议、故障定位、恢复、推理容量与可观测性。
 
-**本 Part 导航**：Core：[INFRA-04](#infra-04)；P0 扩展：[INFRA-03](#infra-03)；P1：[RESUME-12](#resume-12) · [INFRA-05](#infra-05) · [INFRA-06](#infra-06) · [INFRA-07](#infra-07) · [INFRA-08](#infra-08)；P2：[P2-03](#p2-03)。
+**本 Part 导航**：Core：[INFRA-04](#infra-04)；P0 扩展：[INFRA-09](#infra-09) · [INFRA-03](#infra-03)；P1：[RESUME-12](#resume-12) · [INFRA-05](#infra-05) · [INFRA-06](#infra-06) · [INFRA-07](#infra-07) · [INFRA-08](#infra-08)；P2：[P2-03](#p2-03)。
 
 ### Core｜最高优先入口
 
@@ -1364,6 +1467,38 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **危险回答**：只背中文定义；把 gradient ReduceScatter 与 parameter AllGather 说反；认为 Broadcast 会收集每个 rank 的输入；把 Barrier 当修复 race 的万能方法；忽略所有 ranks 必须以一致协议调用 collective。
 
 ### P0 扩展｜首轮前应掌握
+
+<a id="infra-09"></a>
+#### INFRA-09｜万卡训练相比千卡以下有哪些规模特有问题？如何优化？（P0，20 分钟）
+
+- **问题**：为什么万卡训练不能理解为“把千卡配置线性放大”？请从故障、性能、通信、控制面、存储和恢复说明。
+- **面试官意图**：检查你是否具备大规模系统视角，能否把 MFU、straggler、拓扑、checkpoint 和运维串成完整闭环；同时核验你的实际规模与个人 ownership。
+- **30 秒结论**：
+
+  > 万卡训练并不是把百卡、千卡配置线性放大，而是出现三个质变：第一，单组件的小概率故障在全局变成高概率事件；第二，同步训练的 step time 由最慢 rank 决定，p99 长尾会被 collective 和 pipeline barrier 放大；第三，通信、作业启动、数据读取和 checkpoint 会形成跨机架的拥塞或惊群。因此目标不能只看峰值 MFU，而要看长期 goodput 和 time-to-train。优化上我会同时做故障预防与隔离、straggler 定位、拓扑感知并行、分层启动、分布式异步 checkpoint，以及可观测和自动恢复。
+
+- **3–5 分钟系统回答**：
+
+  | 规模化问题 | 为什么到万卡会质变 | 主要优化 | 必看指标 |
+  |---|---|---|---|
+  | 故障成为常态 | 若把单个故障单元在一个时间窗内出错概率记作 `p`，独立近似下全作业至少一处故障概率为 `1-(1-p)^N`；真实集群还存在机架、交换机、电源和软件版本导致的相关故障 | 训练前 health check、节点健康评分与隔离；heartbeat/first-failure detection；故障节点替换；从已验证 checkpoint 协调恢复；定期 recovery drill | job MTBF、MTTR、自动归因率、恢复成功率、丢失 step/GPU-hours |
+  | straggler 放大全局尾部 | 同步训练近似满足 `T_step≈max(T_rank)`；单卡降频、NUMA/PCIe、NIC 重传、数据抖动或 MoE expert 热点都会拖慢所有 rank | 分阶段、分 rank 记录 p50/p95/p99/max；找 first divergence；隔离慢节点；平衡数据和 expert load；减少 noisy neighbor | step `p99-p50`、rank skew、collective p99、pipeline bubble |
+  | 通信跨越多级拓扑 | 并行组会跨 NVLink/HCCS、节点、rail、机架甚至 pod；过订阅、路径冲突和动态 AllToAll 不均衡会让平均带宽失去意义 | topology-aware rank/group mapping；把高频、强耦合通信尽量限制在高速域；hierarchical collective、rail-aware routing；用 exposed communication 验证 overlap | scale efficiency、链路利用率、重传/丢包、collective p99、exposed communication |
+  | 调度与启动形成控制面风暴 | 万级进程同时分配资源、拉镜像、读配置、rendezvous 和初始化 communicator；一个 late node 就可能卡住 gang scheduling | 分阶段启动和 health gate；镜像/依赖预热；分层编排、批量 metadata；确定性 rank mapping；timeout/fail-fast；预留替换节点 | allocation-to-first-step、各初始化阶段耗时、启动失败率、communicator init 时间 |
+  | 数据与 checkpoint 形成 IO/metadata storm | 数千 worker 同时访问小文件、保存 shard 或恢复，会打爆 metadata service、网络和对象存储；checkpoint pause 的 GPU 成本被卡数放大 | 数据预分片与本地缓存；sharded/distributed async checkpoint；节点级聚合、分层落盘、限速/错峰；原子 manifest、checksum、data cursor 和恢复重分片 | dataloader p99、save pause/E2E time、restore time、存储带宽与 IOPS、重复/丢失样本 |
+  | 故障症状远离根因 | 首个异常 rank 可能无日志，其他 rank 最终只报 NCCL/XCCL timeout；全量高频日志本身又会压垮观测系统 | 统一 job/step/collective sequence 与 rank/host/device/NIC 身份；分层 telemetry；超时保存 flight recorder；从 first bad event 而非 last error 归因；恢复后验证 loss/data/version 连续 | 检测时间、根因覆盖率、日志丢失率、恢复后首步/loss 连续性 |
+
+- **统一优化框架**：用四个动作记忆稳定性闭环——**降低故障发生率 → 缩小故障影响面 → 缩短检测和定位时间 → 降低恢复与重算成本**；再用 topology 和 tail-latency 治理守住稳态性能。
+- **为什么看 goodput**：峰值 throughput/MFU 只描述“跑起来时有多快”；`goodput = 已成功提交且有效的训练 token / 已分配 GPU wall-clock`，会把启动、checkpoint、故障停机、回滚重算和慢节点一起计入。万卡优化应同时报告 MFU/throughput 与 job MTBF、MTTR、checkpoint pause、有效训练时间占比。
+- **项目映射与边界**：
+
+  > 项目背景上，TX、X1 所在集群总规模分别约 1.4 万卡和 1.2 万卡；这说明交付要适配万卡级平台，但不等于我亲自 owner 整个万卡训练平台。我的直接规模证据是 X1 200B MoE 模型的 3K 卡连续稳定训练两个月，模型侧职责覆盖跑通、profile、瓶颈归因、并行/算子/通信优化和规模回归；底层集群、网络、编译器或集合通信由对应团队实现，我提供稳定复现和 rank 级证据并完成模型侧验收。3K 已经要求从平均 step time 转向 rank tail、拓扑映射和长稳验证；万卡特有的故障概率、控制面和 checkpoint/storage storm，我可以用系统方法回答，但不会包装成个人全栈 ownership。
+
+- **公开系统证据，不作为个人项目数字**：MegaScale 在 12,288 GPUs 上训练 175B 模型，并披露一个万卡生产作业数周内重启超过 100 次；Llama 3 论文披露 405B 训练最多使用 16K H100，在 54 天观测窗内发生 466 次中断，其中 419 次为非计划中断。它们共同说明故障处理和长期有效训练时间是万卡系统的一等指标。
+- **一条真实案例的准备模板**：面试前从 X1 3K 经历中只选一个确有证据的事件，补齐“表面症状 → first bad event/rank → 故障域 → 你提供的 profile/复现 → 对应团队修复 → 同 workload 回归 → 长窗口验证”。若暂时无法确认具体事件，不要现场编造 GPU/NIC/checkpoint 故障。
+- **深入阅读**：[大规模训练稳定性与容错：从千卡到万卡](../training-infra-roadmap/topics/fault_tolerance.md#large-scale-training)；具体 collective hang 继续看 [INFRA-03](#infra-03) 与 [NCCL 专题](../training-infra-roadmap/topics/nccl.md#hang-diagnosis)。
+- **高概率追问**：为什么 `T_step` 看 max 而不是平均？慢 rank 和网络拥塞怎么区分？TP/EP/CP/DP 如何映射拓扑？固定 world-size 与 elastic recovery 怎么选？checkpoint 间隔怎么定？如何避免恢复时击穿存储？goodput 怎么计算？
+- **危险回答**：只回答“机器更容易坏、通信更慢”；只看平均 GPU utilization/MFU；把所有 hang 都归因于 NCCL；认为多打日志就能定位；把公开万卡经验或平台团队能力包装成个人 ownership。
 
 <a id="infra-03"></a>
 #### INFRA-03｜多机训练 NCCL hang 或 checkpoint 恢复失败怎么排查？（P0，18 分钟）
@@ -1444,7 +1579,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 ### 本 Part 追问路线
 
-collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/recovery → inference/KV cache → 指标树与 first divergence。
+collective 输入输出 → 万卡规模效应/goodput → process group/拓扑 → NCCL hang → checkpoint/recovery → inference/KV cache → 指标树与 first divergence。
 
 ---
 
@@ -1481,16 +1616,16 @@ collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/re
 
 ##### Day 2：Part II 扩展 + Part III（约 4 小时）
 
-- 75 分钟：完成 Part II P0：SFT 3.3x、128K/256K、CP chunking、规模交付、FSDP/ZeRO 和 Megatron/FSDP 后端选型。
-- 30 分钟：选择性完成 Part II P1：PP bubble、packing、recompute/offload、distributed checkpoint 和 Bridge 迁移层。
+- 90 分钟：完成 Part II P0：SFT 3.3x、35B-A3B 128K、CP-local logits、NVIDIA 融合算子、规模交付、FSDP/ZeRO 和 Megatron/FSDP 后端选型。
+- 30 分钟：选择性完成 Part II P1：视频 DiT/Ulysses、PP bubble、packing、recompute/offload、distributed checkpoint 和 Bridge 迁移层。
 - 90 分钟：完成 Part III P0：PPO/GRPO/DAPO、Fully Async 主故事、verl controller/SPMD、资源部署、权重同步、staleness 和 rollout 后端选型。
 - 45 分钟：把 Fully Async 从 30 秒结论逐步展开到 3 分钟，并用 [VERL-11](#verl-11) 补充真实 LLM/MLLM 后训练落地证据。
 
 ##### Day 3：Part IV + Part V + Part VI 模拟（约 4 小时）
 
-- 90 分钟：完成 Part IV Core/P0：AReaL online 链路、MOPD、staleness、trajectory lineage、Gateway 代码改造，以及 XCCL/disk weight sync 选型。
-- 45 分钟：完成 Part V Core/P0：通信算子与 NCCL/checkpoint 故障排查。
-- 45 分钟：从 Part IV/V 的 P1 中选择与目标 JD 最相关的题。
+- 105 分钟：完成 Part IV Core/P0：AReaL online 链路、MOPD、staleness、trajectory lineage、CUDA Graph、Gateway 调度收益与代码 ownership，以及 XCCL/disk weight sync 选型。
+- 60 分钟：完成 Part V Core/P0：通信算子、万卡规模效应与 NCCL/checkpoint 故障排查。
+- 30 分钟：从 Part IV/V 的 P1 中选择与目标 JD 最相关的题。
 - 60 分钟：按 Part VI 完成“自我介绍 → 项目 → 框架 → 故障 → 职业选择 → 反问”的完整模拟。
 
 #### 面试前必须校准的六项简历口径
@@ -1499,13 +1634,13 @@ collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/re
 
 统一为：**最新版双 Teacher MOPD 结果在 SWE、Terminal 双域提升，General 不下降。**这表示 EFFICACY 已有方向性结论，但在 checkpoint、样本数、seed、baseline、评测窗口和统计置信信息补齐前，不额外说“显著提升”“稳定提升 X pp”或“完成统计闭环”。单 Teacher 的 `Terminal +7.9pp`、`SWE +7.0pp` 不能当作双 Teacher 的分项数字。
 
-##### 口径 2：CUDA Graph 只保留最新版简历的 14x
+##### 口径 2：CUDA Graph 的 6–8x 与约 14x 分属两个 workload
 
-对外统一为：**在 35B 真实 RL workload 中，CUDA Graph 将 decode 阶段提速约 14x。**这是 decode 局部收益，不是 rollout、单步训练或端到端 Agentic RL 提速 14x；回答必须带模型、引擎、batch/concurrency 和测量窗口。
+最新版投递简历的主口径是：**AReaL Qwen3.5-9B 128K Agentic RL 中，CUDA Graph 将 decode 阶段加速 6–8x。**另有 **verl 35B RLVR workload 的 decode 约 14x**，只能作为另一套模型/框架/并发和统计窗口下的独立证据。二者都只是 decode 局部收益，不是 rollout、单步训练或端到端同倍数加速。
 
 ##### 口径 3：SFT `31s → 9.3s` 讲联合优化链
 
-固定模型/checkpoint、GPU、sequence/packing 分布、GBS/MBS、有效 token、精度和统计窗口后，按 profile 依次处理三类瓶颈：`num_workers=0→8` 与 data prefetch 去掉 Host/DataLoader bubble；从过重 recompute 收敛到 selective recompute，避免重算代价高的 attention/SDPA，优先重算便宜且显存收益高的部分；再收敛 TP/CP，让 TP 不因过大而切碎 GEMM、放大高频 collective，并让 CP 更直接分摊长序列 activation。`31s→9.3s、MFU 23%→29.6%` 是联合结果；现有证据没有逐项 A/B，不能编造贡献比例。另一 workload 的 `TP=4,CP=4 → TP=2,CP=8、163s→102s` 只能作为并行策略机制证据，不能并入这次 31s→9.3s 的拆分。
+按 profile 依次处理三类瓶颈：`num_workers=0→8` 与 data prefetch 去掉 Host/DataLoader bubble；从偏重 full recompute 收敛到 selective recompute，并按 `峰值 bytes saved / extra FLOPs` 选择模块，不能简单说“保留 Attention、重算便宜模块”，因为 Megatron-Core 的经典 selective 默认就是 `core_attn`；再搜索 TP/CP，让 TP 不因过大而切碎 GEMM、放大高频 collective，并让 CP 更直接分摊长序列 activation。最新版简历数字是 `31s→9.3s、MFU 23%→45.2%`，属于联合结果，现有证据没有逐项 A/B。标准 MFU 与 step time 比值尚不能算术闭合，面试前必须补 MFU estimator、有效 token、data wait 与统计窗口；补齐前分别陈述数字，不宣称来自同一单一测量窗口。另一 workload 的 `TP=4,CP=4 → TP=2,CP=8、163s→102s` 只能作为并行策略机制证据。
 
 ##### 口径 4：“交付 checkpoint”的准确含义
 
@@ -1542,7 +1677,7 @@ collective 输入输出 → process group/拓扑 → NCCL hang → checkpoint/re
 
 详细比较与当前版本重评：[verl 与 AReaL：RL 框架架构选型指南](../training-infra-roadmap/topics/rl_framework_selection.md)。
 
-### VI.2 五张项目证据卡：面试前必须手写补齐
+### VI.2 六张项目证据卡：面试前必须手写补齐
 
 #### 卡 1：X1 200B MoE 模型
 
@@ -1560,7 +1695,7 @@ Grouped MatMul：原瓶颈、改动位置、独立收益 = ______
 实际通信 overlap：collective / stream / schedule / 收益 = ______
 显存手段与峰值变化：______
 精度门禁：逐层误差 / loss / gradient = ______
-3K 卡长稳：运行窗口 / 故障案例 / checkpoint = ______
+3K 卡长稳：连续稳定训练两个月；具体 step/token、故障案例 / checkpoint = ______
 个人贡献与团队依赖：______
 ```
 
@@ -1590,26 +1725,44 @@ global/micro batch / effective tokens：______
 31s→9.3s 联合过程：num_workers 0→8 + prefetch；selective recompute；TP/CP 收敛
 逐项同-workload A/B：当前无，不分摊贡献；待本人补齐（如有）
 163s→102s 的 TP=4/CP=4 → TP=2/CP=8：另一 workload，不混入上项
-MFU 公式和峰值硬件 FLOPs：______
+MFU：23%→45.2%；estimator / effective tokens / 是否含 data wait / 窗口 = ______
+算术门禁：31/9.3 与 45.2/23 暂不闭合；原因证据 = ______
+35B-A3B 128K：平均 step time -50%；绝对值 / 配置 / 窗口 = ______
+CP-local logits：T / V / TP / CP / dtype / live copies / 7.6GB 拆解 = ______
 峰值显存与 loss 对齐：______
 ```
 
-#### 卡 4：Agentic RL / Rollout
+#### 卡 4：TX 视频 DiT / Ulysses
+
+```text
+项目角色：模型迁移 / 功能 / 精度 / 性能 / 团队协作边界 = ______
+示例模型：HunyuanVideo-14B（面试机制示例，不冒充已确认 checkpoint）
+输入：640×640×3×129；VAE stride / patch size / latent token 数 = ______
+attention heads / KV heads / ulysses degree / ring degree = ______
+拓扑：机内 HCCS / 跨机 RoCE；A2A exposed time = ______
+优化：bucket / recompute / fusion / overlap / data / frozen modules = ______
+正确性：逐层精度 / loss / 输出质量 / 长稳 = ______
+```
+
+#### 卡 5：Agentic RL / Rollout
 
 ```text
 任务：DeepSWE / Terminal（按可披露范围）
 模型/硬件/并发：______
 端到端 critical path：______
-CUDA Graph：35B 真实 RL decode 约 14x；引擎/batch/concurrency/窗口 = ______
-端到端边界：不是 rollout 或训练 E2E 14x
+CUDA Graph 主口径：AReaL 9B 128K Agentic RL decode 6–8x
+独立口径：verl 35B RLVR decode 约 14x；不得混用
+引擎 / gen-TP / batch / concurrency / graph buckets / 窗口 = ______
+端到端边界：两者都不是 rollout 或训练 E2E 同倍数加速
 prefix cache 44% 的测量阶段：prefill only
-Gateway/rejected group 的基线与窗口：______
+Gateway：Rollout throughput +60%；Rejected Group 33.18%→2.73%（-30.45pp）
+Rejected Group 分母 / 原因分布 / 基线与窗口 = ______
 Gateway 团队基线：OpenAI proxy / session / cohort / InteractionCache / CohortManager
 个人改造：exact quota / reward identity / lifecycle / liveness / safe retry / goodput protection
 效果/正确性护栏：______
 ```
 
-#### 卡 5：OPD/MOPD
+#### 卡 6：OPD/MOPD
 
 ```text
 业务目标与领域 Expert：______
@@ -1635,7 +1788,7 @@ EFFICACY 证据与置信区间：______
 2. Part II：`RESUME-01A` X1 MoE（3 分钟）→ `MEGATRON-01` 5D 并行 → `MOE-01` Dense/MoE → `INFRA-02` 显存账本/OOM。
 3. Part III：`RESUME-02` Fully Async 主故事（3 分钟）→ `RL-ALGO-01` → `VERL-11` 模型落地/ownership → `VERL-01/02/04/09` 任选一条连续追问。
 4. Part IV：`RESUME-08` Agentic RL 架构（3 分钟）→ `RESUME-09` MOPD → `AREAL-09` Gateway ownership → `AREAL-11` XCCL/disk → `AREAL-02/04/10` 任选一条追问。
-5. Part V：`INFRA-04` 通信算子 → `INFRA-03` NCCL/checkpoint 故障题。
+5. Part V：`INFRA-04` 通信算子 → `INFRA-09` 万卡规模效应/goodput → `INFRA-03` NCCL/checkpoint 故障题。
 6. 高级工程师追问：`BEHAVIOR-01` 岗位与薪资档位匹配度。
 7. 向面试官反问两题。
 
@@ -1661,10 +1814,12 @@ EFFICACY 证据与置信区间：______
 - [ ] Ownership 能区分个人决策、亲自实现、开源框架和团队依赖。
 - [ ] Fully Async 先解释同步边界和 producer-consumer overlap，再解释 76、211–255、236–293、0.41、0.10–0.14；同步口径未补齐前不报提升倍数。
 - [ ] 职业选择能在 60–90 秒内讲清上海搬迁、深圳长期规划、技术栈扩展和当前组织调整，不使用负面措辞。
-- [ ] SFT 31→9.3s 的前后 workload 完全一致；能解释 DataLoader、selective recompute、TP/CP 各解决什么，但不虚构逐项收益。
+- [ ] SFT 使用最新版 `31s→9.3s、MFU 23%→45.2%`；能解释 DataLoader、selective recompute、TP/CP，但在 MFU 算术闭环前不声称两组数字来自同一单一窗口。
 - [ ] 双 Teacher MOPD 统一为“SWE、Terminal 双域提升且 General 不下降”，不混用单 Teacher pp。
 - [ ] TILE merge 只说项目确认的 baseline 与评测结果，不扩写未确认机制或论文来源。
-- [ ] CUDA Graph 只使用“35B 真实 RL decode 约 14x”，且明确不是端到端训练加速。
+- [ ] CUDA Graph 主答使用“AReaL 9B 128K Agentic RL decode 6–8x”；verl 35B RLVR 约 14x 只作为独立 workload，二者都不外推端到端。
+- [ ] Gateway 能区分请求完成即补位与 token streaming，并说明 `+60%`、`33.18%→2.73%` 的阶段、分母和正确性护栏。
+- [ ] CP-local logits 能画出 `[T/CP,V/TP] → local scalar → CP gather [T]`，并解释 sequence chunk 为什么救不了已 materialize 的 full logits。
 - [ ] 能用 Attention/Expert 双视图算 MoE world-size，不再机械相乘 TP、CP、EP、DP。
 - [ ] 能用 `P/G/O` 解释 ZeRO-1/2/3 与 FSDP/FSDP2，并按模型、并行、拓扑和团队资产选择 Megatron 或 FSDP2。
 - [ ] 能用一句话讲 PPO、GRPO、DAPO，并说明算法变化如何改变 rollout 数据契约。
@@ -1676,6 +1831,7 @@ EFFICACY 证据与置信区间：______
 - [ ] 能画 Megatron TP/PP/CP/DP/EP，以及 verl/AReaL 两张数据流图。
 - [ ] 能用一句话区分 SP 与 CP、distributed optimizer 与 ZeRO-3、verl 与 AReaL。
 - [ ] 能从输入输出解释 AllReduce、ReduceScatter、AllGather、AllToAll 和 Send/Recv，并说清 gradient、parameter、activation、token 分别在哪一步传输。
+- [ ] 能用“小概率故障变高概率、最慢 rank 放大 p99、并发操作形成惊群”解释万卡规模质变，并用 goodput、MTBF/MTTR、topology、checkpoint/recovery 收口；明确 1.2 万/1.4 万是集群总规模，直接证据是 X1 3K 连续稳定训练两个月，不是完整万卡平台 ownership。
 - [ ] 能从本 rank 参数量、bytes/param、activation、logits 和 phase peak 手算一遍 Megatron 显存账。
 - [ ] 准备一个 OOM、一个 NCCL/checkpoint、一个精度对齐真实案例。
 - [ ] 每个故事能说清“我做了什么”，不只说“团队做了什么”。
@@ -1687,6 +1843,7 @@ EFFICACY 证据与置信区间：______
 - [Megatron 5D 并行总览](../training-infra-roadmap/topics/distributed_training.md)
 - [Dense/MoE、Expert 路由与 Parallel Folding 工程章节](../training-infra-roadmap/topics/moe.md#dense-vs-moe)
 - [NCCL 与分布式通信算子](../training-infra-roadmap/topics/nccl.md#collective-map)
+- [大规模训练稳定性与容错：从千卡到万卡](../training-infra-roadmap/topics/fault_tolerance.md#large-scale-training)
 - [Tensor Parallelism 面试题](../training-infra-roadmap/interview/tensor_parallelism.md)
 - [MoE 面试题](../training-infra-roadmap/interview/moe.md)
 - [Checkpoint 面试题](../training-infra-roadmap/interview/checkpoint.md)
@@ -1710,8 +1867,11 @@ EFFICACY 证据与置信区间：______
 - 项目产出图示来源：[Athena-Brain v2, Figure 3](https://arxiv.org/pdf/2607.18985v2)、[Capek 0.5 v1, Figure 6](https://arxiv.org/pdf/2608.06756v1)。两图用于说明自研版 verl 支撑的 LLM/MLLM 后训练链路；个人 ownership 是框架建设、集成、性能与正确性保障，不把算法 recipe、模型产出或论文 authorship 归到个人名下。
 - Rollout backend：[vLLM OpenAI-compatible server](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/)、[SGLang docs](https://docs.sglang.io/)。后端选型必须锁定版本、模型、硬件与真实 RL workload。
 - AReaL：[GitHub](https://github.com/areal-project/AReaL)、[v2.1.0 Asynchronous RL Guide](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/algorithms/async.md)、[v2.1.0 Online Proxy](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/tutorial/online_proxy.md)、[Releases](https://github.com/areal-project/AReaL/releases)。`v2.0.0`（`fee938e`，2026-07-01）把 training、inference、agent、weight-update 拆为独立服务；截至 2026-09-02，当前 release 为 `v2.1.0`（`ecc8b0e`）。项目 online proxy/cohort 链路早于 2.x，不能倒推为当前架构。
+- NVIDIA 训练与执行：[Megatron-Core TransformerConfig / selective recompute](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)、[Megatron-Core fused bias-dropout-add](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.fusions.fused_bias_dropout.html)、[CUDA Graphs Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/cuda-graphs.html)。文档说明当前可用机制，不倒灌成项目当时已启用的具体开关。
+- 视频序列并行：[Tencent HunyuanVideo / Unified Sequence Parallelism](https://github.com/Tencent-Hunyuan/HunyuanVideo#parallel-inference-on-multiple-gpus-by-xdit)。官方示例用于解释 Ulysses/Ring 机制，不把其推理配置或性能数字当作本人训练项目结果。
 - NVIDIA NCCL：[Collective Operations, NCCL 2.31.2](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html)。
 - PyTorch：[Distributed Checkpoint Tutorial](https://docs.pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html)。
+- 大规模生产训练：[MegaScale](https://arxiv.org/abs/2402.15627)、[The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783)。两篇材料用于支撑万卡规模的故障、straggler、观测和恢复判断；其中公开集群数字不是个人项目证据。
 
 #### 当前岗位信号（动态页面，核验于 2026-08-30）
 
@@ -1723,8 +1883,8 @@ EFFICACY 证据与置信区间：______
 
 | 优先级 | 题量 | 建议投入 | 用法 |
 |---|---:|---:|---|
-| P0 | 38 | 6–8 小时 | Core 10 先形成完整口述；其余首轮前至少过一遍 |
+| P0 | 43 | 6–8 小时 | Core 10 先形成完整口述；其余首轮前至少过一遍 |
 | P1 | 26 | 3–4 小时 | 选择与目标 JD 最相关的 10–15 题 |
 | P2 | 5 | 不超过 1 小时 | 查漏补缺，不挤占项目复盘 |
 
-最终原则：**三天内先把 Core 10 答到可追问三层，再按 Part 补 P0；不要按题号浅背 69 道题。**
+最终原则：**三天内先把 Core 10 答到可追问三层，再按 Part 补 P0；不要按题号浅背 74 道题。**

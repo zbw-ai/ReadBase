@@ -244,6 +244,7 @@ exposed_comm = communication_end - max(communication_start, dependent_compute_en
 
 “能跑完”并不证明 numeric 正确。需要 tiny deterministic tensor、手算 expected output、single-rank/多-rank对照和端到端 loss validation。
 
+<a id="hang-diagnosis"></a>
 ## 9. NCCL hang 的生产排查顺序
 
 ### 第一步：保存现场并找 first bad event

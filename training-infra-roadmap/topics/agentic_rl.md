@@ -17,7 +17,7 @@ Agentic RL 不是“把 PPO/GRPO 换个任务继续跑”。它把训练系统�
 
 这意味着 Agentic RL Infra 的核心不是“更会调参”，而是设计一个能让 rollout、reward、training、weight sync、checkpoint 和 observability 长期稳定协同的系统。
 
-面试速答入口：[RL-ALGO-01｜PPO、GRPO、DAPO](../../private_resume/2026-08-llm-infra-interview-prep.md#rl-algo-01) · [VERL-04｜Fully Async、streaming、partial rollout 与 staleness](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-04) · [AREAL-09｜Gateway 二次开发](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-09) · [AREAL-10｜外部 Agent 接入](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-10)
+面试速答入口：[RL-ALGO-01｜PPO、GRPO、DAPO](../../private_resume/2026-08-llm-infra-interview-prep.md#rl-algo-01) · [VERL-04｜Fully Async、streaming、partial rollout 与 staleness](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-04) · [RESUME-13｜CUDA Graph decode](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-13) · [RESUME-19｜Gateway 调度收益](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-19) · [AREAL-09｜Gateway 二次开发](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-09) · [AREAL-10｜外部 Agent 接入](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-10)
 
 <a id="ppo-grpo-dapo"></a>
 ## PPO、GRPO、DAPO：先用最简单的话讲清楚
@@ -118,6 +118,109 @@ Rollout 的难点在于延迟分布很差。Reasoning / tool-use / agentic task 
 - rollout 使用的 policy version 太旧。
 
 AReaL 的核心价值就在这里：它把 rollout generation 和 policy training 解耦，用异步方式缓解“最长输出决定全局 step”的同步瓶颈。
+
+<a id="cuda-graph-decode"></a>
+## CUDA Graph：为什么 decode 会出现 6–8x 的局部收益
+
+![CUDA Graph 将逐 kernel 提交变为静态执行图回放](../assets/topics/cuda-graph-decode.svg)
+
+### 它优化的不是 FLOPs，而是提交路径
+
+Autoregressive decode 每一步通常只处理少量新 token，但会重复执行相似的 model forward。小 batch 下，单个 kernel 很短，Python、runtime、driver 的逐 kernel launch 与同步可能占显著比例：
+
+```text
+Eager:
+token n → CPU submit K1 → K2 → K3 ... → token n+1 再重复
+
+CUDA Graph:
+capture / instantiate once
+token n → 更新静态 input buffer → graph replay
+```
+
+CUDA Graph 把 kernel、memcpy 和依赖关系作为一张可执行图预先实例化，之后低开销 replay。它不减少模型理论 FLOPs，也不是把所有 kernel 自动融合成一个 kernel；fusion 与 graph 可以叠加，但优化层次不同。
+
+### continuous batching 和动态 KV 为什么还能用
+
+推理引擎通常不是为任意 shape 捕获一张万能 graph，而是为若干 batch/sequence bucket 捕获多张图：
+
+1. 为 bucket 预分配稳定地址的 token id、position、slot/KV block table 等 input buffer；
+2. 每个 decode step 将新值 copy 到静态 buffer；
+3. graph 中的 kernel 根据 metadata 访问 paged KV cache；
+4. shape 和算子满足 bucket 就 replay，否则 fallback eager；
+5. 记录 graph hit、fallback 和 padding waste，而不是只看“已开启 cudagraph”。
+
+KV cache 的**内容**和 block mapping 可以变化，但 graph 捕获依赖的地址、shape 与控制结构必须满足实现契约。权重同步/refit 后，如果参数地址、module graph 或 kernel specialization 被破坏，需要重新 capture 或使用框架保证地址稳定。
+
+### 显存与适用边界
+
+Graph capture/private pool、多个 buckets 和 padding 可能额外占显存。GPU 已经被大 batch、大 GEMM 饱和时，host launch 占比很低，收益自然变小。动态 control flow、CPU callback、unsupported op 与频繁 graph break 也会侵蚀收益。
+
+最新版简历中的主结果是 AReaL Qwen3.5-9B 128K Agentic RL **decode 6–8x**。另一个 verl 35B RLVR workload 是 **decode 约 14x**。两者模型、框架、batch/concurrency、graph coverage 和窗口不同，只能分开陈述；prefill、tool/sandbox、queue、reward、weight sync 和 trainer 都受 Amdahl 定律约束。
+
+### 验证表
+
+| 维度 | 固定/记录 |
+|---|---|
+| workload | model、gen-TP、batch/concurrency、prompt/response length、sampling |
+| runtime | eager/graph、bucket、warmup、graph hit/fallback |
+| local result | decode latency、inter-token latency、decode tokens/s、CPU launch gap |
+| resource | GPU utilization、graph pool、KV cache、peak memory |
+| end-to-end | rollout time、tool/env wait、trainer exposed wait；不把局部倍数直接外推 |
+
+<a id="gateway-streaming-refill"></a>
+## Gateway 调度：从 wave barrier 到流式补位
+
+![Gateway 流式补位、均衡分发与失败请求分流](../assets/topics/gateway-streaming-refill.svg)
+
+这里的 **streaming refill** 是请求级调度：一个 rollout 完成、失败或释放 capacity 后，立即补入下一个待处理请求。它不是 OpenAI HTTP `stream=true` 的 token streaming。
+
+### 原链路为什么浪费并发
+
+固定 wave/batch 发出一批请求后，快请求已经完成，慢请求、tool timeout 或失败请求仍占据这批的 barrier。若调度器等整波结束才发下一波，配置并发为 `C`，实际 active sessions 会逐渐从 `C` 掉到很低。group-based RL 更糟：同一 prompt 的 sibling trajectories 必须满足 cohort 完整性；缺一个成员，前面已经生成的 sibling 也可能无法形成训练 group。
+
+### 三个改造层
+
+#### 1. 流式补位
+
+- 维护 bounded pending queue 与 target concurrency；
+- completion/failure/abort 统一释放 slot；
+- 每释放一个 slot 就触发 dispatcher refill；
+- 设置 backpressure，不用无限队列掩盖 rollout 供需失衡。
+
+直接因果链是：`slot idle time 下降 → active concurrency 接近水位线 → 单位时间 completed trajectories 增加`。
+
+#### 2. 均衡分发但保留 affinity
+
+项目代码用 round-robin 给没有既有 owner 的新 route 分配 Proxy Worker，并由 capacity/backpressure 限制执行水位；reservation、cohort、claim、session 等 identity 一旦绑定，后续请求都解析到同一 worker。这样在静态 worker 能力接近时分散新负载，同时避免 InteractionCache、session state 和 prefix cache 在 worker 间漂移。
+
+round-robin 不读取实时负载，因此不能称为 least-load；worker 异构或长尾严重时，可在保持 identity owner 不变的前提下为**新 route**扩展 capacity-aware/least-load 选择。已绑定 session 的正确性优先；worker 失效需要显式 lifecycle/recovery，而不是无条件随机改路由。
+
+#### 3. 失败请求状态机
+
+请求至少要区分：
+
+```text
+pending → admitted/in-flight → completed
+                         ├→ retryable failure → same identity retry
+                         └→ terminal/aborted → sibling/session cleanup
+```
+
+timeout、client disconnect、backend 5xx、reward 缺失、staleness 和显式取消不能全部走同一种 retry。安全重试需要 idempotency key/claim/session identity，防止重复生成、重复记 reward 或产生两个 cohort member；terminal failure 必须释放 capacity 并清理 sibling，避免半组永久占槽。
+
+### 结果如何解释
+
+最新版简历结果：Rollout 阶段平均推理吞吐 `+60%`；Rejected Group `33.18%→2.73%`，绝对下降 `30.45pp`，相对下降约 `91.8%`。
+
+不能从这两个数字直接推出模型效果提升。至少还要同时看：
+
+- active/target concurrency、slot idle、pending depth；
+- per-worker load skew、session-affinity hit、prefix-cache reuse；
+- retry/timeout/terminal failure 与 capacity leak；
+- cohort ready latency、rejection reason、staleness；
+- exported/consumed/gradient-active trajectories 与有效 token；
+- trainer exposed wait、reward/eval distribution。
+
+三项机制是联合改造，没有独立消融时不把 60% 拆成各自收益。早期性能重构与后续 [exact quota/liveness ownership](#project-gateway-ownership) 也要分开：后续提交强化的是正确性和可恢复性，不能把已有性能结果重新归因给它们。
 
 ## Reward / Verifier 是第二个瓶颈
 
@@ -433,6 +536,9 @@ Agentic RL 平台至少要监控这些指标：
 
 - rollout token/s；
 - rollout request/s；
+- active/target concurrency 与 slot idle ratio；
+- per-worker load skew 与 session-affinity hit；
+- CUDA Graph hit/fallback、decode-only tokens/s 与 graph-pool memory；
 - trajectory queue depth；
 - reward/verifier queue depth；
 - reward latency p50/p95/p99；
@@ -442,6 +548,8 @@ Agentic RL 平台至少要监控这些指标：
 - policy version lag；
 - weight sync latency；
 - rollout error rate；
+- cohort ready latency、Rejected Group ratio 与 reason distribution；
+- retryable/terminal failure、retry count 与 capacity leak；
 - environment timeout rate；
 - average response length 和 tail response length；
 - effective training tokens/s；
@@ -538,6 +646,8 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 14. 如何判断 trainer idle 是 rollout 慢还是 reward 慢？
 15. Agent runtime 和 RL trainer 解耦后，trace schema 应该记录什么？
 16. AReaL 的 XCCL 与 disk 权重同步如何选择，为什么 disk transfer 不等于 recovery checkpoint？
+17. CUDA Graph 为什么对 decode 收益大，continuous batching 和动态 KV 如何满足 capture 契约？
+18. Gateway 的流式补位为什么不是 token streaming？如何同时守住并发、affinity 与幂等？
 
 ## 生产环境思考题
 
@@ -559,6 +669,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [PPO 原始论文](https://arxiv.org/abs/1707.06347)：clipped surrogate objective 与多 epoch minibatch update。
 - [DeepSeekMath](https://arxiv.org/abs/2402.03300)：GRPO 的 group-relative advantage 与去 Critic 动机。
 - [DAPO](https://arxiv.org/abs/2503.14476)：Clip-Higher、Dynamic Sampling、Token-level Policy Gradient Loss 与 Overlong Reward Shaping。
+- [CUDA Programming Guide：CUDA Graphs](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/cuda-graphs.html)：graph definition、instantiation、replay 与 host launch overhead。
 - [AReaL v2.1 Online Proxy](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/tutorial/online_proxy.md)：外部应用的 session key、OpenAI-compatible endpoint、reward 与 end-session 协议。
 - [AReaL v2.1 Agent Workflow](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/reference/agent_workflow.md)：Proxy Worker、InteractionCache、token-level tracking 与 workflow export。
 - [AReaL v2.1 Async Guide](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/algorithms/async.md)：policy version、off-policyness 与 partial rollout。

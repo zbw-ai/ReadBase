@@ -229,6 +229,8 @@ flowchart LR
 - [Megatron 5D 并行](topics/distributed_training.md) ↔ [FSDP / ZeRO / Bridge 选型](topics/fsdp.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md)
 - [Checkpointing](topics/checkpointing.md) ↔ [Fault Tolerance](topics/fault_tolerance.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
+- [Long-context Training](topics/long_context_training.md) ↔ [CP-local logits](topics/long_context_training.md#cp-local-logits) ↔ [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map)
+- [Agentic RL](topics/agentic_rl.md) ↔ [CUDA Graph decode](topics/agentic_rl.md#cuda-graph-decode) ↔ [Gateway streaming refill](topics/agentic_rl.md#gateway-streaming-refill)
 - [DeepSeek-V3](tech_reports/deepseek_v3.md) ↔ [MoE](topics/moe.md) ↔ [FP8](topics/fp8.md)
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)

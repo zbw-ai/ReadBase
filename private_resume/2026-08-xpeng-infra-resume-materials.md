@@ -1,6 +1,6 @@
 # 小鹏大模型训练推理 Infra 简历素材底稿
 
-更新时间：2026-09-02
+更新时间：2026-09-03
 目标岗位：外部社招，大模型训练 / RL / Agentic RL Infra 高级工程师
 状态：已按最新版 2026 简历与本人确认口径校准；本轮不修改简历 DOCX
 
@@ -32,6 +32,8 @@
 
 原简历中的华为职责、项目和成果暂不改动，仅将截止时间由“至今”更新为 `2025.11`。
 
+最新版投递简历的规模边界：TX、X1 项目所在集群总规模分别约 `1.4 万卡`、`1.2 万卡`；个人直接模型训练证据是 X1 200B MoE 的 `3K 卡稳定训练两个月`。TX 可口述文生视频、文生图和 389B MoE 的迁移/功能/性能闭环，以及开局性能提升 `30%–50%`、10+ 模型交付、80+ 生产问题、协同 4–5 人；必须区分个人动作与团队总结果。
+
 ### 小鹏机器人
 
 小鹏机器人 - 大模型训练推理 Infra 高级工程师
@@ -50,15 +52,16 @@
 负责基于 verl、Megatron-Core/MBridge 二次开发大模型 SFT/RLVR 训练链路，支持 Qwen3/Qwen3.5 dense、MoE、32K-256K 长上下文和多机 A100 训练，主要工作如下：
 
 - **异步 RLVR 吞吐优化**：面向 Qwen3-30B-A3B 32K、32 张 A100-80GB 场景适配 fully async policy，解耦 Trainer 与 Rollouter；基于 rollout 生产率和 trainer 消费率调整 gen-TP、vLLM 实例数及 3T+1R/2T+2R 资源配比，将异步初始吞吐由 76 提升至 211-255 tokens/s/GPU；2T+2R 候选窗口达到 236-293 tokens/s/GPU，trainer idle ratio 由 0.41 降至 0.10-0.14。同步约 200 仅作早期阶段诊断背景，对照协议补齐前不声明 async 相比 sync 的提升比例。
-- **长上下文 SFT 优化**：完成 Qwen3.5 9B/27B/32B 等模型 128K SFT 训练适配，覆盖 16-64 张 A100；通过 `num_workers=0→8` 与 data prefetch、selective recompute 和 TP/CP 收敛，将代表性 9B SFT step time 由 31s 降至 9.3s、MFU 由 23% 提升到 29.6%。该结果是联合优化，当前不分摊单项收益；另一个长上下文 workload 中，`TP=2/CP=8` 相比 `TP=4/CP=4` 将 step time 由约 163s 降至 102s，两组数字不混用。
-- **训练后端与稳定性**：接入 vLLM/SGLang rollout 后端，支持 MoE、DAPO、rule/code/model reward 和异步 parameter sync；修复 uneven dataset split、reward-loop 初始化、final parameter sync、Megatron distributed checkpoint 等问题，建设 Qwen3.5 FLOPs/MFU、阶段耗时和显存监控，为多机训练提供可复现 recipe、失败诊断和恢复能力。
+- **长上下文 SFT 优化**：完成 Qwen3.5 9B/27B/32B 等模型 128K SFT 训练适配，覆盖 16-64 张 A100；通过 `num_workers=0→8` 与 data prefetch、selective recompute 和 TP/CP 收敛，将代表性 9B SFT step time 由 31s 降至 9.3s、MFU 由 23% 提升到 45.2%。该结果是联合优化，当前不分摊单项收益；两组比值尚不能按标准 MFU 公式直接闭合，面试前需补 estimator、effective-token 和统计窗口。另一个长上下文 workload 中，`TP=2/CP=8` 相比 `TP=4/CP=4` 将 step time 由约 163s 降至 102s，两组数字不混用。
+- **长上下文 MoE 与显存优化**：在 Qwen3.5-35B-A3B 128K 场景中将平均 step time 降低约 50%；修复 THD+CP actor 路径重复 all-gather full-sequence logits 的静默问题，保持 `[T/CP,V/TP]` logits 本地计算、只聚合 token scalar，消除约 7.6GB 冗余分配。前者是联合结果，当前不拆分单项贡献；后者有提交 `be6fb98f` 的源码证据。
+- **训练后端与稳定性**：接入 vLLM/SGLang rollout 后端，支持 MoE、DAPO、rule/code/model reward 和异步 parameter sync；在独立的 verl 35B RLVR workload 中，CUDA Graph 将 decode 阶段加速约 14x；修复 uneven dataset split、reward-loop 初始化、final parameter sync、Megatron distributed checkpoint 等问题，建设 Qwen3.5 FLOPs/MFU、阶段耗时和显存监控，为多机训练提供可复现 recipe、失败诊断和恢复能力。
 
 ### 基于 AReaL 的 Agentic RL 与在线蒸馏
 
 负责 Qwen3.5-9B 128K 长上下文与多轮 Agentic RL 训练链路建设和性能优化，覆盖 online rollout、tool/sandbox environment、训练推理异步调度及在线蒸馏，主要工作如下：
 
 - **长上下文与端到端性能**：面向 DeepSWE 与 Seta Terminal 多轮环境交互场景，交付 Qwen3.5-9B 128K Agentic RL 训练链路；DeepSWE 端到端稳态单步耗时由 6467s 降至 2301s（-64.4%），有效 Token 吞吐达到 146.8 tok/s/GPU；Seta Terminal 由 2240s 降至 770s（-65.6%），有效 Token 吞吐达到 233 tok/s/GPU。
-- **Rollout 与调度优化**：在 35B 真实 RL workload 中通过 CUDA Graph 将 decode 阶段加速约 14x；Prefix Cache 优化使 prefill 阶段耗时降低 44%，并优化 Sandbox 并发以提升 vLLM 有效并发；重构 Rollout 调度链路，通过 Gateway 实现流式补位、均衡分发与失败请求管理，使 Rollout 阶段平均推理吞吐提升 60%，Rejected Group 比例由 33.18% 降至 2.73%（-30.45pp）。各数字分别限定在 decode、prefill 和 Rollout 阶段，不外推为端到端同倍数加速。
+- **Rollout 与调度优化**：在 AReaL Qwen3.5-9B 128K Agentic RL workload 中通过 CUDA Graph 将 decode 阶段加速 6–8x；Prefix Cache 优化使 prefill 阶段耗时降低 44%，并优化 Sandbox 并发以提升 vLLM 有效并发；重构 Rollout 调度链路，通过 Gateway 实现流式补位、均衡分发与失败请求管理，使 Rollout 阶段平均推理吞吐提升 60%，Rejected Group 比例由 33.18% 降至 2.73%（-30.45pp）。各数字分别限定在 decode、prefill 和 Rollout 阶段，不外推为端到端同倍数加速；verl 35B RLVR decode 约 14x 是另一套独立 workload。
 - **多 Teacher 在线蒸馏**：设计并实现 On-Policy Distillation/MOPD，支持 trajectory 按 data source 路由至对应 Teacher 计算 logp，以及 teacher score 校验、`mopd_pg` loss、mixed-domain data、equal-trajectory weighting、online session drain、断点续训和 held-out paired evaluation；采用 FUNCTIONAL/NUMERIC/EFFICACY 分层门禁，最新版双 Teacher 结果在 SWE、Terminal 双域提升且 General 不下降。具体 checkpoint、样本量、seed、baseline、评测窗口和统计置信信息仍需随面试证据卡携带。
 
 建议最终简历正文优先采用以上 6 条。篇幅不足时，先合并“训练后端与稳定性”到前两条，再视目标岗位删除长上下文 SFT 或多 Teacher 蒸馏中的一条。
@@ -85,7 +88,9 @@
 
 ### 4.3 长上下文 SFT 与显存/稳定性分析
 
-负责 Qwen3.5 长上下文 SFT 适配和性能诊断，在 16-64 张 A100 上打通 9B/27B/32B 等模型的 128K 训练路径。对代表性 9B SFT workload，固定模型/checkpoint、GPU、sequence/packing、GBS/MBS、有效 token、精度和统计窗口后，通过 `num_workers=0→8` 与 data prefetch 消除输入 bubble，从偏重 recompute 收敛到 selective recompute，并调整 TP/CP 以避免 TP 切碎 GEMM、用 CP 分摊长序列 activation，最终将 step time 从 `31s` 降至 `9.3s`、MFU 从 `23%` 提升至 `29.6%`。这是联合结果，没有逐项同-workload A/B，不拆分虚构收益。
+负责 Qwen3.5 长上下文 SFT 适配和性能诊断，在 16-64 张 A100 上打通 9B/27B/32B 等模型的 128K 训练路径。对代表性 9B SFT workload，通过 `num_workers=0→8` 与 data prefetch 消除输入 bubble，从偏重 full recompute 收敛到 selective recompute，并调整 TP/CP 以避免 TP 切碎 GEMM、用 CP 分摊长序列 activation，最终将 step time 从 `31s` 降至 `9.3s`、MFU 从 `23%` 提升至 `45.2%`。这是最新版简历联合结果，没有逐项同-workload A/B，不拆分虚构收益。由于 `31/9.3` 与 `45.2/23` 在标准 MFU 定义下不能自动闭合，面试前必须补齐 MFU estimator、有效 token、是否计入 data wait 和统计窗口；补齐前不宣称两组数字来自同一单一测量窗口。
+
+Qwen3.5-35B-A3B 128K 场景的最新版结果是平均 step time 降低约 `50%`。可确认的代码级机制包括修复 THD+CP actor 路径的 full-sequence logits all-gather：保留 CP-local、TP-vocab-sharded logits，本地计算 logprob/entropy 后只 gather token scalar，消除约 `7.6GB` 冗余分配。其余 TP/CP/EP、packing、recompute、fusion 和 overlap 属于联合优化路径；没有逐项 A/B 时不分摊 50%。
 
 另一长上下文 workload 基于张量级显存账定位 fp32 logits、gradient buffer、offload PCIe、CP 通信和长样本激活峰值，验证 `TP=2, CP=8` 相比 `TP=4, CP=4` 将 step time 从约 `163s` 降至 `102s`。该证据只用于说明并行策略机制，不与 31s→9.3s 合并。
 
@@ -101,7 +106,7 @@ checkpoint 交付定义：训练框架和 recipe 达到稳定训练验收，可�
 
 - DeepSWE 场景端到端稳态单步耗时由 `6467s` 降至 `2301s`（`-64.4%`），有效 Token 吞吐达到 `146.8 tok/s/GPU`。
 - Seta Terminal 场景端到端稳态单步耗时由 `2240s` 降至 `770s`（`-65.6%`），有效 Token 吞吐达到 `233 tok/s/GPU`。
-- 在 35B 真实 RL workload 中，CUDA Graph 将 `decode` 阶段加速约 `14x`；Prefix Cache 使 `prefill` 阶段耗时降低 `44%`；Sandbox 并发优化提升 vLLM 有效并发。
+- 在 AReaL Qwen3.5-9B 128K Agentic RL workload 中，CUDA Graph 将 `decode` 阶段加速 `6–8x`；Prefix Cache 使 `prefill` 阶段耗时降低 `44%`；Sandbox 并发优化提升 vLLM 有效并发。verl 35B RLVR 的 decode 约 `14x` 是独立 workload，不混用。
 - 重构 Rollout 调度链路，通过 Gateway 实现流式补位、均衡分发和失败请求管理，使 vLLM 并发稳定在理论值附近，Rollout 阶段平均推理吞吐提升 `60%`，Rejected Group 比例由 `33.18%` 降至 `2.73%`（`-30.45pp`）。
 
 补充技术动作：
@@ -111,7 +116,7 @@ checkpoint 交付定义：训练框架和 recipe 达到稳定训练验收，可�
 - 识别 94 条 gradient-active、2 条 compact-filtered；后者消耗 `159,330` full-sequence tokens，占该窗口 trainer token processing 的 `3.91%`，但不产生梯度。
 - 将 partial、stale、waiting/final-drain 与 terminal waste 分开，避免把 `generated - consumed` 直接判为浪费。
 
-证据等级：`强可写`。端到端结果统一表述为“稳态单步耗时”；CUDA Graph、Prefix Cache 和 Rollout 平均推理吞吐必须分别限定为 decode、prefill 和 Rollout 阶段收益，不能单独外推为端到端加速。有效 Token 吞吐的面试口径固定为“实际参与训练的有效 Token / GPU / 端到端稳态时间”。
+证据等级：`强可写`。端到端结果统一表述为“稳态单步耗时”；AReaL 的 CUDA Graph 主口径使用 `6–8x`，verl 35B RLVR 的约 `14x` 仅在明确独立 workload 时补充。CUDA Graph、Prefix Cache 和 Rollout 平均推理吞吐必须分别限定为 decode、prefill 和 Rollout 阶段收益，不能单独外推为端到端加速。有效 Token 吞吐的面试口径固定为“实际参与训练的有效 Token / GPU / 端到端稳态时间”。
 
 ### 4.5 OPD/MOPD 算法与 Infra 联合建设
 
@@ -167,7 +172,7 @@ checkpoint 交付定义：训练框架和 recipe 达到稳定训练验收，可�
 
 ### 6.3 长上下文 SFT
 
-代表性性能结果：在相同 workload 下，通过 `num_workers=0→8` 与 prefetch、selective recompute、TP/CP 收敛，将 step time 从 `31s` 降到 `9.3s`、MFU 从 `23%` 提升到 `29.6%`。这是联合结果，不拆分没有 A/B 的单项贡献；`TP=4/CP=4 → TP=2/CP=8、163s→102s` 属于另一 workload。
+代表性性能结果：通过 `num_workers=0→8` 与 prefetch、selective recompute、TP/CP 收敛，最新版简历记录 step time 从 `31s` 降到 `9.3s`、MFU 从 `23%` 提升到 `45.2%`。这是联合结果，不拆分没有 A/B 的单项贡献；两组数字在 MFU estimator、effective-token 和计时窗口核对前不声明为完全相同的单一测量窗口。`TP=4/CP=4 → TP=2/CP=8、163s→102s` 属于另一 workload。
 
 覆盖素材：
 

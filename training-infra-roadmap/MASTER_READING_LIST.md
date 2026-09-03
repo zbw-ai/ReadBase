@@ -138,6 +138,8 @@
 | [FlashAttention](papers/flashattention.md) | 长上下文首先暴露 attention IO 和 kernel 瓶颈 |
 | [Context Parallelism](topics/context_parallelism.md) | 单条长序列跨 GPU 切分的核心机制 |
 | [Sequence Parallelism](topics/sequence_parallelism.md) | 降低 activation 显存，与 TP/CP 配合 |
+| [CP-local logits 案例](topics/long_context_training.md#cp-local-logits) | 解释 CP 已切分但 loss/logprob 又 materialize 全序列的静默显存问题 |
+| [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map) | Attention、Norm、MLP、MoE 与 loss fusion 的接入和数值验收 |
 | [Checkpointing](topics/checkpointing.md) | 长 step time 下保存、恢复和异步 checkpoint 更关键 |
 | [Agentic RL](topics/agentic_rl.md) | RL 阶段把长 prompt/response、rollout、KV cache 和 reward/verifier 带入训练系统 |
 | [CompactionRL](papers/compactionrl.md) | long-horizon agent 在固定 context budget 下训练可压缩 trajectory |
@@ -191,6 +193,8 @@
 
 ## 6. 超大规模训练
 
+先读工程手册章节：[大规模训练稳定性与容错](topics/fault_tolerance.md#large-scale-training)，建立“故障概率、最慢 rank、拓扑、启动/存储惊群、checkpoint/recovery、goodput”的统一框架；再用 Llama 3 和 MegaScale 的公开生产数据校准规模判断。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 21 | PaLM | [PaLM](papers/palm.md) | 540B dense 模型和 Pathways |
@@ -205,7 +209,7 @@
 |---|---|---|---|
 | 26 | Sequence Parallelism | [Sequence Parallelism](topics/sequence_parallelism.md) | activation 显存和 TP 配合 |
 | 27 | Context Parallelism | [Context Parallelism](topics/context_parallelism.md) | 长上下文切分、attention 通信 |
-| 28 | Transformer Engine FP8 | [Transformer Engine](topics/transformer_engine.md) | FP8 recipe、amax、scaling |
+| 28 | Transformer Engine / Fusion | [Transformer Engine 与 NVIDIA 融合算子](topics/transformer_engine.md) | FP8、Attention/Norm/MLP/MoE fusion、接入与数值验收 |
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
 | 30 | NCCL / Network | [NCCL](topics/nccl.md) | collective、拓扑、straggler 诊断 |
 
