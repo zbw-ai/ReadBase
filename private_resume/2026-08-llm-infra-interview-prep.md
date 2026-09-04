@@ -3,7 +3,7 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–120 万
 > - 使用窗口：首轮面试前 3 天
-> - 核验日期：2026-09-03
+> - 核验日期：2026-09-04
 > - 依据：最新投递版 PDF 简历（2026-08-30，本地核验且不在公开仓库记录含手机号文件名）、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 ## 0. 先看结论：面试官会如何评估你
@@ -28,7 +28,7 @@
 
 > **怎么用**：从“项目经历”回答做过什么，从“技术主题”回答机制是什么，从“关键数字”反查项目。点击答案后，浏览器返回按钮、macOS `⌘ + [` 或 Windows/Linux `Alt + ←` 可回到刚才的准确位置；题尾的 Part / 总控制台回链用于可靠兜底。
 
-**现场救急**：[智元训练 Infra（30min）](#vi-0a) · [自我介绍](#resume-01) · [Ownership](#resume-01b) · [职业选择](#resume-01c) · [最有代表性的优化](#resume-01a) · [为什么选 verl / AReaL](#areal-01) · [万卡特有问题](#infra-09) · [技术面反问](#vi-questions-to-ask)
+**现场救急**：[智元训练 Infra（30min）](#vi-0a) · [自我介绍](#resume-01) · [Ownership](#resume-01b) · [职业选择](#resume-01c) · [最有代表性的优化](#resume-01a) · [为什么选 verl / AReaL](#areal-01) · [Rollout 优化全景](#rollout-01) · [万卡特有问题](#infra-09) · [Coding 手撕题](2026-09-interview-coding.md) · [面试进度](#interview-progress) · [技术面反问](#vi-questions-to-ask)
 
 #### 从项目经历进入
 
@@ -50,7 +50,7 @@
 | **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) |
 | **RL 算法 / verl** | [PPO/GRPO/DAPO](#rl-algo-01) · [DPO](#dpo-01) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [权重同步](#verl-03) · [Fully Async](#verl-04) · [RLVR 正确性](#verl-05) · [vLLM/SGLang](#verl-09) |
 | **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
-| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) |
+| **推理 / Rollout** | [优化全景](#rollout-01) · [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) |
 | **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) |
 | **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [规模交付](#resume-10) |
 
@@ -89,12 +89,12 @@
 |---|---|---|---:|
 | [Part I](#part-i) | 你是谁、做了什么、为什么值得信任 | 自我介绍、Ownership、职业选择 | Core 3 / P0 3 / P1 3 / P2 1，共 7 |
 | [Part II](#part-ii) | 大模型如何放得下、跑得快、扩得稳 | Megatron、5D、MoE、显存、长上下文 | Core 3 / P0 20 / P1 6 / P2 1，共 27 |
-| [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO/DPO、verl、Fully Async、真实模型落地 | Core 1 / P0 10 / P1 5 / P2 1，共 16 |
+| [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO/DPO、verl、Fully Async、Rollout 优化、真实模型落地 | Core 1 / P0 11 / P1 5 / P2 1，共 17 |
 | [Part IV](#part-iv) | Agent trajectory 如何在线生产、校验和消费 | AReaL、Gateway、staleness、MOPD、weight sync | Core 2 / P0 10 / P1 7 / P2 1，共 18 |
 | [Part V](#part-v) | 跨框架的通信、恢复、推理与生产排障 | Collective、万卡稳定性、训练异常、NCCL、checkpoint | Core 1 / P0 4 / P1 5 / P2 1，共 10 |
 | [Part VI](#part-vi) | 如何把知识变成首面表现 | 三天冲刺、口径校准、证据卡、模拟面试 | 不新增问题 |
 
-全文共 **78 道唯一问题**：P0 47 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数。
+全文共 **79 道唯一问题**：P0 48 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数；Coding 手撕题单独维护，不计入这里。
 
 ### 1.2 Core 10：只剩 3 小时时必须会的十个入口
 
@@ -135,10 +135,10 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 </details>
 
 <details>
-<summary><strong>Part III｜RL 算法、verl 与 Fully Async RLVR（16）</strong></summary>
+<summary><strong>Part III｜RL 算法、verl 与 Fully Async RLVR（17）</strong></summary>
 
 - **P0 / Core**：[RESUME-02 Fully Async RLVR](#resume-02)
-- **P0 扩展**：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 DPO 与 SFT/PPO/GRPO](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [VERL-01 HybridFlow 架构](#verl-01) · [VERL-02 colocate/disaggregate](#verl-02) · [VERL-03 训练到 rollout 权重同步](#verl-03) · [VERL-04 async/streaming/partial/staleness](#verl-04) · [VERL-05 RLVR 正确性](#verl-05) · [VERL-09 vLLM/SGLang 选型](#verl-09)
+- **P0 扩展**：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 DPO 与 SFT/PPO/GRPO](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [ROLLOUT-01 Rollout 优化全景](#rollout-01) · [VERL-01 HybridFlow 架构](#verl-01) · [VERL-02 colocate/disaggregate](#verl-02) · [VERL-03 训练到 rollout 权重同步](#verl-03) · [VERL-04 async/streaming/partial/staleness](#verl-04) · [VERL-05 RLVR 正确性](#verl-05) · [VERL-09 vLLM/SGLang 选型](#verl-09)
 - **P1**：[VERL-06 DataProto/WorkerGroup](#verl-06) · [VERL-07 Actor/Ref/Critic/Reward](#verl-07) · [VERL-08 Ray 故障](#verl-08) · [VERL-10 v0.7 以后演进](#verl-10) · [VERL-11 自研版 verl 模型落地](#verl-11)
 - **P2**：[P2-05 producer-consumer coding](#p2-05)
 
@@ -339,6 +339,19 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **60–90 秒主答**：
 
   > DP 切 batch、复制模型；TP 切层内大矩阵，解决单层容量和计算，但每层都有高频 collective；PP 按层切深度，解决整模型容量但引入 pipeline bubble；CP 持久切分 sequence 和几乎全部 activation，服务长上下文，attention 需要跨 CP rank 交换 KV；EP 把 MoE experts 分散到不同 rank，引入动态 token dispatch/combine all-to-all。关键点是“5D”不等于五个轴在所有模块机械相乘。Parallel Folding 下，Attention 和 Expert 是同一批物理 rank 的两套 logical mapping：`TP_attn×CP_attn×DP_attn×PP = ETP_moe×EP_moe×EDP_moe×PP = world_size`。选型时先满足参数和 activation 容量，再把 TP 等高频通信放在 NVLink/NVSwitch 域，联合考虑 CP 的 KV 通信和 EP 的 all-to-all，最后用 profile 在通信、GEMM 粒度和 bubble 之间收敛。
+
+- **如果面试官问“Megatron 的原理是什么”**：Megatron-Core 本质上是把一个 Transformer step 表达成多维 rank mesh 上的 SPMD 执行。初始化阶段由 `parallel_state` 按 TP/PP/CP/DP/EP 建 process groups；模型层把 Linear、Attention、MoE 和 sequence layout 绑定到对应 group；pipeline schedule 排列 microbatch 的 forward/backward；optimizer、checkpoint 再按同一分片元数据管理训练状态。每个进程运行同一套训练程序，但只持有和计算自己所属 shard，并通过 collective/P2P 恢复完整数学语义。
+
+  ```text
+  config / rank mesh
+      -> process groups
+      -> sharded Transformer modules
+      -> pipeline-scheduled forward/backward
+      -> gradient reduction + local optimizer step
+      -> distributed checkpoint
+  ```
+
+  这段只用于建立框架全景；TP 层内数据流见 [MEGATRON-02](#megatron-02)，pipeline schedule/bubble 见 [MEGATRON-07](#megatron-07)，optimizer state 分片见 [MEGATRON-05](#megatron-05)，checkpoint 见 [MEGATRON-10](#megatron-10)。
 
 - **MoE world-size 的正确口径**：
 
@@ -610,9 +623,47 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 
 - **问题**：以 MLP 或 Attention projection 说明 forward/backward collective。
 - **面试官意图**：判断 TP 是否停留在“把模型切到多卡”的表层。
-- **精准回答**：
+- **60 秒主答**：
 
-  > 对 `Y=XW`，Column Parallel 沿 `W` 的输出维切，每个 rank 得到部分输出特征；如果下一个算子能继续消费分片输出，就不必立即 all-gather。Row Parallel 沿 `W` 的输入维切，每个 rank 计算 partial output，forward 需要 reduce-sum 合并。Megatron 把 MLP 的 up projection 设计成 Column Parallel、down projection 设计成 Row Parallel，让中间 hidden 分片直接流动，只在 block 边界做必要规约。backward 的通信与 forward 对偶：Column Parallel 需要为 input gradient 做规约，Row Parallel 需要把 output gradient 切给各 rank。实际实现可能用 all-reduce，配合 sequence parallel 后常拆成 reduce-scatter/all-gather。
+  > TP 切的是一个 layer 内部的 hidden/output channel 或 attention head，不是 sequence。对 `Y=XW`，Column Parallel 沿 `W` 的输出维切，每个 rank 产生一部分输出特征；Row Parallel 沿输入维切，每个 rank 产生同 shape 的 partial output，再做 reduce-sum。Megatron 把 MLP 的 gate/up 做 Column Parallel、down 做 Row Parallel；Attention 的 QKV projection 做 Column Parallel，把 heads 分给各 TP rank，output projection 再做 Row Parallel。这样中间张量一直保持分片，只在必要边界通信，而不是每个 Linear 后 all-gather。
+
+- **用 shape 展开 MLP**：令输入 `X:[N,H]`，FFN intermediate size 为 `I`，TP size 为 `t`。以下按数学权重 `W:[in,out]` 表示，代码中的存储转置不改变切分语义。
+
+  ```text
+  Gate/Up（Column Parallel）:
+      W_gate^r, W_up^r : [H, I/t]
+      G^r, U^r         : [N, I/t]
+      Z^r = SiLU(G^r) * U^r
+      forward 无需合并；每个 rank 本地完成激活
+
+  Down（Row Parallel）:
+      W_down^r : [I/t, H]
+      Y_partial^r = Z^r @ W_down^r : [N, H]
+      Y = sum_r(Y_partial^r)
+  ```
+
+  forward/backward 的完整通信要分是否开启 SP：
+
+  | TP Linear | 无 SP | 有 SP |
+  |---|---|---|
+  | Column Parallel forward | 无 TP collective，输入在 TP ranks 复制 | `AllGather(X)`，把 sequence shard 临时拼回后再做 Column GEMM |
+  | Column Parallel backward | `AllReduce(dX)`，合并各输出 shard 对输入的 partial gradient | `ReduceScatter(dX)`，规约后仍按 sequence 分片 |
+  | Row Parallel forward | `AllReduce(Y_partial)`，每个 rank 得到完整 `Y` | `ReduceScatter(Y_partial)`，规约并沿 sequence 分片 |
+  | Row Parallel backward | 无 TP collective，本地得到 intermediate shard 的 `dZ` | `AllGather(dY)` 还原 Row Linear 所需输入，再本地得到分片 `dZ` |
+
+  因此，无 SP 的经典简写是 “Column forward 不通信、backward AllReduce；Row forward AllReduce、backward 不通信”；有 SP 则是 “Column forward AllGather、backward ReduceScatter；Row forward ReduceScatter、backward AllGather”。
+
+- **用 shape 展开 Attention**：MHA 有 `n_h` 个 query heads、每头维度 `d_h`，`H=n_h×d_h`。QKV 的 Column Parallel 让每个 rank 持有 `n_h/t` 个 heads：
+
+  ```text
+  QKV projection:  [N,H] -> Q^r/K^r/V^r:[N,n_h/t,d_h]
+  local attention: 只计算本 rank 的 heads
+  context^r:       [N,H/t]
+  output projection（Row Parallel）:
+      context^r @ W_o^r -> [N,H] partial -> ReduceScatter / AllReduce
+  ```
+
+  GQA/MQA 还要检查 `num_query_heads`、`num_kv_heads` 与 TP 的可整除/复制规则：当 KV heads 少于 TP size 时，部分实现会复制 KV head，而不能机械写成 `n_kv/t`。TP 切 head/hidden；CP 才切 `S`，并让本地 Q 通过 P2P/ring/all-gather/all-to-all 访问跨 rank KV。完整 SP/CP 区别见 [MEGATRON-04](#megatron-04)。
 
 - **项目证据或知识边界**：这是框架机制题；简历只有使用/调优证据，无需假装亲自实现 TP layer。
 - **高概率追问**：QKV projection 如何切 head？为什么 TP 要求 hidden/head 数可整除？sequence parallel 如何改变通信？
@@ -733,6 +784,23 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **60 秒主答**：
 
   > ZeRO 是按 DP 维消除 model-state 冗余的方法族：Stage 1 分 optimizer state，Stage 2 再分 gradient，Stage 3 连 parameter 也分。PyTorch FSDP 的 `FULL_SHARD` 在“分片哪些状态”上接近 ZeRO-3，但不是同一套实现；forward/backward 前按模块 all-gather 参数，backward 后 reduce-scatter gradient，并按 reshard policy 释放完整参数。FSDP1 以 wrapper/FlatParameter 为核心；FSDP2 使用 `fully_shard` 和 per-parameter DTensor，FQN、状态管理和 composability 更自然。`SHARD_GRAD_OP` 只能粗略类比 ZeRO-2，因为参数驻留和 reshard 语义并不完全相同。它们与 TP 不互斥：FSDP/ZeRO 沿 data-parallel replica 分状态，TP 则直接改变层内 GEMM 和 activation 的计算图；大模型训练经常组合使用。
+
+- **`FULL_SHARD` 一层在一个 step 内怎么走**：
+
+  ```text
+  steady state: 每个 DP rank 只持有本层 parameter shard
+      -> pre-forward Parameter AllGather，临时 materialize 完整参数
+      -> forward compute
+      -> 按 reshard_after_forward 策略释放/保留完整参数
+      -> pre-backward 再次 Parameter AllGather（若此前已 reshard）
+      -> backward compute
+      -> Gradient ReduceScatter，每个 rank 只留下本地 gradient shard
+      -> local optimizer 用本地 parameter/gradient/optimizer-state shard 更新
+  ```
+
+  FSDP 的 prefetch 是让下一层 parameter AllGather 与当前层计算重叠，不是消灭通信；prefetch 太激进会同时 materialize 多层参数，反而推高峰值显存。`reshard_after_forward=False` 能减少 backward 前的第二次 AllGather，但用参数驻留换通信，语义更接近 ZeRO-2 式取舍，仍要按具体 API/版本说明。
+
+- **FSDP1 与 FSDP2 的执行骨架**：二者都有“按模块 gather 参数—计算—reshard—reduce-scatter 梯度”的核心生命周期。FSDP1 通常由 wrapper 把参数展平为 `FlatParameter` 后切 shard；FSDP2 的 `fully_shard` 在原参数上使用 DTensor 分片，并用 module hooks 组织通信，因而保留 per-parameter FQN、组合其他 parallelism 和 checkpoint 更自然。通用 collective 的输入输出语义见 [INFRA-04](#infra-04)；raw TP/PP/CP/EP shard 的 checksum 不能直接要求相等，排障口径见 [TRAIN-ANOMALY-01](#train-anomaly-01)。
 
 - **现场画账**：先写 `P/G/O` 三类 model state：ZeRO-1=`O`，ZeRO-2=`O+G`，ZeRO-3/FSDP FULL_SHARD=`O+G+P`；再补 activation、通信 buffer 和 workspace，避免说成“总显存除以 DP”。
 - **深入阅读**：[FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](../training-infra-roadmap/topics/fsdp.md#fsdp-zero-map)。
@@ -910,7 +978,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 **学习目标**：讲清 RLVR 的 role/data/control flow，以及同步到异步后如何做生产者—消费者配平、权重同步和正确性控制。
 
-**本 Part 导航**：Core：[RESUME-02](#resume-02)；P0 扩展：[RL-ALGO-01](#rl-algo-01) · [DPO-01](#dpo-01) · [RESUME-03](#resume-03) · [VERL-01](#verl-01) · [VERL-02](#verl-02) · [VERL-03](#verl-03) · [VERL-04](#verl-04) · [VERL-05](#verl-05) · [VERL-09](#verl-09)；P1：[VERL-06](#verl-06) · [VERL-07](#verl-07) · [VERL-08](#verl-08) · [VERL-10](#verl-10) · [VERL-11](#verl-11)；P2：[P2-05](#p2-05)。
+**本 Part 导航**：Core：[RESUME-02](#resume-02)；P0 扩展：[RL-ALGO-01](#rl-algo-01) · [DPO-01](#dpo-01) · [RESUME-03](#resume-03) · [ROLLOUT-01](#rollout-01) · [VERL-01](#verl-01) · [VERL-02](#verl-02) · [VERL-03](#verl-03) · [VERL-04](#verl-04) · [VERL-05](#verl-05) · [VERL-09](#verl-09)；P1：[VERL-06](#verl-06) · [VERL-07](#verl-07) · [VERL-08](#verl-08) · [VERL-10](#verl-10) · [VERL-11](#verl-11)；P2：[P2-05](#p2-05)。
 
 ### Core｜最高优先入口
 
@@ -993,6 +1061,39 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **项目证据或知识边界**：你有直接项目证据；但面试前应补一张 `TP × 实例数 × 并发 × token/s × p95` 表。
 - **高概率追问**：何时 TP=1 更好？什么时候必须增大 TP？长上下文 KV cache 会怎样改变结论？
 - **危险回答**：“TP 通信多，所以越小越好。”模型放不下、KV cache 不够或单实例计算太慢时并不成立。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="rollout-01"></a>
+#### ROLLOUT-01｜Rollout 做了哪些优化？如何系统定位瓶颈？（P0，18 分钟）
+
+- **问题**：不要只列 CUDA Graph、Prefix Cache 等开关；请按端到端链路说明 rollout 的关键优化、指标和项目证据。
+- **面试官意图**：检查你能否把推理引擎、KV cache、请求调度、训推协同和异步正确性统一成 goodput，而不是只会调单个 backend。
+- **90 秒主答**：
+
+  > 我把 rollout 优化分六层。第一层是模型执行，按 decode 的小 GEMM、launch overhead 和 TP 通信选择 gen-TP、实例数、continuous batching、CUDA Graph 和融合 kernel；第二层是 KV/cache，联合看 KV 容量、paged allocation、prefix reuse 和 eviction；第三层是请求调度，用动态 batch、chunked prefill、流式补位、长度感知分发和 backpressure 降低空泡与长尾；第四层是训推协同，选择 colocate/disaggregate、权重同步方式、policy version 和 cache invalidation；第五层是异步流水线，用 producer-consumer overlap、partial rollout 和 bounded staleness 配平训练/生成速率；第六层是正确性与 goodput，保证 token/logprob/reward/group/版本 lineage，失败请求可追踪且重试幂等。最终我不只看 engine tokens/s，而看 accepted effective tokens/s/GPU、GPU busy、queue age、p95/p99、Rejected Group、weight-sync pause 和端到端 step time。
+
+- **先按症状分流，不要盲调开关**：
+
+  | 现象 | 一阶判断 | 优先动作 | 唯一细节入口 |
+  |---|---|---|---|
+  | decode kernel 碎、CPU launch 高 | 执行/launch bound | CUDA Graph、固定 bucket、融合 sampling；再测 graph miss | [RESUME-13](#resume-13) |
+  | 单实例不满、TP collective 暴露 | 并行粒度不合适 | 降 gen-TP、增实例和并发；同时守住权重/KV 显存 | [RESUME-03](#resume-03) |
+  | prefill/KV 占满或 cache 抖动 | memory/cache bound | prefix/Paged KV、block/eviction、chunked prefill；分开统计 prefill/decode | [RESUME-14](#resume-14) |
+  | GPU 间歇空闲、短请求被长请求阻塞 | scheduler/tail bound | continuous batching、完成即补位、长度/负载感知路由 | [RESUME-19](#resume-19) |
+  | trainer 或 rollouter 长时间等对方 | pipeline rate mismatch | T:R 配平、colocate/disaggregate、bounded queue 与 overlap | [RESUME-02](#resume-02)、[VERL-02](#verl-02) |
+  | 旧样本、半组、失败请求多 | freshness/correctness bound | partial/stale 策略、group quota、版本与 reward identity、safe retry | [VERL-04](#verl-04)、[VERL-05](#verl-05) |
+
+- **项目证据分层**：
+
+  - **本人项目直接证据**：gen-TP/实例数与 T:R 配平、Fully Async producer-consumer、Gateway 完成即补位/均衡分发/失败请求管理；对应 `76→211–255 tokens/s/GPU` 的优化窗口，以及 Gateway rollout throughput `+60%`、Rejected Group `33.18%→2.73%`。这些数字属于不同 workload，不能拼成一个总倍数。
+  - **本人项目直接证据，但只代表局部阶段**：AReaL 9B 128K 的 CUDA Graph 是 decode `6–8x`，不是 rollout E2E；Prefix Cache 的 `44%` 是 prefill 阶段测量，不自动代表端到端收益。
+  - **联合配置结果、没有单因素 A/B**：dynamic batch、chunked prefill、partial rollout、staleness/correction 等常以组合配置生效；没有受控实验时只讲机制和联合结果，不虚构贡献拆分。
+  - **机制理解/今天会评估**：speculative decoding、KV offload、量化 rollout、跨机分层调度等若项目未落地，就明确按模型、硬件、正确性和 E2E goodput 做评估，不说成已交付成果。
+
+- **收口方法**：先固定模型、prompt/response 长度分布、采样参数、并发、硬件和统计窗口，建立 `prefill / decode / scheduler wait / weight sync / trainer wait / rejected` breakdown；一次只改变一个主要变量，并回归同权重 token/logprob、reward/group 完整性和 held-out eval。后端选择见 [VERL-09](#verl-09)，AReaL online Gateway 的实现边界见 [AREAL-09](#areal-09)。
+- **高概率追问**：为什么 engine tokens/s 涨但 RL step 变慢？Prefix Cache 何时负收益？CUDA Graph 为什么只加速 decode？如何证明流式补位没有破坏 group？异步如何限制 off-policy？
+- **危险回答**：只报峰值 token/s；把所有优化收益相加；用堆积 stale 样本换吞吐；忽略失败/拒绝样本和权重更新停顿；把“今天会评估”说成个人已落地。
 
 ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
@@ -1219,7 +1320,7 @@ Capek 不是“把四个 Teacher 的答案混在一起做 SFT”。TIES 先给�
 
 ### 本 Part 追问路线
 
-同步瓶颈 → Fully Async 架构收益 → PPO/GRPO/DAPO 与 DPO 选型 → gen-TP/实例/T:R 配平 → staleness 与 correction → 权重同步和恢复 → Athena/Capek 真实模型落地与 ownership。
+同步瓶颈 → Fully Async 架构收益 → PPO/GRPO/DAPO 与 DPO 选型 → Rollout 六层优化 → gen-TP/实例/T:R 配平 → staleness 与 correction → 权重同步和恢复 → Athena/Capek 真实模型落地与 ownership。
 
 ---
 
@@ -1640,6 +1741,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 **学习目标**：把训练与 rollout 项目上升为可迁移的生产能力：训练数值异常、通信协议、故障定位、恢复、推理容量与可观测性。
 
 **本 Part 导航**：Core：[INFRA-04](#infra-04)；P0 扩展：[TRAIN-ANOMALY-01](#train-anomaly-01) · [INFRA-09](#infra-09) · [INFRA-03](#infra-03)；P1：[RESUME-12](#resume-12) · [INFRA-05](#infra-05) · [INFRA-06](#infra-06) · [INFRA-07](#infra-07) · [INFRA-08](#infra-08)；P2：[P2-03](#p2-03)。
+
+**Coding 实战**：[PyTorch MHA 与 `N×N` 矩阵原地顺时针旋转](2026-09-interview-coding.md)（独立题单，不计入本 Part 题量）。
 
 ### Core｜最高优先入口
 
@@ -2165,8 +2268,24 @@ EFFICACY 证据与置信区间：______
 
 | 优先级 | 题量 | 建议投入 | 用法 |
 |---|---:|---:|---|
-| P0 | 47 | 6–8 小时 | Core 10 先形成完整口述；其余首轮前至少过一遍 |
+| P0 | 48 | 6–8 小时 | Core 10 先形成完整口述；其余首轮前至少过一遍 |
 | P1 | 26 | 3–4 小时 | 选择与目标 JD 最相关的 10–15 题 |
 | P2 | 5 | 不超过 1 小时 | 查漏补缺，不挤占项目复盘 |
 
-最终原则：**三天内先把 Core 10 答到可追问三层，再按 Part 补 P0；不要按题号浅背 78 道题。**
+最终原则：**三天内先把 Core 10 答到可追问三层，再按 Part 补 P0；不要按题号浅背 79 道题。**
+
+---
+
+<a id="interview-progress"></a>
+## Appendix A｜面试流程进度台账
+
+> 更新截至 2026-09-04。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
+
+| 公司 | 岗位 | 面试时间 | 当前轮次 | 状态 | 下一节点 |
+|---|---|---|---|---|---|
+| 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 待反馈 | 等待结果 |
+| 智元机器人 | 训练 Infra | 2026-09-04 下午 | 一面完成 | 已通过 | 2026-09-08 下午二面 |
+| 字节跳动 | 训练 Infra | 2026-09-08 晚上 | 一面待进行 | 已排期 | 完成一面 |
+| 小红书中台 | 训练 Infra | 待定 | 待约面 | 时间未定 | 确认面试时间 |
+
+↑ [返回面试速查控制台](#interview-console)
