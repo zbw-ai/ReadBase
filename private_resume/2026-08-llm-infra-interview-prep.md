@@ -23,14 +23,57 @@
 
 如果一个问题没做过，不要把文档知识包装成项目经验。推荐说法是：“这个能力在项目里我主要是使用和调优，不是底层实现 owner；我能从机制和生产排障角度回答。”
 
-### 0.1 一张图看懂我的能力主线
+<a id="interview-console"></a>
+### 0.1 面试现场速查控制台
+
+> **怎么用**：从“项目经历”回答做过什么，从“技术主题”回答机制是什么，从“关键数字”反查项目。点击答案后，浏览器返回按钮、macOS `⌘ + [` 或 Windows/Linux `Alt + ←` 可回到刚才的准确位置；题尾的 Part / 总控制台回链用于可靠兜底。
+
+**现场救急**：[自我介绍](#resume-01) · [Ownership](#resume-01b) · [职业选择](#resume-01c) · [最有代表性的优化](#resume-01a) · [为什么选 verl / AReaL](#areal-01) · [万卡特有问题](#infra-09) · [技术面反问](#vi-questions-to-ask)
+
+#### 从项目经历进入
+
+| 项目主线 | 高频问题与技术细节 |
+|---|---|
+| **X1 200B MoE** | [代表性优化](#resume-01a) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [EP 与 all-to-all](#megatron-06) · [通信算子](#infra-04) · [规模交付](#resume-10) |
+| **Long Context SFT** | [31s→9.3s](#resume-05) · [35B-A3B/128K](#resume-17) · [128K/256K 显存](#resume-06) · [7.6GB CP-local logits](#resume-07) · [SP 与 CP](#megatron-04) · [Recompute/Offload](#megatron-09) |
+| **Fully Async RLVR** | [同步与异步](#resume-02) · [gen-TP 与实例数](#resume-03) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [Streaming/Partial/Staleness](#verl-04) · [RLVR 正确性](#verl-05) |
+| **Agentic RL** | [AReaL 训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Gateway 改造](#areal-09) · [CUDA Graph](#resume-13) · [Gateway 调度收益](#resume-19) · [XCCL/Disk](#areal-11) |
+| **OPD / MOPD** | [MOPD 主问题](#resume-09) · [PPO/GRPO/DAPO](#rl-algo-01) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08) |
+| **TX 视频 / 规模交付** | [HunyuanVideo/Ulysses](#resume-18) · [融合算子](#kernel-01) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [万卡规模效应](#infra-09) |
+
+#### 从技术主题进入
+
+| 技术主题 | 高频问题与项目入口 |
+|---|---|
+| **Megatron / 多维并行** | [5D 并行](#megatron-01) · [Column/Row TP](#megatron-02) · [TP 负优化](#megatron-03) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PP Bubble/VPP](#megatron-07) · [Megatron/FSDP 选型](#megatron-11) |
+| **MoE** | [Dense 与 MoE](#moe-01) · [EP/EDP 与 A2A](#megatron-06) · [X1 200B MoE](#resume-01a) · [Grouped GEMM/融合](#kernel-01) |
+| **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) · [Recompute/Offload](#megatron-09) · [FlashAttention](#p2-02) |
+| **RL 算法 / verl** | [PPO/GRPO/DAPO](#rl-algo-01) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [权重同步](#verl-03) · [Fully Async](#verl-04) · [RLVR 正确性](#verl-05) · [vLLM/SGLang](#verl-09) |
+| **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [外部 Agent 接入](#areal-10) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
+| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [吞吐/延迟/KV](#infra-06) |
+| **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) · [可恢复 Checkpoint](#infra-08) · [Distributed Checkpoint](#megatron-10) |
+| **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [三层门禁](#areal-08) · [精度对齐](#resume-12) · [规模交付](#resume-10) |
+
+#### 按关键数字反查
+
+| 简历数字 | 对应问题 |
+|---|---|
+| [`0.16x → 0.95x / MFU 35%`](#resume-01a) | X1 200B MoE 性能优化 |
+| [`31s → 9.3s / 23% → 45.2%`](#resume-05) | Qwen3.5-9B SFT |
+| [`128K / 平均 step time 降低约 50%`](#resume-17) | Qwen3.5-35B-A3B |
+| [`7.6GB`](#resume-07) | CP-local logits |
+| [`76 → 211–255`](#resume-02) | Fully Async RLVR |
+| [`6–8x`](#resume-13) | Agentic RL decode / CUDA Graph |
+| [`+60% / 33.18% → 2.73%`](#resume-19) | Gateway Rollout 调度 |
+| [`3K 卡 / 两个月`](#resume-10) | X1 规模交付 |
+
+---
+
+### 0.2 一张图看懂我的能力主线
 
 ![大模型训练推理 Infra 个人能力地图：六个能力域与脱敏项目证据](assets/llm-infra-personal-capability-map.svg)
 
 > 图例：实心节点表示有项目证据的集成、调优或交付经验，但不自动等于底层算法/kernel 的实现者；空心节点表示原理掌握、证据尚待补齐或今天会评估的能力延伸。
-
-- **核心机制导航**：[Megatron 5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [Megatron/FSDP 选型](#megatron-11) · [PPO/GRPO/DAPO](#rl-algo-01) · [verl/HybridFlow](#verl-01) · [AReaL 选型](#areal-01) · [Gateway ownership](#areal-09) · [XCCL/disk](#areal-11) · [Megatron 显存账本](#infra-02) · [通信算子](#infra-04) · [万卡稳定性](#infra-09)
-- **项目证据导航**：[X1 200B MoE 模型](#resume-01a) · [Fully Async RLVR](#resume-02) · [AReaL Agentic RL](#resume-08) · [MOPD](#resume-09) · [自研版 verl 模型落地](#verl-11) · [国产卡规模交付](#resume-10)
 
 **20–30 秒口述版**：
 
@@ -1794,6 +1837,7 @@ EFFICACY 证据与置信区间：______
 
 录音复盘只检查四点：是否先说结论；是否有数字但也有口径；是否说清个人贡献；是否主动限定证据边界。
 
+<a id="vi-questions-to-ask"></a>
 ### VI.4 建议反问面试官
 
 优先问能判断岗位真实含金量的问题：
