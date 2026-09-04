@@ -1,5 +1,7 @@
 # Pipeline Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 ## 核心问题
 
 模型层数太多时，把 layer 分到不同 GPU/stage，用 micro-batch 流水化执行，降低单卡参数和 activation 压力。

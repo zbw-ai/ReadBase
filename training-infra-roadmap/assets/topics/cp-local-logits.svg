@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="560" viewBox="0 0 1240 560" role="img" aria-labelledby="title desc">
+  <title id="title">CP-local logits：从全量聚合到标量聚合</title>
+  <desc id="desc">对比旧路径先聚合全序列 logits 与修复路径在每个 CP rank 本地计算 logprob、仅聚合标量的显存差异。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6f3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#c85d5d"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#158579"/></marker>
+  </defs>
+  <rect width="1240" height="560" rx="28" fill="url(#bg)"/>
+  <text x="58" y="66" font-family="Inter, PingFang SC, sans-serif" font-size="28" font-weight="700" fill="#17212b">CP-local logits：避免把长序列显存重新放大</text>
+  <text x="58" y="98" font-family="Inter, PingFang SC, sans-serif" font-size="15" fill="#64748b">THD + CP&gt;1 · actor logprob path</text>
+
+  <g filter="url(#shadow)">
+    <rect x="58" y="132" width="530" height="356" rx="22" fill="#fff" stroke="#efd1d1"/>
+    <rect x="652" y="132" width="530" height="356" rx="22" fill="#fff" stroke="#b9ded7"/>
+  </g>
+
+  <text x="88" y="176" font-family="Inter, PingFang SC, sans-serif" font-size="21" font-weight="700" fill="#9f3f46">旧路径 · 全 logits 聚合</text>
+  <text x="682" y="176" font-family="Inter, PingFang SC, sans-serif" font-size="21" font-weight="700" fill="#0f766e">修复后 · 本地算标量</text>
+
+  <g font-family="Inter, PingFang SC, sans-serif" text-anchor="middle">
+    <rect x="90" y="218" width="142" height="78" rx="14" fill="#fff3f2" stroke="#dc8b8b"/>
+    <text x="161" y="248" font-size="16" font-weight="650" fill="#7f1d1d">CP-local logits</text>
+    <text x="161" y="273" font-size="14" fill="#7f1d1d">[T/CP, V/TP]</text>
+    <path d="M240 257 H326" fill="none" stroke="#c85d5d" stroke-width="3" marker-end="url(#arrow-red)"/>
+    <rect x="338" y="207" width="210" height="100" rx="16" fill="#fde7e5" stroke="#c85d5d" stroke-width="2"/>
+    <text x="443" y="242" font-size="17" font-weight="700" fill="#7f1d1d">AllGather logits</text>
+    <text x="443" y="269" font-size="14" fill="#9f3f46">[T, V/TP] on every rank</text>
+    <text x="443" y="290" font-size="13" fill="#9f3f46">峰值约放大 CP 倍</text>
+
+    <rect x="90" y="354" width="458" height="82" rx="14" fill="#fff7f6" stroke="#f1c1be"/>
+    <text x="319" y="384" font-size="15" font-weight="650" fill="#7f1d1d">sequence chunk 只能压临时计算</text>
+    <text x="319" y="410" font-size="14" fill="#9f3f46">全量 logits 已 materialize，chunk 再小也救不了峰值</text>
+
+    <rect x="684" y="218" width="142" height="78" rx="14" fill="#effaf7" stroke="#55aa9e"/>
+    <text x="755" y="248" font-size="16" font-weight="650" fill="#115e59">CP-local logits</text>
+    <text x="755" y="273" font-size="14" fill="#115e59">[T/CP, V/TP]</text>
+    <path d="M834 257 H912" fill="none" stroke="#158579" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <rect x="924" y="207" width="226" height="100" rx="16" fill="#e4f6f1" stroke="#158579" stroke-width="2"/>
+    <text x="1037" y="238" font-size="17" font-weight="700" fill="#115e59">Local CE / logprob</text>
+    <text x="1037" y="264" font-size="14" fill="#0f766e">labels 同步 zigzag split</text>
+    <text x="1037" y="287" font-size="14" fill="#0f766e">输出 [T/CP] 标量</text>
+
+    <path d="M1037 315 V353" fill="none" stroke="#158579" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <rect x="778" y="366" width="372" height="70" rx="14" fill="#f0fdfa" stroke="#72c4b9"/>
+    <text x="964" y="393" font-size="16" font-weight="700" fill="#115e59">AllGather scalar → [T]</text>
+    <text x="964" y="417" font-size="14" fill="#0f766e">恢复 packed 顺序，再 unpad</text>
+  </g>
+
+  <text x="620" y="526" text-anchor="middle" font-family="Inter, PingFang SC, sans-serif" font-size="15" fill="#475569">关键约束：logits、labels 与 loss mask 必须遵循同一 CP zigzag 布局；修复后同时验 shape、loss 与多 rank 一致性。</text>
+</svg>

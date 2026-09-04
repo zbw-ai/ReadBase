@@ -1,5 +1,7 @@
 # Sequence Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 ## 核心问题
 
 Tensor Parallel 降低参数/计算压力，但 activation 中某些按 sequence 保存的部分仍会复制。Sequence Parallel 把部分 activation 沿 sequence 维切分，降低显存，并与 TP 通信模式配合。

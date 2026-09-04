@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="560" viewBox="0 0 1240 560" role="img" aria-labelledby="title desc">
+  <title id="title">视频 DiT 的 Ulysses Sequence Parallel 数据流</title>
+  <desc id="desc">视频经 VAE 与 patchify 形成时空 token，Ulysses 在 sequence 与 attention head 布局间用 all-to-all 转置，分摊长序列 activation。</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfaf7"/><stop offset="1" stop-color="#f1f5f9"/></linearGradient>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.08"/></filter>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#3d6f8e"/></marker>
+  </defs>
+  <rect width="1240" height="560" rx="28" fill="url(#bg2)"/>
+  <text x="58" y="66" font-family="Inter, PingFang SC, sans-serif" font-size="28" font-weight="700" fill="#17212b">视频 DiT：Ulysses 如何切长序列</text>
+  <text x="58" y="98" font-family="Inter, PingFang SC, sans-serif" font-size="15" fill="#64748b">以 640×640×3×129 输入为例；准确 token 数由 VAE 压缩率与 patch size 决定</text>
+
+  <g filter="url(#shadow2)" font-family="Inter, PingFang SC, sans-serif">
+    <rect x="52" y="177" width="174" height="162" rx="20" fill="#fff" stroke="#d8d1c3"/>
+    <text x="139" y="216" text-anchor="middle" font-size="18" font-weight="700" fill="#5b4636">Video</text>
+    <g fill="#e6b85c">
+      <rect x="93" y="239" width="68" height="48" rx="6" opacity="0.45"/>
+      <rect x="102" y="230" width="68" height="48" rx="6" opacity="0.65"/>
+      <rect x="111" y="221" width="68" height="48" rx="6"/>
+    </g>
+    <text x="139" y="315" text-anchor="middle" font-size="13" fill="#785d44">VAE → patchify</text>
+
+    <rect x="284" y="151" width="212" height="214" rx="20" fill="#fff" stroke="#b7ccdc"/>
+    <text x="390" y="190" text-anchor="middle" font-size="18" font-weight="700" fill="#234d68">Sequence shards</text>
+    <text x="390" y="215" text-anchor="middle" font-size="13" fill="#5b7180">每 rank 持有 T/SP token</text>
+    <rect x="322" y="242" width="136" height="22" rx="6" fill="#b7d9ed"/>
+    <rect x="322" y="272" width="136" height="22" rx="6" fill="#8ec4dd"/>
+    <rect x="322" y="302" width="136" height="22" rx="6" fill="#5faacb"/>
+
+    <rect x="560" y="177" width="142" height="162" rx="20" fill="#edf4f8" stroke="#769bb3"/>
+    <text x="631" y="229" text-anchor="middle" font-size="18" font-weight="700" fill="#234d68">All-to-All</text>
+    <text x="631" y="258" text-anchor="middle" font-size="14" fill="#3d6f8e">sequence</text>
+    <text x="631" y="280" text-anchor="middle" font-size="14" fill="#3d6f8e">↕</text>
+    <text x="631" y="302" text-anchor="middle" font-size="14" fill="#3d6f8e">heads</text>
+
+    <rect x="766" y="151" width="212" height="214" rx="20" fill="#fff" stroke="#c7bce2"/>
+    <text x="872" y="190" text-anchor="middle" font-size="18" font-weight="700" fill="#53388c">Head shards</text>
+    <text x="872" y="215" text-anchor="middle" font-size="13" fill="#75639d">每 rank：部分 heads × 全序列</text>
+    <circle cx="826" cy="271" r="28" fill="#ddd1f5"/>
+    <circle cx="872" cy="271" r="28" fill="#c7b3ee"/>
+    <circle cx="918" cy="271" r="28" fill="#ad92e4"/>
+    <text x="872" y="326" text-anchor="middle" font-size="14" fill="#53388c">FlashAttention</text>
+
+    <rect x="1042" y="177" width="146" height="162" rx="20" fill="#fff" stroke="#aacfc4"/>
+    <text x="1115" y="218" text-anchor="middle" font-size="18" font-weight="700" fill="#176b60">Restore</text>
+    <rect x="1077" y="245" width="76" height="18" rx="5" fill="#8ed0c2"/>
+    <rect x="1077" y="271" width="76" height="18" rx="5" fill="#65b9aa"/>
+    <rect x="1077" y="297" width="76" height="18" rx="5" fill="#3aa190"/>
+  </g>
+
+  <g fill="none" stroke="#3d6f8e" stroke-width="3" marker-end="url(#arrow-blue)">
+    <path d="M226 258 H272"/>
+    <path d="M496 258 H548"/>
+    <path d="M702 258 H754"/>
+    <path d="M978 258 H1030"/>
+  </g>
+  <path d="M1115 365 C1115 435 631 445 631 352" fill="none" stroke="#3d6f8e" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#arrow-blue)"/>
+  <rect x="688" y="397" width="388" height="40" rx="12" fill="#f5f7f8"/>
+  <text x="882" y="422" text-anchor="middle" font-family="Inter, PingFang SC, sans-serif" font-size="14" fill="#3d6f8e">第二次 All-to-All：恢复 sequence-sharded 布局</text>
+
+  <rect x="70" y="464" width="1100" height="54" rx="14" fill="#ffffffb8" stroke="#dbe4ea"/>
+  <text x="620" y="487" text-anchor="middle" font-family="Inter, PingFang SC, sans-serif" font-size="14" fill="#475569">收益：每 rank 的长序列 activation 约按 SP 分摊　·　代价：两次 All-to-All、head 可整除约束、跨节点拓扑敏感</text>
+  <text x="620" y="508" text-anchor="middle" font-family="Inter, PingFang SC, sans-serif" font-size="13" fill="#64748b">更大规模可组合 Ulysses degree × Ring degree；高频 All-to-All 优先放在机内高速域</text>
+</svg>

@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1500" viewBox="0 0 1680 1500" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">大模型训练推理 Infra 个人能力主线</title>
+  <desc id="map-desc">以 Megatron 训练和 RL Agentic 两条主线组织能力，二者共享显存性能、正确性、可恢复性和规模化交付底座，下方列出六项脱敏项目证据。</desc>
+
+  <defs>
+    <style>
+      .base { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+      .hero { font-size: 46px; font-weight: 760; letter-spacing: -1px; fill: #1f2a28; }
+      .hero-sub { font-size: 18px; font-weight: 520; letter-spacing: 1.5px; fill: #64726e; }
+      .lane-title { font-size: 25px; font-weight: 700; }
+      .lane-sub { font-size: 18px; font-weight: 700; letter-spacing: 1.5px; }
+      .card-title { font-size: 25px; font-weight: 700; fill: #25312f; }
+      .item { font-size: 18px; font-weight: 520; fill: #394743; }
+      .item-soft { font-size: 18px; font-weight: 520; fill: #697672; }
+      .shared-title { font-size: 25px; font-weight: 700; fill: #33413e; }
+      .shared-sub { font-size: 18px; font-weight: 520; letter-spacing: 1px; fill: #72807c; }
+      .section-title { font-size: 25px; font-weight: 700; fill: #273431; }
+      .section-note { font-size: 18px; font-weight: 520; fill: #788581; }
+      .evidence-title { font-size: 25px; font-weight: 700; fill: #263330; }
+      .evidence-value { font-size: 18px; font-weight: 700; fill: #33423e; }
+      .evidence-note { font-size: 18px; font-weight: 520; fill: #707d79; }
+      .legend { font-size: 18px; font-weight: 520; fill: #687571; }
+      .panel { stroke-width: 1.4; }
+    </style>
+  </defs>
+
+  <rect width="1680" height="1500" fill="#f7f7f4"/>
+  <g class="base">
+    <!-- Title -->
+    <text x="840" y="88" text-anchor="middle" class="hero">LLM Infra</text>
+    <text x="840" y="128" text-anchor="middle" class="hero-sub">TRAINING · RL · ROLLOUT</text>
+    <line x1="80" y1="162" x2="1600" y2="162" stroke="#d6dedb" stroke-width="1.5"/>
+
+    <!-- Two main lanes -->
+    <g>
+      <rect x="80" y="202" width="740" height="52" rx="14" fill="#e9eef0"/>
+      <rect x="80" y="202" width="8" height="52" rx="4" fill="#526b73"/>
+      <text x="112" y="236" class="lane-title" fill="#405860">Megatron 训练主线</text>
+      <text x="785" y="235" text-anchor="end" class="lane-sub" fill="#61767c">TRAINING SYSTEM</text>
+
+      <rect x="860" y="202" width="740" height="52" rx="14" fill="#e7efed"/>
+      <rect x="1592" y="202" width="8" height="52" rx="4" fill="#2f7169"/>
+      <text x="892" y="236" class="lane-title" fill="#285f59">RL / Agentic 主线</text>
+      <text x="1565" y="235" text-anchor="end" class="lane-sub" fill="#4e746e">POST-TRAINING SYSTEM</text>
+    </g>
+
+    <!-- Lane capabilities: row 1 -->
+    <g>
+      <rect x="80" y="274" width="740" height="190" rx="20" fill="#fbfcfc" stroke="#cbd5d8" class="panel"/>
+      <line x1="80" y1="274" x2="820" y2="274" stroke="#526b73" stroke-width="5"/>
+      <text x="112" y="315" class="card-title">训练系统 / Megatron</text>
+      <circle cx="115" cy="344" r="6" fill="#526b73"/><text x="135" y="351" class="item">5D 并行配置与调优</text>
+      <circle cx="115" cy="370" r="6" fill="#526b73"/><text x="135" y="377" class="item">Grouped MatMul · 融合算子</text>
+      <circle cx="115" cy="396" r="6" fill="#526b73"/><text x="135" y="403" class="item">128K–256K · SP/CP · recompute</text>
+      <circle cx="115" cy="422" r="6" fill="#526b73"/><text x="135" y="429" class="item">packing / DataLoader / prefetch</text>
+      <circle cx="115" cy="448" r="6" fill="#fbfcfc" stroke="#526b73" stroke-width="2.5"/><text x="135" y="455" class="item-soft">Folding · DeepEP · FP8/FP4</text>
+
+      <rect x="860" y="274" width="740" height="190" rx="20" fill="#fbfcfb" stroke="#c8d8d4" class="panel"/>
+      <line x1="860" y1="274" x2="1600" y2="274" stroke="#2f7169" stroke-width="5"/>
+      <text x="892" y="315" class="card-title">RL 与后训练</text>
+      <circle cx="895" cy="344" r="6" fill="#2f7169"/><text x="915" y="351" class="item">verl · SFT/RLVR · Fully Async</text>
+      <circle cx="895" cy="373" r="6" fill="#2f7169"/><text x="915" y="380" class="item">AReaL · Gateway / Session / Cohort</text>
+      <circle cx="895" cy="402" r="6" fill="#2f7169"/><text x="915" y="409" class="item">Agent/Tool/Sandbox · goodput</text>
+      <circle cx="895" cy="431" r="6" fill="#2f7169"/><text x="915" y="438" class="item">MOPD · 双域 ↑ · General ↔</text>
+    </g>
+
+    <!-- Lane capabilities: row 2 -->
+    <g>
+      <rect x="80" y="484" width="740" height="172" rx="20" fill="#fbfcfc" stroke="#cbd5d8" class="panel"/>
+      <line x1="80" y1="484" x2="820" y2="484" stroke="#526b73" stroke-width="5"/>
+      <text x="112" y="525" class="card-title">通信与拓扑</text>
+      <circle cx="115" cy="554" r="6" fill="#526b73"/><text x="135" y="561" class="item">AR · RS · AG · A2A · P2P</text>
+      <circle cx="115" cy="580" r="6" fill="#526b73"/><text x="135" y="587" class="item">NCCL / XCCL 集成与排障</text>
+      <circle cx="115" cy="606" r="6" fill="#526b73"/><text x="135" y="613" class="item">compute–comm overlap / exposed</text>
+      <circle cx="115" cy="632" r="6" fill="#fbfcfc" stroke="#526b73" stroke-width="2.5"/><text x="135" y="639" class="item-soft">NVLink / IB / RoCE / HCCS 精细映射</text>
+
+      <rect x="860" y="484" width="740" height="172" rx="20" fill="#fbfcfb" stroke="#c8d8d4" class="panel"/>
+      <line x1="860" y1="484" x2="1600" y2="484" stroke="#2f7169" stroke-width="5"/>
+      <text x="892" y="525" class="card-title">推理与 Rollout</text>
+      <circle cx="895" cy="554" r="6" fill="#2f7169"/><text x="915" y="561" class="item">vLLM / SGLang rollout</text>
+      <circle cx="895" cy="580" r="6" fill="#2f7169"/><text x="915" y="587" class="item">gen-TP / 多实例 / batching</text>
+      <circle cx="895" cy="606" r="6" fill="#2f7169"/><text x="915" y="613" class="item">KV / Prefix Cache · CUDA Graph</text>
+      <circle cx="895" cy="632" r="6" fill="#2f7169"/><text x="915" y="639" class="item">weight sync · policy version</text>
+    </g>
+
+    <!-- Shared engineering foundation -->
+    <g>
+      <rect x="80" y="684" width="1520" height="52" rx="14" fill="#edf0ee"/>
+      <text x="112" y="718" class="shared-title">共同工程底座</text>
+      <text x="1565" y="716" text-anchor="end" class="shared-sub">性能 × 正确性 × 可恢复性 × 规模化交付</text>
+
+      <rect x="80" y="756" width="740" height="188" rx="20" fill="#fcfcfa" stroke="#d1d9d6" class="panel"/>
+      <line x1="80" y1="756" x2="820" y2="756" stroke="#80918d" stroke-width="5"/>
+      <text x="112" y="797" class="card-title">显存与性能</text>
+      <circle cx="115" cy="826" r="6" fill="#80918d"/><text x="135" y="833" class="item">参数 / 梯度 / 优化器 / activation</text>
+      <circle cx="115" cy="850" r="6" fill="#80918d"/><text x="135" y="857" class="item">logits / KV / workspace · OOM 定位</text>
+      <circle cx="115" cy="874" r="6" fill="#80918d"/><text x="135" y="881" class="item">profiling / MFU / 瓶颈迁移</text>
+      <circle cx="115" cy="898" r="6" fill="#80918d"/><text x="135" y="905" class="item">recompute / fusion</text>
+      <circle cx="115" cy="922" r="6" fill="#fcfcfa" stroke="#80918d" stroke-width="2.5"/><text x="135" y="929" class="item-soft">offload · Three Walls</text>
+
+      <rect x="860" y="756" width="740" height="188" rx="20" fill="#fcfcfa" stroke="#d1d9d6" class="panel"/>
+      <line x1="860" y1="756" x2="1600" y2="756" stroke="#697a76" stroke-width="5"/>
+      <text x="892" y="797" class="card-title">正确性与规模化交付</text>
+      <circle cx="895" cy="826" r="6" fill="#697a76"/><text x="915" y="833" class="item">loss / logprob / mask · 精度对齐</text>
+      <circle cx="895" cy="855" r="6" fill="#697a76"/><text x="915" y="862" class="item">FUNCTIONAL · NUMERIC · EFFICACY</text>
+      <circle cx="895" cy="884" r="6" fill="#697a76"/><text x="915" y="891" class="item">checkpoint / recovery · lineage</text>
+      <circle cx="895" cy="913" r="6" fill="#697a76"/><text x="915" y="920" class="item">国产卡适配 · 千卡性能交付闭环</text>
+    </g>
+
+    <!-- Legend and evidence -->
+    <g>
+      <text x="80" y="992" class="section-title">脱敏项目证据</text>
+      <text x="258" y="992" class="section-note">两条主线分别落到项目结果；数字按简历口径，不跨 workload 互相推导</text>
+      <circle cx="1285" cy="985" r="6" fill="#526b73"/>
+      <text x="1303" y="992" class="legend">项目实战</text>
+      <circle cx="1408" cy="985" r="6" fill="#f7f7f4" stroke="#697a76" stroke-width="2.5"/>
+      <text x="1426" y="992" class="legend">原理掌握 / 延伸</text>
+      <line x1="80" y1="1010" x2="1600" y2="1010" stroke="#d6dedb" stroke-width="1.5"/>
+
+      <text x="80" y="1042" class="lane-sub" fill="#526b73">MEGATRON TRAINING · EVIDENCE</text>
+      <text x="860" y="1042" class="lane-sub" fill="#2f7169">RL / AGENTIC · EVIDENCE</text>
+
+      <!-- Evidence row 1 -->
+      <rect x="80" y="1060" width="740" height="120" rx="17" fill="#fbfcfc" stroke="#cbd5d8" class="panel"/>
+      <rect x="80" y="1060" width="7" height="120" rx="3.5" fill="#526b73"/>
+      <text x="112" y="1092" class="evidence-title">X1 · 200B MoE</text>
+      <text x="112" y="1119" class="evidence-value">0.16x→0.95x · MFU 35% · 3K 卡连续稳定训练两个月</text>
+      <text x="112" y="1143" class="evidence-note">跑通 · 精度 · 性能 · 长稳</text>
+      <text x="112" y="1167" class="evidence-note">模型侧边界：跑通 → 性能达标闭环</text>
+
+      <rect x="860" y="1060" width="740" height="120" rx="17" fill="#fbfcfb" stroke="#c8d8d4" class="panel"/>
+      <rect x="1593" y="1060" width="7" height="120" rx="3.5" fill="#2f7169"/>
+      <text x="892" y="1092" class="evidence-title">Fully Async RLVR</text>
+      <text x="892" y="1119" class="evidence-note">76 · async 初始 3T+1R / gen-TP=4</text>
+      <text x="892" y="1143" class="evidence-value">211–255 tokens/s/GPU · gen-TP 4→2 后稳态</text>
+      <text x="892" y="1167" class="evidence-note">Async 内；236–293 = 2T+2R 候选窗口</text>
+
+      <!-- Evidence row 2 -->
+      <rect x="80" y="1192" width="740" height="120" rx="17" fill="#fbfcfc" stroke="#cbd5d8" class="panel"/>
+      <rect x="80" y="1192" width="7" height="120" rx="3.5" fill="#526b73"/>
+      <text x="112" y="1224" class="evidence-title">SFT / Long Context</text>
+      <text x="112" y="1251" class="evidence-value">Qwen3 / Qwen3.5 · 31s→9.3s · MFU 23%→45.2%</text>
+      <text x="112" y="1275" class="evidence-note">32K–256K · data / recompute / memory / ckpt</text>
+      <text x="112" y="1299" class="evidence-note">特定模型、序列长度、卡数与统计窗口口径</text>
+
+      <rect x="860" y="1192" width="740" height="120" rx="17" fill="#fbfcfb" stroke="#c8d8d4" class="panel"/>
+      <rect x="1593" y="1192" width="7" height="120" rx="3.5" fill="#2f7169"/>
+      <text x="892" y="1224" class="evidence-title">AReaL Agentic RL</text>
+      <text x="892" y="1251" class="evidence-note">Gateway · Session · Cohort · Version · ready-cohort</text>
+      <text x="892" y="1275" class="evidence-value">decode 6–8x · Rollout +60% · Rejected Group 33.18%→2.73%</text>
+      <text x="892" y="1299" class="evidence-note">长尾 · trajectory goodput；外部 Agent / Env 边界清晰</text>
+
+      <!-- Evidence row 3 -->
+      <rect x="80" y="1324" width="740" height="120" rx="17" fill="#fbfcfc" stroke="#cbd5d8" class="panel"/>
+      <rect x="80" y="1324" width="7" height="120" rx="3.5" fill="#526b73"/>
+      <text x="112" y="1356" class="evidence-title">X1 / TX · 国产卡规模交付</text>
+      <text x="112" y="1383" class="evidence-value">适配 → 模型跑通 → Profile → 优化 → 验证 → 扩容</text>
+      <text x="112" y="1407" class="evidence-note">模型跑通与性能达标闭环</text>
+      <text x="112" y="1431" class="evidence-note">模型侧性能交付；非集群平台 / 运维总 owner</text>
+
+      <rect x="860" y="1324" width="740" height="120" rx="17" fill="#fbfcfb" stroke="#c8d8d4" class="panel"/>
+      <rect x="1593" y="1324" width="7" height="120" rx="3.5" fill="#2f7169"/>
+      <text x="892" y="1356" class="evidence-title">MOPD · 双 Teacher</text>
+      <text x="892" y="1383" class="evidence-value">RL Experts → Teachers · Pre-RL Model → Student</text>
+      <text x="892" y="1407" class="evidence-note">原 RL 数据 OPD · FUNCTIONAL ✓</text>
+      <text x="892" y="1431" class="evidence-note">SWE / Terminal 双域提升 · General 不下降（方向性结论）</text>
+    </g>
+
+    <line x1="80" y1="1462" x2="1600" y2="1462" stroke="#d6dedb" stroke-width="1.5"/>
+    <text x="80" y="1486" class="legend">主线：训练系统集成与调优 · RL / Agentic 系统建设 · 性能、正确性、可恢复性与规模化交付</text>
+    <text x="1600" y="1486" text-anchor="end" class="legend">2026</text>
+  </g>
+</svg>

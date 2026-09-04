@@ -1,5 +1,7 @@
 # Data Parallelism
 
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+
 ## 核心问题
 
 复制模型到多张 GPU，切分 batch，反向后同步梯度。它是吞吐扩展的基础，但会复制参数、梯度和 optimizer state。
@@ -116,19 +118,21 @@ DDP 的优势包括：
 
 > 两者实现同一个 Data Parallelism 策略，但前者是单进程主卡式实现，后者是多进程、对等 replica 和 collective 通信实现；它们不是同一个 PyTorch API。[PyTorch DistributedDataParallel](https://docs.pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html)
 
-### 4. FSDP：逻辑上数据并行，物理上 model states 分片
+### 4. FSDP：逻辑上数据并行，物理分片取决于 sharding strategy
 
-标准 DDP 的每个 rank 都复制完整的 parameters、gradients 和 optimizer states。FSDP 仍然让不同 ranks 处理不同数据并聚合同一逻辑模型的梯度，但进一步分片 model states：
+标准 DDP 的每个 rank 都复制完整的 parameters、gradients 和 optimizer states。FSDP 仍然让不同 ranks 处理不同数据并聚合同一逻辑模型的梯度，但可以根据 sharding strategy 分片不同的 model states。只有 `FULL_SHARD` 才在“分什么”以及主要生命周期上对应 ZeRO-3：
 
 ```text
 标准 DDP：
 每个 rank 长期保存完整 parameters / gradients / optimizer states
 
-FSDP / ZeRO-3：
+FSDP FULL_SHARD / ZeRO-3：
 每个 rank 长期保存 parameters / gradients / optimizer states 的 shard
 计算前临时 AllGather 所需参数
 反向后 ReduceScatter 梯度
 ```
+
+其他策略不能沿用这条完整生命周期：`SHARD_GRAD_OP` 不在 forward 后立即 reshard 参数；`HYBRID_SHARD` 只在子 group 内做 FULL_SHARD、在 group 间复制；`NO_SHARD` 则保留复制式 model states。它们的常驻显存、AllGather 次数、通信 group 和峰值都不同。Megatron-FSDP 中，`optim_grads_params` 才是 ZeRO-3/FULL_SHARD 对应路径，`optim` 与 `optim_grads` 分别接近 ZeRO-1/2。
 
 所以“数据并行”不等于“每张 GPU 必须永久保存完整模型”。更本质的判断标准是：
 
@@ -186,7 +190,7 @@ Megatron DP： 一组 TP×PP×CP GPUs 共同组成一份模型 replica
 | `nn.DataParallel` | 原始 module 在主设备，forward replicas 在其他设备 | replica gradient 累加到原始 module |
 | PyTorch DDP | 每个 rank 复制完整 model states | gradient AllReduce |
 | Distributed Optimizer / ZeRO-1 | optimizer state 和更新责任分片 | gradient ReduceScatter + parameter AllGather |
-| FSDP / ZeRO-3 | parameters、gradients、optimizer states 分片 | parameter AllGather + gradient ReduceScatter |
+| FSDP FULL_SHARD / ZeRO-3 | parameters、gradients、optimizer states 分片 | parameter AllGather + gradient ReduceScatter |
 | Megatron DP | 对相同 model-parallel shard 建 DP group | 根据 DDP/Distributed Optimizer/FSDP 后端选择 AR 或 RS+AG |
 
 因此从早期 DDP 的 AllReduce 演进到 ReduceScatter + AllGather，不是换了一个并行概念，而是利用 Data Parallel ranks 分摊 model states 和 optimizer update。
@@ -222,7 +226,7 @@ Data Parallelism
     ├── DDP + Distributed Optimizer / ZeRO
     │      optimizer/gradient 分片、ReduceScatter + AllGather
     │
-    ├── FSDP / ZeRO-3
+    ├── FSDP FULL_SHARD / ZeRO-3
     │      parameters/gradients/optimizer states 全分片
     │
     └── Megatron DP group
@@ -231,15 +235,15 @@ Data Parallelism
 
 ### 9. 面试精炼回答
 
-> DP 是数据并行策略，PyTorch 的 `nn.DataParallel`、DDP、FSDP 和 Megatron DP group 都是它的实现。早期 `nn.DataParallel` 是单进程控制多 GPU，由主设备 scatter input、创建 forward replicas 并累加梯度，存在主卡和单进程瓶颈；DDP 通常一张 GPU 一个进程，每个进程保存完整模型副本，通过 bucketized gradient AllReduce 同步，能够扩展到多机。FSDP 保留不同 ranks 处理不同数据的语义，但把 parameters、gradients 和 optimizer states 分片。Megatron 的 DP 则是逻辑 process-group 维度，一个模型 replica 可能由 TP×PP×CP 多张 GPU 共同组成，DP group 只同步相同 model-parallel shard。使用 Distributed Optimizer 或 FSDP 后，通信由单纯 gradient AllReduce 演进为 ReduceScatter 和 parameter AllGather，但仍然属于 Data Parallelism。
+> DP 是数据并行策略，PyTorch 的 `nn.DataParallel`、DDP、FSDP 和 Megatron DP group 都是它的实现。早期 `nn.DataParallel` 是单进程控制多 GPU，由主设备 scatter input、创建 forward replicas 并累加梯度，存在主卡和单进程瓶颈；DDP 通常一张 GPU 一个进程，每个进程保存完整模型副本，通过 bucketized gradient AllReduce 同步，能够扩展到多机。FSDP 保留不同 ranks 处理不同数据的语义，但具体分片和通信由 sharding strategy 决定；只有 FULL_SHARD 才同时分片 parameters、gradients 和 optimizer states，对应 ZeRO-3。Megatron 的 DP 则是逻辑 process-group 维度，一个模型 replica 可能由 TP×PP×CP 多张 GPU 共同组成，DP group 只同步相同 model-parallel shard。使用 Distributed Optimizer 或 FSDP 分片策略后，通信可能由单纯 gradient AllReduce 演进为 ReduceScatter 和 parameter AllGather，但仍然属于 Data Parallelism。
 
 ### 10. 常见错误回答
 
 - “DP 就是 `torch.nn.DataParallel`”：把算法策略与一个早期 PyTorch 类混为一谈。
 - “DDP 会在每一步广播参数”：标准 DDP 训练主路径是 gradient AllReduce；参数初始化同步后，各 rank 通过相同梯度和 optimizer step 保持一致。
-- “FSDP 不是数据并行，因为参数没有复制”：FSDP 的逻辑训练语义仍是数据并行，只是 model states 物理分片。
+- “FSDP 不是数据并行，因为参数没有复制”：FSDP 的逻辑训练语义仍是数据并行；model states 是否以及如何物理分片取决于 sharding strategy。
 - “Megatron DP=8 就是 8 张 GPU”：每个 DP replica 可能还包含 TP×PP×CP ranks，总 GPU 数需按完整 mesh 计算。
-- “DP 通信永远是 AllReduce”：Distributed Optimizer/FSDP 会使用 ReduceScatter 和 AllGather。
+- “DP 通信永远是 AllReduce”：Distributed Optimizer 和 FSDP 分片策略会使用 ReduceScatter、AllGather 等通信。
 
 <a id="dp-communication"></a>
 ## DP 通信算子：AllReduce、ReduceScatter 与 AllGather
@@ -249,7 +253,7 @@ DP 的通信路径取决于 model state 是否分片。最常见的三种模式�
 ```text
 标准 DDP：                gradient AllReduce
 Distributed Optimizer：  gradient ReduceScatter + parameter AllGather
-FSDP / ZeRO-3：           parameter AllGather + gradient ReduceScatter
+FSDP FULL_SHARD / ZeRO-3：parameter AllGather + gradient ReduceScatter
 ```
 
 ### 1. 标准 DDP：Gradient AllReduce
@@ -347,9 +351,9 @@ local gradients -> ReduceScatter -> 每卡梯度分片
                 -> 每卡分片更新 -> AllGather updated parameters
 ```
 
-### 4. FSDP / ZeRO-3：参数也长期分片
+### 4. FSDP FULL_SHARD / ZeRO-3：参数也长期分片
 
-FSDP/ZeRO-3 进一步把 model parameters 本身长期分片。每个 FSDP unit 通常需要在计算前临时恢复参数：
+FSDP FULL_SHARD/ZeRO-3 进一步把 model parameters 本身长期分片。每个 FSDP unit 通常需要在计算前临时恢复参数：
 
 ```text
 Forward 前：
@@ -371,9 +375,9 @@ gradient ReduceScatter
 与经典 Megatron Distributed Optimizer 的区别是：
 
 - Distributed Optimizer 主要分片 optimizer state、FP32 main parameters 和更新责任；低精度 model-parameter buffer 在参数同步后通常仍在 DP ranks 上复制。
-- FSDP/ZeRO-3 还长期分片 model parameters，并在 forward/backward 所需位置按 FSDP unit 做 parameter AllGather。
+- FSDP FULL_SHARD/ZeRO-3 还长期分片 model parameters，并在 forward/backward 所需位置按 FSDP unit 做 parameter AllGather。
 
-Megatron-FSDP 当前实现通过 pre-forward/pre-backward hooks unshard parameters，通过 post-forward/post-backward hooks reshard parameters 并规约梯度；具体通信粒度受 FSDP unit、bucket 和 prefetch 配置影响。[Megatron-FSDP API](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.distributed.fsdp.src.megatron_fsdp.megatron_fsdp.html)
+Megatron-FSDP 的 `optim_grads_params` 路径通过 pre-forward/pre-backward hooks unshard parameters，通过 post-forward/post-backward hooks reshard parameters 并规约梯度；具体通信粒度受 FSDP unit、bucket 和 prefetch 配置影响。其他 sharding mode 不应直接套用这条 FULL_SHARD 生命周期。[Megatron-FSDP API](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.distributed.fsdp.src.megatron_fsdp.megatron_fsdp.html)
 
 ### 5. Gradient Accumulation 与通信重叠
 
@@ -426,7 +430,7 @@ DP 还可能使用以下操作，但它们通常不是主要吞吐路径：
 
 ### 8. 面试精炼回答
 
-> 标准 DP 在反向传播中使用 gradient AllReduce，让不同数据副本得到相同的聚合梯度，通常按 bucket 发起并与 backward overlap。使用 Distributed Optimizer 后，通信一般拆成 gradient ReduceScatter 和 updated-parameter AllGather：每个 DP rank 只保留一份聚合梯度及 optimizer shard，局部更新对应参数分片，再 AllGather 恢复低精度模型参数。FSDP/ZeRO-3 进一步长期分片 model parameters，因此还要在 forward/backward 前按 FSDP unit AllGather 参数，反向后 ReduceScatter 梯度。回答时还要说明 gradient accumulation 的同步时机，以及 CP 下的 `dp_cp`、MoE 下的 EDP group 边界。
+> 标准 DP 在反向传播中使用 gradient AllReduce，让不同数据副本得到相同的聚合梯度，通常按 bucket 发起并与 backward overlap。使用 Distributed Optimizer 后，通信一般拆成 gradient ReduceScatter 和 updated-parameter AllGather：每个 DP rank 只保留一份聚合梯度及 optimizer shard，局部更新对应参数分片，再 AllGather 恢复低精度模型参数。FSDP FULL_SHARD/ZeRO-3 进一步长期分片 model parameters，因此还要在 forward/backward 前按 FSDP unit AllGather 参数，反向后 ReduceScatter 梯度；其他 FSDP sharding strategy 的驻留和通信不同。回答时还要说明 gradient accumulation 的同步时机，以及 CP 下的 `dp_cp`、MoE 下的 EDP group 边界。
 
 ### 9. 高频追问
 
@@ -441,4 +445,4 @@ DP 还可能使用以下操作，但它们通常不是主要吞吐路径：
 
 - global batch 改变会影响收敛，需要学习率和 warmup 配合。
 - DP group 跨节点通信较重，bucket 和 overlap 很关键。
-- ZeRO/FSDP 本质是在 DP 语义下去掉状态冗余。
+- ZeRO/FSDP 分片策略本质是在 DP 语义下去掉不同范围的状态冗余。

@@ -57,7 +57,7 @@
 
 | 主题 | Input | Queue | Topic | Insight | Project / experiment | Playbook | Log |
 |---|---|---|---|---|---|---|---|
-| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
+| Agentic RL Infra | [Historical Backfill](tracking/historical_backfill.md) | [P0](reading_queue/P0.md) | [Agentic RL](topics/agentic_rl.md) / [Framework Selection](topics/rl_framework_selection.md) | [001](insights/001_agentic_rl_will_change_training_infra.md) | [Q3 Long-context Agentic RL](projects/2026-q3-long-context-agentic-rl/README.md) | [Rollout Latency](playbooks/rollout_latency.md) | [2026-06](learning_log/2026/2026-06.md) |
 
 ## 0.4 Historical Backfill 入口
 
@@ -67,8 +67,8 @@
 
 | 队列 | 材料 | 为什么 |
 |---|---|---|
-| P0 | AReaL | 补异步 rollout/train 解耦和 staleness 控制 |
-| P0 | HybridFlow / verl | 补 RLHF dataflow 和 actor resharding |
+| P0 | AReaL | 补异步 rollout/train 解耦和 staleness 控制；沉淀到 [RL Framework Selection](topics/rl_framework_selection.md) |
+| P0 | HybridFlow / verl | 补 RLHF dataflow 和 actor resharding；沉淀到 [RL Framework Selection](topics/rl_framework_selection.md) |
 | P0 | Agent Lightning | 补 agent runtime 与 trainer 解耦 |
 | P1 | OpenRLHF | 补 Ray + vLLM + DeepSpeed 多组件调度 |
 | P1 | vLLM + OpenRLHF Integration | 补 rollout inference / weight sync / placement group |
@@ -105,6 +105,8 @@
 
 ## 2. 并行训练
 
+先读统一工程入口：[Megatron 5D 并行](topics/distributed_training.md)。它先建立 DP/TP/PP/CP/EP 的决策框架，再按需要进入各单项专题。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 4 | Megatron-LM 2019 | [Megatron-LM](papers/megatron_lm.md) | Tensor Parallel 的工程起点 |
@@ -136,6 +138,8 @@
 | [FlashAttention](papers/flashattention.md) | 长上下文首先暴露 attention IO 和 kernel 瓶颈 |
 | [Context Parallelism](topics/context_parallelism.md) | 单条长序列跨 GPU 切分的核心机制 |
 | [Sequence Parallelism](topics/sequence_parallelism.md) | 降低 activation 显存，与 TP/CP 配合 |
+| [CP-local logits 案例](topics/long_context_training.md#cp-local-logits) | 解释 CP 已切分但 loss/logprob 又 materialize 全序列的静默显存问题 |
+| [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map) | Attention、Norm、MLP、MoE 与 loss fusion 的接入和数值验收 |
 | [Checkpointing](topics/checkpointing.md) | 长 step time 下保存、恢复和异步 checkpoint 更关键 |
 | [Agentic RL](topics/agentic_rl.md) | RL 阶段把长 prompt/response、rollout、KV cache 和 reward/verifier 带入训练系统 |
 | [CompactionRL](papers/compactionrl.md) | long-horizon agent 在固定 context budget 下训练可压缩 trajectory |
@@ -177,6 +181,8 @@
 
 ## 5. MoE
 
+先读工程手册章节：[MoE 与 Parallel Folding](topics/moe.md#parallel-folding)，重点理解同一批物理 ranks 上的 Attention/Expert 双逻辑网格、token AllToAll 数据流和拓扑代价。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 16 | GShard | [GShard](papers/gshard.md) | Expert Parallel 和自动分片 |
@@ -186,6 +192,8 @@
 | 20 | DeepSeek-V3 | [DeepSeek-V3](tech_reports/deepseek_v3.md) | MLA + DeepSeekMoE + FP8 + 通信重叠 |
 
 ## 6. 超大规模训练
+
+先读工程手册章节：[大规模训练稳定性与容错](topics/fault_tolerance.md#large-scale-training)，建立“故障概率、最慢 rank、拓扑、启动/存储惊群、checkpoint/recovery、goodput”的统一框架；再用 Llama 3 和 MegaScale 的公开生产数据校准规模判断。
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
@@ -201,7 +209,7 @@
 |---|---|---|---|
 | 26 | Sequence Parallelism | [Sequence Parallelism](topics/sequence_parallelism.md) | activation 显存和 TP 配合 |
 | 27 | Context Parallelism | [Context Parallelism](topics/context_parallelism.md) | 长上下文切分、attention 通信 |
-| 28 | Transformer Engine FP8 | [Transformer Engine](topics/transformer_engine.md) | FP8 recipe、amax、scaling |
+| 28 | Transformer Engine / Fusion | [Transformer Engine 与 NVIDIA 融合算子](topics/transformer_engine.md) | FP8、Attention/Norm/MLP/MoE fusion、接入与数值验收 |
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
 | 30 | NCCL / Network | [NCCL](topics/nccl.md) | collective、拓扑、straggler 诊断 |
 
@@ -210,8 +218,8 @@
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 31 | CompactionRL | [CompactionRL](papers/compactionrl.md) | long-horizon agent 的 context compaction、segment loss 和 cross-trajectory credit assignment |
-| 32 | AReaL | Tracking / P0 | 异步 rollout/train 解耦、staleness、sample freshness |
-| 33 | HybridFlow / verl | Tracking / P0 | RLHF dataflow、actor training/generation resharding |
+| 32 | AReaL | [RL Framework Selection](topics/rl_framework_selection.md) | 异步 rollout/train 解耦、staleness、sample freshness |
+| 33 | HybridFlow / verl | [RL Framework Selection](topics/rl_framework_selection.md) | RLHF dataflow、actor training/generation resharding |
 | 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |
 | 35 | Traditional KD → OPD → MOPD | [MOPD（研究中 / 原理第一版）](topics/mopd.md) | Student rollout、dense Teacher signal、domain routing、multi-teacher serving |
 
