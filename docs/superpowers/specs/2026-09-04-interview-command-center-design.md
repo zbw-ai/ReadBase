@@ -73,7 +73,7 @@
 | Fully Async RLVR | `resume-02`、`resume-03`、`verl-01`、`verl-02`、`verl-04`、`verl-05` |
 | Agentic RL | `resume-08`、`areal-01`、`areal-02`、`areal-09`、`resume-13`、`resume-19`、`areal-11` |
 | OPD / MOPD | `resume-09`、`rl-algo-01`、`areal-04`、`areal-08` |
-| TX 视频 / 规模交付 | `resume-18`、`kernel-01`、`resume-10`、`resume-12`、`infra-09` |
+| TX 文生视频 / 规模化交付 | `resume-18`、`kernel-01`、`resume-10`、`resume-12`、`infra-09` |
 
 同一道题可从多个项目行进入，但始终指向同一正文锚点。
 
@@ -83,16 +83,16 @@
 
 | 技术主题 | 直接展示的入口 |
 |---|---|
-| Megatron / 多维并行 | `megatron-01`、`megatron-02`、`megatron-03`、`megatron-04`、`megatron-05`、`megatron-07`、`megatron-11` |
+| Megatron / 多维并行 | `megatron-01`、`megatron-02`、`megatron-03`、`megatron-04`、`megatron-05`、`megatron-11` |
 | MoE | `moe-01`、`megatron-06`、`resume-01a`、`kernel-01` |
-| 显存 / 长上下文 | `infra-02`、`resume-06`、`resume-07`、`resume-17`、`megatron-09`、`p2-02` |
+| 显存 / 长上下文 | `infra-02`、`resume-06`、`resume-07`、`resume-17` |
 | RL 算法 / verl | `rl-algo-01`、`verl-01`、`verl-02`、`verl-03`、`verl-04`、`verl-05`、`verl-09` |
-| AReaL / Agentic RL | `resume-08`、`areal-01`、`areal-02`、`areal-04`、`areal-09`、`areal-10`、`areal-11`、`resume-19` |
-| 推理 / Rollout | `resume-03`、`verl-09`、`resume-13`、`resume-14`、`infra-06` |
-| 通信 / 集群 / 恢复 | `infra-04`、`infra-09`、`infra-03`、`infra-08`、`megatron-10` |
-| 正确性 / 交付 | `verl-05`、`areal-04`、`areal-08`、`resume-12`、`resume-10` |
+| AReaL / Agentic RL | `resume-08`、`areal-01`、`areal-02`、`areal-04`、`areal-09`、`areal-11`、`resume-19` |
+| 推理 / Rollout | `resume-03`、`verl-09`、`resume-13` |
+| 通信 / 集群 / 恢复 | `infra-04`、`infra-09`、`infra-03` |
+| 正确性 / 交付 | `verl-05`、`areal-04`、`resume-10` |
 
-P0 和项目硬证据优先展示。未进入控制台的 P1/P2 继续由现有 Part 全量索引承接，不再增加第三张全量题表。
+优先级边界明确为：技术视图只展示 P0；项目视图可保留直接项目证据型 P1；P2 只在 Part 全量索引。未进入控制台的 P1/P2 继续由现有 Part 全量索引承接，不再增加第三张全量题表。
 
 ### 4.4 按关键数字反查
 

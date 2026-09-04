@@ -39,20 +39,20 @@
 | **Fully Async RLVR** | [同步与异步](#resume-02) · [gen-TP 与实例数](#resume-03) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [Streaming/Partial/Staleness](#verl-04) · [RLVR 正确性](#verl-05) |
 | **Agentic RL** | [AReaL 训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Gateway 改造](#areal-09) · [CUDA Graph](#resume-13) · [Gateway 调度收益](#resume-19) · [XCCL/Disk](#areal-11) |
 | **OPD / MOPD** | [MOPD 主问题](#resume-09) · [PPO/GRPO/DAPO](#rl-algo-01) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08) |
-| **TX 视频 / 规模交付** | [HunyuanVideo/Ulysses](#resume-18) · [融合算子](#kernel-01) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [万卡规模效应](#infra-09) |
+| **TX 文生视频 / 规模化交付** | [HunyuanVideo/Ulysses](#resume-18) · [融合算子](#kernel-01) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [万卡规模效应](#infra-09) |
 
 #### 从技术主题进入
 
 | 技术主题 | 高频问题与项目入口 |
 |---|---|
-| **Megatron / 多维并行** | [5D 并行](#megatron-01) · [Column/Row TP](#megatron-02) · [TP 负优化](#megatron-03) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PP Bubble/VPP](#megatron-07) · [Megatron/FSDP 选型](#megatron-11) |
+| **Megatron / 多维并行** | [5D 并行](#megatron-01) · [Column/Row TP](#megatron-02) · [TP 负优化](#megatron-03) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [Megatron/FSDP 选型](#megatron-11) |
 | **MoE** | [Dense 与 MoE](#moe-01) · [EP/EDP 与 A2A](#megatron-06) · [X1 200B MoE](#resume-01a) · [Grouped GEMM/融合](#kernel-01) |
-| **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) · [Recompute/Offload](#megatron-09) · [FlashAttention](#p2-02) |
+| **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) |
 | **RL 算法 / verl** | [PPO/GRPO/DAPO](#rl-algo-01) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [权重同步](#verl-03) · [Fully Async](#verl-04) · [RLVR 正确性](#verl-05) · [vLLM/SGLang](#verl-09) |
-| **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [外部 Agent 接入](#areal-10) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
-| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [吞吐/延迟/KV](#infra-06) |
-| **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) · [可恢复 Checkpoint](#infra-08) · [Distributed Checkpoint](#megatron-10) |
-| **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [三层门禁](#areal-08) · [精度对齐](#resume-12) · [规模交付](#resume-10) |
+| **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
+| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) |
+| **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) |
+| **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [规模交付](#resume-10) |
 
 #### 按关键数字反查
 

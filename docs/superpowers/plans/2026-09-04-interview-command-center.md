@@ -4,7 +4,7 @@
 
 **Goal:** 在面试准备主文档前部增加项目/技术双入口速查控制台，并为 74 道唯一问题提供可验证的题尾回链。
 
-**Architecture:** 控制台是唯一的现场快速路由层，所有链接复用现有答案锚点；能力图只表达能力关系，Part 索引继续承担完整目录。精确返回依赖浏览器历史，静态题尾链接分别返回所属 Part 和总控制台。
+**Architecture:** 控制台是唯一的现场快速路由层，所有链接复用现有答案锚点；能力图只表达能力关系，Part 索引继续承担完整目录。优先级边界明确为：技术视图只展示 P0；项目视图可保留直接项目证据型 P1；P2 只在 Part 全量索引。精确返回依赖浏览器历史，静态题尾链接分别返回所属 Part 和总控制台。
 
 **Tech Stack:** GitHub Flavored Markdown、显式 HTML anchor、Python 只读/机械结构校验、Git。
 
@@ -97,7 +97,7 @@ Use this exact mapping:
 | **Fully Async RLVR** | [同步与异步](#resume-02) · [gen-TP 与实例数](#resume-03) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [Streaming/Partial/Staleness](#verl-04) · [RLVR 正确性](#verl-05) |
 | **Agentic RL** | [AReaL 训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Gateway 改造](#areal-09) · [CUDA Graph](#resume-13) · [Gateway 调度收益](#resume-19) · [XCCL/Disk](#areal-11) |
 | **OPD / MOPD** | [MOPD 主问题](#resume-09) · [PPO/GRPO/DAPO](#rl-algo-01) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08) |
-| **TX 视频 / 规模交付** | [HunyuanVideo/Ulysses](#resume-18) · [融合算子](#kernel-01) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [万卡规模效应](#infra-09) |
+| **TX 文生视频 / 规模化交付** | [HunyuanVideo/Ulysses](#resume-18) · [融合算子](#kernel-01) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [万卡规模效应](#infra-09) |
 ```
 
 - [ ] **Step 4: 添加“从技术主题进入”表格**
@@ -109,14 +109,14 @@ Use this exact mapping:
 
 | 技术主题 | 高频问题与项目入口 |
 |---|---|
-| **Megatron / 多维并行** | [5D 并行](#megatron-01) · [Column/Row TP](#megatron-02) · [TP 负优化](#megatron-03) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PP Bubble/VPP](#megatron-07) · [Megatron/FSDP 选型](#megatron-11) |
+| **Megatron / 多维并行** | [5D 并行](#megatron-01) · [Column/Row TP](#megatron-02) · [TP 负优化](#megatron-03) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [Megatron/FSDP 选型](#megatron-11) |
 | **MoE** | [Dense 与 MoE](#moe-01) · [EP/EDP 与 A2A](#megatron-06) · [X1 200B MoE](#resume-01a) · [Grouped GEMM/融合](#kernel-01) |
-| **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) · [Recompute/Offload](#megatron-09) · [FlashAttention](#p2-02) |
+| **显存 / 长上下文** | [Megatron 显存账本](#infra-02) · [128K/256K 显存](#resume-06) · [CP-local logits](#resume-07) · [35B-A3B/128K](#resume-17) |
 | **RL 算法 / verl** | [PPO/GRPO/DAPO](#rl-algo-01) · [HybridFlow](#verl-01) · [Colocate/Disaggregate](#verl-02) · [权重同步](#verl-03) · [Fully Async](#verl-04) · [RLVR 正确性](#verl-05) · [vLLM/SGLang](#verl-09) |
-| **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [外部 Agent 接入](#areal-10) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
-| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [吞吐/延迟/KV](#infra-06) |
-| **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) · [可恢复 Checkpoint](#infra-08) · [Distributed Checkpoint](#megatron-10) |
-| **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [三层门禁](#areal-08) · [精度对齐](#resume-12) · [规模交付](#resume-10) |
+| **AReaL / Agentic RL** | [训练链路](#resume-08) · [框架选型](#areal-01) · [Off-policyness](#areal-02) · [Trajectory Lineage](#areal-04) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11) · [Gateway 调度](#resume-19) |
+| **推理 / Rollout** | [gen-TP](#resume-03) · [vLLM/SGLang](#verl-09) · [CUDA Graph](#resume-13) |
+| **通信 / 集群 / 恢复** | [Collective](#infra-04) · [万卡规模效应](#infra-09) · [NCCL/恢复排障](#infra-03) |
+| **正确性 / 交付** | [RLVR 正确性](#verl-05) · [Trajectory→Gradient](#areal-04) · [规模交付](#resume-10) |
 ```
 
 - [ ] **Step 5: 添加关键数字反查表**
@@ -194,17 +194,17 @@ project_rows = {
     "Fully Async RLVR": ["resume-02", "resume-03", "verl-01", "verl-02", "verl-04", "verl-05"],
     "Agentic RL": ["resume-08", "areal-01", "areal-02", "areal-09", "resume-13", "resume-19", "areal-11"],
     "OPD / MOPD": ["resume-09", "rl-algo-01", "areal-04", "areal-08"],
-    "TX 视频 / 规模交付": ["resume-18", "kernel-01", "resume-10", "resume-12", "infra-09"],
+    "TX 文生视频 / 规模化交付": ["resume-18", "kernel-01", "resume-10", "resume-12", "infra-09"],
 }
 tech_rows = {
-    "Megatron / 多维并行": ["megatron-01", "megatron-02", "megatron-03", "megatron-04", "megatron-05", "megatron-07", "megatron-11"],
+    "Megatron / 多维并行": ["megatron-01", "megatron-02", "megatron-03", "megatron-04", "megatron-05", "megatron-11"],
     "MoE": ["moe-01", "megatron-06", "resume-01a", "kernel-01"],
-    "显存 / 长上下文": ["infra-02", "resume-06", "resume-07", "resume-17", "megatron-09", "p2-02"],
+    "显存 / 长上下文": ["infra-02", "resume-06", "resume-07", "resume-17"],
     "RL 算法 / verl": ["rl-algo-01", "verl-01", "verl-02", "verl-03", "verl-04", "verl-05", "verl-09"],
-    "AReaL / Agentic RL": ["resume-08", "areal-01", "areal-02", "areal-04", "areal-09", "areal-10", "areal-11", "resume-19"],
-    "推理 / Rollout": ["resume-03", "verl-09", "resume-13", "resume-14", "infra-06"],
-    "通信 / 集群 / 恢复": ["infra-04", "infra-09", "infra-03", "infra-08", "megatron-10"],
-    "正确性 / 交付": ["verl-05", "areal-04", "areal-08", "resume-12", "resume-10"],
+    "AReaL / Agentic RL": ["resume-08", "areal-01", "areal-02", "areal-04", "areal-09", "areal-11", "resume-19"],
+    "推理 / Rollout": ["resume-03", "verl-09", "resume-13"],
+    "通信 / 集群 / 恢复": ["infra-04", "infra-09", "infra-03"],
+    "正确性 / 交付": ["verl-05", "areal-04", "resume-10"],
 }
 def validate_named_table(block, expected_rows):
     row_re = re.compile(r"^\| \*\*([^*]+)\*\* \|")
