@@ -138,6 +138,13 @@ Do not say a change is complete until the relevant checks have actually run.
 
 Before returning commit commands, check local status and fetch the remote reference so the diff against GitHub is clear.
 
+Repository-owner publishing rule:
+
+- Treat GitHub `origin/main` as the canonical copy for user-facing handbook and interview-preparation documents.
+- After a substantial in-scope change passes verification, commit and push it to `main` in the same task unless the user explicitly asks to keep it local.
+- Do not leave material changes only in a temporary worktree or local feature branch. After successful integration, align local `main` with `origin/main` and remove clean, fully merged temporary worktrees and branches.
+- Keep the remote branch surface to `main`; do not create or push a feature branch unless the user explicitly requests it or repository protection makes a pull request unavoidable.
+
 Prefer commit messages that describe the learning artifact, for example:
 
 ```bash
