@@ -190,6 +190,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：[最有代表性的优化](#resume-01a)是什么？你在项目中的 [ownership](#resume-01b)？[为什么从华为到小鹏、现在又看机会](#resume-01c)？
 - **危险回答**：连续罗列十几个框架；教育背景超过 10–15 秒或展开课程、论文和奖项；说“全栈负责”却说不清代码和实验边界。
 
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-01b"></a>
 #### RESUME-01B｜你在项目中的 Ownership 是什么？（P0，10 分钟）
 
@@ -208,6 +210,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：最终方案谁拍板？你写了哪些模块？底层算子不是你写的，为什么结果算你的？如果没有你项目最可能卡在哪里？失败时你承担什么责任？
 - **危险回答**：“我全栈负责”“基本都是我做的”；只讲协调不讲技术判断；只讲代码不讲上线结果；用团队总成果替代个人边界。
 
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-01c"></a>
 #### RESUME-01C｜为什么从华为到小鹏，现在为什么又看机会？（P0，8 分钟）
 
@@ -222,6 +226,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：面试只说“家庭和长期定居规划在深圳”，不主动展开结婚、生娃和买房；只看深圳可以坦诚，但宝安、南山及周边的通勤范围留到 HR 确认办公地点时再说。
 - **高概率追问**：如果小鹏组织稳定是否还会看机会？为什么入职不到一年？你只看深圳会不会限制发展？什么条件能让你长期留下？
 - **危险回答**：“在华为是螺丝钉、自由度低、会的太少”“小鹏现在很不稳定”；过度讨论家庭安排；把组织调整说成唯一原因；表示只要薪资更高就离开。
+
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P0 扩展｜首轮前应掌握
 
@@ -239,6 +245,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：关键设计谁拍板？如果没有你项目会怎样？你 review 过哪些核心模块？
 - **危险回答**：反复使用“我们”；用 PR 数代替技术贡献；把所有收益都归因给自己。
 
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-16"></a>
 #### RESUME-16｜你如何带 4–5 人完成复杂交付？（P1，8 分钟）
 
@@ -249,6 +257,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：成员意见冲突怎么办？如何判断自己下钻还是授权？怎样评价交付质量？
 - **危险回答**：只讲开会和催进度；把协调当管理的全部；没有技术验收机制。
 
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="behavior-01"></a>
 #### BEHAVIOR-01｜为什么你匹配 100–120 万档位？（P1，10 分钟）
 
@@ -258,6 +268,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：当前工作年限约 3 年多，高薪档位会追问深度和影响范围；补齐服务用户数、GPU-hours、默认 recipe/主干贡献等业务影响数据。
 - **高概率追问**：为什么现在换工作？期望总包结构？若达不到怎么办？
 - **危险回答**：只用学历/大厂背景论证；把目标薪资作为换工作唯一原因；虚构团队影响。
+
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P2 选学｜时间允许再补
 
@@ -270,6 +282,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：可引用论文和两个阶段的职业转变，不需展开病理图像算法细节。
 - **高概率追问**：未来更想做训练还是推理？是否愿意写底层 C++/CUDA？
 - **危险回答**：“算法太卷所以转 Infra”；把 Infra 描述成部署运维；职业方向摇摆。
+
+↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
@@ -314,6 +328,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：可以口述 X1、200B MoE 模型、`0.16x → 0.95x`、MFU 35% 和 3K 卡连续稳定训练两个月；对外简历继续脱敏。客户真实名称不写入或展示。上述 NVIDIA 新方案必须使用“今天会评估”，不能倒灌成 2023–2024 年项目事实。
 - **高概率追问**：`0.16x` 的分母是什么？实际 TP/PP/DP/EP 怎么配？Grouped MatMul 为什么有效？EP all-to-all 占比多少？load imbalance 怎么测？哪项优化收益最大？为什么 MFU 只有 35%？
 - **危险回答**：从头到尾罗列开关；把总收益全部归因给 Grouped MatMul；无法给出真实并行配置和融合算子名；把 NVIDIA 2026 的 DeepEP、Parallel Folding 或 CUDA Graph 说成当时已实施。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-01"></a>
 #### MEGATRON-01｜Megatron 的“5D 并行”分别解决什么问题？（P0，15 分钟）
@@ -376,6 +392,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：你有 Megatron 后端的配置、集成与调优经验；不要声称设计了全部并行算法。
 - **高概率追问**：为什么 Dense optimizer shard group 可能是 `DP×CP`，但 microbatch 数只除以 DP？ETP 为什么不一定等于 TP？VPP 与 Zero-Bubble 有何区别？
 - **危险回答**：把 `TP×CP×EP×DP` 当通用公式；把 Attention TP 和 ETP 混为一谈；把 SP/VPP 当成额外 world-size 维度；只背定义不谈通信、GEMM 粒度和拓扑。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="infra-02"></a>
 #### INFRA-02｜Megatron 训练显存如何计算？遇到 OOM 怎么定位？（P0，18 分钟）
@@ -452,6 +470,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么 CP 不切参数却能参与 Dense optimizer sharding？为什么 microbatch 数只除以 DP，而 `d_dense` 默认是 `DP×CP`？某一 rank 单独 OOM有哪些原因？reserved 很高但 allocated 不高怎么办？
 - **危险回答**：用全模型参数直接乘 bytes/param；把所有显存都除以 world-size；把每个 phase 峰值和 workspace 全部相加；第一反应 `empty_cache()` 或直接减 batch；把 `reserved-allocated` 全部解释为 fragmentation。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P0 扩展｜首轮前应掌握
 
 <a id="resume-05"></a>
@@ -472,6 +492,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么 MFU 与 step time 比值不闭合？prefetch 如何证明真的重叠？为什么 selective 默认会重算 `core_attn`？workers 过多有什么反作用？为什么不继续增大 TP？
 - **危险回答**：说“num_workers 提升 GPU 算力”；把 standard MFU 的算术矛盾糊过去；把总收益硬拆成未经 A/B 的百分比；虚构具体 `recompute_modules`；把另一 workload 的 `TP=2,CP=8` 说成这次最终配置。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-17"></a>
 #### RESUME-17｜Qwen3.5-35B-A3B 在 128K 下为什么能把平均 step time 降低约 50%？（P0，18 分钟）
 
@@ -489,6 +511,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：A3B 为什么仍会 OOM？TP 与 EP 怎样避免重复乘 world size？为什么 loss/logprob 会成为 128K 峰值？平均下降 50% 是否掩盖 p99？
 - **危险回答**：因为 active 参数只有 3B，所以按 3B dense 估显存；把 50% 全归给 CP 或 chunking；混用 9B 的 31s→9.3s；不给 workload 与统计窗口。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-06"></a>
 #### RESUME-06｜128K/256K 长上下文训练的显存主要花在哪里？（P0，18 分钟）
 
@@ -501,6 +525,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：简历中的 35B-MoE 256K、27B 128K/256K checkpoint 交付，指训练框架和 recipe 已达到稳定训练验收，可支持算法团队继续实验并产出经下游验证的有效模型权重，不只是 smoke test。回答时准备代表性长度分布、连续训练窗口、loss/grad、save/resume、下游质量和 recipe 复现证据；同时不要外推为无限期、无人值守长稳。
 - **高概率追问**：activation 为何近似随 sequence length 增长？attention memory 是否仍是二次？CP 和 Ulysses SP 区别？offload 为什么可能严重拖慢？
 - **危险回答**：只说“开 FlashAttention 和重计算”；默认 max length 就是平均 workload；用更多 TP 机械解决所有 OOM。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-07"></a>
 #### RESUME-07｜CP chunking 静默失效为什么会分配 7.6GB 冗余 logits？（P0，18 分钟）
@@ -523,6 +549,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么 sequence chunking 救不了已分配的 full logits？TP vocab shard 如何计算 exact logprob？zigzag split 为什么取头尾两段？为什么 critic 不复用 actor 路径？
 - **危险回答**：把 bug 说成 chunk size 没传进去；只改 allocator 或 `empty_cache()`；在 CP-local logits 上配 full-sequence labels；只看 OOM 消失，不验 logprob/loss。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="kernel-01"></a>
 #### KERNEL-01｜NVIDIA 卡上为什么还需要融合算子？常见融合如何接入？（P0，18 分钟）
 
@@ -544,6 +572,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：简历只给出结论；面试前准备实际 tensor shape、dtype、vocab size 和修复位置。若无法公开代码，至少能画调用链。
 - **高概率追问**：为什么是“静默”失效？如果 logits 用 fp32 会怎样？fused CE 能如何避免 materialize 全量 logits？
 - **危险回答**：把 7.6GB 当固定公式背诵；无法解释任何维度；只说“看 profiler 找到的”。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-10"></a>
 #### RESUME-10｜你在千卡/万卡级交付里具体负责什么？（P0，15 分钟）
@@ -573,6 +603,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：你亲自改了什么、推动了什么？性能 benchmark 如何固定？讲一次“优化后瓶颈迁移”的完整迭代？为什么单机收益扩到千卡可能消失？X1 和 TX 中你的职责是否完全相同？
 - **危险回答**：把整个万卡平台、硬件运维和稳定性体系说成个人 ownership；只说“协调资源、推动闭环”而没有 profiling 和 A/B；把底层团队实现的算子或通信优化说成自己开发；泄露客户和集群敏感信息。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-02"></a>
 #### MEGATRON-02｜Column Parallel 和 Row Parallel Linear 怎么切？通信在哪里？（P0，18 分钟）
 
@@ -586,6 +618,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：QKV projection 如何切 head？为什么 TP 要求 hidden/head 数可整除？sequence parallel 如何改变通信？
 - **危险回答**：只说“按行/按列平均切”；混淆权重矩阵的逻辑维度与代码存储布局；说 TP 没有通信。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-03"></a>
 #### MEGATRON-03｜为什么 TP 从 2 增到 4 可能更慢？（P0，15 分钟）
 
@@ -598,6 +632,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：项目底稿记录过约 `163s→102s` 的相关对比；该数字不在当前简历，使用前确认 workload 与披露范围。
 - **高概率追问**：为什么 TP 通常放 NVLink 域内？如果 TP=2 放不下怎么办？怎样用 Nsight/NCCL trace 证明？
 - **危险回答**：“TP 越大通信越大”但说不出通信频率和张量；忽略 batch/GEMM shape；把一次结果普适化。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-04"></a>
 #### MEGATRON-04｜Sequence Parallel 和 Context Parallel 有什么区别？（P0，15 分钟）
@@ -623,6 +659,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么 SP 不进入 world-size？为什么 TP+EP 要启用 SP？CP 为什么能替代一部分 full recompute？GQA/MQA 下 KV 通信怎样变化？
 - **危险回答**：“SP 切短序列，CP 切长序列”；把 `SP×CP` 都乘进 world-size；认为 SP 会持久分片全部 attention activation；忽略 CP 的 KV 通信。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-05"></a>
 #### MEGATRON-05｜Megatron Distributed Optimizer 与 ZeRO-1/2/3 怎么对应？（P0，15 分钟）
 
@@ -635,6 +673,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：你做过 distributed checkpoint 和 optimizer 相关故障；若没改 optimizer 核心，明确为集成/排障经验。
 - **高概率追问**：DP=1 时还有什么冗余 buffer？overlap grad reduce 如何实现？ZeRO-3 与 TP/PP 怎么组合？
 - **危险回答**：把 Megatron distributed optimizer 直接等同 ZeRO-3；忽略 main param 和 dtype；认为分片没有通信成本。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="moe-01"></a>
 #### MOE-01｜Dense 和 MoE 的主要区别是什么？expert 如何路由，是大专家还是小专家，有多少专家，是否有 shared expert？（P0，15 分钟）
@@ -652,6 +692,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：total parameters 与 activated parameters 怎么算？top-1/top-2 的效果和成本？fine-grained expert 为什么可能更难跑快？shared expert 是否参与 EP？
 - **危险回答**：“MoE 参数大但计算量不变，所以一定比 Dense 快”；把 `E` 当 `top-k`；认为专家越多越好；把 shared expert 说成所有 MoE 标配。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-06"></a>
 #### MEGATRON-06｜MoE 为什么需要 EP？all-to-all 为什么难优化？（P0，18 分钟）
 
@@ -665,6 +707,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：top-1 与 top-2 的代价？capacity factor 如何影响效果和性能？EP 跨节点怎么放？MoE checkpoint 如何 reshuffle？
 - **危险回答**：“MoE 每 token 只算少数 expert，所以一定更快”；只谈参数量，不谈动态通信和负载尾部。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="infra-01"></a>
 #### INFRA-01｜MFU 是什么？如何正确计算和使用？（P0，15 分钟）
 
@@ -677,6 +721,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：最新版简历数字是 SFT `23%→45.2%`；必须准备 MFU estimator、有效 token 和统计窗口，并能解释它为何不能直接由 `31s→9.3s` 反推。
 - **高概率追问**：MoE FLOPs 按 total parameters 还是 activated parameters？recompute FLOPs 是否计入 numerator？为什么 achieved TFLOPs 和 MFU 不等价？
 - **危险回答**：MFU=GPU utilization；使用不同 FLOPs 公式横比；只报百分比不报 throughput。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="p2-01"></a>
 <a id="dist-01"></a>
@@ -694,6 +740,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：FSDP2 为什么不用 FlatParameter？`FULL_SHARD` 每个阶段有哪些 collective？`SHARD_GRAD_OP` 为什么不能严格等同 ZeRO-2？FSDP 与 TP 能否组合？
 - **危险回答**：FSDP 就是 TP；ZeRO-3 没有 all-gather；把 Stage 1/2/3 说反；认为状态分片一定更快。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-11"></a>
 #### MEGATRON-11｜Megatron 与 FSDP/FSDP2 如何做训练后端选型？（P0，15 分钟）
 
@@ -707,6 +755,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **深入阅读**：[训练后端决策树与显存账](../training-infra-roadmap/topics/fsdp.md#backend-selection)。
 - **高概率追问**：30B dense、8 卡时怎么选？200B MoE 呢？FSDP2+TP 的代价是什么？为什么团队熟悉度是技术指标？
 - **危险回答**：“小模型 FSDP、大模型 Megatron”一句话结束；只看能否 OOM；忽略模型支持、保存恢复和 RL weight sync。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P1 深挖｜面试官继续追问
 
@@ -731,6 +781,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么原始 129 帧不等于 129 tokens？Ulysses 与 Megatron CP/Ring Attention 的区别？All-to-All 为什么容易受跨节点拓扑影响？head 数不够怎么扩？
 - **危险回答**：直接把 `640×640×3×129` 相乘当 Attention sequence；把 Ulysses 说成切模型参数；把官方推理配置当项目训练配置；声称所有通信都被完全 overlap。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-07"></a>
 #### MEGATRON-07｜Pipeline Parallel bubble 怎么估算和优化？（P1，10 分钟）
 
@@ -742,6 +794,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：为什么 first/last stage 更容易不平衡？长上下文下 PP 是否更划算？
 - **危险回答**：只背 bubble 公式；认为 microbatch 越多越好；忽略不均衡 stage。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-08"></a>
 #### MEGATRON-08｜Packed Sequence 为什么能提吞吐，又会带来哪些风险？（P1，10 分钟）
 
@@ -751,6 +805,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：你有 packed sequence/THD 经验；准备一个边界 bug 或验证方法。
 - **高概率追问**：packing 后 batch size 怎么定义？长短样本混排如何平衡 CP rank？
 - **危险回答**：只说“拼起来就行”；忽略跨样本 attention 泄漏；用总 token 代替有效 token。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-09"></a>
 #### MEGATRON-09｜Recompute 和 Offload 应该怎么选？（P1，10 分钟）
@@ -762,6 +818,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：full recompute 约增加多少计算？哪些层适合 selective？NVMe offload 何时可用？
 - **危险回答**：把 offload 当免费显存；全开后只看能跑；不做 memory snapshot。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="megatron-10"></a>
 #### MEGATRON-10｜分布式 checkpoint 如何支持并行度变化恢复？（P1，10 分钟）
 
@@ -771,6 +829,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：你有 Megatron distributed checkpoint crash/deadlock 经验；准备 `flattened_range` 案例边界。
 - **高概率追问**：PP stage 改变如何映射层？async save 如何防半成品？optimizer reshard 为什么更难？
 - **危险回答**：只转换 model weights；忽略 optimizer 和 data cursor；以能 load 作为正确。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="bridge-01"></a>
 #### BRIDGE-01｜MBridge 是什么？与 Megatron Bridge 是什么关系？（P1，10 分钟）
@@ -786,6 +846,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **高概率追问**：Bridge 与 Megatron-Core 谁负责 process group？为什么不能直接 `load_state_dict`？转换正确性如何验证？为什么项目仍保留旧 mbridge？
 - **危险回答**：把 MBridge 说成 Megatron-Core 的并行模块；认为两个 package 只是改名；只验证能 load，不验证 logits/loss/save-resume。
 
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P2 选学｜时间允许再补
 
 <a id="p2-02"></a>
@@ -797,6 +859,8 @@ Core 10 是全部 P0 中的最高优先子集，不等于“本文只有十道�
 - **项目证据或知识边界**：有长上下文使用经验；若没写 kernel，定位为机制和集成调优。
 - **高概率追问**：为什么仍可能在 256K OOM？如何与 CP/packed sequence 组合？
 - **危险回答**：把复杂度说成线性；认为它消除所有 attention activation。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
@@ -841,6 +905,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：同步链路中哪些阶段真的串行、哪些可以重叠？为什么 gen-TP=2 更快？queue 空/满分别说明什么？2T+2R 为什么不是最终答案？staleness 怎么控制？parameter sync 占多少？generated token 和 effective training token 有何区别？
 - **危险回答**：“异步一定比同步快”；把所有同步实现说成完全串行；把不同资源配比的单卡吞吐直接横比；只报最高点 293；把 async 等价为严格 on-policy；用堆积旧 policy 样本换吞吐。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P0 扩展｜首轮前应掌握
 
 <a id="rl-algo-01"></a>
@@ -858,6 +924,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：GRPO 没有 Critic 为什么仍有 baseline？group reward std=0 怎么办？DAPO 的 dynamic sampling 为什么影响吞吐？
 - **危险回答**：“PPO 有 Critic、GRPO 没 Critic、DAPO 更好”后结束；只背 loss 名称，不讲数据契约和系统代价。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-03"></a>
 #### RESUME-03｜为什么减小 gen-TP、增加实例数会提高 rollout 吞吐？（P0，15 分钟）
 
@@ -870,6 +938,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **项目证据或知识边界**：你有直接项目证据；但面试前应补一张 `TP × 实例数 × 并发 × token/s × p95` 表。
 - **高概率追问**：何时 TP=1 更好？什么时候必须增大 TP？长上下文 KV cache 会怎样改变结论？
 - **危险回答**：“TP 通信多，所以越小越好。”模型放不下、KV cache 不够或单实例计算太慢时并不成立。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-01"></a>
 #### VERL-01｜verl/HybridFlow 的核心架构是什么？（P0，18 分钟）
@@ -887,6 +957,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：controller 是否会成为瓶颈？DataProto 如何跨 rank dispatch？旧 `megatron_workers` 与新 Engine Workers 有何变化？
 - **危险回答**：只说“verl 基于 Ray”；混淆 trainer control plane 与每 GPU worker；背旧版本类名却不说明版本。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="verl-02"></a>
 #### VERL-02｜Actor/Rollout 应该 colocate 还是分离部署？（P0，15 分钟）
 
@@ -903,6 +975,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：为什么 2T+2R 后瓶颈转向 actor？动态资源调度何时更优？colocate 如何释放 KV/optimizer 显存？
 - **危险回答**：“分离一定吞吐更高”；只算 GPU 数，不算参数同步和 queue；忽略故障域扩大。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="verl-03"></a>
 #### VERL-03｜训练态 Megatron 权重如何同步到 vLLM/SGLang？（P0，18 分钟）
 
@@ -916,6 +990,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **项目证据或知识边界**：你有跨引擎同步和 final parameter sync 故障经验；准备一次 keyword mismatch 或部分 worker 失败的真实排查。
 - **高概率追问**：TP size 不同如何 reshard？LoRA 只同步 adapter 有何差异？如何做 same-weight logp check？
 - **危险回答**：认为 NCCL broadcast 完成就代表所有 engine 已可服务；忽略 tokenizer/chat template 和 tied weights；没有 version barrier。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-04"></a>
 #### VERL-04｜Fully Async、streaming、partial rollout 与 staleness 如何配合？（P0，18 分钟）
@@ -933,6 +1009,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：queue 满/空分别说明什么？怎么 checkpoint in-flight samples？staleness=0 是否自动严格 on-policy？
 - **危险回答**：说“完全异步但没有陈旧样本”；只调队列大小；忽略恢复后的 pending/running prompt。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="verl-05"></a>
 #### VERL-05｜GRPO/RLVR 链路最容易出现哪些“能跑但训错”的问题？（P0，18 分钟）
 
@@ -945,6 +1023,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **项目证据或知识边界**：直接对应你的 OPD/MOPD、rollout correction 和 tracing 经验。
 - **高概率追问**：rollout logprob 和 trainer recompute logprob 为什么会不一致？group std=0 怎么处理？response length normalization 有何偏差？
 - **危险回答**：只看最终 reward；把 KL/loss 曲线平滑当作正确性证据；不记录原始 token ids。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-09"></a>
 #### VERL-09｜vLLM 与 SGLang rollout 后端怎么选？（P0，12 分钟）
@@ -960,6 +1040,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：为什么同权重 logprob 会不一致？SGLang/vLLM 权重更新如何处理 cache？prefix 命中率高为何仍可能 E2E 更慢？
 - **危险回答**：按“谁更快”一刀切；只看公开榜单；忽略版本兼容、weight update 与 token correctness。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P1 深挖｜面试官继续追问
 
 <a id="verl-06"></a>
@@ -972,6 +1054,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：non-tensor 数据如何广播？microbatch reorder 后 ID 怎么保持？
 - **危险回答**：只说“序列化”；忽略 dispatch semantics 和数据对齐。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="verl-07"></a>
 #### VERL-07｜Actor、Reference、Critic、Reward 各自为什么存在？（P1，8 分钟）
 
@@ -982,6 +1066,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **高概率追问**：DAPO 相对 GRPO 改了什么？Reference logprob 何时可预计算？
 - **危险回答**：把 reward model 等同 critic；认为 GRPO 完全不需 baseline/normalization。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="verl-08"></a>
 #### VERL-08｜Ray 在 verl 中最常见的生产故障有哪些？（P1，10 分钟）
 
@@ -991,6 +1077,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **项目证据或知识边界**：你有 Fuyao/Ray RPC/failure cleanup 经验；选一个具体案例。
 - **高概率追问**：controller 挂了如何恢复？object store pressure 表现？placement group 为什么 pending？
 - **危险回答**：只会 `ray stop --force`；不保存现场；把 Ray 错误当根因。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-10"></a>
 #### VERL-10｜verl v0.7.0 以后几个大版本发生了什么系统性变化？（P1，12 分钟）
@@ -1004,6 +1092,8 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **深入阅读**：[verl v0.7–v0.9 的架构演进与迁移风险](../training-infra-roadmap/topics/rl_framework_selection.md#verl-release-evolution)。
 - **高概率追问**：TransferQueue 为什么重要？Unified Engine 解决什么重复？`colocate_async` 与 `separate_async` 的差别？升级如何做 numeric regression？
 - **危险回答**：把后续功能说成项目当时已使用；背 feature list 不讲控制流/数据流；看到大版本就直接升级生产。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-11"></a>
 #### VERL-11｜自研版 verl 支撑了哪些真实后训练工作？请结合 Athena-Brain 与 Capek 0.5 说明。（P1，15 分钟）
@@ -1056,6 +1146,8 @@ Capek 不是“把四个 Teacher 的答案混在一起做 SFT”。TIES 先给�
 - **高概率追问**：Athena 为什么同源 expert 用 TIES、异源 checkpoint 用插值？Capek 为什么不是只做 TIES？多模态 GRPO 的 data contract 多了什么？两个项目哪些阶段运行在 verl、哪些是离线 merge/evaluation？
 - **危险回答**：说自己提出了论文算法；把 Athena 说成 MOPD；把 Capek 说成 Teacher 生成答案再 SFT；把离线 merge 全部归入 verl trainer；用论文结果替代个人框架改动证据。
 
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P2 选学｜时间允许再补
 
 <a id="p2-05"></a>
@@ -1067,6 +1159,8 @@ Capek 不是“把四个 Teacher 的答案混在一起做 SFT”。TIES 先给�
 - **项目证据或知识边界**：可绑定 async rollout/message queue/session drain。
 - **高概率追问**：exactly-once 是否可能？锁与 async event loop 如何选择？
 - **危险回答**：只给 happy path；吞掉异常；用无限队列解决阻塞。
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
@@ -1181,6 +1275,8 @@ flowchart TB
 - **高概率追问**：`start_session` 与后续 LLM request 的 API 边界是什么？为什么 online 模式没有 trainer 内部 Agent Workflow？cohort 为什么放大 tail？reward、session 和 trajectory 在哪里落盘/导出？为什么 weight sync 完成后才能推进 version？cache hit 高为什么不一定让 E2E 更快？
 - **危险回答**：把链路画成 `Agent Workflow → vLLM → Reward → Training Queue` 的固定串行管线；把 `policy version` 当成权重同步前独立生成的模型产物；把 checkpoint 画进每条 trajectory 的关键路径；只看模型服务器 token/s，忽略 session/cohort、环境失败和样本版本。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-09"></a>
 #### RESUME-09｜OPD/MOPD 解决什么问题？你如何证明它正确且有效？（P0，20 分钟）
 
@@ -1212,6 +1308,8 @@ flowchart TB
 - **高概率追问**：TILE merge 当时如何评估？为什么 Student 从 RL 前模型而不是某个 Expert 初始化？Teacher 为什么对 Student 的同一 token path 打分？`mopd_pg` 的 token advantage 怎么构造？如何防止 `data_source` 串域？equal-token weighting 为什么可能偏向长 trajectory？
 - **危险回答**：把 TILE 的未确认机制和论文来源讲成事实；说 Teacher 重新生成答案；暗示最终推理仍需动态路由 Teacher；用训练 loss 下降证明能力提升；把单 Teacher、受污染的探索实验和双 Teacher 正式结果混在一起；把代码仓库已有功能全部说成个人实现。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P0 扩展｜首轮前应掌握
 
 <a id="areal-01"></a>
@@ -1235,6 +1333,8 @@ flowchart TB
 - **高概率追问**：verl v0.9 后差异是否还成立？所谓“框架重”具体体现在哪里？AReaL 项目链路与 2.x 有何区别？同一任务怎么做公平选型 benchmark？
 - **危险回答**：“AReaL 异步、verl 同步”；“AReaL 所有方面更先进”；把当时版本结论外推到当前 slime/ROLL；只用社区 benchmark，不讲团队已有资产和改造成本。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="areal-02"></a>
 #### AREAL-02｜AReaL 如何控制异步训练的 off-policyness？（P0，18 分钟）
 
@@ -1247,6 +1347,8 @@ flowchart TB
 - **项目证据或知识边界**：你有 staleness manager、policy version 和 rejection diagnostics 经验；不要引用官方“通常 2–8”当作项目最优值。
 - **高概率追问**：manager head drift 和真实 behavior staleness 区别？stale 样本直接丢弃会有什么系统后果？
 - **危险回答**：把 off-policy 只当数据过期问题；认为版本差 1 的所有 token 偏差相同；忽略 throughput-quality frontier。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-03"></a>
 #### AREAL-03｜AReaL 2.0 的微服务化对 Agentic RL 有什么价值？（P0，18 分钟）
@@ -1261,6 +1363,8 @@ flowchart TB
 - **高概率追问**：控制面和数据面如何分离？weight update 服务失败怎么办？HTTP 会不会成为瓶颈？
 - **危险回答**：“微服务更解耦、更高性能”而没有状态一致性设计；忽略服务间背压和恢复。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="areal-04"></a>
 #### AREAL-04｜如何证明 generated trajectory 最终真的产生了梯度？（P0，18 分钟）
 
@@ -1273,6 +1377,8 @@ flowchart TB
 - **项目证据或知识边界**：这是项目底稿中的直接证据；如不可对外披露精确数字，保留方法和比例定义。
 - **高概率追问**：如何处理 microbatch reorder？tracing 本身会不会拖慢？最终 drain 时 waiting 样本算什么？
 - **危险回答**：用队列长度代替 lineage；只追踪 trajectory 数而不追踪 token；忽略 tracing overhead 对 A/B 的污染。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-09"></a>
 #### AREAL-09｜结合代码仓说说你对 Gateway 做了哪些改造（P0，20 分钟）
@@ -1288,6 +1394,8 @@ flowchart TB
 - **项目证据或知识边界**：强调个人是上述控制逻辑和验证的 owner，不把团队已有 online proxy/cohort 架构说成从零自研，也不拿 commit message 代替性能实验。
 - **高概率追问**：为什么 quota plan 要等 optimizer、weight sync、model save 后才 commit？commit 与 recovery checkpoint 之间失败如何恢复？408/429 为什么不能直接换 task 重试？requeue 为什么会伤害 goodput？
 - **危险回答**：“我重写了 Gateway”；只讲加接口，不讲 invariant；所有失败都随机换 worker 重试；用 PR 数量代替系统结果。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-11"></a>
 #### AREAL-11｜AReaL 的 XCCL 与 disk 权重同步有什么区别？为什么项目最终选择 XCCL？（P0，15–18 分钟）
@@ -1311,6 +1419,8 @@ flowchart TB
 - **高概率追问**：为什么 set_version 必须在传输成功后？部分 rollout rank 失败怎么办？何时宁可选 disk？colocate 为什么可能限制传输路径？
 - **危险回答**：“XCCL 就是 NCCL，一定比 disk 快”；把 version 当成另一份权重；把所有 trainer rank 都说成 sender；把 disk transfer 和持久 checkpoint 混为一谈。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-13"></a>
 #### RESUME-13｜CUDA Graph 为什么能让 Agentic RL decode 加速 6–8x？（P0，12 分钟）
 
@@ -1330,6 +1440,8 @@ flowchart TB
 - **项目证据或知识边界**：对外主数字使用最新简历 `6–8x`；`14x` 只能在明确说“另一项 verl 35B RLVR workload”时补充。
 - **高概率追问**：continuous batching 为什么还能用 graph？权重同步后是否必须 recapture？graph 为什么可能额外 OOM？GPU 已经 compute-bound 时收益多大？
 - **危险回答**：说 CUDA Graph 融合了所有 kernel 或减少模型计算量；把 decode 倍数外推到 rollout/E2E；忽略 graph miss、静态地址和额外显存。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-19"></a>
 #### RESUME-19｜Gateway 如何通过流式补位、均衡分发和失败管理把 Rollout 吞吐提升 60%？（P0，20 分钟）
@@ -1353,6 +1465,8 @@ flowchart TB
 - **高概率追问**：round-robin 为什么不等于实时 least-load？session affinity 为什么优先于重新均衡？失败后为什么必须复用 identity？partial group 能不能训练？补位会不会让样本更 stale？
 - **危险回答**：把 token streaming 当调度补位；每次失败随机换 worker；只追求并发而无 bounded queue/backpressure；把 Rejected Group 下降直接等同于训练效果提升。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P1 深挖｜面试官继续追问
 
 <a id="resume-14"></a>
@@ -1365,6 +1479,8 @@ flowchart TB
 - **高概率追问**：cache key 包含什么？session affinity 为什么重要？如何测真正 reuse ratio？
 - **危险回答**：cache hit 越高系统越快；不区分 prefill time 与 episode time。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="resume-15"></a>
 #### RESUME-15｜Rejected Group 从 33.18% 降到 2.73%意味着什么？（P1，10 分钟）
 
@@ -1375,6 +1491,8 @@ flowchart TB
 - **高概率追问**：partial group 能不能训练？uniform reward group 怎么处理？
 - **危险回答**：把 rejected 全称为坏样本；只优化比例不看原因分布。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="areal-05"></a>
 #### AREAL-05｜Partial Rollout 的收益和风险是什么？（P1，10 分钟）
 
@@ -1384,6 +1502,8 @@ flowchart TB
 - **项目证据或知识边界**：有 online session/trajectory 经验；如果项目没启用跨版本 partial，明确为机制理解。
 - **高概率追问**：environment state 怎么恢复？segment reward 如何分配？
 - **危险回答**：把 partial rollout 当字符串续写；整条只记一个 policy version。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-06"></a>
 #### AREAL-06｜权重同步如何做到原子、可观测、可回滚？（P1，10 分钟）
@@ -1396,6 +1516,8 @@ flowchart TB
 - **高概率追问**：大模型双缓冲显存不够怎么办？滚动更新能否用于训练 rollout？
 - **危险回答**：一次 broadcast 即原子；失败后简单重试而不看是否部分生效。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="areal-07"></a>
 #### AREAL-07｜Online Proxy 与 session drain 为什么重要？（P1，8 分钟）
 
@@ -1405,6 +1527,8 @@ flowchart TB
 - **项目证据或知识边界**：你做过 online session drain 和 shutdown contract；可作为直接证据。
 - **高概率追问**：客户端断线怎么处理？retry 如何幂等？session affinity 丢失会影响 cache 吗？
 - **危险回答**：直接 kill server；不区分 request 完成与 trajectory 完成。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-10"></a>
 #### AREAL-10｜外部 Agent 如何通过 OpenAI-compatible Gateway 接入训练？（P1，12 分钟）
@@ -1421,6 +1545,8 @@ flowchart TB
 - **高概率追问**：为什么要 admin/session 两级 key？客户端重试如何不生成重复 trajectory？reward 先于 end 或晚于 end 怎么办？Tool state 由谁恢复？
 - **危险回答**：“兼容 OpenAI API，所以任意 Agent 可直接训练”；把 Tool/Sandbox 说成 Gateway 内部固定模块；忽略 reward/session/group 的状态机。
 
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="areal-08"></a>
 #### AREAL-08｜FUNCTIONAL、NUMERIC、EFFICACY 三层门禁分别是什么？（P1，8 分钟）
 
@@ -1430,6 +1556,8 @@ flowchart TB
 - **项目证据或知识边界**：这是 MOPD 项目的核心方法论。当前双 Teacher 已有“SWE、Terminal 双域提升且 General 不下降”的 EFFICACY 方向性结论；统计细节仍按证据卡补齐，三层门禁不能因为已有结论而省略。
 - **高概率追问**：每层最小测试是什么？什么时候可以进入长跑？
 - **危险回答**：用 loss 不 NaN 通过 numeric；用训练 reward 通过 efficacy。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P2 选学｜时间允许再补
 
@@ -1442,6 +1570,8 @@ flowchart TB
 - **项目证据或知识边界**：高度贴合你的经历；未知 SLA/规模时先提问，不急于报架构。
 - **高概率追问**：哪层是 source of truth？外部 env 不稳定怎么办？如何多租户？
 - **危险回答**：画一条理想流水线无失败状态；只谈模型并行；没有容量模型。
+
+↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
@@ -1509,6 +1639,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：Broadcast 与 AllGather 有何区别？为什么 RS+AG 与 AR 只说语义等价？gradient 和 parameter 分别在哪一步通信？AllToAllV 如何避免 count 不一致 hang？ring/tree 怎么选？
 - **危险回答**：只背中文定义；把 gradient ReduceScatter 与 parameter AllGather 说反；认为 Broadcast 会收集每个 rank 的输入；把 Barrier 当修复 race 的万能方法；忽略所有 ranks 必须以一致协议调用 collective。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P0 扩展｜首轮前应掌握
 
 <a id="infra-09"></a>
@@ -1543,6 +1675,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：为什么 `T_step` 看 max 而不是平均？慢 rank 和网络拥塞怎么区分？TP/EP/CP/DP 如何映射拓扑？固定 world-size 与 elastic recovery 怎么选？checkpoint 间隔怎么定？如何避免恢复时击穿存储？goodput 怎么计算？
 - **危险回答**：只回答“机器更容易坏、通信更慢”；只看平均 GPU utilization/MFU；把所有 hang 都归因于 NCCL；认为多打日志就能定位；把公开万卡经验或平台团队能力包装成个人 ownership。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="infra-03"></a>
 #### INFRA-03｜多机训练 NCCL hang 或 checkpoint 恢复失败怎么排查？（P0，18 分钟）
 
@@ -1556,6 +1690,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：为什么一个 rank 提前异常会表现成其他 rank NCCL timeout？world size/TP 改变后如何恢复？async checkpoint 如何保证一致性？
 - **危险回答**：一看到 hang 就重启；只看最后报错 rank；checkpoint 只保存 model weights。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 ### P1 深挖｜面试官继续追问
 
 <a id="resume-12"></a>
@@ -1568,6 +1704,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：容许误差怎么设？多机不确定性如何处理？forward 对齐但训练发散怎么办？
 - **危险回答**：只比较最终输出；直接调 learning rate；把 FP16 误差都视为正常。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="infra-05"></a>
 #### INFRA-05｜给你 64 张 A100，如何为 35B MoE 128K 选择并行策略？（P1，15 分钟）
 
@@ -1577,6 +1715,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **项目证据或知识边界**：可绑定 35B-A3B 与 128K/256K 交付，但不要假装题目参数已知。
 - **高概率追问**：为什么不直接 TP=8？EP 是否跨节点？global batch 不可整除怎么办？
 - **危险回答**：立刻报一组数字；不问模型结构和拓扑；忽略有效 batch/收敛约束。
+
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="infra-06"></a>
 #### INFRA-06｜推理吞吐、延迟和 KV cache 如何权衡？（P1，10 分钟）
@@ -1588,6 +1728,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：为什么长上下文降低可并发数？chunked prefill 有何取舍？
 - **危险回答**：只有 token/s 一个指标；把模型服务器延迟等同 agent episode 延迟。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="infra-07"></a>
 #### INFRA-07｜你会怎样设计训练系统的可观测性指标树？（P1，10 分钟）
 
@@ -1598,6 +1740,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **高概率追问**：高基数 label 如何控制？如何避免 profiling 污染？
 - **危险回答**：堆很多指标但没有层级；只看 GPU utilization；无跨服务 correlation ID。
 
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
 <a id="infra-08"></a>
 #### INFRA-08｜一个可恢复训练 checkpoint 必须保存什么？（P1，8 分钟）
 
@@ -1607,6 +1751,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **项目证据或知识边界**：有 StatefulDataLoader、online drain、checkpoint/recovery 经验。
 - **高概率追问**：哪些状态可重建？如何避免重复消费？保存 queue 会不会太大？
 - **危险回答**：只保存权重；忽略 data cursor；恢复后不做数值检查。
+
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P2 选学｜时间允许再补
 
@@ -1619,6 +1765,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **项目证据或知识边界**：你有 tracing/MFU/通信优化经验；CUDA kernel 手写深度需诚实说明。
 - **高概率追问**：GPU util 高为什么仍可能低效？小 GEMM 有什么特征？
 - **危险回答**：看到 util 100% 就认为 compute-bound；只说用 Nsight。
+
+↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
