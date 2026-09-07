@@ -13,7 +13,7 @@
 
 > **怎么用**：沿「教育背景 → 工作技能 → 项目经历」找到对应题目，先讲直接回答，被追问时再看展开。题尾可返回本 Part 或本控制台；浏览器返回按钮、macOS `⌘ + [`、Windows/Linux `Alt + ←` 可回到上一次跳转位置。题头的分钟数是完整准备时间，答案里的秒数是口述参考时长。
 
-**快速入口**：[自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
+**快速入口**：[自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
 
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
