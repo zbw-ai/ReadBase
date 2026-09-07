@@ -18,7 +18,7 @@
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
 | **教育背景** | 厦门大学本科、清华大学硕士，研究方向为人工智能 | [自我介绍](#resume-01) |
-| **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、FSDP/DeepSpeed/Accelerate | [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [FSDP](#dist-01) · [框架选型](#megatron-11) |
+| **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [FSDP](#dist-01) · [框架选型](#megatron-11) |
 |  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · [EP/A2A](#megatron-06) · [显存账本](#infra-02) · [融合算子](#kernel-01) |
 |  | **RL / verl / AReaL**：PPO/GRPO/DAPO、Fully Async、Agentic RL | [RL 算法](#rl-algo-01) · [verl/AReaL 选型](#areal-01) · [HybridFlow](#verl-01) · [资源部署](#verl-02) · [Async/Streaming/Staleness](#verl-04) |
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
@@ -343,11 +343,60 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **本 Part 导航**：
 
+- **先看全景**：[Megatron 训练整体优化方案](#megatron-optimization-overview)
 - **Core**：[X1 MoE 优化](#resume-01a) · [5D 并行](#megatron-01) · [显存账与 OOM](#infra-02)
 - **P0 项目**：[9B SFT 加速](#resume-05) · [35B-A3B 128K](#resume-17) · [长上下文显存](#resume-06) · [CP-local logits](#resume-07) · [融合算子](#kernel-01) · [千卡规模交付](#resume-10)
 - **P0 机制**：[TP Linear](#megatron-02) · [TP 负优化](#megatron-03) · [SP 与 CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [Dense 与 MoE](#moe-01) · [EP 与 All-to-All](#megatron-06) · [MFU](#infra-01) · [FSDP 与 ZeRO](#dist-01) · [训练后端选型](#megatron-11) · [SFT 数据正确性](#sft-data-01) · [多模态与具身](#mllm-01)
 - **P1**：[视频 Ulysses](#resume-18) · [PP bubble](#megatron-07) · [Packed Sequence](#megatron-08) · [Recompute 与 Offload](#megatron-09) · [Checkpoint 换并行度](#megatron-10) · [两种 Bridge](#bridge-01)
 - **P2**：[FlashAttention 原理](#p2-02)
+
+<a id="megatron-optimization-overview"></a>
+### 训练优化总览｜如何系统优化一个 Megatron 训练任务？
+
+> **P0 复习入口**：先掌握这条回答主线，再按表格跳转到具体题；本节是已有问题的总览，不另增题号。适用于 Dense/MoE 的预训练与 SFT，EP、router、dispatcher 等是 MoE 特有项。
+
+**60–90 秒口述**：
+
+> 我会先固定模型、数据、序列长度、batch、精度和硬件，建立性能与正确性基线。然后沿一个训练 step 做 profiling，先确认是否在等数据，再看显存、通信和计算效率哪个是主要瓶颈。
+>
+> 并行策略先保证模型放得下，再比较不同 TP、CP、PP、EP 组合下的实际吞吐，避免切分过细导致小 GEMM 和通信开销。显存侧用状态分片、选择性重计算和必要的 offload；计算侧看 Grouped GEMM、融合算子和 Attention kernel；通信侧看拓扑、token dispatcher，以及没有被计算掩盖的等待。MoE 还要看专家负载是否均衡，不能只看平均利用率。
+>
+> 每次针对一个瓶颈做可归因的 A/B，再重新 profile，因为省下显存后，最优并行度和 batch 也可能变。最终要同时验证 step time、有效吞吐、显存、loss 和恢复能力，而不是只证明某个算子更快。
+
+#### 1. 用“三堵墙”定位，用五类手段优化
+
+**Memory Wall 是装不下或被迫缩小 batch；Communication Wall 是跨卡等待过多；Compute Efficiency Wall 是算力没有高效转成有效计算。** 三者会互相影响，并行配置横跨三者，生产能力保障长期可用；数据供给与 checkpoint I/O 也要单独检查，不能因为不在“三堵墙”名称里就忽略。
+
+| 优化维度 | 具体怎么做 | 验证什么，避免什么代价 | 继续查题 |
+|---|---|---|---|
+| **① 并行与拓扑** | 用 TP/PP/CP/DP/EP 分摊计算与状态；MoE 用 Parallel Folding 分别选择 Attention 与 Expert 网格；用 microbatch/VPP 调整流水线 | 每卡峰值、GEMM 大小、通信暴露时间、PP bubble；并行度大不一定更快 | [5D/Folding](#megatron-01) · [TP](#megatron-02) · [SP/CP](#megatron-04) · [PP/VPP](#megatron-07) |
+| **② 显存** | 区分参数、梯度、optimizer、activation 和临时 buffer；选择状态分片、细粒度 recompute、memory-efficient permutation、precision-aware optimizer、activation offload | 看峰值发生在哪一段；重算增加计算，offload 增加传输，状态降精度需验证数值。优先消除非预期全量张量 | [显存账本](#infra-02) · [Recompute/Offload](#megatron-09) · [FSDP/ZeRO](#dist-01) · [CP logits](#resume-07) |
+| **③ 通信** | 分开看 TP/DP collective、CP KV、EP dispatch/combine 和 PP P2P；匹配拓扑和 dispatcher，按依赖安排重叠；NVIDIA 路径可评估 DeepEP/HybridEP，以及 Dgrad/Wgrad 拆分与延后 Wgrad 的 EP overlap | 看未被掩盖的通信和最慢 rank；overlap 可能争抢 SM、HBM 或链路，必须复测端到端 | [通信算子](#infra-04) · [EP/A2A](#megatron-06) · [千卡/万卡](#infra-09) |
+| **④ 计算与执行** | Grouped GEMM 提高多 expert 计算效率；融合 router、permute/unpermute、激活、归一化或 loss，减少中间读写；选合适 Attention kernel；评估 CUDA Graph 与 sync-free 路径 | 区分 GEMM 效率低、HBM 受限、CPU launch/同步空洞；Graph 不减少数学 FLOPs，动态形状也不能假定全图可捕获 | [融合算子](#kernel-01) · [FlashAttention](#p2-02) · [Profiler](#p2-03) · [Graph 原理](#resume-13) |
+| **⑤ 生产与模型初始化** | 监控 router/expert 负载，评估 dropless 或容量策略；用 distributed optimizer/FSDP 管理状态，用 distributed checkpoint 支持保存恢复；需要时评估 dense→MoE upcycling | token dropping 会改变训练语义；upcycling 是初始化方案，不是 step 加速开关。验收 loss、效果、恢复和长期有效训练时间 | [MoE 路由](#moe-01) · [Distributed Optimizer](#megatron-05) · [Checkpoint](#megatron-10) · [训练异常](#train-anomaly-01) |
+
+五类能力对应你提供的报告 §1.3；“瓶颈—动作—验证”是面试中的工程组织方式。机制可对照 [NVIDIA MoE 报告 §1.3](https://arxiv.org/html/2603.07685v1#S1.SS3) 与 [Megatron Core MoE 官方指南](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/moe.html)（本节核验于 2026-09-07）；具体开关、组合与硬件支持以所用版本为准。
+
+#### 2. 真正动手时的顺序
+
+1. **固定基线、保证算对**：锁定 global batch/有效 token 口径、精度、卡数、软件版本、warmup 和统计窗口；保留配置与 loss 基线。MoE 按总参数算权重容量，不能只拿激活参数量估显存。
+2. **先能放下，再选更快的切法**：估算显存，找可行并行网格；在同一 workload 下比较吞吐。显存不够先处理容量，能跑以后按实际瓶颈排序，不强制先优化某一种算子。
+3. **逐项归因、循环调优**：数据等待高就调 DataLoader workers/prefetch，padding 浪费高再评估 packing；计算差就看 kernel/GEMM；通信暴露高就看拓扑、dispatcher/overlap。释放显存后重新评估 microbatch、TP/CP 和 recompute，但全局训练语义不能悄悄改变。
+4. **从局部收益走到规模验收**：同时记录 step time 的均值/尾部、有效 tokens/s/GPU、MFU、峰值显存、expert 负载与错误率；回归 loss/模型效果、checkpoint 恢复及多机稳定性。不把单 kernel 加速直接当作整步收益。
+
+#### 3. 三个容易被追问的边界
+
+- **Folding 不是多出一批卡**：同一 PP 划分下，`world_size = PP × TP × CP × DP = PP × ETP × EP × EDP`。它解除 Attention/Expert 切分绑定；截图的“打破 EP≤DP”针对传统受限布局，不是说所有版本都用同一种 DP 定义，更不能把 EP 额外乘到总卡数上。[双网格、8/256 GPU 例子](../training-infra-roadmap/topics/moe.md#parallel-folding)
+- **Sync-free 不是取消分布式同步**：这里主要减少为了获知动态 expert token 数而发生的 CPU–GPU 同步，让调度信息尽量留在设备端；collective、数据依赖和梯度语义仍需保证。Dropless MoE 的 Graph 捕获范围取决于 kernel、内存与框架支持，可能只捕获静态子图。[报告 §4.3.7](https://arxiv.org/html/2603.07685v1#S4.SS3.SSS7)
+- **低精度是跨维度手段，不是全部改成 FP8/FP4**：它可能同时影响 activation、GEMM 和部分通信，但要核对硬件/算子支持、量化额外开销与敏感路径精度；precision-aware optimizer 也不等于把所有 optimizer state 无条件降精度。[低精度与收敛边界](https://arxiv.org/html/2603.07685v1#S5)
+
+#### 4. 接回自己的项目
+
+- **X1 200B MoE**：重点落在并行策略、Grouped MatMul、融合算子、通信掩盖与模型侧性能交付，接 [代表性优化](#resume-01a)。DeepEP、HybridEP、Parallel Folding、FP8/FP4 等未确认方案只能说“今天会评估”；NVIDIA 实现不能直接套成国产卡当年的配置。
+- **9B SFT / 长上下文**：重点落在 DataLoader 并发与预取、选择性重计算、TP/CP 调整，接 [31s→9.3s](#resume-05)。[35B/128K](#resume-17) 与 [CP-local logits](#resume-07) 分别讲，不补造联合消融。
+- **适用范围**：上表是技术工具箱，不代表本人全部实现或使用。训练 CUDA Graph 的候选收益也不能套用 [Agentic RL decode 6–8x](#resume-13) 的测量结果。
+
+↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### Core｜最高优先入口
 
@@ -368,13 +417,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   4. **通信掩盖**：按 TP/DP collective、EP dispatch/combine 和 PP P2P 分别看 exposed time。准备一条当时真实的 overlap timeline，说明 compute/communication 的依赖如何解除、使用了什么 stream/chunk/schedule，以及为什么 overlap 后没有因资源争用拖慢 GEMM。
   5. **显存、精度和规模化**：只讲确认使用过的显存手段，例如实际的 optimizer 分片、sequence parallel、recompute 或 buffer 复用；融合和低精度路径用逐层 dump 找 first divergence。最后从小规模功能/精度基线扩到 3K 卡，验证 loss、吞吐、checkpoint 和故障恢复。
 
-- **结合 NVIDIA 2026 MoE 报告可以补充什么**：以下是今天继续演进时会评估的方向，不是 X1 当时已经落地的成果。NVIDIA 将 MoE 优化概括为 Memory Wall、Communication Wall 和 Compute Efficiency Wall，并强调三者会互相迁移。[技术报告](https://arxiv.org/abs/2603.07685)、[Megatron Core MoE README](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/transformer/moe/README.md)
-
-  - **Parallel Folding**：把 attention 的 TP/CP/DP 与 MoE 的 ETP/EP/EDP 解耦，让 dense attention 和 sparse expert 分别使用适合自己的并行映射。
-  - **Optimized dispatcher**：根据 GPU 拓扑评估 DeepEP/HybridEP，减少 EP 跨节点冗余搬运并提高带宽利用率。
-  - **更细的 EP overlap**：用 merged FWD-BWD、独立 compute/comm stream 和 Wgrad/Dgrad split 扩大 all-to-all 的隐藏窗口。
-  - **显存换并行效率**：fine-grained recomputation、pipeline-aware activation offloading 和 precision-aware optimizer 不只是为了避免 OOM，也可能让系统降低 TP/PP、恢复更大的 GEMM。
-  - **kernel 与低精度**：router/permutation fusion、FP8/FP4 grouped quantization + Grouped GEMM，以及对 dropless MoE 采用 partial CUDA Graph；回答时要说明动态 expert shape 与静态 graph 的冲突。
+- **结合 NVIDIA 2026 MoE 报告可以补充什么**：按 [训练整体优化总览](#megatron-optimization-overview) 的三堵墙与五类手段展开；Parallel Folding、DeepEP/HybridEP、更细的 EP overlap、低精度与 Graph 路径是今天继续演进时会评估的方向，不是 X1 当时已经落地的成果。
 
 - **项目证据或知识边界**：可以口述 X1、200B MoE 模型、`0.16x → 0.95x`、MFU 35% 和 3K 卡连续稳定训练两个月；对外简历继续脱敏。客户真实名称不写入或展示。上述 NVIDIA 新方案必须使用“今天会评估”，不能倒灌成 2023–2024 年项目事实。
 - **高概率追问**：`0.16x` 的分母是什么？实际 TP/PP/DP/EP 怎么配？Grouped MatMul 为什么有效？EP all-to-all 占比多少？load imbalance 怎么测？哪项优化收益最大？为什么 MFU 只有 35%？
@@ -2785,7 +2828,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="vi-0"></a>
 ### VI.0 下一轮复习与口径校准
 
-按目前台账，9 月 8 日下午是智元二面，晚上是字节一面。下面安排优先覆盖已暴露的薄弱项；后续面试也可沿用，按岗位调整项目比重。
+按目前台账，9 月 8 日下午是智元二面，17:00 是小红书中台一面，晚上是字节一面。需确认智元二面的具体时段，为 17:00 的面试留出切换时间。下面安排优先覆盖已暴露的薄弱项；后续面试也可沿用，按岗位调整项目比重。
 
 | 时间 | 复习入口 | 完成标准 |
 |---:|---|---|
@@ -3172,13 +3215,13 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="interview-progress"></a>
 ## Appendix A｜面试流程进度台账
 
-> 更新截至 2026-09-04。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
+> 更新截至 2026-09-07；时间为北京时间（UTC+8）。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
 
 | 公司 | 岗位 | 面试时间 | 当前轮次 | 状态 | 下一节点 |
 |---|---|---|---|---|---|
-| 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 待反馈 | 等待结果 |
+| 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 未通过 | 本轮流程结束 |
 | 智元机器人 | 训练 Infra | 2026-09-04 下午 | 一面完成 | 已通过 | 2026-09-08 下午二面 |
 | 字节跳动 | 训练 Infra | 2026-09-08 晚上 | 一面待进行 | 已排期 | 完成一面 |
-| 小红书中台 | 训练 Infra | 待定 | 待约面 | 时间未定 | 确认面试时间 |
+| 小红书中台 | 训练 Infra | 2026-09-08 17:00 | 一面待进行 | 已排期 | 完成一面 |
 
 ↑ [返回面试速查控制台](#interview-console)
