@@ -23,7 +23,9 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-09-01](frontier_scan_2026-09-01.md)：当前最新扫描，覆盖到 2026-09-01 11:31:29；重点包括 Anthropic RL environment 治理、HARTS rollout-tree prefix sharing、CE-MoE、verl weight-sync admission gate 与 Megatron variable-length packing。
+- [Frontier Scan 2026-09-07](frontier_scan_2026-09-07.md)：当前最新扫描，覆盖到 2026-09-07 10:00:26；arXiv 无新公告批次，重点包括 OpenAI automated research 工业报告、NeMo RL rollout token ledger / vLLM reload refit，以及 Megatron GDP CuTeDSL CP / per-rank RNG resume correctness。
+- [Frontier Scan 2026-09-05](frontier_scan_2026-09-05.md)：上一份扫描，覆盖到 2026-09-05 00:21:28；重点包括 AInfer-PD、2400-GPU multi-tenancy characterization、TRL 1M-token CP recipe、slime streaming rollout、NeMo RL HybridEP 与 Headroom-Drift Replay。
+- [Frontier Scan 2026-09-01](frontier_scan_2026-09-01.md)：前一份扫描，覆盖到 2026-09-01 11:31:29；重点包括 Anthropic RL environment 治理、HARTS rollout-tree prefix sharing、CE-MoE、verl weight-sync admission gate 与 Megatron variable-length packing。
 - [Frontier Scan 2026-08-30](frontier_scan_2026-08-30.md)：上一份扫描，覆盖到 2026-08-30 21:04:46；重点包括 NeMo RL generation-shard recovery、AReaL truncation/GAE correctness、RL-for-LLM 并行性能方法论与长上下文 VPP。
 - [Frontier Scan 2026-08-28](frontier_scan_2026-08-28.md)：前一份扫描，覆盖到 2026-08-28 10:24:25；重点包括 OpenAI-Hugging Face incident technical report、psRL、Granite 4.2 异步 GRPO/128K 工业配方与 verl Liger fused PPO kernel。
 - [Frontier Scan 2026-08-26](frontier_scan_2026-08-26.md)：前一份扫描，覆盖到 2026-08-26 10:22:05；收录 OpenAI Jalapeño、Microsoft Maia 200 与 GPU Synchronization Tax，核心判断聚焦 hardware-software co-design、data movement 与 rank arrival skew。
