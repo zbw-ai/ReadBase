@@ -46,7 +46,7 @@
 
 ### 1. 先消除 input bubble
 
-`num_workers=0` 时，数据读取、解码/tokenize、packing、collate 和 H2D 更容易串在训练主进程里。若 profiler 看到 GPU kernel 间存在与 `next(data_iter)` 对齐的空洞，应逐步验证：
+`num_workers=0` 表示 DataLoader 不使用 worker 子进程，并不单凭这个值就能断定 GPU 在等数据。先看 CPU 数据准备、H2D 与 GPU 计算的实际 timeline；若 GPU 空洞与 `next(data_iter)` 对齐，再逐步验证以下候选。当前项目只确认 worker `0→8` 与 prefetch，不代表其余配置都已在这次 benchmark 中启用：
 
 - 增大 `num_workers`，项目底稿记录的方向是 `0→8`；
 - `pin_memory` + non-blocking H2D；
@@ -55,7 +55,7 @@
 - tokenizer/packing 缓存、连续存储和减少小文件 metadata IO；
 - 监控 CPU utilization、RSS、page fault、queue depth 和 data wait p95，防止 worker 过多反而争抢 CPU/内存。
 
-这类优化不提高 GPU 峰值算力，而是减少 GPU 暴露的等待时间。
+这类优化不提高 GPU 峰值算力，而是减少 GPU 暴露的等待时间。CPU 预取下一批与 GPU 计算重叠，不等于 H2D copy 与 kernel 已经重叠；后者还需要 pinned memory、合适的独立 CUDA stream、可用 DMA engine 和正确依赖，不能只看 `non_blocking=True`。[PyTorch 官方说明](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html)
 
 ### 2. 从 full recompute 收敛到 selective recompute
 
@@ -111,16 +111,16 @@ MoE 的 active 参数决定单 token 的部分 FLOPs，但不能把整套系统�
 - 128K 放大 attention/activation、CP communication 与 logits/loss 临时张量；
 - expert token 不均衡会让最热 expert/rank 决定 step tail。
 
-最新版简历的结果是平均 step time 降低约 `50%`。可验证的技术链应按以下顺序讲：
+最新版简历的结果是平均 step time 降低约 `50%`。以下是面对这类 workload 的分析与选型顺序，不是已经核实的逐项优化时间线或消融：
 
-1. **修静默全量张量**：尤其是下一节的 CP full-logits gather；
+1. **排查非预期全量张量**：检查 logits/loss 是否意外 full materialize；具体 workload 是否走 actor logprob 分支须由调用链确认；
 2. **并行网格**：用 TP 解决单层权重/GEMM、CP 分摊 128K、EP 分布 expert；将高频 TP/EP/CP group 映射到合适拓扑；
 3. **MoE kernel**：Grouped GEMM、permute/unpermute、router/top-k 与 shared-expert overlap，以 token histogram 验证负载；
 4. **activation/loss**：packing/THD、selective recompute、vocab-parallel CE/logprob chunk，避免 FP32 full logits 常驻；
 5. **供给与 overlap**：DataLoader、H2D、TP/CP/EP collective 与计算 overlap；
 6. **重新配 batch**：释放显存后评估增大 MBS、减少 microbatch/recompute 是否更划算。
 
-当前材料没有逐项 A/B，所以 50% 只能作为联合结果；具体 TP/CP/EP、绝对 step time 和测量窗口留在证据卡。
+当前材料没有逐项 A/B，所以 50% 只能作为联合结果；具体 TP/CP/EP、绝对 step time 和测量窗口留在证据卡。下一节的 actor CP-local logits 修复及约 7.6GB 冗余分配是另一项机制证据；它是否包含在这次 `-50%` benchmark 中，还需要原始配置和日志确认。补齐前两项分别陈述，不把它们拼成已证实的因果链。
 
 <a id="cp-local-logits"></a>
 ## CP-local logits：7.6GB 冗余分配的原理与修复
