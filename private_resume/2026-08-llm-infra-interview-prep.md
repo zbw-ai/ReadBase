@@ -24,7 +24,7 @@
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
 | **项目经历（核心）** | **X1 200B MoE**：**`0.16x→0.95x / MFU 35% / 3K 卡连续稳定训练两个月`** | **[代表性优化](#resume-01a) · [Ownership](#resume-01b) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [规模交付](#resume-10)** |
 |  | **Long Context SFT**：**`31s→9.3s；MFU 23%→45.2%`**（独立简历口径，不据此互相反推）；**`128K / 7.6GB`** | **[9B SFT](#resume-05) · [35B-A3B/128K](#resume-17) · [长上下文显存](#resume-06) · [CP-local logits](#resume-07)** |
-|  | **Fully Async RLVR**：async 内部配置优化 **`76→211–255 tokens/s/GPU`** | **[同步与异步](#resume-02) · [美团实践](#resume-02-meituan) · [gen-TP/实例数](#resume-03) · [Rollout 优化](#rollout-01) · [资源部署](#verl-02) · [Async/Staleness](#verl-04) · [正确性](#verl-05)** |
+|  | **Fully Async RLVR**：async 内部配置优化 **`76→211–255 tokens/s/GPU`** | **[专题导航](#fully-async-study) · [个人项目](#resume-02) · [架构/四模式](#verl-04) · [流式组批](#verl-12) · [陈旧度预算](#verl-13) · [Partial/校正](#verl-14) · [美团实验](#verl-15)** |
 |  | **AReaL Agentic RL / Gateway**：**decode `6–8x`；Rollout `+60%`；Rejected Group `33.18%→2.73%`** | **[训练链路](#resume-08) · [CUDA Graph](#resume-13) · [Gateway 收益](#resume-19) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11)** |
 |  | **OPD / MOPD**：**双 Teacher 在 SWE、Terminal 双域提升且 General 不下降（方向性结论）** | **[MOPD 主问题](#resume-09) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08)** |
 |  | **TX 文生视频 / 国产卡规模交付**：**模型跑通、精度、性能、扩容与交付闭环** | **[HunyuanVideo/Ulysses](#resume-18) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [融合算子](#kernel-01) · [万卡规模效应](#infra-09)** |
@@ -54,12 +54,12 @@
 |---|---|---|---:|
 | [Part I](#part-i) | 你是谁、做了什么、为什么值得信任 | 自我介绍、Ownership、职业选择 | Core 3 / P0 3 / P1 3 / P2 1，共 7 |
 | [Part II](#part-ii) | 大模型如何放得下、跑得快、扩得稳 | Megatron、5D、MoE、显存、长上下文 | Core 3 / P0 20 / P1 6 / P2 1，共 27 |
-| [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO/DPO、verl、Fully Async、Rollout 优化、真实模型落地 | Core 1 / P0 11 / P1 5 / P2 1，共 17 |
+| [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO/DPO、verl、Fully Async、Rollout 优化、真实模型落地 | Core 1 / P0 14 / P1 6 / P2 1，共 21 |
 | [Part IV](#part-iv) | Agent trajectory 如何在线生产、校验和消费 | AReaL、Gateway、staleness、MOPD、weight sync | Core 2 / P0 11 / P1 6 / P2 1，共 18 |
 | [Part V](#part-v) | 跨框架的通信、恢复、推理与生产排障 | Collective、万卡稳定性、训练异常、NCCL、checkpoint | Core 1 / P0 4 / P1 5 / P2 1，共 10 |
 | [Part VI](#part-vi) | 如何把知识变成首面表现 | 三天冲刺、口径校准、证据卡、模拟面试 | 不新增问题 |
 
-全文共 **79 道唯一问题**：P0 49 道、P1 25 道、P2 5 道。Core 10 已计入 P0，不重复计数；Coding 手撕题单独维护，不计入这里。
+全文共 **83 道唯一问题**：P0 52 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数；Coding 手撕题单独维护，不计入这里。
 
 ### 1.2 Core 10：建立个人项目主线的十个入口
 
@@ -100,11 +100,11 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 </details>
 
 <details>
-<summary><strong>Part III｜RL 算法、verl 与 Fully Async RLVR（17）</strong></summary>
+<summary><strong>Part III｜RL 算法、verl 与 Fully Async RLVR（21）</strong></summary>
 
 - **P0 / Core**：[RESUME-02 Fully Async RLVR](#resume-02)
-- **P0 扩展**：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 DPO 与 SFT/PPO/GRPO](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [ROLLOUT-01 Rollout 优化全景](#rollout-01) · [VERL-01 HybridFlow 架构](#verl-01) · [VERL-02 colocate/disaggregate](#verl-02) · [VERL-03 训练到 rollout 权重同步](#verl-03) · [VERL-04 async/streaming/partial/staleness](#verl-04) · [VERL-05 RLVR 正确性](#verl-05) · [VERL-09 vLLM/SGLang 选型](#verl-09)
-- **P1**：[VERL-06 DataProto/WorkerGroup](#verl-06) · [VERL-07 Actor/Ref/Critic/Reward](#verl-07) · [VERL-08 Ray 故障](#verl-08) · [VERL-10 v0.7 以后演进](#verl-10) · [VERL-11 自研版 verl 模型落地](#verl-11)
+- **P0 扩展**：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 DPO 与 SFT/PPO/GRPO](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [ROLLOUT-01 Rollout 优化全景](#rollout-01) · [VERL-01 HybridFlow 架构](#verl-01) · [VERL-02 colocate/disaggregate](#verl-02) · [VERL-03 权重同步与 bucket](#verl-03) · [VERL-04 Fully Async 架构/四模式](#verl-04) · [VERL-12 流式组批与供需](#verl-12) · [VERL-13 陈旧度预算](#verl-13) · [VERL-14 Partial 与校正](#verl-14) · [VERL-05 RLVR 正确性](#verl-05) · [VERL-09 vLLM/SGLang 选型](#verl-09)
+- **P1**：[VERL-06 DataProto/WorkerGroup](#verl-06) · [VERL-07 Actor/Ref/Critic/Reward](#verl-07) · [VERL-08 Ray 故障](#verl-08) · [VERL-10 v0.7 以后演进](#verl-10) · [VERL-11 自研版 verl 模型落地](#verl-11) · [VERL-15 美团实验与收益归因](#verl-15)
 - **P2**：[P2-05 producer-consumer coding](#p2-05)
 
 </details>
@@ -1413,7 +1413,22 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 **学习目标**：讲清 RLVR 的 role/data/control flow，以及同步到异步后如何做生产者—消费者配平、权重同步和正确性控制。
 
-**本 Part 导航**：Core：[RESUME-02 异步收益与配平](#resume-02)；P0 扩展：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 偏好优化](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [ROLLOUT-01 Rollout 优化](#rollout-01) · [VERL-01 框架分层](#verl-01) · [VERL-02 共置与分离](#verl-02) · [VERL-03 权重同步](#verl-03) · [VERL-04 异步与样本新鲜度](#verl-04) · [VERL-05 训练正确性](#verl-05) · [VERL-09 推理后端选型](#verl-09)；P1：[VERL-06 数据与分发](#verl-06) · [VERL-07 RL 角色](#verl-07) · [VERL-08 Ray 故障](#verl-08) · [VERL-10 版本演进](#verl-10) · [VERL-11 真实后训练工作](#verl-11)；P2：[P2-05 并发队列编码](#p2-05)。
+**本 Part 导航**：Core：[RESUME-02 异步收益与配平](#resume-02)；P0 扩展：[RL-ALGO-01 PPO/GRPO/DAPO](#rl-algo-01) · [DPO-01 偏好优化](#dpo-01) · [RESUME-03 gen-TP 与实例数](#resume-03) · [ROLLOUT-01 Rollout 优化](#rollout-01) · [VERL-01 框架分层](#verl-01) · [VERL-02 共置与分离](#verl-02) · [VERL-03 权重同步](#verl-03) · [VERL-04 架构/四模式](#verl-04) · [VERL-12 流式组批](#verl-12) · [VERL-13 陈旧度预算](#verl-13) · [VERL-14 Partial/校正](#verl-14) · [VERL-05 训练正确性](#verl-05) · [VERL-09 推理后端选型](#verl-09)；P1：[VERL-06 数据与分发](#verl-06) · [VERL-07 RL 角色](#verl-07) · [VERL-08 Ray 故障](#verl-08) · [VERL-10 版本演进](#verl-10) · [VERL-11 真实后训练工作](#verl-11) · [VERL-15 实验归因](#verl-15)；P2：[P2-05 并发队列编码](#p2-05)。
+
+<a id="fully-async-study"></a>
+### Fully Async Policy 重点专题｜先看架构，再调配置，最后讲证据
+
+| 面试官问到什么 | 直接进入 | 图表与准备重点 |
+|---|---|---|
+| 你具体做了什么、为什么切异步 | [RESUME-02 个人项目](#resume-02) | 保留本人 `76→211–255` 的配置与证据边界 |
+| 框架如何运转、比同步少了什么等待 | [VERL-04 架构与四模式](#verl-04) · P0 | **原图：四组件、共置/分离、四种模式时序** |
+| 流式为什么还要 batch、如何让 Trainer 吃饱 | [VERL-12 组批与供需](#verl-12) · P0 | sample/group/microbatch，队列空满，取样批量与并发 |
+| `staleness=0.5` 是什么意思、该怎么配 | [VERL-13 预算与调参](#verl-13) · P0 | 预算公式、具体算例、版本差与样本数的区别 |
+| 长轨迹怎么续跑、跨版本为什么还能训练 | [VERL-14 Partial 与校正](#verl-14) · P0 | **原图：轨迹复用**；behavior/proximal/current 三种策略 |
+| 权重更新为什么慢、bucket 做了什么 | [VERL-03 权重同步](#verl-03) · P0 | 区分等请求、重排、传输、加载；同步阶段下降 >60% |
+| 实验到底证明了什么、如何迁移到你的项目 | [VERL-15 美团实验](#verl-15) · P1 | **表：模式对照、staleness 消融、30B/多轮结果** |
+
+来源是侯正罡（美团搜推 AI Infra 团队）2026 年 1 月的[公开分享 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)。图保持原样，数据表按原页转录；下文的参数补证会注明版本。**美团实验是公开参考，不替代个人项目实绩；Fully Async 也不等于没有任何同步或等待。** 只有半小时，先读 VERL-04/12/13/14 的直接回答和图示，再用 VERL-15 的结论串起效果。
 
 ### Core｜最高优先入口
 
@@ -1440,29 +1455,13 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
   联合配置包括 `require_batches`/trigger、`free_cache_engine`、dynamic batch、chunked prefill、prefix cache、CUDA Graph path、partial rollout、bounded staleness、rollout correction、validation frequency，以及 `max_model_len`、`max_num_batched_tokens`。追问时按它们减少哪段暴露等待展开，不把配置名称堆进主答，也不虚构单因素收益。
 
 <a id="resume-02-meituan"></a>
-##### 美团实践补充：问题背景 → 优化原理 → 实际效果
+##### 美团实践入口：从个人项目追问到系统机制
 
 **背景**：侯正罡《基于 verl 的 Fully Async Policy 训练架构》（2026 年 1 月）中，DAPO 32B 案例一个 step 约 `1700s`，其中 rollout 约 `1200s`，占约 70%；另一项 235B 观测里，rollout 约一半时间在处理长尾。问题不只是“生成慢”，而是**等待最长请求时，其他资源没有继续做有效工作**。One Step Off Policy 先用上一轮数据训练、与新一轮生成重叠，但仍受固定轮次和长尾约束。（分享第 5–10 页）
 
-| 优化抓手 | 面试时怎么解释原理 |
-|---|---|
-| **资源分离与配平** | Trainer、Rollouter 分池并行，分别选择并行度与实例数。每侧卡少了，单阶段可能变慢，但端到端能靠 overlap 变快；必须看两侧等待与供需，不能机械对半分。 |
-| **逐样本流式调度** | `Rollouter → MessageQueue → Trainer`：完成即入队、凑够批量就训练，不等原来那一大批全部完成；限制并发，避免 KV cache 频繁淘汰。这里不是“一个 token 到了就更新”，GRPO 仍要守住 group 与 advantage 的完整性。 |
-| **Partial rollout** | 发布权重前暂停未完成任务，保存 token 和原始 logprob，更新后沿已有前缀续跑；减少等长尾结束和重新生成前缀的浪费。它不是丢掉长样本，也不保证旧 KV cache 能跨权重复用。 |
-| **陈旧度与正确性** | 允许有限超前生成，用预算和背压阻止旧样本无限积累；跨版本轨迹保留逐 token 的 behavior logprob，必要时做 rollout correction。PPO clipping 不能自动修复错误的 token/logprob 对齐。 |
-| **权重同步** | 分离资源后用 NCCL all-gather / broadcast 传权重，再将零碎 tensor 聚成 bucket 批量传输，提高带宽利用率。分享报告**参数同步耗时降低 60% 以上**，不是训练总耗时降低 60%。 |
+**机制主线**：分池让训练与生成重叠；逐样本流转减少批次等待；staleness 预算允许有限超前生产；partial rollout 减少发布权重前的长尾等待；bucket 化传输缩短权重同步。对应[架构原图与模式比较](#verl-04)、[组批与供需](#verl-12)、[预算参数](#verl-13)、[跨版本轨迹校正](#verl-14)和[权重同步](#verl-03)。
 
-**美团公开实验效果（不是本人项目指标）**：
-
-| 实验场景 | 分享报告的累计训练耗时收益 |
-|---|---|
-| 7B Math，128 卡，共置同步 vs `64+64` 分离异步 | 400-step 窗口由 **40h48m → 17h22m，约 2.35x**；100–400-step 不同窗口为 **2.35–2.67x**。（第 24、26 页） |
-| 30B-A3B，128 卡 | 400-step 窗口由 **59h39m → 34h41m，约 1.72x**；不同窗口为 **1.72–2.01x**。（第 28 页） |
-| Qwen2.5-7B-Instruct，多轮工具，32 卡 | 200-step 窗口由 **22h28m → 14h04m，约 1.60x**；100-step 为 **1.55x**。（第 28 页） |
-
-**一句话收束**：“收益来自少等数据、少等长尾、少等权重同步，不是单个 kernel 自动快了几倍。”这些是分享报告的固定 step 窗口耗时，不是等质量 time-to-target，也不是你的 `tokens/s/GPU` 提升倍数；不能据此宣称所有任务均无精度损失。
-
-原理依据为[公开分享 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)第 11–20 页；[官方 Fully Async 文档](https://verl.readthedocs.io/en/latest/advance/fully_async.html)可交叉核对。**[深入阅读：staleness 预算、实验效果边界与调优顺序](../training-infra-roadmap/topics/agentic_rl.md#meituan-fully-async-practice)**；↩ [回到本题口述与个人项目](#resume-02)。
+**公开结果速记**：7B Math/128 卡在不同累计 step 窗口报告 `2.35–2.67x`，30B-A3B/128 卡为 `1.72–2.01x`，7B 多轮工具/32 卡为 `1.55–1.60x`。原始时间、效果指标与消融统一放在 [VERL-15](#verl-15)，不是本人项目数据，也不是等质量 time-to-target。完整阅读路线见[专题导航](#fully-async-study)，工程延伸见[现有 Agentic RL 章节](../training-infra-roadmap/topics/agentic_rl.md#meituan-fully-async-practice)。
 
 - **Benchmark 门禁**：先声明分子、分母和窗口，固定模型/checkpoint、prompt-response 长度分布、采样参数、硬件、并发上限和统计区间；warmup、checkpoint、validation、失败重试和过滤样本要明确是否包含。除吞吐外同时报告 queue depth、trainer idle、policy version lag 和 rejected/stale ratio，防止用堆积旧样本换表面吞吐。
 - **项目证据或知识边界**：`76 → 211–255` 是 async 初始配置与优化配置的比较；`236–293` 是 `2T+2R` 候选窗口，二者都不是全程平均。同步“约 200”只用于说明最初的阶段拆解和选型背景，只有在相同 workload、窗口和 `tokens/s/GPU` 分母确认后才能做性能比较；确认前不要说 Fully Async 超过同步，更不能说相比同步提升三倍。CUDA Graph 的 `14x` 来自另一项 35B 真实 RL decode 证据，也不能用于解释这里的 211–255。
@@ -1672,6 +1671,18 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 - **布局与一致性展开**：TP/PP/EP 可能改变参数布局，CP 主要切 activation/context，不应直接当成参数分片轴；distributed optimizer 的 optimizer 分片也不等于要同步 optimizer 到 rollout。跨 replica 的原子切流是可选发布协议，不等于所有 async 样本必须同版本。[AReaL 原论文](https://arxiv.org/html/2505.24298v1)明确允许同一训练 batch 含不同 behavior versions。
 
+- **美团实践：为什么 bucket 化 NCCL 权重同步更快？**
+
+  原来逐 tensor 传输/加载，小 tensor 多、大小不均，每次调用的启动开销难以摊薄。分享采用 NCCL all-gather / broadcast 组合，再参考 checkpoint-engine 将多个 tensor 聚成 bucket 批量传输，提高带宽利用率。all-gather 用于所需分片的汇集，broadcast 用于向目标接收方发布；实际 group 和布局仍由后端映射决定，不是给所有 GPU 广播一份完整训练状态。
+
+  | 哪段耗时 | 对应措施 | 不能混淆的边界 |
+  |---|---|---|
+  | 等在途请求结束（drain） | 暂停并保存 partial rollout，更新后续跑 | 这是调度等待，不是网络传输慢 |
+  | 收集/重排、传输 tensor | 映射训练/推理布局；bucket 化 NCCL 传输 | bucket 过小调用多，过大增加临时显存与首桶等待，需实测 |
+  | 加载新权重、刷新 cache、恢复服务 | 确认 engine 完成加载，再推进版本并 resume | NCCL 返回不等于 engine 已可用，不能边写权重边执行同一次 forward |
+
+  分享第 13 页报告**参数同步耗时降低 60% 以上**，这是同步阶段口径，不是训练总耗时下降 60%，也不是用户项目复测结果。原页对共置方案的限制描述针对其当时实现，不能推广成“所有 colocate 都不能用 NCCL”。原始出处：[分享 PDF 第 13 页](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)。
+
 - **项目路径追问**：AReaL 项目中 XCCL 直接 bucket transfer 与 disk 临时 HF transfer 的差异、支持边界和选择见 [AREAL-11](#areal-11)。
 - **项目证据或知识边界**：你有跨引擎同步和 final parameter sync 故障经验；准备一次 keyword mismatch 或部分 worker 失败的真实排查。
 - **高概率追问**：TP size 不同如何 reshard？LoRA 只同步 adapter 有何差异？如何做 same-weight logp check？
@@ -1690,28 +1701,230 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-04"></a>
-#### VERL-04｜Fully Async、streaming、partial rollout 与 staleness 如何配合？（P0，18 分钟）
+#### VERL-04｜Fully Async Policy 如何运转？四组件和四种模式分别减少什么等待？（P0，18 分钟）
 
 - **直接回答（60–90 秒）**：
 
-  > 这四个词描述不同层次。Fully Async 是生成和训练的执行关系，二者不再按每个 step 全局等待。Streaming 是数据如何到达，要说明是 token 流还是样本持续到达。Partial rollout 是未完成的轨迹可以暂停后续跑，必须连同环境状态和 behavior 信息保存，不是把字符串接起来。Staleness 则描述样本对应的策略离当前训练策略有多远；版本差只是代理，还要看 logprob ratio 或 KL。系统用有界队列、权重发布频率、过旧样本处理和 correction，把重叠收益与训练偏差约束在可接受范围。
+  > 我把它看成样本流和权重流组成的闭环。Rollouter 持续生成，MessageQueue 缓冲，Trainer 凑够可训练批量就更新，ParameterSynchronizer 再把权重发布回去。优化分三层：流式消费减少等整大批的时间；允许有限超前生成，减少每轮开始等第一批数据的时间；再用 partial rollout 暂停并续跑长轨迹，减少同步权重前等在途请求结束的时间。代价是样本可能跨版本，所以还要控制生产预算、保留 behavior logprob 并做必要的校正。Fully Async 去掉的是固定大步的锁步关系，不是取消权重同步、背压和所有等待。
+
+- **四个术语先分清**：Fully Async 是执行关系；streaming 是逐样本流转，不等于 HTTP token streaming；partial rollout 是轨迹暂停/恢复机制；staleness 是样本新鲜度问题，本 recipe 用生产额度控制它，具体见 [VERL-13](#verl-13)。
+
+##### 图 1｜四组件：上面传样本，下面传权重
+
+[![美团 Fully Async 四组件原图：Rollouter、MessageQueue、Trainer 与 ParameterSynchronizer](assets/papers/meituan-fully-async-20260110/architecture-p11.jpg)](assets/papers/meituan-fully-async-20260110/architecture-p11.jpg)
+
+图源：[分享 PDF 第 11 页](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)，原样提取；点击图片可查看大图。
+
+**读图**：蓝色小块沿 `Rollouter → Queue → Trainer` 流动，是带有身份、reward/logprob 等信息的训练样本；下方反向箭头是 `pause → update_weights → resume`，不是传回生成结果。Trainer 吃完一批就能继续更新，何时发布权重由策略决定；样本流与权重流节奏不必一一对应。Queue 没有可用样本，Trainer 仍会等待；发布权重也仍需要安全边界。
+
+##### 图 2｜为什么每侧卡少了，端到端反而可能更快
+
+[![共置与分离执行原图：生成、队列和训练在时间线上重叠](assets/papers/meituan-fully-async-20260110/overlap-p12.jpg)](assets/papers/meituan-fully-async-20260110/overlap-p12.jpg)
+
+图源：[分享 PDF 第 12 页](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)。
+
+**读图**：上半部分同一批 GPU 分时执行，生成末尾只剩长请求，训练还没开始；下半部分将 GPU 分池，完成的样本经队列及时进入训练。不要只比蓝色或绿色的一段多长，要看最后一批训练何时完成。图中 `Revenue` 表示节省的时间，不是硬件峰值算力增加。资源分配规则见 [VERL-02](#verl-02)，供需调优见 [VERL-12](#verl-12)。
+
+##### 图 3｜四种模式：逐步减少哪一段红色等待
+
+[![美团四种训练模式原图：on-policy、stream off-policy、stale samples、partial rollout](assets/papers/meituan-fully-async-20260110/modes-p22.jpg)](assets/papers/meituan-fully-async-20260110/modes-p22.jpg)
+
+图源：[分享 PDF 第 22 页](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)。黄色竖条是参数同步，灰色是新鲜样本，粉色是旧样本，双色表示 partial 样本；红色标记指出暴露的等待。图例描述的是该历史 recipe，不是所有 RL 框架的统一命名。
+
+| 图中模式 | 执行方式与参数关系 | 改善什么，仍然等什么 |
+|---|---|---|
+| **a · on-policy pipeline** | `k=1, s=0`；收够一次训练数据，训练后同步 | 逻辑简单，但仍等生成再训练；不是说 PPO 内部不复用样本 |
+| **b · stream off-policy** | `k>1, s=0`；一次发布周期内边生成边取小批训练，做完 `k` 次取样/训练循环才同步 | 减少整大批等待；Trainer 仍等首批，Rollouter 仍可能等最后一批训练；后续 update 使用此前权重生成的数据，已非严格 on-policy |
+| **c · async + stale samples** | `k≥1, s>0, partial=False`；允许超前生成 | 旧样本可提前供给下一周期，减少首批等待；发布前仍要停发新任务、等 active 请求完成 |
+| **d · async + partial rollout** | `k≥1, s>0, partial=True`；暂停未完成请求，发布后续跑 | 进一步减少 active 请求的长尾等待；代价是轨迹跨版本、恢复和校正更复杂 |
+
+这里 `k=trigger_parameter_sync_step`，`s=staleness_threshold`；一次取样量由 `require_batches` 决定，**`k` 不一定等于 optimizer.step 的次数**，见 [VERL-12](#verl-12)。参数映射依据 [verl v0.7.1 历史 recipe](https://github.com/volcengine/verl/blob/v0.7.1/docs/advance/fully_async.md#supported-modes)，并不声称这是分享所用代码的精确 commit。
+
+**One Step Off Policy 放在哪里？** 它先用固定落后一轮的数据让训练/生成重叠，是这次分享的演进背景；不是图 b 的别名。图 b 讲的是“一个权重发布周期内逐批训练”，图 c/d 再允许超前生产与续跑。不要把这几种时间尺度都称作“step”而混为一谈。
 
 - **项目流程**：项目 v0.7.1/公司分支里，Rollouter 按 freshness/capacity 写队列，Trainer 拼训练 batch，更新后同步新权重；`require_batches`、partial rollout、bounded staleness 和 correction 一起决定 goodput。当前 v0.9.0 的 unified async/replay/stale-drop 是后续 upstream 能力，必须分开表述。
 - **深入阅读**：[Fully Async、streaming、partial rollout 与 staleness 的统一状态机](../training-infra-roadmap/topics/agentic_rl.md#async-streaming-partial-staleness)。
 
 - **项目证据或知识边界**：你的项目基于当时的 v0.7.1/公司分支，Fully Async 仍在快速演进；当前官方已到 v0.9.0，并对 trainer、Agentic RL 和相关数据/权重链路继续重构。面试时必须区分项目实现与当前 upstream，不能把两者类名和能力直接混用。
-- **高概率追问**：queue 满/空分别说明什么？怎么 checkpoint in-flight samples？staleness=0 是否自动严格 on-policy？
+- **高概率追问**：图 b 为何仍叫 off-policy？图 c 为什么还会卡长尾？Fully Async 为何仍有黄色同步条？图中 `k` 与 PPO mini-batch、optimizer step 有何关系？
 
 <details>
 <summary>面试意图与回答提醒</summary>
 
-- **问题**：这些词各自描述什么，为什么不能互相替代？Rollouter、queue、Trainer 和 ParameterSynchronizer 如何组成闭环？
+- **问题**：请画出四组件闭环，再沿 a/b/c/d 的时序指出各模式消除了什么等待、增加了什么代价。
 
 - **面试官意图**：验证你对自己最强项目的框架层理解，并观察是否认识到 async 并非天然 on-policy。
 
-- **危险回答**：说“完全异步但没有陈旧样本”；只调队列大小；忽略恢复后的 pending/running prompt。
+- **危险回答**：说“完全异步但没有任何同步或陈旧样本”；把 One Step Off Policy 等同图 b；说分池必然更快；忽略恢复后的 pending/running prompt。
 
 </details>
+
+↩ [返回 Fully Async 专题](#fully-async-study)
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="verl-12"></a>
+#### VERL-12｜逐样本流式调度为什么仍要组批？如何调整批量、并发和训练/生成供需？（P0，15 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > 流式改的是“何时提交和消费数据”，不是把训练改成一个 token 或一条回答更新一次。Rollouter 完成一个可用样本单元就入队，Trainer 按配置凑够批量再训练。GRPO 还要先收齐同 prompt 的响应组，算出组内 advantage，之后才能重新 packing 和切 microbatch。调优时我先看队列和两侧 idle：队列常空就查生成、工具或 reward 供给，队列长期积压就查训练消费与陈旧度；再联合调整取样批量、并发和 T:R。取样越小通常越容易提前启动，但可能降低计算效率、改变数据到达顺序，不能只追求最小 batch 或最大并发。
+
+- **先拆开四个粒度（以该历史 recipe 为例）**：
+
+  | 粒度 | 代表什么 | 面试容易混淆的地方 |
+  |---|---|---|
+  | Prompt / group | 一个 prompt 生成 `rollout.n` 条 response | 调度/预算中的“样本”按 prompt/group 计，不是随意一条已完成 response |
+  | 一次 Trainer 取样 | `require_batches × ppo_mini_batch_size` 个 prompt/group | streaming 允许边生产边凑批，但不到消费阈值仍会等 |
+  | PPO mini-batch / microbatch | 前者划分训练更新批量，后者配合显存、DP 和梯度累积执行 | advantage 算完后可切分；不能让各 microbatch 独立重算原本同组的统计 |
+  | 权重发布周期 | `trigger_parameter_sync_step` 次取样/训练循环 | 一次循环可能含多个 PPO mini-batch/epoch，因此不是逐个 optimizer step 都发布权重 |
+
+  **配置算例，不是个人实验参数**：`ppo_mini_batch_size=32`、`require_batches=4`，一次消费 `128` 个 prompt/group；若 `rollout.n=16`，未过滤前对应 `2048` 条 response。`trigger_parameter_sync_step=4` 时，一次发布周期消费 `512` 个 prompt/group。所有值是跨相关 worker 的全局口径，不能再乘 DP GPU 数；切成多少 per-GPU microbatch 是另一层配置。[计数/展开代码，v0.7.1](https://github.com/volcengine/verl/blob/v0.7.1/verl/experimental/fully_async_policy/detach_utils.py#L80)
+
+- **按观测调，而不是按开关调**：
+
+  | 观测 | 先检查 | 可尝试的调整 |
+  |---|---|---|
+  | queue 常空、Trainer idle 高 | 生成实例是否不足；长请求、tool/reward、组未收齐是否限制有效样本供给 | 联调 gen-TP/实例、rollout 资源与并发；必要时减小取样触发量，不破坏 group |
+  | queue 长期上涨、Trainer 持续忙 | actor update 吞吐、batch/packing、训练资源、样本新鲜度 | 增加训练能力或限制 producer；不要单纯加大 queue |
+  | 两侧都间歇空闲 | weight sync、validation、数据传输、调度 barrier | 分阶段计时；缩短真正暴露的等待，不盲目挪卡 |
+  | 并发提高但吞吐下降 | KV 压力、抢占/重算、prefill/decode 干扰 | 约束并发与 token budget；不要用请求数代替 KV 工作集 |
+
+- **为什么不能一律 `require_batches=1`？** 小批能更早开训，但 GPU 计算效率、分布式整除约束与样本顺序都可能变化。完成优先也可能让短/简单样本更早进入训练；需要同时检查 response length、reward/advantage 分布和 held-out eval，而不只看 queue wait。
+- **项目证据或知识边界**：可用本人 [gen-TP 与实例数](#resume-03)、[T:R 与吞吐窗口](#resume-02)说明联合调优；上面算例与参数语义来自公开 recipe，不补造个人配置或单因素贡献。
+- **高概率追问**：一条 response 完成能否立即用于 GRPO？queue 满说明一定缺 Trainer GPU 吗？`require_batches` 变化时如何保持对照工作量一致？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：为什么改成 streaming 仍会等待？哪些 batch 是算法需要，哪些是调度或显存选择？
+- **面试官意图**：检查你能否区分数据粒度、训练粒度和权重发布粒度，并从观测定位供需不平衡。
+- **危险回答**：“越小的 batch 越快”；一个 response 到达就独立计算组内 advantage；把全局 prompt batch 再乘 GPU 数；用无限 queue 和并发掩盖瓶颈。
+
+</details>
+
+↩ [返回 Fully Async 专题](#fully-async-study)
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="verl-13"></a>
+#### VERL-13｜staleness=0.5 到底代表什么？如何计算超前生成预算、选择同步频率？（P0，18 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > 我先区分“样本实际有多旧”和“框架允许生产多超前”。版本差、样本年龄、logprob ratio 是实际观测；美团这套 recipe 的 staleness 参数控制超前生成额度，不是落后半个模型版本。假设一个发布周期消费 B 个样本，s 为 0.5，就允许围绕 1.5B 的预算提前供给，还要扣掉已经积压或在途的占用。预算越大越容易让 Trainer 吃饱，但策略偏差和旧样本管理成本也会上升。我的做法是固定批量和同步频率后逐档试 s，同时看有效吞吐、版本差、ratio/KL 与效果；不是设一个阈值就认为算法正确。
+
+- **预算公式与可手算例子**：
+
+  ```text
+  M = ppo_mini_batch_size
+  r = require_batches
+  k = trigger_parameter_sync_step
+  B = k × r × M                         # 一个发布周期消费的 prompt/group 数
+  总生产预算 = floor((1 + s) × B)
+  新任务可用额度 = max(0, 总生产预算 − C) # C 为本周期已计入预算的数量
+
+  M=32, r=4, k=4  →  B=512
+  s=0.5          →  总预算=768
+  若 C=128       →  新任务还可用640个prompt/group的额度
+  ```
+
+  PPT 第 15 页用“上轮结转旧样本数”解释扣减项；[v0.7.1 Rollouter 实现](https://github.com/volcengine/verl/blob/v0.7.1/verl/experimental/fully_async_policy/fully_async_rollouter.py)在同步时用 queue 与 active tasks 初始化计数，**不能漏算正在生成的请求**。随后每提交一组就递增计数，不因 Trainer 消费而立即归还额度；下一次同步再重设。因此它是发布周期的生产预算，不是实时 `queue + active` 的容量上限。`max(0, …)` 表示若已超预算就暂停提交，不是负数生成。计数单位是 prompt/group，具体 response 数还要乘 `rollout.n`。
+
+- **参数之间怎么取舍**：
+
+  | 调整 | 想减少什么 | 付出什么代价 |
+  |---|---|---|
+  | 增大 `s` | 队列断粮、每轮等首批样本 | 更多超前生产/旧样本；实际 version lag 不由 `s` 单独保证 |
+  | 减小 `k`，更频繁发布 | Rollouter 使用旧权重的时间 | 更频繁 pause、传输、refit、cache 刷新，暴露停顿可能变多 |
+  | 增大 `k` | 同步频率与固定开销 | 同一份 rollout 权重覆盖更多 Trainer 更新，off-policy 偏差可能增大 |
+  | 减小 `r` | 第一次取样与组批等待 | 可能影响计算效率、样本顺序；固定 k 时还会改变 B，不能当单变量实验 |
+
+- **`s=0` 为什么仍可能 off-policy？** 它只关闭这项超前生产额度。图 b 在一次发布间隔内做多次训练更新，后面的 update 仍在消费先前参数生成的数据。即使 `s=0`，PPO 多 epoch/minibatch 复用也不能理解成“每个梯度步骤都重新采样”。
+- **一般怎么设**：先固定 workload、B 与总资源，比较小幅增加 `s` 后的供需和效果；分享/历史 recipe 建议优先评估 `<1`，不是通用精度保证。实测 `0.3/0.5` 耗时已很接近，不能盲目加大；对应[消融表](#verl-15-staleness)。Queue depth 以外还要看 stale/partial ratio、partial 跨版本跨度、response length、ratio/KL 与 held-out eval。
+- **项目证据或知识边界**：以上是该历史 recipe 的具体参数语义；AReaL 的 version-lag 上限和其他框架的同名字段不能照搬。自己的项目参数需按当时公司分支核对。
+- **高概率追问**：预算里为什么扣在途任务？0.5 是否保证最多 50% 旧数据？r 改小后 k 怎么配才能维持 B？为什么训练变快但效果可能变差？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：给定 M、r、k、s 和遗留占用，算出下一周期允许提交多少任务，并解释控制的究竟是什么。
+- **面试官意图**：验证你是否读懂配置背后的生产者—消费者控制逻辑，能否区分工程代理量与真正的 policy divergence。
+- **危险回答**：把 s 当整数版本差；说旧样本比例必定等于 s；漏算在途请求或重复乘 rollout.n；说 `s=0` 就严格 on-policy；照搬另一框架阈值。
+
+</details>
+
+↩ [返回 Fully Async 专题](#fully-async-study)
+
+↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="verl-14"></a>
+#### VERL-14｜Partial rollout 如何跨版本续写？behavior logprob 与 Decoupled PPO 为什么重要？（P0，20 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > Partial rollout 解决的是更新权重前还要等长请求自然结束的问题。系统先在安全边界暂停，保存已生成 token、对应的真实 behavior logprob 和必要的 Agent 状态，发布权重后沿前缀继续生成。前半段可能来自 v，后半段来自 v+1，所以不能用新权重重算整条 logprob 来冒充采样概率。训练需要知道“这些 token 当时由谁生成”，再用 importance ratio 和必要的 correction 控制偏差。Decoupled PPO 进一步把采样偏差校正与 PPO 更新幅度约束分开；它减少两者耦合，但不能让错误轨迹或任意陈旧的数据自动变正确。
+
+##### 图 4｜复用已经生成的轨迹，不是丢弃长样本
+
+[![Partial Rollout 原图：未完成轨迹存入缓冲后续跑](assets/papers/meituan-fully-async-20260110/partial-rollout-p17.jpg)](assets/papers/meituan-fully-async-20260110/partial-rollout-p17.jpg)
+
+图源：[分享 PDF 第 17 页](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)，原分享注明来自 **Kimi k1.5**。黑点表示正常结束，菱形是原图的长度截断边界，叉号表示重复/提前停止；只有相应可续跑片段进入缓冲并继续。**这是轨迹复用原理图，不应把原图的 `cut by length` 直接改读成 verl 的权重发布触发条件**；本分享的实际暂停点是权重同步前。
+
+- **用一条轨迹解释数据契约**：
+
+  ```text
+  prompt → v生成 token[0:m] → 暂停/保存 → 发布v+1 → 续写 token[m:L]
+              保留 μ_v 的logprob                       保留 μ_v+1 的logprob
+  最终训练：同一条trajectory，但每段/token的behavior概率来自真实生成版本
+  ```
+
+  | 要保存/校验的对象 | 为什么 |
+  |---|---|
+  | token IDs、逐 token logprob、段边界与版本 | 训练需要真实行为概率，不能用最新权重覆盖历史值 |
+  | prompt/group ID、reward/terminal 状态、response/tool mask | 续写不能造成重复样本、半组 advantage 或把工具文本当模型 action |
+  | Agent 轮次、工具指令/结果、对话和环境状态 | 在工具处理的安全边界暂停，避免恢复后重复执行副作用 |
+  | 新权重加载与 KV 有效性 | 复用 token 前缀不等于复用旧 KV；权重变化后通常需重新 prefill，恢复不是零成本 |
+
+  工具状态来自分享第 20 页；ID、mask 和 KV 检查是由机制推导的工程要求，不宣称分享额外实现了某种通用容错协议。尚未终止的片段也不能未经算法支持就当成完整、已有终局 reward 的训练样本。
+
+##### 三种策略只要记住“谁采的、拿谁当锚、现在训谁”
+
+| 符号 | 含义 | 本次更新是否求梯度 |
+|---|---|---|
+| `μ`，behavior policy | 实际 rollout 采样策略；partial 场景按段/token 对应真实版本 | 否，原始 logprob 是数据 |
+| `π_prox`，proximal policy | PPO 裁剪的固定锚，由训练引擎对同一 token 序列计算概率 | 否，在约定更新窗口内冻结 |
+| `πθ`，current policy | 正在优化的 Actor | 是 |
+
+**两种计算路径**（省略状态/动作下标）：
+
+```text
+直接使用 rollout logprob：PPO ratio = exp(logπθ − logμ)
+
+Decoupled PPO：
+  r = exp(logπθ − logπ_prox)      # PPO clip控制相对近端策略的更新
+  w = correct(exp(logπ_prox − logμ))  # 修正近端策略与真实采样策略的偏差
+  loss = -mean_masked[w × min(r×A, clip(r, 1−ε, 1+ε)×A)]
+```
+
+`w` 是固定的校正权重，可按所选 recipe 做截断或拒绝，不随当前 Actor 的梯度一起优化；`mean_masked` 的 token/sequence 归一化也要遵守具体算法。**π_prox 不是用于 KL penalty 的 Reference model**，也不必是 SFT 起点。分享第 18–19 页给出两条路径；[v0.7.1 公式说明](https://github.com/volcengine/verl/blob/v0.7.1/docs/algo/rollout_corr_math.md#13-decoupled-ppo-achieving-batch-size-invariance)可进一步核对。
+
+**历史实现细节**：在 [v0.7.1 Trainer](https://github.com/volcengine/verl/blob/v0.7.1/verl/experimental/fully_async_policy/fully_async_trainer.py#L473) 的相关校正路径中，proximal 取参数同步周期起点的训练权重；后续 local updates 使用该快照计算近端 logprob，再用当前权重训练。不是每次取 batch 都更新锚，更不能据此假设所有版本都用同一种快照实现。
+
+- **正确性底线**：clipping 是 surrogate objective 的约束方式，不保证整个分布的 ratio/KL 都在硬边界内；截断/拒绝会带来偏差和有效样本损失。必须同时检查 behavior 对齐、版本跨度、ratio/KL、mask、reward/group 与效果；无法用 correction 修复错误的 token 身份。
+- **项目证据或知识边界**：这里说明美团/verl 的机制；本人 AReaL 暂停恢复和 Gateway 工作可引用[项目链路](#resume-08)、[AREAL-05](#areal-05)，不把公开算法设计归到个人名下。
+- **高概率追问**：为什么旧前缀 logprob 不能覆盖？同一条轨迹混版本与同一次 forward 混权重有什么区别？proximal 何时冻结？工具执行到一半能否直接暂停？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：请沿一条跨版本轨迹说明暂停、续写与 loss 计算，指出必须保持一致的数据。
+- **面试官意图**：区分真正理解 rollout/train 数据契约的人，与只会打开 partial_rollout 开关的人。
+- **危险回答**：把旧 KV 直接用于新权重；用新模型覆盖 behavior logprob；把 π_prox 当 Reference；说 PPO clip 能保证任意旧样本正确；把暂停等同安全取消外部工具。
+
+</details>
+
+↩ [返回 Fully Async 专题](#fully-async-study)
 
 ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
@@ -1723,6 +1936,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
   > 我会按 token、trajectory、group、policy version 四层检查。token 层看 tokenizer/chat template、response mask、rollout 与 trainer logprob、padding/packing；trajectory 层看 reward 对齐、截断、tool trace 和有效 token normalization；group 层看 GRPO 同 prompt samples 是否完整、reward std=0、partial/rejected group；policy 层看 behavior version、importance ratio、weight sync 和 stale rejection。验证方法包括 same-weight logp、tiny deterministic batch、per-token diff、single-rank/多-rank对照、loss 手算和 held-out eval。训练不 NaN 只证明 functional，不证明 numeric 或 efficacy。
 
 - **项目证据或知识边界**：直接对应你的 OPD/MOPD、rollout correction 和 tracing 经验。
+- **异步重点追问**：[VERL-14：跨版本轨迹的数据契约与 Decoupled PPO](#verl-14)。先分清 behavior、proximal、current，再查 token/group/mask 是否对齐。
 - **高概率追问**：rollout logprob 和 trainer recompute logprob 为什么会不一致？group std=0 怎么处理？response length normalization 有何偏差？
 
 <details>
@@ -1916,6 +2130,77 @@ Capek 不是“把四个 Teacher 的答案混在一起做 SFT”。TIES 先给�
 </details>
 
 ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="verl-15"></a>
+#### VERL-15｜美团 Fully Async 的实验说明了什么？如何区分机制收益与效果风险？（P1，15 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > 我会把这份实践概括成三点。第一，收益主要来自减少等待：训推分离后重叠执行，流式组批减少整批等长尾，partial rollout 再减少发布权重时的 drain。第二，要看累计训练耗时，不能只看某个阶段变快。比如公开的 30B-A3B 实验，分池后 actor update 反而更慢，但 400 step 从 59 小时 39 分降到 34 小时 41 分，端到端约 1.72 倍。第三，异步程度不是越大越好，要同时看样本年龄和模型效果。这些是美团公开实验；我的项目结果仍使用自己验证过的配置与统计口径，不把外部加速比当成个人成果。
+
+##### 1. 模式对照：先少等整批，再少等权重发布
+
+下面是 **7B Math、总计 128 GPU** 的公开结果。Sync 使用 128 卡共置，最终 Fully Async 使用 **64 Rollout + 64 Trainer**。时间为累计 400 step 耗时，效果列为分享中的 `acc/mean@1`。（PDF 第 24、26 页。）
+
+| 模式 | 400 step 耗时 | 相对 Sync | max acc | last acc |
+|---|---:|---:|---:|---:|
+| Sync colocate | 40h48m | 1.00x | 0.3573 | 0.2958 |
+| Stream off-policy | 25h53m | 1.58x | 0.2844 | 0.2604 |
+| Async + staleness + partial rollout | 17h22m | 2.35x | 0.3521 | 0.3094 |
+
+**怎么讲**：流式模式先缩短整批等待；最终配置把 staleness 与 partial rollout 一起加入，又减少了等待。但最后两行是**联合配置对照，不是 partial rollout 的单因素消融**。最终配置的 max 略低于 Sync、last 略高，不能据此宣称“效果完全相同”或“异步一定更稳定”。
+
+同一实验的 100/200/300 step 累计耗时，Sync 为 `8h36m / 17h56m / 29h06m`，最终 Async 为 `3h13m / 6h46m / 10h53m`，对应约 `2.67x / 2.65x / 2.67x`。因此 `2.35–2.67x` 是**不同累计窗口**的报告范围，不是一个固定的逐 step 加速比。
+
+<a id="verl-15-staleness"></a>
+##### 2. staleness 消融：少等数据，不等于应该无限放宽预算
+
+同为 7B Math/128 GPU，第 27 页报告：
+
+| staleness 配置 `s` | 原表 step（秒） | 400 step 耗时 | max acc | last acc |
+|---:|---:|---:|---:|---:|
+| 0 | 231.34 | 25h53m | 0.2844 | 0.2604 |
+| 0.1 | 171.30 | 19h59m | 0.3542 | 0.2979 |
+| 0.3 | 146.11 | 17h20m | 0.3469 | 0.2865 |
+| 0.5 | 150.63 | 17h22m | 0.3521 | 0.3094 |
+
+**怎么讲**：放宽生产预算后，Trainer 等样本的情况减少；但本次 `0.3 → 0.5` 的累计耗时已没有继续下降，效果指标也不是单调变化。所以先选小预算，再依据 queue、policy lag、ratio/KL 和评测找合适范围，而不是背一个“最佳 staleness”。`s=0` 也不是表中的 Sync colocate，模式含义见 [VERL-04](#verl-04)，预算算法见 [VERL-13](#verl-13)。分享的 recipe 在 `s=0` 时也不启用 partial rollout，因此从 0 到正值并非严格隔离 partial 开关的单因素实验。
+
+原表没有披露 `step` 列的具体统计窗口与平均方式，此处保留其数值；**不能把这列直接乘 400，要求它等于整个训练过程的累计耗时**。
+
+##### 3. 更大模型与多轮任务：阶段变慢，端到端仍可能变快
+
+以下来自第 28 页；`R:T` 表示 Rollout:Trainer，GPU 数为两侧之和。
+
+| Workload / 资源 | 累计窗口 | Sync → Fully Async | 加速比 | 效果读法 |
+|---|---|---|---:|---|
+| 30B-A3B / 总计 128 卡，Async 96R:32T | 100 / 400 step | 13h36m → 6h45m；59h39m → 34h41m | 2.01x / 1.72x | acc/mean@1：max 0.3500 → 0.3813；last 0.3208 → 0.3448 |
+| Qwen2.5-7B-Instruct 多轮工具 / 总计 32 卡，Async 16R:16T | 100 / 200 step | 9h46m → 6h19m；22h28m → 14h04m | 1.55x / 1.60x | AIME 2025 acc/mean@30：last 0.2056 → 0.2044；起点分别为 0.1078 / 0.1100 |
+
+30B-A3B 的 actor update 由 `86.27s` 增至 `206.63s`：Trainer 分到的卡更少，单次训练更慢并不意外；流水重叠减少了整体等待，累计训练反而更快。**要优化整个系统每小时推进多少有效训练，不是要求每个阶段都单独变快。** 多轮工具的末点评分接近，但任务、起点和统计口径都需保留，不能泛化成所有 Agent 任务都等效果加速。
+
+##### 4. 迁移到自己的项目，只保留这四条归因规则
+
+1. **先对齐基线**：总卡数、模型、数据、长度、每 prompt response 数、训练消费量、warmup 和计时窗口要一致；同名 step 不一定包含相同工作量。
+2. **再区分计时范围**：累计耗时不等于等质量 time-to-target；异步表中的 `gen` 也不能直接理解为完整 Rollouter 推理时长，要核查它是否包含或仅记录 Trainer 取样等待，不能把其下降写成推理引擎加速。
+3. **单项收益单独归因**：第 13 页的“参数同步耗时下降 60% 以上”只归给该同步路径，不与端到端倍数相乘；drain、权重传输、refit/resume 分开测，见 [VERL-03](#verl-03)。
+4. **同时验效果与数据**：看 held-out eval、有效 token goodput、样本年龄、行为 logprob、group/mask、拒绝率；没有独立 A/B 就不拆出某个开关贡献了多少。
+
+**来源与命名边界**：[侯正罡公开分享 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)，第 13、24、26–28 页。PDF 第一组简称“Qwen2 7B Math”，[后续官方实验说明](https://verl.readthedocs.io/en/latest/advance/fully_async.html#experiments)写作 `Qwen2.5-Math-7B`，因此此处保留“7B Math”而不抹平差异；该官方说明也明确 `96:32` 是 Rollout:Trainer。上述为报告结果，未在本仓库复现。
+
+- **项目证据或知识边界**：本人的 `76 → 211–255 tokens/s/GPU` 是 Fully Async 内部配置优化，`236–293` 是候选窗口；不等于这份公开实验的 Sync→Async 对照。个人讲述入口仍是 [RESUME-02](#resume-02)。
+- **高概率追问**：为什么 actor update 更慢但总耗时更短？为什么 max 与 last 都要看？如何测 time-to-target？怎样设计单因素实验区分 streaming、partial 和 staleness？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：请用公开实验解释 Fully Async 的加速来源、效果边界和生产配置选择。
+- **面试官意图**：看你能否把架构机制、性能计时与模型效果连起来，避免只会背加速倍数。
+- **危险回答**：把联合优化当单项消融；认为 staleness 越大越快；只报最好的 accuracy 或时间窗口；把外部数字写成个人成果；把累计 step 耗时当作等质量训练成本。
+
+</details>
+
+↩ [返回 Fully Async 专题](#fully-async-study) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P2 选学｜时间允许再补
 
@@ -3287,6 +3572,11 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 - PyTorch：[Distributed Checkpoint Tutorial](https://docs.pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html)。
 - 大规模生产训练：[MegaScale](https://arxiv.org/abs/2402.15627)、[The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783)。两篇材料用于支撑万卡规模的故障、straggler、观测和恢复判断；其中公开集群数字不是个人项目证据。
 
+#### Fully Async 专题补证（核验于 2026-09-08）
+
+- [侯正罡《基于 verl 的 Fully Async Policy 训练架构》](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)：2026 年 1 月，美团搜推 AI Infra 团队；原图选自第 11、12、17、22 页，数据核对第 13、24、26–28 页。[原图与页码索引](assets/papers/meituan-fully-async-20260110/README.md) · [专题入口](#fully-async-study)。第 17 页原图由分享归因于 Kimi k1.5。
+- 参数与校正路径补证固定于 [verl v0.7.1 历史 recipe](https://github.com/volcengine/verl/blob/v0.7.1/docs/advance/fully_async.md)（`bec9ef74768dd201881cd4e54cd0385e87caae27`）；它用于核对 prompt/group 计数、四模式、预算和 proximal 快照，不冒充分享实验的精确代码版本。公开报告结果未在本仓库复现，与个人项目指标分别记录。
+
 #### 当前岗位信号（动态页面，核验于 2026-08-30）
 
 - [华为社招：大模型训练/强化学习/推理相关岗位](https://career.huawei.com/reccampportal/portal5/social-recruitment-detail.html?dataSource=1&jobId=28183)：强调独立系统设计、训练/RL 原理、精度调优、vLLM/SGLang 和软硬件协同。
@@ -3297,8 +3587,8 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 | 优先级 | 题量 | 全量准备时间（按题头累加） | 用法 |
 |---|---:|---:|---|
-| P0 | 49 | 约 13 小时 20 分钟 | 优先练实际薄弱项；Core 10 用来串联个人项目主线 |
-| P1 | 25 | 约 4 小时 20 分钟 | 按目标 JD 和项目追问选择，不要求一次学完 |
+| P0 | 52 | 约 14 小时 10 分钟 | 优先练实际薄弱项；Core 10 用来串联个人项目主线 |
+| P1 | 26 | 约 4 小时 35 分钟 | 按目标 JD 和项目追问选择，不要求一次学完 |
 | P2 | 5 | 40 分钟 | 按需补充；profiler 是性能项目的前置工具，可提前看 |
 
 上表是把每题完整学习一遍的估算，不含 coding、做实验和重复口述。已有基础时，按 [下一轮 3 小时复习](#vi-0) 或 [最后一小时清单](#vi-last-hour) 选题；现场只查「直接回答」，被追问再向下展开。

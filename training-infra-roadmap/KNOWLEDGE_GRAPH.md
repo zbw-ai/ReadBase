@@ -237,7 +237,7 @@ flowchart LR
 - [Llama 3](tech_reports/llama3.md) ↔ [MegaScale](tech_reports/megascale.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [Rollout Latency](playbooks/rollout_latency.md) ↔ [DeepSeek-R1](tech_reports/deepseek_r1.md)
 - [Agentic RL](topics/agentic_rl.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md) ↔ HybridFlow / Async Agent Services
-- [美团 Fully Async 历史实践](tracking/backfill/2026-01.md#meituan-fully-async) ↔ [流式调度、partial rollout 与陈旧度预算](topics/agentic_rl.md#meituan-fully-async-practice) ↔ [RESUME-02 面试速答](../private_resume/2026-08-llm-infra-interview-prep.md#resume-02-meituan)
+- [美团 Fully Async 历史实践](tracking/backfill/2026-01.md#meituan-fully-async) ↔ [流式调度、partial rollout 与陈旧度预算](topics/agentic_rl.md#meituan-fully-async-practice) ↔ [主文档 Fully Async 专题：四张原图、配置题与实验表](../private_resume/2026-08-llm-infra-interview-prep.md#fully-async-study)
 - [Agentic RL](topics/agentic_rl.md) ↔ [OPD / MOPD](topics/mopd.md) ↔ Teacher Prefill / Domain Routing
 - [Agentic RL](topics/agentic_rl.md) ↔ [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ Simulation / Robot Runtime / Safety
 - [Agentic for Embodied](topics/agentic_for_embodied.md) ↔ [Distributed Training](topics/distributed_training.md) ↔ [Fault Tolerance](topics/fault_tolerance.md)

@@ -360,7 +360,7 @@ Fully Async 去掉全局 barrier
 
 **来源与阅读范围**：侯正罡，美团搜推 AI Infra 团队，《基于 verl 的 Fully Async Policy 训练架构》，2026 年 1 月，收录于 [2026-01-10 官方 meetup 目录](https://github.com/verl-project/verl-data/tree/main/verl_meetup_20260110)。依据[原始 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)第 5–20、24–28 页；2026-09-08 完成阅读与页面核对，状态 **DIGESTED，未复现实验**。这是历史实现案例，不代表当前 verl 所有路径的默认行为。
 
-面试先读[主文档 RESUME-02：背景、原理、效果](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-02-meituan)；这里仅补预算含义、数据正确性和结果解释。材料索引见[历史补录](../tracking/backfill/2026-01.md#meituan-fully-async)。
+面试先读[主文档 Fully Async 专题：原图、配置与实验](../../private_resume/2026-08-llm-infra-interview-prep.md#fully-async-study)；这里补工程推理，不另起学习长文。可按问题直达：[四组件/四模式](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-04) → [流式组批](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-12) → [预算调优](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-13) → [Partial/校正](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-14) → [实验表](../../private_resume/2026-08-llm-infra-interview-prep.md#verl-15)。材料索引见[历史补录](../tracking/backfill/2026-01.md#meituan-fully-async)。
 
 ### 1. 为什么分池还不够：有三种不同的等待
 
@@ -372,16 +372,16 @@ Fully Async 去掉全局 barrier
 
 ### 2. staleness 在这份实现里是“超前生产额度”
 
-分享第 15 页用样本预算控制异步程度。令 `B` 为一个权重发布周期内 Trainer 计划消费的样本量，`C` 为上一周期超额生成并结转的旧样本数，`s` 为此处的 staleness 配置，则新增 rollout 预算为：
+分享第 15 页用样本预算控制异步程度。令 `B` 为一个权重发布周期内 Trainer 计划消费的 prompt/group 数，`C` 为本周期已计入预算的数量，`s` 为此处的 staleness 配置。分享用结转旧样本解释 `C`；补证的 v0.7.1 实现在同步时以队列与在途任务初始化计数，之后每提交一组就递增，Trainer 消费不会立即归还额度，直到下次同步再重设。因此不能把它理解成实时 `queue + active` 容量池：
 
 ```text
-新增生成上限 = (1 + s) × B − C
-例如 B=512、s=0.5、C=128，则本轮最多新生成 640 个样本。
+可用新增额度 = max(0, floor((1 + s) × B) − C)
+例如 B=512、s=0.5、C=128，则本轮还可提交 640 个 prompt/group。
 ```
 
 这是“最多能生产多少”的背压预算，不代表每轮必须生产满。`s=0.5` **不是落后 0.5 个 policy version，也不保证实际训练 batch 恰有 50% 的旧样本**。队列水位、样本年龄和逐 token policy lag 仍需独立观测。
 
-[官方 recipe 文档](https://verl.readthedocs.io/en/latest/advance/fully_async.html#parameter-description)将 `B` 具体写为 `trigger_parameter_sync_step × require_batches × ppo_mini_batch_size`；`require_batches` 控制一次取样量，trigger 控制发布权重频率。样本、prompt 与每个 prompt 的多条 response 必须按具体实现统一计数，不能漏乘或重复乘 `rollout.n`。这是官方文档的参数补证，不把其后续版本默认值倒推到 1 月分享。
+[v0.7.1 recipe 文档](https://github.com/volcengine/verl/blob/v0.7.1/docs/advance/fully_async.md#parameter-description)将 `B` 具体写为 `trigger_parameter_sync_step × require_batches × ppo_mini_batch_size`；`require_batches` 控制一次取样量，trigger 计的是取样/训练循环，不一定是 optimizer.step 次数。这里计数单位是 prompt/group，未过滤前的 response 数再乘 `rollout.n`，不能把全局 batch 再乘 GPU 数。这是固定版本的参数补证，不将其默认值或快照实现倒推为 1 月实验的精确代码。
 
 `s=0` 只意味着不借助这项额度跨发布周期超前生产，**不自动等价于整个系统严格 on-policy**：若一次发布之间 Trainer 连续更新多次，后面的 update 仍会消费此前参数生成的数据。该实现还要求 `s>0` 才让 partial rollout 实际生效。
 
