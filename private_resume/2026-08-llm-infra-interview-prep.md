@@ -93,7 +93,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 <summary><strong>Part II｜Megatron、MoE、训练后端与长上下文（27）</strong></summary>
 
 - **P0 / Core**：[RESUME-01A X1 200B MoE 模型性能优化](#resume-01a) · [MEGATRON-01 5D 并行](#megatron-01) · [INFRA-02 Megatron 显存账本](#infra-02)
-- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 Column/Row Parallel](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
+- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 TP：Linear/MLP/Attention 切分](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
 - **P1**：[RESUME-18 视频 DiT/Ulysses](#resume-18) · [MEGATRON-07 PP bubble](#megatron-07) · [MEGATRON-08 Packed Sequence](#megatron-08) · [MEGATRON-09 Recompute/Offload](#megatron-09) · [MEGATRON-10 Distributed checkpoint](#megatron-10) · [BRIDGE-01 MBridge/Megatron Bridge](#bridge-01)
 - **P2**：[P2-02 FlashAttention](#p2-02)
 
@@ -819,11 +819,25 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-02"></a>
-#### MEGATRON-02｜Column Parallel 和 Row Parallel Linear 怎么切？通信在哪里？（P0，18 分钟）
+#### MEGATRON-02｜TP（张量并行）怎么切 Linear、MLP 和 Attention？通信在哪里？（P0，18 分钟）
 
 - **直接回答（60 秒）**：
 
-  > TP 切的是一个 layer 内部的 hidden/output channel 或 attention head，不是 sequence。对 `Y=XW`，Column Parallel 沿 `W` 的输出维切，每个 rank 产生一部分输出特征；Row Parallel 沿输入维切，每个 rank 产生同 shape 的 partial output，再做 reduce-sum。Megatron 把 MLP 的 gate/up 做 Column Parallel、down 做 Row Parallel；Attention 的 QKV projection 做 Column Parallel，把 heads 分给各 TP rank，output projection 再做 Row Parallel。这样中间张量一直保持分片，只在必要边界通信，而不是每个 Linear 后 all-gather。
+  > TP 切的是一个 layer 内部的 hidden/output channel 或 attention head，不是 sequence。Column Parallel（列并行）和 Row Parallel（行并行）是 TP 的两种 Linear 切法，不是另外两种独立并行维度。对 `Y=XW`，列并行沿 `W` 的输出维切，每个 rank 产生一部分输出特征；行并行沿输入维切，每个 rank 产生同 shape 的 partial output，再做 reduce-sum。Megatron 把 MLP 的 gate/up 做列并行、down 做行并行；Attention 的 QKV projection 做列并行，把 heads 分给各 TP rank，output projection 再做行并行。中间张量保持分片，只在必要边界通信，而不是每个 Linear 后 all-gather。
+
+- **Row 是按行切、Column 是按列切吗？** 是，但要先约定是哪一个矩阵。按数学表达 `Y=XW`、`W:[输入特征, 输出特征]`，Row/Column 指 **W 的行/列**，不是 `X` 的 batch/token 行。
+
+  | TP 切法 | 数学权重 `W:[in,out]` | 特征维度与各卡结果 | PyTorch 权重 `weight:[out,in]` |
+  |---|---|---|---|
+  | Column Parallel／列并行 | 按列切 | 切输出特征；各卡算不同的输出片段，完整输出对应拼接 | 切第 0 维（存储矩阵的行） |
+  | Row Parallel／行并行 | 按行切 | 切输入特征，输入也对应分片；各卡算同一输出的部分贡献，最终求和 | 切第 1 维（存储矩阵的列） |
+
+  **为什么代码看起来反了？** `torch.nn.Linear` 计算的是 `Y = X @ weight.T + bias`，存储布局与上面的数学权重互为转置，命名却仍沿用数学表达。最稳妥的记法是：**Column 切输出特征，Row 切输入特征；看代码前先确认 shape 和乘法方向。** [Megatron Linear 定义](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.tensor_parallel.layers.html)、[PyTorch Linear 布局](https://docs.pytorch.org/docs/2.9/generated/torch.nn.Linear.html)。
+
+  **两卡小例子**：忽略 bias，`X:[N,4]`、`W:[4,6]`，`N` 是 token 数。
+
+  - 列并行：每卡持有 `[4,3]` 的权重，分别算 `[N,3]` 输出；拼接可得到 `[N,6]`，若下游直接消费分片则不用立即通信。
+  - 行并行：每卡持有 `[2,6]` 的权重，并接收 `[N,2]` 的输入特征片段；各自算出 `[N,6]` 的部分结果，**相加**得到最终输出，而不是拼接。
 
 - **用 shape 展开 MLP**：令输入 `X:[N,H]`，FFN intermediate size 为 `I`，TP size 为 `t`。以下按数学权重 `W:[in,out]` 表示，代码中的存储转置不改变切分语义。
 
@@ -840,7 +854,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
       Y = sum_r(Y_partial^r)
   ```
 
-  forward/backward 的完整通信要分是否开启 SP：
+  forward/backward 的 TP 通信要分是否开启 SP。下表聚焦 activation/dX 的布局转换，按典型 Dense 配对配置 `Column: gather_output=False`、`Row: input_is_parallel=True` 且正常启用梯度归约；不包含另行请求的输出聚合，以及 DP/CP/EP 通信：
 
   | TP Linear | 无 SP | 有 SP |
   |---|---|---|
@@ -850,6 +864,8 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   | Row Parallel backward | 无 TP collective，本地得到 intermediate shard 的 `dZ` | `AllGather(dY)` 还原 Row Linear 所需输入，再本地得到分片 `dZ` |
 
   因此，无 SP 的经典简写是 “Column forward 不通信、backward AllReduce；Row forward AllReduce、backward 不通信”；有 SP 则是 “Column forward AllGather、backward ReduceScatter；Row forward ReduceScatter、backward AllGather”。
+
+  **不要把这个简写当作 profiler 的全部通信次数**：MCore 0.17 常规可训练权重路径中，Column SP backward 还会 `AllGather(X)`，用于计算 `dW`；保存的是 sequence shard，反向需重新聚合输入。这与规约 `dX` 的 `ReduceScatter` 是两次不同用途的通信。[Linear backward 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/layers.py)
 
 - **用 shape 展开 Attention**：MHA 有 `n_h` 个 query heads、每头维度 `d_h`，`H=n_h×d_h`。QKV 的 Column Parallel 让每个 rank 持有 `n_h/t` 个 heads：
 
@@ -869,7 +885,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 <details>
 <summary>面试意图与回答提醒</summary>
 
-- **问题**：以 MLP 或 Attention projection 说明 forward/backward collective。
+- **问题**：TP 的行并行、列并行分别切哪个特征维？以 MLP 或 Attention projection 说明 forward/backward collective。
 
 - **面试官意图**：判断 TP 是否停留在“把模型切到多卡”的表层。
 
