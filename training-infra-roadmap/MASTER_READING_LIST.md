@@ -221,7 +221,7 @@
 |---|---|---|---|
 | 31 | CompactionRL | [CompactionRL](papers/compactionrl.md) | long-horizon agent 的 context compaction、segment loss 和 cross-trajectory credit assignment |
 | 32 | AReaL | [RL Framework Selection](topics/rl_framework_selection.md) | 异步 rollout/train 解耦、staleness、sample freshness |
-| 33 | HybridFlow / verl | [RL Framework Selection](topics/rl_framework_selection.md) | RLHF dataflow、actor training/generation resharding |
+| 33 | HybridFlow / verl | [RL Framework Selection](topics/rl_framework_selection.md)；[美团 Fully Async 实践](topics/agentic_rl.md#meituan-fully-async-practice)（[历史来源](tracking/backfill/2026-01.md#meituan-fully-async)） | RLHF dataflow、actor resharding；streaming、partial rollout、陈旧度预算与公开实验边界 |
 | 34 | Agent Lightning | Tracking / P0 | agent runtime 与 trainer 解耦、trace schema |
 | 35 | Traditional KD → OPD → MOPD | [MOPD（研究中 / 原理第一版）](topics/mopd.md) | Student rollout、dense Teacher signal、domain routing、multi-teacher serving |
 

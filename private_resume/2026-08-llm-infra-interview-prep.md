@@ -24,7 +24,7 @@
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
 | **项目经历（核心）** | **X1 200B MoE**：**`0.16x→0.95x / MFU 35% / 3K 卡连续稳定训练两个月`** | **[代表性优化](#resume-01a) · [Ownership](#resume-01b) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [规模交付](#resume-10)** |
 |  | **Long Context SFT**：**`31s→9.3s；MFU 23%→45.2%`**（独立简历口径，不据此互相反推）；**`128K / 7.6GB`** | **[9B SFT](#resume-05) · [35B-A3B/128K](#resume-17) · [长上下文显存](#resume-06) · [CP-local logits](#resume-07)** |
-|  | **Fully Async RLVR**：async 内部配置优化 **`76→211–255 tokens/s/GPU`** | **[同步与异步](#resume-02) · [gen-TP/实例数](#resume-03) · [Rollout 优化](#rollout-01) · [资源部署](#verl-02) · [Async/Staleness](#verl-04) · [正确性](#verl-05)** |
+|  | **Fully Async RLVR**：async 内部配置优化 **`76→211–255 tokens/s/GPU`** | **[同步与异步](#resume-02) · [美团实践](#resume-02-meituan) · [gen-TP/实例数](#resume-03) · [Rollout 优化](#rollout-01) · [资源部署](#verl-02) · [Async/Staleness](#verl-04) · [正确性](#verl-05)** |
 |  | **AReaL Agentic RL / Gateway**：**decode `6–8x`；Rollout `+60%`；Rejected Group `33.18%→2.73%`** | **[训练链路](#resume-08) · [CUDA Graph](#resume-13) · [Gateway 收益](#resume-19) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11)** |
 |  | **OPD / MOPD**：**双 Teacher 在 SWE、Terminal 双域提升且 General 不下降（方向性结论）** | **[MOPD 主问题](#resume-09) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08)** |
 |  | **TX 文生视频 / 国产卡规模交付**：**模型跑通、精度、性能、扩容与交付闭环** | **[HunyuanVideo/Ulysses](#resume-18) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [融合算子](#kernel-01) · [万卡规模效应](#infra-09)** |
@@ -1422,7 +1422,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 - **直接回答（60–90 秒）**：
 
-  > Fully Async 的收益是让生成和训练重叠，不是让单条回答自动生成得更快。Rollouter 持续生产，Trainer 凑够 batch 就消费，两侧通过队列解耦；代价是旧样本、背压和权重更新更难管理。
+  > Fully Async 主要减少阶段串行和批次长尾造成的等待：Rollouter 完成样本就入队，Trainer 凑够可训练 batch 就消费，两侧重叠执行；再配合 partial rollout，在发布权重前保存未完成轨迹，更新后续跑，减少等长请求结束的时间。它不让单条回答自动生成得更快，代价是要管好旧样本、背压和 token 对应的真实 behavior logprob。
   >
   > 我们的 30B-A3B、32K、32 张 A100 场景，最初异步配置把 24 张卡给训练、8 张卡给生成，生成 TP 为 4，只有两个推理实例，Trainer 经常等数据，吞吐只有 76。随后我降低 gen-TP、增加实例，并联合调整 batch 触发、缓存生命周期和调度配置，优化窗口达到 211–255 tokens/s/GPU。这个结果属于 async 内部的联合优化，不能说成同步切异步提升三倍，也不能全部归因于降 TP。
   >
@@ -1438,6 +1438,31 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
   | 更多 rollout 资源 | `2T+2R`；16 张 Rollouter GPU、8 个实例 | 候选窗口 236–293；idle ratio 0.10–0.14；瓶颈转向 actor update |
 
   联合配置包括 `require_batches`/trigger、`free_cache_engine`、dynamic batch、chunked prefill、prefix cache、CUDA Graph path、partial rollout、bounded staleness、rollout correction、validation frequency，以及 `max_model_len`、`max_num_batched_tokens`。追问时按它们减少哪段暴露等待展开，不把配置名称堆进主答，也不虚构单因素收益。
+
+<a id="resume-02-meituan"></a>
+##### 美团实践补充：问题背景 → 优化原理 → 实际效果
+
+**背景**：侯正罡《基于 verl 的 Fully Async Policy 训练架构》（2026 年 1 月）中，DAPO 32B 案例一个 step 约 `1700s`，其中 rollout 约 `1200s`，占约 70%；另一项 235B 观测里，rollout 约一半时间在处理长尾。问题不只是“生成慢”，而是**等待最长请求时，其他资源没有继续做有效工作**。One Step Off Policy 先用上一轮数据训练、与新一轮生成重叠，但仍受固定轮次和长尾约束。（分享第 5–10 页）
+
+| 优化抓手 | 面试时怎么解释原理 |
+|---|---|
+| **资源分离与配平** | Trainer、Rollouter 分池并行，分别选择并行度与实例数。每侧卡少了，单阶段可能变慢，但端到端能靠 overlap 变快；必须看两侧等待与供需，不能机械对半分。 |
+| **逐样本流式调度** | `Rollouter → MessageQueue → Trainer`：完成即入队、凑够批量就训练，不等原来那一大批全部完成；限制并发，避免 KV cache 频繁淘汰。这里不是“一个 token 到了就更新”，GRPO 仍要守住 group 与 advantage 的完整性。 |
+| **Partial rollout** | 发布权重前暂停未完成任务，保存 token 和原始 logprob，更新后沿已有前缀续跑；减少等长尾结束和重新生成前缀的浪费。它不是丢掉长样本，也不保证旧 KV cache 能跨权重复用。 |
+| **陈旧度与正确性** | 允许有限超前生成，用预算和背压阻止旧样本无限积累；跨版本轨迹保留逐 token 的 behavior logprob，必要时做 rollout correction。PPO clipping 不能自动修复错误的 token/logprob 对齐。 |
+| **权重同步** | 分离资源后用 NCCL all-gather / broadcast 传权重，再将零碎 tensor 聚成 bucket 批量传输，提高带宽利用率。分享报告**参数同步耗时降低 60% 以上**，不是训练总耗时降低 60%。 |
+
+**美团公开实验效果（不是本人项目指标）**：
+
+| 实验场景 | 分享报告的累计训练耗时收益 |
+|---|---|
+| 7B Math，128 卡，共置同步 vs `64+64` 分离异步 | 400-step 窗口由 **40h48m → 17h22m，约 2.35x**；100–400-step 不同窗口为 **2.35–2.67x**。（第 24、26 页） |
+| 30B-A3B，128 卡 | 400-step 窗口由 **59h39m → 34h41m，约 1.72x**；不同窗口为 **1.72–2.01x**。（第 28 页） |
+| Qwen2.5-7B-Instruct，多轮工具，32 卡 | 200-step 窗口由 **22h28m → 14h04m，约 1.60x**；100-step 为 **1.55x**。（第 28 页） |
+
+**一句话收束**：“收益来自少等数据、少等长尾、少等权重同步，不是单个 kernel 自动快了几倍。”这些是分享报告的固定 step 窗口耗时，不是等质量 time-to-target，也不是你的 `tokens/s/GPU` 提升倍数；不能据此宣称所有任务均无精度损失。
+
+原理依据为[公开分享 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)第 11–20 页；[官方 Fully Async 文档](https://verl.readthedocs.io/en/latest/advance/fully_async.html)可交叉核对。**[深入阅读：staleness 预算、实验效果边界与调优顺序](../training-infra-roadmap/topics/agentic_rl.md#meituan-fully-async-practice)**；↩ [回到本题口述与个人项目](#resume-02)。
 
 - **Benchmark 门禁**：先声明分子、分母和窗口，固定模型/checkpoint、prompt-response 长度分布、采样参数、硬件、并发上限和统计区间；warmup、checkpoint、validation、失败重试和过滤样本要明确是否包含。除吞吐外同时报告 queue depth、trainer idle、policy version lag 和 rejected/stale ratio，防止用堆积旧样本换表面吞吐。
 - **项目证据或知识边界**：`76 → 211–255` 是 async 初始配置与优化配置的比较；`236–293` 是 `2T+2R` 候选窗口，二者都不是全程平均。同步“约 200”只用于说明最初的阶段拆解和选型背景，只有在相同 workload、窗口和 `tokens/s/GPU` 分母确认后才能做性能比较；确认前不要说 Fully Async 超过同步，更不能说相比同步提升三倍。CUDA Graph 的 `14x` 来自另一项 35B 真实 RL decode 证据，也不能用于解释这里的 211–255。

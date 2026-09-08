@@ -20,6 +20,7 @@
 - [2026-06](2026-06.md)：PyTorch Miles / RL post-training infra
 - [2026-05](2026-05.md)：Hugging Face TiTo / Agentic RL token correctness
 - [2026-02](2026-02.md)
+- [2026-01](2026-01.md)：美团 verl Fully Async / streaming / partial rollout
 - [2025-11](2025-11.md)：Isaac Lab / GPU simulation infra
 - [2025-09](2025-09.md)：Gemini Robotics 1.5 / LeRobotDataset v3
 - [2025-08](2025-08.md)：Agent Lightning / GLM-4.5 ARC

@@ -355,6 +355,69 @@ Fully Async 去掉全局 barrier
 
 不能只开一个 `max_staleness` 配置就宣布正确。必须同时看 effective-token goodput、version-lag 分布、stale rejection、importance ratio/KL、训练 reward 和 held-out eval。
 
+<a id="meituan-fully-async-practice"></a>
+## 美团 verl Fully Async 实践：把等待移出训练关键路径
+
+**来源与阅读范围**：侯正罡，美团搜推 AI Infra 团队，《基于 verl 的 Fully Async Policy 训练架构》，2026 年 1 月，收录于 [2026-01-10 官方 meetup 目录](https://github.com/verl-project/verl-data/tree/main/verl_meetup_20260110)。依据[原始 PDF](https://github.com/verl-project/verl-data/blob/main/verl_meetup_20260110/4-%E4%BE%AF%E6%AD%A3%E7%BD%A1.pdf)第 5–20、24–28 页；2026-09-08 完成阅读与页面核对，状态 **DIGESTED，未复现实验**。这是历史实现案例，不代表当前 verl 所有路径的默认行为。
+
+面试先读[主文档 RESUME-02：背景、原理、效果](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-02-meituan)；这里仅补预算含义、数据正确性和结果解释。材料索引见[历史补录](../tracking/backfill/2026-01.md#meituan-fully-async)。
+
+### 1. 为什么分池还不够：有三种不同的等待
+
+1. **阶段等待**：同步模式先完成 rollout 再 update。分离 Trainer/Rollouter 资源，让两侧并行推进，减少阶段间空闲；代价是每侧可用卡数减少，因此并行度和资源比例需要重新调优。
+2. **批次等待**：One Step Off Policy 可以重叠两轮工作，但固定批次仍会被最长轨迹拖住。改成完成即入队、凑够训练批量就消费，让短样本不再陪同一大批中的长样本一起等。单样本是调度/传输粒度，不意味着 batch size=1；GRPO 计算组内 advantage 时仍需完整 group，算好后可重新 packing 或切分训练 microbatch。
+3. **权重发布等待**：即使持续生成，更新权重前若必须等所有在途请求自然结束，长尾仍会阻塞。Partial rollout 把在途任务暂停并保存已生成 token、behavior logprob，发布权重后续跑，减少 drain 等待和重复 decode；NCCL bucket 传输则缩短真正的数据传输阶段。**前者少等请求，后者快传权重，不是同一个优化。**
+
+按这一机制做工程抽象：同步耗时近似是生成、训练与同步的串行和；充分流水后的稳态周期由较慢一侧及尚未隐藏的同步开销决定。这个近似必须在固定工作量、重新测量分池后的阶段耗时后使用，不能把原来全卡 rollout 和全卡 training 的耗时直接取 `max` 当预测结果。
+
+### 2. staleness 在这份实现里是“超前生产额度”
+
+分享第 15 页用样本预算控制异步程度。令 `B` 为一个权重发布周期内 Trainer 计划消费的样本量，`C` 为上一周期超额生成并结转的旧样本数，`s` 为此处的 staleness 配置，则新增 rollout 预算为：
+
+```text
+新增生成上限 = (1 + s) × B − C
+例如 B=512、s=0.5、C=128，则本轮最多新生成 640 个样本。
+```
+
+这是“最多能生产多少”的背压预算，不代表每轮必须生产满。`s=0.5` **不是落后 0.5 个 policy version，也不保证实际训练 batch 恰有 50% 的旧样本**。队列水位、样本年龄和逐 token policy lag 仍需独立观测。
+
+[官方 recipe 文档](https://verl.readthedocs.io/en/latest/advance/fully_async.html#parameter-description)将 `B` 具体写为 `trigger_parameter_sync_step × require_batches × ppo_mini_batch_size`；`require_batches` 控制一次取样量，trigger 控制发布权重频率。样本、prompt 与每个 prompt 的多条 response 必须按具体实现统一计数，不能漏乘或重复乘 `rollout.n`。这是官方文档的参数补证，不把其后续版本默认值倒推到 1 月分享。
+
+`s=0` 只意味着不借助这项额度跨发布周期超前生产，**不自动等价于整个系统严格 on-policy**：若一次发布之间 Trainer 连续更新多次，后面的 update 仍会消费此前参数生成的数据。该实现还要求 `s>0` 才让 partial rollout 实际生效。
+
+### 3. Partial rollout 要保存什么，不能省掉什么
+
+- **原始行为数据**：旧前缀由旧参数生成，续写由新参数生成，训练时必须保留各段真实的 token/logprob 对应关系。不能用新权重重算整条 logprob 后，把它冒充生成时的行为概率。
+- **Agent 状态**：第 20 页要求在工具处理的安全边界暂停，保留轮次、工具指令与结果、对话上下文和多轮片段。不能只存字符串，导致恢复后重复执行有副作用的工具。
+- **KV 边界**：复用 token 前缀不等于旧 KV cache 跨权重仍有效；权重变化后通常需要重新 prefill。节省的是从头自回归生成的成本，不是宣称恢复零成本。
+- **校正边界**：第 18–19 页区分直接采用 rollout logprob 和 Decoupled PPO 式校正。后者把“训练策略相对近端策略的更新”与“近端策略相对实际采样策略的偏差”拆开处理；近端策略不是用于 KL penalty 的 Reference model。Clipping/correction 都不能修复错误的 mask、group 或行为数据，也不能保证任意陈旧度下收敛。
+
+后两项中的 KV 有效性与数据契约检查是对分享机制的工程推论，不是分享披露的额外性能收益。
+
+### 4. 怎么读效果表，避免把几种收益混起来
+
+主文档已列总耗时，此处保留决定工程判断的对照：
+
+| 分享中的证据 | 应得出的结论 |
+|---|---|
+| 128 卡 7B，400-step：同步 `40h48m`；stream off-policy `25h53m`；结合 staleness 与 partial rollout 后 `17h22m`（第 26 页） | 流式组批先减少大批次等待，进一步异步与轨迹续跑再减等待；后一步是联合配置，**不是 partial rollout 单因素消融**。 |
+| 同组实验 acc/mean@1：同步 `max 0.3573 / last 0.2958`；最终 async `max 0.3521 / last 0.3094`（第 24 页） | max 略低而 last 较高，只能描述这次报告的结果，不能据此断言所有任务等精度或训练更稳定。 |
+| staleness `0.3 / 0.5`：400-step 分别 `17h20m / 17h22m`，last acc `0.2865 / 0.3094`（第 27 页） | 本次从 0.3 增至 0.5 未观察到累计耗时继续下降；不能只看最小等待就继续加大 staleness，也不能据单次结果确定通用最佳值。 |
+| 30B-A3B：同步 actor update `86.27s`，分离后 `206.63s`，400-step 总耗时仍从 `59h39m` 降到 `34h41m`（第 28 页） | 单个训练阶段变慢与端到端变快可以同时成立，符合分池后通过 overlap 减少等待的机制。不要直接相加异步计时项。 |
+| 多轮工具：200-step `22h28m → 14h04m`；AIME 2025 acc/mean@30 的 last 为 `0.2056 / 0.2044`（第 28 页） | 此次约 1.60x，末点评分接近但并非完全相同；不能扩写成所有 Agent 任务都等效果加速。 |
+| 参数同步耗时降低 60% 以上（第 13 页） | 是 bucket 化 NCCL 传输的阶段收益，不是端到端加速，也不能与上面倍数相乘。 |
+
+**原源差异与统计边界**：PDF 将第一组简称为“Qwen2 7B Math”，[后续官方实验说明](https://verl.readthedocs.io/en/latest/advance/fully_async.html#experiments)写 `Qwen2.5-Math-7B`；因此主文档称“7B Math”，不把命名差异悄悄抹平。同一官方说明明确 30B-A3B 的 `96:32` 为 **Rollout:Trainer**，不是本人的 `3T+1R`。表中 `gen` 下降不能当作完整 Rollouter 推理时间下降；异步消费会隐藏后台工作，必须查看对应版本的计时范围。各模式的 `step` 还需按样本消费量/更新量对齐，累计耗时不是等质量 time-to-target，也不能换算成本人项目的 `tokens/s/GPU`。
+
+### 5. 放到自己项目里，按什么顺序优化
+
+1. **先测等待在哪里**：同步阶段占比、请求长度分布、两侧 idle、queue 水位与权重发布耗时，先区分供给不足、长尾、训练慢和同步慢。
+2. **再配资源与批量**：联调 T:R、gen-TP、实例数与训练取样批量；减小批量会减少等待，但也可能改变数据顺序和训练效果，不能只追求 `require_batches=1`。
+3. **再减少发布边界的停顿**：验证 partial rollout 的暂停/续跑正确性，分别测 drain 与 bucket 传输耗时，避免把两个收益合并归因。
+4. **最后找吞吐与效果都可接受的配置**：逐步调 staleness 与发布频率，同时看有效 token goodput、response length、ratio/KL、拒绝率和 held-out eval。分享第 30 页的动态资源分配、token 级路由属于当时的后续规划，不能说成当时已实现。
+
+这份材料解释的是可借鉴的机制。个人项目仍使用[RESUME-02 已有配置与指标](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-02)，没有独立 A/B 的改动不拆贡献，没有复现的美团指标不写入个人成果。
+
 <a id="external-agent-gateway"></a>
 ## 外部 Agent 如何通过 OpenAI-compatible Gateway 接入
 
