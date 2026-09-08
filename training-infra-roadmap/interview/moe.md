@@ -82,11 +82,14 @@
 - 把 SP 和 CP 都乘入 world size；
 - 认为 SP 已经把 Attention 的完整 context 独立分布。
 
-## 高频题 4：MoE 的 AllToAll 为什么难优化
+<a id="ep-tradeoffs"></a>
+## 高频题 4：EP 带来哪些问题，MoE 的 AllToAll 为什么难优化
 
 ### 优秀回答
 
-> Router 让每个 token 选择 top-k experts；token 按目标 expert permute 后 dispatch 到 EP ranks，本地执行 Grouped GEMM，再 combine 返回。AllToAll 难点是每个 peer 的 token count 动态且不均，hot expert 会制造 rank straggler；EP 过大时每个 expert 的 token batch 又变小，GEMM efficiency 下降。优化要联合看 per-expert tokens、per-peer send/recv count、dispatch/combine p95/p99、Grouped GEMM shape、expert placement、dropless/padding 策略和网络拓扑。
+> Router 让每个 token 选择 top-k experts；token 按目标 expert permute 后 dispatch 到 EP ranks，本地执行 Grouped GEMM，再 combine 返回。AllToAll 难点是每个 peer 的 token count 动态且不均，hot expert 会制造 rank straggler 和显存峰值；每专家实际 token batch 太小、ETP 把矩阵切得太窄时，GEMM efficiency 也会下降。EP 增大不必然让每专家 batch 变小，还取决于路由输入、专家数、top-k 和 DP/EDP 映射。优化要联合看 per-expert tokens、per-peer send/recv count、dispatch/combine p95/p99、Grouped GEMM shape、expert placement、dropless/padding 策略和网络拓扑。
+
+现场速查：[主文档 MEGATRON-06：六类问题、对应措施与取舍](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-06)。其中区分了 MoE 路由自身的问题与 EP 的跨卡放大效应，并补充 capacity/drop、overlap 和梯度正确性的回答边界。
 
 ### 生产案例
 

@@ -19,7 +19,7 @@
 |---|---|---|
 | **教育背景** | 厦门大学本科、清华大学硕士，研究方向为人工智能 | [自我介绍](#resume-01) |
 | **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、PyTorch FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PyTorch FSDP](#dist-01) · [框架选型](#megatron-11) |
-|  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · [EP/A2A](#megatron-06) · [显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) · [融合算子](#kernel-01) |
+|  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · **[EP 带来的问题与解决方案](#megatron-06)** · [显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) · [融合算子](#kernel-01) |
 |  | **RL / verl / AReaL**：PPO/GRPO/DAPO、Fully Async、Agentic RL | [RL 算法](#rl-algo-01) · [verl/AReaL 选型](#areal-01) · [HybridFlow](#verl-01) · [资源部署](#verl-02) · [Async/Streaming/Staleness](#verl-04) |
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
 | **项目经历（核心）** | **X1 200B MoE**：**`0.16x→0.95x / MFU 35% / 3K 卡连续稳定训练两个月`** | **[代表性优化](#resume-01a) · [Ownership](#resume-01b) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [规模交付](#resume-10)** |
@@ -149,7 +149,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 <summary><strong>Part II｜Megatron、MoE、训练后端与长上下文（27）</strong></summary>
 
 - **P0 / Core**：[RESUME-01A X1 200B MoE 模型性能优化](#resume-01a) · [MEGATRON-01 5D 并行](#megatron-01) · [INFRA-02 Megatron 显存账本](#infra-02)
-- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 TP：Linear/MLP/Attention 切分](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 PyTorch FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
+- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 TP：Linear/MLP/Attention 切分](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 的问题与优化](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 PyTorch FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
 - **P1**：[RESUME-18 视频 DiT/Ulysses](#resume-18) · [MEGATRON-07 PP bubble](#megatron-07) · [MEGATRON-08 Packed Sequence](#megatron-08) · [MEGATRON-09 Recompute/Offload](#megatron-09) · [MEGATRON-10 Distributed checkpoint](#megatron-10) · [BRIDGE-01 MBridge/Megatron Bridge](#bridge-01)
 - **P2**：[P2-02 FlashAttention](#p2-02)
 
@@ -402,7 +402,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **先看全景**：[Megatron 训练整体优化方案](#megatron-optimization-overview)
 - **Core**：[X1 MoE 优化](#resume-01a) · [5D 并行](#megatron-01) · [显存账与 OOM](#infra-02)
 - **P0 项目**：[9B SFT 加速](#resume-05) · [35B-A3B 128K](#resume-17) · [长上下文显存](#resume-06) · [CP-local logits](#resume-07) · [融合算子](#kernel-01) · [千卡规模交付](#resume-10)
-- **P0 机制**：[TP Linear](#megatron-02) · [TP 负优化](#megatron-03) · [SP 与 CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [Dense 与 MoE](#moe-01) · [EP 与 All-to-All](#megatron-06) · [MFU](#infra-01) · [FSDP 与 ZeRO](#dist-01) · [训练后端选型](#megatron-11) · [SFT 数据正确性](#sft-data-01) · [多模态与具身](#mllm-01)
+- **P0 机制**：[TP Linear](#megatron-02) · [TP 负优化](#megatron-03) · [SP 与 CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [Dense 与 MoE](#moe-01) · [EP 的问题与优化](#megatron-06) · [MFU](#infra-01) · [FSDP 与 ZeRO](#dist-01) · [训练后端选型](#megatron-11) · [SFT 数据正确性](#sft-data-01) · [多模态与具身](#mllm-01)
 - **P1**：[视频 Ulysses](#resume-18) · [PP bubble](#megatron-07) · [Packed Sequence](#megatron-08) · [Recompute 与 Offload](#megatron-09) · [Checkpoint 换并行度](#megatron-10) · [两种 Bridge](#bridge-01)
 - **P2**：[FlashAttention 原理](#p2-02)
 
@@ -1070,27 +1070,49 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-06"></a>
-#### MEGATRON-06｜MoE 为什么需要 EP？all-to-all 为什么难优化？（P0，18 分钟）
+#### MEGATRON-06｜EP（专家并行）会带来哪些问题？如何解决？（P0，18 分钟）
 
-- **直接回答（60 秒）**：
+- **直接回答（60–90 秒）**：
 
-  > Router 为每个 token 选择 top-k expert；EP 把 experts 放到不同 rank，token 先按目的 expert 做 permute/dispatch 和 all-to-all，到本地 grouped GEMM 计算，再 all-to-all combine 并恢复顺序。难点是 token 路由动态、每个 rank 发送量不均，热点 expert 会让最快 rank 等最慢 rank；小 expert batch 还会降低 GEMM 效率。优化要联合看 expert load、capacity/dropped token、A2A p95、permutation、grouped GEMM、expert placement 和网络拓扑。TP+EP 组合时官方要求启用 sequence parallel，避免相关 activation 复制和布局问题。
+  > EP 把不同专家放在不同卡上，分摊专家参数和计算，但 token 要去专家所在的卡计算，再把结果送回来。因此主要有四类代价：跨卡通信、负载不均、显存峰值波动，以及小矩阵计算效率低。路由不均并不是 EP 才产生的，但分到多卡后，会变成热点卡拖慢整组。
+  >
+  > 我会先按专家和 rank 看 token 数，再拆 dispatch、专家计算、combine 的耗时。通信慢就检查拓扑和 dispatcher，并用没有依赖的计算做 overlap；负载不均就检查路由均衡机制；显存波动就查热点和 buffer、评估容量策略或重算；小矩阵则用 Grouped GEMM、融合算子，并避免 ETP 切得过碎。最后看端到端 step 是否变快、显存是否稳定，同时验证输出、梯度和模型效果。EP 不是越大越好，开了 overlap 也不代表通信就消失了。
 
-- **项目证据或知识边界**：你有 Qwen3/Qwen3.5 MoE recipe 和华为大 MoE 优化经验；准备一个具体的 expert imbalance 或 A2A 案例。
-- **高概率追问**：top-1 与 top-2 的代价？capacity factor 如何影响效果和性能？EP 跨节点怎么放？MoE checkpoint 如何 reshuffle？
+**先讲清数据流**：`Router / Top-K → 按目标专家重排 → dispatch → 本地 expert GEMM → combine / 加权合并 → 恢复 token 顺序`。典型 all-to-all dispatcher 的前向有 dispatch、combine 两次交换，反向也有对应的梯度交换；ETP 通信、重算带来的重复通信另算。不是所有 dispatcher 都用相同的 collective 实现。
+
+| 问题 | 为什么发生 | 怎么解决 | 代价与验证 |
+|---|---|---|---|
+| **通信多、跨节点慢** | token 和结果往返；动态 peer 消息量与网络拓扑不匹配 | 联合调整 EP/ETP 与 rank 放置；评估高效 dispatcher；重排融合和通信计算重叠 | 看跨节点字节数、dispatch/combine 暴露时间和 step p95；不能把所有等待都算成网络慢 |
+| **负载不均、慢卡拖全局** | 专家数量均分，不代表 token 数均分；热门专家集中在少数 rank | 监控每 expert/rank 的负载；使用模型 recipe 支持的 auxiliary loss 或 expert-bias 均衡；检查专家放置 | 看最大值/均值、尾延迟、路由分布和模型效果；均衡不能只追求每个专家严格一样忙 |
+| **热点卡 OOM、显存抖动** | Dropless 保留路由分配，热点专家的 activation、重排和收发 buffer 增大 | 留峰值余量；按瓶颈调整 microbatch、选择性重算；容量限制/drop 必须与算法共同确认 | Drop 改变参与计算的路由分配；padding 消耗显存与算力；重算不能消除当次必须分配的收发 buffer |
+| **GEMM 小、kernel 碎** | 每专家收到的 token 数动态，ETP 还可能把矩阵切窄 | Grouped GEMM、router/permute/activation fusion；在显存允许时比较更合适的微批量与 ETP | Grouped GEMM 是成组调度不同专家的矩阵乘，不是合并权重，也不能解决跨 rank 负载倾斜 |
+| **Overlap 收益不足** | 本批专家计算依赖 dispatch 完成；通信与 GEMM 还会争抢 SM/带宽 | 利用其他 microbatch、可调度的 weight-gradient 计算，或无依赖的 shared expert 计算重叠 | 必须保留依赖；看实际关键路径与额外 activation 显存，不以“开了多 stream”判定成功 |
+| **结果或梯度悄悄变错** | token 重排、expert ID、gate 权重、drop mask 或反向归约出错 | 用固定小 batch 对齐 token 映射、输出、梯度与 loss；按 recipe 检查 router 精度；换 EP 恢复时保留全局 expert identity | 吞吐提高不能替代数值与效果验收；不能把不同专家的梯度当同一参数直接 AllReduce |
+
+通信实现可参考 [DeepEP 官方仓库](https://github.com/deepseek-ai/DeepEP)，它针对 MoE dispatch/combine 的通信路径优化；不是自动处理路由均衡和全部训练调度的方案。上述瓶颈分类与取舍对应 [NVIDIA MoE 报告 §4、§7](https://arxiv.org/html/2603.07685v1)。
+
+**追问时补这三点就够了**：
+
+- **Capacity、drop、padding、dropless 有什么区别？** Capacity 约束一次路由中专家可接收的分配数，factor 通常相对于平均负载设上限；超出时可能丢弃部分 `token→expert` 分配，不是删除整条训练样本。Padding 是把不足容量的输入补齐，会浪费显存/计算；dropless 不因容量丢分配，但仍要承担热点峰值。减小 capacity 来提速不是无损优化。
+- **EP 越大，每专家 batch 一定越小吗？** 不一定。对同一组路由输入，去除 TP 复制后的 token 数为 `T`、专家数为 `E`、每 token 选 `K` 个专家，丢弃前平均分配量约为 `T×K/E`。是否变小取决于输入规模、路由域和 DP/EDP 映射，不能只看 EP。更大的 EP 可能减少每卡专家数，也可能跨慢链路；ETP 则是切单个专家内部矩阵，两者别混淆。
+- **具体会看哪些配置？** EP/ETP 看 `--expert-model-parallel-size`、`--expert-tensor-parallel-size`；计算看 `--moe-grouped-gemm`、`--moe-permute-fusion`；通信看 dispatcher 和 `--overlap-moe-expert-parallel-comm`/`--delay-wgrad-compute` 的组合条件。均衡、capacity、router dtype 先遵循模型 recipe，不能当通用加速开关全打开。DeepEP/HybridEP、SP、overlap 的支持条件以所用版本与硬件为准。[Megatron Core MoE 配置指南](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/moe.html)（本题核验于 2026-09-08）
+
+- **项目怎么接**：可接回 [X1 200B MoE](#resume-01a)，讲本人做过的并行配置、Grouped MatMul、融合和通信掩盖；未亲自实现或验证的 router、DeepEP/HybridEP、底层 collective，只说机制理解或候选方案。
+- **高概率追问**：怎么证明是网络慢而不是热点专家拖慢？top-1/top-2 是否意味着网络字节数严格翻倍？为什么重算也救不了 dispatcher buffer OOM？改变 EP 后 checkpoint 和 optimizer 状态怎么对应？
+- **深入原理**：[MoE 路由与系统账本](../training-infra-roadmap/topics/moe.md#4-router容量与负载均衡) · [Parallel Folding 与拓扑](../training-infra-roadmap/topics/moe.md#parallel-folding) · [MoE 通用面试题](../training-infra-roadmap/interview/moe.md#ep-tradeoffs)。
 
 <details>
 <summary>面试意图与回答提醒</summary>
 
-- **问题**：请从 router、dispatch、expert compute、combine 讲一层 MoE。
+- **问题**：EP 分摊了什么，又引入什么代价？请按“现象—原因—措施—验证”说明如何优化。
 
-- **面试官意图**：验证简历中 dense/MoE 经验，以及动态通信和负载均衡能力。
+- **面试官意图**：判断你能否从 token 数据流推导通信、显存和慢卡问题，而不只是会配置 EP；同时检查你能否区分系统优化与改变路由/训练语义。
 
-- **危险回答**：“MoE 每 token 只算少数 expert，所以一定更快”；只谈参数量，不谈动态通信和负载尾部。
+- **危险回答**：EP 越大越快；把所有 A2A 等待当网络瓶颈；Grouped GEMM 能解决跨卡负载不均；dropless 不会 OOM；随意降低 top-k/drop token 而不验证效果；overlap 可以消除通信量；把 expert ID 均分等同负载均分。
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回本 Part 导航](#part-ii) · [返回通用 Infra](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="infra-01"></a>
 #### INFRA-01｜MFU 是什么？如何正确计算和使用？（P0，15 分钟）
@@ -2935,6 +2957,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 **本 Part 导航**：Core：[通信算子](#infra-04)；P0 扩展：[训练数值异常](#train-anomaly-01) · [万卡规模效应](#infra-09) · [NCCL 与恢复排障](#infra-03) · [Embedding / PS](#infra-10) · [DataLoader 与样本读取](#infra-11)；P1：[精度对齐](#resume-12) · [64 卡并行选型](#infra-05) · [推理与 KV cache](#infra-06) · [可观测性](#infra-07) · [Checkpoint 状态](#infra-08)；P2：[性能瓶颈定位](#p2-03)。
 
 **Coding 实战**：[PyTorch MHA 与 `N×N` 矩阵原地顺时针旋转](2026-09-interview-coding.md)（独立题单，不计入本 Part 题量）。
+
+**通用并行追问**：[EP 会带来哪些问题，如何解决？](#megatron-06)（P0，归在 Part II；一份答案，题尾可返回这里）。
 
 ### Core｜最高优先入口
 

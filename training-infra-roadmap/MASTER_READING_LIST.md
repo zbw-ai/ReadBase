@@ -185,6 +185,8 @@
 
 先读工程手册章节：[MoE 与 Parallel Folding](topics/moe.md#parallel-folding)，重点理解同一批物理 ranks 上的 Attention/Expert 双逻辑网格、token AllToAll 数据流和拓扑代价。
 
+面试速查：[EP 带来的问题与解决方案](../private_resume/2026-08-llm-infra-interview-prep.md#megatron-06)——通信、负载倾斜、显存峰值、小 GEMM、overlap 与正确性。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 16 | GShard | [GShard](papers/gshard.md) | Expert Parallel 和自动分片 |
