@@ -13,7 +13,7 @@
 
 > **怎么用**：沿「教育背景 → 工作技能 → 项目经历」找到对应题目，先讲直接回答，被追问时再看展开。题尾可返回本 Part 或本控制台；浏览器返回按钮、macOS `⌘ + [`、Windows/Linux `Alt + ←` 可回到上一次跳转位置。题头的分钟数是完整准备时间，答案里的秒数是口述参考时长。
 
-**快速入口**：[自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
+**快速入口**：**[字节 Data AML 一面速查](#bytedance-aml-sprint)** · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
 
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
@@ -28,6 +28,62 @@
 |  | **AReaL Agentic RL / Gateway**：**decode `6–8x`；Rollout `+60%`；Rejected Group `33.18%→2.73%`** | **[训练链路](#resume-08) · [CUDA Graph](#resume-13) · [Gateway 收益](#resume-19) · [Gateway Ownership](#areal-09) · [XCCL/Disk](#areal-11)** |
 |  | **OPD / MOPD**：**双 Teacher 在 SWE、Terminal 双域提升且 General 不下降（方向性结论）** | **[MOPD 主问题](#resume-09) · [Trajectory→Gradient](#areal-04) · [三层正确性门禁](#areal-08)** |
 |  | **TX 文生视频 / 国产卡规模交付**：**模型跑通、精度、性能、扩容与交付闭环** | **[HunyuanVideo/Ulysses](#resume-18) · [千卡/万卡交付](#resume-10) · [精度对齐](#resume-12) · [融合算子](#kernel-01) · [万卡规模效应](#infra-09)** |
+
+---
+
+<a id="bytedance-aml-sprint"></a>
+### 0.1A 字节 Data AML｜训练框架研发一面速查
+
+**对应场次：2026-09-08 20:00，技术一面。** 按用户提供 JD 准备：推荐/广告/搜索训练系统，重点包含 GPU Embedding、数据读取、Checkpoint、并行与规模稳定性，也覆盖 LLM/SFT/RL/OPD。下面是定向复习优先级，不是固定真题。
+
+**怎么查**：先点问题，读「直接回答」，被追问再展开。下表的主要题目末尾可返回本入口；要回到刚才的滚动位置，用浏览器后退（macOS `⌘ + [` / Windows、Linux `Alt + ←`）。
+
+| 30 分钟顺序 | 面试官的切入点 | 直接跳转到答案 | 先记住什么 |
+|---:|---|---|---|
+| 3 分钟 | 你做过什么，个人贡献在哪里 | [自我介绍](#resume-01) · [X1 200B MoE](#resume-01a) · [Ownership](#resume-01b) · [SFT 优化](#resume-05) | workload/基线 → profile → 本人改动 → 验证 → 瓶颈迁移；不只列优化名词 |
+| 7 分钟 | 推荐稀疏训练与 LLM 有何不同 | **[INFRA-10｜Embedding、PS、多级存储](#infra-10)** | 大表、小工作集、热点随机访问、可变 ID；稀疏特征不等于 MoE |
+| 5 分钟 | GPU 等数据，怎样定位和提速 | **[INFRA-11｜DataLoader 与样本读取](#infra-11)** · [SFT 数据正确性](#sft-data-01) | 拆读取/预处理/组批/H2D；并发和预取有资源上限 |
+| 5 分钟 | 怎么保存、异步写入、换卡数恢复 | **[INFRA-08｜可恢复状态与保存流程](#infra-08)** · [一致性与失败处理](#infra-03) · [并行度变化恢复](#megatron-10) | 一致快照 ≠ staging 完成 ≠ 持久化完成；model 与 optimizer/data cursor 对齐 |
+| 5 分钟 | 训练如何切、通信怎么发生、扩容为什么变慢 | [FSDP](#dist-01) · [Megatron/FSDP 选型](#megatron-11) · [TP 切分](#megatron-02) · [Collective](#infra-04) · [万卡问题](#infra-09) | 先讲 tensor 的形状和数据流；通信等待不等于网络慢 |
+| 5 分钟 | 编码、Python 与 PyTorch 基础 | [本页基础速答](#aml-basics) · [MHA 实现](2026-09-interview-coding.md#coding-01) · [矩阵旋转](2026-09-interview-coding.md#coding-02) | 先确认 Python3/标准库权限；说复杂度，检查边界与测试 |
+
+**问到后训练再切换**：[verl/AReaL 选型](#areal-01) · [Fully Async 专题](#fully-async-study) · [Rollout 优化](#rollout-01) · [CUDA Graph](#resume-13) · [OPD/MOPD](#resume-09)。RL 是本人的重要经验，但不把这个覆盖稀疏/稠密训练系统的 JD 预设成纯 RL 岗。
+
+**开场侧重点（接在教育背景之后）**：
+
+> 我主要做训练系统集成与性能优化。华为阶段做过 200B MoE 的模型适配、Megatron 技术栈调优和规模训练交付；小鹏阶段主要做长上下文 SFT、verl 异步 RLVR，以及 AReaL Agentic RL。我比较擅长把框架能力接到实际模型上，通过 profile、配置和代码改动解决性能与正确性问题。这个岗位吸引我的地方，是把这些经验进一步沉淀为服务不同模型和业务的训练系统能力。
+
+**遇到“如何沉淀平台能力”**：先说明已经落地的配置、接口、诊断和验证，再讨论下一步如何抽象稳定的数据契约、统一指标、回归测试和故障处理。未完成的平台化只能说“我会这样设计”，不能把集成工作改写成完整平台 ownership。
+
+<a id="aml-basics"></a>
+**编码与基础速答（不新增手撕题长文）**：
+
+| 题目 | 最短回答与边界 |
+|---|---|
+| 整数快速幂 | 平方乘法，时间 `O(log |n|)`；先处理负指数，检查零指数、零底数与负指数组合的约定 |
+| LRU | 哈希表定位节点＋双向链表维护最近使用顺序，平均 `O(1)`；一次性扫描会污染缓存，热点频率明显时应比较其他淘汰策略 |
+| `view / reshape / contiguous` | view 共享存储但要求目标形状与 stride 兼容；reshape 可能复制；contiguous 在需要时生成连续布局，已经连续时不额外复制 |
+| GIL 与 IPC | 常规带 GIL 的 CPython 中，纯 Python CPU 密集任务不能靠线程取得多核并行；I/O、释放 GIL 的原生算子、free-threaded 构建另论。进程可用 Queue/Pipe/共享内存，分别权衡序列化与同步 |
+| PyTorch 计算图 | 前向执行时记录需要梯度的运算和依赖，反向按链式法则计算并累积梯度；注意 saved tensors、梯度累积，以及原地修改破坏反向所需数据 |
+| Ring AllReduce 通信量 | 每 rank 输入 `M` 字节、共 `N` rank：典型 ring 的发送量 `2(N−1)M/N`，接收量相同；不是收发合计，也不是 NCCL 永远使用 ring |
+
+基础核对：[PyTorch Tensor Views](https://docs.pytorch.org/docs/2.14/tensor_view.html)、[Autograd](https://docs.pytorch.org/docs/stable/notes/autograd.html)、[Python threading](https://docs.python.org/3/library/threading.html)、[NCCL 性能口径](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md)。
+
+**技术一面反问，选一题**：团队当前最希望这个岗位优先解决的是稀疏 Embedding/数据访问，还是 Dense/推荐大模型的并行与稳定性？能否举一个最近最影响算法迭代的问题？
+
+<details>
+<summary>公开面经与证据边界（核验于 2026-09-08，现场无需展开）</summary>
+
+- [机器学习系统暑期实习，面试 2025-03-12](https://www.nowcoder.com/discuss/729821154558353408)：CUDA/CPU-GPU、LRU、LevelDB memtable、计算图和 C++ 内存；属于相邻系统岗实习，不是本次社招原题。
+- [AML 推理框架研发实习，页面 2025-05-08 已编辑](https://www.nowcoder.com/feed/main/detail/a6d7fcd20cd645bdab07f1df67277576)：项目与量化实现、虚函数、全一子矩阵、牛顿法开根号；只取其中字节部分，不能把美团题混入。
+- [AI Infra 实习记录](https://www.nowcoder.com/feed/main/detail/b99b6a7c7ff54453a2451d43488ade5a)：GIL/IPC、AllReduce 计数、view/contiguous、TP 切分、整数幂；页面只显示 02-28，年份未独立核定，GraphFusion 也没有完整题面。
+- 没有核实到与本次完整 JD 相同的社招题库。Embedding、数据读取和 Checkpoint 的准备优先级来自 JD 与个人知识缺口；答案依据官方文档/论文，不照搬面经作者的答案，也不把公开系统当作本人经历或该团队当前部署事实。
+
+仓库延伸：[Checkpointing](../training-infra-roadmap/topics/checkpointing.md) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)。
+
+</details>
+
+↑ [返回通用面试速查控制台](#interview-console)
 
 ---
 
@@ -56,10 +112,10 @@
 | [Part II](#part-ii) | 大模型如何放得下、跑得快、扩得稳 | Megatron、5D、MoE、显存、长上下文 | Core 3 / P0 20 / P1 6 / P2 1，共 27 |
 | [Part III](#part-iii) | RL dataflow 如何被框架和训练/推理后端承载 | PPO/GRPO/DPO、verl、Fully Async、Rollout 优化、真实模型落地 | Core 1 / P0 14 / P1 6 / P2 1，共 21 |
 | [Part IV](#part-iv) | Agent trajectory 如何在线生产、校验和消费 | AReaL、Gateway、staleness、MOPD、weight sync | Core 2 / P0 11 / P1 6 / P2 1，共 18 |
-| [Part V](#part-v) | 跨框架的通信、恢复、推理与生产排障 | Collective、万卡稳定性、训练异常、NCCL、checkpoint | Core 1 / P0 4 / P1 5 / P2 1，共 10 |
+| [Part V](#part-v) | 跨框架的通信、数据、恢复与生产排障 | Collective、Embedding、样本读取、万卡稳定性、checkpoint | Core 1 / P0 6 / P1 5 / P2 1，共 12 |
 | [Part VI](#part-vi) | 如何把知识变成首面表现 | 三天冲刺、口径校准、证据卡、模拟面试 | 不新增问题 |
 
-全文共 **83 道唯一问题**：P0 52 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数；Coding 手撕题单独维护，不计入这里。
+全文共 **85 道唯一问题**：P0 54 道、P1 26 道、P2 5 道。Core 10 已计入 P0，不重复计数；Coding 手撕题单独维护，不计入这里。
 
 ### 1.2 Core 10：建立个人项目主线的十个入口
 
@@ -120,10 +176,10 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 </details>
 
 <details>
-<summary><strong>Part V｜通用 Infra 与生产排障（10）</strong></summary>
+<summary><strong>Part V｜通用 Infra 与生产排障（12）</strong></summary>
 
 - **P0 / Core**：[INFRA-04 通信算子](#infra-04)
-- **P0 扩展**：[TRAIN-ANOMALY-01 loss/NaN/梯度/收敛排障](#train-anomaly-01) · [INFRA-09 万卡规模效应与优化](#infra-09) · [INFRA-03 NCCL hang/checkpoint 恢复](#infra-03)
+- **P0 扩展**：[TRAIN-ANOMALY-01 loss/NaN/梯度/收敛排障](#train-anomaly-01) · [INFRA-09 万卡规模效应与优化](#infra-09) · [INFRA-03 NCCL hang/checkpoint 恢复](#infra-03) · [INFRA-10 稀疏 Embedding/PS/多级存储](#infra-10) · [INFRA-11 DataLoader/样本读取](#infra-11)
 - **P1**：[RESUME-12 精度对齐](#resume-12) · [INFRA-05 64 卡 35B MoE 128K](#infra-05) · [INFRA-06 推理吞吐/延迟/KV](#infra-06) · [INFRA-07 可观测性指标树](#infra-07) · [INFRA-08 可恢复 checkpoint](#infra-08)
 - **P2**：[P2-03 kernel/带宽/通信瓶颈](#p2-03)
 
@@ -169,7 +225,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-01b"></a>
 #### RESUME-01B｜你在项目中的 Ownership 是什么？（P0，10 分钟）
@@ -195,7 +251,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-i) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-01c"></a>
 #### RESUME-01C｜为什么从华为到小鹏，现在为什么又看机会？（P0，8 分钟）
@@ -433,7 +489,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-01"></a>
 #### MEGATRON-01｜Megatron 的“5D 并行”分别解决什么问题？（P0，15 分钟）
@@ -670,7 +726,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-17"></a>
 #### RESUME-17｜Qwen3.5-35B-A3B 在 128K 下为什么能把平均 step time 降低约 50%？（P0，18 分钟）
@@ -895,7 +951,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-03"></a>
 #### MEGATRON-03｜为什么 TP 从 2 增到 4 可能更慢？（P0，15 分钟）
@@ -1130,7 +1186,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-11"></a>
 #### MEGATRON-11｜Megatron、PyTorch FSDP/FSDP2、DeepSpeed 与 Accelerate 如何分层和选型？（P0，15 分钟）
@@ -1160,7 +1216,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="sft-data-01"></a>
 #### SFT-DATA-01｜SFT 数据从原始样本到 loss，如何保证没有训错？（P0，15 分钟）
@@ -1189,7 +1245,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="mllm-01"></a>
 #### MLLM-01｜多模态/具身训练与纯 LLM 训练有什么不同？（P0，15 分钟）
@@ -1347,7 +1403,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="bridge-01"></a>
 #### BRIDGE-01｜MBridge 是什么？与 Megatron Bridge 是什么关系？（P1，10 分钟）
@@ -1606,7 +1662,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-01"></a>
 #### VERL-01｜verl/HybridFlow 的核心架构是什么？（P0，18 分钟）
@@ -2422,7 +2478,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 </details>
 
-↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P0 扩展｜首轮前应掌握
 
@@ -2453,7 +2509,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 </details>
 
-↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-02"></a>
 #### AREAL-02｜AReaL 如何控制异步训练的 off-policyness？（P0，18 分钟）
@@ -2625,7 +2681,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 </details>
 
-↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-19"></a>
 #### RESUME-19｜Gateway 如何通过流式补位、均衡分发和失败管理把 Rollout 吞吐提升 60%？（P0，20 分钟）
@@ -2874,9 +2930,9 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 <a id="part-v"></a>
 ## Part V｜通用 Infra 与生产排障
 
-**学习目标**：把训练与 rollout 项目上升为可迁移的生产能力：训练数值异常、通信协议、故障定位、恢复、推理容量与可观测性。
+**学习目标**：把训练与 rollout 项目上升为可迁移的生产能力：训练数值异常、通信与故障定位、Checkpoint 恢复、数据读取、稀疏 Embedding、推理容量与可观测性。
 
-**本 Part 导航**：Core：[通信算子](#infra-04)；P0 扩展：[训练数值异常](#train-anomaly-01) · [万卡规模效应](#infra-09) · [NCCL 与恢复排障](#infra-03)；P1：[精度对齐](#resume-12) · [64 卡并行选型](#infra-05) · [推理与 KV cache](#infra-06) · [可观测性](#infra-07) · [Checkpoint 状态](#infra-08)；P2：[性能瓶颈定位](#p2-03)。
+**本 Part 导航**：Core：[通信算子](#infra-04)；P0 扩展：[训练数值异常](#train-anomaly-01) · [万卡规模效应](#infra-09) · [NCCL 与恢复排障](#infra-03) · [Embedding / PS](#infra-10) · [DataLoader 与样本读取](#infra-11)；P1：[精度对齐](#resume-12) · [64 卡并行选型](#infra-05) · [推理与 KV cache](#infra-06) · [可观测性](#infra-07) · [Checkpoint 状态](#infra-08)；P2：[性能瓶颈定位](#p2-03)。
 
 **Coding 实战**：[PyTorch MHA 与 `N×N` 矩阵原地顺时针旋转](2026-09-interview-coding.md)（独立题单，不计入本 Part 题量）。
 
@@ -2941,7 +2997,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P0 扩展｜首轮前应掌握
 
@@ -3015,7 +3071,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="infra-03"></a>
 #### INFRA-03｜多机训练 NCCL hang 或 checkpoint 恢复失败怎么排查？（P0，18 分钟）
@@ -3043,7 +3099,76 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="infra-10"></a>
+#### INFRA-10｜推荐稀疏 Embedding 与 Dense/MoE 有何不同？PS、分片和多级存储怎么选？（P0，12 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > 推荐训练通常同时包含稀疏 Embedding 和稠密计算。稀疏部分按用户、物品等 ID 查表，每个 batch 只访问大表中的少量行，但 ID 可能动态增长，访问存在明显冷热和热点。因此除了计算，还要解决容量、随机访存、跨设备取数和更新一致性。我的设计顺序是先测表大小与访问分布，再选按表、按行或按列分片，最后评估 GPU/CPU 和低层存储的分工。Dense 部分可以用 DDP 或其他并行策略；稀疏分片则按 ID 路由取数和梯度。两部分可以组合，不必强行用同一种架构。
+
+- **容量算例**：`10 亿 ID × 128 维 × FP16 2 字节 = 256 GB`（十进制），只算权重，不含优化器状态和缓存元数据。实际峰值还受激活、通信 buffer、缓存驻留和优化器实现影响。
+
+| 选择 | 切什么 / 做什么 | 代价与约束 |
+|---|---|---|
+| Table-wise | 整张表放到一个设备 | 简单，但单张大表或热点表可能成为瓶颈 |
+| Row-wise | 按 ID 行分片，各分片保留完整向量 | 分摊容量；ID 路由与返回结果需要通信，行数均衡不代表访问量均衡 |
+| Column-wise | 同一行的 embedding 维度分片 | 大向量可拆分，但取回与后续计算需要布局重组 |
+| 多级存储/缓存 | 根据容量与热度分配 GPU、CPU、低层存储工作集 | miss、预取、热点和写回要协同；不能只追命中率，忽略传输与维护开销 |
+
+- **PS 与 AllReduce 不在同一层**：PS 是参数和更新的组织架构，worker 向所属节点取行、传回梯度；AllReduce 是集合通信算子，典型 Dense DDP 用它归约梯度。两者可以在一个训练系统中共存；GPU Embedding 分片路由也可能使用 all-to-all 等 collective，不能把“推荐训练”固定等同于某一种 PS 部署。
+- **数据流**：`batch IDs → 定位 owner/批量取数 → Embedding 与 Dense forward → backward → 梯度按 ID 聚合并发往 owner → optimizer update`。同一 mini-batch 重复 ID 要保持梯度累加语义；不能随意跨训练步合并更新。
+- **热点与正确性**：先做请求合批、合理预取和访问负载均衡；热点复制需要更新一致性设计。训练缓存会写入新参数，淘汰时必须处理脏数据，不能把旧副本重新加载后覆盖新值。低频过滤/过期淘汰也可能影响冷启动和模型效果，应与算法共同验证。
+- **与 LLM 的关系**：推荐稀疏主要是 ID lookup/update；MoE 稀疏是 token 选择部分 experts 执行，不是同一种路由。LLM 也有 Embedding，但主体训练的规则 GEMM 与推荐大表随机访问的瓶颈不同。更长行为序列还会带来 activation/attention 成本、变长 batch 和数据时序约束，不能只增加 context 配置。
+- **原理依据**：[TorchRec 分片](https://docs.pytorch.org/tutorials/advanced/sharding.html)；[Monolith（2022）](https://arxiv.org/html/2209.07663v2)提供动态 Embedding、低频过滤/过期管理与训练到 serving 的增量同步实例。它的 collisionless 指避免不同 ID 被迫共享 embedding，不是哈希计算从不碰撞；论文不等于本题 GPU 多级缓存设计的完整实现。
+- **项目证据或知识边界**：本人已有优势是 Megatron、长上下文和训练/RL 系统；若未主导过生产级 GPU Embedding，先明确，再按容量、访问倾斜和一致性分析。不能把本题设计或 Monolith 说成个人交付。
+- **高概率追问**：为什么不能复制整张表做 DDP？热点行如何处理？缓存中的参数更新后怎么落盘？如何避免相同 ID 的梯度丢失？推荐长序列与 LLM 长上下文的共性和差异是什么？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：从 ID 查表和参数更新讲清稀疏训练，再设计容量、通信和存储的分工。
+- **面试官意图**：判断能否把分布式训练经验迁移到推荐业务，认识不规则访问和有状态缓存，而不是只会套 TP/DP。
+- **危险回答**：把推荐稀疏等同 MoE；认为 PS 和 AllReduce 互斥；无一致性方案就复制热点行；只算权重显存；把学习过的系统当作个人经验。
+
+</details>
+
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+
+<a id="infra-11"></a>
+#### INFRA-11｜GPU 等数据时如何定位 DataLoader 瓶颈？怎样优化样本读取、预处理和 H2D？（P0，10 分钟）
+
+- **直接回答（60–90 秒）**：
+
+  > 我先验证 GPU 是否真的在等数据，用相同 shape 和批量的合成数据或预加载数据做性能对照，再拆存储读取、解码或 tokenization、组 batch、CPU 到 GPU 拷贝几个阶段。确认瓶颈后，分别调读取并发、预处理和预取，再检查 CPU、内存与存储是否被压满。数据提前到 CPU 不等于提前到 GPU，H2D 的异步和计算重叠还要看 pinned memory、stream 和依赖。优化后既看 data wait 与 step 分位数，也确认数据顺序、样本覆盖、mask 和恢复位点没有出错。
+
+稀疏推荐的对照还应尽量保持 ID 热度、重复率和访问分布接近真实；只保持 shape、却改变缓存命中率，不能据此归因数据读取的收益。
+
+| 观测到的瓶颈 | 候选措施 | 必须同时检查 |
+|---|---|---|
+| 小文件/远端读取慢 | 分片与批量读取、本地缓存、合理 IO 并发 | 存储带宽/IOPS、请求尾延迟；不是所有 rank 同时无限重试 |
+| 解码或 tokenization 慢 | 多进程、可离线的预处理、消除重复工作 | CPU 配额、总进程数、序列化和内存；预处理版本可追溯 |
+| padding 多或组批长尾 | 长度分桶、packing、按 token budget 组批 | sample/group、attention/loss mask、位置与有效 token 数 |
+| H2D 暴露 | pinned memory、异步 copy、合理 stream 与依赖 | 硬件是否允许重叠、传输是否真的离开关键路径 |
+| 消费波动或队列堆积 | 有界预取与背压，按供需调参数 | queue 空满、host/pinned memory、恢复时是否漏读或重复 |
+
+- **三个常见参数**：`num_workers` 控制每个 DataLoader 的工作进程数；多 rank 会放大整机总进程数。多进程加载时，`prefetch_factor` 是每个 worker 的预取 batch 数，提高它会增加内存与超前读取。`persistent_workers` 可减少反复创建 worker 的开销，但要处理 worker 状态、随机数和 epoch 切换，而不是认为常驻一定更快。
+- **两个易错判断**：`num_workers` 不是越多越好，可能争抢 CPU/内存/存储；`non_blocking=True` 也不保证与计算重叠，要结合 pinned memory、stream、硬件和依赖验证。[DataLoader 文档](https://docs.pytorch.org/docs/stable/data.html) · [PyTorch H2D 说明](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html)
+- **数据与恢复**：分布式 sampler/worker 分片避免无意重复，检查 shuffle seed 与 epoch；保存的 cursor 必须对应训练已消费或已提交的数据，不能只记录 worker 已预取的位置。exact replay 是否成立，还取决于随机变换与预取队列的处理策略。
+- **项目证据或知识边界**：用 [RESUME-05：9B SFT 31s→9.3s](#resume-05)接回实际数据加载并发、预取、selective recompute 与 TP/CP 调优。没有独立 A/B 的优化不拆出各自秒数贡献；合成数据只做性能定位，不用于证明模型效果。
+- **高概率追问**：8 个 rank 各开 8 个 worker 会发生什么？数据在 CPU 已准备好，GPU 为什么仍等？预取后恢复如何不漏数据？分桶如何避免偏向短样本？
+
+<details>
+<summary>面试意图与回答提醒</summary>
+
+- **问题**：从存储到 GPU 建立阶段计时，解释每项优化作用在哪个边界。
+- **面试官意图**：检查端到端数据 pipeline 能力，以及能否同时守住性能、样本语义与可恢复性。
+- **危险回答**：只加 worker；把 host 预取等同 H2D 重叠；无限增大缓存；把预取位点当训练提交位点；用合成数据吞吐当真实训练效果。
+
+</details>
+
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P1 深挖｜面试官继续追问
 
@@ -3146,6 +3271,9 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
   > 我会先定义恢复到哪个提交 step，再保存与它一致的 model、optimizer、scheduler/scaler、RNG、global step、data sampler/cursor 和 parallel metadata。通常选 optimizer step 完成后的边界；如果要在梯度累积中间恢复，还要处理未提交梯度和 microstep 状态。Agentic RL 还要记录 policy、reward、tokenizer、prompt、env 的版本，以及 rollout backend provenance，保证恢复后数据的解释方式一致。队列和在途 trajectory 则有两种策略：能保存必要环境状态时继续恢复 session/cohort；否则显式取消或丢弃未提交工作，按约定重采样。两种策略都要把消费位点和训练提交状态对齐，防止重复消费、跳过数据或混入错误 policy version。最后用数据位点、固定输入和短窗口数值回归验证恢复结果。
 
+- **设计题按四步讲**：①选一致的提交 step，收集模型与运行状态；②复制到不会被训练继续覆盖的 staging buffer；③后台分片写入或上传，全部必要分片成功后提交完成元信息；④恢复时核对状态、数据位点和固定输入，运行短窗口回归。若异步复制尚未完成，相关源状态不能先被下一步修改；若持久化失败，保留上一有效版本。
+- **为什么不能只开线程写 state_dict？** 它可能仍引用会继续变化的 tensor；需要快照与明确的 staging 完成边界。异步还会占 CPU/pinned memory 和存储带宽，应限制在途保存数量，不能让后台异常静默丢失。[PyTorch 异步 Checkpoint](https://docs.pytorch.org/tutorials/recipes/distributed_async_checkpoint_recipe.html)
+- **换并行度怎么加载？** 记录全局 tensor 名称、shape、分片 offsets/lengths 等元数据，让加载端按新布局读取和重组。ByteCheckpoint 的 parallelism-agnostic 表示与 load-time reshard 是公开实例，不等于任意模型/框架都可无条件互换；详见 [MEGATRON-10](#megatron-10)与[原论文](https://arxiv.org/html/2407.20143v2)。
 - **在途状态的取舍**：queue offset 必须与队列内容或可重放日志配套；in-flight/partial trajectory、session/cohort 是否持久化取决于恢复承诺，不能只保存几个 ID 就假定可续跑。选择丢弃重采样时，要记录丢弃范围、更新消费/提交账本，并说明重算成本与随机路径可能变化，不承诺 bitwise 等价。异步 staging 与落盘的一致性边界见 [NCCL 与恢复排障](#infra-03)。
 - **项目证据或知识边界**：有 StatefulDataLoader、online drain、checkpoint/recovery 经验。
 - **高概率追问**：哪些状态可重建？如何避免重复消费？保存 queue 会不会太大？
@@ -3161,7 +3289,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P2 选学｜时间允许再补
 
@@ -3201,12 +3329,12 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 **怎么用**：先按下一轮面试复习薄弱项，再核对项目口径。题目答案在前五个 Part，这里只放学习顺序、证据卡和反问入口。
 
-**本 Part 导航**：[下一轮复习](#vi-0) · [智元 JD 补题](#vi-0a) · [项目证据卡](#vi-evidence-cards) · [模拟面试](#vi-mock) · [三轮反问](#vi-questions-to-ask) · [最后一小时](#vi-last-hour)
+**本 Part 导航**：[字节一面速查](#bytedance-aml-sprint) · [下一轮复习](#vi-0) · [智元 JD 补题](#vi-0a) · [项目证据卡](#vi-evidence-cards) · [模拟面试](#vi-mock) · [三轮反问](#vi-questions-to-ask) · [最后一小时](#vi-last-hour)
 
 <a id="vi-0"></a>
 ### VI.0 下一轮复习与口径校准
 
-按目前台账，9 月 8 日下午是智元二面，晚上是字节一面；小红书中台一面调整至 9 月 9 日 17:00，避免同日下午场次过密。下面安排优先覆盖已暴露的薄弱项；后续面试也可沿用，按岗位调整项目比重。
+9 月 8 日智元二面已通过，下一轮 HR 面待约；今晚 20:00 是字节 Data AML 技术一面，优先读[前部 30 分钟速查入口](#bytedance-aml-sprint)。小红书中台一面为 9 月 9 日 17:00。以下 3 小时安排留作后续系统复习，不要求今晚全部完成。
 
 | 时间 | 复习入口 | 完成标准 |
 |---:|---|---|
@@ -3587,7 +3715,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 | 优先级 | 题量 | 全量准备时间（按题头累加） | 用法 |
 |---|---:|---:|---|
-| P0 | 52 | 约 14 小时 10 分钟 | 优先练实际薄弱项；Core 10 用来串联个人项目主线 |
+| P0 | 54 | 约 14 小时 35 分钟 | 优先练实际薄弱项；Core 10 用来串联个人项目主线 |
 | P1 | 26 | 约 4 小时 35 分钟 | 按目标 JD 和项目追问选择，不要求一次学完 |
 | P2 | 5 | 40 分钟 | 按需补充；profiler 是性能项目的前置工具，可提前看 |
 
@@ -3598,13 +3726,13 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="interview-progress"></a>
 ## Appendix A｜面试流程进度台账
 
-> 更新截至 2026-09-07；时间为北京时间（UTC+8）。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
+> 更新截至 2026-09-08；时间为北京时间（UTC+8）。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
 
 | 公司 | 岗位 | 面试时间 | 当前轮次 | 状态 | 下一节点 |
 |---|---|---|---|---|---|
 | 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 未通过 | 本轮流程结束 |
-| 智元机器人 | 训练 Infra | 2026-09-04 下午 | 一面完成 | 已通过 | 2026-09-08 下午二面 |
-| 字节跳动 | 训练 Infra | 2026-09-08 晚上 | 一面待进行 | 已排期 | 完成一面 |
+| 智元机器人 | 训练 Infra | 2026-09-08 下午 | 二面完成 | 已通过 | HR 面待约 |
+| 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面待进行 | 已排期 | 完成一面 |
 | 小红书中台 | 训练 Infra | 2026-09-09 17:00 | 一面待进行 | 已排期 | 完成一面 |
 
 ↑ [返回面试速查控制台](#interview-console)

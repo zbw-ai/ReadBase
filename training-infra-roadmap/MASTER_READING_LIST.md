@@ -215,6 +215,8 @@
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
 | 30 | NCCL / Network | [NCCL](topics/nccl.md) | collective、拓扑、straggler 诊断 |
 
+面试应用：[字节 Data AML 主文档速查](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)，串联 [Embedding / PS / 多级存储](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10)、[数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) 与 [Checkpoint 保存和恢复](../private_resume/2026-08-llm-infra-interview-prep.md#infra-08)。
+
 ## 8. Agentic RL / Rollout Infra
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
