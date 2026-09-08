@@ -1,12 +1,13 @@
 <a id="coding-top"></a>
 # 训练 Infra 面试 Coding 手撕题
 
-> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · 运行环境：Python 3.10+、PyTorch 2.x
+> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · 运行环境：Python 3.10+；仅 MHA 题依赖 PyTorch 2.x
 
 这份题单与主文档的知识题分开计数。现场先讲输入输出、shape、不变量和复杂度，再写主路径，最后补异常与测试。
 
 - [CODING-01｜PyTorch 手写 Multi-Head Self-Attention](#coding-01)
 - [CODING-02｜`N×N` 矩阵原地顺时针旋转 90°](#coding-02)
+- [CODING-03｜带父指针的二叉树最近公共祖先（字节跳动 AML 一面）](#coding-03)
 
 ---
 
@@ -283,3 +284,95 @@ if __name__ == "__main__":
 - 写到一半才检查非方阵，异常后输入已经被部分修改。
 
 ↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console)
+
+---
+
+<a id="coding-03"></a>
+## CODING-03｜带父指针的二叉树最近公共祖先
+
+**来源：字节跳动 AML 技术一面，2026-09-08，本人现场题目与代码回忆。** 已确认给定两个节点 `p、q`，节点带 `parent` 指针；不提供、也不需要 `root`。以下保留现场双指针算法，整理缩进、`__init__` 和类型标注，并用 `is` 明确比较节点身份；不是官方公开题库。
+
+### 题意与前提
+
+返回 `p、q` 的最近公共祖先节点。每个节点有 `val、left、right、parent`，根节点的 `parent` 为 `None`，父指针链无环。节点自身也算自己的祖先，因此 `p is q` 或一方是另一方祖先都需要处理；不能假定节点值唯一，也不依赖二叉搜索树性质。
+
+### 20–30 秒解题思路
+
+> 从 p、q 沿 parent 向上走，会形成两条链表，它们的第一个公共节点就是最近公共祖先。我用两个指针分别从 p、q 出发，到 None 后切换到另一个起点，这样可以抵消两条路径的长度差；两个指针相遇就返回。只移动指针，不修改树，额外空间是 O(1)。
+
+### 可运行实现与测试
+
+```python
+from __future__ import annotations
+
+
+class Node:
+    def __init__(self, val: int) -> None:
+        self.val = val
+        self.left: Node | None = None
+        self.right: Node | None = None
+        self.parent: Node | None = None
+
+
+class Solution:
+    def lowestCommonAncestor(self, p: Node, q: Node) -> Node | None:
+        a, b = p, q
+
+        while a is not b:
+            a = a.parent if a is not None else q
+            b = b.parent if b is not None else p
+
+        return a
+
+
+def test_lowest_common_ancestor() -> None:
+    root = Node(0)
+    left, right = Node(1), Node(1)  # 同值，但不是同一个节点。
+    leaf = Node(2)
+    root.left, root.right = left, right
+    left.parent = right.parent = root
+    left.left = leaf
+    leaf.parent = left
+
+    lca = Solution().lowestCommonAncestor
+    assert lca(left, right) is root        # 同层、重复 val。
+    assert lca(leaf, right) is root        # 深度不同。
+    assert lca(left, leaf) is left         # p 是 q 的祖先。
+    assert lca(leaf, left) is left         # q 是 p 的祖先。
+    assert lca(leaf, leaf) is leaf         # 同一个节点。
+    assert lca(root, leaf) is root         # 其中一个是根。
+    assert lca(root, root) is root
+
+    # 扩展测试：不属于同一棵树时，最终同时走到 None。
+    other_root = Node(1)
+    assert lca(left, other_root) is None
+
+
+if __name__ == "__main__":
+    test_lowest_common_ancestor()
+    print("parent-pointer LCA tests passed")
+```
+
+### 为什么能找到“最近”的公共祖先
+
+1. 树中每个节点只有一个父节点；两条父链一旦相交，直到根的后续路径就完全相同，因此是“各自独有的前缀＋公共后缀”。公共后缀的起点就是 LCA。
+2. 深度不同，直接同时向上走可能错过交点。切换起点后，两个指针分别补走对方的路径，抵消独有前缀的长度差，在公共后缀起点相遇；若此前已相遇则直接返回。
+3. **必须比较对象身份**：`a is b` 表示同一节点。`a.val == b.val` 可能把不同节点误判成祖先；`!=` 是否等价还取决于类有没有重载相等比较。
+
+### 复杂度、意图与追问
+
+- **时间**：`O(hp + hq)`，`hp、hq` 表示两条父链的长度；**额外空间**：`O(1)`。不遍历整棵树，不需要递归栈或祖先集合。
+- **面试官意图**：能否利用 `parent` 把树题转成链表相交；能否解释双指针为什么终止、比较的是身份还是值，以及边界条件。
+- **不同树怎么办？** 在无环且根的 parent 为 `None` 的前提下，这份实现会返回 `None`。这是额外支持的行为，不把它说成已确认的现场题目要求。
+- **还有什么解法？** 可以先算两条父链长度，让较深节点先走长度差，再同步上移，同样是 `O(hp+hq)` 时间、`O(1)` 空间；也可以用集合保存 p 的祖先，再从 q 向上找第一个命中，但需要额外空间。
+- **没有 parent 怎么办？** 那是另一种题面，通常需要 `root`，用树上的递归寻找 LCA；不能直接套本题方法。
+
+### 常见错误
+
+- 比较节点值，而不是节点身份；只测试不同值的节点，漏掉误判。
+- 把切换条件改成 `a.parent is None`，跳过 `None` 的对齐过程，破坏当前实现的边界与终止保证。
+- 切换时回到自己的起点，或对 `None` 直接访问 `.parent`。
+- 假定两个节点一定是叶子；漏掉同节点和祖先关系。
+- 修改 parent、引入递归/集合，却仍宣称是原双指针或 `O(1)` 空间；父链有环时仍声称一定终止。
+
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回字节 AML 入口](2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)

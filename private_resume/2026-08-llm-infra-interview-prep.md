@@ -45,7 +45,7 @@
 | 5 分钟 | GPU 等数据，怎样定位和提速 | **[INFRA-11｜DataLoader 与样本读取](#infra-11)** · [SFT 数据正确性](#sft-data-01) | 拆读取/预处理/组批/H2D；并发和预取有资源上限 |
 | 5 分钟 | 怎么保存、异步写入、换卡数恢复 | **[INFRA-08｜可恢复状态与保存流程](#infra-08)** · [一致性与失败处理](#infra-03) · [并行度变化恢复](#megatron-10) | 一致快照 ≠ staging 完成 ≠ 持久化完成；model 与 optimizer/data cursor 对齐 |
 | 5 分钟 | 训练如何切、通信怎么发生、扩容为什么变慢 | [FSDP](#dist-01) · [Megatron/FSDP 选型](#megatron-11) · [TP 切分](#megatron-02) · [Collective](#infra-04) · [万卡问题](#infra-09) | 先讲 tensor 的形状和数据流；通信等待不等于网络慢 |
-| 5 分钟 | 编码、Python 与 PyTorch 基础 | [本页基础速答](#aml-basics) · [MHA 实现](2026-09-interview-coding.md#coding-01) · [矩阵旋转](2026-09-interview-coding.md#coding-02) | 先确认 Python3/标准库权限；说复杂度，检查边界与测试 |
+| 5 分钟 | 编码、Python 与 PyTorch 基础 | [本页基础速答](#aml-basics) · [MHA 实现](2026-09-interview-coding.md#coding-01) · [矩阵旋转](2026-09-interview-coding.md#coding-02) · **[带父指针 LCA：本次一面实题](2026-09-interview-coding.md#coding-03)** | 先确认 Python3/标准库权限；说复杂度，检查边界与测试 |
 
 **问到后训练再切换**：[verl/AReaL 选型](#areal-01) · [Fully Async 专题](#fully-async-study) · [Rollout 优化](#rollout-01) · [CUDA Graph](#resume-13) · [OPD/MOPD](#resume-09)。RL 是本人的重要经验，但不把这个覆盖稀疏/稠密训练系统的 JD 预设成纯 RL 岗。
 
@@ -2956,7 +2956,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 **本 Part 导航**：Core：[通信算子](#infra-04)；P0 扩展：[训练数值异常](#train-anomaly-01) · [万卡规模效应](#infra-09) · [NCCL 与恢复排障](#infra-03) · [Embedding / PS](#infra-10) · [DataLoader 与样本读取](#infra-11)；P1：[精度对齐](#resume-12) · [64 卡并行选型](#infra-05) · [推理与 KV cache](#infra-06) · [可观测性](#infra-07) · [Checkpoint 状态](#infra-08)；P2：[性能瓶颈定位](#p2-03)。
 
-**Coding 实战**：[PyTorch MHA 与 `N×N` 矩阵原地顺时针旋转](2026-09-interview-coding.md)（独立题单，不计入本 Part 题量）。
+**Coding 实战**：[手写 MHA](2026-09-interview-coding.md#coding-01) · [`N×N` 矩阵旋转](2026-09-interview-coding.md#coding-02) · **[带父指针的 LCA：字节 AML 一面](2026-09-interview-coding.md#coding-03)**（独立题单，不计入本 Part 题量）。
 
 **通用并行追问**：[EP 会带来哪些问题，如何解决？](#megatron-06)（P0，归在 Part II；一份答案，题尾可返回这里）。
 
@@ -3756,7 +3756,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 |---|---|---|---|---|---|
 | 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 未通过 | 本轮流程结束 |
 | 智元机器人 | 训练 Infra | 2026-09-08 下午 | 二面完成 | 已通过 | HR 面待约 |
-| 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面待进行 | 已排期 | 完成一面 |
+| 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面完成 | 结果未同步 | 等待面试结果 |
 | 小红书中台 | 训练 Infra | 2026-09-09 17:00 | 一面待进行 | 已排期 | 完成一面 |
 
 ↑ [返回面试速查控制台](#interview-console)
