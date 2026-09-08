@@ -3,7 +3,7 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–150 万
 > - 使用方式：按简历查题；面试前按薄弱项复习，现场先读「直接回答」
-> - 修订日期：2026-09-07；官方资料的核验日期与项目版本见文末
+> - 修订日期：2026-09-08；官方资料的核验日期与项目版本见文末
 > - 依据：最新投递版 PDF 简历（2026-08-30，本地核验且不在公开仓库记录含手机号文件名）、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 <a id="interview-console"></a>
@@ -492,7 +492,15 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   - EP group：固定 `(PP, ETP, EDP)`，改变 `EP`，持有不同 expert shard，负责 token all-to-all。
   - EDP group：固定 `(PP, ETP, EP)`，改变 `EDP`，持有同一 expert shard 的副本并同步梯度。
 
-- **TP/CP 哪个优先放单机**：TP 通信发生在每层、每个 microbatch，通常先保证 TP 在 NVLink/NVSwitch 域；若 `TP×CP` 能放进单机，再把二者一起留在高速域。放不下时优先保持 TP 单机，并考虑 hierarchical CP，让内层 CP 本地、外层 CP 跨节点；MoE 还要同时评估 EP all-to-all，不能脱离消息量、overlap 和实测 profile 给绝对答案。
+- **TP/CP 哪个优先放单机**：TP 通信发生在每层、每个 microbatch，通常先保证 TP 在 NVLink/NVSwitch 域；若 `TP×CP` 能放进单机，再把二者一起留在高速域。放不下时优先保持 TP 单机，并考虑下面的 hierarchical CP，让内层 CP 本地、外层 CP 跨节点；MoE 还要同时评估 EP all-to-all，不能脱离消息量、overlap 和实测 profile 给绝对答案。
+
+<a id="megatron-hierarchical-cp"></a>
+
+- **hierarchical CP 是什么（追问约 45 秒）**：Megatron 的 `a2a+p2p` 把 CP 分成内外两级。内层用 all-to-all，把 Q/K/V 从“短序列、较多 heads”换成“较长序列、较少 heads”；外层让对应 head 分片的 KV 沿 ring 流动，本地 Q 分块计算全局 Attention；最后逆向 all-to-all 恢复原 CP token 布局。不是简单做两次 all-gather，也不是新增一个 world-size 维度。
+
+  例：2 台 × 8 GPU，`TP=2、CP=8、PP=DP=1`；可取 `hierarchical_context_parallel_sizes=[4,2]`，即机内 4 路 A2A、机间 2 路 P2P，`TP×4=8` 恰好占满单机。前提是 **TP 后本地 Q/KV heads 能被 4 整除**；例如总 Q heads=32、KV heads=8，TP 后分别为 16 和 4。配置合法不代表更快，还要测 A2A 重排、P2P overlap 和显存峰值。
+
+  [展开原理：QKV shape、16 GPU 分组、配置、收益与排障](../training-infra-roadmap/topics/context_parallelism.md#hierarchical-cp) · [官方通信类型定义](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html#core.transformer.transformer_config.TransformerConfig.cp_comm_type)
 
 - **PP bubble 怎么算，VPP 解决什么问题**：设 `p` 是物理 PP stages，`m=GBS/(MBS×DP)` 是每次 iteration 的 microbatch 数，stage 均衡且忽略通信时，non-interleaved 1F1B 有：
 

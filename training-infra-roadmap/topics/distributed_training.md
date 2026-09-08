@@ -130,7 +130,7 @@ Attention 存在跨 token 依赖，因此 local Q 仍需访问全局 KV。Megatr
 
 ### 代价和配置边界
 
-CP 不切 Dense 参数；它节省的是与 sequence 相关的 activation。变长样本会制造 CP load imbalance，KV 通信还可能跨节点。若 `TP×CP` 能放入单机高速域通常一起放；放不下时一般优先保证高频 TP 本地，再考虑 hierarchical CP，但最终要按真实消息量 profile。
+CP 不切 Dense 参数；它节省的是与 sequence 相关的 activation。变长样本会制造 CP load imbalance，KV 通信还可能跨节点。若 `TP×CP` 能放入单机高速域通常一起放；放不下时一般优先保证高频 TP 本地，再比较 [hierarchical CP](context_parallelism.md#hierarchical-cp)：内层 A2A 交换 sequence/head 布局，外层 P2P/ring 流动 KV，最后逆 A2A 恢复布局。内层大小受 TP 后本地 KV heads 与节点卡位约束，不保证比纯 ring 更快。
 
 完整机制见 [Context Parallelism](context_parallelism.md)。
 

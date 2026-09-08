@@ -222,6 +222,7 @@ flowchart LR
 - [5D 并行](topics/distributed_training.md) ↔ [Parallel Folding](topics/moe.md#parallel-folding) ↔ [NCCL](topics/nccl.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [NCCL](topics/nccl.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Sequence Parallelism](topics/sequence_parallelism.md) ↔ [Context Parallelism](topics/context_parallelism.md)
+- [5D 拓扑选择](topics/distributed_training.md) ↔ [Hierarchical CP：机内 A2A / 机间 Ring](topics/context_parallelism.md#hierarchical-cp)
 - [Long-context Training](topics/long_context_training.md) ↔ [Context Parallelism](topics/context_parallelism.md) ↔ [FlashAttention](topics/flashattention.md)
 - [Long-context Training](topics/long_context_training.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [CompactionRL](papers/compactionrl.md) ↔ [Long-context Training](topics/long_context_training.md) ↔ [Agentic RL](topics/agentic_rl.md)
