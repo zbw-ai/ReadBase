@@ -19,7 +19,7 @@
 |---|---|---|
 | **教育背景** | 厦门大学本科、清华大学硕士，研究方向为人工智能 | [自我介绍](#resume-01) |
 | **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [FSDP](#dist-01) · [框架选型](#megatron-11) |
-|  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · [EP/A2A](#megatron-06) · [显存账本](#infra-02) · [融合算子](#kernel-01) |
+|  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · [EP/A2A](#megatron-06) · [显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) · [融合算子](#kernel-01) |
 |  | **RL / verl / AReaL**：PPO/GRPO/DAPO、Fully Async、Agentic RL | [RL 算法](#rl-algo-01) · [verl/AReaL 选型](#areal-01) · [HybridFlow](#verl-01) · [资源部署](#verl-02) · [Async/Streaming/Staleness](#verl-04) |
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
 | **项目经历（核心）** | **X1 200B MoE**：**`0.16x→0.95x / MFU 35% / 3K 卡连续稳定训练两个月`** | **[代表性优化](#resume-01a) · [Ownership](#resume-01b) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [规模交付](#resume-10)** |
@@ -581,6 +581,23 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   Megatron 的 [`theoretical_memory_usage.py`](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/theoretical_memory_usage.py) 可以作为估算起点，但它的 activation 公式带有 BF16、SP、selective recompute 和特定模型结构等假设；复杂 MoE 仍要回到真实 tensor shape。
 
+<a id="megatron-selective-recompute"></a>
+
+- **选择性重计算怎么讲（60 秒）**：
+
+  > 它是前向少存选中模块的中间 activation，反向需要时再重建，用额外计算换显存。我优先选真正占据峰值、重建又便宜的边界，不是只看哪个 tensor 大。比如 grouped MoE 的 `moe_act` 只重算激活函数，不重跑 FC1/FC2；独立 LayerNorm 也可比较，但如果已经融合进 Linear，外层开关可能不起作用。`core_attn` 是默认候选，不过 FlashAttention 已经减少了 Attention 内部保存量，所以还要测额外 checkpoint 是否值得。
+  >
+  > 配置上 selective 选模块，full 才用 uniform/block 决定怎样按层重算。我会先做窄边界 A/B，不够再扩大范围；用完整 step 的峰值、耗时和 loss/grad 验收。从 full 收敛到 selective 可以减少重复前向，但不能说重算本身天然加速。
+
+  **参数速记（MCore 0.17）**：
+
+  - `--recompute-granularity selective --recompute-modules core_attn`：重算各适用层的 core attention，不含普通 Attention 的 QKV/输出投影；selective **不设置** `recompute-method/num-layers`。
+  - grouped MoE 可先测 `moe_act`，再比较加 `layernorm`；`mlp` 是 Dense MLP，`moe` 是整个 MoE（可能重放 A2A），`mla_up_proj` 只服务 MLA。不要照抄不属于当前模型的模块。
+  - `full + block + num_layers=2` 通常只对当前 chunk 前 2 层做整层重算；`full + uniform + num_layers=2` 则让所有本地层每 2 层一组重算。有 VPP 时按当前 model chunk 计数，不按全模型层数。
+  - `distribute_saved_activations` 分片的是 checkpoint 保存的输入，不是分摊重算任务；0.17 CLI 要求 TP>1、full，且不能与 SP 同开。
+
+  [完整原理、七类模块、配置与排障](../training-infra-roadmap/topics/long_context_training.md#selective-recompute) · [0.17 官方参数](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.transformer.transformer_config.html)。
+
 - **第三本账：logits、loss 和容易漏掉的 buffer**：
 
   ```text
@@ -634,11 +651,11 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **DataLoader 追问怎么展开**：底稿确认 `num_workers=0→8` 与 prefetch。Workers 主要并行准备 CPU 数据；`num_workers=0` 本身不证明 GPU 一定在等数据，需看 `next(data_iter)` 与 GPU 空洞是否对齐。Pinned memory、`persistent_workers`、`prefetch_factor` 和 non-blocking H2D 是需要核查的配置，不在未确认时说成这次全部启用。CPU 准备下一批与 GPU 计算重叠，和 H2D copy 与 kernel 真正重叠，是两件事；后者还需要合适的独立 stream、pinned memory、可用 DMA engine 和正确依赖，不能只凭 `non_blocking=True` 判断。[PyTorch 官方教程](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html)
 
-- **Selective recompute 怎么选**：不要回答成“Attention 贵，所以不重算”。Megatron-Core 当前默认 selective 模块是 `core_attn`，原因是该区域保存的中间 activation 相对重算 FLOPs 更划算；现代版本还支持 `layernorm`、`moe_act`、`mlp`、`moe`、`shared_experts` 等模块。项目回答只确认“从偏重 full recompute 收敛到 selective”，具体 module list 必须以当时配置为准。选择方法是比较 `释放的峰值 bytes / 额外重算 FLOPs`，并确认它是否位于峰值存活窗口，再用 `none/selective/full` 三档同 workload sweep 验证 step time、peak memory、loss/grad 和 dropout/RNG 一致性。
+- **Selective recompute 怎么选**：先找峰值里实际存活的 activation，再选择省显存相对划算的重建边界；`core_attn` 是默认候选，不是所有模型的最优解，Flash/TE fused attention 下尤其要重新比较。窄边界仍放不下时再扩大到 MLP/MoE 或整层。项目只确认“从偏重 full recompute 收敛到 selective”，不虚构精确 module list；`31s→9.3s` 仍是联合结果。口述与参数见[选择性重计算速答](#megatron-selective-recompute)，原理见[完整工程章节](../training-infra-roadmap/topics/long_context_training.md#selective-recompute)。
 - **MFU 算术门禁**：模型 FLOPs/step、硬件峰值口径和计时范围相同时，标准 MFU 应近似与 step time 成反比；`31/9.3≈3.33` 与 `45.2/23≈1.97` 不能自动闭合。因此需回查 estimator、data wait 是否计时、模型实际处理的 token/长度分布、packing、microbatch 与平均窗口，并单列 loss-mask 选中的监督 token。补齐前保留两组数字，但不声明同一单一计时窗口，也不用其中一个反推另一个。
 - **深入阅读**：[长上下文训练：SFT 优化、selective recompute 与验证顺序](../training-infra-roadmap/topics/long_context_training.md#qwen35-9b-sft)、[Megatron-Core TransformerConfig](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)。
 - **项目证据或知识边界**：最新版简历确认总结果、DataLoader 并发、selective recompute 与 TP/CP 调整方向，但没有逐项贡献。`num_workers=0→8` 来自底稿；若面试只按公开简历回答，可说“提高 DataLoader 并发并预取”。
-- **高概率追问**：为什么 MFU 与 step time 比值不闭合？prefetch 如何证明真的重叠？为什么 selective 默认会重算 `core_attn`？workers 过多有什么反作用？为什么不继续增大 TP？
+- **高概率追问**：为什么 MFU 与 step time 比值不闭合？prefetch 如何证明真的重叠？FlashAttention 后 `core_attn` 重算还值得吗？`moe_act` 与整个 `moe` 有什么不同？workers 过多有什么反作用？为什么不继续增大 TP？
 
 <details>
 <summary>面试意图与回答提醒</summary>
@@ -1249,6 +1266,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   > 所以先找峰值来源：activation 很重就比较 selective/full recompute；参数或 optimizer state 很重则评估对应 offload。最终看峰值显存和 step time，尤其是没有被计算掩盖的传输时间，不能因为用了异步 copy 就认为成本消失。
 
 - **项目证据或知识边界**：直接对应 selective recompute 与 offload PCIe 诊断。
+- **重点延伸**：[选择性重计算：口述与参数](#megatron-selective-recompute) · [原理、模块选择与实验流程](../training-infra-roadmap/topics/long_context_training.md#selective-recompute)。Offload 也可以搬 activation，不只搬模型状态；对难以低成本重建的 activation，要比较传输能否被掩盖。
 - **高概率追问**：full recompute 约增加多少计算？哪些层适合 selective？NVMe offload 何时可用？
 
 <details>

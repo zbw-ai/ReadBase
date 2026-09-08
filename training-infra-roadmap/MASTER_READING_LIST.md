@@ -139,6 +139,7 @@
 | [Context Parallelism](topics/context_parallelism.md) | 单条长序列跨 GPU 切分的核心机制 |
 | [Hierarchical CP](topics/context_parallelism.md#hierarchical-cp) | sequence/head 布局交换、两级 process groups、TP 后 KV heads 约束与实测取舍 |
 | [Sequence Parallelism](topics/sequence_parallelism.md) | 降低 activation 显存，与 TP/CP 配合 |
+| [选择性重计算](topics/long_context_training.md#selective-recompute) | 保存边界、MCore 参数、Dense/MoE/MLA 模块选择、FlashAttention 后的收益重估与排障 |
 | [CP-local logits 案例](topics/long_context_training.md#cp-local-logits) | 解释 CP 已切分但 loss/logprob 又 materialize 全序列的静默显存问题 |
 | [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map) | Attention、Norm、MLP、MoE 与 loss fusion 的接入和数值验收 |
 | [Checkpointing](topics/checkpointing.md) | 长 step time 下保存、恢复和异步 checkpoint 更关键 |

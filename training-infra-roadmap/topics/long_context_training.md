@@ -1,6 +1,6 @@
 # Long-context Training
 
-> 定位：长上下文训练工程章节，覆盖 LLM/MoE SFT、CP-local loss/logprob、视频 DiT Ulysses、配置选择与生产排障。
+> 定位：长上下文训练工程章节，覆盖选择性重计算、LLM/MoE SFT、CP-local loss/logprob、视频 DiT Ulysses、配置选择与生产排障。
 >
 > 面试速答入口：[RESUME-05｜9B SFT 31s→9.3s](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-05) · [RESUME-17｜35B-A3B 128K](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-17) · [RESUME-07｜7.6GB CP-local logits](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-07) · [RESUME-18｜视频 DiT/Ulysses](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-18)
 
@@ -39,6 +39,169 @@
 5. **再做联合搜索**：input pipeline → 并行策略 → recompute/offload → fusion/kernel → overlap。每解掉一个瓶颈都重新 profile。
 6. **性能与正确性一起验收**：平均/p95 step、有效 tokens/s、peak allocated/reserved、loss/logprob/grad、save/resume 和长窗口稳定性。
 
+<a id="selective-recompute"></a>
+## 选择性重计算：哪些 activation 值得少存、多算？
+
+**先记一句话**：前向不长期保存选中模块的部分中间结果，反向需要时再算出来；优先选“确实占据显存峰值、重建代价又低”的部分，而不是把整层都重跑。
+
+**阅读顺序**：[原理](#recompute-mechanism) → [参数](#recompute-config) → [选哪些结构](#recompute-modules) → [配置示例](#recompute-recipes) → [调优与排障](#recompute-tuning)。面试现场看[主文档速答](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-selective-recompute)。
+
+版本边界：参数与约束以 **Megatron-Core 0.17.0 / Megatron-LM `core_r0.17.0`** 为基准，核验于 2026-09-08。下面是通用机制与候选配置，**不是个人项目最终配置的补录**；通过 verl 等上层框架使用时，还要确认参数确实传给了 MCore。
+
+<a id="recompute-mechanism"></a>
+### 1. 为什么反向需要前向的 activation？
+
+以 `Y = XW` 为例，计算 `dW = XᵀdY` 需要前向输入 `X`；激活函数的反向也需要相应输入或输出。所以正常训练不只是保存最后的输出，还会保留许多中间 tensor，直到对应 backward 用完。
+
+例如一个 MLP 是 `X → FC1 → activation → FC2 → Y`：
+
+- **正常执行**：autograd 保存反向所需的中间状态，计算开销小，但这些 tensor 会跨越较长的 forward/backward 间隔。
+- **整个 MLP checkpoint**：主要保留区域输入等边界状态，不长期保存区域内部的全部中间状态；backward 到来时重新执行所需前向，再求梯度。代价包含大 GEMM，若边界内有通信也可能重放。
+- **只重算 activation**：保留 FC1 的输出作为重建输入，在合适时机释放激活函数输出；在 FC2 backward 需要它前恢复。重算边界不包含 FC1/FC2，成本更小，但省下的显存也更有限。
+
+它省的是 **saved activation**，不会自动减少参数、梯度、Adam 状态，也不是把模型 checkpoint 写到磁盘。如果 OOM 的根因是 optimizer 初始化或额外 full logits，重算 Transformer 中间层未必对症。
+
+**为什么 MCore 还需要 output-discarding checkpoint？** 普通 checkpoint 不保存区域内部状态，但区域输出可能仍被下游 backward 保存。例如 `activation` 的输出是 FC2 的输入，FC2 算权重梯度时还要用它。MCore 的 `CheckpointWithoutOutput` 会在下游前向使用完后释放该输出的 storage，并挂 hook，在下游 backward 消费前重算恢复。它不是简单 `del tensor`：autograd 或 view 仍可能持有同一块 storage。具体输入保存、RNG 恢复与 hook 生命周期由框架管理，不建议在业务层手工删除 tensor 模仿。[MCore checkpoint 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/random.py)
+
+一个只用于建立量级感的例子：BF16 的本地 tensor `[16384, 1, 4096]` 占 `128 MiB`。如果重算确实让它不再跨越峰值窗口，才可能减少这部分峰值；如果别的消费者还持有它，或真实峰值发生在 optimizer 阶段，就不能直接计为 `128 MiB` 的整步收益。多层、多在途 microbatch 还会放大保存量，但必须按实际生命周期去重。
+
+<a id="recompute-config"></a>
+### 2. 参数：selective 选模块，full 再决定怎样选层
+
+| MCore 字段 / Megatron-LM CLI | 含义 | 一般怎么设 |
+|---|---|---|
+| `recompute_granularity` / `--recompute-granularity` | `None` 不额外启用这一机制；`selective` 重算选定子模块；`full` 重算整层范围 | 能放下先测无额外重算基线；不够再试 selective，最后比较 full |
+| `recompute_modules` / `--recompute-modules` | selective 的模块种类列表；默认 `core_attn`，不是层号列表 | 按实际模型选择；会作用于各层中存在且实现支持的对应模块 |
+| `recompute_method` / `--recompute-method` | full 的分层方法：`uniform` 或 `block` | selective 不设置；full 必须明确设置 |
+| `recompute_num_layers` / `--recompute-num-layers` | uniform 的每组层数，或 block 的重算层数 | selective 必须为 `None`；full 根据本地层数设置 |
+| `distribute_saved_activations` / `--distribute-saved-activations` | 将 checkpoint 保存的第一个输入 hidden states 沿 TP 分片，重算前 gather 恢复 | 默认关；0.17 CLI 要求 TP>1、full，且不能与 SP 同开 |
+
+最后一个参数不是“分摊重算任务”，也不把全部 activation 再除以 TP。若已经启用 `sequence_parallel`，不要继续套用这条节省公式。[0.17 配置文档](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.transformer.transformer_config.html)、[CLI 校验](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/training/arguments.py)、[输入分片实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/random.py)
+
+**最容易考错的是 `full + uniform` 与 `full + block`。** 假设当前 model chunk 有 8 层：
+
+- `full + uniform + num_layers=2`：分成 `[1,2] [3,4] [5,6] [7,8]` 四个 checkpoint 区域，8 层全部参与重算；不是“只重算 2 层”。增大组长减少长期保存的组间边界，但重建期间的临时峰值也可能上升，不能认为越大越省、越快。
+- `full + block + num_layers=2`：通常只对本地前 2 层分别做整层 checkpoint，其余 6 层正常执行。这里的 full 指**被选中层的重算范围**，不意味着所有层都重算。
+- 有 PP/VPP 时按**当前 model chunk 的本地层数**理解，不按全模型层数，也不能把一个物理 PP rank 上所有 VPP chunks 混算。0.17 的 uniform 实现支持最后不足一组的尾部，不要求层数整除；FP8/FP4 路径还可能因输入梯度条件调整 block 的起点。[TransformerBlock 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/transformer_block.py)
+
+<a id="recompute-modules"></a>
+### 3. 哪些结构适合重算？先看实际保存边界
+
+以下七项是 0.17 的模块名。表中“优先比较”是候选实验顺序，不是跨模型通用的性能排名。
+
+| 模块名 | 实际重算范围 | 适用结构与取舍 |
+|---|---|---|
+| `core_attn` | core attention；不包括普通 Attention 的 QKV 和输出投影 GEMM | 非 Flash 路径可优先比较；Flash/TE fused attention 下额外收益可能很小，长序列和 CP 又可能增加重放成本 |
+| `layernorm` | 独立的 `input_layernorm`、`pre_mlp_layernorm`，采用 output-discarding | Norm 的重建相对便宜；但若已融合进 LayerNormLinear、外层变成 `IdentityOp`，这个外层边界会跳过 |
+| `moe_act` | expert MLP 中的激活函数，采用 output-discarding | grouped MoE 常用候选；不重跑 FC1/FC2，也不是丢掉全部 expert expansion |
+| `mla_up_proj` | MLA up projection 与 RoPE 部分，采用 output-discarding | 对比保存低维输入并重建展开 Q/KV 的收益；只适用于 MLA，不能套到普通 GQA |
+| `mlp` | 整个 Dense MLP，普通 checkpoint | Dense 的扩展维 activation 若是峰值主因可试；需要付出两次大 Linear 的前向重算代价 |
+| `moe` | 整个 MoE 层，普通 checkpoint | 显存很紧时比较；可能重放 router、dispatch/combine 与 expert GEMM，通信成本不能漏算 |
+| `shared_experts` | shared expert 子模块，普通 checkpoint | shared expert 保存量占比高时评估；还需检查与 shared-expert overlap 的兼容性 |
+
+模块名及类型见[0.17 配置文档](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.transformer.transformer_config.html)；边界分别可核对 [Attention](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/attention.py)、[TransformerLayer](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/transformer_layer.py)、[Experts](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/moe/experts.py) 与 [MoELayer](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/moe/moe_layer.py)。
+
+**按模型结构记四种情况：**
+
+1. **Dense / GQA + FlashAttention**：先比较无额外重算和 `core_attn`，同时查独立 norm、MLP 的真实保存量。FlashAttention 已避免保存完整 `S×S` 矩阵，并在 backward 内部分块重建相关量；外层 `core_attn` checkpoint 则再次调用 core-attention forward。两者不是同一层次，不能沿用未融合 Attention 的显存节省预期。[TE Attention 机制](https://docs.nvidia.com/deeplearning/transformer-engine/user-guide/examples/attention/attention.html)
+2. **Grouped MoE**：先比较 `moe_act`，再看是否有独立 `layernorm` 可省。TEGroupedMLP 的 `moe_act` 保留 FC1 输出，只重建 activation 输出；FC1/FC2 仍正常执行。若启用整个 `moe`，不要把 `moe_act` 的收益再累加一次。[Grouped expert 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/moe/experts.py)
+3. **MLA**：额外评估 `mla_up_proj`，看展开后的 Q/KV、RoPE 中间结果是否在峰值存活。不要只因模型是 MoE 就认为它使用 MLA；Attention 结构和 expert 结构是两件事。
+4. **长上下文 / Hybrid 模型**：区分 full attention、linear attention/GatedDeltaNet 等实际层类型；CP/SP 已改变本地 shape，重算要基于切分后的峰值重新选。新版本存在 `gdn_norm_out` 等扩展，但不属于这里的 0.17 七项；既不能照抄给旧版本，也不能拿 `core_attn` 解释所有混合层。[当前配置 API](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)
+
+这些候选顺序也与 NVIDIA 的[重算调优指南](https://docs.nvidia.com/nemo/megatron-bridge/nightly/training/activation-recomputation.html)相符；该页是滚动 nightly 文档，其建议不代表 0.17 支持所有新组合。
+
+<a id="recompute-recipes"></a>
+### 4. 常见配置：作为 A/B 起点，不是万能模板
+
+下面均为 Megatron-LM CLI **参数片段**，追加到已跑通的训练命令；不是完整启动脚本，也不是某次个人项目的最终参数。无额外重算的基线应移除这组 recompute 参数，使 `recompute_granularity=None`，不要传字符串 `none`。
+
+**标准 core-attention selective 对照：**
+
+```bash
+--recompute-granularity selective \
+--recompute-modules core_attn
+```
+
+**Grouped MoE 的低成本边界候选**：先单测 `moe_act`，再比较添加 `layernorm`。前提是 grouped expert 路径支持该实现，并且实际存在可重算的独立 norm。
+
+```bash
+--moe-grouped-gemm \
+--recompute-granularity selective \
+--recompute-modules moe_act layernorm
+```
+
+**Selective 仍不够时，比较部分整层重算**：此例假设当前 chunk 至少 2 层；逐步增加层数，找到满足 headroom 的最小范围。
+
+```bash
+--recompute-granularity full \
+--recompute-method block \
+--recompute-num-layers 2
+```
+
+**若需要所有层按组重算**：此例每 2 层构成一个 checkpoint 区域；和上例二选一比较，不是叠加。
+
+```bash
+--recompute-granularity full \
+--recompute-method uniform \
+--recompute-num-layers 2
+```
+
+**配置门禁，0.17 尤其注意：**
+
+- 显式设置 `recompute_modules` 是替换默认列表，不是自动追加。例如只写 `moe_act layernorm`，不会自动保留 `core_attn`；查看最终有效配置确认实际列表。
+- selective 不配 `recompute_method/recompute_num_layers`；它们是 full 的控制项。切换 recipe 时清理旧配置，避免上层 merge 后残留。
+- `moe_act` 要求 `moe_grouped_gemm=True`；`mla_up_proj` 要求实际启用 MLA。
+- `shared_experts` 重算与启用 shared experts 的 `moe_shared_expert_overlap=True` 冲突；别同时开启后只看最终是否 OOM。
+- FP8 下 `moe_act/layernorm` 有额外 TE 版本和 recipe 约束：0.17 校验要求 TE ≥ `2.6.0dev0`，且不支持 delayed scaling。BF16 上有效不能证明切到 FP8 也兼容。
+- `moe` 包含 `moe_act` 的计算区域，默认不要嵌套叠加；这不是声称所有版本必报错，而是避免未经验证的重复重算与生命周期问题。`mlp` 与 `moe` 则可能分别服务混合模型里的 Dense/MoE 层。
+- 不直接复制 HF 的 `gradient_checkpointing_enable()` 或 PyTorch checkpoint 参数给 MCore；它们的配置入口和 checkpoint 实现不同。旧 `moe_layer_recompute` 迁移后使用合法模块名 `moe`，不是 `moe_layer`。[配置校验与迁移源码](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/transformer_config.py)
+
+<a id="recompute-tuning"></a>
+### 5. 工程上怎么选：先过显存线，再选吞吐最好的配置
+
+选择准则不是“重算越多越好”，而是：**在正确性和最坏样本显存余量都满足的候选中，选择有效吞吐最高的配置。**
+
+```text
+先看：ΔM_peak = 基线整步峰值 − 候选整步峰值
+再看：ΔT_step = 候选稳态 step time − 基线稳态 step time
+单位时间换得的显存 ≈ ΔM_peak / ΔT_step     （ΔT_step > 0 时）
+```
+
+`saved bytes / recompute FLOPs` 可用于筛选，但最终用 wall time：重算会改变通信、kernel 融合、调度和 overlap，不只有 FLOPs。这个比值也不是唯一优化目标；释放显存后可能允许更大 MBS、更少 microbatch 或更合适的并行配置，需要另外测端到端收益。
+
+**建议的最小实验流程：**
+
+1. **定位峰值**：先排除 full logits、dtype upcast 和异常常驻副本；确认问题确实是 saved activation，而不是参数或 optimizer。记录哪个 rank、PP/VPP chunk、哪个阶段最重。
+2. **固定 workload**：保持模型、tokens/length 分布、packing、精度、GBS/MBS、TP/CP/EP/PP、kernel/backend 和统计窗口一致。原配置无法完整跑通时，可先缩小 workload 找候选，但最终必须回到目标 workload 验证。
+3. **窄边界逐项 A/B**：按结构测试单模块，再测试组合。每次记录有效配置、peak allocated/reserved、设备总占用、step median/p95 和额外 backward 前向/collective 时间。
+4. **不够再扩大边界**：按峰值来源比较整个 `mlp`、整个 `moe` 或 `full + block`；不是每个模型都要把这些依次开一遍。仍不够时比较 full uniform、MBS、CP/SP 或 activation offload。
+5. **确认稳态和最坏情况**：完成 optimizer state 的初始化，覆盖完整 forward/backward/梯度同步/optimizer，以及长样本、PP 在途 microbatch 和 MoE 热 rank。不要只看 forward 结束后的 `allocated`。
+6. **验正确性再联合调优**：对照 loss、梯度、短窗口收敛；检查 dropout/RNG、routing 副作用和 FP8 scale/amax 状态。重放若走了不同分支或重复更新状态，可能产生静默梯度问题。随后才调整 MBS/并行度，单独报告其联合收益。[PyTorch checkpoint 的重放一致性说明](https://docs.pytorch.org/docs/2.9/checkpoint.html)
+
+**显存余量如何考虑？** 根据最长样本、动态 routing、临时 workspace 与运行波动留空间，不用一个固定百分比套所有任务。降低 MBS 后若调整梯度累积保持 GBS，要同时观察 GEMM 效率和 PP bubble。启用 CUDA Graph、切 FP8、换 TP/CP 或更换 TE kernel 后，都需要重新做上述对照，旧最优值不保证仍然最优。
+
+| 现象 | 优先核查 | 下一步 |
+|---|---|---|
+| 开了 `layernorm`，显存几乎没变 | norm 是否融合、外层是否 `IdentityOp`，输出是否位于真正峰值 | 查看实际 module spec 和 snapshot，不凭配置名判定生效 |
+| 开 `core_attn` 后变慢、省得很少 | 已用 Flash/TE fused attention？是否重放 CP 通信？ | 对照关闭外层重算，转查 MLP/expert activation |
+| 开整个 `moe` 后 A2A 增多、吞吐下降 | checkpoint 是否覆盖 dispatch/combine；是否与子边界重复 | 比较 `moe_act` 等窄边界，或重新权衡通信与显存 |
+| 重算后仍在同一处 OOM | 峰值是否来自 optimizer、logits、graph pool、重建临时张量 | 回到每-rank 显存账，不盲目追加模块 |
+| loss/grad 偏离或恢复后异常 | RNG、状态更新副作用、FP8 recipe、重放控制流 | 缩小到单模块对照，验证正确性后再扩大范围 |
+
+### 6. 面试追问与项目表达
+
+**为什么 full recompute 慢？** 因为被 checkpoint 的区域多执行了前向。简化地，原训练若是 `F+B≈3F`，完整重跑一次模型前向会变成约 `4F`，即计算量约增加三分之一；这只是不含通信/IO等的估算，不能说 step time 必然增加 33%。Selectively checkpoint 的只是部分区域，代价取决于边界。
+
+**为什么你从 full 改成 selective，反而训练更快？**
+
+> 重算本身是用计算换显存，不是天然加速。我原来采用了偏保守的整层重算；联合优化后，在满足显存余量的前提下缩小重算范围，就能减少重复前向。选择时看实际峰值和重建代价，再比较 step time、显存、loss 和梯度。具体重算哪些模块需要回查当时配置，不能拿今天框架支持的参数冒充项目事实。
+
+在个人 [9B SFT 项目](#qwen35-9b-sft)里，`31s→9.3s` 是数据供给、重算和并行配置的联合结果，不把全部加速归给 selective。常见错误回答包括“只重算最贵的 Attention”“selective 就是选几层”“FlashAttention 开了再 checkpoint 一定更省”“输出多大就一定能省多少显存”。
+
+**相关机制**：[FlashAttention](flashattention.md) · [Transformer Engine / Fusion](transformer_engine.md#fusion-map) · [CP](context_parallelism.md) · [SP](sequence_parallelism.md) · [MoE](moe.md)。
+
+↩ [返回主文档：选择性重计算](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-selective-recompute) · [返回 SFT 项目回答](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-05) · [知识图谱](../KNOWLEDGE_GRAPH.md) · [阅读总索引](../MASTER_READING_LIST.md)
+
 <a id="qwen35-9b-sft"></a>
 ## Qwen3.5-9B SFT：31s → 9.3s 的工程解释
 
@@ -59,23 +222,9 @@
 
 ### 2. 从 full recompute 收敛到 selective recompute
 
-Activation checkpointing 的目标不是“重算最便宜的模块”，而是最大化单位额外计算所释放的**峰值存活显存**：
+这一步的逻辑是：在显存仍能容纳目标 workload 的前提下，缩小 checkpoint 范围，减少重复前向。先看哪些保存到 backward 的 tensor 占据实际峰值，再比较无额外重算、selective 和 full 的显存、step time 与数值结果；重建成本包含计算及可能重放的通信。
 
-```text
-selection score ≈ bytes removed from peak live set / extra recompute FLOPs
-```
-
-Megatron-Core 当前 `recompute_granularity=selective` 默认 checkpoint `core_attn`。这并不与“Attention 很贵”矛盾：这里重算的是 core attention 子模块中内存密集但相对适合重建的中间状态，而不是机械地把整个 Attention/Transformer layer 重跑。现代版本还支持 `layernorm`、`moe_act`、`mla_up_proj`、`mlp`、`moe`、`shared_experts`、`gdn_norm_out` 等模块，其中部分使用 output-discarding checkpointing。
-
-工程选择流程：
-
-1. 在相同 workload 下跑 `none / selective / full` 三档，记录 peak live set 和 backward recompute time；
-2. 从默认/已验证模块开始，不凭名称猜成本；
-3. 用 memory snapshot 判断释放的 tensor 是否真正落在峰值窗口；
-4. 显存有余量时优先减少 full-layer recompute，把省下的时间换成更大 MBS 或更少 microbatch；
-5. 验证 dropout/RNG、loss、grad 与 checkpoint resume，不把“能跑”当作数值等价。
-
-项目口径只确认从偏重 recompute 收敛到 selective；当时精确 `recompute_modules` 必须以配置为准。
+`core_attn` 是 MCore selective 的默认候选，但在 Flash/TE fused attention 下不保证最划算；需按真实层结构、fusion 与 TP/CP 布局选择。完整原理、模块表、参数和 A/B 顺序见[选择性重计算](#selective-recompute)。项目口径只确认从偏重 recompute 收敛到 selective；当时精确 `recompute_modules` 必须以配置为准，不将通用示例写成项目历史。
 
 ### 3. 让 TP 解决权重，让 CP 解决长序列
 

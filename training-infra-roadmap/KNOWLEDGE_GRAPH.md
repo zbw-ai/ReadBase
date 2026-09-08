@@ -224,6 +224,7 @@ flowchart LR
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Sequence Parallelism](topics/sequence_parallelism.md) ↔ [Context Parallelism](topics/context_parallelism.md)
 - [5D 拓扑选择](topics/distributed_training.md) ↔ [Hierarchical CP：机内 A2A / 机间 Ring](topics/context_parallelism.md#hierarchical-cp)
 - [Long-context Training](topics/long_context_training.md) ↔ [Context Parallelism](topics/context_parallelism.md) ↔ [FlashAttention](topics/flashattention.md)
+- [选择性重计算：原理与参数](topics/long_context_training.md#selective-recompute) ↔ [显存账本与面试速答](../private_resume/2026-08-llm-infra-interview-prep.md#megatron-selective-recompute) ↔ [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map)
 - [Long-context Training](topics/long_context_training.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [CompactionRL](papers/compactionrl.md) ↔ [Long-context Training](topics/long_context_training.md) ↔ [Agentic RL](topics/agentic_rl.md)
 - [ZeRO](papers/zero.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [FSDP](topics/fsdp.md)
