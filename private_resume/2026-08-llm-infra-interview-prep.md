@@ -18,7 +18,7 @@
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
 | **教育背景** | 厦门大学本科、清华大学硕士，研究方向为人工智能 | [自我介绍](#resume-01) |
-| **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [FSDP](#dist-01) · [框架选型](#megatron-11) |
+| **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、PyTorch FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PyTorch FSDP](#dist-01) · [框架选型](#megatron-11) |
 |  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · [EP/A2A](#megatron-06) · [显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) · [融合算子](#kernel-01) |
 |  | **RL / verl / AReaL**：PPO/GRPO/DAPO、Fully Async、Agentic RL | [RL 算法](#rl-algo-01) · [verl/AReaL 选型](#areal-01) · [HybridFlow](#verl-01) · [资源部署](#verl-02) · [Async/Streaming/Staleness](#verl-04) |
 |  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
@@ -93,7 +93,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 <summary><strong>Part II｜Megatron、MoE、训练后端与长上下文（27）</strong></summary>
 
 - **P0 / Core**：[RESUME-01A X1 200B MoE 模型性能优化](#resume-01a) · [MEGATRON-01 5D 并行](#megatron-01) · [INFRA-02 Megatron 显存账本](#infra-02)
-- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 TP：Linear/MLP/Attention 切分](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
+- **P0 扩展**：[RESUME-05 SFT 31s→9.3s](#resume-05) · [RESUME-17 35B-A3B 128K](#resume-17) · [RESUME-06 128K/256K 显存](#resume-06) · [RESUME-07 CP-local logits](#resume-07) · [KERNEL-01 NVIDIA 融合算子](#kernel-01) · [RESUME-10 千卡/万卡交付](#resume-10) · [MEGATRON-02 TP：Linear/MLP/Attention 切分](#megatron-02) · [MEGATRON-03 TP 变大为什么更慢](#megatron-03) · [MEGATRON-04 SP 与 CP](#megatron-04) · [MEGATRON-05 Distributed Optimizer](#megatron-05) · [MOE-01 Dense 与 MoE](#moe-01) · [MEGATRON-06 EP 与 all-to-all](#megatron-06) · [INFRA-01 MFU](#infra-01) · [DIST-01 PyTorch FSDP/FSDP2 与 ZeRO](#dist-01) · [MEGATRON-11 训练框架分层与选型](#megatron-11) · [SFT-DATA-01 数据到 loss 正确性](#sft-data-01) · [MLLM-01 多模态与具身训练差异](#mllm-01)
 - **P1**：[RESUME-18 视频 DiT/Ulysses](#resume-18) · [MEGATRON-07 PP bubble](#megatron-07) · [MEGATRON-08 Packed Sequence](#megatron-08) · [MEGATRON-09 Recompute/Offload](#megatron-09) · [MEGATRON-10 Distributed checkpoint](#megatron-10) · [BRIDGE-01 MBridge/Megatron Bridge](#bridge-01)
 - **P2**：[P2-02 FlashAttention](#p2-02)
 
@@ -556,13 +556,15 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   `phase` 至少区分 initialization、forward、backward、optimizer、checkpoint/weight sync。每块内存只归入一个生命周期；例如 forward workspace 不能再叠加到 optimizer 峰值。`reserved-allocated` 包含 allocator cache、rounding 和不可用碎片，不能全部叫 fragmentation。
 
-- **第一本账：参数、梯度和 Adam 状态**。Megatron Core Distributed Optimizer 官方理论值如下，`d` 是该类参数实际使用的 optimizer sharding group size：
+- **第一本账：参数、梯度和 Adam 状态**。以下是**经典 Megatron Core Distributed Optimizer** 的官方理论值，`d` 是该类参数实际使用的 optimizer sharding group size：
 
   | 参数/梯度 dtype | 普通 optimizer | Distributed Optimizer |
   |---|---:|---:|
   | FP16 param + FP16 grad | 20 bytes/param | `4 + 16/d` |
   | BF16 param + FP32 grad | 18 bytes/param | `6 + 12/d` |
   | FP32 param + FP32 grad | 16 bytes/param | `8 + 8/d` |
+
+  **适用范围**：这是经典 Distributed Optimizer 的模型状态账，不是 PyTorch FSDP/FSDP2 或 NVIDIA Megatron-FSDP 的通用公式。后两类实现需要按具体 sharding strategy 和 dtype 重算常驻状态，再计入按需 unshard 参数、梯度规约与 prefetch 的临时峰值；不能直接照搬上表，也不能把完整训练显存统一写成 `16/d`。[官方 Distributed Optimizer 说明](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/user-guide/features/dist_optimizer.html) · [三种 FSDP 实现的区别](#dist-01)。
 
   表里的 `/param` 乘的是**本 rank 在模型并行之后持有的参数量**，不是全模型参数量：
 
@@ -961,11 +963,15 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **直接回答（60–90 秒）**：
 
-  > 经典 Megatron distributed optimizer 主要分片 optimizer state 和 FP32 main parameters，梯度通过 reduce-scatter 让各 rank 得到自己负责的 shard，更新后再 all-gather 参数视图，思想接近 ZeRO-1，并通过 contiguous param/grad buffer 提高通信效率。开启 CP 时不能把 shard group 简化成纯 DP：Dense 参数默认使用 `DP×CP` 的 `dp_cp` group，Expert 参数使用 EDP group。现代 Megatron-FSDP 又可配置 `optim`、`optim_grads`、`optim_grads_params`，分别对应 ZeRO-1/2/3 式分片。显存不能只背 `16/d`，完整 dtype 表和每-rank 算法见 [INFRA-02](#infra-02)。
+  > 经典 Megatron Distributed Optimizer 主要分片 optimizer state 和混合精度训练的 FP32 main parameters。每个 rank 通过 ReduceScatter 得到自己负责的梯度 shard，更新本地状态后，再 AllGather 更新后的模型参数，让副本一致。它的思想接近 ZeRO-1；不能因为用了 ReduceScatter，就认定它已经是 ZeRO-2/3，还要看完整参数和梯度 buffer 是否仍驻留。
+  >
+  > 分片组也不能一律当纯 DP：开启 CP 时，Dense 参数默认使用 `DP×CP` 的 `dp_cp` group，Expert 参数使用 EDP group。显存按 dtype、实际分片组和 buffer 生命周期计算，经典实现的账本见 [INFRA-02](#infra-02)。
+
+- **追问：Megatron-FSDP 是什么，和这里是同一实现吗？** 不是。NVIDIA 另有区别于 PyTorch FSDP/FSDP2 的 **Megatron-FSDP** 实现，也不能把它与经典 Distributed Optimizer 混为一谈。其 `--data-parallel-sharding-strategy` 可选 `optim`、`optim_grads`、`optim_grads_params`，分片范围依次接近 ZeRO-1/2/3；混合精度下 `optim` 也分片 main weights。这些是 NVIDIA 实现的配置，不是 PyTorch FSDP 的通用参数，也不表示三种实现有相同显存公式。[NVIDIA 分片策略 API](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.distributed.fsdp.src.megatron_fsdp.megatron_fsdp.html) · [FSDP 实现对照](#dist-01)。
 
 - **延伸阅读**：[DP 策略、PyTorch DP/DDP/FSDP、Megatron DP group 与通信算子](../training-infra-roadmap/topics/data_parallelism.md#dp-concept-and-implementations)。
 
-- **项目证据或知识边界**：你做过 distributed checkpoint 和 optimizer 相关故障；若没改 optimizer 核心，明确为集成/排障经验。
+- **项目证据或知识边界**：你做过 distributed checkpoint 和 optimizer 相关故障；若没改 optimizer 核心，明确为集成/排障经验。使用过 Megatron-Core 不自动等于使用过 Megatron-FSDP，具体后端以项目配置为准。
 - **高概率追问**：DP=1 时还有什么冗余 buffer？overlap grad reduce 如何实现？ZeRO-3 与 TP/PP 怎么组合？
 
 <details>
@@ -975,7 +981,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **面试官意图**：验证 model-state memory accounting 和 DP 通信理解。
 
-- **危险回答**：把 Megatron distributed optimizer 直接等同 ZeRO-3；忽略 main param 和 dtype；认为分片没有通信成本。
+- **危险回答**：把经典 Distributed Optimizer 直接等同 ZeRO-3；把 PyTorch FSDP2、Megatron-FSDP 和经典 Distributed Optimizer 当作同一实现；忽略 main param 和 dtype；认为分片没有通信成本。
 
 </details>
 
@@ -1067,33 +1073,51 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 <a id="p2-01"></a>
 <a id="dist-01"></a>
-#### DIST-01｜FSDP/FSDP2 与 ZeRO-1/2/3 有什么区别和联系？（P0，15 分钟）
+#### DIST-01｜PyTorch FSDP/FSDP2 与 ZeRO-1/2/3 有什么区别和联系？（P0，15 分钟）
 
 - **直接回答（60–90 秒）**：
 
-  > ZeRO 是按 DP 维消除 model-state 冗余的方法族：Stage 1 分 optimizer state，Stage 2 再分 gradient，Stage 3 连 parameter 也分。PyTorch FSDP 的 `FULL_SHARD` 在“分片哪些状态”上接近 ZeRO-3，但不是同一套实现；forward/backward 前按模块 all-gather 参数，backward 后 reduce-scatter gradient，并按 reshard policy 释放完整参数。FSDP1 以 wrapper/FlatParameter 为核心；FSDP2 使用 `fully_shard` 和 per-parameter DTensor，FQN、状态管理和 composability 更自然。`SHARD_GRAD_OP` 只能粗略类比 ZeRO-2，因为参数驻留和 reshard 语义并不完全相同。它们与 TP 不互斥：FSDP/ZeRO 沿 data-parallel replica 分状态，TP 则直接改变层内 GEMM 和 activation 的计算图；大模型训练经常组合使用。
+  > 这里的 FSDP/FSDP2 指 PyTorch 原生的分布式训练组件。ZeRO 按 DP 维消除模型状态冗余：Stage 1 分 optimizer state，Stage 2 再分 gradient，Stage 3 连 parameter 也分。PyTorch FSDP1 的 `FULL_SHARD` 在“分什么”上接近 ZeRO-3，但不是 DeepSpeed 的同一套实现；计算前按模块 AllGather 参数，反向后 ReduceScatter 梯度，再按策略释放完整参数。
+  >
+  > FSDP1 以 wrapper/FlatParameter 为核心，FSDP2 使用 `fully_shard` 和逐参数 DTensor，参数表示和与其他并行方式的组合更自然。NVIDIA 的 Megatron-FSDP 是另外一套实现，不是 FSDP2 改名。它们都可以与模型并行配合：FSDP/ZeRO 主要减少 DP 副本间的状态冗余，TP 则拆分层内算子，不能简单看成互斥选项。
 
-- **`FULL_SHARD` 一层在一个 step 内怎么走**：
+- **先分清实现与配置归属**：本题未特别注明时，FSDP/FSDP2 指 PyTorch 实现；讨论全分片方法本身时，不把它限定为某个库。
+
+  | 实现 | 接入方式与核心表示 | 本题涉及的配置 |
+  |---|---|---|
+  | PyTorch FSDP1 | `FullyShardedDataParallel` wrapper、FlatParameter | `sharding_strategy`：`FULL_SHARD`、`SHARD_GRAD_OP` 等 |
+  | PyTorch FSDP2 | `torch.distributed.fsdp.fully_shard`、逐参数 DTensor | `reshard_after_forward`、`mesh` 等 |
+  | NVIDIA Megatron-FSDP | NVIDIA 维护的另一套 FSDP 实现，与 Megatron/NVIDIA 训练栈集成 | Megatron-LM 的 `--data-parallel-sharding-strategy`：`optim`、`optim_grads`、`optim_grads_params` 等 |
+
+  **FSDP1 → FSDP2 是 PyTorch 自身的实现演进，不是再接一个 Megatron-FSDP 的连续版本号。** 前两者是 PyTorch 的分布式组件，不是独立于 PyTorch 的完整训练框架；Megatron 训练栈本身也基于 PyTorch。[PyTorch FSDP1](https://docs.pytorch.org/docs/2.9/fsdp.html)、[FSDP2](https://docs.pytorch.org/docs/2.9/distributed.fsdp.fully_shard.html)、[NVIDIA Megatron-FSDP](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/megatron_fsdp.html)。
+
+- **典型全分片模块在一个 step 内怎么走**：以下是共享的数据流心智模型，不是把两代 API 混成一个参数集；先按常规同步 step 理解，梯度累积/`no_sync` 等另看实际策略。
 
   ```text
   steady state: 每个 DP rank 只持有本层 parameter shard
       -> pre-forward Parameter AllGather，临时 materialize 完整参数
       -> forward compute
-      -> 按 reshard_after_forward 策略释放/保留完整参数
+      -> 按当前实现的分片/驻留策略释放或保留完整参数
       -> pre-backward 再次 Parameter AllGather（若此前已 reshard）
       -> backward compute
-      -> Gradient ReduceScatter，每个 rank 只留下本地 gradient shard
+      -> post-backward Parameter Reshard + Gradient ReduceScatter
+      -> 每个 rank 只留下本地 parameter/gradient shard
       -> local optimizer 用本地 parameter/gradient/optimizer-state shard 更新
   ```
 
-  FSDP 的 prefetch 是让下一层 parameter AllGather 与当前层计算重叠，不是消灭通信；prefetch 太激进会同时 materialize 多层参数，反而推高峰值显存。`reshard_after_forward=False` 能减少 backward 前的第二次 AllGather，但用参数驻留换通信，语义更接近 ZeRO-2 式取舍，仍要按具体 API/版本说明。
+  **落实到具体 API 时分开讲**：
+
+  - **FSDP1**：`FULL_SHARD` 常规路径在 forward 后 reshard，backward 前再 gather；`SHARD_GRAD_OP` 在这段计算窗口保留完整参数，减少一次 gather。它只能粗略类比 ZeRO-2，因为窗口外的参数分片与驻留语义并不完全相同。
+  - **FSDP2**：`reshard_after_forward=True` 表示 forward 后释放完整参数，backward 前再 gather；`False` 表示保留，用更多显存换少一次 gather。这是 FSDP2 的参数，不是 FSDP1 `FULL_SHARD` 的同名开关，也不意味着实现变成了 DeepSpeed ZeRO-2。
+
+  两代实现的 prefetch 都是在尝试把下一模块的 parameter AllGather 与当前计算重叠，不是消灭通信；太激进会同时 materialize 多个模块的参数，推高显存峰值。具体次数还受模块边界、梯度累积和后端调度影响。
 
 - **FSDP1 与 FSDP2 的执行骨架**：二者都有“按模块 gather 参数—计算—reshard—reduce-scatter 梯度”的核心生命周期。FSDP1 通常由 wrapper 把参数展平为 `FlatParameter` 后切 shard；FSDP2 的 `fully_shard` 在原参数上使用 DTensor 分片，并用 module hooks 组织通信，因而保留 per-parameter FQN、组合其他 parallelism 和 checkpoint 更自然。通用 collective 的输入输出语义见 [INFRA-04](#infra-04)；raw TP/PP/CP/EP shard 的 checksum 不能直接要求相等，排障口径见 [TRAIN-ANOMALY-01](#train-anomaly-01)。
 
 - **现场画账**：先写 `P/G/O` 三类 model state：ZeRO-1=`O`，ZeRO-2=`O+G`，ZeRO-3/FSDP FULL_SHARD=`O+G+P`；再补 activation、通信 buffer 和 workspace，避免说成“总显存除以 DP”。
 - **深入阅读**：[FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](../training-infra-roadmap/topics/fsdp.md#fsdp-zero-map)。
 - **项目证据或知识边界**：你的主项目以 Megatron-Core 后端为主，对 FSDP/FSDP2 的口径是机制理解、框架选型与集成判断；不声称实现过 FSDP 核心 sharding/hooks。
-- **高概率追问**：FSDP2 为什么不用 FlatParameter？`FULL_SHARD` 每个阶段有哪些 collective？`SHARD_GRAD_OP` 为什么不能严格等同 ZeRO-2？FSDP 与 TP 能否组合？
+- **高概率追问**：FSDP2 为什么不用 FlatParameter？`FULL_SHARD` 与 `reshard_after_forward` 分别属于哪代 API？Megatron-FSDP 是 PyTorch FSDP2 吗？`SHARD_GRAD_OP` 为什么不能严格等同 ZeRO-2？FSDP 与 TP 能否组合？
 
 <details>
 <summary>面试意图与回答提醒</summary>
@@ -1102,18 +1126,20 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **面试官意图**：检查你能否从参数、梯度、优化器状态和运行时通信解释 DP state sharding，而不是只做名词映射。
 
-- **危险回答**：FSDP 就是 TP；ZeRO-3 没有 all-gather；把 Stage 1/2/3 说反；认为状态分片一定更快。
+- **危险回答**：FSDP 就是 TP；Megatron-FSDP 是 PyTorch FSDP2 的下一代；把 `optim_grads_params` 当 PyTorch FSDP 参数；混用 FSDP1/FSDP2 API；ZeRO-3 没有 all-gather；把 Stage 1/2/3 说反；认为状态分片一定更快。
 
 </details>
 
 ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-11"></a>
-#### MEGATRON-11｜Megatron、FSDP/FSDP2、DeepSpeed 与 Accelerate 如何分层和选型？（P0，15 分钟）
+#### MEGATRON-11｜Megatron、PyTorch FSDP/FSDP2、DeepSpeed 与 Accelerate 如何分层和选型？（P0，15 分钟）
 
 - **直接回答（30 秒）**：
 
-  > Accelerate 更像 Hugging Face 上层的启动与分布式编排 facade，可以通过 plugin 接 FSDP 或 DeepSpeed；FSDP/FSDP2 是 PyTorch-native 的 DP state sharding；DeepSpeed 是包含 ZeRO、CPU/NVMe offload、pipeline 等能力的训练 runtime；Megatron-Core 的优势是 TP/PP/CP/EP 多维模型并行、模型实现和高性能 kernel。它们不是简单四选一，先确定需要哪一层能力，再选择经过目标模型和硬件验证的组合。
+  > Accelerate 是 Hugging Face 上层的启动与分布式编排工具，可以通过 plugin 接后端；PyTorch FSDP/FSDP2 是负责 DP 状态分片的组件；DeepSpeed 是包含 ZeRO、offload 等能力的训练 runtime；Megatron-Core 提供模型实现和 TP/PP/CP/EP 等多维并行能力。它们不是同一层的四选一。选型时先确定瓶颈和所需能力，再选择能在目标模型与硬件上验证的组合。
+
+- **“Megatron 和 FSDP 选型”到底在比较什么**：通常是在比较 **Megatron-Core 训练后端**与**以 PyTorch FSDP/FSDP2 组织训练的后端**，不是比较“Megatron 与 PyTorch”，也不是说 Megatron 不支持 FSDP。PyTorch FSDP 可以与 TP 等模型并行组合；Megatron 训练栈也有自己的 Megatron-FSDP 实现及 PyTorch FSDP2 接入路径，具体支持范围取决于版本、模型和配置。实现归属见 [DIST-01](#dist-01)，经典 Distributed Optimizer 的区别见 [MEGATRON-05](#megatron-05)。[Megatron-LM 后端选项](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/training/arguments.py)
 
 - **追问展开：如何选型**：
 
@@ -1130,7 +1156,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **面试官意图**：评估你能否区分上层编排、DP state sharding 和模型并行，并把模型规模、生态成熟度与团队成本转成架构决策。
 
-- **危险回答**：把 Accelerate 和 Megatron 当作同一层的四选一；说 Accelerate 自己实现 ZeRO；“小模型 FSDP、大模型 Megatron”一句话结束；只看能否 OOM。
+- **危险回答**：把 Accelerate 和 Megatron 当作同一层的四选一；说 Megatron 与 PyTorch 互斥或 Megatron 不支持 FSDP；说 Accelerate 自己实现 ZeRO；“小模型 FSDP、大模型 Megatron”一句话结束；只看能否 OOM。
 
 </details>
 
