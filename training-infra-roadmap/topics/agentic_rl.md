@@ -168,59 +168,61 @@ Graph capture/private pool、多个 buckets 和 padding 可能额外占显存。
 | end-to-end | rollout time、tool/env wait、trainer exposed wait；不把局部倍数直接外推 |
 
 <a id="gateway-streaming-refill"></a>
-## Gateway 调度：从 wave barrier 到流式补位
+## Gateway / Rollout 调度：分清供给、执行容量与训练接收
 
-![Gateway 流式补位、均衡分发与失败请求分流](../assets/topics/gateway-streaming-refill.svg)
+![Rollout 分层调度：session 容量、补位与 cohort 门禁](../assets/topics/gateway-streaming-refill.svg)
 
-这里的 **streaming refill** 是请求级调度：一个 rollout 完成、失败或释放 capacity 后，立即补入下一个待处理请求。它不是 OpenAI HTTP `stream=true` 的 token streaming。
+这是容量与回收的概念示意，不是代码部署拓扑。以下机制以 2026-09-09 核验的 `trail` 主线 `e9081cab` 为准，调用链和后续分支区别见[源码工程章节](#project-gateway-ownership)。
 
-### 原链路为什么浪费并发
+### 问题：GPU 有空闲，Trainer 为什么仍没数据？
 
-固定 wave/batch 发出一批请求后，快请求已经完成，慢请求、tool timeout 或失败请求仍占据这批的 barrier。若调度器等整波结束才发下一波，配置并发为 `C`，实际 active sessions 会逐渐从 `C` 掉到很低。group-based RL 更糟：同一 prompt 的 sibling trajectories 必须满足 cohort 完整性；缺一个成员，前面已经生成的 sibling 也可能无法形成训练 group。
+一条 Agent episode 包含多次模型调用和工具等待；各 episode 长短不同，同一 prompt 的多个成员还必须凑成完整 cohort。因而有三种不同的等待：Agent 没准备好、session 没拿到执行容量、完整 cohort 还不能被训练器接收。只扩大 HTTP 并发，可能增加排队和过期样本，而不是有效训练数据。
 
-### 三个改造层
+### 三个预算，不能拿同一个 concurrency 解释
 
-#### 1. 流式补位
+| 层次 | 任务单位与机制 | “完成”后发生什么 |
+|---|---|---|
+| 外部 Evals | reset / generation / step / agent-run；首个生成前才建物理 session | 多轮继续复用 session；episode 结束才 reward/end。仓内 runner 每个 epoch 仍 `await orch.run()` |
+| Proxy 执行 | `C=rollout.max_concurrent_rollouts` 是总 active-session 上限，启动时精确拆给各 Proxy Worker | session 结束/清理释放 permit，唤醒当前等待成员；一次 HTTP/turn 完成不释放 |
+| Trainer 接收 | 一个 dispatcher task 是完整 cohort 的接收预约；受并发和 staleness credit 双约束 | cohort 成功进入 accepted，仍占版本窗口；拒绝或版本推进才可能腾出/增加 credit |
 
-- 维护 bounded pending queue 与 target concurrency；
-- completion/failure/abort 统一释放 slot；
-- 每释放一个 slot 就触发 dispatcher refill；
-- 设置 backpressure，不用无限队列掩盖 rollout 供需失衡。
-
-直接因果链是：`slot idle time 下降 → active concurrency 接近水位线 → 单位时间 completed trajectories 增加`。
-
-#### 2. 均衡分发但保留 affinity
-
-项目代码用 round-robin 给没有既有 owner 的新 route 分配 Proxy Worker，并由 capacity/backpressure 限制执行水位；reservation、cohort、claim、session 等 identity 一旦绑定，后续请求都解析到同一 worker。这样在静态 worker 能力接近时分散新负载，同时避免 InteractionCache、session state 和 prefix cache 在 worker 间漂移。
-
-round-robin 不读取实时负载，因此不能称为 least-load；worker 异构或长尾严重时，可在保持 identity owner 不变的前提下为**新 route**扩展 capacity-aware/least-load 选择。已绑定 session 的正确性优先；worker 失效需要显式 lifecycle/recovery，而不是无条件随机改路由。
-
-#### 3. 失败请求状态机
-
-请求至少要区分：
+设 `H=max_head_offpolicyness`、`B=consumer_batch_size`、`V=current_version`，online controller 的逻辑并发窗口 `L=(H+1)B`。`StalenessManager.get_capacity()` 的提交预算为：
 
 ```text
-pending → admitted/in-flight → completed
-                         ├→ retryable failure → same identity retry
-                         └→ terminal/aborted → sibling/session cleanup
+可新增 cohort 任务数 = min(
+    L - running,
+    (H + V + 1) × B - (accepted + running)
+)
 ```
 
-timeout、client disconnect、backend 5xx、reward 缺失、staleness 和显式取消不能全部走同一种 retry。安全重试需要 idempotency key/claim/session identity，防止重复生成、重复记 reward 或产生两个 cohort member；terminal failure 必须释放 capacity 并清理 sibling，避免半组永久占槽。
+只有结果大于零且未暂停，dispatcher 才可继续提交。这里 `accepted` 是统计周期内的累计接受量，不是当前队列长度；成功任务从 running 转为 accepted，二者之和不变，所以“完成一个就必然再发一个”不成立。举例：`H=1、B=2、V=0、running=1、accepted=3` 时，物理执行即便空闲，新任务预算仍为零；版本推进后才可能继续。**物理 session 上限 C 不能除以 group_size，冒充这套 cohort 预算。**
+
+代码可证明后台按容量持续调度、session 释放后触发放行；但外部 `evals` 包的 Orchestrator 实现不在这个仓库，不能据此证明“旧版完全固定 wave、新版全局消除 wave”。HTTP `stream=true` 的 SSE 转发更不能作为 episode 流式调度的证据。
+
+### 均衡分发有两层，而不是一个 round-robin
+
+Gateway 为新 cohort 轮询选择 owner Worker，此后 claim/session/生成/reward/end 都保持粘性。Worker 再为新 session 选 engine：优先避开 waiting，综合 running、waiting、active sessions，并对同 cohort 已用 engine 施加软惩罚。同一 session 后续固定 engine，有助于保留状态和复用前缀，但不保证一定命中 Prefix Cache。
+
+各 Worker 都连接全部 inference engines，不过选择依据是本地 session 记录与定期抓取的 engine metrics，不是全局原子负载表。详细排序键和代价见[两层路由](#gateway-engine-routing)。
+
+### 失败管理服务于有效供给，不是盲目提高重试次数
+
+登记/启动可以按稳定身份重试；真正的模型生成在继承训练配置时设 `retry=0`，防止超时后重复生成。缺成员、缺 reward、stale、启动失败和整体超时要分桶。整组终结后清理 session/缓存并归还本地容量，但不能把本地清理等同于已确认远端 GPU 请求取消；更不能换 Worker 假装恢复一个丢失的 session。
 
 ### 结果如何解释
 
-最新版简历结果：Rollout 阶段平均推理吞吐 `+60%`；Rejected Group `33.18%→2.73%`，绝对下降 `30.45pp`，相对下降约 `91.8%`。
+最新版简历记录：Rollout 阶段平均推理吞吐 `+60%`；Rejected Group `33.18%→2.73%`，绝对下降 `30.45pp`，同口径下相对下降约 `91.8%`。本次指定仓库中未找到这组数字对应的原始 A/B 日志和统计协议，因此保留为项目记录，不声称由本次代码审计复现。
 
-不能从这两个数字直接推出模型效果提升。至少还要同时看：
+机制的验收顺序：
 
-- active/target concurrency、slot idle、pending depth；
-- per-worker load skew、session-affinity hit、prefix-cache reuse；
-- retry/timeout/terminal failure 与 capacity leak；
-- cohort ready latency、rejection reason、staleness；
-- exported/consumed/gradient-active trajectories 与有效 token；
-- trainer exposed wait、reward/eval distribution。
+- 容量：active sessions、等 permit 时间、空槽时间、pending depth；
+- 均衡：每个 engine 的 running/waiting、队列偏斜、session affinity；
+- 完整性：cohort ready latency、partial/overall timeout、missing reward、staleness；
+- 有效性：exported/consumed/gradient-active trajectories、有效 token、trainer exposed wait、reward/eval。
 
-三项机制是联合改造，没有独立消融时不把 60% 拆成各自收益。早期性能重构与后续 [exact quota/liveness ownership](#project-gateway-ownership) 也要分开：后续提交强化的是正确性和可恢复性，不能把已有性能结果重新归因给它们。
+没有独立消融就不拆分 60% 的贡献；拒绝比例的分母和原因分布未统一前，不把全部下降归因于长尾改善。团队主线、8 月异步分支、后续个人 quota 修复也不能强行归为同一次实验。
+
+↩ [返回主文档 RESUME-19](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-19)
 
 ## Reward / Verifier 是第二个瓶颈
 
@@ -444,16 +446,18 @@ Session key
 
 ```text
 External Evals / Agent
-  → Gateway：鉴权、路由、admission
-  → CohortManager：task/cohort/group rank、capacity、rollout version、staleness
-  → Proxy Worker：OpenAI-compatible endpoint
+  → Gateway：cohort / session 粘性 HTTP 路由
+  → Proxy Worker：鉴权、session 容量准入、engine 选择
+      └→ worker-local CohortManager：reservation / rank / ready / staleness
   → vLLM/SGLang：生成 token/logprob
   → InteractionCache：interaction、token、behavior logp、version、reward
-  → rewarded + ended + complete cohort
-  → Trainer export/tensorize → advantage/loss/update
+  → successful + rewarded + ended + complete + fresh cohort
+  → workflow export/校验/ACK → executor tensorize/过滤 → loss/update
 ```
 
-API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能不能正确训练”。训练系统仍必须保证：
+在该主线的 online 模式下，Trainer 先建立接收 reservation；bridge 在 reset sandbox 前登记逻辑 cohort member，首个生成请求才 `ensure_started()`，后续多轮复用 session key。上述简图中的 session 接口并不意味着 online 可以绕过 rank/claim 直接创建任意训练样本。
+
+API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能不能正确训练”。以下是完整系统需要守住的契约，其中 exact domain quota、权威 reward identity 和恢复公平性属于[后续个人分支](#gateway-personal-followups)，不要当成该 HEAD 已全部实现：
 
 - session/interaction identity 不串；
 - terminal reward 写到权威 completion；
@@ -465,13 +469,166 @@ API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能�
 <a id="project-gateway-ownership"></a>
 ## 项目 Gateway 二次开发：逻辑到底改了什么
 
-### 先划清 ownership
+阅读顺序：[版本与署名](#gateway-code-versions) → [调用链](#gateway-call-chain) → [两层选路](#gateway-engine-routing) → [失败与门禁](#gateway-lifecycle) → [配置与排障](#gateway-config-troubleshooting)。面试先讲[主文档 AREAL-09](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-09)，被追问再看这里。
 
-团队/上游已经提供 OpenAI-compatible proxy、online session/cohort 基础链路、Proxy Worker、InteractionCache、CohortManager 和 trainer consumer。项目基础提交 `64adce36` 的作者不是本人，因此面试中应说“项目基于这条链路”，不能说是自己从零设计。
+<a id="gateway-code-versions"></a>
+### 1. 先锁定版本与署名，避免讲出一套不存在的架构
 
-个人代码 ownership 可以归纳为四类。
+2026-09-09 静态核验代码阅读仓 `trail` 的 `main`：`e9081cabba3fcd43c0cce57faf3bdd9539250672`。下文未另作说明时，均指这个快照；没有部署服务或复现 GPU benchmark，也未以本地远程跟踪引用代替一次最新远端 fetch。
 
-### 1. 从 supply-driven 变为 step-plan-driven admission
+| 阶段 | 可核对的代码证据 | 架构与面试边界 |
+|---|---|---|
+| 7 月团队主线，已合入该 HEAD | `c9fa6925`，2026-07-24，`feat(online): refactor gateway scheduling (#34)`；作者 suran662，包含 wangxy74 的共同作者记录 | 改造前由 controller 持有 CohortManager；改后组生命周期与 session 准入下沉 Worker，Gateway 保留粘性路由。没有移除训练 controller |
+| wangxy 的原分支工作 | `217b699b`（2026-07-20）、`b22da528`（2026-07-21），作者 wangxy74 | 原 SHA 非 HEAD 祖先；前者的 CohortManager 与 squash 提交内容一致，支持“工作被整合”，不说原提交逐笔合入 |
+| 8 月异步演进，本地存在但未合入该 HEAD | `7f3f063f`、`026346ef`；分支顶端 `f1a5867a`，2026-08-19，作者 wangxy74 | **重新集中** Gateway 的 cohort assembly/admission，外部提供稳定身份，Trainer 改为 take terminal cohort；不是上面 worker-local 架构的另一种叫法 |
+| 后续个人项目分支 | 在此前项目工作副本可核对 `10a3e264`、`9979a0f6`、`c83de5fa`、`21bb4862`，作者 zbw-ai；这些对象不在本次指定仓库 | exact quota、reward identity、安全重排等另列[历史分支说明](#gateway-personal-followups)，不当成当前 HEAD 的行为或上述收益的独立证明 |
+
+因此可以说“团队完成了调度重构，wangxy 有明确代码贡献，我参与训练链路集成与优化”。不能仅凭 squash author、共同署名或代码量断定某人独立完成全部工作；个人设计、实现、验证和跨团队推进应分别举证。
+
+**8 月分支具体改变了什么？** `7f3f063f/026346ef` 将稳定的 run/cohort/rank/session 身份与组装、准入集中到 Gateway；workflow 从 `reserve → wait_ready` 改为 `_take_cohort → _run_online_cohort`，消费外部已形成的终态 cohort。同时补充 receipt/batch 等生命周期观测。该分支的 take 标注为一次 collection 的 at-most-once，不是端到端 exactly-once。HEAD 已有 SessionTracer、engine metrics 和 cohort stats，不能说直到 8 月才有可观测性。
+
+### 2. 改造的动机：把状态与执行放在能闭环的位置
+
+Agent 多轮调用意味着一次模型响应结束，episode 仍可能去调用工具再回来；GRPO 又要求多个 episode 组成一组。原来的 controller 集中组状态、Worker 持有实际 session/轨迹，两侧需要反复协调。本次主线把组管理与执行准入下沉 Worker，让登记、启动、结束、奖励、导出和清理在同一 owner 上闭环。
+
+| 组件 | 负责什么 | 不负责什么 |
+|---|---|---|
+| Gateway | 新 cohort 选 Worker；保存 cohort/reservation/claim/session 路由；HTTP/SSE 转发；聚合控制状态 | 不做 vLLM token batching；不持有当前 HEAD 的 CohortManager；不统一计算全局 session 优先级 |
+| Proxy Worker | session permit、engine 选路、API 鉴权、InteractionCache、reward/end/export | 不是 Trainer optimizer；不把一次 chat 响应当成整个 group |
+| worker-local CohortManager | 逻辑预约、成员身份、幂等、完整组、ready-time 版本门禁、导出状态 | reservation 本身不占物理执行 permit；不保证进程重启后持久化 exactly-once |
+| Trainer controller/workflow/executor | 预提交接收任务、版本预算、export/校验/ACK，再做 tensorize/过滤；训练与权重更新协调 | 不直接执行外部 Agent 的工具控制流 |
+
+<a id="gateway-call-chain"></a>
+### 3. 一条 episode 怎样从外部 Agent 变成训练数据？
+
+```text
+Trainer dispatcher ── reserve 接收预约 ────────────┐
+                                                   ↓
+External Evals / Agent → Gateway → Proxy Worker + CohortManager
+  ① register member                  claim：task/cohort/rank
+  ② reset sandbox                    逻辑登记不占 session permit
+  ③ 首个 generate → start_session    等 permit → 选 engine → session key
+  ④ 多轮 chat / tool                 session 固定 Worker + engine
+  ⑤ reward / end_session             释放物理 permit；保留可导出轨迹
+                                                   ↓
+                  完整 + successful + rewarded + ended + fresh
+                                                   ↓
+Trainer workflow ← wait_ready → export → 组/interaction 校验 → ACK
+                                                   ↓
+                           executor tensorize / 过滤 → 训练 update
+```
+
+关键实现：
+
+- **先逻辑登记，后物理启动**：`ArealEnv.reset()` 先登记 member，再创建/reset sandbox；`ArealLLMClient.generate()` 首次调用 `ensure_started()` 才申请 session。多个 turn 共享同一 session，不重复占多个 permit。
+- **两套容量解耦**：`CohortManager.reserve()` 建立 Trainer 接收身份，不占执行容量，也没有另一个独立的 reservation-capacity 旋钮；总 active-session 上限由 controller 拆给各 Worker。cohort 的提交窗口仍受[版本预算](#gateway-streaming-refill)约束。
+- **有容量才启动**：`_CohortAwareSessionLimiter` 的 waiter 使用 Future，优先级是 `(reservation_seq, cohort_rank, ticket_seq)`；`release()` 通过 `call_soon(_drain)` 唤醒等待者。它只在当前已就绪成员中选最早者，不预留整组物理槽，也不因最早组成员尚未到达而阻塞所有后续组。
+- **避免重复启动和泄漏**：`start_session()` 先解析幂等重放，再等待 permit；在短启动锁内再次核对 claim 后分配 engine/session。并发重试若发现 session 已存在，会释放多拿的 permit；取消也区分“未授权”与“已授权”两种回收路径。
+- **执行资源与训练数据分开释放**：`end_session()` 归还物理 permit，但导出所需 cache 继续保留。workflow 完成组/interaction 校验并 ACK 后回收正常导出的缓存；executor 随后才做完整 tensor 整理与过滤。trajectory 模式的组 advantage 计算会在 ACK 前使用部分 tensor 转换，但不能因此说所有 tensorization 都在 ACK 前成功。ACK 后若下游失败，也不能假设 Proxy 仍保留数据可重导。
+
+示意例子：若某 Worker 容量为 2、group_size 为 4，同一 cohort 的成员可以分批执行，两个 session 结束后再让另外两个进入。不能把这个策略描述成“四个成员必须同时获得四个 permit”的 gang scheduling。
+
+<a id="gateway-engine-routing"></a>
+### 4. 两层路由：为什么既有 RR，又有负载感知？
+
+**第一层，Gateway 选 owner Worker。** `_assign_route()` 只对未绑定身份做 round-robin；`_resolve_route()` 用 cohort/reservation/claim/session 查 owner，身份指向不一致返回 409。cohort identity 使用 `task_id + cohort_key` 组合，后续 session key 也绑定原 Worker。这里的粘性保护 session/InteractionCache 状态，不是随时迁移的全局最小负载调度。
+
+**第二层，Worker 为新 session 选 engine。** controller 给每个 Proxy Worker 建立到所有 inference engines 的客户端，不是一个 Worker 只能调用本机 engine。`_select_engine_for_session_locked()` 的评分逻辑是：
+
+```text
+effective_load = max(该 Worker 对当前候选 engine 记录的 active_sessions,
+                     engine 的 vLLM running + waiting)
+若 metrics 缺失：effective_load = active_sessions
+
+按以下元组从小到大选：
+(waiting > 0,
+ waiting,
+ effective_load + 同 reservation 已绑定该 engine 的 session 数,
+ 同 reservation 是否已使用该 engine,
+ effective_load)
+完全同分时再 round-robin。
+```
+
+先绕开已经出现 waiting 的 engine，再考虑负载和同组软反亲和。软反亲和让同组成员不轻易都堵在同一个 engine 上，但并非硬禁止共用 engine。选定后保存 `_session_to_engine_name`，多轮固定 engine；这有助于缓存复用，但不能替代 cache key/权重版本校验。
+
+代价与边界：metrics 约每秒刷新，网络读取在锁外；本地 session 计数不覆盖其他 Worker 的全部在途状态，指标缺失会退化。同一时间各 Worker 可能看到相似旧负载并同时选择一个 engine，所以这不是全局原子均衡；请求数也不等于剩余 token 计算量。异构算力、长短请求混排要看 waiting、token 长度和实际队列偏斜，不能只看平均 GPU utilization。
+
+### 5. 控制面不能被长请求挤死
+
+Gateway 在 lifespan 中建立 **data 与 lifecycle 两个 aiohttp 连接池**：生成和 register/start 走数据侧，reward/end/abort/control 走生命周期侧。这样即使生成或登记长时间占连接，也不会直接占满同一个连接池、阻止 end 回收容量。它解决的是连接资源隔离，不保证网络/进程永不故障。
+
+`/rl/control/state` 对并发查询复用一个 in-flight 聚合任务，向 Workers 获取状态；任何非 open 状态会阻挡新的 bridge 准入。Worker 的 `claim_member_when_available()` 可在 condition 上等接收 credit，等待时释放状态锁；短启动锁只保护最终分配。**当前主线允许内部 long-poll，与后续个人 domain-quota 分支“不在 domain lock 内长等”并不矛盾。**
+
+<a id="gateway-lifecycle"></a>
+### 6. 失败、版本和导出：具体守住哪些门槛？
+
+| 场景 | 当前代码行为 | 不能扩大成什么承诺 |
+|---|---|---|
+| register/start 超时或暂时无 credit | bridge 复用稳定身份等待/重试；Worker 对 claim/start 做幂等检查 | 不是所有 HTTP 都能无限重试；原 session/cache 丢失不能透明复原 |
+| 生成超时 | 继承训练配置时设 eval generation `retry=0`，避免旧请求尚未 abort 就重发；失败进入显式终结路径 | 控制请求可重试，不代表生成可随机重投；Gateway 的 502 不会触发跨 Worker failover |
+| session 已结束但 reward 未到 | 保留 grace，等待奖励；超出 grace 则拒绝组 | end 成功不等于 group 已可训练 |
+| cohort 成员没收齐 | `partial_cohort_deadline` 限制逻辑 claims 到齐时间；全部 claim 齐后不再因该 deadline 拒绝 | 它不是所有 session 的推理超时；仍有总 reservation deadline |
+| 等待队列中的空 reservation 老化 | 默认版本在首次真实 claim 时绑定；ready 时再查 `current_version - rollout_version ≤ H` | 组级门禁不证明每个 turn/token 都来自同一权重；真实输出版本另写入 token tensor |
+| 整组 reject/cancel | 终结 reservation，回收本地 orphan session/cache/key/permit，记录原因 | 回收函数未显式证明远端 engine abort；也不自动发一个 replacement credit |
+| ready → export | 必须成员齐、全成功结束、全有 reward、通过新鲜度检查；workflow 再查空导出、重复 interaction ID、组大小和 final reward | 不把空组或缺 rank 的 partial group 当正常 GRPO batch |
+| export ACK | 组/interaction 校验成功后确认导出、标记 exported 并回收缓存；executor 后续仍会 tensorize/过滤 | 不保证后续过滤通过，不是 optimizer 已提交，更不是跨进程故障的 durable exactly-once training |
+
+路由表、CohortManager 和 export cache 是内存状态；Gateway 路由表还有容量上限和 LRU 淘汰。幂等依赖身份及相关状态仍可解析，不应承诺任意重启、任意延迟重试都安全恢复。需要持久恢复时应另设计状态落盘、恢复协议和端到端提交边界，不能靠给 HTTP 增加 retry 解决。
+
+**权重更新是否还有 barrier？** 有。`H=0` 的 strict online 路径先暂停新准入、drain 物理 session、再暂停 rollout 和更新；`H>0` 允许在途 session 与 actor 更新重叠，但权重发布仍有协调屏障。当前 strict drain 超时只 warning 后继续，因此只能说“实现了 drain 协调”，不能说“必定排空后才更新”。`pause_for_weight_update()` 与取消 pending 的普通 pause 也不同，不能混用。
+
+<a id="gateway-config-troubleshooting"></a>
+### 7. 配置怎么调，遇到慢和拒绝怎么查？
+
+| 配置/变量 | 单位与作用 | 调整时看什么 |
+|---|---|---|
+| `rollout.max_concurrent_rollouts` | 总 active sessions；controller 用商和余数精确分给各 Proxy，且总数须至少覆盖 Proxy 数 | session 占槽时间、engine waiting、KV 显存；不是每加一个 Worker 就把总容量再乘一遍 |
+| `consumer_batch_size`、`gconfig.n_samples` | 前者在此 online 接收路径控制每批 cohort 数，后者为每组成员数 | 组完成时间、可训练 batch、长尾；不把 cohort 数与 HTTP 调用数混用 |
+| `max_head_offpolicyness` | cohort 版本窗口 H，影响逻辑并发与 ready 门禁 | actor 消费速度、ready-time stale、有效样本；并非越大越快越好 |
+| `partial_cohort_deadline_seconds` | 同 cohort 逻辑成员到齐时限 | reset/登记并发、成员到达分散；不是用延长它掩盖丢 rank |
+| `cohort_timeout_seconds`、`reward_grace_seconds` | reservation 总寿命与 ended 后等 reward 时间 | 慢 episode、工具失败、reward 回传；需分原因调节 |
+| `queue_size` / pending limit | dispatcher 输入预取与背压 | 排队年龄、credit 用量、内存；不能无限预取 |
+| eval generation `retry` | 正式配置继承路径强制为 0；admission/control 重试独立 | 重复生成、失败清理、身份复用；绕开继承流程需另查实际配置 |
+
+排查顺序：
+
+1. **GPU 空闲**：先看外部 reset/tool 是否有任务可供给，再看 Worker 是否有 permit、Trainer credit 是否用完、admission 是否 paused。不能先认定 engine 调度有问题。
+2. **部分 engine 排队**：对照各 engine running/waiting、metrics 新鲜度、session 固定路由和同组分布；只看 Gateway RR 无法解释第二层拥塞。
+3. **Rejected Group 高**：拆 partial timeout、reservation timeout、missing reward、stale、backend failure。先定位产生阶段，再改并发/deadline，不以放宽完整性门禁降比例。
+4. **结束后仍占槽**：追 register→start→reward/end→reject/ACK；检查重复释放保护、cancel 清理和 lifecycle 池。区分本地 active session 已清理与远端生成真正停止。
+5. **吞吐好看但训练更慢**：对照 exported→consumed→gradient-active 数据、有效 token、update interval 和效果；指标口径见[RESUME-19](../../private_resume/2026-08-llm-infra-interview-prep.md#resume-19)。
+
+<a id="gateway-source-index"></a>
+### 8. 源码定位索引
+
+路径相对 `trail` 根目录；行号固定于 `e9081cab`，后续版本以函数名定位。`proxy/` 是 `areal/experimental/openai/proxy/`，`bridge/` 是 `third_party/areal_evals_bridge/src/areal_evals_bridge/`。不把私有代码全文、运行端点或凭证复制到公开文档。
+
+| 路径：起始行 / 函数 | 核对内容 |
+|---|---|
+| `areal/infra/controller/rollout_controller.py:59` `_split_proxy_capacity`；`:321`；`:570` `_async_start_proxy_impl` | 总容量拆分、cohort 逻辑窗口、每 Proxy 连接全部 engines |
+| `proxy/proxy_gateway.py:150` `create_proxy_gateway_app`；`:186` `_resolve_route`；`:213` `_assign_route` | 四类身份路由、冲突与 RR |
+| `proxy/proxy_gateway.py:225` lifespan；`:262` `_forward`；`:359` control state | 双连接池、SSE/失败转发、控制查询合并 |
+| `proxy/proxy_rollout_server.py:142` `_CohortAwareSessionLimiter`；`:388` metrics；`:456` engine selection | session 排队、指标更新、负载和软反亲和 |
+| `proxy/proxy_rollout_server.py:1182` register；`:1236` start；`:1470` end；`:1005` orphan cleanup | 逻辑/物理分离、幂等、释放与清理 |
+| `proxy/cohort_manager.py:335` reserve；`:438` claim；`:671` condition wait | 接收预约、成员绑定、首 claim 版本、内部等待 |
+| `proxy/cohort_manager.py:1354` ready；`:1412` reject；`:1448` expiry | 完整性、版本、partial/overall/reward 超时 |
+| `proxy/workflow.py:524` `_run_online_cohort`；`proxy/proxy_rollout_server.py:1932` export；`areal/infra/workflow_executor.py:1085` | 等待、导出、组校验与 ACK；其后的 tensor 整理和过滤 |
+| `areal/infra/staleness_manager.py:99` capacity；`areal/infra/workflow_executor.py:357` producer | 双预算、完成唤醒不等于无条件提交 |
+| `bridge/env_wrapper.py:172` reset；`bridge/llm_client.py:126` generate；`bridge/session_manager.py:859` ensure_started | sandbox 前登记、懒启动、多 turn session |
+| `bridge/config_inheritance.py:101`；`bridge/runner.py:330` | 关闭生成自动重试、epoch 串行、外部 Orchestrator 证据边界 |
+| `areal/trainer/rl_trainer.py:755` strict online update | admission pause、drain、超时边界 |
+
+↩ [返回主文档 AREAL-09](../../private_resume/2026-08-llm-infra-interview-prep.md#areal-09) · [返回知识关系](../KNOWLEDGE_GRAPH.md) · [阅读索引](../MASTER_READING_LIST.md)
+
+<a id="gateway-personal-followups"></a>
+### 9. 后续个人分支：与上述团队主线分开讲
+
+以下保留此前工作副本的代码审阅记录。它描述 exact quota、reward identity、liveness 等后续演进，**不属于本次指定仓库的 HEAD**；具体是否用于某次性能对照，须另用部署 commit、配置和日志关联。个人实现不能反向覆盖团队基础架构的署名，团队成果也不妨碍说明自己真实完成的集成、调优与验证。
+
+<details>
+<summary>展开后续个人分支的四类改造与历史提交</summary>
+
+#### 1. 从 supply-driven 变为 step-plan-driven admission
 
 原始风险：外部 producer 哪个 domain 来得快，哪个 domain 就可能占满训练供给；多 Teacher MOPD 中会静默饿死某个 Teacher route。
 
@@ -479,7 +636,7 @@ API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能�
 
 证据：`10a3e264` 与 `9979a0f6` 是不同分支/演进阶段的同类 exact-quota 实现，答题时合并为一项能力，不累计成两个成果。
 
-### 2. 把 session lifecycle 与 reward identity 变成 fail-closed contract
+#### 2. 把 session lifecycle 与 reward identity 变成 fail-closed contract
 
 原始风险：外部 marker 被误当作权威 completion、reward/end 到达顺序竞争、一个 rejected cohort 的 sibling 仍在运行却被过早清理，都会导致奖励写错、trajectory 丢失或串 session。
 
@@ -487,7 +644,7 @@ API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能�
 
 证据：`c83de5fa`、`e7373e8b`、`afb1882c`，以及对应 reward identity、session lifecycle 和 cohort rejection tests。
 
-### 3. 从“长时间等”改为“有边界、可证明安全的重试”
+#### 3. 从“长时间等”改为“有边界、可证明安全的重试”
 
 原始风险：registration 在 domain lock 内 long-poll，且复用 multi-hour streaming timeout；一个 abandoned handler 或坏 backend 就能锁住整个 domain。另一类风险是 closed-domain episode 占满 worker slots，open-domain episode 永远拿不到执行机会。
 
@@ -502,15 +659,17 @@ API compatibility 只解决“Agent 会不会调用”，不解决“轨迹能�
 
 证据：`eb8bd492`、`1162029d`、`b117b570`、`690816eb`、`30ab40c4` 及 fault-injection/behavioral tests。
 
-### 4. 正确性修复后继续保护 goodput
+#### 4. 正确性修复后继续保护 goodput
 
 safe requeue 能打破死锁，但会产生 queue rotation tax；closed-domain 大队列反复轮转，还可能让同 cohort siblings 到达时间超过 partial deadline。
 
 项目进一步调小 requeue throttle、扩 reset/admission worker，并扩大 partial cohort deadline，目标是让 sibling co-arrival time 显著小于 deadline。`21bb4862` 能证明配置与机制改动；若没有改动后的统一 benchmark/run log，只表述为“实现了吞吐保护机制”，不把 commit 标题直接当成“吞吐已恢复”的结果证据。
 
-### 最适合面试的总结
+#### 只用于说明后续个人分支的总结
 
-> 我没有把 Gateway 只当成 HTTP 转发层，而是把它改成 training-aware admission/control plane：它理解本 step 的 domain plan、cohort/session 生命周期、reward identity、policy version、safe retry 和 recovery。我的 ownership 主要是 exact quota、公平性、liveness、session correctness 和 fault-injection 验证；OpenAI proxy 和 online cohort 基础架构属于团队已有能力。
+> 在后续个人分支中，我围绕 training-aware admission 补了 exact quota、公平性、liveness、session correctness 和 fault-injection 验证；OpenAI proxy 和 online cohort 基础架构属于团队已有能力。这些工作与 7 月团队调度重构分开讲，不把它们拼成同一个已部署版本或同一次性能实验。
+
+</details>
 
 <a id="areal-weight-sync-xccl-disk"></a>
 ## AReaL 权重同步：XCCL 与 disk 不是 checkpoint 的两种写法
