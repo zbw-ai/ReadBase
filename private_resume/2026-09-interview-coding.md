@@ -8,6 +8,7 @@
 - [CODING-01｜PyTorch 手写 Multi-Head Self-Attention](#coding-01)
 - [CODING-02｜`N×N` 矩阵原地顺时针旋转 90°](#coding-02)
 - [CODING-03｜带父指针的二叉树最近公共祖先（字节跳动 AML 一面）](#coding-03)
+- [CODING-04｜LRU 缓存：实现 get / put（小红书一面）](#coding-04)
 
 ---
 
@@ -376,3 +377,143 @@ if __name__ == "__main__":
 - 修改 parent、引入递归/集合，却仍宣称是原双指针或 `O(1)` 空间；父链有环时仍声称一定终止。
 
 ↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回字节 AML 入口](2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)
+
+---
+
+<a id="coding-04"></a>
+## CODING-04｜LRU 缓存：实现 get / put
+
+**来源：小红书大模型训练框架研发工程师/专家技术一面，2026-09-09，本人提供的现场题目与代码。** 要求实现 LRU 缓存的 `get` 和 `put`；用户给出的解法使用 `collections.OrderedDict`。以下保留该算法，恢复粘贴时损坏的缩进和 `__init__`，补充测试及负容量校验；后两项是整理时添加，不声称现场已经写出。是否允许标准库、是否要求手写双向链表，以面试官实际要求为准。
+
+### 题意与不变量
+
+- `get(key)`：存在则返回 value，并把该 key 标为最近使用；不存在返回 `-1`，不改变缓存顺序。
+- `put(key, value)`：存在则更新 value 并刷新使用次序；不存在则插入，超过容量时淘汰最久未使用的 key。
+- 始终保持 **左端是 LRU（最久未使用），右端是 MRU（最近使用）**；每次公开操作结束后，元素数量不超过 capacity。
+- 本实现约定 capacity 为非负整数、key 可哈希；容量 0 表示不缓存，负数抛 `ValueError`。这些边界是复习时补充的接口约定，不当成已确认的现场测试范围。
+
+### 20–30 秒解题思路
+
+> 我用 OrderedDict 同时做 key 查找和使用次序维护，左边最旧、右边最新。get 命中后移到末尾；put 已有 key 时更新值并移到末尾，新 key 插到末尾。如果超过容量，就删除最前面的元素。哈希查找和插入按平均、摊销复杂度计算，两种操作都是 O(1)，空间是 O(capacity)。
+
+### 可运行 Python3 实现与测试
+
+```python
+from collections import OrderedDict
+
+
+class LRUCache:
+    def __init__(self, capacity: int) -> None:
+        if capacity < 0:
+            raise ValueError("capacity 必须为非负整数")
+        self.capacity = capacity
+        self.od = OrderedDict()
+
+    def get(self, key):
+        if key not in self.od:
+            return -1
+        self.od.move_to_end(key)  # 命中后移到右端 MRU。
+        return self.od[key]
+
+    def put(self, key, value) -> None:
+        if key in self.od:
+            self.od.move_to_end(key)
+            self.od[key] = value
+        else:
+            self.od[key] = value
+            if len(self.od) > self.capacity:
+                self.od.popitem(last=False)  # 左端 LRU。
+
+
+def test_lru_cache() -> None:
+    # 1. get 命中刷新次序；容量满后淘汰的是 LRU，不是最早插入者。
+    cache = LRUCache(2)
+    cache.put(1, 1)
+    cache.put(2, 2)
+    assert cache.get(1) == 1
+    assert list(cache.od) == [2, 1]
+    cache.put(3, 3)
+    assert cache.get(2) == -1
+    cache.put(4, 4)
+    assert cache.get(1) == -1
+    assert cache.get(3) == 3
+    assert cache.get(4) == 4
+
+    # 2. 更新已有 key：刷新次序、覆盖 value，不增加缓存数量。
+    cache = LRUCache(2)
+    cache.put(1, 1)
+    cache.put(2, 2)
+    cache.put(1, 10)
+    assert list(cache.od.items()) == [(2, 2), (1, 10)]
+    cache.put(3, 3)
+    assert cache.get(2) == -1
+    assert cache.get(1) == 10
+    assert len(cache.od) == 2
+
+    # 3. get 未命中不能改变已有 key 的顺序。
+    cache = LRUCache(2)
+    cache.put(1, 1)
+    cache.put(2, 2)
+    assert cache.get(99) == -1
+    assert list(cache.od) == [1, 2]
+    cache.put(3, 3)
+    assert cache.get(1) == -1
+    assert cache.get(2) == 2
+
+    # 4. 容量为 1；同值更新、重复读取仍然有效。
+    cache = LRUCache(1)
+    cache.put(1, 1)
+    cache.put(1, 10)
+    cache.put(1, 10)
+    assert cache.get(1) == cache.get(1) == 10
+    cache.put(2, 2)
+    assert cache.get(1) == -1
+    assert cache.get(2) == 2
+
+    # 5. 容量为 0：插入后立即淘汰，不保留任何 key。
+    cache = LRUCache(0)
+    for key in range(3):
+        cache.put(key, key)
+        assert cache.get(key) == -1
+        assert not cache.od
+
+    # 6. 非法负容量，属于本整理版补充的防御性校验。
+    try:
+        LRUCache(-1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("负容量应抛 ValueError")
+
+
+if __name__ == "__main__":
+    test_lru_cache()
+    print("LRU tests passed")
+```
+
+### 为什么正确，复杂度怎么算？
+
+每次命中读取、更新或新增都让对应 key 成为 MRU；其他 key 的相对次序不变。因此左端始终是最近一次访问最早的 key，超容时删除左端就是 LRU 淘汰。已有 key 的 `put` 先移动、再赋值没有问题，更新已有值本身不会把 key 移回原处。
+
+- **时间**：在常规哈希复杂度假设下，`get` 平均 `O(1)`，`put` 平均/摊销 `O(1)`，不承诺极端哈希冲突下的严格最坏 `O(1)`。
+- **空间**：最多保留 capacity 个键值对，通常记 `O(capacity)`；严格包含对象常数开销可记 `O(capacity + 1)`。先插入再淘汰时，瞬时最多多一个元素。
+- **只需 `if`，为何不用 `while`？** 容量固定、此前未超容且一次只新增一个 key，最多超出一个；若支持动态缩容，需要另处理多项淘汰。
+
+`move_to_end(key)` 默认移到右端，`popitem(last=False)` 删除左端；普通赋值不会自动把访问顺序更新成 LRU 顺序。接口语义见 [Python OrderedDict 官方文档](https://docs.python.org/3/library/collections.html#collections.OrderedDict)。
+
+### 面试官意图与高频追问
+
+- **考什么？** 能否同时满足快速查找与快速更新使用次序；能否分清 LRU、FIFO、LFU；能否覆盖“更新已有 key”和容量边界。
+- **不允许 OrderedDict 怎么办？** 用 `dict[key] -> node` 定位节点，双向链表维护 LRU→MRU，配头尾哨兵；命中时摘下节点再接到尾部，淘汰头部真实节点并同步删除 dict 项。单链表难以在不知道前驱时 `O(1)` 删除任意节点。
+- **普通 dict 不是已经有序吗？** 它保留的是插入顺序；读取和更新已有 key 不会自动刷新位置。不能只写 `dict[key] = value` 就声称实现 LRU，删除/重插模拟时也要解释端点淘汰及复杂度。
+- **线程安全吗？** 这份实现不保证复合操作线程安全。共享缓存时，查找、移动、更新和淘汰需要共同的同步策略；不能因为有 GIL 就认为整个 `get/put` 原子化。
+- **与 Infra 有什么联系？** KV/prefix cache、样本或 Embedding cache 都涉及缓存淘汰，但不一定直接采用普通 LRU；生产环境还需考虑对象大小、复用概率、引用/占用状态和淘汰成本。单次顺序扫描也可能把热点挤出 LRU。
+
+### 常见错误
+
+- `get` 只返回值，不刷新使用次序；`put` 更新已有 key 后也忘记刷新。
+- 用默认 `popitem()` 弹出右端 MRU，淘汰方向反了。
+- 更新已有 key 时误增 size，导致错误淘汰；按 `len >= capacity` 提前删掉本来可容纳的元素。
+- 把粘贴后的 `**init**` 当成 Python 方法名；实际应为 `__init__`，方法体必须正确缩进。这是粘贴格式问题，不据此判断现场提交存在语法错误。
+
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回小红书入口](2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)

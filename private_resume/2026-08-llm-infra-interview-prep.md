@@ -34,7 +34,7 @@
 <a id="xiaohongshu-sprint"></a>
 ### 0.1A 小红书｜大模型训练框架研发一面：30 分钟冲刺
 
-**对应场次：2026-09-09 17:00，技术一面。** 依据本次 JD 排优先级，不是公司真题或内部技术栈判断。重点是 **RL 后训练框架：算法流程 → Rollout/训练协同 → 长轨迹显存 → 性能与生产保障**。先讲小鹏后训练项目，华为 200B MoE 作为并行和规模交付的支撑。
+**对应场次：2026-09-09 17:00，技术一面已结束，结果待通知。** 本次已确认的 Coding 实题：[LRU 缓存 get / put（Python3 OrderedDict）](2026-09-interview-coding.md#coding-04)。下面的技术冲刺路线按 JD 准备并保留复习，不当作实际被问的题目或内部技术栈判断。重点是 **RL 后训练框架：算法流程 → Rollout/训练协同 → 长轨迹显存 → 性能与生产保障**。先讲小鹏后训练项目，华为 200B MoE 作为并行和规模交付的支撑。
 
 **怎么学、怎么查**：30 分钟先读下表加粗题目的「直接回答」，再看题内标出的短追问：DPO 显存、Reward 接入与 PPO 迁移、训推动态协同、MLOps 和 Profiling；不逐题精读所有展开。其他链接留作现场追问。进入答案后，用浏览器后退返回刚才位置，或题尾「返回小红书冲刺」回到本表。这里的优先级针对本次 JD，不改变通用题库的 P0/P1/P2。
 
@@ -3033,7 +3033,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 **本 Part 导航**：Core：[通信算子](#infra-04)；P0 扩展：[训练数值异常](#train-anomaly-01) · [万卡规模效应](#infra-09) · [NCCL 与恢复排障](#infra-03) · [Embedding / PS](#infra-10) · [DataLoader 与样本读取](#infra-11)；P1：[精度对齐](#resume-12) · [64 卡并行选型](#infra-05) · [推理与 KV cache](#infra-06) · [可观测性](#infra-07) · [Checkpoint 状态](#infra-08)；P2：[性能瓶颈定位](#p2-03)。
 
-**Coding 实战**：[手写 MHA](2026-09-interview-coding.md#coding-01) · [`N×N` 矩阵旋转](2026-09-interview-coding.md#coding-02) · **[带父指针的 LCA：字节 AML 一面](2026-09-interview-coding.md#coding-03)**（独立题单，不计入本 Part 题量）。
+**Coding 实战**：[手写 MHA](2026-09-interview-coding.md#coding-01) · [`N×N` 矩阵旋转](2026-09-interview-coding.md#coding-02) · **[带父指针的 LCA：字节 AML 一面](2026-09-interview-coding.md#coding-03)** · **[LRU 缓存：小红书一面](2026-09-interview-coding.md#coding-04)**（独立题单，不计入本 Part 题量）。
 
 **通用并行追问**：[EP 会带来哪些问题，如何解决？](#megatron-06)（P0，归在 Part II；一份答案，题尾可返回这里）。
 
@@ -3457,7 +3457,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="vi-0"></a>
 ### VI.0 下一轮复习与口径校准
 
-下一节点：**2026-09-09 17:00 小红书技术一面；当天 19:00 智元机器人 HR 面；2026-09-10 16:00 Infix 一面**。各公司结果统一见[进度台账](#interview-progress)。小红书先走[30 分钟 RL 后训练冲刺](#xiaohongshu-sprint)；技术面共性薄弱项仍是 [TP 切分与前后向通信](#megatron-02)、[Ring AllReduce](#ring-allreduce-quick) 和 [Gateway 分层改造](#areal-09)。以下 3 小时安排供有余力时定向复习，不要求今天全部完成。
+下一节点：**2026-09-09 19:00 智元机器人 HR 面；2026-09-10 16:00 Infix 一面**。小红书技术一面已结束、结果待通知，各公司状态统一见[进度台账](#interview-progress)。保留[30 分钟 RL 后训练冲刺](#xiaohongshu-sprint)作为定向复习入口；本次 [LRU 实题](2026-09-interview-coding.md#coding-04)归入 Coding 题单。技术面共性薄弱项仍是 [TP 切分与前后向通信](#megatron-02)、[Ring AllReduce](#ring-allreduce-quick) 和 [Gateway 分层改造](#areal-09)。以下 3 小时安排供有余力时定向复习，不要求今天全部完成。
 
 | 时间 | 复习入口 | 完成标准 |
 |---:|---|---|
@@ -3856,7 +3856,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 | 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 未通过 | 本轮流程结束 |
 | 智元机器人 | 训练 Infra | 2026-09-09 19:00 | HR 面待进行 | 二面已通过，HR 面已排期 | 完成 HR 面 |
 | 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面完成 | 未通过 | 本轮流程结束 |
-| 小红书中台 | 训练 Infra | 2026-09-09 17:00 | 一面待进行 | 已排期 | 完成一面 |
+| 小红书中台 | 大模型训练框架研发工程师/专家 | 2026-09-09 17:00 | 技术一面完成 | 结果待通知 | 等待一面结果 |
 | Infix | 待补充 | 2026-09-10 16:00 | 一面待进行 | 已排期 | 完成一面 |
 
 ↑ [返回面试速查控制台](#interview-console)

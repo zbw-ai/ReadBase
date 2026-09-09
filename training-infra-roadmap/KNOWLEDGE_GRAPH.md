@@ -218,6 +218,7 @@ flowchart LR
 这里保留文字索引，不再强行画进主图。图负责建立方向，索引负责查关系。
 
 - [面试主文档](../private_resume/2026-08-llm-infra-interview-prep.md#interview-console) ↔ [Coding 题单](../private_resume/2026-09-interview-coding.md#coding-top) ↔ [带父指针 LCA：字节 AML 一面](../private_resume/2026-09-interview-coding.md#coding-03)
+- [小红书后训练框架一面](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [LRU 缓存 get / put：本人现场题目](../private_resume/2026-09-interview-coding.md#coding-04)
 
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
 - [Megatron-LM](papers/megatron_lm.md) ↔ [5D 并行](topics/distributed_training.md) ↔ [DP](topics/data_parallelism.md) / [TP](topics/tensor_parallelism.md) / [PP](topics/pipeline_parallelism.md) / [CP](topics/context_parallelism.md) / [MoE](topics/moe.md)
