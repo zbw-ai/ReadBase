@@ -224,6 +224,7 @@ flowchart LR
 - [5D 并行](topics/distributed_training.md) ↔ [Parallel Folding](topics/moe.md#parallel-folding) ↔ [NCCL](topics/nccl.md)
 - [EP 的代价与解决方案：主文档速查](../private_resume/2026-08-llm-infra-interview-prep.md#megatron-06) ↔ [MoE 通用面试题](interview/moe.md#ep-tradeoffs) ↔ [Parallel Folding](topics/moe.md#parallel-folding)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [NCCL](topics/nccl.md) ↔ [MegaScale](tech_reports/megascale.md)
+- [TP 的 dX/dW 与 SP 通信推导](topics/tensor_parallelism.md#tp-collective-derivation) ↔ [Ring AllReduce 四卡逐步执行](topics/nccl.md#ring-allreduce) ↔ [主文档 TP 速答](../private_resume/2026-08-llm-infra-interview-prep.md#megatron-02)
 - [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Sequence Parallelism](topics/sequence_parallelism.md) ↔ [Context Parallelism](topics/context_parallelism.md)
 - [5D 拓扑选择](topics/distributed_training.md) ↔ [Hierarchical CP：机内 A2A / 机间 Ring](topics/context_parallelism.md#hierarchical-cp)
 - [Long-context Training](topics/long_context_training.md) ↔ [Context Parallelism](topics/context_parallelism.md) ↔ [FlashAttention](topics/flashattention.md)

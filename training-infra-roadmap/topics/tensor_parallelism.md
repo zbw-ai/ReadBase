@@ -1,6 +1,6 @@
 # Tensor Parallelism
 
-5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。
+5D 组合入口：[Megatron 5D 并行总览](distributed_training.md)。面试速查：[主文档 TP 题](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-02) → [前后向通信推导](#tp-collective-derivation) → [Ring AllReduce 逐步执行](nccl.md#ring-allreduce)。
 
 Tensor Parallelism, TP, 是把 Transformer 单层里的大算子切到多张 GPU 上执行。它不是“多卡训练”的泛称，而是 intra-layer parallelism：一个 Linear、Attention projection、MLP projection 的权重和中间结果被多个 rank 共同持有、共同计算、共同通信。
 
@@ -90,7 +90,7 @@ Megatron 风格切法：
 3. 第二个 projection 用 Row Parallel，把 shard intermediate 投回 hidden。
 4. Row Parallel 的输出需要 all-reduce，得到完整 hidden 或进入后续并行区域。
 
-SwiGLU/GEGLU 这类 gated MLP 只是多一个 gate projection，本质仍是 Column Parallel 产出 shard intermediate，然后 Row Parallel 合并。
+SwiGLU/GEGLU 这类 gated MLP 也是 Column Parallel 产出 shard intermediate，然后 Row Parallel 合并。关键是同 rank 的 gate/up 必须持有**配对的 intermediate channels**，才能本地计算 `SiLU(G_r) * U_r`。不能把打包权重 `[全部 gate, 全部 up]` 简单连续均分，导致一张卡只有 gate、另一张只有 up；需按框架的 packed/strided 布局切片。[Megatron MLP 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/mlp.py)
 
 ### Attention 中 QKV / Output Projection 如何切分
 
@@ -124,6 +124,73 @@ TP 的通信来自数学依赖：
 
 TP 的通信要按 forward、backward 和 overlap 三个层面看。只知道“有 all-reduce”不够，生产排障时必须知道 collective 出现在第几类层、哪个方向、是否和 GEMM 重叠。
 
+<a id="tp-collective-derivation"></a>
+### 先从公式推出通信，而不是背 API
+
+范围：典型 Dense TP 配对，Column `gather_output=False`、Row `input_is_parallel=True`；先关闭 SP，不混入 DP/CP/EP 或额外参数分片。数学约定 `Y=XW`，`W:[in,out]`；PyTorch 实际存储 `[out,in]` 并执行 `X @ weight.T`，所以数学列切对应存储 dim 0、数学行切对应 dim 1。
+
+**Column：每卡产生不同输出，反向却都对同一个 X 有贡献。**
+
+```text
+W = [W_0 | W_1 | ... | W_(t-1)]
+Y_r = X @ W_r                       # 本地输出特征片段
+dX_partial_r = dY_r @ W_r.T         # 对完整 X 的部分贡献
+dX = sum_r(dX_partial_r)            # TP AllReduce(sum)
+dW_r = X.T @ dY_r                   # 本地权重 shard 的梯度
+```
+
+forward 若下游 Row 可以直接消费各片输出，就不需要 AG；backward 的 dX 则必须求和，才能把所有输出特征对输入的影响合起来。
+
+**Row：每卡产生相同 shape 的部分和，输入和权重梯度各自对应不同分片。**
+
+```text
+X = [X_0 | X_1 | ... | X_(t-1)]
+W = concat_rows(W_0, W_1, ...)
+P_r = X_r @ W_r                    # [tokens, out]，不是最终输出片段
+Y = sum_r(P_r)                     # TP AllReduce(sum)
+dX_r = dY @ W_r.T                  # [tokens, in/t]，无需 TP 求和
+dW_r = X_r.T @ dY                  # [in/t, out]，无需 TP 求和
+```
+
+这里各 rank 的 `dY` 是同一逻辑上游梯度的复制，Row backward 不应再把它求和，凭空乘上 TP 倍。`dW_r` 对应不同权重，不能在 TP ranks 间直接相加；同一参数 shard 的 DP 副本仍要按 DDP/Distributed Optimizer/FSDP 策略同步。模型中的复制参数或特殊布局另论，不把这条结论推广到全部参数。
+
+若有 bias，Column 的 bias 跟随输出特征切分；Row 的完整 bias 应在 partial sum 规约后加入一次，或交给后续 fused op，不能每卡先加同一 bias 再 AR。
+
+### SP 如何改变这四个边界？
+
+SP 在 TP 区域之间保留 sequence shard，需要完整 token 布局做 TP Linear 时再聚合。以下 AG/RS 都沿 sequence 组织输出，不是对 hidden 输出特征做 AG：
+
+| 位置 | no-SP 的 activation/dX 主通信 | 开 SP 的对应通信 |
+|---|---|---|
+| Column forward | 无；X 在 TP ranks 上复制 | AG 输入 sequence shards → Column GEMM |
+| Column backward | AR 输入梯度 partials | RS 输入梯度 partials，结果仍按 sequence 分片 |
+| Row forward | AR 输出 partials | RS 输出 partials，结果按 sequence 分片 |
+| Row backward | 无；本地得到 intermediate shard 的梯度 | AG 输出梯度的 sequence shards → 本地反向 GEMM |
+
+**为什么不是把 AR 换成 RS 后立刻原地 AG？** 层边界的规约结果先按 sequence 分片存放，在 LayerNorm/Dropout/Residual 等 SP 区域本地处理，直到下一个 Column Linear 需要时再 AG，才有 activation 去重的价值。具体维度和 CP 的关系见 [Sequence Parallelism](sequence_parallelism.md)。
+
+MCore 0.17 可训练权重路径还会在 Column backward **重新 AG 保存的 sequence-sharded X**，用于计算 dW；它与 dX 的 RS 不同。`allreduce_dgrad`、`sequence_parallel`、冻结权重、额外 gather 和融合/overlap 路径都会改变实际 trace，不把边界示意表当作全部 NCCL 次数。[官方 Linear 定义与参数](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.tensor_parallel.layers.html)、[固定版本 layers.py](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/layers.py)
+
+### Attention 的通信例外：先问 MHA 还是 GQA
+
+经典 no-SP MHA 中，各 head 的 attention 独立，QKV Column 和 output Row 可保持中间 head shard。Attention 与 MLP 各一对 Column/Row，因此标准主路径每个 block 前向两次 AR、反向两次 AR。但这不包括 vocab loss、额外重排、SP 和其他 process group。
+
+GQA 要把每组 Q heads 和关联 KV 配齐。MCore 0.17 的 `TP > num_query_groups` 支持路径会在 QKV 后沿最后一维做 feature AG，再取对应 query group/Q-head shard，其反向会对相关梯度做 feature RS。这与 SP 的 sequence AG/RS 是不同布局变换；不能无条件写每卡 KV heads=`n_kv/TP`，也不能断言 GQA 的中间一律不通信。[Attention 特殊分支](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/attention.py#L1310)、[Mappings 的 autograd 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/mappings.py)
+
+### 从 collective 语义接到 Ring 算法
+
+```text
+模型数学：Row 各卡算的是同一 Y 的部分和
+     ↓
+算子语义：需要 AllReduce(sum)，或者给 SP 消费的 ReduceScatter(sum)
+     ↓
+通信实现：NCCL 根据硬件、消息与拓扑选择 Ring / Tree / NVLS 等
+```
+
+以 Ring AR 为例，先 `p−1` 步分块沿环累加得到 reduced shards，再 `p−1` 步分发完整结果；但实际实现可以融合两阶段、分 channel/slice 流水，不是显式调用 `2(p−1)` 次 host collective。完整例子见 [四卡 Ring AllReduce](nccl.md#ring-allreduce)。
+
+↩ [返回主文档 TP 题](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-02) · [通信算子速查](../../private_resume/2026-08-llm-infra-interview-prep.md#infra-04)
+
 ### Forward 通信
 
 典型 Transformer block 中，forward 通信集中在：
@@ -140,7 +207,7 @@ TP 的通信要按 forward、backward 和 overlap 三个层面看。只知道“
 Backward 通信主要来自：
 
 - input gradient 的 all-reduce 或 reduce-scatter
-- weight gradient 计算前后的同步
+- SP 可训练权重路径为计算 dW 重新聚合保存的输入；不是把不同 TP 权重 shard 的 dW 相加
 - sequence parallel 下的 activation gradient reduce-scatter
 - DP/FSDP 的 gradient/state 通信与 TP 通信交织
 
@@ -418,6 +485,6 @@ TP 面试的核心不是背概念，而是能从矩阵切分推导通信，从�
 
 - [Megatron-LM 论文](../papers/megatron_lm.md)
 - [Tensor Parallelism 面试手册](../interview/tensor_parallelism.md)
-- [Megatron Core tensor_parallel 官方文档](https://docs.nvidia.com/megatron-core/developer-guide/latest/api-guide/tensor_parallel.html)
+- [Megatron Core 0.17 Linear 官方文档](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.tensor_parallel.layers.html)
 - [Megatron-LM tensor_parallel 源码](https://github.com/NVIDIA/Megatron-LM/tree/main/megatron/core/tensor_parallel)
 - [NCCL Topic](nccl.md)

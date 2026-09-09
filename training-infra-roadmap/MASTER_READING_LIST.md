@@ -117,7 +117,7 @@
 
 ### Tensor Parallelism 支撑材料
 
-先读工程手册章节：[Tensor Parallelism](topics/tensor_parallelism.md)。它由以下材料支撑：
+先读工程手册章节：[Tensor Parallelism](topics/tensor_parallelism.md)。复习时沿 [TP 前后向与 SP 通信](topics/tensor_parallelism.md#tp-collective-derivation) → [Ring AllReduce 四卡六步](topics/nccl.md#ring-allreduce) → [主文档口述答案](../private_resume/2026-08-llm-infra-interview-prep.md#megatron-02)。它由以下材料支撑：
 
 | 材料 | 为什么支撑 TP |
 |---|---|
@@ -215,7 +215,7 @@
 | 27 | Context Parallelism | [Context Parallelism](topics/context_parallelism.md) | 长上下文切分、attention 通信 |
 | 28 | Transformer Engine / Fusion | [Transformer Engine 与 NVIDIA 融合算子](topics/transformer_engine.md) | FP8、Attention/Norm/MLP/MoE fusion、接入与数值验收 |
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
-| 30 | NCCL / Network | [NCCL](topics/nccl.md) | collective、拓扑、straggler 诊断 |
+| 30 | NCCL / Network | [NCCL](topics/nccl.md)；[Ring AllReduce](topics/nccl.md#ring-allreduce) | collective 语义、逐步传块、通信量与算法选择、拓扑和 straggler 诊断 |
 
 面试应用：[字节 Data AML 主文档速查](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)，串联 [Embedding / PS / 多级存储](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10)、[数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) 与 [Checkpoint 保存和恢复](../private_resume/2026-08-llm-infra-interview-prep.md#infra-08)；[一面手撕 LCA](../private_resume/2026-09-interview-coding.md#coding-03)收录在独立 Coding 题单。
 

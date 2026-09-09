@@ -3,7 +3,7 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–150 万
 > - 使用方式：按简历查题；面试前按薄弱项复习，现场先读「直接回答」
-> - 修订日期：2026-09-08；官方资料的核验日期与项目版本见文末
+> - 修订日期：2026-09-09；官方资料的核验日期与项目版本见文末
 > - 依据：最新投递版 PDF 简历（2026-08-30，本地核验且不在公开仓库记录含手机号文件名）、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 <a id="interview-console"></a>
@@ -21,7 +21,7 @@
 | **工作技能** | **Megatron / 分布式训练**：5D 并行、TP/SP/CP、Distributed Optimizer、PyTorch FSDP/DeepSpeed/Accelerate | **[整体优化方案](#megatron-optimization-overview)** · [5D 并行](#megatron-01) · [TP 切分](#megatron-02) · [SP/CP](#megatron-04) · [Distributed Optimizer](#megatron-05) · [PyTorch FSDP](#dist-01) · [框架选型](#megatron-11) |
 |  | **MoE / 长上下文 / 显存性能**：EP、Grouped GEMM、融合算子、显存账本 | [Dense/MoE](#moe-01) · **[EP 带来的问题与解决方案](#megatron-06)** · [显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) · [融合算子](#kernel-01) |
 |  | **RL / verl / AReaL**：PPO/GRPO/DAPO、Fully Async、Agentic RL | [RL 算法](#rl-algo-01) · [verl/AReaL 选型](#areal-01) · [HybridFlow](#verl-01) · [资源部署](#verl-02) · [Async/Streaming/Staleness](#verl-04) |
-|  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
+|  | **Rollout / 通信 / 稳定性**：vLLM/SGLang、CUDA Graph、Prefix Cache、Collective、异常排障 | [Rollout 优化](#rollout-01) · [后端选型](#verl-09) · [CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [通信算子](#infra-04) · **[Ring AllReduce](#ring-allreduce-quick)** · [万卡问题](#infra-09) · [训练异常](#train-anomaly-01) |
 | **项目经历（核心）** | **X1 200B MoE**：**`0.16x→0.95x / MFU 35% / 3K 卡连续稳定训练两个月`** | **[代表性优化](#resume-01a) · [Ownership](#resume-01b) · [5D 并行](#megatron-01) · [Dense/MoE](#moe-01) · [规模交付](#resume-10)** |
 |  | **Long Context SFT**：**`31s→9.3s；MFU 23%→45.2%`**（独立简历口径，不据此互相反推）；**`128K / 7.6GB`** | **[9B SFT](#resume-05) · [35B-A3B/128K](#resume-17) · [长上下文显存](#resume-06) · [CP-local logits](#resume-07)** |
 |  | **Fully Async RLVR**：async 内部配置优化 **`76→211–255 tokens/s/GPU`** | **[专题导航](#fully-async-study) · [个人项目](#resume-02) · [架构/四模式](#verl-04) · [流式组批](#verl-12) · [陈旧度预算](#verl-13) · [Partial/校正](#verl-14) · [美团实验](#verl-15)** |
@@ -34,7 +34,7 @@
 <a id="bytedance-aml-sprint"></a>
 ### 0.1A 字节 Data AML｜训练框架研发一面速查
 
-**对应场次：2026-09-08 20:00，技术一面。** 按用户提供 JD 准备：推荐/广告/搜索训练系统，重点包含 GPU Embedding、数据读取、Checkpoint、并行与规模稳定性，也覆盖 LLM/SFT/RL/OPD。下面是定向复习优先级，不是固定真题。
+**对应场次：2026-09-08 20:00，技术一面，已结束；结果见[进度台账](#interview-progress)。** 按用户提供 JD 准备：推荐/广告/搜索训练系统，重点包含 GPU Embedding、数据读取、Checkpoint、并行与规模稳定性，也覆盖 LLM/SFT/RL/OPD。下面保留为定向复习入口，不是固定真题。
 
 **怎么查**：先点问题，读「直接回答」，被追问再展开。下表的主要题目末尾可返回本入口；要回到刚才的滚动位置，用浏览器后退（macOS `⌘ + [` / Windows、Linux `Alt + ←`）。
 
@@ -877,11 +877,15 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-02"></a>
-#### MEGATRON-02｜TP（张量并行）怎么切 Linear、MLP 和 Attention？通信在哪里？（P0，18 分钟）
+#### MEGATRON-02｜TP 怎么切 MLP / Attention？用哪些通信算子，底层如何执行？（P0，18 分钟）
 
 - **直接回答（60 秒）**：
 
   > TP 切的是一个 layer 内部的 hidden/output channel 或 attention head，不是 sequence。Column Parallel（列并行）和 Row Parallel（行并行）是 TP 的两种 Linear 切法，不是另外两种独立并行维度。对 `Y=XW`，列并行沿 `W` 的输出维切，每个 rank 产生一部分输出特征；行并行沿输入维切，每个 rank 产生同 shape 的 partial output，再做 reduce-sum。Megatron 把 MLP 的 gate/up 做列并行、down 做行并行；Attention 的 QKV projection 做列并行，把 heads 分给各 TP rank，output projection 再做行并行。中间张量保持分片，只在必要边界通信，而不是每个 Linear 后 all-gather。
+
+- **继续追问“用什么通信、底层怎么跑”（30 秒）**：
+
+  > 不开 SP 时，Row forward 要 AllReduce 合并 partial output；Column backward 要 AllReduce 合并各输出分片对同一输入的梯度。开 SP 后，为保留 sequence shard，会用 AllGather 和 ReduceScatter 衔接。AllReduce 是“大家最后都拿到规约结果”的算子语义，Ring 是实现算法之一：先绕环分块求和，每卡留一块，再绕环传递这些完整块。实际 NCCL 也可能选 Tree 或 NVLS，不能把 TP、AllReduce、Ring 当成同一层概念。
 
 - **Row 是按行切、Column 是按列切吗？** 是，但要先约定是哪一个矩阵。按数学表达 `Y=XW`、`W:[输入特征, 输出特征]`，Row/Column 指 **W 的行/列**，不是 `X` 的 batch/token 行。
 
@@ -923,6 +927,8 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   因此，无 SP 的经典简写是 “Column forward 不通信、backward AllReduce；Row forward AllReduce、backward 不通信”；有 SP 则是 “Column forward AllGather、backward ReduceScatter；Row forward ReduceScatter、backward AllGather”。
 
+  **为什么 Column 的 dX 要求和，Row 的 dW 却不用在 TP 组求和？** Column 的每个输出 shard 都依赖同一个完整输入，故 `dX = sum_r(dY_r @ W_r.T)`。Row 的每张卡持有不同输入特征及不同权重 shard，给定复制的 `dY`，本地即可算 `dX_r=dY @ W_r.T`、`dW_r=X_r.T @ dY`。这些 `dW_r` 是不同参数的梯度，不能在 TP ranks 之间直接相加；同一 shard 的 DP 副本再按 DP 策略同步。Row forward 的完整 bias 也要在 partial sum 规约后加一次，不能每卡先加再 AllReduce，造成 bias 乘 TP 倍。
+
   **不要把这个简写当作 profiler 的全部通信次数**：MCore 0.17 常规可训练权重路径中，Column SP backward 还会 `AllGather(X)`，用于计算 `dW`；保存的是 sequence shard，反向需重新聚合输入。这与规约 `dX` 的 `ReduceScatter` 是两次不同用途的通信。[Linear backward 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/tensor_parallel/layers.py)
 
 - **用 shape 展开 Attention**：MHA 有 `n_h` 个 query heads、每头维度 `d_h`，`H=n_h×d_h`。QKV 的 Column Parallel 让每个 rank 持有 `n_h/t` 个 heads：
@@ -935,19 +941,20 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
       context^r @ W_o^r -> [N,H] partial -> ReduceScatter / AllReduce
   ```
 
-  GQA/MQA 还要检查 `num_query_heads`、`num_kv_heads` 与 TP 的可整除/复制规则：当 KV heads 少于 TP size 时，部分实现会复制 KV head，而不能机械写成 `n_kv/t`。TP 切 head/hidden；CP 才切 `S`，并让本地 Q 通过 P2P/ring/all-gather/all-to-all 访问跨 rank KV。完整 SP/CP 区别见 [MEGATRON-04](#megatron-04)。
+  GQA/MQA 还要检查 `num_query_heads`、`num_kv_heads` 与 TP 的可整除/复制规则，不能机械写成 `n_kv/t`。例如 MCore 0.17 的 `TP > num_query_groups` 支持路径会额外聚合 QKV feature，反向对应 feature ReduceScatter；这是 KV 分组布局的特殊处理，不是 SP 的 sequence AllGather。“四次 AllReduce/层”是经典、无额外重排的 no-SP MHA+MLP 主路径计数，正常对齐的 GQA 也可能相同，但不是所有模型的固定 profiler 次数。[Attention 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/attention.py)。TP 切 head/hidden；CP 才切 `S`，并让本地 Q 访问跨 rank KV。完整 SP/CP 区别见 [MEGATRON-04](#megatron-04)。
 
 - **项目证据或知识边界**：这是框架机制题；简历只有使用/调优证据，无需假装亲自实现 TP layer。
-- **高概率追问**：QKV projection 如何切 head？为什么 TP 要求 hidden/head 数可整除？sequence parallel 如何改变通信？
+- **从 TP 接到算法原理**：[Ring AllReduce：两阶段、四卡例子与通信量](#ring-allreduce-quick)；[TP 前后向公式与 SP 完整布局](../training-infra-roadmap/topics/tensor_parallelism.md#tp-collective-derivation)。
+- **高概率追问**：为什么 Row forward 用求和而非拼接？Column backward 为什么需要 AllReduce？dW 在哪个 group 同步？开 SP 后有哪些额外 AllGather？Ring 每一步传什么，为什么共 `2(p−1)` 步？
 
 <details>
 <summary>面试意图与回答提醒</summary>
 
-- **问题**：TP 的行并行、列并行分别切哪个特征维？以 MLP 或 Attention projection 说明 forward/backward collective。
+- **问题**：TP 切哪个特征维？以 MLP 或 Attention 说明 forward/backward collective，再解释 Ring AllReduce 的数据流。
 
-- **面试官意图**：判断 TP 是否停留在“把模型切到多卡”的表层。
+- **面试官意图**：验证能否沿“矩阵切分 → 数学依赖 → collective 语义 → 通信算法”解释实现，而不只是背配置。
 
-- **危险回答**：只说“按行/按列平均切”；混淆权重矩阵的逻辑维度与代码存储布局；说 TP 没有通信。
+- **危险回答**：只说“按行/按列平均切”；混淆数学权重与存储转置；说 TP 同步的是所有切片权重梯度；说 AllReduce 必然就是 Ring。
 
 </details>
 
@@ -2968,7 +2975,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 ### Core｜最高优先入口
 
 <a id="infra-04"></a>
-#### INFRA-04｜常见通信算子执行什么操作，分别用在哪里？（P0，15 分钟）
+#### INFRA-04｜通信算子做什么？Ring AllReduce 如何运行？（P0，15 分钟）
 
 - **直接回答（60–90 秒）**：
 
@@ -3009,9 +3016,23 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
   EP -> token dispatch/combine AllToAll 或 variable-count exchange
   ```
 
+<a id="ring-allreduce-quick"></a>
+
+- **追问：Ring AllReduce 怎么跑？（60 秒）**
+
+  > AllReduce 是结果语义，Ring 是实现算法。假设有 p 张卡，每卡输入都是 N 字节，先把各自输入切成 p 块，卡连成逻辑环。第一阶段 ReduceScatter：每一步给后继发一块，从前驱收一块并加上本地对应块；p−1 步后，每张卡持有一个已经包含所有卡贡献的结果块。第二阶段 AllGather：再用 p−1 步沿环转发这些结果块，不再相加，最后每张卡都有完整结果。每步只发 N/p 字节，所以每卡总发送量是 `2(p−1)N/p`，接收量也一样。没有中心卡需要单独收齐所有输入，但要付出随卡数增长的通信轮次。
+
+  **四卡速记**：每卡起初都有自己的 `[A_r,B_r,C_r,D_r]`。RS 三步后可安排为 `rank0=A_sum、rank1=B_sum、rank2=C_sum、rank3=D_sum`；AG 再三步，每卡得到 `[A_sum,B_sum,C_sum,D_sum]`。RS 阶段是在传递并累加**部分和**，不是把每张卡的整块 tensor 完整传给所有人。
+
+  **为什么要两阶段？** RS 把求和工作分给各卡，但结果还分散着；AR 要求所有卡拿完整结果，所以需要 AG。若下游就是分片消费，例如 SP 的 Row 输出，则可以停在 RS，等下一处需要完整布局时再 AG；不是每次 RS 后都立刻补一个 AG。
+
+  **通信量与算法选择**：四卡时，每 rank 发送 `1.5N`、接收 `1.5N`，收发合计 `3N`。简化单环模型为 `T≈2(p−1)α + 2(p−1)Nβ/p`，α 表示每轮延迟、β 表示每字节传输时间，暂不计本地规约和拓扑竞争。`2(p−1)` 是逻辑轮次，不是 kernel launch 次数；NCCL 会按消息量和硬件选择 Ring、Tree、NVLS 等支持路径，不能说“大消息或 TP 一定用 Ring”。[NCCL 算法配置](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html#nccl-algo)、[带宽统计口径](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md)。
+
+  **逐步传哪块看这里**：[四卡六步传块表、公式推导与源码入口](../training-infra-roadmap/topics/nccl.md#ring-allreduce)。↩ [返回 TP 题](#megatron-02) · ↑ [返回面试速查控制台](#interview-console)
+
 - **两个边界**：`AllReduce = ReduceScatter + AllGather` 只在 count 可分片、dtype、reduction op 和 layout 兼容时数学等价，底层不一定机械调用两个 API，浮点归约顺序也不保证 bitwise 一致。NCCL 2.31.2 有 fixed-count `ncclAlltoall`，但没有通用 `ncclAlltoallv` host API；框架/dispatcher 的 AllToAllV 必须校验每对 peer 的 send/recv count。PyTorch `dist.barrier()` 是框架同步语义，也不能简单当作 NCCL 通用 host Barrier API。
 - **正确性与性能**：正确性先查 group membership、collective 顺序、count/shape、dtype/op/root/peer、buffer lifetime 和 stream wait；性能再看消息大小、频率、ring/tree/topology、p95/p99 和 exposed communication。异步发起不等于已经与计算重叠。
-- **深入阅读**：[NCCL 与分布式通信算子：逐算子四卡示例、5D 映射和 hang 排障](../training-infra-roadmap/topics/nccl.md#collective-map)。
+- **深入阅读**：[通信算子：四卡输入输出、5D 映射和 hang 排障](../training-infra-roadmap/topics/nccl.md#collective-map) · [Ring AllReduce 原理](../training-infra-roadmap/topics/nccl.md#ring-allreduce) · [TP 前后向推导](../training-infra-roadmap/topics/tensor_parallelism.md#tp-collective-derivation)。
 - **项目证据或知识边界**：你有 NCCL/XCCL、MoE AllToAll、weight sync 和大规模故障定位经验；若没有实现 NCCL kernel/算法，明确个人边界是使用、集成、性能分析和排障。
 - **高概率追问**：Broadcast 与 AllGather 有何区别？为什么 RS+AG 与 AR 只说语义等价？gradient 和 parameter 分别在哪一步通信？AllToAllV 如何避免 count 不一致 hang？ring/tree 怎么选？
 
@@ -3020,9 +3041,9 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 - **问题**：请解释 Broadcast、Reduce、AllReduce、Scatter、Gather、AllGather、ReduceScatter、AllToAll 和 Send/Recv，并结合 DP/TP/PP/CP/EP、Distributed Optimizer/FSDP 说明场景。
 
-- **面试官意图**：检查集合通信基本功、tensor 语义、process group 和训练生命周期；区分“背 API”与真正理解数据布局。
+- **面试官意图**：检查集合通信基本功、tensor 语义、process group 和训练生命周期；继续追问 Ring 时，要求能说明每一步传什么、为什么不会漏加或重复加、通信量怎么计算。
 
-- **危险回答**：只背中文定义；把 gradient ReduceScatter 与 parameter AllGather 说反；认为 Broadcast 会收集每个 rank 的输入；把 Barrier 当修复 race 的万能方法；忽略所有 ranks 必须以一致协议调用 collective。
+- **危险回答**：只背中文定义；把 gradient ReduceScatter 与 parameter AllGather 说反；把 Ring 说成每步发完整 tensor；把约 `2N` 当作每卡收发合计；把逻辑通信轮次当成全局 barrier 或 kernel 次数。
 
 </details>
 
@@ -3363,7 +3384,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="vi-0"></a>
 ### VI.0 下一轮复习与口径校准
 
-9 月 8 日智元二面已通过，下一轮 HR 面待约；今晚 20:00 是字节 Data AML 技术一面，优先读[前部 30 分钟速查入口](#bytedance-aml-sprint)。小红书中台一面为 9 月 9 日 17:00。以下 3 小时安排留作后续系统复习，不要求今晚全部完成。
+下一节点：**2026-09-09 19:00 智元机器人 HR 面；2026-09-10 16:00 Infix 一面**。小红书中台一面仍按已同步的 9 月 9 日 17:00 排期记录；各公司结果统一见[进度台账](#interview-progress)。技术复习优先补 [TP 切分与前后向通信](#megatron-02)、[Ring AllReduce](#ring-allreduce-quick) 和 [Gateway 分层改造](#areal-09)。以下 3 小时安排供技术面定向复习，不要求 HR 面前全部完成。
 
 | 时间 | 复习入口 | 完成标准 |
 |---:|---|---|
@@ -3755,13 +3776,14 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 <a id="interview-progress"></a>
 ## Appendix A｜面试流程进度台账
 
-> 更新截至 2026-09-08；时间为北京时间（UTC+8）。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
+> 更新截至 2026-09-09；时间为北京时间（UTC+8）。这里只维护时间、轮次和状态；技术问题统一归入正文题库，不做逐场面试复盘。
 
 | 公司 | 岗位 | 面试时间 | 当前轮次 | 状态 | 下一节点 |
 |---|---|---|---|---|---|
 | 灵动时刻 | 训练 Infra | 2026-09-03 下午 | 一面完成 | 未通过 | 本轮流程结束 |
-| 智元机器人 | 训练 Infra | 2026-09-08 下午 | 二面完成 | 已通过 | HR 面待约 |
-| 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面完成 | 结果未同步 | 等待面试结果 |
+| 智元机器人 | 训练 Infra | 2026-09-09 19:00 | HR 面待进行 | 二面已通过，HR 面已排期 | 完成 HR 面 |
+| 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面完成 | 未通过 | 本轮流程结束 |
 | 小红书中台 | 训练 Infra | 2026-09-09 17:00 | 一面待进行 | 已排期 | 完成一面 |
+| Infix | 待补充 | 2026-09-10 16:00 | 一面待进行 | 已排期 | 完成一面 |
 
 ↑ [返回面试速查控制台](#interview-console)

@@ -12,6 +12,8 @@
 
 本文以 **NCCL 2.31.2** 的 host API 为版本基线。Broadcast、Reduce、AllReduce、Gather、Scatter、AllGather、ReduceScatter、AllToAll 均有对应 host collective API；`ncclAlltoAll`、`ncclGather`、`ncclScatter` 是 NCCL 2.28.3 引入的较新 host collective API。框架文档中的 Barrier、AllToAllV 等语义不能无条件等同为同名 NCCL host API。
 
+**速查路径**：[算子输入输出](#collective-map) → [TP 为什么需要通信](tensor_parallelism.md#tp-collective-derivation) → [Ring AllReduce 两阶段、四卡表与通信量](#ring-allreduce) → [主文档口述](../../private_resume/2026-08-llm-infra-interview-prep.md#infra-04)。
+
 <a id="collective-map"></a>
 ## 1. 先区分 Collective 与 P2P
 
@@ -74,7 +76,7 @@ every rank output: y = reduce(x0, x1, ..., xN-1)
 - TP Row Parallel Linear 的 partial output 求和；
 - 标量 loss、overflow flag 或统计量在 group 内一致化。
 
-成本直觉：ring AllReduce 每 rank 的大消息数据量近似 `2×(N-1)/N×message_size`，但真实性能还取决于拓扑、算法/协议、channel、消息大小和并发流。
+成本直觉：ring AllReduce 每 rank 的**发送量**近似 `2×(N-1)/N×message_size`，接收量相同；不是收发合计。这里 `N` 是 rank 数，`message_size` 是每 rank 完整输入字节数。逐步推导见 [Ring AllReduce](#ring-allreduce)，实际耗时还取决于拓扑、算法/协议、channel、消息大小和并发流。
 
 ### 3.4 Scatter：root 把不同分片发给不同 ranks
 
@@ -210,9 +212,76 @@ FSDP 路径取决于 sharding strategy、reshard policy、prefetch 和模块粒�
 - group 越大不代表必然更慢，算法和拓扑会改变并行路径；
 - p50 正常、p99 抖动常来自 rank/host/NIC straggler 或动态 count imbalance。
 
-### Ring、Tree 与 topology
+<a id="ring-allreduce"></a>
+### Ring AllReduce：从 TP 的求和需求到每一步传块
 
-Ring 通常适合大消息带宽利用，Tree 类算法可能降低小消息或大规模 group 的步骤深度；NCCL 会根据 topology、消息和版本选择算法/协议，也可通过环境变量做诊断性强制。生产结论必须来自目标硬件实测，不能把“ring 一定更快”当定理。
+**先分三层**：TP 是模型切分策略；AllReduce 是“所有 rank 获得同一个规约结果”的 collective 语义；Ring/Tree/NVLS 是实现路径。TP Row forward 的 partial sum 和 DP 梯度同步都可能调用 AR，但参加的 group、张量与频率不同。[TP 的 dX/dW 推导](tensor_parallelism.md#tp-collective-derivation)
+
+#### 两阶段分别做什么？
+
+以下统一用 **p 表示 rank 数、N 表示每 rank 完整输入的字节数**，每卡把自己的输入分成 p 个等长 chunk，每块 `N/p` 字节；假设连续逻辑环、等长块和 sum 规约，不计协议头与尾块。
+
+1. **ReduceScatter，p−1 轮**：每 rank 向后继发送一个块，同时从前驱接收另一个块并加上本地对应贡献。部分和在环中前进，经过所有贡献者后成为完整结果；最终每 rank 拥有一个 reduced chunk。
+2. **AllGather，p−1 轮**：把已经规约完的块沿环传递，只复制、不再求和；最终每 rank 收集所有 p 个 reduced chunks。
+
+不是先把全部数据送给某个 root；也不是每一轮发送完整 N 字节。块在不同 rank 上并行推进，工作由整个环分担。
+
+#### 四卡六步：每步发什么，结果在哪里？
+
+规定环 `0 → 1 → 2 → 3 → 0`。每个 rank r 初始都有自己的 `[C0{r}, C1{r}, C2{r}, C3{r}]`；`Cj{0,3}` 表示第 j 块已累计 rank 0、3 的贡献，`Sj` 表示该块四卡贡献之和。
+
+下表每格都是**本步发给后继的内容**；RS 接收者再加上本地对应的原始块。步骤间先完成本轮逻辑收发再分析下一轮，便于手算，不代表实现要求全局 barrier。
+
+| 阶段 / 步骤 | rank 0 → 1 | rank 1 → 2 | rank 2 → 3 | rank 3 → 0 |
+|---|---|---|---|---|
+| RS 1 | C3{0} | C0{1} | C1{2} | C2{3} |
+| RS 2 | C2{3,0} | C3{0,1} | C0{1,2} | C1{2,3} |
+| RS 3 | C1{2,3,0} | C2{3,0,1} | C3{0,1,2} | C0{1,2,3} |
+| **RS 结束，各 rank 拥有** | **S0** | **S1** | **S2** | **S3** |
+| AG 1 | S0 | S1 | S2 | S3 |
+| AG 2 | S3 | S0 | S1 | S2 |
+| AG 3 | S2 | S3 | S0 | S1 |
+
+以 C0 为例：rank 1 先发自己的 C0，沿 `1→2→3→0` 依次加入 rank 2、3、0 的贡献，rank 0 得到 S0；再沿 `0→1→2→3` 把 S0 分给其他三卡。每份输入加一次，AG 不再加，所以既不漏加也不重复加。若四卡的 C0 分别是 `1、10、100、1000`，这条路径的中间值为 `10→110→1110→1111`，之后只复制 1111。
+
+推广索引，轮次 `s=1…p−1`：
+
+```text
+RS：rank r 发 C[(r-s) mod p] 的当前部分和，
+             收 C[(r-s-1) mod p] 并加本地贡献；最后拥有 S[r]。
+AG：rank r 发 S[(r-s+1) mod p]，
+             收 S[(r-s) mod p]，只写入/转发。
+```
+
+这是便于验证的逻辑环顺序。NCCL 会建立符合拓扑的 ring，环位置不一定等于 communicator rank；数据还会分 channel/slice 流水。源码中的 `runRing` 用 send、recv-reduce-send、recv-reduce-copy-send、recv-copy-send 等 primitive 组合，阶段交界可以融合，不是必须单独启动两个 host collective。[NCCL 2.31.2 `all_reduce.h`](https://github.com/NVIDIA/nccl/blob/v2.31.2-1/src/device/all_reduce.h)
+
+#### 通信量和时间怎么估算？
+
+| 每个 rank | 发送 TX | 接收 RX |
+|---|---:|---:|
+| ReduceScatter | `(p−1)N/p` | `(p−1)N/p` |
+| AllGather | `(p−1)N/p` | `(p−1)N/p` |
+| 完整 AllReduce | `2(p−1)N/p` | `2(p−1)N/p` |
+
+所以 p 很大时每卡约发 `2N`、收 `2N`，合计约 `4N`；四卡则分别为 `1.5N、1.5N`，合计 `3N`。不要把发送量、收发合计和全系统物理链路流量混为一谈。
+
+理想单环、链路均衡、收发可同时推进时，可用下面的简化模型解释趋势：
+
+```text
+T ≈ 2(p−1)α + 2(p−1)Nβ/p
+α：每轮有效通信延迟；β：每字节传输时间
+若单独计本地规约，可再加 (p−1)Nγ/p，γ 为每字节规约时间。
+```
+
+前一项随 p 增长，说明小消息/大 group 可能 latency-bound；后一项是带宽代价，大消息时更重要。`2(p−1)` 指逻辑通信轮次，不是 CUDA kernel launch 次数，也不是全局同步次数。`nccl-tests` 的 `algbw=N/T`、AR 的 `busbw=algbw×2(p−1)/p` 是归一化统计口径，不是对每条物理链路真实字节数的测量。[NVIDIA 带宽定义](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md)
+
+#### Ring、Tree 与 NVLS 怎么选？
+
+Ring 通常适合充分利用大消息带宽；Tree 类路径能降低关键路径的步骤深度，小消息或大 group 可能受益。但这不是“大消息一定 Ring、小消息一定 Tree”的规则，优化 Tree 也可以有良好带宽。NCCL 还可在受支持硬件上选择 NVLS/NVLSTree 等路径，默认根据版本、消息、拓扑与能力选择算法和协议。`NCCL_ALGO` 强制选择适合做对照诊断，不应无证据地长期锁死。[NCCL 算法选择说明](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html#nccl-algo)
+
+最后补两个边界：一是 Ring 只改变规约和分发顺序，不改变 AR 的数学目标，但浮点顺序不同可能产生容差内差异；二是 TP/SP 需要的是 RS 布局时就停在 RS，不应为了套“RS+AG=AR”立即把分片重建回来。
+
+↩ [返回主文档 Ring 速答](../../private_resume/2026-08-llm-infra-interview-prep.md#ring-allreduce-quick) · [返回 TP 题](../../private_resume/2026-08-llm-infra-interview-prep.md#megatron-02)
 
 ### Overlap
 
