@@ -223,6 +223,8 @@
 
 本人现场题目：[小红书一面 LRU 缓存 get / put](../private_resume/2026-09-interview-coding.md#coding-04)，保留 OrderedDict 解法，补充 Python3 可运行测试、复杂度和手写哈希表＋双向链表追问；不据此推断面试结果。
 
+Meshy ML System：[主文档短答与现场入口](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint) → [技术面专项题库](../private_resume/2026-09-meshy-ml-system-interview-prep.md#meshy-interview-top)，按数值/低精度、GPU、PyTorch、数据、3D/视频、Python3 动手分类，再分 P0/P1/P2；[FP8 验证方法](topics/fp8.md#precision-validation)回链工程原理。[Meshy T2 历史补录](tracking/backfill/2026-07.md#meshy-t2)与 [P1 阅读](reading_queue/P1.md#meshy-t2-reading)保留公开架构和未复现边界。
+
 ## 8. Agentic RL / Rollout Infra
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |

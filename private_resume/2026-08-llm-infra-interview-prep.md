@@ -13,7 +13,7 @@
 
 > **怎么用**：沿「教育背景 → 工作技能 → 项目经历」找到对应题目，先讲直接回答，被追问时再看展开。题尾可返回本 Part 或本控制台；浏览器返回按钮、macOS `⌘ + [`、Windows/Linux `Alt + ←` 可回到上一次跳转位置。题头的分钟数是完整准备时间，答案里的秒数是口述参考时长。
 
-**快速入口**：**[小红书一面：30 分钟冲刺](#xiaohongshu-sprint)** · [字节 Data AML 速查](#bytedance-aml-sprint) · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
+**快速入口**：**[Meshy 技术面：低精度 / GPU / PyTorch](#meshy-interview-sprint)** · [小红书后训练速查](#xiaohongshu-sprint) · [字节 Data AML 速查](#bytedance-aml-sprint) · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试基础题](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
 
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
@@ -31,8 +31,40 @@
 
 ---
 
+<a id="meshy-interview-sprint"></a>
+### 0.1A Meshy｜ML System 技术面：从底层机制讲到优化验证
+
+**2026-09-09 下午笔试已通过；技术一面拟约 2026-09-15（周二）15:00，待正式确认。** 用户收到的后续流程为两轮技术面，包含编码、配置环境与共享屏幕；终面线下见主管，CEO 线上参与。暂按自带电脑准备，远程 GPU、具体环境和工具权限仍需确认。
+
+这次 JD 重点是 **低精度、PyTorch/GPU 执行、数据 pipeline、3D/视频多阶段模型**。转述反馈强调硬件和基础理论，因此先练“解释机制＋手算＋代码验证”；不把个人面试风格反馈当作确定题库。主文档保留短答，详细题目、参数边界和 Python3 练习统一放在 **[Meshy 技术面专项](2026-09-meshy-ml-system-interview-prep.md#meshy-interview-top)**，不新增多份分支笔记。
+
+| Topic / 优先级 | 现场直接回答的核心 | 详细题目与练习 |
+|---|---|---|
+| **数值与低精度 P0** | BF16 范围大但精度低于 FP16；FP8/FP4 要结合 scale、GEMM 累加和高精度状态。量化与 loss scaling 是两种机制 | [格式手算](2026-09-meshy-ml-system-interview-prep.md#meshy-a1) · [Current/Delayed](2026-09-meshy-ml-system-interview-prep.md#meshy-a2) · [MXFP8/NVFP4 P1](2026-09-meshy-ml-system-interview-prep.md#meshy-a5) |
+| **GEMM / GPU P0** | `Y=XWᵀ; dX=dY·W; dW=dYᵀ·X`；每次约 `2MNK` FLOPs。小 M 权重复用差，先区分 bandwidth、launch 和 compute，再优化 tile/fusion | [三次 GEMM](2026-09-meshy-ml-system-interview-prep.md#meshy-a3) · [SM/warp/内存](2026-09-meshy-ml-system-interview-prep.md#meshy-b1) · [Roofline](2026-09-meshy-ml-system-interview-prep.md#meshy-b2) |
+| **PyTorch P0** | view 看 stride；compile 捕获/优化计算图，CUDA Graph 减少 launch。FSDP2 按组 AG 参数、RS 梯度；模型能放下时先比较 DDP | [Autograd](2026-09-meshy-ml-system-interview-prep.md#meshy-c1) · [compile](2026-09-meshy-ml-system-interview-prep.md#meshy-c2) · [FSDP2](2026-09-meshy-ml-system-interview-prep.md#meshy-c3) |
+| **性能与正确性 P0** | 固定基线，找到第一处数值偏离或主要时间瓶颈；低精度能跑不是收敛合格，纯 GEMM 快不等于端到端快 | [低精度排障](2026-09-meshy-ml-system-interview-prep.md#meshy-a4) · [公平计时](2026-09-meshy-ml-system-interview-prep.md#meshy-f2) |
+| **数据 P0 / 扩容 P1** | 拆读取、解析、组批、H2D、GPU 计算；workers/prefetch 有资源上限，异步拷贝不自动等于 overlap；同时守住样本分片和恢复正确性 | [3D DataLoader](2026-09-meshy-ml-system-interview-prep.md#meshy-d1) · [数百卡扩展](2026-09-meshy-ml-system-interview-prep.md#meshy-d2) · [个人 SFT 案例](#resume-05) |
+| **Diffusion P0 / 3D P1** | 训练通常采样时间构造监督，推理多步更新 latent，不是逐 token decode。多阶段先看关键路径与峰值，再做 compile/fusion/量化，验收几何或时序质量 | [Flow Matching](2026-09-meshy-ml-system-interview-prep.md#meshy-e1) · [多阶段优化](2026-09-meshy-ml-system-interview-prep.md#meshy-e2) · [3D 表征](2026-09-meshy-ml-system-interview-prep.md#meshy-e3) |
+| **现场编码 P0 / kernel P1** | 先写清 shape/mask/边界，再正确性测试与计时；不会的接口可说明机制，不虚构实测结果 | [Attention / 梯度校验](2026-09-meshy-ml-system-interview-prep.md#meshy-f1) · [Triton 融合练习](2026-09-meshy-ml-system-interview-prep.md#meshy-f3) · [环境诊断](2026-09-meshy-ml-system-interview-prep.md#meshy-g1) |
+
+**两个最该脱稿的例子**：
+
+- E4M3 历史 amax=2，量化乘数 `448/2=224`；新值 4 若仍用旧 scale，会超过可表示范围。按饱和处理后只能还原成 2。这说明 Delayed scaling 的历史滞后会影响数值，不是只省一次读取。
+- BF16 GEMM `X[M,K]W[K,N]`，理想最低读写量 `2(MK+KN+MN)` bytes；`K=N=4096`，M=1 时约 1 FLOP/byte，M=512 时约 409.6。缓存、launch 和实际 tile 决定这个上界能否兑现。
+
+**项目主线**：先讲 [SFT 数据/重计算/并行优化](#resume-05) → [CP-local logits 源码排障](#resume-07) → [TX 视频模型适配](#resume-18)，再按追问补 MoE 与后训练。FP8/FP4 生产收敛、FSDP2/compile 和自写 kernel 若无真实落地证据，就按机制或练习回答；HunyuanVideo 配置示例也不冒充个人实际交付模型。[开场与项目映射](2026-09-meshy-ml-system-interview-prep.md#meshy-g2)
+
+**公开工作交流**：了解 [Meshy T2 的 flow-based mesh 生成](https://arxiv.org/abs/2607.28675)后，可以问“多步网络调用、变长 vertex budget 和解码，哪段更值得优化？”；结合 MakerWorld 合作问“性能优化如何守住资产可用性？”；官网视频入口仅证明有产品入口，不能据此确认自研模型或新团队情况。[三段可直接说的话与证据](2026-09-meshy-ml-system-interview-prep.md#meshy-g3)
+
+**学习安排**：[9/10–9/15 分日计划](2026-09-meshy-ml-system-interview-prep.md#meshy-plan)。只有两小时时：低精度 40 分钟 → GPU 25 分钟 → PyTorch 25 分钟 → 数据/Diffusion 15 分钟 → 编码环境 15 分钟。公开资料只支持方向，不保证实际题目；各海外岗位的查资料/设备政策也不代替本次说明。
+
+↑ [返回通用面试速查控制台](#interview-console)
+
+---
+
 <a id="xiaohongshu-sprint"></a>
-### 0.1A 小红书｜大模型训练框架研发一面：30 分钟冲刺
+### 0.1B 小红书｜大模型训练框架研发一面：30 分钟冲刺
 
 **对应场次：2026-09-09 17:00，技术一面已结束，结果待通知。** 本次已确认的 Coding 实题：[LRU 缓存 get / put（Python3 OrderedDict）](2026-09-interview-coding.md#coding-04)。下面的技术冲刺路线按 JD 准备并保留复习，不当作实际被问的题目或内部技术栈判断。重点是 **RL 后训练框架：算法流程 → Rollout/训练协同 → 长轨迹显存 → 性能与生产保障**。先讲小鹏后训练项目，华为 200B MoE 作为并行和规模交付的支撑。
 
@@ -78,7 +110,7 @@
 ---
 
 <a id="bytedance-aml-sprint"></a>
-### 0.1B 字节 Data AML｜训练框架研发一面速查
+### 0.1C 字节 Data AML｜训练框架研发一面速查
 
 **对应场次：2026-09-08 20:00，技术一面，已结束；结果见[进度台账](#interview-progress)。** 按用户提供 JD 准备：推荐/广告/搜索训练系统，重点包含 GPU Embedding、数据读取、Checkpoint、并行与规模稳定性，也覆盖 LLM/SFT/RL/OPD。下面保留为定向复习入口，不是固定真题。
 
@@ -3858,5 +3890,6 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 | 字节跳动 | 机器学习训练框架研发工程师-Data AML | 2026-09-08 20:00 | 技术一面完成 | 未通过 | 本轮流程结束 |
 | 小红书中台 | 大模型训练框架研发工程师/专家 | 2026-09-09 17:00 | 技术一面完成 | 结果待通知 | 等待一面结果 |
 | Infix | 待补充 | 2026-09-10 16:00 | 一面待进行 | 已排期 | 完成一面 |
+| Meshy AI | ML System Research/Engineer | 2026-09-15 15:00（拟约） | 技术一面待确认 | 2026-09-09 下午笔试已通过 | 确认时间与环境，准备技术一面 |
 
 ↑ [返回面试速查控制台](#interview-console)

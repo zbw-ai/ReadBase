@@ -219,6 +219,7 @@ flowchart LR
 
 - [面试主文档](../private_resume/2026-08-llm-infra-interview-prep.md#interview-console) ↔ [Coding 题单](../private_resume/2026-09-interview-coding.md#coding-top) ↔ [带父指针 LCA：字节 AML 一面](../private_resume/2026-09-interview-coding.md#coding-03)
 - [小红书后训练框架一面](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [LRU 缓存 get / put：本人现场题目](../private_resume/2026-09-interview-coding.md#coding-04)
+- [Meshy 技术面主文档速答](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint) ↔ [低精度 / GPU / PyTorch / 3D 专项](../private_resume/2026-09-meshy-ml-system-interview-prep.md#meshy-interview-top) ↔ [FP8 验证](topics/fp8.md#precision-validation)；公开工作 [Meshy T2](tracking/backfill/2026-07.md#meshy-t2)进入 [P1 全文阅读](reading_queue/P1.md#meshy-t2-reading)，不冒充已复现项目。
 
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
 - [Megatron-LM](papers/megatron_lm.md) ↔ [5D 并行](topics/distributed_training.md) ↔ [DP](topics/data_parallelism.md) / [TP](topics/tensor_parallelism.md) / [PP](topics/pipeline_parallelism.md) / [CP](topics/context_parallelism.md) / [MoE](topics/moe.md)
