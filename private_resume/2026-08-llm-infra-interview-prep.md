@@ -13,7 +13,7 @@
 
 > **怎么用**：沿「教育背景 → 工作技能 → 项目经历」找到对应题目，先讲直接回答，被追问时再看展开。题尾可返回本 Part 或本控制台；浏览器返回按钮、macOS `⌘ + [`、Windows/Linux `Alt + ←` 可回到上一次跳转位置。题头的分钟数是完整准备时间，答案里的秒数是口述参考时长。
 
-**快速入口**：**[字节 Data AML 一面速查](#bytedance-aml-sprint)** · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
+**快速入口**：**[小红书一面：30 分钟冲刺](#xiaohongshu-sprint)** · [字节 Data AML 速查](#bytedance-aml-sprint) · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试专项](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
 
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
@@ -31,8 +31,54 @@
 
 ---
 
+<a id="xiaohongshu-sprint"></a>
+### 0.1A 小红书｜大模型训练框架研发一面：30 分钟冲刺
+
+**对应场次：2026-09-09 17:00，技术一面。** 依据本次 JD 排优先级，不是公司真题或内部技术栈判断。重点是 **RL 后训练框架：算法流程 → Rollout/训练协同 → 长轨迹显存 → 性能与生产保障**。先讲小鹏后训练项目，华为 200B MoE 作为并行和规模交付的支撑。
+
+**怎么学、怎么查**：30 分钟先读下表加粗题目的「直接回答」，再看题内标出的短追问：DPO 显存、Reward 接入与 PPO 迁移、训推动态协同、MLOps 和 Profiling；不逐题精读所有展开。其他链接留作现场追问。进入答案后，用浏览器后退返回刚才位置，或题尾「返回小红书冲刺」回到本表。这里的优先级针对本次 JD，不改变通用题库的 P0/P1/P2。
+
+| 时间 | 主题 / 面试官想确认什么 | 先读答案；被追问再跳转 | 一句话抓住重点 |
+|---:|---|---|---|
+| 3 分钟 | **框架选型与源码贡献**：你做过什么 | **[verl/AReaL 选型](#areal-01)**；[Gateway 分层改造](#areal-09) · [个人贡献](#resume-01b) | 选型依据是当时任务、版本与改造成本；团队 Gateway 主线和个人 quota/集成工作分开讲 |
+| 6 分钟 | **算法到 pipeline**：RLHF/DPO 怎么落地 | **[PPO/GRPO/DAPO](#rl-algo-01) · [DPO](#dpo-01) · [Reward 接入与 PPO 迁移](#verl-07)**；[HybridFlow](#verl-01) | RM 评分，Critic 估值；标准离线 DPO 没有在线生成环节，在线 RL 则要组织生成、评分、更新与权重发布 |
+| 7 分钟 | **Rollout 与 Fully Async**：吞吐为何提高，代价是什么 | **[个人 Fully Async 优化](#resume-02) · [Rollout 优化全景](#rollout-01)**；[流式组批](#verl-12) · [Staleness](#verl-13) · [Partial/校正](#verl-14) | 减少长尾等待、配平供需，再控制陈旧度；`76→211–255` 是 async 内部配置优化，不是 sync→async 三倍 |
+| 5 分钟 | **混合并行与动态协同**：训练/生成为什么不一样 | **[FSDP/ZeRO](#dist-01) · [训推权重同步](#verl-03)**；[共置/分池](#verl-02) · [TP 切分](#megatron-02) · [Megatron/FSDP](#megatron-11) | 训练按模型状态与 activation 选布局，生成按权重/KV/并发选布局；切换要付出重分片、加载与暂停成本 |
+| 5 分钟 | **长轨迹与源码排障**：显存到底花在哪 | **[长上下文显存](#resume-06) · [CP-local logits 修复](#resume-07)**；[显存账本](#infra-02) · [选择性重计算](#megatron-selective-recompute) | 训练的 activation/logits 和生成的 KV 分开算；先找峰值分配位置，不能用一个“开 CP”解释全部问题 |
+| 4 分钟 | **Profiling 与平台能力**：如何交付可重复结果 | **[瓶颈定位](#p2-03) · [指标树与 MLOps](#infra-07)**；[Checkpoint](#infra-08) · [异常排障](#train-anomaly-01) | 从有效产出到阶段 timeline，再到 kernel；GPU util 高不代表训练快，更不代表质量好 |
+
+合计 **30 分钟**。有余力再看：[CUDA Graph](#resume-13) · [Prefix Cache](#resume-14) · [多模态训练差异](#mllm-01) · [MOPD](#resume-09) · [Python3 MHA](2026-09-interview-coding.md#coding-01)。今天不新增 OpenRLHF/LLaMA-Factory 全栈学习任务，先保证能讲透自己改过的框架。
+
+**开场（接在一句教育背景之后，约 30–40 秒）**：
+
+> 我目前在小鹏做大模型后训练基础设施，主要是基于 verl/Megatron 的 SFT、RLVR，以及 AReaL Agentic RL 的集成、性能和正确性优化。之前在华为做过 200B MoE 的模型适配与规模训练交付。我的优势是沿生成、训练、权重同步的完整链路定位瓶颈，通过配置和源码改动解决问题，再验证吞吐与数值正确性。这个岗位的后训练框架研发，与我最近的工作最贴近。
+
+**最值得预演的两个追问**：
+
+1. **“你的 RLVR 如果换成 learned-RM PPO，怎么改？”** 先声明实际经验主要在 RLVR/GRPO；再讲新增 RM scoring 与 Critic/value/GAE，Reference 提供 KL 基线，重新核算 GPU 资源和评分吞吐。RM 服务需要批处理、版本、样本 ID、超时与失败语义，不能把服务失败当模型答错。[完整口述](#verl-07)
+2. **“你到底改过哪段源码，怎么证明没有算错？”** 先讲 CP-local logits：原路径在 chunk 之前已聚合完整 logits，后续切块救不了此前峰值；改为本地 logits 对齐本地 labels/mask，计算所需量后再汇集小张量，比较 logprob/loss/gradient。再用 Gateway 讲团队设计如何接入、自己具体负责哪段。[CP 修复](#resume-07) · [Gateway 代码与贡献边界](#areal-09)
+
+**四条口径不要踩线**：
+
+- “熟悉机制、能评估迁移”不等于做过 OpenRLHF、LLaMA-Factory、DPO 或 learned-RM PPO 的完整生产落地。
+- “动态协同”不等于实现过在线弹性修改 TP/PP/ZeRO 的底层调度；先讲有证据的资源分池、批量、准入、背压和权重发布。
+- async 吞吐、decode `6–8x`、Rollout `+60%` 分属不同对照和阶段，不能相乘，也不能直接换算为收敛加速。
+- MLOps、自动调参、跨机房训练若无直接案例，就按设计题回答；不要把千卡模型性能交付说成整个平台、网络或容灾系统由自己主导。
+
+**技术一面反问，选 1–2 个**：
+
+- 团队当前后训练最影响算法迭代的是 Rollout、Reward Model、actor update，还是跨阶段的数据和权重同步？这个岗位会优先负责哪一段？
+- 训练和生成现在最需要解决共置切换成本，还是分池后的供需与陈旧度？团队用什么指标验收优化？
+- 框架源码改造怎样做数值、性能和恢复回归？入职前三个月最希望这个岗位交付什么可衡量结果？
+
+原理延伸：[框架选型工程章节](../training-infra-roadmap/topics/rl_framework_selection.md) · [Agentic RL 工程章节](../training-infra-roadmap/topics/agentic_rl.md) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)。
+
+↑ [返回通用面试速查控制台](#interview-console)
+
+---
+
 <a id="bytedance-aml-sprint"></a>
-### 0.1A 字节 Data AML｜训练框架研发一面速查
+### 0.1B 字节 Data AML｜训练框架研发一面速查
 
 **对应场次：2026-09-08 20:00，技术一面，已结束；结果见[进度台账](#interview-progress)。** 按用户提供 JD 准备：推荐/广告/搜索训练系统，重点包含 GPU Embedding、数据读取、Checkpoint、并行与规模稳定性，也覆盖 LLM/SFT/RL/OPD。下面保留为定向复习入口，不是固定真题。
 
@@ -778,7 +824,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-07"></a>
 #### RESUME-07｜CP chunking 静默失效为什么会分配 7.6GB 冗余 logits？（P0，18 分钟）
@@ -811,7 +857,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="kernel-01"></a>
 #### KERNEL-01｜NVIDIA 卡上为什么还需要融合算子？常见融合如何接入？（P0，18 分钟）
@@ -1215,7 +1261,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 </details>
 
-↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-ii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="megatron-11"></a>
 #### MEGATRON-11｜Megatron、PyTorch FSDP/FSDP2、DeepSpeed 与 Accelerate 如何分层和选型？（P0，15 分钟）
@@ -1570,7 +1616,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 ### P0 扩展｜首轮前应掌握
 
@@ -1597,17 +1643,18 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="dpo-01"></a>
 #### DPO-01｜DPO 如何工作，与 SFT、PPO/GRPO 怎么选？（P0，12 分钟）
 
 - **直接回答（60–90 秒）**：
 
-  > SFT 是模仿标准回答，DPO 是学会更偏好一对回答中的好答案，PPO/GRPO 则是在线采样后优化 reward。DPO 比较 preferred 和 rejected 在当前模型、reference 模型下的 response logprob，让当前模型相对 reference 更偏向 preferred。它不需要在线 rollout、单独训练 Reward Model 或 Critic，因此训练链路通常更简单；但效果依赖偏好对的质量和覆盖范围。已有可靠离线偏好数据时我会优先评估 DPO；需要模型自己探索、调用工具并根据环境结果学习时，我会重点评估在线 RL，而不是只比较 loss 名称。
+  > SFT 是模仿标准回答，DPO 是学会更偏好一对回答中的好答案，PPO/GRPO 则是在线采样后优化 reward。这里说的是标准离线 DPO：比较 preferred 和 rejected 在当前模型、固定 reference 模型下的 response logprob，让当前模型相对 reference 更偏向 preferred。它不需要在线 rollout、单独训练 Reward Model 或 Critic，因此训练链路通常更简单；但效果依赖偏好对的质量和覆盖范围。已有可靠离线偏好数据时我会优先评估 DPO；需要模型自己探索、调用工具并根据环境结果学习时，我会重点评估在线 RL，而不是只比较 loss 名称。
 
 - **公式只说到这一步**：令 `Δ=((log πθ(yw|x)-log πref(yw|x))-(log πθ(yl|x)-log πref(yl|x)))`，DPO 最小化 `-log σ(βΔ)`；`β` 控制相对 reference 的偏离强度。这里的 logprob 必须只聚合 response 有效 token，并保证 chosen/rejected 使用同一 prompt、tokenizer 和 chat template。
 - **系统侧检查**：paired sample identity 不能被 shuffle/packing 拆散；chosen/rejected 截断策略和 response mask 必须对称；reference checkpoint/version 要固定；ref logprob 可离线预计算或在线计算，但要校验精度和 lineage；同时关注长度偏置、全拒绝/低质量 preference、data contamination 和 held-out win rate。
+- **显存与计算怎么优化？** 固定 reference 只做 no-grad 前向，不为它维护梯度和 optimizer；数据和 reference 都固定时，可预计算 ref logprob，训练时不再驻留独立 reference，具体还要确认所用版本与 loss/kernel 的兼容限制。缓存应绑定 reference version、token IDs、template、截断和 response mask，任一影响计算的条件变化就要重算。减少角色不代表显存按模型份数线性下降：policy 仍有 optimizer/梯度/activation，`B` 对样本还需处理 `2B` 条候选序列，按长度组批、microbatch 和重计算控制峰值。预计算机制见 [TRL DPO Trainer](https://huggingface.co/docs/trl/dpo_trainer)；缓存失效条件是根据其计算依赖提出的工程要求。
 - **深入阅读**：[Direct Preference Optimization 原论文](https://arxiv.org/abs/2305.18290)。
 - **项目证据或知识边界**：你的强项是 PPO/GRPO/RLVR Infra、数据契约和正确性；如果没有 DPO 生产项目，就明确按算法机制与系统选型回答，不把知识理解说成落地 ownership。
 - **高概率追问**：为什么 DPO 仍然需要 reference policy？`β` 太大或太小会怎样？chosen/rejected 长度不同怎么处理？什么时候必须转向 PPO/GRPO？
@@ -1623,7 +1670,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="resume-03"></a>
 #### RESUME-03｜为什么减小 gen-TP、增加实例数会提高 rollout 吞吐？（P0，15 分钟）
@@ -1691,7 +1738,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-01"></a>
 #### VERL-01｜verl/HybridFlow 的核心架构是什么？（P0，18 分钟）
@@ -1756,6 +1803,12 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 - **布局与一致性展开**：TP/PP/EP 可能改变参数布局，CP 主要切 activation/context，不应直接当成参数分片轴；distributed optimizer 的 optimizer 分片也不等于要同步 optimizer 到 rollout。跨 replica 的原子切流是可选发布协议，不等于所有 async 样本必须同版本。[AReaL 原论文](https://arxiv.org/html/2505.24298v1)明确允许同一训练 batch 含不同 behavior versions。
 
+- **JD 中“TP/PP/ZeRO-3 与 RL 动态协同”怎么理解（45–60 秒）？**
+
+  > 训练要放下模型状态并高效做前后向，生成要放下权重和 KV，并追求请求吞吐，所以两边可以选不同并行布局。TP 切层内计算、PP 切层，ZeRO-3 则在数据并行组内分片参数、梯度和 optimizer。协同首先是安排角色何时运行、显存何时释放、各资源池的批量和供需，再把训练参数转换到生成布局。它不是每步随意改 TP：若要借用空闲训练卡做生成，需要预先支持对应 engine、路由和权重切换；额外吞吐必须覆盖切换成本。
+
+  例如训练 `TP=4、PP=2`、生成 `TP=2` 时，需要跨训练分片重组模型参数，再按生成布局加载，不能直接把某个训练 rank 的 checkpoint 交给生成 rank。ZeRO-3 还要汇集所需参数分片；可逐层或 bucket 流式转换，避免全量模型同时聚到每张卡。这里是布局示意，显存是否放得下及具体同步算法仍取决于模型与后端。**已有项目中的固定分池调优，不自动等于实现过在线弹性并行重配置。** 机制见 [HybridFlow §5](https://arxiv.org/html/2409.19256v2#S5)；[verl Dynamic Scheduling](https://verl.readthedocs.io/en/latest/advance/dynamic_schedule.html)是当前 upstream 的能力参考，不回写成旧项目已经使用。
+
 - **美团实践：为什么 bucket 化 NCCL 权重同步更快？**
 
   原来逐 tensor 传输/加载，小 tensor 多、大小不均，每次调用的启动开销难以摊薄。分享采用 NCCL all-gather / broadcast 组合，再参考 checkpoint-engine 将多个 tensor 聚成 bucket 批量传输，提高带宽利用率。all-gather 用于所需分片的汇集，broadcast 用于向目标接收方发布；实际 group 和布局仍由后端映射决定，不是给所有 GPU 广播一份完整训练状态。
@@ -1783,7 +1836,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-04"></a>
 #### VERL-04｜Fully Async Policy 如何运转？四组件和四种模式分别减少什么等待？（P0，18 分钟）
@@ -2096,6 +2149,18 @@ Decoupled PPO：
 - **项目证据或知识边界**：有 RLVR/GRPO 使用经验；算法推导若不是主责可保持工程视角。
 - **高概率追问**：DAPO 相对 GRPO 改了什么？Reference logprob 何时可预计算？
 
+- **把 RLVR/GRPO 换成 learned-RM PPO，链路怎么变（60 秒）？**
+
+  > 我实际做得更多的是 RLVR/GRPO，下面按迁移设计回答。Reward Model 先用偏好数据训练并评估，policy 优化阶段通常固定它来评分；PPO 再引入 Critic 估计 value，结合 reward、终止状态构造 return 和 GAE advantage，分别更新 Actor 和 Critic。Reference 可以提供 KL 约束，旧策略 logprob 用于 PPO ratio，二者不能混用。系统上新增评分和 value 计算的资源与等待，要重新 profile、批处理和配平供需，不能沿用 GRPO 的部署比例。评估既看 RM 分数，也看独立任务或人工评测，防止模型钻评分器的空子。
+
+  **两条轴别混在一起**：RLVR 说明 reward 来自可验证结果，PPO/GRPO 说明如何更新策略；可验证 reward 也可以配 PPO，learned RM 也可以配 GRPO。上面讨论的是从现有组合迁移到「learned RM + PPO」，不是说换 RM 就必须换 PPO。
+
+- **Reward Model / verifier 怎么接进异步框架（工程设计，45–60 秒）？**
+
+  > 我会先定义数据契约。评分请求带 trajectory/sample ID 和评分器版本，结果按 ID 对齐，不能按异步完成顺序拼。RM 可以用自己的 tokenizer 和 template，但重编码只在评分支路，不能覆盖原始训练 token。终局标量 reward 与过程 reward 分开定义，明确终止位置、action span 和 mask。服务侧做批处理、限流、超时和幂等重试；评分失败要单独标记，不能默认为零分当成模型答错，也不能把缺失 reward 悄悄传进 advantage。
+
+  真正的环境失败、时间限制截断、基础设施超时要分开：它们决定是终止、bootstrap、重试还是丢弃，GRPO 还要按约定处理缺失成员的 group。**这是接入设计，不宣称所有框架已自动保证。** tokenizer 转换能力见 [verl 配置文档](https://verl.readthedocs.io/en/latest/examples/config.html)；reward、过滤 score 与日志的不同语义见 [OpenRLHF RL Training Guide](https://openrlhf.readthedocs.io/en/latest/agent_training.html)。
+
 <details>
 <summary>面试意图与回答提醒</summary>
 
@@ -2107,7 +2172,7 @@ Decoupled PPO：
 
 </details>
 
-↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iii) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="verl-08"></a>
 #### VERL-08｜Ray 在 verl 中最常见的生产故障有哪些？（P1，10 分钟）
@@ -2538,7 +2603,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 </details>
 
-↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回字节一面速查](#bytedance-aml-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-02"></a>
 #### AREAL-02｜AReaL 如何控制异步训练的 off-policyness？（P0，18 分钟）
@@ -2650,7 +2715,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 </details>
 
-↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-iv) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="areal-11"></a>
 #### AREAL-11｜AReaL 的 XCCL 与 disk 权重同步有什么区别？为什么项目最终选择 XCCL？（P0，15–18 分钟）
@@ -3301,6 +3366,12 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **项目证据或知识边界**：有 MFU、阶段耗时、lineage 和 DeepInsight/SwanLab 类指标经验。
 - **高概率追问**：高基数 label 如何控制？如何避免 profiling 污染？
 
+- **追问：如何接入 MLOps、训练可视化和自动调参（设计回答，45–60 秒）？**
+
+  > 我会用 run ID 关联配置、代码、数据和模型版本，再串起指标、日志、checkpoint 和评测产物。平台负责提交、状态、资源与失败重试，训练框架提供阶段指标、可恢复进度和明确错误；可视化优先展示端到端时间以及最慢阶段，而不是只画 loss。调参先锁定 workload 和正确性门槛，再在预算内搜索 microbatch、并发、资源比例等系统配置，记录 OOM、失败和质量回归。算法超参另设实验组，避免同时改变算法和系统，最后不知道收益来自哪里。
+
+  验收目标可设为「满足数值/质量、显存和稳定性约束下的有效 tokens/s 或达到目标质量的成本」；每个 trial 必须能复现、限额、停止和恢复。**有指标与配置调优经验，不等于已经主导完整 MLOps/HPO 平台。** 相关状态契约见 [INFRA-08](#infra-08)。
+
 <details>
 <summary>面试意图与回答提醒</summary>
 
@@ -3312,7 +3383,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 <a id="infra-08"></a>
 #### INFRA-08｜一个可恢复训练 checkpoint 必须保存什么？（P1，8 分钟）
@@ -3353,6 +3424,8 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 - **项目证据或知识边界**：你有 tracing/MFU/通信优化经验；CUDA kernel 手写深度需诚实说明。
 - **高概率追问**：GPU util 高为什么仍可能低效？小 GEMM 有什么特征？
 
+- **工具怎么实际用？** 先 warmup，再取代表性短窗口，用 NVTX 标记 data/rollout/reward/train/sync；Nsight Systems 看 CPU、CUDA stream、kernel 与通信时间线，区分 GPU 在等数据、等 launch 还是等 collective。确认关键 kernel 后，再用 Nsight Compute 查访存与计算指标。不要一开始全量采集所有 kernel：采集、replay 和同步可能改变原来的重叠关系，最终收益要回到关闭 profiler 的同 workload 对照。参考 [Nsight Systems](https://docs.nvidia.com/nsight-systems/UserGuide/index.html)与 [Nsight Compute Profiling Guide](https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html)。
+
 <details>
 <summary>面试意图与回答提醒</summary>
 
@@ -3364,7 +3437,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 </details>
 
-↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
+↩ [返回小红书冲刺](#xiaohongshu-sprint) · ↩ [返回本 Part 导航](#part-v) · ↑ [返回面试速查控制台](#interview-console)
 
 ### 本 Part 追问路线
 
@@ -3379,12 +3452,12 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 **怎么用**：先按下一轮面试复习薄弱项，再核对项目口径。题目答案在前五个 Part，这里只放学习顺序、证据卡和反问入口。
 
-**本 Part 导航**：[字节一面速查](#bytedance-aml-sprint) · [下一轮复习](#vi-0) · [智元 JD 补题](#vi-0a) · [项目证据卡](#vi-evidence-cards) · [模拟面试](#vi-mock) · [三轮反问](#vi-questions-to-ask) · [最后一小时](#vi-last-hour)
+**本 Part 导航**：[小红书一面冲刺](#xiaohongshu-sprint) · [字节一面速查](#bytedance-aml-sprint) · [下一轮复习](#vi-0) · [智元 JD 补题](#vi-0a) · [项目证据卡](#vi-evidence-cards) · [模拟面试](#vi-mock) · [三轮反问](#vi-questions-to-ask) · [最后一小时](#vi-last-hour)
 
 <a id="vi-0"></a>
 ### VI.0 下一轮复习与口径校准
 
-下一节点：**2026-09-09 19:00 智元机器人 HR 面；2026-09-10 16:00 Infix 一面**。小红书中台一面仍按已同步的 9 月 9 日 17:00 排期记录；各公司结果统一见[进度台账](#interview-progress)。技术复习优先补 [TP 切分与前后向通信](#megatron-02)、[Ring AllReduce](#ring-allreduce-quick) 和 [Gateway 分层改造](#areal-09)。以下 3 小时安排供技术面定向复习，不要求 HR 面前全部完成。
+下一节点：**2026-09-09 17:00 小红书技术一面；当天 19:00 智元机器人 HR 面；2026-09-10 16:00 Infix 一面**。各公司结果统一见[进度台账](#interview-progress)。小红书先走[30 分钟 RL 后训练冲刺](#xiaohongshu-sprint)；技术面共性薄弱项仍是 [TP 切分与前后向通信](#megatron-02)、[Ring AllReduce](#ring-allreduce-quick) 和 [Gateway 分层改造](#areal-09)。以下 3 小时安排供有余力时定向复习，不要求今天全部完成。
 
 | 时间 | 复习入口 | 完成标准 |
 |---:|---|---|

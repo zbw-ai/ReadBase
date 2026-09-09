@@ -235,6 +235,7 @@ flowchart LR
 - [Megatron 5D 并行](topics/distributed_training.md) ↔ [FSDP / ZeRO / Bridge 选型](topics/fsdp.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md)
 - [Checkpointing](topics/checkpointing.md) ↔ [Fault Tolerance](topics/fault_tolerance.md) ↔ [MegaScale](tech_reports/megascale.md)
 - [字节 Data AML 面试入口](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint) ↔ [稀疏 Embedding / PS](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10) ↔ [数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) ↔ [Checkpointing](topics/checkpointing.md)
+- [小红书后训练框架一面：30 分钟入口](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [框架选型](topics/rl_framework_selection.md) ↔ [Agentic RL](topics/agentic_rl.md)；主问题串联 [DPO](../private_resume/2026-08-llm-infra-interview-prep.md#dpo-01)、[Reward/PPO 迁移](../private_resume/2026-08-llm-infra-interview-prep.md#verl-07)与[训推布局协同](../private_resume/2026-08-llm-infra-interview-prep.md#verl-03)。
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
 - [Long-context Training](topics/long_context_training.md) ↔ [CP-local logits](topics/long_context_training.md#cp-local-logits) ↔ [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map)
 - [Agentic RL](topics/agentic_rl.md) ↔ [CUDA Graph decode](topics/agentic_rl.md#cuda-graph-decode) ↔ [Rollout 供给、session 容量与版本预算](topics/agentic_rl.md#gateway-streaming-refill)

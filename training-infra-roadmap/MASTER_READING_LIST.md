@@ -219,6 +219,8 @@
 
 面试应用：[字节 Data AML 主文档速查](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)，串联 [Embedding / PS / 多级存储](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10)、[数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) 与 [Checkpoint 保存和恢复](../private_resume/2026-08-llm-infra-interview-prep.md#infra-08)；[一面手撕 LCA](../private_resume/2026-09-interview-coding.md#coding-03)收录在独立 Coding 题单。
 
+后训练框架面试应用：[小红书一面 30 分钟冲刺](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint)，按框架源码、算法流程、异步 Rollout、训推并行、长轨迹显存、性能与平台能力组织；原理延伸回到[框架选型](topics/rl_framework_selection.md)和 [Agentic RL](topics/agentic_rl.md)。优先级依据用户提供 JD，不是公司真题。
+
 ## 8. Agentic RL / Rollout Infra
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
