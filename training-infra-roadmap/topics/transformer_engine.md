@@ -18,6 +18,47 @@ GPU 性能不只取决于 Tensor Core 峰值。Transformer block 中有两类完
 
 所以正确问题不是“要不要 fusion”，而是“这一段究竟受 FLOPs、HBM、launch 还是通信限制，融合是否命中真实 kernel”。
 
+<a id="gpu-execution"></a>
+## GPU 执行与片上数据复用
+
+Kernel 的 grid 被分成 thread blocks，block 调度到 SM；NVIDIA warp 通常是 32 个线程。数据来自显存（例如 HBM/GDDR），经缓存和片上存储供计算使用。GEMM 通过 tile 将数据放入 shared memory/寄存器并复用，减少慢速数据搬运。更大的 tile 或更多 pipeline stages 会消耗更多片上资源，可能减少驻留 blocks，所以 occupancy 不是越高越好。
+
+| 机制 | 需要区分的边界 | 排查方向 |
+|---|---|---|
+| Coalescing | 同一 warp 的地址尽量落在少量内存事务中；连续访问通常有利，但还受对齐、访问宽度和 stride 影响 | 先看真实布局和访问模式，不只看 tensor shape |
+| Register spill | 寄存器不够时部分数据落到 local memory；local 是线程私有地址空间，不代表片上 | 检查寄存器压力与额外 device-memory 访问 |
+| Shared memory bank conflict | 不同线程访问同一 bank 的不同地址可能串行化 | 与显存访问的 coalescing 分开诊断 |
+| Occupancy | 驻留活跃 warps 占硬件上限的比例，可以帮助隐藏延迟 | 资源压力、访存限制和执行依赖仍会限速，不能当作最终性能目标 |
+
+### Tile 容量手算
+
+BF16 GEMM 若 `BM=128, BN=128, BK=64`，A/B 单 stage 共 `(128*64+64*128)*2=32 KiB`；三 stage 约 96 KiB，尚未计其他开销。增加 stage 必须同时核算片上资源与驻留数量，不能先把 stage 拉满再期望更快。
+
+来源：[CUDA Best Practices](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html)、[Hopper Tuning](https://docs.nvidia.com/cuda/archive/11.8.0/hopper-tuning-guide/index.html)。[面试短答：GPU 执行与访存](../../private_resume/2026-08-llm-infra-interview-prep.md#gpu-01)。
+
+### 卡型与互联：先确认实际执行平台
+
+比较型号时先明确 PCIe/SXM 等形态，再看可用显存、显存带宽/L2、dense Tensor Core 能力、SM 资源、GPU 互联和软件支持。A100 没有 Hopper 那样的原生 FP8 Tensor Core 路径；H100/H200 的差异也不能只看算力，容量和带宽会改变 workload 的瓶颈。Blackwell 的具体低精度路径仍需按 SKU 和 recipe 查支持矩阵。[Ampere](https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/) · [Hopper](https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/) · [H200](https://www.nvidia.com/en-us/data-center/h200/)
+
+通信粗估可以先写 `T ≈ 次数×启动延迟 + bytes/有效带宽`，再看 overlap、拥塞和慢 rank：小模型的频繁小消息更可能受 latency 影响，大张量更需关注带宽。先区分 rank 晚到 collective 与 collective 本身慢，具体原语和 ring 的数据流只在 [NCCL 章节](nccl.md#ring-allreduce)及[主文档通信题](../../private_resume/2026-08-llm-infra-interview-prep.md#infra-04)维护。
+
+<a id="pytorch-execution"></a>
+## PyTorch 执行：Autograd 与 tensor layout
+
+Autograd 在前向记录需要梯度的运算与依赖，反向按链式法则使用保存的中间量。Tensor 还包括 storage、shape、stride 和 offset，shape 一样不代表布局一样。`view` 共享存储且要求 stride 兼容；`reshape` 可能复制；`transpose` 常只改变元数据，但后续 kernel 可能因此需要不同访存或额外 `contiguous()`。这也是融合算子接入必须验证 layout，而不只是核对 shape 的原因。
+
+连续 `x:[2,3]` 的 stride 是 `(3,1)`；`x.T:[3,2]` 的 stride 是 `(1,3)`，元素地址可写成：
+
+```text
+base + (i * stride0 + j * stride1 + offset) * element_size
+```
+
+转置本身便宜，不代表后续 matmul 前的数据整理免费。验证时同时检查共享存储关系、stride、实际复制与 kernel 路径。
+
+正确性还涉及反向保存状态：in-place 改写反向所需 tensor 可能触发 version-counter 错误；`detach()` 切断梯度链，不等于深拷贝；`.grad` 会累积，训练循环需要有意地清零或累计。不要用到处加 `contiguous()` 和 `retain_graph=True` 掩盖布局或图生命周期问题。Linear 的具体前后向 shape、归约轴和 dtype 边界见 [三次 GEMM](fp8.md#fp8-gemm)。
+
+来源：[Tensor Views](https://docs.pytorch.org/docs/stable/tensor_view.html)、[Autograd mechanics](https://docs.pytorch.org/docs/stable/notes/autograd.html)。[面试短答：Autograd / layout](../../private_resume/2026-08-llm-infra-interview-prep.md#pytorch-01) · [Linear 与 AMP](../../private_resume/2026-08-llm-infra-interview-prep.md#pytorch-03)。
+
 <a id="fusion-map"></a>
 ## 常见融合算子地图
 
@@ -73,7 +114,45 @@ HF / custom module
 
 用户的项目边界应表述为“融合特性接入、配置调优、kernel 命中确认和数值/性能验收”，没有证据时不说“实现了底层 CUDA kernel”。
 
+<a id="torch-compile"></a>
+### 编译路径：torch.compile 与 CUDA Graph
+
+典型 PyTorch 编译路径由 Dynamo 捕获 Python 中的 tensor 运算和 guards，AOTAutograd 处理前后向图，再由 Inductor 优化并生成代码或调用已有 kernel。它可能做融合、减少中间量，不是把整个程序编成一个 kernel。CUDA Graph 主要是捕获并重放稳定的 GPU 工作流，减少 CPU launch 开销，不会自动重写数学算法；两者可以组合。
+
+| 现象/配置 | 机制与边界 |
+|---|---|
+| Graph break | 无法继续捕获一段程序，可能退回 eager，之后再捕获 |
+| Recompile | 输入 shape/stride、Python 值等使所有已有缓存版本的 guards 都不满足，才需要重新编译；另一缓存版本匹配时可以直接复用 |
+| `fullgraph=True` | 遇到 graph break 通常报错，适合定位，不等于保证产出单个 GPU kernel |
+| `dynamic=True` | 可用于动态 shape 场景，但不保证完全不重编译 |
+
+用 `TORCH_LOGS="graph_breaks,recompiles,guards"` 定位捕获与缓存问题；可依次用 backend `eager`、`aot_eager`、`inductor` 缩小失败层级，它们不是三个性能档位。预热、编译和 steady-state 时间应分开报告。
+
+对于不同 vertex budget 或视频尺寸等变长场景，先统计 shape 分布，再评估 bucketing/padding、动态 shape 和编译缓存。不能为了命中图把无效 padding 当成有效工作量，最后只报 kernel 时间。已有某个 decode workload 的 CUDA Graph 收益，也不能直接外推为 Diffusion 加速。
+
+来源：[torch.compiler](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler.html)、[Troubleshooting](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler_troubleshooting.html)。[面试短答：torch.compile](../../private_resume/2026-08-llm-infra-interview-prep.md#pytorch-02) · [eager / compile 计时练习](../../private_resume/2026-09-interview-coding.md#coding-06)。
+
 ## 性能验证
+
+<a id="roofline"></a>
+### Roofline：同一个 Linear 为什么随 batch 改变瓶颈
+
+小 batch 对同一份权重的复用少，可能受带宽或 launch 限制；batch 增大后，一次权重读取能服务更多计算。先用 Roofline 估算，再看真实 DRAM/L2 流量和 kernel。模型小不等于一定快，也不等于必然 memory-bound。
+
+设 `X[M,K] @ W[K,N]`，BF16 输入/输出，忽略 bias、输出旧值读取和其他中间量，且 A/B 各读一次、C 写一次：
+
+```text
+FLOPs ≈ 2MNK
+理想最低 bytes ≈ 2(MK + KN + MN)
+Arithmetic intensity I ≈ MNK / (MK + KN + MN)
+算力上界 ≈ min(峰值计算吞吐, 对应层级带宽 × I)
+```
+
+手算 `K=N=4096`：M=1 时约 **1 FLOP/byte**；M=512 时约 **409.6 FLOP/byte**。若假设一张教学 GPU 的 dense BF16 峰值是 200 TFLOPS、HBM 带宽 2 TB/s，其 ridge point 是 100 FLOP/byte。后者越过理想 ridge 不等于实测能跑满，还要考虑并行度、tile、padding 和调度；这里是模型推导，不是特定 GPU 或真实 workload 的测量结果。
+
+这份权重约 32 MiB，反复微基准可能命中 L2，此时不能用冷 HBM 的模型解释结果。不同 dtype、dense/sparse 峰值、PCIe/SXM 卡型不能混用。报告“有效 GB/s”时要说明是理论 bytes 还是 profiler 实际流量。低精度还可能引入额外量化、转置和临时 buffer，需结合 [FP8 端到端验证](fp8.md#fp8-debug) 重新记账。
+
+来源：[NVIDIA GEMM 性能模型](https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html)。[面试短答：Roofline 与 batch](../../private_resume/2026-08-llm-infra-interview-prep.md#gpu-02) · [GPU 计时练习](../../private_resume/2026-09-interview-coding.md#coding-06)。
 
 ### 先判断属于哪种 wall
 

@@ -219,7 +219,8 @@ flowchart LR
 
 - [面试主文档](../private_resume/2026-08-llm-infra-interview-prep.md#interview-console) ↔ [Coding 题单](../private_resume/2026-09-interview-coding.md#coding-top) ↔ [带父指针 LCA：字节 AML 一面](../private_resume/2026-09-interview-coding.md#coding-03)
 - [小红书后训练框架一面](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [LRU 缓存 get / put：本人现场题目](../private_resume/2026-09-interview-coding.md#coding-04)
-- [Meshy 技术面主文档速答](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint) ↔ [低精度 / GPU / PyTorch / 3D 专项](../private_resume/2026-09-meshy-ml-system-interview-prep.md#meshy-interview-top) ↔ [FP8 验证](topics/fp8.md#precision-validation)；公开工作 [Meshy T2](tracking/backfill/2026-07.md#meshy-t2)进入 [P1 全文阅读](reading_queue/P1.md#meshy-t2-reading)，不冒充已复现项目。
+- [主文档通用基础 Part：GPU / PyTorch / 低精度](../private_resume/2026-08-llm-infra-interview-prep.md#part-foundations) ↔ [FP8 原理与验证](topics/fp8.md#precision-validation) ↔ [GPU 执行 / 编译 / Roofline](topics/transformer_engine.md#gpu-execution) ↔ [Coding 梯度与性能练习](../private_resume/2026-09-interview-coding.md#coding-05)。[Meshy 入口](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)只做选题与公司交流导航，技术答案不再复制。
+- [视频 / 3D 生成通用题](../private_resume/2026-08-llm-infra-interview-prep.md#gen-01) ↔ [Meshy T2 公开工作](tracking/backfill/2026-07.md#meshy-t2) ↔ [P1 全文阅读](reading_queue/P1.md#meshy-t2-reading)，区分原理学习、公开架构与个人交付证据。
 
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
 - [Megatron-LM](papers/megatron_lm.md) ↔ [5D 并行](topics/distributed_training.md) ↔ [DP](topics/data_parallelism.md) / [TP](topics/tensor_parallelism.md) / [PP](topics/pipeline_parallelism.md) / [CP](topics/context_parallelism.md) / [MoE](topics/moe.md)

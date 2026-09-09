@@ -1,14 +1,18 @@
 <a id="coding-top"></a>
 # 训练 Infra 面试 Coding 手撕题
 
-> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · 运行环境：Python 3.10+；仅 MHA 题依赖 PyTorch 2.x
+> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [底层基础理论](2026-08-llm-infra-interview-prep.md#part-foundations) · [岗位准备入口](2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)
 
-这份题单与主文档的知识题分开计数。现场先讲输入输出、shape、不变量和复杂度，再写主路径，最后补异常与测试。
+本页集中放可动手的实现、测试与环境检查；概念推导和系统判断回到主文档，不另建一套岗位专属技术答案。除明确标注本人现场经历的题目外，均为自拟复习练习，不代表 Meshy 或其他公司的已确认实题。现场先讲输入输出、shape、不变量和复杂度，再写主路径，最后补异常与测试。
 
-- [CODING-01｜PyTorch 手写 Multi-Head Self-Attention](#coding-01)
-- [CODING-02｜`N×N` 矩阵原地顺时针旋转 90°](#coding-02)
-- [CODING-03｜带父指针的二叉树最近公共祖先（字节跳动 AML 一面）](#coding-03)
-- [CODING-04｜LRU 缓存：实现 get / put（小红书一面）](#coding-04)
+| Topic | 题目与入口 | 运行依赖与边界 |
+|---|---|---|
+| 基础模型实现与梯度 | [CODING-01｜PyTorch MHA](#coding-01) · [CODING-05｜Linear NumPy 方向梯度](#coding-05) | Python 3.10+；01 依赖 PyTorch 2.x，可在 CPU 测试；05 依赖 NumPy |
+| 数据结构与数组 | [CODING-02｜矩阵旋转](#coding-02) · [CODING-03｜父指针 LCA（字节 AML 一面）](#coding-03) · [CODING-04｜LRU（小红书一面）](#coding-04) | Python 3.10+ 标准库；原题来源和补充边界见各题 |
+| 性能与 kernel | [CODING-06｜eager / compile benchmark](#coding-06) · [CODING-07｜Triton fusion](#coding-07) | 需要真实 NVIDIA CUDA GPU、兼容驱动和 CUDA 版 PyTorch；06 需要可用 Inductor 环境，07 另依赖 Triton；GPU 路径尚未实测 |
+| 环境与现场操作 | [共享屏幕环境检查](#coding-env) | 先确认运行机器、解释器与工具权限；CPU/MPS 测试不冒充 CUDA 验证 |
+
+按现场提供的 PyTorch/Triton 版本核对受支持的 Python 范围，不为跑练习临时升级驱动或整套依赖。各题 Python 代码块按独立脚本使用；07 的验证可复用 06 的计时函数，但必须先检查正确性。
 
 ---
 
@@ -517,3 +521,210 @@ if __name__ == "__main__":
 - 把粘贴后的 `**init**` 当成 Python 方法名；实际应为 `__init__`，方法体必须正确缩进。这是粘贴格式问题，不据此判断现场提交存在语法错误。
 
 ↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回小红书入口](2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)
+
+---
+
+<a id="coding-05"></a>
+## CODING-05｜Linear：用 NumPy 方向有限差分检查梯度
+
+### 题意与前提
+
+给定 `Y=XWᵀ+b` 和固定上游梯度 G，定义标量 `L=sum(Y*G)`；比较数值方向导数和解析梯度内积。这是 **CPU/NumPy 教学测试**，不是训练 benchmark。先独立推导，再检查代码，理论见 [Linear 前后向与低精度](2026-08-llm-infra-interview-prep.md#pytorch-03)。
+
+基础模型实现还可闭卷练 [稳定 softmax](2026-09-meshy-ml-system-written-prep.md#meshy-a02)、[NumPy Attention](2026-09-meshy-ml-system-written-prep.md#meshy-a03) 和 [PyTorch MHA](#coding-01)。特别说清 mask 的 bool 含义、softmax 沿 key 轴、全 mask 行的约定；不要把不同题目的 mask 语义混用。
+
+### 可运行实现与测试
+
+```python
+import numpy as np
+
+rng = np.random.default_rng(0)
+x = rng.normal(size=(3, 4))
+w = rng.normal(size=(5, 4))
+b = rng.normal(size=(5,))
+g = rng.normal(size=(3, 5))
+
+def loss(x, w, b):
+    return np.sum((x @ w.T + b) * g)
+
+grads = (g @ w, g.T @ x, g.sum(axis=0))
+args = [x, w, b]
+eps = 1e-6
+for i, grad in enumerate(grads):
+    direction = rng.normal(size=args[i].shape)
+    plus, minus = args.copy(), args.copy()
+    plus[i] = args[i] + eps * direction
+    minus[i] = args[i] - eps * direction
+    numerical = (loss(*plus) - loss(*minus)) / (2 * eps)
+    analytical = np.sum(grad * direction)
+    np.testing.assert_allclose(numerical, analytical, rtol=1e-6, atol=1e-7)
+print("Linear directional gradient checks: PASS")
+```
+
+### 高频追问与测试边界
+
+有限差分有截断与浮点误差，不是 eps 越小越好；随机方向测试不是穷举证明。再测 batch=1、非方阵、bias 广播和目标 shape。涉及 ReLU 的差分检查要避开不可导的零点，或明确导数约定。
+
+↑ [返回题单顶部](#coding-top) · [Linear 理论](2026-08-llm-infra-interview-prep.md#pytorch-03) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console)
+
+---
+
+<a id="coding-06"></a>
+## CODING-06｜公平比较 eager 与 torch.compile
+
+### 题意与计时口径
+
+先测正确性，再区分首次调用与稳态；CUDA 异步执行，必须用 events 或正确同步计时。固定输入/shape/dtype，预热，多轮取中位数，说明是否包含数据拷贝、分配、反向和 optimizer。没有 GPU 时只做 CPU 正确性和语法检查，不报告 GPU 加速比。原理见 [GPU 计时与性能验证](2026-08-llm-infra-interview-prep.md#gpu-03) 和 [torch.compile 机制](2026-08-llm-infra-interview-prep.md#pytorch-02)。
+
+下面是 **待在 NVIDIA CUDA 环境实测**的 Python 3 模板；输入已在 GPU，包含表达式产生输出的分配，不含 H2D、反向或 optimizer。首次调用包含编译/初始化等成本，不是纯 compiler 耗时。
+
+```python
+import sys
+import time
+import statistics
+from importlib import metadata
+
+print("Python:", sys.version.split()[0], "executable:", sys.executable)
+try:
+    import torch
+except ImportError as exc:
+    raise SystemExit("当前 python3 没有 PyTorch；先核对解释器") from exc
+print("PyTorch:", torch.__version__, "built CUDA:", torch.version.cuda)
+try:
+    print("Triton:", metadata.version("triton"))
+except metadata.PackageNotFoundError:
+    print("Triton distribution: not found")
+if torch.version.cuda is None or not torch.cuda.is_available():
+    raise SystemExit("需要可用 NVIDIA CUDA GPU；跳过 GPU benchmark")
+device = torch.device("cuda:0")
+torch.cuda.set_device(device)
+print("GPU:", torch.cuda.get_device_name(device))
+print("capability:", torch.cuda.get_device_capability(device))
+torch.manual_seed(0)
+
+def eager(x, bias):
+    return torch.relu(x + bias) * 0.5 + x
+
+compiled = torch.compile(eager, backend="inductor", fullgraph=True)
+
+def bench_ms(fn, x, bias, warmup=20, repeats=100, rounds=5):
+    for _ in range(warmup):
+        fn(x, bias)
+    torch.cuda.synchronize()
+    start = torch.cuda.Event(enable_timing=True)
+    end = torch.cuda.Event(enable_timing=True)
+    samples = []
+    for _ in range(rounds):
+        start.record()
+        for _ in range(repeats):
+            fn(x, bias)
+        end.record()
+        end.synchronize()
+        samples.append(start.elapsed_time(end) / repeats)
+    return statistics.median(samples)
+
+with torch.inference_mode():
+    for shape in [(1, 257), (32, 1024), (1024, 4096)]:
+        x = torch.randn(shape, device=device, dtype=torch.float32)
+        bias = torch.randn(shape[-1], device=device, dtype=x.dtype)
+        reference = eager(x, bias)
+        torch.cuda.synchronize()
+        before = time.perf_counter()
+        actual = compiled(x, bias)
+        torch.cuda.synchronize()
+        first_call_s = time.perf_counter() - before
+        torch.testing.assert_close(actual, reference, rtol=1e-5, atol=1e-6)
+        eager_ms = bench_ms(eager, x, bias)
+        compiled_ms = bench_ms(compiled, x, bias)
+        print(shape, "correctness=PASS", f"first_call={first_call_s:.3f}s",
+              f"eager={eager_ms:.4f}ms compiled={compiled_ms:.4f}ms",
+              f"speedup={eager_ms / compiled_ms:.2f}x")
+```
+
+### 必须会解释的限制
+
+反复用同一数据可能命中缓存；小 shape 下 events 覆盖的区间也可能包含 CPU 发射间隙。调换测试顺序、多轮测量、换 buffer 和 profiler 能帮助定位，不能单凭一次 speedup 宣称内存带宽提高。扩成训练 benchmark 时，要补 backward/optimizer 和梯度正确性。
+
+来源：[PyTorch Benchmark](https://docs.pytorch.org/tutorials/recipes/recipes/benchmark.html)、[Compile 排障](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler_troubleshooting.html)。
+
+↑ [返回题单顶部](#coding-top) · [GPU 计时](2026-08-llm-infra-interview-prep.md#gpu-03) · [Compile 机制](2026-08-llm-infra-interview-prep.md#pytorch-02) · [环境检查](#coding-env)
+
+---
+
+<a id="coding-07"></a>
+## CODING-07｜Triton：融合 bias＋ReLU＋residual
+
+### 题意与前提
+
+实现 `y=relu(x+bias)*0.5+x`，`x:[M,N]`，`bias:[N]`。先解释下面的参考实现，再遮住答案重写。它是 **FP32、连续布局、仅 forward 的教学 kernel，GPU 路径未在本地实测**，不是生产 Triton 经历。访存与融合机制见 [Kernel fusion](2026-08-llm-infra-interview-prep.md#kernel-01)。
+
+```python
+import torch
+import triton
+import triton.language as tl
+
+@triton.jit
+def fused_kernel(X, B, Y, N: tl.constexpr, TOTAL: tl.constexpr,
+                 BLOCK: tl.constexpr):
+    offsets = tl.program_id(0) * BLOCK + tl.arange(0, BLOCK)
+    valid = offsets < TOTAL
+    x = tl.load(X + offsets, mask=valid, other=0)
+    b = tl.load(B + offsets % N, mask=valid, other=0)
+    y = tl.maximum(x + b, 0.0) * 0.5 + x
+    tl.store(Y + offsets, y, mask=valid)
+
+def fused_forward(x, bias):
+    if (not x.is_cuda or x.ndim != 2 or bias.ndim != 1
+            or bias.device != x.device or x.dtype != torch.float32
+            or bias.dtype != x.dtype or not x.is_contiguous()
+            or not bias.is_contiguous() or bias.numel() != x.shape[1]):
+        raise ValueError("要求同设备 CUDA、FP32、连续 [M,N] 与 [N]")
+    if x.requires_grad or bias.requires_grad:
+        raise ValueError("教学版本没有注册 backward")
+    if x.numel() >= 2**31:
+        raise ValueError("教学版本限定元素数小于 2**31，避免 int32 索引溢出")
+    y = torch.empty_like(x)
+    if x.numel() == 0:
+        return y
+    with torch.cuda.device(x.device):
+        fused_kernel[(triton.cdiv(x.numel(), 256),)](
+            x, bias, y, x.shape[1], x.numel(), BLOCK=256)
+    return y
+```
+
+### 性能、边界与反向追问
+
+**为什么可能快**：减少中间量写回/读出和多次 launch，但 compile 也可能做同类融合，要同时比较 eager 与 compile。理想最低读写量可近似 `(2MN+N)*4` bytes，前提是 bias 被有效复用；不是实际 HBM 流量。
+
+**测试清单**：N=1/31/32/33/255/256/257/1023/1024/1025；M=1/3/大值；负值、零、尾块、空输入；不支持的 stride/dtype 和超出 int32 索引范围的输入应明确拒绝。先限定有限输入，再约定 NaN/Inf 语义。照 [CODING-06](#coding-06) 的正确性与计时方法测试，不预填加速结果。
+
+**反向追问**：令 `z=x+bias`，上游梯度 g，约定 ReLU 在 0 的梯度为 0：`dx=g*(1+0.5*(z>0))`，`db=sum_rows(g*0.5*(z>0))`。训练可用还要注册 autograd、处理归约/累加 dtype，并验证与 compile 的集成，不能把 forward kernel 当作完整训练算子。
+
+来源：[Triton Vector Add](https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html)、[Fused Softmax](https://triton-lang.org/main/getting-started/tutorials/02-fused-softmax.html)。
+
+↑ [返回题单顶部](#coding-top) · [Kernel fusion 理论](2026-08-llm-infra-interview-prep.md#kernel-01) · [性能验证练习](#coding-06) · [环境检查](#coding-env)
+
+---
+
+<a id="coding-env"></a>
+## 共享屏幕环境检查
+
+先确定运行机器和解释器，再检查 PyTorch build、driver、GPU 可见性和最小 CUDA 操作，最后才处理 Triton/compile。先读报错定位层级，不立即重装全部环境。
+
+```bash
+python3 --version
+python3 -m pip --version
+python3 -m pip show torch triton
+nvidia-smi
+nvcc --version
+```
+
+命令是检查清单，不要求每台电脑都有：Mac 没有 `nvidia-smi`/CUDA 属正常情况，需远端 NVIDIA 环境。`nvidia-smi` 的 CUDA 字段主要反映 driver 可支持的 CUDA 版本范围；`torch.version.cuda` 是 PyTorch build 对应版本；`nvcc` 是本机 toolkit 编译器。三者不必完全相同，wheel 能运行也不等于能编译任意自定义扩展。
+
+**诊断顺序**：解释器/pip 是否同环境 → driver 与 GPU 可见性/容器权限 → CUDA wheel 与库加载 → 最小 tensor 运算 → compiler/headers/ABI → Triton 缓存目录和 shape/kernel。不要在正式面试前临时升级系统驱动。
+
+**自带电脑准备**：Python 3/NumPy 可离线运行；提前测试共享指定窗口、字体与终端。关闭无关通知，避免暴露公司代码、token、聊天或私人文件。工具和参考资料权限以面试说明为准，不把公开岗位“可上网”解释为可用 AI。
+
+来源：[PyTorch 安装说明](https://pytorch.org/get-started/locally/)、[CUDA Compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/)。
+
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [岗位准备入口](2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)
