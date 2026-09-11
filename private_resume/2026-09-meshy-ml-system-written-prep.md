@@ -7,7 +7,7 @@
 >
 > 更新：2026-09-07。共 **22 道自拟复习题：P0 13 / P1 7 / P2 2**。公开信息只支持考察方向，**不代表下面是原卷、必考题或已确认题量**。
 
-**进度更新（2026-09-09）**：今天下午笔试已通过，后续请从[主文档 Meshy 复习入口](2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)开始；低精度/GPU/PyTorch 已纳入[通用基础 Part](2026-08-llm-infra-interview-prep.md#part-foundations)，新编码练习归入 [Coding](2026-09-interview-coding.md#coding-top)。本页保留 NumPy/Transformer 基础练习，不把事先自拟题改写为本人笔试实题。
+**进度更新（2026-09-09）**：今天下午笔试已通过，后续请从[主文档通用复习安排](2026-08-llm-infra-interview-prep.md#vi-0)开始；低精度/GPU/PyTorch 已纳入[通用基础 Part](2026-08-llm-infra-interview-prep.md#part-foundations)，新编码练习归入 [Coding](2026-09-interview-coding.md#coding-top)。本页保留 NumPy/Transformer 基础练习，不把事先自拟题改写为本人笔试实题。
 
 ## 0. 先看范围，再按 topic 查题
 

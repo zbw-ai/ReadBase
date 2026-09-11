@@ -217,9 +217,9 @@ flowchart LR
 
 这里保留文字索引，不再强行画进主图。图负责建立方向，索引负责查关系。
 
-- [面试主文档](../private_resume/2026-08-llm-infra-interview-prep.md#interview-console) ↔ [Coding 题单](../private_resume/2026-09-interview-coding.md#coding-top) ↔ [带父指针 LCA：字节 AML 一面](../private_resume/2026-09-interview-coding.md#coding-03)
-- [小红书后训练框架一面](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [LRU 缓存 get / put：本人现场题目](../private_resume/2026-09-interview-coding.md#coding-04)
-- [主文档通用基础 Part：GPU / PyTorch / 低精度](../private_resume/2026-08-llm-infra-interview-prep.md#part-foundations) ↔ [FP8 原理与验证](topics/fp8.md#precision-validation) ↔ [GPU 执行 / 编译 / Roofline](topics/transformer_engine.md#gpu-execution) ↔ [Coding 梯度与性能练习](../private_resume/2026-09-interview-coding.md#coding-05)。[Meshy 入口](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)只做选题与公司交流导航，技术答案不再复制。
+- [面试主文档](../private_resume/2026-08-llm-infra-interview-prep.md#interview-console) ↔ [Coding 题单](../private_resume/2026-09-interview-coding.md#coding-top) ↔ [带父指针 LCA](../private_resume/2026-09-interview-coding.md#coding-03)
+- [通用编程基础](../private_resume/2026-08-llm-infra-interview-prep.md#programming-basics) ↔ [LRU 缓存 get / put：本人现场题目](../private_resume/2026-09-interview-coding.md#coding-04)
+- [主文档通用基础 Part：GPU / PyTorch / 低精度](../private_resume/2026-08-llm-infra-interview-prep.md#part-foundations) ↔ [FP8 原理与验证](topics/fp8.md#precision-validation) ↔ [GPU 执行 / 编译 / Roofline](topics/transformer_engine.md#gpu-execution) ↔ [Coding 梯度与性能练习](../private_resume/2026-09-interview-coding.md#coding-05)。技术答案只在通用题库维护；[公司资料](../private_resume/2026-09-meshy-ml-system-interview-prep.md#meshy-public-work)独立保存。
 - [视频 / 3D 生成通用题](../private_resume/2026-08-llm-infra-interview-prep.md#gen-01) ↔ [Meshy T2 公开工作](tracking/backfill/2026-07.md#meshy-t2) ↔ [P1 全文阅读](reading_queue/P1.md#meshy-t2-reading)，区分原理学习、公开架构与个人交付证据。
 
 - [Transformer](papers/transformer.md) ↔ [Tensor Parallelism](topics/tensor_parallelism.md) ↔ [Megatron-LM](papers/megatron_lm.md)
@@ -237,8 +237,8 @@ flowchart LR
 - [ZeRO](papers/zero.md) ↔ [Checkpointing](topics/checkpointing.md) ↔ [FSDP](topics/fsdp.md)
 - [Megatron 5D 并行](topics/distributed_training.md) ↔ [FSDP / ZeRO / Bridge 选型](topics/fsdp.md) ↔ [verl / AReaL 架构选型](topics/rl_framework_selection.md)
 - [Checkpointing](topics/checkpointing.md) ↔ [Fault Tolerance](topics/fault_tolerance.md) ↔ [MegaScale](tech_reports/megascale.md)
-- [字节 Data AML 面试入口](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint) ↔ [稀疏 Embedding / PS](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10) ↔ [数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) ↔ [Checkpointing](topics/checkpointing.md)
-- [小红书后训练框架一面：30 分钟入口](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) ↔ [框架选型](topics/rl_framework_selection.md) ↔ [Agentic RL](topics/agentic_rl.md)；主问题串联 [DPO](../private_resume/2026-08-llm-infra-interview-prep.md#dpo-01)、[Reward/PPO 迁移](../private_resume/2026-08-llm-infra-interview-prep.md#verl-07)与[训推布局协同](../private_resume/2026-08-llm-infra-interview-prep.md#verl-03)。
+- [通用 Infra 与生产排障](../private_resume/2026-08-llm-infra-interview-prep.md#part-v) ↔ [稀疏 Embedding / PS](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10) ↔ [数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) ↔ [Checkpointing](topics/checkpointing.md)
+- [RL 框架架构与后训练](../private_resume/2026-08-llm-infra-interview-prep.md#part-iii) ↔ [框架选型](topics/rl_framework_selection.md) ↔ [Agentic RL](topics/agentic_rl.md)；主问题串联 [DPO](../private_resume/2026-08-llm-infra-interview-prep.md#dpo-01)、[Reward/PPO 迁移](../private_resume/2026-08-llm-infra-interview-prep.md#verl-07)与[训推布局协同](../private_resume/2026-08-llm-infra-interview-prep.md#verl-03)。
 - [FlashAttention](papers/flashattention.md) ↔ [FlashAttention Topic](topics/flashattention.md) ↔ [Transformer Engine](topics/transformer_engine.md)
 - [Long-context Training](topics/long_context_training.md) ↔ [CP-local logits](topics/long_context_training.md#cp-local-logits) ↔ [Transformer Engine / Fusion](topics/transformer_engine.md#fusion-map)
 - [Agentic RL](topics/agentic_rl.md) ↔ [CUDA Graph decode](topics/agentic_rl.md#cuda-graph-decode) ↔ [Rollout 供给、session 容量与版本预算](topics/agentic_rl.md#gateway-streaming-refill)

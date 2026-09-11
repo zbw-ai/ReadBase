@@ -1,7 +1,7 @@
 <a id="coding-top"></a>
 # 训练 Infra 面试 Coding 手撕题
 
-> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [底层基础理论](2026-08-llm-infra-interview-prep.md#part-foundations) · [岗位准备入口](2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)
+> [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [底层基础理论](2026-08-llm-infra-interview-prep.md#part-foundations) · [通用复习安排](2026-08-llm-infra-interview-prep.md#vi-0)
 
 本页集中放可动手的实现、测试与环境检查；概念推导和系统判断回到主文档，不另建一套岗位专属技术答案。除明确标注本人现场经历的题目外，均为自拟复习练习，不代表 Meshy 或其他公司的已确认实题。现场先讲输入输出、shape、不变量和复杂度，再写主路径，最后补异常与测试。
 
@@ -380,7 +380,7 @@ if __name__ == "__main__":
 - 假定两个节点一定是叶子；漏掉同节点和祖先关系。
 - 修改 parent、引入递归/集合，却仍宣称是原双指针或 `O(1)` 空间；父链有环时仍声称一定终止。
 
-↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回字节 AML 入口](2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console)
 
 ---
 
@@ -520,7 +520,7 @@ if __name__ == "__main__":
 - 更新已有 key 时误增 size，导致错误淘汰；按 `len >= capacity` 提前删掉本来可容纳的元素。
 - 把粘贴后的 `**init**` 当成 Python 方法名；实际应为 `__init__`，方法体必须正确缩进。这是粘贴格式问题，不据此判断现场提交存在语法错误。
 
-↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [返回小红书入口](2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)
 
 ---
 
@@ -727,4 +727,4 @@ nvcc --version
 
 来源：[PyTorch 安装说明](https://pytorch.org/get-started/locally/)、[CUDA Compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/)。
 
-↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [岗位准备入口](2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [通用复习安排](2026-08-llm-infra-interview-prep.md#vi-0)

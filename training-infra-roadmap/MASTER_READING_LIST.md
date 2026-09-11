@@ -217,13 +217,13 @@
 | 29 | Distributed Checkpointing | [Checkpointing](topics/checkpointing.md) | 异步保存、重分片、恢复时间 |
 | 30 | NCCL / Network | [NCCL](topics/nccl.md)；[Ring AllReduce](topics/nccl.md#ring-allreduce) | collective 语义、逐步传块、通信量与算法选择、拓扑和 straggler 诊断 |
 
-面试应用：[字节 Data AML 主文档速查](../private_resume/2026-08-llm-infra-interview-prep.md#bytedance-aml-sprint)，串联 [Embedding / PS / 多级存储](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10)、[数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) 与 [Checkpoint 保存和恢复](../private_resume/2026-08-llm-infra-interview-prep.md#infra-08)；[一面手撕 LCA](../private_resume/2026-09-interview-coding.md#coding-03)收录在独立 Coding 题单。
+面试应用：[通用 Infra 与生产排障](../private_resume/2026-08-llm-infra-interview-prep.md#part-v)，串联 [Embedding / PS / 多级存储](../private_resume/2026-08-llm-infra-interview-prep.md#infra-10)、[数据 pipeline](../private_resume/2026-08-llm-infra-interview-prep.md#infra-11) 与 [Checkpoint 保存和恢复](../private_resume/2026-08-llm-infra-interview-prep.md#infra-08)；[一面手撕 LCA](../private_resume/2026-09-interview-coding.md#coding-03)收录在独立 Coding 题单。
 
-后训练框架面试应用：[小红书一面 30 分钟冲刺](../private_resume/2026-08-llm-infra-interview-prep.md#xiaohongshu-sprint)，按框架源码、算法流程、异步 Rollout、训推并行、长轨迹显存、性能与平台能力组织；原理延伸回到[框架选型](topics/rl_framework_selection.md)和 [Agentic RL](topics/agentic_rl.md)。优先级依据用户提供 JD，不是公司真题。
+后训练框架面试应用：[RL 框架与后训练通用题](../private_resume/2026-08-llm-infra-interview-prep.md#part-iii)，按框架源码、算法流程、异步 Rollout、训推并行、长轨迹显存、性能与平台能力组织；原理延伸回到[框架选型](topics/rl_framework_selection.md)和 [Agentic RL](topics/agentic_rl.md)。按技术主题与 P0/P1/P2 组织，可跨公司复用。
 
 本人现场题目：[小红书一面 LRU 缓存 get / put](../private_resume/2026-09-interview-coding.md#coding-04)，保留 OrderedDict 解法，补充 Python3 可运行测试、复杂度和手写哈希表＋双向链表追问；不据此推断面试结果。
 
-通用基础面试：[主文档 GPU / PyTorch / 低精度 Part](../private_resume/2026-08-llm-infra-interview-prep.md#part-foundations)，按 topic 再分 P0/P1；详细原理进入 [FP8](topics/fp8.md)与 [GPU 执行 / 编译 / Roofline](topics/transformer_engine.md#gpu-execution)，长代码进入 [Coding 梯度检查与性能练习](../private_resume/2026-09-interview-coding.md#coding-05)。[Meshy 公司入口](../private_resume/2026-08-llm-infra-interview-prep.md#meshy-interview-sprint)只保留选题、流程和交流材料，不再维护第二套技术答案。[Meshy T2 历史补录](tracking/backfill/2026-07.md#meshy-t2)与 [P1 阅读](reading_queue/P1.md#meshy-t2-reading)保留公开架构和未复现边界。
+通用基础面试：[主文档 GPU / PyTorch / 低精度 Part](../private_resume/2026-08-llm-infra-interview-prep.md#part-foundations)，按 topic 再分 P0/P1；详细原理进入 [FP8](topics/fp8.md)与 [GPU 执行 / 编译 / Roofline](topics/transformer_engine.md#gpu-execution)，长代码进入 [Coding 梯度检查与性能练习](../private_resume/2026-09-interview-coding.md#coding-05)。[公司资料](../private_resume/2026-09-meshy-ml-system-interview-prep.md#meshy-public-work)在独立旧入口保存，不影响主文档通用题目的组织。[Meshy T2 历史补录](tracking/backfill/2026-07.md#meshy-t2)与 [P1 阅读](reading_queue/P1.md#meshy-t2-reading)保留公开架构和未复现边界。
 
 ## 8. Agentic RL / Rollout Infra
 
