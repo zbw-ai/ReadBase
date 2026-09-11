@@ -3,7 +3,7 @@
 > - 适用对象：社招大模型训练/推理 Infra 高级工程师
 > - 目标档位：当前年薪约 80 万，目标 100–150 万
 > - 使用方式：按简历查题；面试前按薄弱项复习，现场先读「直接回答」
-> - 修订日期：2026-09-09；官方资料的核验日期与项目版本见文末
+> - 修订日期：2026-09-11；官方资料的核验日期与项目版本见文末
 > - 依据：最新投递版 PDF 简历（2026-08-30，本地核验且不在公开仓库记录含手机号文件名）、[项目事实底稿](2026-08-xpeng-infra-resume-materials.md)及文末官方资料
 
 <a id="interview-console"></a>
@@ -14,6 +14,8 @@
 > **怎么用**：沿「教育背景 → 工作技能 → 项目经历」找到对应题目，先讲直接回答，被追问时再看展开。题尾可返回本 Part 或本控制台；浏览器返回按钮、macOS `⌘ + [`、Windows/Linux `Alt + ←` 可回到上一次跳转位置。题头的分钟数是完整准备时间，答案里的秒数是口述参考时长。
 
 **快速入口**：**[Meshy 技术面：低精度 / GPU / PyTorch](#meshy-interview-sprint)** · [小红书后训练速查](#xiaohongshu-sprint) · [字节 Data AML 速查](#bytedance-aml-sprint) · [自我介绍](#resume-01) · [框架选型](#areal-01) · [Coding 手撕题](2026-09-interview-coding.md) · [Meshy 笔试基础题](2026-09-meshy-ml-system-written-prep.md#meshy-top) · [技术面反问](#vi-questions-to-ask) · [面试前复习](#vi-0) · [面试进度](#interview-progress)
+
+**求职决策**：[智元 × 自变量：资本、创始人战略、客户、员工线索与训练 Infra 岗位尽调](2026-09-agibot-xsquare-career-due-diligence.md#decision)（独立于技术题库；员工一对一访谈尚待完成）。
 
 | 简历区块 | 简历内容 / 面试切入点 | 高频题目入口 |
 |---|---|---|
