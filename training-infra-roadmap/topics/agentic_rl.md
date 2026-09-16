@@ -871,6 +871,23 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 17. CUDA Graph 为什么对 decode 收益大，continuous batching 和动态 KV 如何满足 capture 契约？
 18. Gateway 的流式补位为什么不是 token streaming？如何同时守住并发、affinity 与幂等？
 
+<a id="rl-state-boundaries"></a>
+## 部分失败与恢复：三个状态提交边界
+
+当 rollout 只成功一部分、checkpoint 异步写入或 generation worker 重启时，系统需要明确“什么状态可以进入下一阶段”。下表是对 [2026-09-16 核验材料](../tracking/frontier_scan_2026-09-16.md)的工程归纳，尚未在本仓库执行故障注入。
+
+| 边界 | 准入条件 | 常见错误 | 验收重点 |
+|---|---|---|---|
+| Rollout → training | 可用 logical members 满足 estimator 的统计要求；padding 与无效 token 被正确排除 | 将 split 后 tensor rows 当成独立样本，或给所有 estimator 强制相同 group 下限 | 分别记录 logical member、row、有效 token；检查零样本 rank 的 collective 一致性 |
+| Saving → recoverable | 同一 generation 所需的 actor/critic 等 payload 完成后才发布 latest pointer | 看到目录已创建就恢复；actor 新 step 与 critic 旧 step 混用 | 在异步 finalize 前失败时，latest 保持上一个完整 generation；按实际存储验证可见性 |
+| Restarted → serving | 新 incarnation 完成对应版本 refit，并通过 router admission | 健康探测成功就接流量；refit 中途回来的 worker 被误标为已同步 | 固定本次 refit participant set，记录每个 shard 的 incarnation/version 与准入事件 |
+
+配置上应先问清失败策略和统计契约，再调整 retry、partial-group retention 或自动重启开关。AReaL 的 `min_usable_group_size` 有 v1 路径限制；NeMo 的 shard restart 默认关闭；AReaL 的 legacy SPMD checkpoint layout 也不等于新的 generation publication 路径。不能只看名字相似就认定不同 backend 等价。
+
+排障顺序：先看实际成员、mask 和版本账本，再看 payload/collective 的完成顺序，最后分析 scheduler 重试。若吞吐变高却 loss 异常，先排除无效样本、重复计数和旧权重混入，避免把 correctness 问题归因于算法超参数。
+
+来源与后续：[AReaL group contract](https://github.com/areal-project/AReaL/commit/64f049f1e5b4cdedce57e3ae0a5091f4121f3fa5)、[checkpoint publication](https://github.com/areal-project/AReaL/commit/e23a935362d8d535a4cad3a1d0a8100e0c0938fd)、[NeMo shard admission](https://github.com/NVIDIA-NeMo/RL/commit/53bce0568e2a2a9d49985f2157050da5e59a70ce)。按 [P1 阅读组合](../reading_queue/P1.md#rl-state-boundaries-reading)完成阅读，用[故障注入计划](../experiments/rl_state_boundaries.md)验证；相邻知识见 [Checkpointing](checkpointing.md) 与 [Fault Tolerance](fault_tolerance.md)。
+
 ## 生产环境思考题
 
 1. 如果 rollout p99 是 p50 的 20 倍，同步 RL 会发生什么？

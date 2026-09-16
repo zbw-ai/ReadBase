@@ -274,3 +274,9 @@ flowchart LR
 - 为 [Tensor Parallelism](topics/tensor_parallelism.md) 单独画 Column/Row Parallel 数据流图。
 - 为 [Checkpointing](topics/checkpointing.md) 单独画 save / async upload / recovery 流程图。
 - 为 [NCCL](topics/nccl.md) 单独画 topology / collective / overlap 排障图。
+
+## 2026-09：RL 状态边界学习闭环
+
+[本轮信号](tracking/frontier_scan_2026-09-16.md) → [P1 阅读组合](reading_queue/P1.md#rl-state-boundaries-reading) → [Agentic RL 状态边界](topics/agentic_rl.md#rl-state-boundaries) → [故障注入验证计划](experiments/rl_state_boundaries.md) → [9 月学习记录](learning_log/2026/2026-09.md)。
+
+当前只完成来源核验与验证设计；没有运行故障注入，不能标记 VERIFIED。

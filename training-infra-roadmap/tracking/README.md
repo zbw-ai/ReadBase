@@ -23,7 +23,8 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-09-07](frontier_scan_2026-09-07.md)：当前最新扫描，覆盖到 2026-09-07 10:00:26；arXiv 无新公告批次，重点包括 OpenAI automated research 工业报告、NeMo RL rollout token ledger / vLLM reload refit，以及 Megatron GDP CuTeDSL CP / per-rank RNG resume correctness。
+- [Frontier Scan 2026-09-16](frontier_scan_2026-09-16.md)：最新扫描至 14:54:26（Asia/Shanghai），10 条 Accepted；重点是 DeepSeek-V4.1、RL 状态边界、长上下文显存与 kernel。框架历史缺口需回退补扫。
+- [Frontier Scan 2026-09-07](frontier_scan_2026-09-07.md)：此前扫描，覆盖到 2026-09-07 10:00:26；arXiv 无新公告批次，重点包括 OpenAI automated research 工业报告、NeMo RL rollout token ledger / vLLM reload refit，以及 Megatron GDP CuTeDSL CP / per-rank RNG resume correctness。
 - [Frontier Scan 2026-09-05](frontier_scan_2026-09-05.md)：上一份扫描，覆盖到 2026-09-05 00:21:28；重点包括 AInfer-PD、2400-GPU multi-tenancy characterization、TRL 1M-token CP recipe、slime streaming rollout、NeMo RL HybridEP 与 Headroom-Drift Replay。
 - [Frontier Scan 2026-09-01](frontier_scan_2026-09-01.md)：前一份扫描，覆盖到 2026-09-01 11:31:29；重点包括 Anthropic RL environment 治理、HARTS rollout-tree prefix sharing、CE-MoE、verl weight-sync admission gate 与 Megatron variable-length packing。
 - [Frontier Scan 2026-08-30](frontier_scan_2026-08-30.md)：上一份扫描，覆盖到 2026-08-30 21:04:46；重点包括 NeMo RL generation-shard recovery、AReaL truncation/GAE correctness、RL-for-LLM 并行性能方法论与长上下文 VPP。

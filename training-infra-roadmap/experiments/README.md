@@ -38,3 +38,7 @@
 - [FlashAttention Benchmark](flashattention/benchmark.md)：验证 IO-aware attention 在不同序列长度、batch size、dtype 下的收益边界。
 - [TP vs DP](tensor_parallelism/tp_vs_dp.md)：验证不同 parallelism 配置对 step time 和通信开销的影响。
 - [Async Checkpoint](checkpoint/async_checkpoint.md)：验证异步 checkpoint 对 step time spike 和恢复路径的影响。
+
+## 待执行
+
+- [RL 状态边界故障注入](rl_state_boundaries.md)：partial group、checkpoint 发布、refit 后准入；尚未执行。

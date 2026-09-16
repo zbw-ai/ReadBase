@@ -25,7 +25,9 @@
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
-| [Frontier Scan 2026-09-01](tracking/frontier_scan_2026-09-01.md) | 最新 frontier scan，覆盖到 2026-09-01 11:31:29 |
+| [Frontier Scan 2026-09-16](tracking/frontier_scan_2026-09-16.md) | 最新扫描；含来源覆盖盲区与补扫起点 |
+| [RL 状态边界阅读组合](reading_queue/P1.md#rl-state-boundaries-reading) | 从 partial group、checkpoint publication 到 refit admission |
+| [Frontier Scan 2026-09-01](tracking/frontier_scan_2026-09-01.md) | 历史 frontier scan，覆盖到 2026-09-01 11:31:29 |
 | [Frontier Scan 2026-08-30](tracking/frontier_scan_2026-08-30.md) | 上一次 frontier scan，聚焦异步恢复、trajectory correctness 与长上下文 VPP |
 | [Monthly Signal 2026-08](tracking/monthly_signal_2026-08.md) | 2026 年 8 月五条高质量工程主线与工业证据汇总 |
 | [Monthly Signal 2026-07](tracking/monthly_signal_2026-07.md) | 2026 年 7 月工程判断与工业证据月报 |
