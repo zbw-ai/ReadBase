@@ -872,7 +872,7 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 18. Gateway 的流式补位为什么不是 token streaming？如何同时守住并发、affinity 与幂等？
 
 <a id="rl-state-boundaries"></a>
-## 部分失败与恢复：三个状态提交边界
+## 部分失败与恢复：状态提交边界
 
 当 rollout 只成功一部分、checkpoint 异步写入或 generation worker 重启时，系统需要明确“什么状态可以进入下一阶段”。下表是对 [2026-09-16 核验材料](../tracking/frontier_scan_2026-09-16.md)的工程归纳，尚未在本仓库执行故障注入。
 
@@ -881,6 +881,10 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 | Rollout → training | 可用 logical members 满足 estimator 的统计要求；padding 与无效 token 被正确排除 | 将 split 后 tensor rows 当成独立样本，或给所有 estimator 强制相同 group 下限 | 分别记录 logical member、row、有效 token；检查零样本 rank 的 collective 一致性 |
 | Saving → recoverable | 同一 generation 所需的 actor/critic 等 payload 完成后才发布 latest pointer | 看到目录已创建就恢复；actor 新 step 与 critic 旧 step 混用 | 在异步 finalize 前失败时，latest 保持上一个完整 generation；按实际存储验证可见性 |
 | Restarted → serving | 新 incarnation 完成对应版本 refit，并通过 router admission | 健康探测成功就接流量；refit 中途回来的 worker 被误标为已同步 | 固定本次 refit participant set，记录每个 shard 的 incarnation/version 与准入事件 |
+
+[9/18 源码核验](../tracking/frontier_scan_2026-09-18.md)补充两个边界。第一，weight refit 完成仍不代表 scheduler 已跨 rank 恢复；verl 将 engine resume 与 submission gate 分成有序两步，防止新请求 wave 与重复 resume 的 collective 交错。第二，step reward 必须在 trajectory finalize 前整体提交；AReaL v2 用一次请求、一次锁写入 interaction reward map，避免第一条 reward 提前结束轨迹。这里归纳的是已读源码契约，尚无本地运行验证。
+
+排查 resume 附近的 Gloo timeout 时，应记录各 rank 的 engine resume 完成事件、submission gate 开放事件和首个新 wave，而不能只检查权重版本。排查 reward 后 HTTP 400 或 group 丢弃时，应核对 timeout 默认值、interaction IDs 与 finalize 次数。这两类用例已进入[实验计划](../experiments/rl_state_boundaries.md)。
 
 配置上应先问清失败策略和统计契约，再调整 retry、partial-group retention 或自动重启开关。AReaL 的 `min_usable_group_size` 有 v1 路径限制；NeMo 的 shard restart 默认关闭；AReaL 的 legacy SPMD checkpoint layout 也不等于新的 generation publication 路径。不能只看名字相似就认定不同 backend 等价。
 

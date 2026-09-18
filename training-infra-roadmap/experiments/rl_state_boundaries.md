@@ -19,6 +19,15 @@
 | Checkpoint publication | actor payload 完成后令 critic 保存失败；另一次在 finalization 前中断 publisher | LATEST 仍指上一个完整 generation；未提交的新 generation 不可被当作 latest 恢复 | 对比 pointer、manifest 和 actor/critic global step；混合 step 或指向残缺 payload 即失败 |
 | Refit admission | 杀死 generation shard；让 replacement 在 refit 启动前或中途完成重启 | 中途回来的 shard 保持 stale；只有参与成功 refit 的 incarnation/version 可以接流量 | 记录 shard ID、incarnation、weight version、refit participant set、routing decision；旧版本获准 serving 即失败 |
 
+9/18 新增，来源见[本轮 A4/A5](../tracking/frontier_scan_2026-09-18.md)：
+
+| 实验 | 干预 | 必须保持的不变量 | 观测与失败判据 |
+|---|---|---|---|
+| Resume admission | 模拟一个 DP rank 的 resume 延迟，同时排队下一波请求；覆盖有/无 KV restore 两条路径 | 全 replica engine resume 返回前，所有 submission gate 保持关闭 | 记录每 rank 的 resume collective 和 wave 序号；提前 admission 或无界等待即失败 |
+| Reward transaction | 在默认 finish timeout 下提交含多个 interaction 的 reward map，再测试非法 ID | 合法 map 全部应用后才 finalize，最多一次；非法输入处理符合上游契约 | 对照每步 reward、HTTP 状态和 finalize count；只保留末步或丢弃合法 group 即失败 |
+
+基线分别固定 verl `e2ac8f6222801d5e8ce50447b0c3c2d9237e4770`、AReaL `179ff1bf80796ec8797cea3dc2dcf8f46beef6cb` 或包含它们的后续版本。仍未执行，不编造 GPU 结果。
+
 这些是根据 upstream 行为设计的验收用例，不是对所有 estimator、storage 和 backend 通用的实现规范。最小组大小尤其需要按配置检查。
 
 ## Commands

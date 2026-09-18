@@ -58,6 +58,8 @@ flowchart LR
 - `IMPLEMENTED`：进入真实工程实践。
 - `OBSOLETE`：已过时或被新系统替代。
 
+最新信号入口：[9/18 Frontier Scan](tracking/frontier_scan_2026-09-18.md) → [CSBP P1](reading_queue/P1.md#csbp-reading)；RL correctness 延续 [状态边界 topic](topics/agentic_rl.md#rl-state-boundaries) → [故障注入计划](experiments/rl_state_boundaries.md)，实验尚未执行。
+
 ## 第一轮主线
 
 这条线回答的是：一个训练 infra 工程师第一次建立系统地图时，应该先抓哪几个支点。
