@@ -59,6 +59,8 @@ For `tracking/historical_backfill.md`, do not chase recency. It is an index and 
 
 Weekly signal reports and weekly papers templates are retired. Keep existing weekly files only as historical audit records. For current updates, use frontier scans plus `tracking/scan_log.md`; for formal summaries, use monthly signal reports.
 
+Research-scan response preference: every frontier scan or monthly signal report delivery must include the full report link, a short Chinese paragraph summarizing overall progress and engineering trends, and one sentence per accepted article/signal explaining its main takeaway with a source link. Describe the bottleneck, mechanism, or practical consequence rather than repeating the title. Keep newly published items distinct from late-discovered materials, label trend inferences, and mention material coverage gaps briefly. Do not return only a report link or a publication/commit status. If no signals qualify, say so without inventing a trend.
+
 Monthly reports use the previous calendar month, named `monthly_signal_YYYY-MM.md`. Monthly reports are the high-quality digest and should summarize frontier scans, backfill, release notes, and actual reading results; they should not rediscover material from scratch.
 
 Frontier/monthly signal scanning must use the repository owner's focus filter, not generic AI popularity. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
