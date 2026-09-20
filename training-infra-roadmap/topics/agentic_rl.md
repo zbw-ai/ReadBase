@@ -1,5 +1,11 @@
 # Agentic RL Infrastructure
 
+## Infra Agent 的实验反馈与证据边界
+
+为 rollout runtime 引入 Agent 调优时，建议将交付单元定义为“可证伪假设 + 单变量改动 + 正确性检查 + 服务级对照”，记录人工介入与实验成本。这是本仓库建议，尚未在 AReaL 验证收益。
+
+参考 [GLM Infra Agent 精读](../engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md)：公开实现支持局部机制；总体性能、Agent 净贡献与多轮自我改进各需不同实验。迁移前固定 runtime 版本、拓扑、输入分布和 SLO。
+
 ## 这个主题解决什么问题
 
 Agentic RL 不是“把 PPO/GRPO 换个任务继续跑”。它把训练系统从单一的 GPU batch training，变成一个持续生产、评估、消费 trajectory 的分布式系统。

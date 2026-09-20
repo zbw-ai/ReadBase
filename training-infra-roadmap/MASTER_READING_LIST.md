@@ -232,6 +232,8 @@
 
 ## 8. Agentic RL / Rollout Infra
 
+定向精读：[GLM Infra Agent 与 RSI 证据评估](engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md)，配合 [Agentic RL](topics/agentic_rl.md) 阅读。下一步执行报告中的验证计划，当前未复现。
+
 | 顺序 | 材料 | 仓库笔记 | 关注点 |
 |---|---|---|---|
 | 31 | CompactionRL | [CompactionRL](papers/compactionrl.md) | long-horizon agent 的 context compaction、segment loss 和 cross-trajectory credit assignment |

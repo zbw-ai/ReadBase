@@ -265,6 +265,8 @@ flowchart LR
 
 ## 工程博客索引
 
+- [GLM Infra Agent](engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md) ↔ [Agentic RL](topics/agentic_rl.md) ↔ [P1](reading_queue/P1.md)：生产披露、可检查机制与待执行实验。
+
 `engineering_blogs/` 是第三类一等材料来源：它不按论文历史组织，而按厂商工程栈和训练系统能力组织。
 
 - [NVIDIA Engineering Blogs](engineering_blogs/nvidia/README.md) ↔ [Transformer Engine](topics/transformer_engine.md) ↔ [FP8](topics/fp8.md) ↔ [NCCL](topics/nccl.md)
