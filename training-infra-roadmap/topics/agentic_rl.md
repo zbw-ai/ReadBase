@@ -886,6 +886,10 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 
 排查 resume 附近的 Gloo timeout 时，应记录各 rank 的 engine resume 完成事件、submission gate 开放事件和首个新 wave，而不能只检查权重版本。排查 reward 后 HTTP 400 或 group 丢弃时，应核对 timeout 默认值、interaction IDs 与 finalize 次数。这两类用例已进入[实验计划](../experiments/rl_state_boundaries.md)。
 
+[9/20 后续核验](../tracking/frontier_scan_2026-09-20.md)把准入契约进一步细化：replica 仅短暂 weight sync 时可以等待恢复；退出服务轮转去训练、近期不 resume 时，应拒绝迟到请求让上层处理，而不是无限 parking。vLLM 对 `n>1` 先完整预留 child 容量再异步提交，并在取消时清理全部 child；这保证的是 admission 原子性，不保证 rollout 最终完整，训练侧仍须执行 partial-group 统计契约。
+
+低精度 rollout 的 source weights、传输表示与 serving 格式也应分开记账。NeMo 的 NVFP4 实现传输 BF16、由 rollout 量化并在 reload/fence 完成后确认；设计文档报告生成端收益被 refit 和训练成本部分抵消。工程判断是同时记录三段耗时与 logprob/质量偏差，不能用生成 tokens/s 代替整步吞吐；见 [NVFP4 阅读入口](../reading_queue/P1.md#nvfp4-refit-reading)。
+
 配置上应先问清失败策略和统计契约，再调整 retry、partial-group retention 或自动重启开关。AReaL 的 `min_usable_group_size` 有 v1 路径限制；NeMo 的 shard restart 默认关闭；AReaL 的 legacy SPMD checkpoint layout 也不等于新的 generation publication 路径。不能只看名字相似就认定不同 backend 等价。
 
 排障顺序：先看实际成员、mask 和版本账本，再看 payload/collective 的完成顺序，最后分析 scheduler 重试。若吞吐变高却 loss 异常，先排除无效样本、重复计数和旧权重混入，避免把 correctness 问题归因于算法超参数。

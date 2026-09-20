@@ -23,7 +23,8 @@
 ## 文件说明
 
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-09-18](frontier_scan_2026-09-18.md)：最新扫描至 10:42:01，8 条 Accepted；BP/CSBP、GeoMesh、集群碎片与 RL 状态提交。补齐旧来源索引缺口，保留运行时补扫项。
+- [Frontier Scan 2026-09-20](frontier_scan_2026-09-20.md)：最新至 10:27:43，8 Accepted；DeepSeek 报告补漏、NVFP4 端到端成本、原子准入、KV 存储背压与隔离。
+- [Frontier Scan 2026-09-18](frontier_scan_2026-09-18.md)：此前扫描至 10:42:01，8 条 Accepted；BP/CSBP、GeoMesh、集群碎片与 RL 状态提交。补齐旧来源索引缺口，保留运行时补扫项。
 - [Frontier Scan 2026-09-16](frontier_scan_2026-09-16.md)：此前扫描至 14:54:26（Asia/Shanghai），10 条 Accepted；重点是 DeepSeek-V4.1、RL 状态边界、长上下文显存与 kernel。框架历史缺口需回退补扫。
 - [Frontier Scan 2026-09-07](frontier_scan_2026-09-07.md)：此前扫描，覆盖到 2026-09-07 10:00:26；arXiv 无新公告批次，重点包括 OpenAI automated research 工业报告、NeMo RL rollout token ledger / vLLM reload refit，以及 Megatron GDP CuTeDSL CP / per-rank RNG resume correctness。
 - [Frontier Scan 2026-09-05](frontier_scan_2026-09-05.md)：上一份扫描，覆盖到 2026-09-05 00:21:28；重点包括 AInfer-PD、2400-GPU multi-tenancy characterization、TRL 1M-token CP recipe、slime streaming rollout、NeMo RL HybridEP 与 Headroom-Drift Replay。

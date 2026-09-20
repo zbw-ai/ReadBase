@@ -28,6 +28,8 @@
 
 基线分别固定 verl `e2ac8f6222801d5e8ce50447b0c3c2d9237e4770`、AReaL `179ff1bf80796ec8797cea3dc2dcf8f46beef6cb` 或包含它们的后续版本。仍未执行，不编造 GPU 结果。
 
+9/20 补充计划，来源见[本轮 A4/A5](../tracking/frontier_scan_2026-09-20.md)：在“短暂同步”和“退出服务轮转”两种 gate mode 下分别注入迟到请求，验证 parking 后可恢复、rejection 可及时返回；并发提交两个总容量超过上限的 `n>1` 请求，确认 all-or-nothing reservation，再在首个 child 提交后取消，检查所有 slot 释放。容量原子性与最终样本完整性分开验收。本仓库尚未执行这些测试。
+
 这些是根据 upstream 行为设计的验收用例，不是对所有 estimator、storage 和 backend 通用的实现规范。最小组大小尤其需要按配置检查。
 
 ## Commands
