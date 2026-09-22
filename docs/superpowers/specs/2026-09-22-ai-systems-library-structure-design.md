@@ -1,8 +1,8 @@
 # ReadBase 结构调整：共享基础、训练／推理／RL 与具身学习路径
 
 > 日期：2026-09-22。
-> 状态：用户已确认总体结构及五项补充，并要求面试准备独立成 Part、增加最近更新入口、吸纳 ml-engineering 的硬件与系统知识；本文件按审阅意见修订，尚未重组正式入口。
-> 本轮交付：结构、追踪规则、内容边界和实验课程设计。不启动 GPU 作业，不宣称已完成教程、精读或性能验证。
+> 状态：用户已确认根目录并列的物理结构：`systems/`、`training-infra/`、`inference-infra/`、`rl-infra/`、`embodied-infra/`、`practice/`、`interview/`，研究来源统一放 `research/`。本规格据此替代此前“保留旧目录、仅增加逻辑导航”的方案；尚未搬迁正式文档。
+> 本轮交付：目录归属、迁移与兼容规则、内容边界和实验课程设计。先审阅书面规格，再制定迁移实施计划；不启动 GPU 作业，不宣称已完成教程、精读或性能验证。
 > 读者：已有 LLM Training 与 Agentic RL 工程经验，接下来重点学习具身模型、具身 Infra、FSDP/FSDP2 和 ZeRO 的工程师。
 
 ## 1. 已确认的目标与范围
@@ -18,12 +18,13 @@
 7. 有 A100、64 卡以内的实验资源；先设计、后确认环境与执行预算，不把资源可用视为启动任务授权。
 8. 首页新增“最近更新”，快速发现仓库新内容和项目进展；区别于外部文章 tracking。个人最新项目经历通过面试 Part 进入既有项目素材与主文档，不重复建一套履历。
 9. 将 Stas Bekman 的 `ml-engineering` 作为硬件与系统工程参考来源，按问题融入 Part I 和相关应用、实验、排障；不镜像整仓，不用第三方经验参数替代当前环境验证。
+10. 不再让所有 Part 隶属 `training-infra-roadmap/`。训练正文归 `training-infra/`，其他方向在根目录并列；`roadmaps/` 只表示具体学习计划，不再充当整个知识库的目录名。
 
 ### 1.2 本规格的交付边界
 
-本规格完整定义的是**知识库组织与近期学习课程**。导航与追踪规则可以作为一个有界实施批次；深入教程、实验代码和 GPU 执行是后续分别验收的内容工作，不在结构调整时一次性实现。
+本规格完整定义的是**知识库组织、文档迁移和近期学习课程**。物理迁移、导航与规则同步是批次 A；深入教程、实验代码和 GPU 执行是后续分别验收的内容工作，不在目录调整时一次性实现。
 
-本次不改仓库名称，不批量迁移历史文档，不重写面试题库，不调整定时任务，不回填历史扫描计数或游标，不安装训练环境，不访问远端集群。
+本轮只修订规格，不搬文件。后续实施允许按本规格迁移 `training-infra-roadmap/` 中的内容，但不改仓库名称、不整体移动 `private_resume/`、不重写面试题库、不回填历史扫描计数或游标。定时任务的外部路径依赖先核对，实际修改另行明确；不安装训练环境，不访问远端集群。
 
 ## 2. 当前问题与设计选择
 
@@ -33,13 +34,15 @@
 - [扫描模板](../../../training-infra-roadmap/tracking/frontier_scan_template.md)把独立 inference 限定为影响 rollout，且厂商 Watch 与当前四家规则存在不一致。
 - README、Master List、Knowledge Graph 重复维护最新扫描、优先级和学习顺序，增加入口漂移。
 
-比较过三种方案：
+以下本地链接指向迁移前的现有证据；目标目录用代码形式表示，实施后再转换为可点击入口。
+
+根据本轮确认，三种方案的取舍调整为：
 
 | 方案 | 判断 |
 |---|---|
-| 保留物理路径，重建共享基础与学习导航 | 采用；知识复用、旧链接稳定，新增文件限于确实有内容的导航／章节 |
-| 各方向复制一套 papers/topics/tracking/queue | 不采用；FSDP、数据、推理和 RL 容易重复维护 |
-| 全仓改名搬迁后重新分目录 | 当前不采用；链接迁移成本高，无法直接解决内容深度问题 |
+| 仅把旧父目录改为 training-infra，所有 Part 仍放里面 | 不采用；名字变短，但推理、RL、具身仍错误地隶属训练 |
+| 根目录按技术职责并列，来源与研究流程集中到 research | 采用；物理归属和读者理解一致，迁移时集中修复链接并保留必要旧入口 |
+| 各方向各建一套 papers/tracking/queue | 不采用；重复扫描、排队和维护跨领域材料，容易产生多个状态真源 |
 
 总原则：**导航按读者的问题组织，正文按知识职责存放，优先级按当前阶段管理。**
 
@@ -63,34 +66,42 @@ LLM Training 对应 Part II 的主要应用路径；Agentic RL 对应 Part IV；
 
 ### 3.2 文件位置
 
-保留 `training-infra-roadmap/` 的历史路径；显示标题可使用“AI Systems 工程学习手册”，并说明目录名沿用历史路径，不再意味着只维护训练。
-
-Part I–V 的轻量导航放在现有 `roadmaps/` 中；Part VI 和 VII 分别使用既有实验、面试目录的 README 作为入口：
+根 README 是唯一总入口；每个 Part 有自己的根目录和简短 README。`training-infra/` 只负责训练，不再充当其他方向的父目录：
 
 ```text
 ReadBase/
-  README.md                                  # 首页：当前重点＋最近更新＋六个日常 Part＋按需面试
-  training-infra-roadmap/
-    README.md                                # 全库学习地图和文档使用方法
-    roadmaps/
-      foundations/README.md                  # Part I，拟新增
-      training/README.md                     # Part II，拟新增
-      inference/README.md                    # Part III，拟新增
-      rl/README.md                           # Part IV，拟新增
-      embodied/README.md                     # Part V，拟新增
-      30_day_plan.md                         # 既有基础补课路线，明确适用人群
-      90_day_plan.md                         # 既有系统训练路线，不默认为当前待办
-      yearly_plan.md                         # 既有长期能力路线，保留可复用部分
-    experiments/README.md                    # 复用为 Part VI，不新增重复入口
-    interview/README.md                      # Part VII，拟新增；统一聚合面试准备
-    topics/                                  # 技术正文：每个核心问题一个主要维护位置
+  README.md                                  # 当前重点＋最近更新＋Part 入口
+  KNOWLEDGE_GRAPH.md                          # 全库知识关系，不隶属训练
+  systems/README.md                          # Part I：硬件与系统基础
+  training-infra/README.md                   # Part II：训练系统
+  inference-infra/README.md                  # Part III：推理系统
+  rl-infra/README.md                         # Part IV：RL 与 Agent 系统
+  embodied-infra/README.md                   # Part V：具身模型与 Infra
+  practice/                                 # Part VI：工程实践
+    README.md
+    experiments/                            # A100 课程与实测
+    projects/                               # 学习项目及状态
+    playbooks/                              # 生产排障
+  interview/                                # Part VII：按需复习与准备
+    README.md
+    topics/                                 # 迁入既有专题题库
+  research/                                 # 共享来源与研究流程，不另算一个技术 Part
+    README.md
+    MASTER_READING_LIST.md                   # 全库材料索引
+    philosophy.md                           # 研究方法与知识生命周期
     papers/ / tech_reports/ / engineering_blogs/
-    tracking/ / reading_queue/ / learning_log/
-    projects/ / insights/ / playbooks/ / references/
-  private_resume/                             # 保留主文档、Coding、项目素材等旧路径
+    tracking/ / reading_queue/ / learning_log/ / insights/ / references/
+  assets/                                   # 全库共享资产
+  private_resume/                            # 保留主文档、Coding、素材与原附件路径
+  reading_inbox/                             # 既有个人阅读收件箱，保持原职责
+  docs/                                     # 既有设计与实施记录
 ```
 
-新增的五份学习 README 和一份面试 README 都是薄导航，不复制 `topics/`、不拥有独立扫描或队列；没有匹配内容的项写明“待建设”，不创建空目录或死链接。面试材料的“独立”指统一 Part 入口与使用场景，不为此搬迁文件或改动旧问题锚点。
+前五个技术 Part 的正文放各自的 `topics/`，专属图片按需放各自的 `assets/`；没有内容时不预建子目录。七份 Part README 都是薄导航，不复制正文、不各建扫描或队列。推理暂时只有其他章里的局部内容时，README 直接链接这些章节并标明缺口，不为凑目录拆出空教程。
+
+现有训练学习计划迁到 `training-infra/roadmaps/`，明确原有适用背景，不把它们冒充当前全库待办。当前学习方向由根 README 维护，具体任务由 `research/reading_queue/` 维护。`research/README.md` 只说明来源如何发现、精读、沉淀和验证，不再成为第二个全库首页。
+
+面试 Part 统一入口和题库归属；为保护既有考场链接，主文档、Coding、项目素材及简历附件继续保留 `private_resume/` 原路径。不是把该目录整体搬到 `interview/`，也不复制一份主文档。
 
 ### 3.3 硬件与系统底座：吸纳 ml-engineering
 
@@ -105,12 +116,12 @@ ReadBase/
 | 学习块 | 能回答的实际问题 | 参考入口 | 本地正文边界 |
 |---|---|---|---|
 | GPU 执行与性能口径 | 算力、HBM 带宽和容量分别限制什么？为什么标称 FLOPS 不等于模型吞吐？ | [Accelerators](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator)、[算力基准](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator/benchmarks) | 复用 [GPU 执行](../../../training-infra-roadmap/topics/transformer_engine.md#gpu-execution)和 [Roofline](../../../training-infra-roadmap/topics/transformer_engine.md#roofline)，补测量边界，不再复制 GPU 原理章 |
-| CPU、内存与拓扑 | NUMA 本地／远端访问、PCIe 路径、GPU–NIC 亲和怎样影响数据供给和通信？ | [CPU](https://github.com/stas00/ml-engineering/tree/master/compute/cpu)、[主存](https://github.com/stas00/ml-engineering/tree/master/compute/cpu-memory)、[Network](https://github.com/stas00/ml-engineering/tree/master/network) | 拟新增 `topics/hardware_topology.md`，统一描述硬件数据路径；不是各个术语各建一篇 |
+| CPU、内存与拓扑 | NUMA 本地／远端访问、PCIe 路径、GPU–NIC 亲和怎样影响数据供给和通信？ | [CPU](https://github.com/stas00/ml-engineering/tree/master/compute/cpu)、[主存](https://github.com/stas00/ml-engineering/tree/master/compute/cpu-memory)、[Network](https://github.com/stas00/ml-engineering/tree/master/network) | 拟新增 `systems/topics/hardware_topology.md`，统一描述硬件数据路径；不是各个术语各建一篇 |
 | 网络与分布式通信 | NVLink/NVSwitch、IB/RoCE、RDMA 和 NCCL 分别处于哪层？延迟／带宽为何随消息与拓扑变化？ | [Network](https://github.com/stas00/ml-engineering/tree/master/network)、[网络基准](https://github.com/stas00/ml-engineering/tree/master/network/benchmarks) | 硬件路径放新拓扑章；collective、algbw/busbw、overlap 继续在 [NCCL](../../../training-infra-roadmap/topics/nccl.md)，并行放置回链训练章 |
-| Host runtime 与数据 I/O | GPU 在等 worker、解码、H2D、磁盘还是系统资源？CPU 多进程、线程池与容器限制如何作用？ | [Storage](https://github.com/stas00/ml-engineering/tree/master/storage)、[训练性能](https://github.com/stas00/ml-engineering/tree/master/training/performance) | 拟新增 `topics/host_runtime_and_io.md`：Linux 进程/线程、affinity/cgroup、共享内存、page cache、pinned memory、文件布局与缓存基础 |
+| Host runtime 与数据 I/O | GPU 在等 worker、解码、H2D、磁盘还是系统资源？CPU 多进程、线程池与容器限制如何作用？ | [Storage](https://github.com/stas00/ml-engineering/tree/master/storage)、[训练性能](https://github.com/stas00/ml-engineering/tree/master/training/performance) | 拟新增 `systems/topics/host_runtime_and_io.md`：Linux 进程/线程、affinity/cgroup、共享内存、page cache、pinned memory、文件布局与缓存基础 |
 | 作业运行与排障 | 一个 rank 退出、另一个卡在 collective 时，怎样找到第一处异常？怎样安全复现？ | [Orchestration](https://github.com/stas00/ml-engineering/tree/master/orchestration)、[PyTorch Debug](https://github.com/stas00/ml-engineering/blob/master/debug/pytorch.md)、[Testing](https://github.com/stas00/ml-engineering/tree/master/testing) | 复用 [容错](../../../training-infra-roadmap/topics/fault_tolerance.md)和 [慢步排障](../../../training-infra-roadmap/playbooks/slow_step_debug.md)，补最小复现、rank 级证据、启动和退出链路 |
 
-拓扑章说明“字节经过哪些硬件边界”；Host/I/O 章说明“软件如何供给数据并占用资源”。两者是计划中的正文，批次 A 只建立导航与来源映射，不创建空教程。
+拓扑章说明“字节经过哪些硬件边界”；Host/I/O 章说明“软件如何供给数据并占用资源”。两者是计划中的正文，批次 A 迁移已有内容并建立导航与来源映射，不创建空教程。
 
 通用存储基础按**样本持续读取、checkpoint 突发写入、模型／环境启动读取**区分 workload，讨论吞吐、时延、IOPS、metadata、小文件与缓存；不预设一种文件系统覆盖全部场景。[Checkpointing](../../../training-infra-roadmap/topics/checkpointing.md)继续负责保存提交与恢复语义，具身数据章负责 episode/camera/timestamp 和视频随机窗口，两篇均回链通用 I/O，不复制其全文。
 
@@ -126,7 +137,54 @@ ReadBase/
 - 不默认采用上游的 SLURM 环境；理解 rank/进程、资源分配、容器和任务生命周期，实际 launcher 按可用平台选。旧教程中的路径和 API 先核对是否迁移，网络变量先对照对应 NCCL 版本。
 - 根许可文件为 [CC BY-SA 4.0](https://github.com/stas00/ml-engineering/blob/master/LICENSE-CC-BY-SA)。整理以自主问题分析、必要引用和原文链接为主；如复制／改编文本、图片或代码，逐项核对适用许可，保留作者、来源、许可及修改说明，并遵守适用的 ShareAlike 条件。脚本可能有单独许可头，不能只凭根 LICENSE 判断；本任务不整体改动 ReadBase 许可证。
 
-后续用一份 `engineering_blogs/ml_engineering_hardware_systems.md` 记录来源、选读章节、适用条件和本地知识落点，不逐章翻译。已确认属于历史的章节按原始月份 backfill；日期未核实的先留来源索引，不伪造首发时间或 frontier Accepted。近期真正改变工程判断的更新再按一般扫描规则筛选，不因引用该仓库就收录其每次提交。
+后续用一份 `research/engineering_blogs/ml_engineering_hardware_systems.md` 记录来源、选读章节、适用条件和本地知识落点，不逐章翻译。已确认属于历史的章节按原始月份 backfill；日期未核实的先留来源索引，不伪造首发时间或 frontier Accepted。近期真正改变工程判断的更新再按一般扫描规则筛选，不因引用该仓库就收录其每次提交。
+
+### 3.4 旧文件归属、迁移与兼容
+
+#### 唯一正文归属
+
+以下旧路径均相对 `training-infra-roadmap/`；新路径相对仓库根目录。首次迁移保留 basename，不顺便改题号、技术结论或拆分长章。
+
+| 旧文件／目录 | 唯一目标位置 | 边界 |
+|---|---|---|
+| `topics/nccl.md`、`flashattention.md`、`fp8.md`、`transformer_engine.md` | `systems/topics/`，保留各文件名 | 共享通信、kernel、精度和 GPU 执行；训练 recipe 不因此变成推理通用结论 |
+| `topics/distributed_training.md`、`data_parallelism.md`、`tensor_parallelism.md`、`pipeline_parallelism.md`、`sequence_parallelism.md`、`context_parallelism.md` | `training-infra/topics/` | 现有正文以训练的计算、通信与状态布局为主 |
+| `topics/zero.md`、`fsdp.md`、`moe.md`、`long_context_training.md`、`checkpointing.md`、`fault_tolerance.md` | `training-infra/topics/` | checkpoint 与容错保留训练状态恢复语义，不能与权重分发混为一谈 |
+| `topics/agentic_rl.md`、`rl_framework_selection.md`、`mopd.md` | `rl-infra/topics/` | 通用后训练／Agent 链路；其中 serving 局部内容允许被推理入口直接引用 |
+| `topics/agentic_for_embodied.md` | `embodied-infra/topics/agentic_for_embodied.md` | 高级具身系统蓝图；不冒充模型入门或已验证方案 |
+| `papers/`、`tech_reports/`、`engineering_blogs/` | `research/` 下同名目录 | 来源笔记只维护一份，保留其内部附件与子目录 |
+| `tracking/`、`reading_queue/`、`learning_log/`、`insights/`、`references/` | `research/` 下同名目录 | 移路径不改历史事实、扫描进度或阅读状态 |
+| `experiments/`、`projects/`、`playbooks/` | `practice/` 下同名目录 | 实验记录、项目状态和排障分别保留职责 |
+| `interview/*.md` | `interview/topics/` | 专题题库归新面试 Part；`private_resume/` 不在此迁移范围 |
+| `roadmaps/` | `training-infra/roadmaps/` | 原有 30/90/年度计划是训练成长路线，不自动改成全库计划 |
+| `KNOWLEDGE_GRAPH.md` | 根 `KNOWLEDGE_GRAPH.md` | 全库知识关系 |
+| `MASTER_READING_LIST.md`、`philosophy.md` | `research/` 下同名文件 | 全库材料索引、研究方法；全库定位在根 README，不再复制一个总首页 |
+| `assets/` | `assets/handbook/` | 整体保留内部层级和文件名，避免与根资产重名；共享图不复制到各 Part |
+| `README.md` | 拆分职责至根 README、`training-infra/README.md`、`research/README.md` | 旧 README 只保留迁移索引，不复制三个完整首页 |
+
+以上覆盖目前 20 篇技术专题。`inference-infra/` 首版提供有用的 README；独立 serving 正文待有具体内容再建设。既有混合章暂不拆分，例如 GPU 执行、CUDA Graph、Transformer Engine 保持在同一文件中，各方向直接链接对应锚点。
+
+迁移前先生成逐文件 `旧路径 → 唯一新路径 → 处理方式` 清单，作为批次 A 实施记录的一部分；以实际 Git 跟踪文件为准逐项覆盖，发现新增文件先定归属，不能用目录名前缀替换代替判断。处理方式仅为迁移、保留、导航重写或兼容入口，不无故删除资料。原有 root `assets/`、`private_resume/`、`reading_inbox/`、`docs/` 不整体迁移；现有临时导出文件不借机清理。
+
+#### 链接与资产
+
+1. 先按旧位置解析链接目标，再按映射计算新相对路径；同时处理正文内部、根入口、面试主文档和其他未移动文件的入链。保留所有既有显式锚点及用于外链的标题锚点，尤其 `gpu-execution`、`float-formats`、`parallel-folding` 和面试题号。
+2. 仓库内部使用相对 Markdown 链接；指向本仓库旧路径的 GitHub `blob/main`／`raw` 链接也要核对。源码引用、历史命令、固定 commit 链接和外部仓库路径不能误替换。适用的 HTML `href/src`、SVG 引用、JSON/CSV 路径同样检查。
+3. 旧图片目录整体迁到 `assets/handbook/`，只改引用路径，不重新生成原图或重复复制。现有根知识地图原位更新标签；将来新增专属图可放所属 Part 的 `assets/`，但同一资产只能有一个维护位置。
+4. 其他历史设计／计划中的旧路径作为历史叙述保留；实际可点击的本地链接可以修复，不能改写历史选择、日期与执行状态来伪装过去已经采用新结构。
+
+#### 旧入口与外部依赖
+
+- 保留 `training-infra-roadmap/README.md` 的简短迁移索引。面试主文档、Coding 的原路径与锚点不变；只更新它们指向被迁移专题的链接。
+- 旧专题入口至少为 `fsdp.md`、`moe.md`、`tensor_parallelism.md`、`transformer_engine.md`、`agentic_rl.md`、`rl_framework_selection.md` 和 `agentic_for_embodied.md` 保留迁移提示；保留各自既有显式锚点并指向新正文对应位置。清单检查发现其他已用于主要入口或外部书签的路径时，一并列入兼容清单。入口不保留全文、不再继续更新技术内容。
+- GitHub Markdown 的迁移提示不是 HTTP 自动重定向，也不能保证所有未知外部深链接自动跳转。仓库内链接直接更新到新路径；兼容入口仅帮助旧书签用户找到新位置，不使用符号链接冒充跳转。
+- 自动扫描等外部消费者如果仍引用旧 tracking／队列路径，必须在移动前查清读写入口并完成路径衔接；迁移提示不能兼容自动写入。此轮不修改定时任务。实施时若需改外部任务配置，先说明影响并确认；未解决前保留原账本为唯一真源，暂停该子项迁移、不宣称全部完成，不能让新旧两套 scan log 同时写入。
+
+#### 状态保护
+
+迁移前后对照 Source ID、First seen、扫描窗口、Accepted 数量、全局及分来源游标、覆盖缺口、Decision、生命周期、P0/P1/Done 和项目状态。允许修复链接，不把内容搬迁当作新发现、精读完成或实验验证。`reading_inbox/` 保留原来的个人收件箱状态，不与研究生命周期强行合并。
+
+迁移期间避免扫描任务或其他协作任务同时写相关目录；不擅自关闭用户任务。无法取得稳定快照时先停在迁移计划阶段并说明冲突。实施失败则先保留或恢复可读旧入口、修复未完成映射后再发布；不使用强制重置、删库或改写 Git 历史作为回退方式。
 
 ## 4. 首页、Part 与跳转规则
 
@@ -140,7 +198,7 @@ ReadBase/
 4. 日常学习 Part I–VI 的简短表格：解决什么问题、从哪里开始。
 5. 按需入口 Part VII：面试复习与准备；只保留一个简短入口，不在首页展开复习计划或题库。
 6. 常用入口：知识关系、资料索引、外部资料追踪、实验与排障。
-7. 简短维护原则；详细目录职责移至手册入口。
+7. 简短维护原则；研究工作流链接 `research/README.md`，不另建与首页重复的全库手册入口。
 
 不在首页同时堆放全部论文、完整研究工作流和历史扫描列表。保留 ReadBase 名称和既有面试文件路径。
 
@@ -154,18 +212,18 @@ ReadBase/
 - **继续阅读**：进阶材料按需展开，避免所有材料都标必读。
 - **返回与相邻 Part**：返回首页、返回学习地图、必要的跨 Part 链接。
 
-每篇被本批次触及的正文增加简短导航栏；不为了加返回链接一次性修改全仓旧笔记。
+被迁移的技术专题增加简短的所属 Part／首页导航；研究审计记录只修必要路径，不为了统一样式重写历史笔记。
 
 GitHub Markdown 的明确回链用于回到 Part 或首页；要回到刚才的精确滚动位置，使用浏览器后退。不开新网页控制台，不依赖本地预览服务或 JavaScript。
 
 ### 4.3 Part VII：面试时才打开的统一入口
 
-拟新增 `training-infra-roadmap/interview/README.md`，在一个页面内提供以下分组：
+拟新增根目录的 `interview/README.md`，在一个页面内提供以下分组：
 
 | 入口 | 内容落点与使用方式 |
 |---|---|
 | 面试主文档／现场速查 | [既有主文档](../../../private_resume/2026-08-llm-infra-interview-prep.md)，保留原有题号、锚点与考场导航 |
-| 按技术主题复习 | 既有 `interview/` 专题题库；从短答案回链 `topics/` 机制正文 |
+| 按技术主题复习 | 迁入 `interview/topics/` 的专题题库；从短答案回链各技术 Part 的机制正文 |
 | Coding／手撕代码 | [既有 Python 3 编程题库](../../../private_resume/2026-09-interview-coding.md)，不混入技术正文学习路径 |
 | 项目经历与最新素材 | [既有项目素材底稿](../../../private_resume/2026-08-xpeng-infra-resume-materials.md)和主文档的项目问题；标明事实、贡献边界和指标口径 |
 | 专项准备（可选） | 已有笔试／公司专项准备，标明历史适用背景，不替代通用主文档 |
@@ -176,12 +234,12 @@ Part VII 保留“快速复习 → 项目问答 → 技术追问 → Coding”�
 
 ### 4.4 最近更新：仓库变化，不是另一份资讯雷达
 
-根 README 是唯一的全库“最近更新”列表，使用显式锚点 `recent-updates`。手册、Part、Master List 与 Knowledge Graph 链接回这里，不重复维护全库滚动列表；各 Part 可以说明自己的内容覆盖，不另抄一份全局更新清单。
+根 README 是唯一的全库“最近更新”列表，使用显式锚点 `recent-updates`。Part、研究入口、Master List 与 Knowledge Graph 链接回这里，不重复维护全库滚动列表；各 Part 可以说明自己的内容覆盖，不另抄一份全局更新清单。
 
 每条使用 `文档更新日期｜类别／所属 Part｜新增或改变了什么｜直达链接`，按日期倒序，最多 5 条。同一主题同一批修改合并为一条；只收有阅读价值的新增或实质修改，不记录排版、改名、修链接等琐碎提交。首版从实际已提交内容中核对选取，不为凑满条目生成更新。
 
 - **知识内容**：新增／深化了哪个章节、论文解读、实验设计或排障方法，链接具体正文或章节。
-- **项目进展**：链接既有 `training-infra-roadmap/projects/.../STATUS.md` 的最近记录或实际里程碑，注明原记录截至日期；文档更新不意味着里程碑完成，旧状态也不能推断为当前运行事实。个人面试项目素材更新则链接对应素材／问答，并标明类别，不与实验项目混称。
+- **项目进展**：链接迁入 `practice/projects/.../STATUS.md` 的最近记录或实际里程碑，注明原记录截至日期；文档更新不意味着里程碑完成，旧状态也不能推断为当前运行事实。个人面试项目素材更新则链接对应素材／问答，并标明类别，不与实验项目混称。
 - **状态边界**：沿用来源里的“设计／待验证／实测”等标识；文档提交日期不替代项目发生日期、实验执行日期或原始材料发表日期。不在摘要中添加原文没有的结论。
 - **与 tracking 的区别**：tracking 回答外部出现了什么；最近更新回答仓库中现在新增了什么值得读。一份扫描报告可作为仓库更新，但不把报告中每条外部新闻搬到首页。
 - **维护方式**：本次有实质内容更新时一并调整首页条目并检查链接，随正文同批发布；历史通过仓库 Git 提交记录查询，不新增 changelog 文件、自动化或网站。
@@ -194,12 +252,12 @@ Part VII 保留“快速复习 → 项目问答 → 技术追问 → Coding”�
 |---|---|---|
 | 本阶段学习方向 | 根 README | Part 概括与其一致，不维护另一套全局优先级 |
 | 仓库最近实质更新 | 根 README 的“最近更新” | 其他导航回链；最多 5 条，直接链接来源正文 |
-| 当前具体阅读优先级 | `reading_queue/P0.md`、`P1.md` | 链接队列，不复制易过期的 P0 名单 |
-| 最新扫描与扫描状态 | `tracking/README.md`、`scan_log.md` | Master List/KG 链接稳定入口，不重复滚动列表 |
-| 一项技术的机制与判断 | 对应 `topics/` 正文 | Part 只摘要，面试题只保留必要速答 |
-| 来源证据 | papers/reports/blog notes 与原始材料 | topic 引用；来源核验不等于实验复现 |
-| 实验结果 | 对应实验记录 | topic 引用结果和边界，不抄一套不同数字 |
-| 学习项目进度 | 对应 `projects/.../STATUS.md` | 最近更新仅摘要实际变化，里程碑依原记录判断 |
+| 当前具体阅读优先级 | `research/reading_queue/P0.md`、`P1.md` | 链接队列，不复制易过期的 P0 名单 |
+| 最新扫描与扫描状态 | `research/tracking/README.md`、`scan_log.md` | Master List/KG 链接稳定入口，不重复滚动列表 |
+| 一项技术的机制与判断 | 对应技术 Part 的 `topics/` 正文 | Part 只摘要，面试题只保留必要速答 |
+| 来源证据 | `research/` 下 papers/reports/blog notes 与原始材料 | topic 引用；来源核验不等于实验复现 |
+| 实验结果 | `practice/experiments/` 对应记录 | topic 引用结果和边界，不抄一套不同数字 |
+| 学习项目进度 | `practice/projects/.../STATUS.md` | 最近更新仅摘要实际变化，里程碑依原记录判断 |
 | 面试表达与题库 | 既有面试主文档、专题题库和 Coding 文档 | Part VII 聚合；项目素材作为事实依据，技术机制回链 topic |
 
 内容完成程度使用“提纲／可阅读／需深化”等编辑描述；已有 `NEW → READING → ... → VERIFIED` 是材料生命周期。两者不混用，文件长不等于实验验证完成。
@@ -208,7 +266,7 @@ Part VII 保留“快速复习 → 项目问答 → 技术追问 → Coding”�
 
 ### 5.1 范围调整
 
-保留同一 `tracking/`、Source ID、scan log、backfill 和全局 P0/P1，不额外建立“具身新闻池”。
+将原 tracking 整体迁至 `research/tracking/`，保留同一 Source ID、scan log、backfill 和全局 P0/P1，不额外建立“具身新闻池”。位置变化不代表新建扫描账本；先通过 §3.4 的外部消费者检查，再切换唯一读写位置。
 
 | 方向 | 必须能进入扫描视野的变化 |
 |---|---|
@@ -239,13 +297,13 @@ Part VII 保留“快速复习 → 项目问答 → 技术追问 → Coding”�
 - Monthly 仍只汇总对应月份实际扫描、backfill 和阅读结果，不为新范围重写历史报告。
 - 新增追踪范围不等于补扫已完成；下次扫描须记录扩展生效时间及此前具身／推理覆盖缺口。旧材料单独走 backfill，或作为明示的补扫保留实际发布时间，不改旧游标伪装已经扫描。
 
-更新范围包括 AGENTS/CLAUDE 的相关定位与筛选条款、tracking README 和两类模板；不创建或修改任何 scheduler/automation。
+仓库内更新范围包括 AGENTS/CLAUDE 的定位、目录职责与筛选条款、`research/tracking/README.md` 和两类模板；未来扫描统一使用新路径。外部 scheduler/automation 的配置衔接遵循 §3.4，不在本轮规格编辑时修改，也不能在实际迁移时漏查。
 
 ## 6. 近期重点一：FSDP、FSDP2 与 ZeRO 的深入路径
 
 ### 6.1 正文组织
 
-现有 `topics/fsdp.md` 扩为共享的状态分片与训练后端章节；保留已有锚点和 Bridge 引用。`topics/zero.md` 保留 ZeRO 阶段速览与来源入口，并回链完整的状态账本和框架对照，不另维护一份重复教程。原理不在具身路径重复书写，具身只增加 workload 对照。
+现有 FSDP 正文迁到 `training-infra/topics/fsdp.md` 后，扩为共享的状态分片与训练后端章节；保留已有锚点和 Bridge 引用。`training-infra/topics/zero.md` 保留 ZeRO 阶段速览与来源入口，并回链完整的状态账本和框架对照，不另维护一份重复教程。原理不在具身路径重复书写，具身只增加 workload 对照。
 
 建议阅读顺序：
 
@@ -291,9 +349,9 @@ Part VII 保留“快速复习 → 项目问答 → 技术追问 → Coding”�
 
 ### 7.3 内容落点
 
-先按既有大纲完成 `topics/embodied_models_primer.md`；数据路径写入拟新增 `topics/embodied_data_pipeline.md`，以一个固定公开 episode 为例贯穿到训练 batch。
+先按既有大纲完成 `embodied-infra/topics/embodied_models_primer.md`；数据路径写入拟新增 `embodied-infra/topics/embodied_data_pipeline.md`，以一个固定公开 episode 为例贯穿到训练 batch。
 
-现有 `agentic_for_embodied.md` 保持高级系统蓝图身份，数据深入部分回链新章；不复制 FSDP 机制、通用 checkpoint 原理或已有 Agentic RL 调度全文。
+迁入 `embodied-infra/topics/agentic_for_embodied.md` 的现有正文保持高级系统蓝图身份，数据深入部分回链新章；不复制 FSDP 机制、通用 checkpoint 原理或已有 Agentic RL 调度全文。
 
 “存储优化”必须同时回答：采样分布、像素/时间误差、标签对齐是否改变。将 MP4 改成 JPEG 的结果不能全部归因 I/O，因为编码、空间与像素都可能变化。
 
@@ -363,28 +421,40 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 
 ### 8.5 实验文档组织
 
-第一批先新增一份 `experiments/a100_fsdp_io_lab.md` 维护课程、环境门槛和 E00–E08 的未执行实验卡，由既有 `experiments/README.md` 进入。开始某项实验后才建立该项结果/脚本目录，避免一次创建多套空文件。
+第一批先新增一份 `practice/experiments/a100_fsdp_io_lab.md` 维护课程、环境门槛和 E00–E08 的未执行实验卡，由迁入的 `practice/experiments/README.md` 进入，Part VI 总入口为 `practice/README.md`。开始某项实验后才建立该项结果/脚本目录，避免一次创建多套空文件。
 
 实验卡固定包含：问题、假设、前置条件、控制变量、资源上限、执行步骤、正确性门槛、指标、停止条件、实际结果、结论边界、回链。设计阶段“实际结果”明确写“未执行”，不能生成示例数字冒充实测。
 
 ## 9. 分批实施与文件清单
 
-### 批次 A：导航、规则与课程入口
+### 批次 A：物理迁移、导航、规则与课程入口
 
-本规格审阅后可单独编制实施计划，目标是不搬旧正文、让阅读入口和后续采集规则先一致。
+本规格审阅后编制一个有界迁移计划：先记录现状，再按 §3.4 移动已有资料、修复内外入链，最后重建导航与规则。迁移不伴随大范围技术内容重写。深度教程和 GPU 实验不进入该计划。
+
+执行顺序：
+
+1. **盘点**：确认 main／远端和协作状态，记录逐文件映射、兼容入口、旧链接基线、关键状态字段及外部自动读写依赖。
+2. **迁移**：按唯一归属移动正文和资产；保持文件名、既有锚点、附件内容及记录语义；全量修复受影响的入链／出链，而不是只检查新目录。
+3. **入口**：更新根首页、七个 Part、研究入口、全库知识关系和规则，新增 A100 未执行课程入口；保留必要的旧路径迁移提示。
+4. **验收发布**：核对记录守恒、链接及格式，人工沿典型阅读路径检查；准备完整、可用的提交后发布 main，不把断链中间态推到云端。
+
+外部消费者问题阻塞时不迁移对应账本；可先发布已通过验收的其他独立部分，但导航和规则必须如实指向账本实际位置，明确尚未完成的子项。不得先创建新账本再等待旧任务自然停止。
 
 | 文件或区域 | 改动 |
 |---|---|
-| 根 README、手册 README、philosophy | 更新定位、当前重点、六个日常 Part＋一个按需面试 Part；首页增加最近更新，去掉互相等待的 Phase 描述 |
-| `roadmaps/` 五份 Part README | 新增薄导航；Part I 显式包含硬件/系统底座和 ml-engineering 选读，只链接现有正文或明确标注待建设 |
-| `interview/README.md` | 新增 Part VII，聚合主文档、专题题库、Coding、项目素材和专项准备；不移动旧文档 |
-| 30/90/年度计划 | 明确既有基础路线身份，增加当前 Part 回链；不重写为另一套周待办 |
-| MASTER_READING_LIST、KNOWLEDGE_GRAPH | 分离材料索引与知识依赖，补硬件/系统、具身/推理路径，清理重复动态导航；ml-engineering 标为选读来源而非已消化全集 |
-| tracking README、frontier/monthly 模板 | 扩展范围、具身模型接受标准、Watch、覆盖缺口与去重规则 |
-| AGENTS、CLAUDE | 同步定位、目录职责、未来扫描范围及“实质内容更新同步首页摘要”规则，保留既有发布/来源核验约束 |
-| reading_queue README | 明确方向标签和全局 P0≤3；不凭结构调整改变材料阅读状态 |
-| experiments README、A100 lab | 增加未执行课程入口与实验卡，保留既有实验和状态 |
-| 根知识地图资产 | 检查旧 Phase 是否冲突；若冲突，在原资产内更新标签/关系并验证，不另开网站 |
+| 根 README、`research/README.md`、`research/philosophy.md` | 更新全库定位和研究职责；首页增加当前重点、最近更新、六个日常 Part＋按需面试，去掉相互等待的 Phase 描述 |
+| 五个技术 Part 的 README 与 topics | 按 §3.4 迁移正文、建立薄导航；Part I 显式包含硬件/系统和 ml-engineering 选读；缺少内容的项标待建设、不造空章 |
+| `practice/README.md` 及三个子目录 | 聚合实验、项目和排障；保持记录与结果边界 |
+| `interview/README.md`、`interview/topics/` | 迁入专题题库；聚合主文档、Coding、素材和专项准备，后四者保留原有 private_resume 路径 |
+| `training-infra/roadmaps/` | 迁入 30/90/年度训练路线，增加 Part 回链；不重写为另一套全局周待办 |
+| 根 KNOWLEDGE_GRAPH、`research/MASTER_READING_LIST.md` | 分离知识关系与材料索引，补跨 Part 路径，清理重复动态导航；ml-engineering 标为选读来源而非已消化全集 |
+| `research/` 来源笔记与研究账本 | 原记录整体迁移、修复链接；无事实依据不改状态或历史计数 |
+| `research/tracking/` README、frontier/monthly 模板 | 扩展范围、具身模型接受标准、Watch、覆盖缺口与去重规则 |
+| AGENTS、CLAUDE | 同步新目录职责、唯一研究流程、未来扫描范围和更新摘要规则；取消每个 Part 各维护完整索引／队列的冲突表述，保留来源核验和发布要求 |
+| `research/reading_queue/README.md` | 明确方向标签和全局当前 P0 目标≤3；现有超额项不在迁移时自动移除或改状态，后续单独收敛 |
+| `practice/experiments/` README、A100 lab | 增加未执行课程入口与实验卡，保留既有实验和状态 |
+| 共享资产与旧入口 | 旧资产迁入 `assets/handbook/`；根知识地图原位校正标签／关系；旧 README 和必要兼容页仅链接新位置，不另开网站 |
+| 未移动文件中的相关入链 | 包括 private_resume 等指向旧专题的链接；只改必要引用，不重新发布未经授权的个人资料 |
 
 本批次不直接删除或重排在读 P0 条目；后续当前学习队列调整须保留已有进度并说明转移去向，不把降优先级误记为读完。
 
@@ -392,7 +462,7 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 
 分别验收：具身模型 primer → FSDP/ZeRO 深入 → episode 到 batch 的数据路径。每项遵守来源核验、正文唯一维护位置和双向链接规则；补正文时同步 Part 的“待建设”状态。
 
-硬件／系统补课按需穿插：建设 §3.3 的两篇共享正文、一份来源选读笔记，并补齐 `slow_step_debug.md` 的证据、命令与验证；不是把整本 ml-engineering 纳入同一实施任务。读取链路优先支撑具身 I/O，网络链路优先支撑 FSDP 的 E02/E06。
+硬件／系统补课按需穿插：建设 §3.3 的两篇 systems 正文、一份 research 来源选读笔记，并补齐 `practice/playbooks/slow_step_debug.md` 的证据、命令与验证；不是把整本 ml-engineering 纳入同一实施任务。读取链路优先支撑具身 I/O，网络链路优先支撑 FSDP 的 E02/E06。
 
 推理入口首版可指向现有 RL 选型章中的 serving 内容和 CUDA Graph 等章节，但必须承认是局部覆盖，不称已经拥有完整推理手册。独立推理正文根据后续研究问题建设，迁移时保留旧锚点或回链。
 
@@ -407,19 +477,21 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 ### 结构与导航
 
 - 首页可直接进入六个日常 Part 和一个独立的按需面试 Part；由 Part 到主正文通常再点击一次。
-- 每个 Part 明确阅读顺序、前置知识、已有内容与缺口；返回首页和学习地图链接有效。
+- 七个 Part 物理并列，`training-infra/` 仅维护训练；旧父目录只留下明确列入清单的兼容入口，没有另一套可继续编辑的正文或账本。
+- 日常 Part I–VI 明确阅读顺序、前置知识、已有内容与缺口；Part VII 按 §4.3 提供面试场景导航。各入口返回首页和学习地图的链接有效。
 - FSDP/ZeRO、通信、checkpoint 等公共机制没有产生不同方向的重复全文。
 - 面试主文档路径及已有问题锚点保留，不引入公司定制复习作为学习主线。
 - Part VII 能找到主文档、专题题库、Coding、项目素材和专项准备；日常学习无需经过面试准备。
 - 首页最近更新最多 5 条，内容和日期能追溯到实际提交及正文；包含项目更新时不得把计划写成完成或误用项目发生日期。
 - 全库最近更新只有首页一份；项目状态、个人素材、实验结果和外部 tracking 各保留原有职责，不新增重复正文。
-- Part I 能沿“硬件路径 → Host/IO → GPU 执行 → 通信 → 实验”查找知识；不复制既有 GPU/NCCL/checkpoint 正文，来源选读不冒充已完成教材。
+- Part I 能沿“硬件路径 → Host/IO → GPU 执行 → 通信 → 实验”查找知识；批次 A 的前两项允许先提供来源选读与待建设标识，完整新章在批次 B 验收。不复制既有 GPU/NCCL/checkpoint 正文，来源选读不冒充已完成教材。
 - 不把具身等同 RL，不把推理仅当 rollout backend，不默认“小模型必须用 FSDP”。
 
 ### 追踪与证据
 
 - 新规则覆盖训练、独立推理、RL、具身模型和具身系统；模型学习价值可以独立构成阅读理由。
-- Watch 重复引用不重复计数；历史 scan、月报、Accepted 数量与游标不因结构升级改变。
+- Watch 重复引用不重复计数；历史 scan、月报、Accepted 数量、全局及分来源游标、覆盖缺口不因结构升级改变，有迁移前后对照证据。
+- 扫描消费者与账本路径一致，不存在新旧目录同时写入；外部依赖未核实或未完成衔接时明确列为迁移未完成项。
 - 原有在读状态未被批量完成；来源核验、教程完成与实验验证严格区分。
 
 ### 实验与发布
@@ -427,12 +499,17 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 - A100 课程有正确性门槛、资源/环境前置项、停止条件与未执行标识。
 - E00 明确分开只读环境画像和产生负载的微基准；社区参数、硬件规格和实测结果区分，引用/改编保留对应来源及许可。
 - 不存在未经授权的作业启动、环境安装、数据下载、共享缓存清理或 checkpoint 覆盖。
-- 修改范围内 Markdown 路径、锚点和图片有效；如修改 SVG，检查 XML 与实际布局。
+- 逐文件映射覆盖全部待迁移 Git 跟踪文件，唯一目标无重名冲突；只迁移的二进制附件前后内容哈希一致，正文 diff 只包含获准的导航／规则和必要路径修改。
+- 检查全部受影响 Markdown 路径、锚点、图片及适用的 HTML/SVG/JSON/CSV 引用，包括未移动文件的入链；没有新增断链，已有断链单独列出，不用全库早已存在的问题掩盖本次结果。
+- 检查旧路径残留，逐项区分兼容页、历史叙述、固定 commit 引用和漏改的活跃入口；不得简单把搜索结果清零当作成功。
+- 如修改 SVG，检查 XML 与实际布局；JSON/CSV 可解析且列结构不变。手动验证“首页→FSDP→实验→返回”“首页→具身→共享系统”“面试主文档→TP/MoE→返回”等路径。
 - 发布前查看工作区、fetch origin/main，保护用户及其他任务的未提交改动；默认只提交本任务文件到 main，不新建远端分支或 PR。若分支保护强制要求 PR，停止直接发布并说明限制、请求方向，不绕过保护规则。
 - 与本任务无关的既有或并发修改不覆盖、不暂存、不代为发布。
 
 ## 11. 本轮实际交付状态
 
-本轮只修订这份结构与课程规格，已纳入独立的面试 Part、首页最近更新、ml-engineering 硬件/系统选材和 E00 设计。参考来源已做针对性核对，但没有精读整本参考书、复制外部仓库、执行全量 frontier scan、改动主 README/Part/队列/追踪规则/实验入口，也没有访问 A100 集群或运行 GPU 实验。
+本轮只修订这份结构与课程规格，已将原逻辑导航方案替换为根目录并列的物理归属，并补齐 20 篇专题的去向、共享研究目录、资产路径、旧入口兼容和迁移验收。保留独立面试 Part、首页最近更新、ml-engineering 选材和 E00 设计。
+
+尚未移动正式文档、修改主 README/Part/队列/追踪规则/实验入口或检查外部自动任务配置；没有精读整本参考书、复制外部仓库、执行新一轮 frontier scan，也没有访问 A100 集群或运行 GPU 实验。
 
 后续顺序：用户审阅本规格 → 为批次 A 制定实施计划并落地 → 分别深化批次 B 内容 → 根据环境与授权实施批次 C 实验。
