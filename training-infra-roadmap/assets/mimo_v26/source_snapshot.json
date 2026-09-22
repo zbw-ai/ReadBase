@@ -1,0 +1,491 @@
+{
+  "recorded_at_utc": "2026-09-22T07:04:32.961520+00:00",
+  "scope": "Targeted source verification; not a frontier scan. Official values are author-reported; no training reproduced.",
+  "reports": [
+    {
+      "title": "CodeMidas: Scaling Agentic Coding RL Environments from Code Itself",
+      "url": "https://arxiv.org/abs/2609.22068v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.22068v1",
+      "citation_metadata": [
+        [
+          "title",
+          "CodeMidas: Scaling Agentic Coding RL Environments from Code Itself"
+        ],
+        [
+          "author",
+          "Ye, Bowen"
+        ],
+        [
+          "author",
+          "Li, Lei"
+        ],
+        [
+          "author",
+          "Li, Shicheng"
+        ],
+        [
+          "author",
+          "Yue, Zihao"
+        ],
+        [
+          "author",
+          "Zhang, Linghao"
+        ],
+        [
+          "author",
+          "Lv, Hanglong"
+        ],
+        [
+          "author",
+          "Liu, Yuanxin"
+        ],
+        [
+          "author",
+          "Ma, Wenhan"
+        ],
+        [
+          "author",
+          "Tian, Hao"
+        ],
+        [
+          "author",
+          "Li, Rang"
+        ],
+        [
+          "author",
+          "Dong, Jinhao"
+        ],
+        [
+          "author",
+          "Zhao, Yikai"
+        ],
+        [
+          "author",
+          "Deng, Xiangwei"
+        ],
+        [
+          "author",
+          "Zhang, Hailin"
+        ],
+        [
+          "author",
+          "Zhao, Liang"
+        ],
+        [
+          "author",
+          "Liu, Qi"
+        ],
+        [
+          "author",
+          "Kong, Lingpeng"
+        ],
+        [
+          "author",
+          "Yang, Tong"
+        ],
+        [
+          "author",
+          "Luo, Fuli"
+        ],
+        [
+          "date",
+          "2026/09/18"
+        ]
+      ],
+      "sha256": "4410d814a207002f58c8f2c1073121c2c292f8659ca09a8020bceeedc50e91ba"
+    },
+    {
+      "title": "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement",
+      "author": "LLM-Core Xiaomi",
+      "release_date": "2026-09-22",
+      "release_date_source": "https://mimo.mi.com/docs/zh-CN/news/latest/v2-6",
+      "repository_revision": "73875d00b30a89ef8cc353a0b60b0e9f9561952d",
+      "pdf_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/resolve/main/MiMo_V2_6_technical_report.pdf",
+      "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "pinned_pdf_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/resolve/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf",
+      "pinned_file_hash_matches_read_file": true
+    }
+  ],
+  "dashboard": {
+    "source_urls": {
+      "pro": "https://mimo.xiaomi.com/rl/api/status?run=pro",
+      "flash": "https://mimo.xiaomi.com/rl/api/status?run=flash"
+    },
+    "status": {
+      "pro": {
+        "run": {
+          "key": "pro",
+          "label": "mimo-v2.6-pro",
+          "start": 1789468339.334,
+          "end": 1789927300.953,
+          "mode": "ended"
+        },
+        "clock": {
+          "now": 1790060172.741909
+        },
+        "version": "3-5513.30.15.30",
+        "cost": {
+          "rate_per_s": 5.71,
+          "so_far": 2620670.84448976
+        },
+        "step": {
+          "last": 30,
+          "last_wall": 1789926408.4091287,
+          "since": 892.5438714027405,
+          "expected": 16711.0,
+          "progress": null,
+          "phase": null,
+          "gen_frac": 0.5417027865112327,
+          "restarted_at": null
+        },
+        "totals": {
+          "tokens_step": 3431370000.0,
+          "trained_step": 25088.0,
+          "sandboxes_step": 11180.0,
+          "prompts_per_step": 1568.0,
+          "tokens_cum": 75004390000.0,
+          "trained_cum": 752640.0,
+          "sandboxes_cum": 3560844.0,
+          "restarts": 14
+        },
+        "headline": {
+          "tag": "dynsam/avg@n",
+          "last": 0.633138,
+          "prev": 0.622112,
+          "first": 0.564662,
+          "first_step": 1
+        }
+      },
+      "flash": {
+        "run": {
+          "key": "flash",
+          "label": "mimo-v2.6-flash",
+          "start": 1789485389.264,
+          "end": 1789784529.264,
+          "mode": "ended"
+        },
+        "clock": {
+          "now": 1790060172.7742288
+        },
+        "version": "3-5513.32.6.28",
+        "cost": {
+          "rate_per_s": 2.855,
+          "so_far": 854044.7
+        },
+        "step": {
+          "last": 30,
+          "last_wall": 1789779870.257751,
+          "since": 4659.006248950958,
+          "expected": 12066.1,
+          "progress": null,
+          "phase": null,
+          "gen_frac": 0.5172568827262272,
+          "restarted_at": null
+        },
+        "totals": {
+          "tokens_step": 3695980000.0,
+          "trained_step": 25088.0,
+          "sandboxes_step": 170368.0,
+          "prompts_per_step": 1568.0,
+          "tokens_cum": 81397700000.0,
+          "trained_cum": 752640.0,
+          "sandboxes_cum": 6859919.0,
+          "restarts": 5
+        },
+        "headline": {
+          "tag": "dynsam/avg@n",
+          "last": 0.643526,
+          "prev": 0.662291,
+          "first": 0.513693,
+          "first_step": 1
+        }
+      }
+    },
+    "benchmarks_url": "https://mimo.xiaomi.com/rl/api/benchmarks",
+    "benchmarks": {
+      "benchmarks": [
+        {
+          "key": "deepswe",
+          "title": "DeepSWE v1.1",
+          "note": "mini-swe-agent, avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 48.67,
+              "2": 53.1,
+              "3": 56.78,
+              "4": 54.03,
+              "5": 57.23,
+              "6": 54.57,
+              "8": 57.08,
+              "10": 60.18,
+              "11": 54.13,
+              "12": 60.77,
+              "13": 57.52,
+              "14": 59.59,
+              "15": 60.77,
+              "16": 63.86,
+              "17": 58.11,
+              "18": 64.01,
+              "19": 61.65,
+              "20": 63.72,
+              "21": 59.59,
+              "22": 64.01,
+              "23": 61.36,
+              "24": 65.78,
+              "25": 64.9,
+              "26": 66.08,
+              "27": 66.08,
+              "28": 67.86,
+              "29": 65.78,
+              "30": 65.68
+            },
+            "pro": {
+              "1": 58.41,
+              "2": 56.25,
+              "3": 58.41,
+              "4": 60.47,
+              "5": 59.59,
+              "6": 58.55,
+              "7": 57.44,
+              "8": 62.24,
+              "10": 63.72,
+              "11": 65.78,
+              "12": 65.97,
+              "13": 63.27,
+              "14": 64.6,
+              "15": 63.42,
+              "16": 65.18,
+              "17": 66.37,
+              "18": 67.46,
+              "19": 67.95,
+              "20": 68.05,
+              "21": 68.15,
+              "22": 70.92,
+              "23": 70.36,
+              "24": 69.35,
+              "25": 68.56,
+              "26": 72.57,
+              "27": 69.54,
+              "28": 68.25,
+              "29": 71.09,
+              "30": 72.57
+            }
+          }
+        },
+        {
+          "key": "inhouse-coding",
+          "title": "In-house Coding Bench",
+          "note": "avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 53.83,
+              "2": 54.69,
+              "3": 55.02,
+              "4": 55.34,
+              "5": 56.41,
+              "6": 56.5,
+              "8": 57.47,
+              "10": 58.23,
+              "11": 57.45,
+              "12": 59.22,
+              "13": 58.81,
+              "14": 59.19,
+              "15": 58.96,
+              "16": 60.34,
+              "17": 59.96,
+              "18": 60.92,
+              "19": 61.09,
+              "20": 61.28,
+              "21": 61.33,
+              "22": 61.02,
+              "23": 61.53,
+              "24": 62.28,
+              "25": 61.93,
+              "26": 62.19,
+              "27": 62.49,
+              "28": 62.91,
+              "29": 62.47,
+              "30": 62.87
+            },
+            "pro": {
+              "1": 57.54,
+              "2": 57.2,
+              "3": 57.26,
+              "4": 58.9,
+              "5": 58.74,
+              "6": 59.13,
+              "7": 59.23,
+              "8": 59.25,
+              "9": 60.73,
+              "10": 61.38,
+              "11": 61.58,
+              "12": 61.64,
+              "13": 62.54,
+              "14": 62.54,
+              "15": 62.26,
+              "16": 61.68,
+              "18": 63.67,
+              "20": 64.62,
+              "21": 64.45,
+              "22": 64.44,
+              "23": 64.73,
+              "24": 64.41,
+              "25": 65.14,
+              "26": 64.39,
+              "27": 65.1,
+              "28": 64.84,
+              "29": 65.43
+            }
+          }
+        },
+        {
+          "key": "automation",
+          "title": "AutomationBench v1.0.6",
+          "note": "avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 44.8,
+              "2": 44.7,
+              "3": 44.7,
+              "4": 45.4,
+              "5": 45.8,
+              "6": 45.6,
+              "7": 46.6,
+              "8": 47.4,
+              "9": 47.6,
+              "10": 47.6,
+              "11": 48.6,
+              "12": 48.6,
+              "13": 48.2,
+              "14": 48.5,
+              "15": 49.9,
+              "16": 49.4,
+              "17": 50.1,
+              "18": 50.4,
+              "19": 50.8,
+              "20": 50.2,
+              "21": 49.9,
+              "22": 50.8,
+              "23": 51.2,
+              "24": 52.3,
+              "25": 51.6,
+              "26": 52.4,
+              "27": 52.2,
+              "28": 52.3,
+              "29": 52.8,
+              "30": 52.7
+            },
+            "pro": {
+              "1": 45.2,
+              "2": 45.1,
+              "3": 45.9,
+              "4": 45.8,
+              "5": 46.2,
+              "6": 47.1,
+              "7": 46.3,
+              "8": 47.7,
+              "9": 47.2,
+              "10": 47.8,
+              "11": 50.1,
+              "12": 48.9,
+              "13": 49.1,
+              "14": 49.8,
+              "15": 50.7,
+              "16": 49.8,
+              "17": 51.4,
+              "18": 50.7,
+              "19": 50.5,
+              "20": 50.4,
+              "21": 51.4,
+              "22": 51.0,
+              "23": 52.1,
+              "24": 51.9,
+              "26": 51.3,
+              "29": 53.1
+            }
+          }
+        }
+      ]
+    },
+    "notices_url": "https://mimo.xiaomi.com/rl/api/notices",
+    "notices": {
+      "notices": [
+        {
+          "id": "n-6b9c4a",
+          "t": 1789812866.861832,
+          "text": "we filtered out tasks that are relatively easy for the current pro model.",
+          "run": null
+        },
+        {
+          "id": "n-4e29eb",
+          "t": 1789703382.8892667,
+          "text": "the pro run restarted at step 17 due to a GPU OOM issue caused by expert load imbalance. we have adjusted the training parallelism strategy.",
+          "run": null
+        },
+        {
+          "id": "n-15ac72",
+          "t": 1789647611.047444,
+          "text": "there was a network connectivity issue between the pro training cluster and the grader deployment. we have restarted the run. we also removed the cyber dataset from the upcoming pro run, since we observed some bad patterns in the rollout logs.",
+          "run": null
+        },
+        {
+          "id": "n-b60f90",
+          "t": 1789612058.9304461,
+          "text": "we restarted the flash run from step 15. reason: a type of infra error on one of datasets was not correctly detected over the past ~3 hours.",
+          "run": null
+        },
+        {
+          "id": "n-92030c",
+          "t": 1789589280.3782058,
+          "text": "the mimo-v2.6-pro run is restarting due to a vram issue on one node.",
+          "run": null
+        },
+        {
+          "id": "n-5ef2b1",
+          "t": 1789581497.4956336,
+          "text": "we have updated the latest deepswe results for flash step 12 & pro step 8. we will keep posting as the offline evaluation results come out.",
+          "run": null
+        }
+      ]
+    },
+    "metric_definitions": {
+      "dynsam/avg@n": "mean pass rate: for each prompt sampled this step, the fraction of its n attempts that succeed, averaged over prompts",
+      "dynsam/avg@n_no_infra": "avg@n with attempts that failed for infrastructure reasons excluded",
+      "critic/rewards/mean": "mean reward over trajectories trained on this step",
+      "actor/entropy_loss": "mean per-token entropy of the policy",
+      "actor/pg_loss": "clipped policy-gradient objective",
+      "actor/grad_norm": "global gradient norm before clipping",
+      "train_infer_diff/new_infer/kl": "KL between inference-engine and trainer log-probs on the same tokens",
+      "ctx_response_length/mean": "tokens generated per trajectory",
+      "dynsam/agg_turn/mean": "agent turns per trajectory",
+      "perf/total_num_tokens": "tokens trained on this step",
+      "timing_s/step": "wall-clock of the whole step",
+      "timing_s/outer_gen": "wall-clock of rollout generation",
+      "timing_s/trainer_ops": "wall-clock of the trainer",
+      "dynsam/passrate/zero": "share of prompts where no attempt succeeded",
+      "dynsam/passrate/one": "share of prompts where every attempt succeeded",
+      "dynsam/infra_error/seq_rate": "share of sequences lost to infrastructure failures",
+      "env/active": "sandbox environments in flight",
+      "partial/avg_staleness": "policy versions between sampling and training, on average",
+      "dynsam/num_measurable": "prompts with a measurable pass rate this step; per data source under dynsam/<source>/num_measurable",
+      "dynsam/passrate/hist9_ratio": "share of prompts by pass rate, in nine bins from none solved to all solved",
+      "train/harness/*/training/rollouts": "rollouts in the training batch, per agent harness",
+      "ctx_total_length/mean": "total context length per trajectory (prompt + response), in tokens"
+    }
+  },
+  "figure_excerpts": [
+    {
+      "file": "codemidas_pipeline.png",
+      "source": "CodeMidas v1, Figure 1, PDF page 4",
+      "processing": "Rasterized figure excerpt; no change to figure content"
+    },
+    {
+      "file": "rl_architecture.png",
+      "source": "MiMo-V2.6 technical report, Figure 14, PDF page 28",
+      "processing": "Rasterized figure excerpt; no change to figure content"
+    }
+  ]
+}

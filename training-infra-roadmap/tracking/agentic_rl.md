@@ -33,6 +33,23 @@
 
 ## Backlog
 
+<a id="mimo-v26-research"></a>
+
+## 2026-09-22：MiMo-V2.6 / CodeMidas 定向研究
+
+用户指定的专题精读，非全量 frontier scan；不改变 [scan_log](scan_log.md) 的覆盖游标。两项都是 9 月新材料，本文完成来源核验和知识沉淀；后续全量 scan 按 Source ID 去重并引用本记录。
+
+| Source ID / First seen | 来源与原始时间 | Impact / Decision / Status | Reason / 一句话价值 / 下一步 |
+|---|---|---|---|
+| arxiv:2609.22068v1 / 2026-09-22 | [CodeMidas](https://arxiv.org/abs/2609.22068v1)，paper，Bowen Ye、Lei Li、Shicheng Li 等；2026-09-18 17:55:17 UTC | ★★★★★ / Deep Dive / DIGESTED | 从源码构造环境并审核 verifier 误判；补环境供给与奖励可靠性判断；执行环境验收实验 |
+| hf:XiaomiMiMo/MiMo-V2.6-Pro-RL:MiMo_V2_6_technical_report.pdf / 2026-09-22 | [MiMo-V2.6 报告](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)，technical report，LLM-Core Xiaomi；随 2026-09-22 发布公开；辅证为[官方直播](https://mimo.xiaomi.com/rl/) | ★★★★★ / Deep Dive / DIGESTED | 披露 grader、混合任务调度、训推一致性和 OOM 恢复边界；补 scale-backed 工业证据；执行 Sample Mixer / 冷启动验证 |
+
+- 核验范围：CodeMidas arXiv title / 19 authors / citation date、PDF 方法与结果；MiMo PDF 标题署名、官方发布日期、直播 status/benchmarks/notices；[来源快照](../assets/mimo_v26/source_snapshot.json)。
+- 工程维度：environment、reward、rollout、scheduler、data/trajectory path、training、checkpoint/recovery、inference backend；对 AReaL 可迁移，但未实施。
+- 相关主题：[Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)、[MoE](../topics/moe.md)、[Long Context](../topics/long_context_training.md)。
+- 输出：[团队分享报告](../tech_reports/mimo_v26.md)、[P1](../reading_queue/P1.md#mimo-v26-reading)、[实验计划](../experiments/mimo_v26_environment_and_mixer.md)。DIGESTED 表示已形成系统判断，不表示实验 VERIFIED。
+- 覆盖边界：专题材料精读；没有执行四厂商/HF/RL framework 全量扫描，不补填其 watch 结论。
+
 ## 2026-06-28
 
 ### AReaL: A Large-Scale Asynchronous RL System

@@ -283,6 +283,8 @@ flowchart LR
 
 ## 2026-09：RL 状态边界学习闭环
 
+[MiMo-V2.6 / CodeMidas 分享报告](tech_reports/mimo_v26.md) ↔ [环境与实际消费配比](topics/agentic_rl.md#mimo-v26-environment-contract) ↔ [环境验收和 Sample Mixer 实验](experiments/mimo_v26_environment_and_mixer.md) ↔ [可信样本供给判断](insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。来源与阅读状态见 [定向记录](tracking/agentic_rl.md#mimo-v26-research) / [P1](reading_queue/P1.md#mimo-v26-reading)；未运行实验。
+
 [本轮信号](tracking/frontier_scan_2026-09-16.md) → [P1 阅读组合](reading_queue/P1.md#rl-state-boundaries-reading) → [Agentic RL 状态边界](topics/agentic_rl.md#rl-state-boundaries) → [故障注入验证计划](experiments/rl_state_boundaries.md) → [9 月学习记录](learning_log/2026/2026-09.md)。
 
 当前只完成来源核验与验证设计；没有运行故障注入，不能标记 VERIFIED。

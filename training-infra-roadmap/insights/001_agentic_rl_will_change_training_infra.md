@@ -64,3 +64,13 @@ OpenRLHF / DeepSpeed-Chat 解释了早期 RLHF 为什么已经是多模型、多
 ## 结论
 
 Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁能把 rollout、verifier、training、checkpoint 和 observability 做成稳定闭环，谁才真正拥有可扩展的 reasoning/agent post-training 能力。
+
+<a id="mimo-v26-evidence"></a>
+
+## 2026-09-22 工业证据：可信样本供给需要环境与调度共同保证
+
+[MiMo-V2.6 / CodeMidas 调研](../tech_reports/mimo_v26.md)补充了两类证据：[CodeMidas](https://arxiv.org/html/2609.22068v1) 的质量筛选实验支持环境可靠性比原始任务数更值得投入；[V2.6 报告 §6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)说明 source 的耗时和接受率差异会影响混合训练的数据供给。
+
+**我的推断：**下一阶段平台优化应联合衡量 reward 可信度、实际消费配比、freshness 与成本。只优化 tokens/s，可能更快地产生错误或被丢弃的样本；只增加 task 数，可能同时扩大 verifier 噪声。配置中的 sampling ratio 也必须在 accepted / consumed 两个边界验收。
+
+证据限制：CodeMidas 没有分离每个清洗步骤的因果贡献；V2.6 的调度图包含模拟，生产大 run 还有人工数据干预，不能把它们合并成单因素 scaling 证明。已将判断写入 [Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)，下一步是 [分阶段实验](../experiments/mimo_v26_environment_and_mixer.md)，目前未 VERIFIED。

@@ -232,6 +232,8 @@
 
 ## 8. Agentic RL / Rollout Infra
 
+团队分享：[MiMo-V2.6 / CodeMidas：从环境工厂到大规模 Agentic RL](tech_reports/mimo_v26.md)，串联 [环境与消费配比契约](topics/agentic_rl.md#mimo-v26-environment-contract)、[验证计划](experiments/mimo_v26_environment_and_mixer.md) 与 [P1 精读记录](reading_queue/P1.md#mimo-v26-reading)。已核验原报告和直播指标，尚未复现。
+
 定向精读：[GLM Infra Agent 与 RSI 证据评估](engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md)，配合 [Agentic RL](topics/agentic_rl.md) 阅读。下一步执行报告中的验证计划，当前未复现。
 
 | 顺序 | 材料 | 仓库笔记 | 关注点 |

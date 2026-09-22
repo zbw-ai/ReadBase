@@ -928,6 +928,24 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 - [AReaL v2.1 Async Guide](https://github.com/areal-project/AReaL/blob/v2.1.0/docs/en/algorithms/async.md)：policy version、off-policyness 与 partial rollout。
 - [verl v0.9.0 release](https://github.com/verl-project/verl/releases/tag/v0.9.0)：V1 trainer、streaming dataloader、staleness control 与 Agentic RL 的当前版本边界。
 
+<a id="mimo-v26-environment-contract"></a>
+
+## MiMo-V2.6：环境验收与实际消费配比是一套训练契约
+
+2026-09-22 定向精读：[MiMo-V2.6 / CodeMidas 分享报告](../tech_reports/mimo_v26.md)。[CodeMidas](https://arxiv.org/html/2609.22068v1) 从已有功能构造规格、开发起点与 hidden verifier；[MiMo-V2.6 §6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf) 将任务接受率、rollout 耗时与消费配比共同纳入 Sample Mixer。数字为作者报告，本仓库尚未复现。
+
+**问题边界：**可运行环境不必然提供正确 reward；按比例投递也不必然按比例训练。若某 source 又慢又容易被过滤，scheduler 不作校正，配置的训练目标会在运行中发生偏移。
+
+**机制与配置建议（本仓库推断）：**以 task/env/verifier/harness 版本标识样本；将 TASK_FAIL 与 INFRA_ERROR 分离；按 source 的目标保留量 `B_i`、接受率 `r_i` 和耗时 `t_i` 估计需求，所需并发大致随 `t_i × B_i/r_i` 增长，并加全局预算、上限和健康检查。用 consumed distribution 验证目标，而非只统计 submitted distribution。
+
+**生产陷阱：**冷启动时短轨迹先完成，source-only 均值会低估同 source 下长 harness 的 KV 占用；冻结 MoE router 也不能排除 micro-batch 内 EP rank 的极端负载。总池容量、单节点 packing RSS、每层 expert 峰值都需单独观测。
+
+**排查顺序：**先核验 env/grader 健康和 reward 版本，再对比 submitted → completed → accepted → consumed 各阶段配比，随后检查耗时分布、harness 分层、staleness 淘汰和 KV/host 高水位。不要在 grader 出故障时因接受率下降自动扩大十倍并发。
+
+**相邻系统：**环境供应连接 dataset lifecycle，grader 连接奖励可靠性，Sample Mixer 连接 admission/backpressure，replay 连接 checkpoint lineage。GRS 对部分原先全通过的任务形成非二元 reward，过滤条件应以实际学习信号为准；GAR 的 sequence advantage redistribution 不能等同于每个 action 的因果归因。
+
+验证入口：[环境验收、配比调度与恢复实验](../experiments/mimo_v26_environment_and_mixer.md)；判断沉淀：[可信样本供给](../insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
+
 ## 我的总结
 
 Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产系统的职责。过去我们优化的是单个 step 的计算效率；现在还要优化 trajectory 的生成、验证、排队、版本管理和消费效率。未来高级训练 infra 工程师需要同时理解训练并行、推理引擎、任务环境、队列调度和可观测性。这个方向值得长期跟踪。
