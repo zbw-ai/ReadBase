@@ -1,7 +1,7 @@
 # ReadBase 结构调整：共享基础、训练／推理／RL 与具身学习路径
 
 > 日期：2026-09-22。
-> 状态：用户已确认总体结构及五项补充，并要求面试准备独立成 Part、增加最近更新入口；本文件按审阅意见修订，尚未重组正式入口。
+> 状态：用户已确认总体结构及五项补充，并要求面试准备独立成 Part、增加最近更新入口、吸纳 ml-engineering 的硬件与系统知识；本文件按审阅意见修订，尚未重组正式入口。
 > 本轮交付：结构、追踪规则、内容边界和实验课程设计。不启动 GPU 作业，不宣称已完成教程、精读或性能验证。
 > 读者：已有 LLM Training 与 Agentic RL 工程经验，接下来重点学习具身模型、具身 Infra、FSDP/FSDP2 和 ZeRO 的工程师。
 
@@ -17,6 +17,7 @@
 6. 根 README 和各 Part 提供简短概括、明确顺序和便捷跳转，避免多个入口重复维护正文。
 7. 有 A100、64 卡以内的实验资源；先设计、后确认环境与执行预算，不把资源可用视为启动任务授权。
 8. 首页新增“最近更新”，快速发现仓库新内容和项目进展；区别于外部文章 tracking。个人最新项目经历通过面试 Part 进入既有项目素材与主文档，不重复建一套履历。
+9. 将 Stas Bekman 的 `ml-engineering` 作为硬件与系统工程参考来源，按问题融入 Part I 和相关应用、实验、排障；不镜像整仓，不用第三方经验参数替代当前环境验证。
 
 ### 1.2 本规格的交付边界
 
@@ -50,7 +51,7 @@ Part I–VI 是日常学习视图，不是互斥的学科分类：具身是综�
 
 | Part | 核心问题 | 主要内容 | 复用边界 |
 |---|---|---|---|
-| I. 系统基础 | 计算、数据和状态如何流动？ | PyTorch/autograd、GPU 执行与内存、通信、存储、profiling、正确性 | 提供各方向共用的概念，不复制框架完整教程 |
+| I. 硬件与系统基础 | 计算、数据和状态如何穿过机器与软件栈？ | GPU/CPU/NUMA、内存与互联、Linux/容器、存储 I/O、PyTorch、通信与 profiling | 提供各方向共用的概念，不复制框架完整教程 |
 | II. 训练系统 | 如何正确、高效、可靠地更新模型？ | DDP、ZeRO、FSDP1/2、Megatron、并行、重计算、精度、checkpoint、恢复 | FSDP/ZeRO 完整正文只维护一处；覆盖 LLM 与多模态训练 |
 | III. 推理系统 | 如何在质量约束下满足吞吐与时延？ | prefill/decode、KV/prefix cache、batching、量化、编译、CUDA Graph、服务调度、实时推理 | 不限于 RL rollout，也不把所有推理都简化为 token decode |
 | IV. RL 与 Agent 系统 | 环境、生成、训练如何形成可信闭环？ | 算法最小基础、verl/AReaL、rollout、reward、调度、权重版本、轨迹与恢复 | 文本／工具 Agent 为已有基线；物理动作的特有风险回链具身路径 |
@@ -90,6 +91,42 @@ ReadBase/
 ```
 
 新增的五份学习 README 和一份面试 README 都是薄导航，不复制 `topics/`、不拥有独立扫描或队列；没有匹配内容的项写明“待建设”，不创建空目录或死链接。面试材料的“独立”指统一 Part 入口与使用场景，不为此搬迁文件或改动旧问题锚点。
+
+### 3.3 硬件与系统底座：吸纳 ml-engineering
+
+#### 来源定位与吸收方式
+
+来源为 Stas Bekman 的 [Machine Learning Engineering Open Book](https://github.com/stas00/ml-engineering/)，其目录覆盖 compute、storage、network、orchestration、training、inference、debug 和 testing。本次于 2026-09-22 核对目录及重点章节，属于选材与结构映射，不是全书精读或本地验证。该仓库持续更新，不用 README 的年份范围代表每章的首次发布时间；正式笔记需固定所读文件的 commit、核对该章历史和适用版本。
+
+将它作为补足工程经验的参考书，采用“读者问题 → 本地正文 → 原始来源 → 实验／排障”的吸收方式；不另设第八个 Part，不复制上游目录结构，不安装其中的 agent skill 或直接运行其脚本。
+
+#### 要补哪些知识，放在哪里
+
+| 学习块 | 能回答的实际问题 | 参考入口 | 本地正文边界 |
+|---|---|---|---|
+| GPU 执行与性能口径 | 算力、HBM 带宽和容量分别限制什么？为什么标称 FLOPS 不等于模型吞吐？ | [Accelerators](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator)、[算力基准](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator/benchmarks) | 复用 [GPU 执行](../../../training-infra-roadmap/topics/transformer_engine.md#gpu-execution)和 [Roofline](../../../training-infra-roadmap/topics/transformer_engine.md#roofline)，补测量边界，不再复制 GPU 原理章 |
+| CPU、内存与拓扑 | NUMA 本地／远端访问、PCIe 路径、GPU–NIC 亲和怎样影响数据供给和通信？ | [CPU](https://github.com/stas00/ml-engineering/tree/master/compute/cpu)、[主存](https://github.com/stas00/ml-engineering/tree/master/compute/cpu-memory)、[Network](https://github.com/stas00/ml-engineering/tree/master/network) | 拟新增 `topics/hardware_topology.md`，统一描述硬件数据路径；不是各个术语各建一篇 |
+| 网络与分布式通信 | NVLink/NVSwitch、IB/RoCE、RDMA 和 NCCL 分别处于哪层？延迟／带宽为何随消息与拓扑变化？ | [Network](https://github.com/stas00/ml-engineering/tree/master/network)、[网络基准](https://github.com/stas00/ml-engineering/tree/master/network/benchmarks) | 硬件路径放新拓扑章；collective、algbw/busbw、overlap 继续在 [NCCL](../../../training-infra-roadmap/topics/nccl.md)，并行放置回链训练章 |
+| Host runtime 与数据 I/O | GPU 在等 worker、解码、H2D、磁盘还是系统资源？CPU 多进程、线程池与容器限制如何作用？ | [Storage](https://github.com/stas00/ml-engineering/tree/master/storage)、[训练性能](https://github.com/stas00/ml-engineering/tree/master/training/performance) | 拟新增 `topics/host_runtime_and_io.md`：Linux 进程/线程、affinity/cgroup、共享内存、page cache、pinned memory、文件布局与缓存基础 |
+| 作业运行与排障 | 一个 rank 退出、另一个卡在 collective 时，怎样找到第一处异常？怎样安全复现？ | [Orchestration](https://github.com/stas00/ml-engineering/tree/master/orchestration)、[PyTorch Debug](https://github.com/stas00/ml-engineering/blob/master/debug/pytorch.md)、[Testing](https://github.com/stas00/ml-engineering/tree/master/testing) | 复用 [容错](../../../training-infra-roadmap/topics/fault_tolerance.md)和 [慢步排障](../../../training-infra-roadmap/playbooks/slow_step_debug.md)，补最小复现、rank 级证据、启动和退出链路 |
+
+拓扑章说明“字节经过哪些硬件边界”；Host/I/O 章说明“软件如何供给数据并占用资源”。两者是计划中的正文，批次 A 只建立导航与来源映射，不创建空教程。
+
+通用存储基础按**样本持续读取、checkpoint 突发写入、模型／环境启动读取**区分 workload，讨论吞吐、时延、IOPS、metadata、小文件与缓存；不预设一种文件系统覆盖全部场景。[Checkpointing](../../../training-infra-roadmap/topics/checkpointing.md)继续负责保存提交与恢复语义，具身数据章负责 episode/camera/timestamp 和视频随机窗口，两篇均回链通用 I/O，不复制其全文。
+
+这套底座服务所有方向：Part II 对应分片、offload 与恢复；Part III 对应 CPU launch、HBM/KV、冷启动和尾延迟；Part IV 对应环境／rollout／trainer 的资源争用、轨迹与权重传输；Part V 对应多相机数据读取、解码及 H2D；Part VI 提供验证；Part VII 只保留面试表达和回链。
+
+#### 吸收顺序与边界
+
+先能读懂一台 A100 机器的拓扑与资源限制，再理解主存／I/O 和 GPU 执行，继而读 NCCL 的实测曲线，最后回到 FSDP 与具身 workload。无需读完整本参考书才能开始 FSDP 学习；按当前瓶颈穿插精读。现有 GPU/NCCL 正文可直接进入，两个新章和慢步排障的命令部分仍需建设。
+
+- 不照搬“每卡几个 workers”“主存至少等于总显存”等经验值。把它们当假设，按视频解码、在线环境、prefetch、offload 和 checkpoint 峰值测量；容器可用 CPU／内存也不能直接按宿主机总量推断。
+- 硬件参数对照厂家原始资料；单／双向、单 GPU／整机、稀疏／稠密、dtype 与 shape 必须写清。NCCL 集合通信指标不能直接当作任意两张卡的物理带宽，microbenchmark 也不是端到端收益。
+- NVIDIA 支持范围以 [CUDA Compute Capabilities](https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/compute-capabilities.html)和 [A100 官方规格](https://www.nvidia.com/en-us/data-center/a100/)等为准；保留本规格中“A100 不用于原生 FP8/FP4 Tensor Core 加速验证”的边界，不从社区对照表直接复制卡型数字。
+- 不默认采用上游的 SLURM 环境；理解 rank/进程、资源分配、容器和任务生命周期，实际 launcher 按可用平台选。旧教程中的路径和 API 先核对是否迁移，网络变量先对照对应 NCCL 版本。
+- 根许可文件为 [CC BY-SA 4.0](https://github.com/stas00/ml-engineering/blob/master/LICENSE-CC-BY-SA)。整理以自主问题分析、必要引用和原文链接为主；如复制／改编文本、图片或代码，逐项核对适用许可，保留作者、来源、许可及修改说明，并遵守适用的 ShareAlike 条件。脚本可能有单独许可头，不能只凭根 LICENSE 判断；本任务不整体改动 ReadBase 许可证。
+
+后续用一份 `engineering_blogs/ml_engineering_hardware_systems.md` 记录来源、选读章节、适用条件和本地知识落点，不逐章翻译。已确认属于历史的章节按原始月份 backfill；日期未核实的先留来源索引，不伪造首发时间或 frontier Accepted。近期真正改变工程判断的更新再按一般扫描规则筛选，不因引用该仓库就收录其每次提交。
 
 ## 4. 首页、Part 与跳转规则
 
@@ -276,6 +313,7 @@ A100 以 FP32/BF16/FP16、通信、编译与 I/O 实验为主，不作为原生 
 
 | ID | 要回答的问题 | 规模建议 | 对照及产物 |
 |---|---|---|---|
+| E00 环境画像与链路基线 | 实际拥有怎样的机器与软件环境？瓶颈曲线与工作负载假设是否相符？ | 先单机画像；微基准按需选 1/2/8 卡，跨机另批 | E00a 只读画像；E00b 经授权才做受控 GEMM/H2D/P2P/collective/I/O 基准，记录口径及限制 |
 | E01 状态分片账本 | DDP、ZeRO-1/2/3、FSDP1/2 到底省了哪些状态？ | 1 卡参考，2/4/8 卡 | 同一小模型，含 DeepSpeed stage 0；FP32 数值参考、BF16 性能分开，记录更新误差与实际显存 |
 | E02 通信与生命周期 | 何时 all-gather/reduce-scatter，分组、reshard、prefetch 改变了什么？ | 2–8 卡 | FSDP2 root-only/逐 block、reshard 单变量；ZeRO-3 参数驻留另作消融，输出 trace/显存时间线 |
 | E03 显存与计算取舍 | 重计算、mixed precision、梯度累积分别怎样影响吞吐和正确性？ | 2–8 卡 | E03a 只变重计算；E03b 只变精度配置；E03c 固定有效 global batch 改 microbatch/累积组合；每个子实验独立对照 |
@@ -285,9 +323,16 @@ A100 以 FP32/BF16/FP16、通信、编译与 I/O 实验为主，不作为原生 
 | E07 推理 | 并发、KV、CUDA Graph 如何影响吞吐和尾延迟？ | 1–4 卡 | 固定 checkpoint/backend，先并发曲线再逐项启用特性；TTFT、TPOT、p95、有效吞吐；具身观测回放为可选子项 |
 | E08 RL 链路 | 权重同步、策略版本和有效轨迹供给能否正确衔接？ | 总预算 4–8 卡起步 | 固定轨迹更新对照，再同步在线供给；记录生成/消费版本、mask/logprob、同步时间和 trainer idle |
 
-执行优先序：E01 → E02 → E04；根据问题再展开 E03/E05，E06 不抢在单机解释清楚之前。E07/E08 保留训练以外的能力验证，不因本阶段重点而长期省略。
+执行优先序：E00a → E01 → E02 → E04；E00b 按当前问题选择必要测试，不要求先跑完整套微基准。根据问题再展开 E03/E05，E06 不抢在单机解释清楚之前。E07/E08 保留训练以外的能力验证，不因本阶段重点而长期省略。
 
 矩阵不强迫所有实验共享一个模型：状态分片用受控小 Transformer，E04 再接公开具身模型；不同 workload 结果不能放在同一吞吐榜上。
+
+E00 分两级：
+
+- **E00a 环境画像**：记录 A100 40/80GB 与 SXM/PCIe、共享／独占及 MIG/MPS 状态、GPU–CPU–NIC 拓扑、CPU socket/NUMA、实际分配的 CPU/内存、容器 `/dev/shm`、存储挂载类型、驱动与框架版本。不把分区或共享实例的基准当完整 GPU 的性能。只设计必要采集项；实际访问集群仍需授权，报告隐去节点名、地址和凭据。
+- **E00b 受控负载**：按需选择模型代表性 BF16 GEMM shape、pageable/pinned H2D、GPU P2P、消息大小变化下的 collective、指定实验文件的顺序／随机读取。FSDP 需看 all-gather/reduce-scatter，不能用 all-reduce 一项代替。`mamf-finder.py`、`all_reduce_bench.py`、`nvbandwidth`、`nccl-tests` 和 `fio` 只是候选工具，先审代码、参数和版本，再限定资源、文件、时间与负载；本规格未运行任何一个。
+
+只读命令不等于可以任意访问共享集群；读文件压测也会占用存储和网络，因此 E00b 不归为无负载的环境查询。微基准只帮助定位边界，结论必须回到 E02/E04/E06 等真实 workload 对照。
 
 ### 8.3 公平比较与指标
 
@@ -311,13 +356,14 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 - 数值阈值按 dtype 与固定参考在执行前定义，不能看到结果后调整通过标准。
 - 同拓扑恢复和改变 world size 的恢复分开；后者涉及数据重新分配、随机性和 backend 支持，不要求未经证明的 bitwise 一致。
 - checkpoint 在独立实验目录保存，不能覆盖已有生产权重；故障注入只作用于已批准的实验进程，不影响共享节点其他任务。
+- 不直接执行上游的系统调优命令；不修改 BIOS/ACS/IOMMU、GPU 时钟/功率、系统网络和全局缓存，不 reset GPU，不做全盘扫描或裸设备写压测。只对获准实验目录和分配资源测试；需要管理员动作时单独说明影响并申请。
 - 数据使用公开或有明确授权的材料，不上传内部代码、权重、数据、节点地址或凭据到公开仓库。
 - A100 上的视频回放和 action latency 不能证明端侧实时性或真机安全；模拟 producer 的轨迹实验不等于已完成机器人在线 RL。
 - 原始大 trace、权重、视频留在获准实验存储；仓库只放可公开的配置、环境摘要、汇总指标、必要图表和复现说明。
 
 ### 8.5 实验文档组织
 
-第一批先新增一份 `experiments/a100_fsdp_io_lab.md` 维护课程、环境门槛和 E01–E08 的未执行实验卡，由既有 `experiments/README.md` 进入。开始某项实验后才建立该项结果/脚本目录，避免一次创建八套空文件。
+第一批先新增一份 `experiments/a100_fsdp_io_lab.md` 维护课程、环境门槛和 E00–E08 的未执行实验卡，由既有 `experiments/README.md` 进入。开始某项实验后才建立该项结果/脚本目录，避免一次创建多套空文件。
 
 实验卡固定包含：问题、假设、前置条件、控制变量、资源上限、执行步骤、正确性门槛、指标、停止条件、实际结果、结论边界、回链。设计阶段“实际结果”明确写“未执行”，不能生成示例数字冒充实测。
 
@@ -330,10 +376,10 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 | 文件或区域 | 改动 |
 |---|---|
 | 根 README、手册 README、philosophy | 更新定位、当前重点、六个日常 Part＋一个按需面试 Part；首页增加最近更新，去掉互相等待的 Phase 描述 |
-| `roadmaps/` 五份 Part README | 新增薄导航，只链接现有正文或明确标注待建设 |
+| `roadmaps/` 五份 Part README | 新增薄导航；Part I 显式包含硬件/系统底座和 ml-engineering 选读，只链接现有正文或明确标注待建设 |
 | `interview/README.md` | 新增 Part VII，聚合主文档、专题题库、Coding、项目素材和专项准备；不移动旧文档 |
 | 30/90/年度计划 | 明确既有基础路线身份，增加当前 Part 回链；不重写为另一套周待办 |
-| MASTER_READING_LIST、KNOWLEDGE_GRAPH | 分离材料索引与知识依赖，补具身/推理路径，清理重复动态导航 |
+| MASTER_READING_LIST、KNOWLEDGE_GRAPH | 分离材料索引与知识依赖，补硬件/系统、具身/推理路径，清理重复动态导航；ml-engineering 标为选读来源而非已消化全集 |
 | tracking README、frontier/monthly 模板 | 扩展范围、具身模型接受标准、Watch、覆盖缺口与去重规则 |
 | AGENTS、CLAUDE | 同步定位、目录职责、未来扫描范围及“实质内容更新同步首页摘要”规则，保留既有发布/来源核验约束 |
 | reading_queue README | 明确方向标签和全局 P0≤3；不凭结构调整改变材料阅读状态 |
@@ -346,11 +392,13 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 
 分别验收：具身模型 primer → FSDP/ZeRO 深入 → episode 到 batch 的数据路径。每项遵守来源核验、正文唯一维护位置和双向链接规则；补正文时同步 Part 的“待建设”状态。
 
+硬件／系统补课按需穿插：建设 §3.3 的两篇共享正文、一份来源选读笔记，并补齐 `slow_step_debug.md` 的证据、命令与验证；不是把整本 ml-engineering 纳入同一实施任务。读取链路优先支撑具身 I/O，网络链路优先支撑 FSDP 的 E02/E06。
+
 推理入口首版可指向现有 RL 选型章中的 serving 内容和 CUDA Graph 等章节，但必须承认是局部覆盖，不称已经拥有完整推理手册。独立推理正文根据后续研究问题建设，迁移时保留旧锚点或回链。
 
 ### 批次 C：实验实现与执行
 
-先选 E01/E02/E04 中的一项编写独立可执行计划；核对 A100 环境与版本、取得具体执行授权后再运行。从数值正确性与小规模开始，记录真实结果再扩卡。
+先编制 E00a 环境核对清单，再选 E01/E02/E04 中的一项编写独立可执行计划；E00b 仅作为对应问题的必要基线。核对 A100 环境与版本、取得具体执行授权后再运行。从数值正确性与小规模开始，记录真实结果再扩卡。
 
 结构验收不依赖 GPU 结果；实验课程验收也不等于代码已实现或性能已验证。
 
@@ -365,6 +413,7 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 - Part VII 能找到主文档、专题题库、Coding、项目素材和专项准备；日常学习无需经过面试准备。
 - 首页最近更新最多 5 条，内容和日期能追溯到实际提交及正文；包含项目更新时不得把计划写成完成或误用项目发生日期。
 - 全库最近更新只有首页一份；项目状态、个人素材、实验结果和外部 tracking 各保留原有职责，不新增重复正文。
+- Part I 能沿“硬件路径 → Host/IO → GPU 执行 → 通信 → 实验”查找知识；不复制既有 GPU/NCCL/checkpoint 正文，来源选读不冒充已完成教材。
 - 不把具身等同 RL，不把推理仅当 rollout backend，不默认“小模型必须用 FSDP”。
 
 ### 追踪与证据
@@ -376,6 +425,7 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 ### 实验与发布
 
 - A100 课程有正确性门槛、资源/环境前置项、停止条件与未执行标识。
+- E00 明确分开只读环境画像和产生负载的微基准；社区参数、硬件规格和实测结果区分，引用/改编保留对应来源及许可。
 - 不存在未经授权的作业启动、环境安装、数据下载、共享缓存清理或 checkpoint 覆盖。
 - 修改范围内 Markdown 路径、锚点和图片有效；如修改 SVG，检查 XML 与实际布局。
 - 发布前查看工作区、fetch origin/main，保护用户及其他任务的未提交改动；默认只提交本任务文件到 main，不新建远端分支或 PR。若分支保护强制要求 PR，停止直接发布并说明限制、请求方向，不绕过保护规则。
@@ -383,6 +433,6 @@ E04 额外记录时间戳/camera/mask/归一化一致性、读取字节与请求
 
 ## 11. 本轮实际交付状态
 
-本轮只修订这份结构与课程规格，已纳入独立的面试 Part 和首页最近更新设计。此前官方来源已做针对性核对，但没有执行全量 frontier scan，没有改动主 README、Part、队列、追踪规则或实验入口，也没有运行任何 GPU 实验。
+本轮只修订这份结构与课程规格，已纳入独立的面试 Part、首页最近更新、ml-engineering 硬件/系统选材和 E00 设计。参考来源已做针对性核对，但没有精读整本参考书、复制外部仓库、执行全量 frontier scan、改动主 README/Part/队列/追踪规则/实验入口，也没有访问 A100 集群或运行 GPU 实验。
 
 后续顺序：用户审阅本规格 → 为批次 A 制定实施计划并落地 → 分别深化批次 B 内容 → 根据环境与授权实施批次 C 实验。
