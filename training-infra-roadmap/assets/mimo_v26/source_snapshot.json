@@ -486,6 +486,78 @@
       "file": "rl_architecture.png",
       "source": "MiMo-V2.6 technical report, Figure 14, PDF page 28",
       "processing": "Rasterized figure excerpt; no change to figure content"
+    },
+    {
+      "file": "codemidas_quality_scale.png",
+      "source": "CodeMidas v1, Figure 8, PDF page 9",
+      "source_pdf_sha256": "4410d814a207002f58c8f2c1073121c2c292f8659ca09a8020bceeedc50e91ba",
+      "processing": "Poppler rasterization at 180 DPI; figure-only crop preserving labels, legends and plotted content",
+      "crop_points_xywh": [
+        92,
+        270,
+        425,
+        172
+      ],
+      "image_pixels": [
+        1062,
+        430
+      ],
+      "sha256": "def7c348e12f3eaa2828641b52b73994b29e8308ebbe5e4a0bbd6a143a0de953",
+      "extracted_at_utc": "2026-09-22T07:51:05.956699+00:00"
+    },
+    {
+      "file": "groupwise_grading.png",
+      "source": "MiMo-V2.6 technical report, Figure 7, PDF page 17",
+      "source_pdf_sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "processing": "Poppler rasterization at 180 DPI; figure-only crop preserving labels, legends and plotted content",
+      "crop_points_xywh": [
+        70,
+        84,
+        455,
+        254
+      ],
+      "image_pixels": [
+        1138,
+        635
+      ],
+      "sha256": "aa3813af89e12ac6b87e041f8c97a367b5b45ab38ce91ea068045491fe064a1c",
+      "extracted_at_utc": "2026-09-22T07:51:05.956699+00:00"
+    },
+    {
+      "file": "sample_mixer_simulation.png",
+      "source": "MiMo-V2.6 technical report, Figure 16, PDF page 31",
+      "source_pdf_sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "processing": "Poppler rasterization at 180 DPI; figure-only crop preserving labels, legends and plotted content",
+      "crop_points_xywh": [
+        74,
+        80,
+        452,
+        250
+      ],
+      "image_pixels": [
+        1130,
+        625
+      ],
+      "sha256": "1ac9d3ae3d9aceab564c016b639994b09ff58cad38e4a7622b69c86637f6153a",
+      "extracted_at_utc": "2026-09-22T07:51:05.956699+00:00"
+    },
+    {
+      "file": "rl_failure_timeline.png",
+      "source": "MiMo-V2.6 technical report, Figure 12, PDF page 24",
+      "source_pdf_sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "processing": "Poppler rasterization at 180 DPI; figure-only crop preserving labels, legends and plotted content",
+      "crop_points_xywh": [
+        84,
+        316,
+        430,
+        130
+      ],
+      "image_pixels": [
+        1075,
+        325
+      ],
+      "sha256": "d169b11e3036966b03717a326b8246aea8b2215b2b0ec832730f4bc49c14cbf3",
+      "extracted_at_utc": "2026-09-22T07:51:05.956699+00:00"
     }
   ]
 }
