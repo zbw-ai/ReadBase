@@ -1,8 +1,8 @@
 # MiMo-V2.6 调研：从 CodeMidas 环境工厂到大规模 Agentic RL
 
-> 团队分享版 · 2026-09-22 · 建议分享时长 30–40 分钟。本文已核对两篇原报告及官方直播接口；实验数字均为作者报告，本仓库未复现。快速阅读可先看「架构概览」「工程经验」「我的收获」。
+> 个人学习与组内分享 · 2026-09-22。本文围绕环境构造、奖励设计和训练系统串联两篇报告，记录机制理解、实验依据及尚待验证的问题。已核对原报告和官方直播接口；实验数字均为作者报告，本仓库未复现。
 
-## 论文信息
+## 阅读材料与研究范围
 
 | 材料 | 身份、时间与原始来源 | 本文关注点 |
 |---|---|---|
@@ -16,13 +16,13 @@
 
 相关入口：[Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)、[RL 框架选型](../topics/rl_framework_selection.md)、[长上下文训练](../topics/long_context_training.md)、[MoE](../topics/moe.md)、[阅读决策](../reading_queue/P1.md#mimo-v26-reading)。
 
-## 架构概览
+## 阅读主线与模型背景
 
-### 先讲结论
+### 两篇报告如何串起来
 
 MiMo 这组工作展示了一条完整的工程链：**把软件功能变成可验证任务，把任务执行变成高质量 trajectory，再把异构、长尾的 trajectory 稳定地供给训练器。** 扩大 GPU 规模需要环境供给、奖励可靠性与样本调度同时跟上。
 
-团队最值得带走的四点：
+这次阅读围绕四个相互关联的问题展开：
 
 1. **环境质量决定梯度是否有意义。** Docker 能启动、reference 能过测，只是第一层；还要证明不同正确实现能通过、错误实现会被拒绝、答案没有泄漏。
 2. **混合任务调度直接改变训练分布。** 快任务先完成、容易任务被过滤、慢任务陈旧过期，都会让实际消费分布偏离配置。
@@ -238,40 +238,46 @@ Partial rollout 在权重更新后恢复未完成序列，需要 re-prefill；�
 
 这仍不是通用 RSI 已实现的证明。实验依赖人设计任务分布、构造器、verifier、grader、优化器和运行时干预；尚缺对“系统持续自主改进这些组件”的独立长期验证。
 
-## 我的收获
+## 学习收获：如何理解 RL 系统的扩展
 
-如果给团队分配下一轮工程投入，我会先看 **每单位成本有多少可信、及时、符合目标配比的样本真正进入训练**。这是一组联合指标，不建议拍成一个未经校准的综合分数。
+读完两篇报告，我更关注 **每单位成本有多少可信、及时、符合目标配比的样本真正进入训练**。这是一组联合指标，需要分别观察样本质量、调度效率与训练效果。
 
 CodeMidas 改变的是环境来源与监督验收；V2.6 改变的是我们对 RL 平台规模化瓶颈的判断。可执行数据应当同时携带 task/env/verifier/harness 版本，rollout 应能解释 reward、policy lineage 和过滤原因，调度应当以训练实际消费结果闭环校正。该判断已回写 [Agentic RL topic](../topics/agentic_rl.md#mimo-v26-environment-contract) 与 [长期 insight](../insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
 
-用于 30–40 分钟分享的顺序：5 分钟区分两个实验；10 分钟讲 CodeMidas 的一个任务如何通过验收；10 分钟讲 GRS/GAR 与 Sample Mixer；最后 10 分钟讨论恢复后的 KV OOM、micro-batch expert imbalance 和验证计划。
+个人复读时，可以沿一个任务的生命周期追踪：源码中的功能怎样变成规格与 verifier，agent 怎样产生 rollout，grader 怎样形成学习信号，Sample Mixer 怎样决定其进入哪一批训练，最后再看权重更新和恢复如何影响这条轨迹。这样能把环境、算法和 runtime 的关系联系起来。
 
-## 后续演进
+## 证据边界与后续阅读
 
 1. **开源与复现边界**：[M] Table 5 列出约 3k code、1k cyber、1k general、2k visual tasks，并另提约 1k music tasks。Table 6 的 11 项提升来自**同一 9B SFT 初始化分别进行 domain-specific GRPO 的 checkpoints**，不是一个统一 9B mixed-task RL checkpoint 的 11 项成绩；multi-harness coding 是另一组实验。不得将它们当成完整复现大规模 V2.6。
 2. **MOPD2 的后续阅读**：除了完整 student rollout，还从 teacher trajectory 或 SFT demonstration 提取历史 prefix，由 student 生成新的一轮并接受 token-level teacher supervision。[M] §5.6。它减少重放整个历史的开销，但不自动保证多轮 student 自主偏离后的状态覆盖；可沿 [MOPD topic](../topics/mopd.md) 继续研究。
 3. **尚未核验的交付物**：本次已下载两篇 PDF、核验模型仓库与直播接口；没有拉取/执行完整 RL framework、环境镜像或 9B 权重。HF dataset API 在本次查询中未列出对应新任务集，GitHub API 的组织查询失败；不能据此断言资源没有发布，也不提供未经验证的安装命令。
 4. **证据缺口**：CodeMidas 环境构造总成本、各筛选步骤独立消融、跨 seed 的主评测方差；V2.6 各模块对大 run 的独立贡献、grader 漏检率、完整集群布局与端到端复现预算。后续补充应使用新版本报告或实测，不补猜测。
 
-## 面试高频问题
+## 尚未解决的学习疑问
 
-**为什么 binary test reward 仍可能训练出错误行为？** 测试可能遗漏要求、强制参考实现细节、存在答案泄漏或执行噪声。模型只需优化 verifier，而不一定完成真实任务；需要规格对齐、替代解审核、环境隔离与训练中 audit。
+### 环境质量能否独立于筛选模型来定义
 
-**GRS 和 GAR 有什么区别？** GRS 离线生成 rubrics、在线形成更细 reward，可能激活原先二元全通过 group；GAR 在线比较 mixed-outcome group，修正确认 hacking，再按质量重新分配 sequence advantage。
+CodeMidas 将规格一致性、执行稳定性、泄漏检查和 rollout 成败分布放在同一筛选流程里。前几项主要检验环境是否可信，最后一项还反映任务对当前模型的难度。后续值得把两者拆开：固定任务与 verifier，换不同能力的筛选模型，观察保留集如何变化，再比较这些任务对训练和泛化的影响。
 
-**为什么异步系统也会等慢任务？** 训练目标有 source 配比约束；快任务不能无限替代慢任务。应同时校正接受率、耗时、当前缺口与 staleness，必要时减少不健康 source 的目标并记录实验干预。
+### Grader 的增益来自更准确的判断，还是更强的行为约束
 
-**Router freezing 是否解决了 MoE OOM？** 只缓解 router 参数漂移；输入分布、micro-batch 切分与专家峰值仍能让某 rank OOM。报告里已经出现此反例。
+GAR 的实验同时观察到通过率、轨迹长度和 patch 风格的变化。要进一步理解其作用，需要分别考察 hacking correction、成功解排序、advantage redistribution，以及 length penalty 的贡献。还需比较相同总预算下，把额外计算分配给 grader 或更多 rollout 的效果。目前报告不足以回答哪种分配在不同任务上更合算。
 
-**为什么同一 checkpoint 的训推 logprob 仍可能不同？** 低精度权重值、离散 expert route 与截断采样归一化集合都可能不同；分别需要 QDQ、routing replay 与 candidate-set replay，不能只归因于 off-policy。
+### 稳定的样本配比是否就是合适的学习配比
 
-## 生产环境思考题
+Sample Mixer 解决的是如何实现给定的 source 配额，但任务数量相同不代表 token 数、梯度贡献或学习价值相同。后续可以同时记录 group、loss token、梯度和成本口径的分布，理解 prompt-mean aggregation 与采样配额之间的关系。这也是从运行效率走向训练效果时需要补上的一层分析。
 
-1. Grader 服务停 20 分钟：系统会错误返回零分，还是标记可重试的 infra error？已完成轨迹如何保存、去重和恢复评分？
-2. 一个 source 的接受率由 50% 跌到 5%：应自动增加十倍并发，还是先确认 grader/schema 是否变更？如何设置并发上限和告警？
-3. 重启后第一批均为短轨迹：怎样验证长度估计存在完成顺序偏差，而不是 workload 真变短了？
-4. 全 batch expert CV 正常却 OOM：能否定位到具体 micro-batch、layer、EP rank 和 dispatch token 数？
-5. GAR 提高训练 reward 但 held-out success 不涨：怎样区分 grader 偏好、hacking、任务漂移与真实样本效率问题？
-6. 发布前，能否把每个成绩绑定到 checkpoint、harness、verifier、attempt count、metric definition，而不是只保留模型名称？
+以上是个人阅读后形成的研究问题，尚无实验结论；可结合前面的原文证据继续讨论。
+
+## 组内分享与讨论
+
+建议用 30–40 分钟围绕两张核心图展开：先讲 CodeMidas 如何把一个已有功能变成可训练任务，再沿 V2.6 架构图追踪 trajectory 的生成、评分、筛选和消费。最后选择一个与组内工作相关的机制讨论，不必逐节复述报告。
+
+| 讨论主题 | 对照报告中的具体观察 | 可以形成的后续产出 |
+|---|---|---|
+| 我们如何判断一个环境值得进入训练 | Reference 通过并不足够，还需要替代解、错误解和执行稳定性检查 | 一份小规模环境验收记录，明确已知误判与覆盖边界 |
+| 如何识别实际训练分布偏离预期 | Source 的完成时长、接受率和陈旧度不同 | 一张 submitted → accepted → consumed 的分布对照图 |
+| 如何理解重启后的容量估计偏差 | 短轨迹先完成、同 source 的 harness 长度差异明显 | 按 source × harness 分层的轨迹分析与冷启动模拟 |
+| 哪些结论最值得先复现 | 环境质量消融与 Sample Mixer 模拟都有明确证据边界 | 从[分阶段验证计划](../experiments/mimo_v26_environment_and_mixer.md)中选择一个范围可控的实验 |
 
 返回：[Master Reading List](../MASTER_READING_LIST.md) · [Knowledge Graph](../KNOWLEDGE_GRAPH.md) · [定向研究记录](../tracking/agentic_rl.md#mimo-v26-research)。
