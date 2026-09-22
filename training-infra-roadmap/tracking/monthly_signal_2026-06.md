@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-06
 
+## 2026-09-22 回看导读：训练开始依赖可组合的 rollout 与 kernel 栈
+
+PyTorch Miles、MoE fusion、低精度和 KernelFlume 等材料共同说明：训练平台越来越依赖推理 backend、专用 kernel 与状态搬运接口。模型能加载，只是验收开始；weight update、logprob、恢复和精度一致性决定它是否真的可用于 RL。
+
+**只带走一个动作：** 先明确训练侧与 rollout 侧的接口契约，再读具体优化。这是 7 月正确性修复与 8 月恢复协议的前置知识。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-06-01 00:00:00 ~ 2026-06-30 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-08
@@ -189,3 +197,6 @@
 - RL post-training stack 是否继续朝 SGLang / vLLM rollout + Megatron trainer + Ray orchestration 的组合收敛。
 - Long-context agent serving 是否从 KV cache 压缩转向 memory hierarchy / attention disaggregation / elastic decoding。
 - NVIDIA Training Stack 是否继续把 MoE / FP8 / NVFP4 优化下沉到 TE / cuDNN / Megatron Core。
+
+
+[返回月度阅读入口](monthly_reviews.md)

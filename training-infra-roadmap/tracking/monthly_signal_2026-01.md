@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-01
 
+## 2026-09-22 回看导读：从吞吐配置转向状态与时间
+
+本月资料已经把 staleness、参数服务、数据状态和通信调度放到同一张系统图里。阅读时先区分三件事：样本由哪个权重版本产生、哪一份状态归谁持有、通信何时挤占训练。这些问题会在 7–9 月变成 rollout admission、checkpoint cut 和状态发布的具体实现。
+
+**只带走一个动作：** 把一轮训练的数据、权重、optimizer 和通信事件连起来；先能解释等待发生在哪里，再比较框架吞吐。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-01-01 00:00:00 ~ 2026-01-31 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-09
@@ -162,3 +170,6 @@
 - 异步 rollout 和 bounded staleness 是否继续成为 RL infra 共同语言。
 - checkpoint 是否从“文件格式”继续演进成 distributed state abstraction。
 - heterogeneous GPU / cross-vendor collective 是否从论文走向训练平台实践。
+
+
+[返回月度阅读入口](monthly_reviews.md)

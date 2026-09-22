@@ -16,7 +16,8 @@
 
 已开始整理：
 
-- [2026-07](2026-07.md)：NVIDIA GR00T end-to-end embodied platform
+- [2026-08](2026-08.md)：B300 排障、kernel verifier、环境生产与 lazy-pull 历史重评
+- [2026-07](2026-07.md)：BPO / kernel harness 历史重评；NVIDIA GR00T end-to-end embodied platform
 - [2026-06](2026-06.md)：PyTorch Miles / RL post-training infra
 - [2026-05](2026-05.md)：Hugging Face TiTo / Agentic RL token correctness
 - [2026-02](2026-02.md)

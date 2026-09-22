@@ -77,3 +77,20 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 | PP prefetch ticket | 发 ticket 后取消、单 stage 延迟、storage miss 与部分 ready | KV/sidecar 共同安全前缀决定 admission；取消后无泄漏；TTFT 拆分 I/O 与跨 stage 等待 |
 
 先准备能运行的独立 backend checkout 再记录实际命令；不把本仓库文档检查当成上述实验通过。
+
+<a id="retrospective-test-cases"></a>
+
+## 2026-09-22 月度复盘补充：最小验证场景
+
+状态：**设计候选，未执行**。来源为[14 组历史补漏](../tracking/github_retrospective_2026-07_to_2026-09.md)与[7–8 月重评](../tracking/monthly_reviews.md)。不新建一批必做任务，按正在使用的 backend 选择一项。
+
+| 场景 | 对照与注入 | 必须记录 | 通过条件 / 会推翻什么判断 |
+|---|---|---|---|
+| 异步队列守恒 | 相同 task IDs，完成速度高于消费速度；分批取走后重启 | submitted / inflight / completed / trained / discarded IDs、discard reason、heartbeat | 无无法解释的漏项；不重复训练；重采样有显式语义；若只降并发就好转，继续查背压而非直接归因 GPU |
+| checkpoint cut | 混合长短轨迹，在 cursor 前移但训练未消费时保存并恢复 | 数据 cursor、trained frontier、buffer coverage、样本长度分布 | 未消费窗口可恢复或重生成；已消费项不重复；验证对长样本是否有选择性丢失 |
+| sparse refit | 相同 dense baseline，分别 dense/sparse 更新；中途让一个 worker 失败 | wire bytes、staging 峰值、apply/rebuild 时间、版本、admission | 总时长和正确性均满足目标才算收益；失败 worker 禁入并恢复，不能只报告 wire 变小 |
+| CP 语义 | 固定权重与输入，CP=1 对照 CP>1；包含 sliding mask、packed 文档和无 response 分片 | 输出、梯度、归一化统计、collective 参与序列 | 输出/梯度在预设容差内一致或明确拒绝不支持配置；loss 可下降不是通过条件 |
+| lazy environment | eager/lazy 对照，同一镜像；增加缓存占用并注入 snapshotter 重启 | Ready、首请求、全文件读取、后续错误、节点缓存水位 | 不把 Ready 当可用证明；失败可检测、可隔离、可恢复；不将 KServe 结果直接外推 DSec |
+| kernel 合同 | 一个已有算子，对照可信高精度参考；异常值、边界 shape、重复执行和 backward | 规格、误差、NaN/Inf 语义、gradient、计时条件 | 先验证适用规格再计性能；不能为追求一致性随意修改数学语义或容差 |
+
+代码与版本选择前先读 [Agentic RL 不变量](../topics/agentic_rl.md#monthly-retrospective-invariants)。上游 PR 的测试通过声明是来源证据，不是本实验的结果。

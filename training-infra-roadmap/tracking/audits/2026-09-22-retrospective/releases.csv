@@ -1,0 +1,56 @@
+repo,id,event_at_utc,month_asia_shanghai,title,author,branch_or_target,merge_or_commit_sha,url,previous_url_or_sha_match
+NVIDIA-NeMo/RL,v0.7.0,2026-07-29T04:31:13Z,2026-07,Release v0.7.0,nemo-automation-bot[bot],81aa43dda4765b0429cf31dab44441e4e4383911,,https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.7.0,false
+NVIDIA/Megatron-LM,core_v0.19.2,2026-09-18T19:40:26Z,2026-09,NVIDIA Megatron Core 0.19.2,nvidia-megatron-lm-release-bot[bot],4b4acac9a1d28ea6829c8d4f566d75698a21249d,,https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.19.2,false
+NVIDIA/Megatron-LM,core_v0.19.0,2026-08-19T19:02:15Z,2026-08,NVIDIA Megatron Core 0.19.0,nvidia-megatron-lm-release-bot[bot],core_r0.19.0,,https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.19.0,false
+NVIDIA/Megatron-LM,core_v0.18.2,2026-07-21T10:57:10Z,2026-07,NVIDIA Megatron Core 0.18.2,nvidia-megatron-lm-release-bot[bot],571370c829ca768fe37244f4e2e7f28d8accc4ab,,https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.18.2,false
+OpenRLHF/OpenRLHF,v0.11.2,2026-09-14T01:51:43Z,2026-09,Release v0.11.2,hijkzzz,main,,https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.2,false
+OpenRLHF/OpenRLHF,v0.11.1,2026-09-10T14:35:17Z,2026-09,Release v0.11.1,hijkzzz,main,,https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.1,false
+OpenRLHF/OpenRLHF,v0.11.0,2026-08-13T11:26:24Z,2026-08,Release v0.11.0,hijkzzz,main,,https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.0,false
+THUDM/slime,v0.3.2,2026-08-28T02:38:24Z,2026-08,v0.3.2,zhuzilin,main,,https://github.com/THUDM/slime/releases/tag/v0.3.2,false
+THUDM/slime,v0.3.1,2026-08-06T11:38:46Z,2026-08,v0.3.1,zhuzilin,main,,https://github.com/THUDM/slime/releases/tag/v0.3.1,true
+areal-project/AReaL,v2.1.0,2026-08-25T10:23:59Z,2026-08,v2.1.0,sitabulaixizawaluduo,main,,https://github.com/areal-project/AReaL/releases/tag/v2.1.0,true
+areal-project/AReaL,v2.0.0,2026-07-01T16:23:26Z,2026-07,v2.0.0,sitabulaixizawaluduo,main,,https://github.com/areal-project/AReaL/releases/tag/v2.0.0,true
+huggingface/accelerate,v1.15.0,2026-09-09T13:30:33Z,2026-09,"v1.15.0: FSDP2 activation memory, dtensor improvements",SunMarc,main,,https://github.com/huggingface/accelerate/releases/tag/v1.15.0,true
+huggingface/kernels,v0.17.1,2026-09-16T18:21:14Z,2026-09,v0.17.1,github-actions[bot],main,,https://github.com/huggingface/kernels/releases/tag/v0.17.1,true
+huggingface/kernels,v0.16.2,2026-09-15T09:01:58Z,2026-09,v0.16.2,github-actions[bot],main,,https://github.com/huggingface/kernels/releases/tag/v0.16.2,false
+huggingface/kernels,v0.17.0,2026-09-14T09:20:23Z,2026-09,v0.17.0,github-actions[bot],main,,https://github.com/huggingface/kernels/releases/tag/v0.17.0,true
+huggingface/kernels,v0.16.1,2026-08-24T06:53:24Z,2026-08,v0.16.1,github-actions[bot],main,,https://github.com/huggingface/kernels/releases/tag/v0.16.1,false
+huggingface/peft,v0.21.0,2026-09-15T15:31:52Z,2026-09,v0.21.0,githubnemo,main,,https://github.com/huggingface/peft/releases/tag/v0.21.0,true
+huggingface/peft,v0.20.0,2026-07-28T13:49:42Z,2026-07,v0.20.0,BenjaminBossan,main,,https://github.com/huggingface/peft/releases/tag/v0.20.0,false
+huggingface/tokenizers,v1.0.0-rc.2,2026-09-21T11:28:00Z,2026-09,Release candidate v1.0.0.rc.2,ArthurZucker,main,,https://github.com/huggingface/tokenizers/releases/tag/v1.0.0-rc.2,true
+huggingface/tokenizers,v0.23.2,2026-09-03T10:09:56Z,2026-09,v0.23.2,github-actions[bot],main,,https://github.com/huggingface/tokenizers/releases/tag/v0.23.2,false
+huggingface/transformers,v5.17.0,2026-09-09T15:42:45Z,2026-09,Release 5.17.0,vasqu,main,,https://github.com/huggingface/transformers/releases/tag/v5.17.0,false
+huggingface/transformers,v5.16.1,2026-08-26T14:50:01Z,2026-08,Release v5.16.1,vasqu,main,,https://github.com/huggingface/transformers/releases/tag/v5.16.1,false
+huggingface/transformers,v5.16.0,2026-08-26T12:35:15Z,2026-08,Release: v5.16.0,Cyrilvallez,main,,https://github.com/huggingface/transformers/releases/tag/v5.16.0,false
+huggingface/transformers,v5.15.1,2026-08-19T10:50:47Z,2026-08,Patch release: v5.15.1,Cyrilvallez,main,,https://github.com/huggingface/transformers/releases/tag/v5.15.1,false
+huggingface/transformers,v5.15.0,2026-08-10T10:28:13Z,2026-08,Release: v5.15.0,LysandreJik,main,,https://github.com/huggingface/transformers/releases/tag/v5.15.0,false
+huggingface/transformers,v5.14.1,2026-07-16T09:41:36Z,2026-07,Patch release: v5.14.1,Cyrilvallez,main,,https://github.com/huggingface/transformers/releases/tag/v5.14.1,false
+huggingface/transformers,v5.14.0,2026-07-15T19:02:19Z,2026-07,Release v5.14.0,ArthurZucker,main,,https://github.com/huggingface/transformers/releases/tag/v5.14.0,false
+huggingface/transformers,v5.13.1,2026-07-11T09:15:36Z,2026-07,Patch release v5.13.1,ArthurZucker,main,,https://github.com/huggingface/transformers/releases/tag/v5.13.1,false
+huggingface/transformers,v5.13.0,2026-07-03T16:06:27Z,2026-07,Release v5.13.0,vasqu,main,,https://github.com/huggingface/transformers/releases/tag/v5.13.0,false
+huggingface/trl,v1.13.0,2026-09-10T00:50:26Z,2026-09,v1.13.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.13.0,true
+huggingface/trl,v1.12.0,2026-08-26T20:05:50Z,2026-08,v1.12.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.12.0,false
+huggingface/trl,v1.11.0,2026-08-26T20:02:08Z,2026-08,v1.11.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.11.0,false
+huggingface/trl,v1.10.0,2026-08-13T01:36:04Z,2026-08,v1.10.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.10.0,false
+huggingface/trl,v1.9.2,2026-07-28T10:39:01Z,2026-07,v1.9.2,albertvillanova,main,,https://github.com/huggingface/trl/releases/tag/v1.9.2,false
+huggingface/trl,v1.9.1,2026-07-26T16:49:29Z,2026-07,v1.9.1,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.9.1,true
+huggingface/trl,v1.9.0,2026-07-21T20:36:12Z,2026-07,v1.9.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.9.0,false
+huggingface/trl,v1.8.0,2026-07-09T18:41:28Z,2026-07,v1.8.0,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.8.0,true
+huggingface/trl,v1.7.1,2026-07-04T04:05:54Z,2026-07,v1.7.1,qgallouedec,main,,https://github.com/huggingface/trl/releases/tag/v1.7.1,false
+sgl-project/sglang,v0.5.20,2026-09-18T22:41:33Z,2026-09,v0.5.20,Qiaolin-Yu,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.20,false
+sgl-project/sglang,v0.5.19,2026-09-05T02:27:42Z,2026-09,v0.5.19,Qiaolin-Yu,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.19,false
+sgl-project/sglang,v0.5.18,2026-08-22T00:09:15Z,2026-08,v0.5.18,Fridge003,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.18,false
+sgl-project/sglang,v0.5.17,2026-08-08T00:19:16Z,2026-08,v0.5.17,Fridge003,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.17,false
+sgl-project/sglang,v0.5.16,2026-07-25T00:13:18Z,2026-07,v0.5.16,Qiaolin-Yu,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.16,false
+sgl-project/sglang,v0.5.15.post1,2026-07-14T08:43:33Z,2026-07,v0.5.15.post1,Fridge003,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.15.post1,true
+sgl-project/sglang,v0.5.15,2026-07-10T22:58:33Z,2026-07,v0.5.15,Fridge003,main,,https://github.com/sgl-project/sglang/releases/tag/v0.5.15,true
+verl-project/verl,v0.9.1,2026-09-20T07:24:43Z,2026-09,v0.9.1,wuxibin89,release/v0.9.1,,https://github.com/verl-project/verl/releases/tag/v0.9.1,true
+verl-project/verl,v0.9.0,2026-08-14T07:55:09Z,2026-08,v0.9.0,wuxibin89,release/v0.9.0,,https://github.com/verl-project/verl/releases/tag/v0.9.0,true
+vllm-project/vllm,v0.30.0,2026-09-22T05:20:54Z,2026-09,v0.30.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.30.0,true
+vllm-project/vllm,v0.29.0,2026-09-09T08:54:49Z,2026-09,v0.29.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.29.0,true
+vllm-project/vllm,v0.28.0,2026-08-26T09:46:30Z,2026-08,v0.28.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.28.0,false
+vllm-project/vllm,v0.27.1,2026-08-11T10:47:49Z,2026-08,v0.27.1,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.27.1,false
+vllm-project/vllm,v0.27.0,2026-08-10T21:18:11Z,2026-08,v0.27.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.27.0,false
+vllm-project/vllm,v0.26.0,2026-07-27T01:06:58Z,2026-07,v0.26.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.26.0,false
+vllm-project/vllm,v0.25.1,2026-07-14T08:51:20Z,2026-07,v0.25.1,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.25.1,true
+vllm-project/vllm,v0.25.0,2026-07-11T20:06:44Z,2026-07,v0.25.0,khluu,main,,https://github.com/vllm-project/vllm/releases/tag/v0.25.0,true

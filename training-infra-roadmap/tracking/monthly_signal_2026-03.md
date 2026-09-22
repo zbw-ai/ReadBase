@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-03
 
+## 2026-09-22 回看导读：局部优化能否变成可调度能力
+
+NIMBLE、MAC-Attention 与 Pareto Bandit 的共同阅读问题，是优化所依赖的 workload 假设是否能被 runtime 观测和利用。一个 kernel 的局部收益，经过调度、通信和不均匀请求后，未必仍是整作业收益。
+
+**只带走一个动作：** 记录优化适用的长度、batch、拓扑和精度条件；看到倍数时先检查测量边界。本月原始检索是各分类 latest-50，不能作为全月穷尽覆盖。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-03-01 00:00:00 ~ 2026-03-31 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-08
@@ -134,3 +142,6 @@
 - NVIDIA / Megatron / NeMo 是否开始给 RL、FP8、新 optimizer 提供更完整的工程栈。
 - long-context training 是否从手写 SP/CP 配置走向 compiler/runtime 自动化。
 - serving routing / attention IO / KV cache 是否继续反向约束 rollout infra。
+
+
+[返回月度阅读入口](monthly_reviews.md)

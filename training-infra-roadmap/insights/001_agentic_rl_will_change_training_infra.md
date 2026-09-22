@@ -85,3 +85,11 @@ Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁�
 ## 2026-09-22 GitHub 补证据：有效容量由执行阶段决定
 
 [补扫 G5/G8/G9](../tracking/github_audit_2026-09-22.md)分别暴露 prefill 临时矩阵、dummy graph 的真实 KV 写入，以及缓存命中后的跨 PP 等待。我的工程推断是：评估 rollout 容量时，应以阶段峰值、请求状态和可准入条件联合定义容量，不能只由持久 KV 大小或 cache-hit ratio 推导。若真实 trace 显示这些成本可忽略且 GPU GEMM 长期主导，则把计算优化放回首位；该判断需要[实验](../experiments/rl_state_boundaries.md)验证，目前没有本地性能结论。
+
+## 2026-09-22 历史复盘：重新定义值得跟踪的工程信号
+
+[7–9 月的逐月复盘](../tracking/monthly_reviews.md)修正了一个筛选偏差：只问“是否提出新系统/新调度”，会低估测量口径、静默数据错误和验证工具。[verl GPU 分母、NeMo sampled-token logprob、slime 完成队列、恢复 frontier](../tracking/github_retrospective_2026-07_to_2026-09.md)都没有靠新架构命名，却能改变训练成本或优化目标。
+
+因此新增一个判断准则：**一项材料是否改变了我们对有效样本、状态所有权或可验证结果的定义？** 满足这个条件的“小修复”和负面 field report 可以比一般发布更值得读。反过来，相关性提高不代表实验结论被证明；BPO 的生产 snapshot 成本、环境合成的规模化、kernel verifier 的通用性仍需自己的验证。
+
+这是复盘推断，落点见[工程不变量](../topics/agentic_rl.md#monthly-retrospective-invariants)和[候选实验](../experiments/rl_state_boundaries.md#retrospective-test-cases)，尚不属于 VERIFIED。已有个人阅读状态不变。

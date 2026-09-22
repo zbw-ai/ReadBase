@@ -1,5 +1,59 @@
 # Monthly Signal Report, 2026-08
 
+## 先读这页：异步化之后，必须重新定义什么叫完成
+
+**2026-09-22 回看。** 本月整理 11 次 8 月扫描，并吸收 9 月 1 日扫描中原始发布于 8 月的材料。新增历史补漏单独标注；原月报在文末保留。
+
+### 1. 环境变成训练的一部分，失败也会改变数据分布
+
+[Agent Lightning v1.0](https://arxiv.org/abs/2608.17528) 与 [LEGO-RL](https://arxiv.org/abs/2608.17393) 是理解环境、agent 执行和训练系统分工的主线。结合原月报收录的 OpenAI/Hugging Face 事件报告、[Anthropic 环境治理材料](https://www.anthropic.com/news/improving-alignment-security-efforts)，月度判断是：环境版本、依赖、奖励和轨迹来源都需要可追溯，环境变化可以要求重新验收训练数据。
+
+[Envs-FORGE](https://arxiv.org/abs/2608.14312) 过去已经是 Read，本次把它从扫描观察区提升到月报正文：instruction、fixture、oracle、tests 和 Docker environment 必须同步改写并验证，环境生产并不只是生成题目。其固定规模实验尚不能证明大规模自动造环境已解决。
+
+### 2. 异步系统需要样本守恒，而不只是一个更深的队列
+
+新补查的 [slime #2238](https://github.com/THUDM/slime/pull/2238) 修复了“取走全部完成 group，只返回所需部分”的丢样本路径，也避免阻塞 queue 操作卡住事件循环。[NeMo RL #3599](https://github.com/NVIDIA-NeMo/RL/pull/3599) 把 checkpoint 的数据位置对齐到实际训练消费的 frontier，而不是已经向前移动的 dataloader cursor；[#3820](https://github.com/NVIDIA-NeMo/RL/pull/3820) 是另一个分支的回移，不是第二项独立创新。
+
+为什么值得读：慢轨迹更容易在 checkpoint 时仍处于 in-flight，恢复时丢掉它们不仅损失吞吐，还可能偏向短轨迹。**工程判断：** 记录每个 prompt/group 在 pending、completed、trained、discarded 之间的转换，并让 discard 有明确原因。新增两组均为 Read；这不是要求任何算法都禁止重采样。
+
+[slime #2235](https://github.com/THUDM/slime/pull/2235) 则说明 CP 还会进入 advantage 统计语义：同一序列不同分片不能各自白化成不同目标。空 response 分片仍需参与一致的 collective。
+
+### 3. 状态传得更少，不代表同步已经结束
+
+[TensorCast](https://arxiv.org/abs/2608.06007)、[FlashBoot](https://arxiv.org/abs/2608.08482) 与原月报的 multi-sender / delta sync 形成同一条线：权重加载和搬运正进入关键路径。此次补漏 [vLLM #50723](https://github.com/vllm-project/vllm/pull/50723)、[#53751](https://github.com/vllm-project/vllm/pull/53751) 将 checkpoint 坐标的稀疏 patch 交给 native loader 映射 TP/EP 和 packed layout。
+
+关键限制是 **wire payload 可以按非零项缩小，staging/apply 仍可能按完整张量大小付费**，且原地更新不是事务；失败后不能继续接请求。[SGLang #35883](https://github.com/sgl-project/sglang/pull/35883) 又展示了 canonical weight 更新后，缓存的 FP32 gate 副本可能仍旧。三项均 Read。同步验收应包含衍生权重、量化状态和 admission，而不止网络发送完成。
+
+### 4. 长上下文要区分节省计算、改变调度和破坏语义
+
+[TideRL](https://arxiv.org/abs/2608.10402) 关注 readiness-aware 调度；[psRL](https://arxiv.org/abs/2608.25683) 与 [HARTS](https://arxiv.org/abs/2608.28158) 研究训练时共享 prefix；它们不能简单用一个“长上下文提速倍数”比较。共享 prefix 的收益与树形分布、attention 类型和 recurrent state 有关，调度收益则依赖资源竞争与请求长度。
+
+新补查的 [SGLang #31958](https://github.com/sgl-project/sglang/pull/31958) 用逐行 normalizer 与选取所需 logits，避免 materialize 完整 log-softmax 中间量，直接对应 teacher/logprob 路径的峰值显存。Read；PR 中的局部 microbenchmark 不能外推为整条 RL pipeline 的提升。
+
+### 5. 当时不够“前沿”的材料，现在能填生产判断缺口
+
+- [B300 field report](https://arxiv.org/abs/2608.05944)：**Observe / Read later → Read**。功耗、逐 rank packing 和负面 A/B 结果，比利用率 100% 更能帮助判断训练是否真的前进；硬件功耗阈值不能直接照搬。
+- [Contract-Grade Verifier](https://arxiv.org/abs/2608.12700)：**Observe → Read**。随机输入加宽容差不是完整正确性契约，异常值、形状变化和 backward 都可能漏检；作者审计样本不代表所有生成 kernel。
+- [The Lazy Pod That Lies](https://arxiv.org/abs/2608.19412)：**维持 Read，提升到月报正文**。lazy pull 会把成本与失败移到后续读路径，Running/Ready 不能替代模型文件可读与真实工作负载探针；原实验是 serving，迁移到 RL sandbox 是工程推断。
+
+### 只选两份深读
+
+| 当前问题 | 最值得继续读 | 阅读产出 |
+|---|---|---|
+| 正在维护异步训练 | NeMo RL #3599 + slime #2238 | 画出样本状态机与 checkpoint cut，列出丢失/重复条件 |
+| 更关心集群故障定位 | B300 field report | 写出 rank 进度、功耗、packing 和数据等待的排查顺序 |
+
+其余材料先保留为参考；[8 月重评登记](backfill/2026-08.md)记录作者、日期、原判定和证据边界。**趋势推断：** 8 月的重点不是“异步比同步更先进”，而是调度、状态搬运和环境扩张迫使框架补齐正确性与恢复边界。
+
+### 本次 Watch 补充
+
+原厂商 / Hugging Face / RL Framework Watch 保留在下方。slime 的两项修复、NeMo RL 的数据 frontier、vLLM/SGLang 的状态路径为本次追加 Accepted / Read；TRL #6625 仍 Observed，因为当时内置调用仅用 entropy 记指标，不能据此宣称已有训练普遍漏掉 entropy bonus 梯度。ROLL/OpenRLHF 全量索引已查，未挑出足够强的本月追加主线。
+
+## 原月报与来源明细（保留原判定）
+
+<details>
+<summary>展开当时月报：信号、厂商 Watch、框架 Watch 与阅读决策</summary>
+
 - Window: 2026-08-01 00:00:00 ~ 2026-08-31 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-09-01
@@ -199,3 +253,7 @@ NVIDIA Nemotron 3.5 QAD 与 slime GLM-5 训推对齐说明低精度不能作为�
 2. 把 AReaL 当前的 rollout admission、weight sync、termination metadata 和 recovery state 画成一张 E2E contract 图，找出没有 owner 的状态。
 3. 继续完整扫描 OpenAI / Anthropic / NVIDIA / DeepSeek、Hugging Face 与 RL frameworks；核心厂商工业报告保持高优先级，但不降低证据门槛。
 4. 观察 MoE architecture-side 优化是否形成连续证据：CE-MoE 的 routed-layer concentration 能否在更大规模、长上下文和 post-training 场景保持质量与收益。
+
+</details>
+
+[返回月度阅读入口](monthly_reviews.md)

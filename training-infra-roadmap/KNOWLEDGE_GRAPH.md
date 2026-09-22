@@ -1,5 +1,7 @@
 # Knowledge Graph
 
+月度阅读优先从[2026 复盘总览](tracking/monthly_reviews.md)进入：按月理解技术主线，再决定是否查原始扫描；[7–9 月 GitHub 补漏](tracking/github_retrospective_2026-07_to_2026-09.md)保留具体实现证据。
+
 这张图不追求把所有关系一次画完。第一版的图太像“全量依赖网”，边太多，读者很难知道该从哪里进入。
 
 新的表达方式分成两层：

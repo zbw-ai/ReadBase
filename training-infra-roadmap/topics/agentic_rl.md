@@ -971,3 +971,27 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 [vLLM dummy draft 修复](https://github.com/vllm-project/vllm/pull/56734)把无真实请求的映射标为负索引，并在 kernel 内输出 PAD slot。只在 Python 端跳过一次不够，因为 graph replay 可以重新执行写路径。与[PP prefetch tickets](https://github.com/sgl-project/sglang/pull/36700)一起看，缓存正确性应覆盖“尚未准入”和“没有真实请求”这两种状态；创建过的资源也要有取消/释放路径。
 
 完整证据、版本边界与未复现项见[GitHub 补扫](../tracking/github_audit_2026-09-22.md)，测试设计见[RL 状态实验](../experiments/rl_state_boundaries.md)。
+
+<a id="monthly-retrospective-invariants"></a>
+
+## 7–9 月复盘：用可检查的不变量串起系统边界
+
+[月度复盘](../tracking/monthly_reviews.md)与[历史 PR 证据](../tracking/github_retrospective_2026-07_to_2026-09.md)补出了一条连续关系：7 月测量和样本取证的细小错误，8 月队列与恢复的状态缺口，9 月环境与数值状态的扩展，其实都在改变“什么东西已经完成、可以被消费”。以下为本仓库的工程归纳，不是来源宣称的统一理论。
+
+| 边界 | 应保持的条件 | 会静默失败的例子 | 配置与验收方向 |
+|---|---|---|---|
+| 测量 | 比较的 step、GPU 预算与有效 token 口径一致 | separate-async 漏掉独立 rollout GPU | 同时报 trainer/rollout GPU、更新次数、失败与 discard；见 verl #7049/#6977 |
+| 采样证据 | logprob 对应实际 sampled token，mask 与序列身份一致 | 从候选字典任取首项 | 以 token ID 验证映射；多候选、重排与 packing 都要测；见 NeMo #3297 |
+| 训练消费 | 完成但未消费的 group 可追踪；丢弃必须有原因 | drain 队列后截断，多余 group 消失 | 保存余量，背压不能阻塞 event loop；见 slime #2238 |
+| 恢复 | checkpoint cut 与实际消费 frontier 一致 | dataloader 已前移，in-flight prompt 无恢复入口 | 明确 replay/重新采样/去重规则；见 NeMo #3599，不假设永不丢弃是所有算法共同目标 |
+| 并行语义 | CP 保持 attention、recurrent state 和 loss 统计域 | 丢 mask、分片独立 whitening | 用单卡/多卡受控对照，空分片仍参与 collective；见 Accelerate #4177、slime #2235 |
+| 权重发布 | canonical 与衍生表示同步完成才准入 | sparse apply 失败或 FP32 gate shadow 未更新 | 验证已知 baseline、loader 范围和更新失败关闭；见 vLLM #50723/#53751、SGLang #35883 |
+| 临时状态 | prepare 失败能撤销，dummy 不覆盖真实状态 | 复用旧 block-table、load-back 提前发布 slot | 明确所有权、完成事件与 abort 清理；见 vLLM #49757、SGLang #30986 |
+
+表中 PR 均可从[历史审计](../tracking/github_retrospective_2026-07_to_2026-09.md)跳到固定合并 SHA、作者与文件证据。`Read` 只表示值得吸收，尚未在本仓库验证迁移。
+
+一个具体设计选择是：当稀疏 weight sync 只缩小网络字节，却仍需完整 staging 或 rebuild 时，优先量出整个 refit critical path。稀疏 patch 的收益取决于权重变化比例、模型 layout、映射开销和暂停请求时间，不能仅用链路带宽作决定。更新失败若会留下混合状态，应先恢复已知 baseline，再重新开放 admission。
+
+环境与 kernel 也采用同样原则。[Envs-FORGE](https://arxiv.org/abs/2608.14312)提示任务、fixture、oracle 和容器需要联合验收；[Lazy Pod](https://arxiv.org/abs/2608.19412)提示 Ready 之后仍存在延后读失败；[Contract-Grade Verifier](https://arxiv.org/abs/2608.12700)提示优化后的 kernel 需要与真实语义契约对齐。它们解决的对象不同，不能把“通过测试”统一解释为生产正确。
+
+下一步以[最小验证场景](../experiments/rl_state_boundaries.md#retrospective-test-cases)为入口，先补证据再选择改动；本次没有实现或运行这些实验。

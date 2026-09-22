@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-04
 
+## 2026-09-22 回看导读：并行、通信和精度需要一起设计
+
+FP8、DORA、AutoSP、optimizer 与 CommFuse 这组材料适合串起来读：精度改变张量字节数和 kernel 选择，并行改变通信域，调度决定这些操作能否重叠。逐项最优的配置不一定能组成最优训练路径。
+
+**只带走一个动作：** 用一张时间线标出 GEMM、collective、量化与 optimizer；区分减少通信量和隐藏通信。本月原始 top-80 分类检索有截断，未因本次整理而变成完整扫描。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-04-01 00:00:00 ~ 2026-04-30 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-08
@@ -190,3 +198,6 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - FP8 / NVFP4 是否从 pretraining 进一步进入 RL rollout、KV cache、attention 和 reward/verifier pipeline。
 - AutoSP / CP 是否把长上下文训练从手工并行配置推进到 compiler/runtime 自动化。
 - 通信优化是否从压缩字节数转向重排 collective、隐藏尾延迟和提高 overlap 稳定性。
+
+
+[返回月度阅读入口](monthly_reviews.md)

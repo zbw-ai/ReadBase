@@ -1,0 +1,373 @@
+{
+  "review_at": "2026-09-22",
+  "window_start": "2026-06-30T16:00:00Z",
+  "window_end": "2026-09-22T09:06:16Z",
+  "timezone": "Asia/Shanghai",
+  "method": "Authenticated GitHub REST. commits: sha=main, since/until, 100/page until short page. pulls: closed, updated descending, 100/page until short page or oldest updated_at < start; retain merged_at in window across all base branches. releases: reuse same-day endpoint-exhausted index, filter published_at. URL or 8-character SHA matching is only a candidate dedupe heuristic, not proof of absence. Selected PR bodies and changed files were read; the full index is not a full code review.",
+  "repositories": [
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 4,
+        "enumerated": 393,
+        "selected": 393,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 8,
+        "enumerated": 800,
+        "selected": 538,
+        "complete": true
+      },
+      "releases": {
+        "selected": 1,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 8,
+        "enumerated": 783,
+        "selected": 783,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 16,
+        "enumerated": 1600,
+        "selected": 917,
+        "complete": true
+      },
+      "releases": {
+        "selected": 3,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "OpenRLHF/OpenRLHF",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 40,
+        "selected": 40,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 27,
+        "complete": true
+      },
+      "releases": {
+        "selected": 3,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "THUDM/slime",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 88,
+        "selected": 88,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 2,
+        "enumerated": 200,
+        "selected": 84,
+        "complete": true
+      },
+      "releases": {
+        "selected": 2,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "alibaba/ROLL",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 8,
+        "selected": 8,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 8,
+        "complete": true
+      },
+      "releases": {
+        "selected": 0,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 2,
+        "enumerated": 132,
+        "selected": 132,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 3,
+        "enumerated": 300,
+        "selected": 147,
+        "complete": true
+      },
+      "releases": {
+        "selected": 2,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/accelerate",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 49,
+        "selected": 49,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 2,
+        "enumerated": 200,
+        "selected": 48,
+        "complete": true
+      },
+      "releases": {
+        "selected": 1,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/kernels",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 95,
+        "selected": 95,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 2,
+        "enumerated": 200,
+        "selected": 99,
+        "complete": true
+      },
+      "releases": {
+        "selected": 4,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/peft",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 2,
+        "enumerated": 175,
+        "selected": 175,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 4,
+        "enumerated": 400,
+        "selected": 174,
+        "complete": true
+      },
+      "releases": {
+        "selected": 2,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/tokenizers",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 2,
+        "enumerated": 152,
+        "selected": 152,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 4,
+        "enumerated": 400,
+        "selected": 139,
+        "complete": true
+      },
+      "releases": {
+        "selected": 2,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/transformers",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 8,
+        "enumerated": 793,
+        "selected": 793,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 15,
+        "enumerated": 1500,
+        "selected": 795,
+        "complete": true
+      },
+      "releases": {
+        "selected": 9,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "huggingface/trl",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 6,
+        "enumerated": 563,
+        "selected": 563,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 10,
+        "enumerated": 1000,
+        "selected": 568,
+        "complete": true
+      },
+      "releases": {
+        "selected": 9,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 41,
+        "enumerated": 4012,
+        "selected": 4012,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 89,
+        "enumerated": 8900,
+        "selected": 4292,
+        "complete": true
+      },
+      "releases": {
+        "selected": 7,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "verl-project/verl",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 4,
+        "enumerated": 335,
+        "selected": 335,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 8,
+        "enumerated": 800,
+        "selected": 378,
+        "complete": true
+      },
+      "releases": {
+        "selected": 2,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "start": "2026-06-30T16:00:00Z",
+      "end": "2026-09-22T09:06:16Z",
+      "default_branch": "main",
+      "commits": {
+        "pages": 35,
+        "enumerated": 3496,
+        "selected": 3496,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 66,
+        "enumerated": 6600,
+        "selected": 3514,
+        "complete": true
+      },
+      "releases": {
+        "selected": 8,
+        "complete": true,
+        "method": "reuse same-day endpoint-exhausted release index"
+      }
+    }
+  ],
+  "totals": {
+    "commits": 11114,
+    "pulls": 11728,
+    "releases": 55
+  },
+  "files": {
+    "pulls.csv": {
+      "sha256": "f285059ac1433c1f81c9c43e11c797db971b4a07a02c2fe17f1373f161efdac4",
+      "rows": 11728
+    },
+    "releases.csv": {
+      "sha256": "b0986cb5727eaae3404613e5e26684f61182d3662c66d3acd35dff6dd5c06937",
+      "rows": 55
+    },
+    "commits.csv": {
+      "sha256": "b690e0edb5021e2e726cfe20dad1fdeb9ee867677c5b6259ae5f09bb1e5b6947",
+      "rows": 11114
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Reading Queue
 
+过去扫描不需要逐篇补读：先走[按月复盘](../tracking/monthly_reviews.md)，每月只选择与当前工作最相关的一两份。历史重评不会自动增加当前 P0，也不把已收录视作已读。
+
 `reading_queue/` 是筛选层，用来把 `tracking/` 中的信号转化为明确阅读计划。
 
 它解决的问题是：tracking 会越来越多，但真正值得精读的材料永远只能是少数。

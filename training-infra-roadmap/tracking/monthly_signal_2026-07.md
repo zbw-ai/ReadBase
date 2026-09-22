@@ -1,5 +1,53 @@
 # Monthly Signal Report, 2026-07
 
+## 先读这页：为什么 GPU 很忙，RL 仍然很慢
+
+**2026-09-22 回看。** 本月原始窗口为 7 月；下面是事后综合判断，新增补漏并非当时已知。读完本节即可掌握主线，不必逐份阅读 10 次扫描。原月报完整保留在文末。
+
+### 1. 优化单位应从一次 forward，扩大到一个有效训练样本
+
+[Rollout Tax](https://arxiv.org/abs/2607.01415) 把环境启动、执行和数据交付带来的等待纳入 Agentic RL 成本；[BiDiRL](https://arxiv.org/abs/2607.09207) 则研究训练与 rollout 之间的资源借用。两者放在一起，问题就从“推理引擎快不快”变成“给定整套 GPU 预算，每小时交付多少真正参与更新的有效轨迹”。动态借 GPU 不能自动消除 group 内慢样本、环境阻塞和无效数据。
+
+这次发现的 [verl #7049](https://github.com/verl-project/verl/pull/7049) 给了一个直接例子：独立 rollout 使用的 GPU 曾没有进入吞吐分母。即使程序变快，指标也可能只是漏算成本。[#6977](https://github.com/verl-project/verl/pull/6977) 又统一了 separate-async 的 step 粒度。**工程判断：跨框架比较前，先统一 GPU 总量、step 定义、样本去重和有效 token 口径。** 两项为 9 月历史补漏，均为 Read。
+
+### 2. 长轨迹带来的首先是状态问题，其次才是显存问题
+
+[CompactionRL](https://arxiv.org/abs/2607.05378) 让上下文压缩成为训练问题；[Libra](https://arxiv.org/abs/2607.23250) 提醒长序列的负载不能只按 token 数估计。对普通全注意力，长度分布会显著改变 attention 工作量；同样的 token 总量，不等于相同的计算量。具体负载模型仍要匹配稀疏、混合注意力和实现方式。
+
+复盘新增的 [vLLM #49757](https://github.com/vllm-project/vllm/pull/49757) 与 [SGLang #30986](https://github.com/sgl-project/sglang/pull/30986) 展示了另一面：dummy run 和中止的 load-back 都可能触碰 recurrent state。只保护 KV 索引还不够，状态槽位何时分配、发布、回收，也会决定下一次 decode 是否正确。两项均为 Read；不能把 9 月的相似修复当成这些缺陷第一次出现。
+
+### 3. RL 的正确性藏在很小的数据接口里
+
+[NeMo RL #3297](https://github.com/NVIDIA-NeMo/RL/pull/3297) 修复了按字典首项取 logprob、而非按实际 sampled token ID 查找的问题；[#3171](https://github.com/NVIDIA-NeMo/RL/pull/3171) 修复了 PPO 恢复时没有识别分布式 checkpoint 内 optimizer/scheduler 状态的问题。前者会污染训练证据，后者让“恢复训练”变成带旧权重的新优化轨迹。二者都未必以 crash 暴露，均提升为本次历史补漏 Read。
+
+**实际后果：** 验证 rollout 时对齐 token、mask、logprob 和 policy version；验证 resume 时同时检查 actor/critic、optimizer、scheduler 与数据位置。只看 loss 曲线和进程存活不足以验收。
+
+### 4. 当时被低估的方向：环境与验证工具正在进入系统边界
+
+[Branching Policy Optimization](https://arxiv.org/abs/2607.14171) 利用可恢复的 sandbox 中间状态分叉采样。原来因 snapshot/fork 的系统成本证据不足而 Observe；现在结合 8 月环境平台和 9 月 DSec，升级为 **Read**，重点读环境状态如何约束 rollout topology，尚不推荐直接部署。
+
+[Harness Engineering](https://arxiv.org/abs/2607.17979) 把编译、正确性、计时和 profiling 放进候选 kernel 的筛选流程。原先因“不直接改变 runtime”被搁置，本次升级为 **Read**：它改变的是如何允许一个优化进入 runtime，而不是提出新的并行算法。
+
+补查 [TRL #6420](https://github.com/huggingface/trl/pull/6420) 还发现 7 月已出现外部 agent 自己控制工具循环、训练框架读取 proxy trace 的实验路径。**趋势推断：** 环境执行、轨迹取证和模型训练的边界早于 8–9 月正式报告就已在代码里成形；这不是对大规模稳定性的证明。
+
+### 只选两份深读
+
+| 当前问题 | 最值得继续读 | 读完应能回答 |
+|---|---|---|
+| 整套 RL 作业为何贵 | Rollout Tax + 上述 verl 指标修复 | 环境等待、训练、rollout 分别花了多少成本，分母是否一致？ |
+| 想做可分叉 Agent 环境 | BPO 的 snapshot / fork 设计 | 哪些状态必须复制，失败和重复执行如何影响训练样本？ |
+
+Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有新披露的训练细节不推导成训练架构。论文作者、日期和六项重评的前后判断见[重评登记](backfill/2026-07.md)；完整 GitHub 历史覆盖见[补扫复盘](github_retrospective_2026-07_to_2026-09.md)。
+
+### 本次 Watch 补充
+
+原月报的 OpenAI / Anthropic / NVIDIA / DeepSeek、Hugging Face 和 RL Framework Watch 保留在下方。本次不是重新发现这些厂商整月文章；新增工业实现证据来自 NeMo RL、verl、TRL 与两个 runtime。AReaL 仍是迁移对照基线；ROLL/OpenRLHF 已纳入全量索引，但未选出改变本月结论的追加项，保持 Observed。
+
+## 原月报与来源明细（保留原判定）
+
+<details>
+<summary>展开当时月报：信号、厂商 Watch、框架 Watch 与阅读决策</summary>
+
 - Window: 2026-07-01 00:00:00 ~ 2026-07-31 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-08-04
@@ -181,3 +229,7 @@ CompactionRL 已完成阅读，不再占用队列名额。AReaL / HybridFlow 仍
 2. 精读 Kimi K3 technical report，区分真正披露的系统机制、厂商自报规模证据和仍需验证的性能结论。
 3. 用 Libra 的 workload model 检查当前 128K SFT/RL 配置，不再只用 token 数和平均序列长度估算负载。
 4. 持续高优先级扫描 OpenAI / Anthropic / NVIDIA / DeepSeek 及其他核心模型厂商的一手 technical report；重要厂商材料必须显式审视，但只有证据足够时才进入 Accepted。
+
+</details>
+
+[返回月度阅读入口](monthly_reviews.md)

@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-05
 
+## 2026-09-22 回看导读：重视数据复用与网络观测，而非只调并行度
+
+共享 prefix、异构并行、Attention/FFN disaggregation 与 NCCL Inspector 指向两个问题：是否重复计算了同样的数据，是否真正知道网络在等什么。到了 8 月，这条线会延伸为 prefix-aware training、weight movement 和 attention workload 调度。
+
+**只带走一个动作：** 把观测到的长尾拆成到达不同步、传输、计算与排队。原先 Observe 的 serving 材料仍需自己的证据，不能仅因 agent 热门就全部升级。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-05-01 00:00:00 ~ 2026-05-31 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-08
@@ -173,3 +181,6 @@
 - Long-context RL 是否从简单 packing 转向 schedule-level prefix reuse、context compaction 和 KV-aware training。
 - MoE rollout serving 是否继续沿 Attention/FFN/expert disaggregation 演进。
 - NVIDIA / PyTorch 是否继续把可观测性、fault tolerance 和 distributed runtime 做成训练栈的一等能力。
+
+
+[返回月度阅读入口](monthly_reviews.md)

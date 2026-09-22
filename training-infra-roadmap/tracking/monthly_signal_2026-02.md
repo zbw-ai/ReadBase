@@ -1,5 +1,13 @@
 # Monthly Signal Report, 2026-02
 
+## 2026-09-22 回看导读：规模扩大后，恢复单位比单次算子速度更重要
+
+FT-HSDP、ECHO 2 与 Flexible CP 等信号分别触及大规模可靠性、系统组织和长上下文负载。把它们合起来读，可以形成一个判断：扩展训练不是保持原配方并增加卡数，还要重新设计失败影响范围、通信域和动态负载分配。
+
+**只带走一个动作：** 对一个 rank 失败，说明哪些状态可重建、哪些必须持久化、哪些工作会重做；不要将厂商或论文规模直接当成自己平台的可达规模。
+
+本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+
 - Window: 2026-02-01 00:00:00 ~ 2026-02-28 23:59:59
 - Timezone: Asia/Shanghai
 - Generated at: 2026-07-09
@@ -160,3 +168,6 @@
 - FT-HSDP / elastic training 是否继续推动 checkpoint-free 或 partial-restart 方向。
 - RL rollout 是否从 framework-level disaggregation 走向跨地域/跨资源池调度。
 - Flexible CP 是否和 sequence packing、FlashAttention、checkpointing 形成统一 long-context training 配置方法。
+
+
+[返回月度阅读入口](monthly_reviews.md)
