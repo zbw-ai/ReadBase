@@ -260,3 +260,5 @@
 | 43 | [GR00T end-to-end workflow](https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/) | 厂商 data -> sim -> train -> eval -> deploy 平台路线 |
 
 - [2026-09-22 Frontier Scan](tracking/frontier_scan_2026-09-22.md)：DSec → agent/sandbox 恢复，Conduit → 经验数据面，FP8 RL → 数值反馈；接入 [P1](reading_queue/P1.md) 与 [RL 状态实验](experiments/rl_state_boundaries.md)。
+
+- [2026-09-22 GitHub 全面补扫](tracking/github_audit_2026-09-22.md)：闭合 GitHub 索引缺口；VLM CP/MTP、prefill workspace、KV lifecycle 与 release 验收，关联 [Agentic RL](topics/agentic_rl.md#rl-state-boundaries) 和 [实验](experiments/rl_state_boundaries.md)。

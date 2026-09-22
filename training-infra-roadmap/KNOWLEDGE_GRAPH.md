@@ -290,3 +290,5 @@ flowchart LR
 当前只完成来源核验与验证设计；没有运行故障注入，不能标记 VERIFIED。
 
 - [2026-09-22 Frontier Scan](tracking/frontier_scan_2026-09-22.md)：DSec → agent/sandbox 恢复，Conduit → 经验数据面，FP8 RL → 数值反馈；接入 [P1](reading_queue/P1.md) 与 [RL 状态实验](experiments/rl_state_boundaries.md)。
+
+- [2026-09-22 GitHub 全面补扫](tracking/github_audit_2026-09-22.md)：闭合 GitHub 索引缺口；VLM CP/MTP、prefill workspace、KV lifecycle 与 release 验收，关联 [Agentic RL](topics/agentic_rl.md#rl-state-boundaries) 和 [实验](experiments/rl_state_boundaries.md)。

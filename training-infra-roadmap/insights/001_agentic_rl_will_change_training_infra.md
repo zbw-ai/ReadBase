@@ -81,3 +81,7 @@ Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁�
 | [同时报告可达表现与实际成本曲线](../tech_reports/mimo_v26.md#judgment-evaluation) | 相同推理上限未必产生相同实际成本，长程探索也可能有真实价值 | 若收益只出现在高预算范围，则限定场景；固定成本仍领先才支持效率提升 |
 
 上述顺序针对缺少可信基线的团队；若已有证据表明 GPU 是主要瓶颈，计算优化应提前。CodeMidas 未隔离每个筛选步骤，V2.6 调度图包含模拟，生产大 run 也有人工干预，不能把它们合并成单因素 scaling 证明。已将判断写入 [Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)，对应[环境、调度、grader 和评测实验 A–E](../experiments/mimo_v26_environment_and_mixer.md)均为 NEW，没有 VERIFIED 结果。
+
+## 2026-09-22 GitHub 补证据：有效容量由执行阶段决定
+
+[补扫 G5/G8/G9](../tracking/github_audit_2026-09-22.md)分别暴露 prefill 临时矩阵、dummy graph 的真实 KV 写入，以及缓存命中后的跨 PP 等待。我的工程推断是：评估 rollout 容量时，应以阶段峰值、请求状态和可准入条件联合定义容量，不能只由持久 KV 大小或 cache-hit ratio 推导。若真实 trace 显示这些成本可忽略且 GPU GEMM 长期主导，则把计算优化放回首位；该判断需要[实验](../experiments/rl_state_boundaries.md)验证，目前没有本地性能结论。

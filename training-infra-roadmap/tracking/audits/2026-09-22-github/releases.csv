@@ -1,0 +1,4 @@
+repo,tag,title,author,published_at,prerelease,url,signal
+huggingface/tokenizers,v1.0.0-rc.2,Release candidate v1.0.0.rc.2,ArthurZucker,2026-09-21T11:28:00Z,True,https://github.com/huggingface/tokenizers/releases/tag/v1.0.0-rc.2,9/22 A4 follow-up
+verl-project/verl,v0.9.1,v0.9.1,wuxibin89,2026-09-20T07:24:43Z,False,https://github.com/verl-project/verl/releases/tag/v0.9.1,G1
+vllm-project/vllm,v0.30.0,v0.30.0,khluu,2026-09-22T05:20:54Z,False,https://github.com/vllm-project/vllm/releases/tag/v0.30.0,G2

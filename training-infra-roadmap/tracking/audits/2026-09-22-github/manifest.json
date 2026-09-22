@@ -1,0 +1,398 @@
+{
+  "window_start_utc": "2026-09-20T02:27:43Z",
+  "window_end_utc": "2026-09-22T09:06:16Z",
+  "open_snapshot_observed_by_utc": "2026-09-22T09:12:45Z",
+  "method": "Authenticated GitHub REST; per_page=100; commits since/until on default branch; closed PR sorted updated, stop after crossing start, then filter merged_at; releases paginate to endpoint exhaustion; open PR updated since start is observation-time snapshot, not historical state reconstruction.",
+  "counts": {
+    "commits": 374,
+    "merged_prs": 383,
+    "nondefault_merged_prs": 12,
+    "releases": 3,
+    "open_snapshot": 2531,
+    "selected_prs": 57
+  },
+  "repositories": [
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 10,
+        "selected": 10,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 11,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 10,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 12,
+        "selected": 12,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 18,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 46,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "OpenRLHF/OpenRLHF",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 0,
+        "selected": 0,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 0,
+        "complete": true
+      },
+      "releases": {
+        "pages": 2,
+        "enumerated": 110,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "THUDM/slime",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 0,
+        "selected": 0,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 0,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 10,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "alibaba/ROLL",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 0,
+        "selected": 0,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 0,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 4,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 13,
+        "selected": 13,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 13,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 26,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/accelerate",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 1,
+        "selected": 1,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 1,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 73,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/kernels",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 0,
+        "selected": 0,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 1,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 46,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/peft",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 6,
+        "selected": 6,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 6,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 34,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/tokenizers",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 15,
+        "selected": 15,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 13,
+        "complete": true
+      },
+      "releases": {
+        "pages": 2,
+        "enumerated": 103,
+        "selected": 1,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/transformers",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 21,
+        "selected": 21,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 21,
+        "complete": true
+      },
+      "releases": {
+        "pages": 3,
+        "enumerated": 272,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "huggingface/trl",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 8,
+        "selected": 8,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 9,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 96,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 2,
+        "enumerated": 164,
+        "selected": 164,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 4,
+        "enumerated": 400,
+        "selected": 165,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 61,
+        "selected": 0,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "verl-project/verl",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 1,
+        "enumerated": 12,
+        "selected": 12,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 1,
+        "enumerated": 100,
+        "selected": 13,
+        "complete": true
+      },
+      "releases": {
+        "pages": 1,
+        "enumerated": 16,
+        "selected": 1,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "start": "2026-09-20T02:27:43Z",
+      "end": "2026-09-22T09:06:16Z",
+      "branch": "main",
+      "commits": {
+        "pages": 2,
+        "enumerated": 112,
+        "selected": 112,
+        "complete": true
+      },
+      "pulls": {
+        "pages": 2,
+        "enumerated": 200,
+        "selected": 112,
+        "complete": true
+      },
+      "releases": {
+        "pages": 2,
+        "enumerated": 106,
+        "selected": 1,
+        "complete": true,
+        "termination": "endpoint_exhausted"
+      }
+    }
+  ],
+  "csv_sha256": {
+    "releases.csv": "91e2b716a19a3d7a90fb5cf6da9fcfd1f92a72782df517b5198b8cae03391d8b",
+    "commits.csv": "a5ae8a74e7deb4e1a7e9683454e059ef41f6f2337a2e4df246ddde8f9d0a1172",
+    "merged_prs.csv": "a51018117650aea7ab0908a96be18f22f6d666b8bad830ca6579ec5e0a402792",
+    "open_prs.csv": "43035add7142b3415333e97cef75661d38f8f60430437a6c84fb445d7e30576b",
+    "reviewed_prs.csv": "f98a038100c11c87255787849b1c5f8de6dc5857b634413a2de59047e36da567"
+  }
+}

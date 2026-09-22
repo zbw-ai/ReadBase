@@ -1,5 +1,7 @@
 # Frontier Scan 2026-09-22
 
+> 后续更新：[GitHub 全面补扫](github_audit_2026-09-22.md)已关闭下文记录的 vLLM/SGLang 提交索引缺口，新增 9 组 GitHub 信号并核验 release/分支归属。下文保留原扫描时刻的 7 Accepted / 5 Observed 口径；GitHub 专项游标为 17:06:16，其他来源仍为原游标。
+
 - Window：2026-09-20 10:27:43 → 2026-09-22 16:52:05（Asia/Shanghai）。Next cursor：2026-09-22 16:52:05。
 - Accepted：7；Observed：5 组（O1–O5；Watch 不重复计数）。A1/A3 于 9/19 提交，为 announcement-boundary late-discovered；其余五项发表于窗口内。
 - 每个 Accepted 的 scan window 均为上述窗口；First seen 均登记为本轮核验结束 2026-09-22 16:52:05，不代表网络首发。Status：NEW，局部机制阅读不等于完整精读或本地复现。

@@ -961,3 +961,13 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 [Conduit](https://arxiv.org/html/2609.24456v1)将 ingestion、placement、delivery 作为数据面控制点。对 LLM RL 的可迁移判断是：先测 learner 等待数据的暴露时间，再决定 CPU/GPU residency 和流水化；任何优化仍受 sample freshness 与消费语义约束。主评估的传统 RL 结果不能直接代替 LLM 配置实测。
 
 [AReaL AWEX 修复](https://github.com/areal-project/AReaL/commit/574bc6a708176c049cab5102b39e706e992f79c4)进一步表明，本地 idle 不能保证所有 TP rank 处在同一通信阶段。需要在显式 pause 同步后进入 weight-update collective；监控应同时记录请求 broadcast 与更新 collective 的顺序。相关的 teacher row identity 和 frozen-weight ownership 见[本轮 A6/A7](../tracking/frontier_scan_2026-09-22.md)，后续通过[状态实验](../experiments/rl_state_boundaries.md)验证，尚无本地运行证据。
+
+### GitHub 补扫：容量、布局与 dummy 执行不能只看表面配置
+
+[DeepSeek-V4.1 prefill 修复](https://github.com/sgl-project/sglang/pull/40217)显示，即使压缩后的持久 KV 有空间，FP32 scores 与候选 mask 的临时峰值仍可触发 OOM。按 query rows tiling 保留每行完整 context，跨层保存 compact candidate block IDs；score budget 不等于总 workspace 上限。容量估算应拆成权重、持久 KV、临时 indexer、CUDA Graph、通信与 staging，再按阶段找共同峰值。
+
+[AReaL VLM CP](https://github.com/areal-project/AReaL/pull/1672)与[verl THD bucket 修复](https://github.com/verl-project/verl/pull/7948)共同提示：多模态融合之前保留完整输入，模型内部切分后，labels、mask、cu_seqlens 与 physical padded length 必须同源。配置 CP>1 并不证明每条转换路径已经满足此契约。
+
+[vLLM dummy draft 修复](https://github.com/vllm-project/vllm/pull/56734)把无真实请求的映射标为负索引，并在 kernel 内输出 PAD slot。只在 Python 端跳过一次不够，因为 graph replay 可以重新执行写路径。与[PP prefetch tickets](https://github.com/sgl-project/sglang/pull/36700)一起看，缓存正确性应覆盖“尚未准入”和“没有真实请求”这两种状态；创建过的资源也要有取消/释放路径。
+
+完整证据、版本边界与未复现项见[GitHub 补扫](../tracking/github_audit_2026-09-22.md)，测试设计见[RL 状态实验](../experiments/rl_state_boundaries.md)。

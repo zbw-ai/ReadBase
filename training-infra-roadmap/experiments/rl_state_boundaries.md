@@ -64,3 +64,16 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 - AWEX：在一个 TP rank 注入 event-loop 延迟，同时排队推理请求和权重更新。固定修复前后版本，对比 collective 序列，确认显式 pause 后才更新、无死锁，并检查恢复后的 policy version。单进程 mock 不能代替多 rank 验证。
 - Frozen weights：用明确的 named_parameters glob 选冻结集合，记录 sleep 前后的值校验与恢复 storage；trainer 只更新其他参数。检查 pageable CPU 备份峰值、wake 延迟，以及 loader 不替换冻结 storage。额外注入 trainer 错误更新冻结参数，确认外层契约能检测，而不是期待 vLLM 自动过滤。
 - DSec 思路迁移：分别模拟 GPU job 终止、agent loop 终止、sandbox 终止，记录各自能否恢复；不把磁盘 checkpoint 当成进程执行态 checkpoint。尚未部署 DSec，不声称复现其平台。
+
+## GitHub 补扫后的新增验收计划
+
+来源：[2026-09-22 GitHub G3/G5/G8/G9](../tracking/github_audit_2026-09-22.md)。Status：NEW；以下没有执行结果。
+
+| 场景 | 控制变量 / 干预 | 验收指标 |
+|---|---|---|
+| DeepSeek cold prefill 峰值 | 固定权重、context、query chunk、cache hit=0，分别记录原实现与 row tiling；不要在每次调用前清空 allocator 来改变比较条件 | allocated/reserved 峰值、indexer scope 与全模型峰值分开；score budget 之外记录 mask/top-k scratch；同时比较输出选择与 TTFT |
+| VLM THD/CP | 同一 batch 在 CP1/CP2、bucket padding 开/关下核验 physical length、label/mask 和 token count | fused vision 后的布局一致、loss/gradient 在指定容差内；记录实际 runtime 版本 |
+| Dummy draft KV | 在 DP 某 rank idle 时触发多步 draft，再用旧 prefix 发真实请求；比较修复前后固定 SHA | dummy/padding mapping 全 PAD，不写原真实 block；记录 acceptance、输出正确性和 KV sentinel，不能只看吞吐 |
+| PP prefetch ticket | 发 ticket 后取消、单 stage 延迟、storage miss 与部分 ready | KV/sidecar 共同安全前缀决定 admission；取消后无泄漏；TTFT 拆分 I/O 与跨 stage 等待 |
+
+先准备能运行的独立 backend checkout 再记录实际命令；不把本仓库文档检查当成上述实验通过。

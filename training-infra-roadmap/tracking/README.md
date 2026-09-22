@@ -22,8 +22,10 @@
 
 ## 文件说明
 
+- [GitHub 全面补扫 2026-09-22](github_audit_2026-09-22.md)：15 库、374 commits / 383 merged PR / 3 releases；新增 9 组信号，关闭 vLLM/SGLang 索引缺口，附可审计账本。
+
 - [Scan Log](scan_log.md)：每次前沿扫描的账本，记录窗口、来源、accepted / observed 数量和下一次扫描游标。
-- [Frontier Scan 2026-09-22](frontier_scan_2026-09-22.md)：最新至 16:52:05，7 Accepted；DSec、Conduit、FP8 RL 稳定性与框架状态契约；运行时有覆盖缺口。
+- [Frontier Scan 2026-09-22](frontier_scan_2026-09-22.md)：最新至 16:52:05，7 Accepted；DSec、Conduit、FP8 RL 稳定性与框架状态契约；原运行时覆盖缺口已由同日 GitHub 专项补扫关闭。
 - [Frontier Scan 2026-09-20](frontier_scan_2026-09-20.md)：此前至 10:27:43，8 Accepted；DeepSeek 报告补漏、NVFP4 端到端成本、原子准入、KV 存储背压与隔离。
 - [Frontier Scan 2026-09-18](frontier_scan_2026-09-18.md)：此前扫描至 10:42:01，8 条 Accepted；BP/CSBP、GeoMesh、集群碎片与 RL 状态提交。补齐旧来源索引缺口，保留运行时补扫项。
 - [Frontier Scan 2026-09-16](frontier_scan_2026-09-16.md)：此前扫描至 14:54:26（Asia/Shanghai），10 条 Accepted；重点是 DeepSeek-V4.1、RL 状态边界、长上下文显存与 kernel。框架历史缺口需回退补扫。
