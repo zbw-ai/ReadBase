@@ -56,3 +56,11 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 
 - 将实际结果回填本页和 [9 月 Learning Log](../learning_log/2026/2026-09.md)。
 - 关联：[Agentic RL](../topics/agentic_rl.md#rl-state-boundaries)、[Checkpointing](../topics/checkpointing.md)、[Knowledge Graph](../KNOWLEDGE_GRAPH.md)。
+
+## 2026-09-22 补充计划：AWEX 与冻结权重
+
+来源：[9/22 A5/A7](../tracking/frontier_scan_2026-09-22.md)。以下均未执行，不新增未经验证的测试命令。
+
+- AWEX：在一个 TP rank 注入 event-loop 延迟，同时排队推理请求和权重更新。固定修复前后版本，对比 collective 序列，确认显式 pause 后才更新、无死锁，并检查恢复后的 policy version。单进程 mock 不能代替多 rank 验证。
+- Frozen weights：用明确的 named_parameters glob 选冻结集合，记录 sleep 前后的值校验与恢复 storage；trainer 只更新其他参数。检查 pageable CPU 备份峰值、wake 延迟，以及 loader 不替换冻结 storage。额外注入 trainer 错误更新冻结参数，确认外层契约能检测，而不是期待 vLLM 自动过滤。
+- DSec 思路迁移：分别模拟 GPU job 终止、agent loop 终止、sandbox 终止，记录各自能否恢复；不把磁盘 checkpoint 当成进程执行态 checkpoint。尚未部署 DSec，不声称复现其平台。

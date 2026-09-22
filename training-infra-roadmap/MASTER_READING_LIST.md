@@ -258,3 +258,5 @@
 | 41 | [Isaac Lab](https://developer.nvidia.com/isaac/lab) | GPU simulation、parallel environment、reset 与 evaluation |
 | 42 | [Real-Time Chunking](https://arxiv.org/abs/2506.07339) | action chunk 的异步实时执行与 deadline 问题 |
 | 43 | [GR00T end-to-end workflow](https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/) | 厂商 data -> sim -> train -> eval -> deploy 平台路线 |
+
+- [2026-09-22 Frontier Scan](tracking/frontier_scan_2026-09-22.md)：DSec → agent/sandbox 恢复，Conduit → 经验数据面，FP8 RL → 数值反馈；接入 [P1](reading_queue/P1.md) 与 [RL 状态实验](experiments/rl_state_boundaries.md)。

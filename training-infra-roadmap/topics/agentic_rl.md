@@ -953,3 +953,11 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 ## 我的总结
 
 Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产系统的职责。过去我们优化的是单个 step 的计算效率；现在还要优化 trajectory 的生成、验证、排队、版本管理和消费效率。未来高级训练 infra 工程师需要同时理解训练并行、推理引擎、任务环境、队列调度和可观测性。这个方向值得长期跟踪。
+
+### 9/22 补充：环境、数据和通信同步点
+
+[DSec §6](https://arxiv.org/html/2609.22978v1)说明，保住 sandbox 磁盘不等于保住 rollout：agent loop 的执行状态也要独立于可抢占 GPU 作业。容器 pause + reclaim 与 microVM snapshot 的恢复契约不同。工程上应分别记录环境版本、agent 进度、policy version 与恢复成功条件，不能只检查训练 checkpoint 已加载。
+
+[Conduit](https://arxiv.org/html/2609.24456v1)将 ingestion、placement、delivery 作为数据面控制点。对 LLM RL 的可迁移判断是：先测 learner 等待数据的暴露时间，再决定 CPU/GPU residency 和流水化；任何优化仍受 sample freshness 与消费语义约束。主评估的传统 RL 结果不能直接代替 LLM 配置实测。
+
+[AReaL AWEX 修复](https://github.com/areal-project/AReaL/commit/574bc6a708176c049cab5102b39e706e992f79c4)进一步表明，本地 idle 不能保证所有 TP rank 处在同一通信阶段。需要在显式 pause 同步后进入 weight-update collective；监控应同时记录请求 broadcast 与更新 collective 的顺序。相关的 teacher row identity 和 frozen-weight ownership 见[本轮 A6/A7](../tracking/frontier_scan_2026-09-22.md)，后续通过[状态实验](../experiments/rl_state_boundaries.md)验证，尚无本地运行证据。

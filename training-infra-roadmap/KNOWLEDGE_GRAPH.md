@@ -288,3 +288,5 @@ flowchart LR
 [本轮信号](tracking/frontier_scan_2026-09-16.md) → [P1 阅读组合](reading_queue/P1.md#rl-state-boundaries-reading) → [Agentic RL 状态边界](topics/agentic_rl.md#rl-state-boundaries) → [故障注入验证计划](experiments/rl_state_boundaries.md) → [9 月学习记录](learning_log/2026/2026-09.md)。
 
 当前只完成来源核验与验证设计；没有运行故障注入，不能标记 VERIFIED。
+
+- [2026-09-22 Frontier Scan](tracking/frontier_scan_2026-09-22.md)：DSec → agent/sandbox 恢复，Conduit → 经验数据面，FP8 RL → 数值反馈；接入 [P1](reading_queue/P1.md) 与 [RL 状态实验](experiments/rl_state_boundaries.md)。
