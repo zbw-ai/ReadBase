@@ -67,10 +67,17 @@ Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁�
 
 <a id="mimo-v26-evidence"></a>
 
-## 2026-09-22 工业证据：可信样本供给需要环境与调度共同保证
+## 2026-09-22 工业证据与判断：监督定义和样本选择共同影响学习
 
-[MiMo-V2.6 / CodeMidas 调研](../tech_reports/mimo_v26.md)补充了两类证据：[CodeMidas](https://arxiv.org/html/2609.22068v1) 的质量筛选实验支持环境可靠性比原始任务数更值得投入；[V2.6 报告 §6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)说明 source 的耗时和接受率差异会影响混合训练的数据供给。
+[MiMo-V2.6 / CodeMidas 调研](../tech_reports/mimo_v26.md)补充了两类证据：[CodeMidas](https://arxiv.org/html/2609.22068v1) 的质量筛选实验表明，在报告设置中高质量 3k 任务优于未清洗 8k，但没有按构造总成本比较；[V2.6 报告 §4.3、§6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)展示了质量 grader 与异构采样调度怎样改变训练信号和数据供给。
 
-**我的推断：**下一阶段平台优化应联合衡量 reward 可信度、实际消费配比、freshness 与成本。只优化 tokens/s，可能更快地产生错误或被丢弃的样本；只增加 task 数，可能同时扩大 verifier 噪声。配置中的 sampling ratio 也必须在 accepted / consumed 两个边界验收。
+**我的立场：**对尚未证明监督和数据路径可靠的系统，应先建立“为什么选中这条经验、评分依据是什么、实际带来什么收益”的证据，再扩吞吐。这里有四个具体选择，均为本仓库推断，尚未实测。
 
-证据限制：CodeMidas 没有分离每个清洗步骤的因果贡献；V2.6 的调度图包含模拟，生产大 run 还有人工数据干预，不能把它们合并成单因素 scaling 证明。已将判断写入 [Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)，下一步是 [分阶段实验](../experiments/mimo_v26_environment_and_mixer.md)，目前未 VERIFIED。
+| 工程选择 | 适用理由 | 什么证据会让我调整判断 |
+|---|---|---|
+| [分开记录环境可信性和训练准入](../tech_reports/mimo_v26.md#judgment-environment) | 一次全通过/全失败只反映特定策略与预算下的有限尝试；新策略也可能揭露旧 verifier 漏洞 | 准入集合长期稳定且重新准入没有收益时，复杂管理可以后置 |
+| [把 source 内部分布纳入恢复验收](../tech_reports/mimo_v26.md#judgment-scheduler) | 配额正常仍可能掩盖短轨迹优先、harness 偏差与 policy age 变化 | 若差异仅为短暂顺序、最终消费及训练结果不受影响，则降低长期偏差风险的判断 |
+| [把 grader/rubric 作为训练目标来审核](../tech_reports/mimo_v26.md#judgment-grader) | 正确解排序在定义“更好的成功”，不能用同一个 grader 的高分自证价值 | 独立验收无收益或误杀增加时，收缩对应偏好；有效且划算才扩预算 |
+| [同时报告可达表现与实际成本曲线](../tech_reports/mimo_v26.md#judgment-evaluation) | 相同推理上限未必产生相同实际成本，长程探索也可能有真实价值 | 若收益只出现在高预算范围，则限定场景；固定成本仍领先才支持效率提升 |
+
+上述顺序针对缺少可信基线的团队；若已有证据表明 GPU 是主要瓶颈，计算优化应提前。CodeMidas 未隔离每个筛选步骤，V2.6 调度图包含模拟，生产大 run 也有人工干预，不能把它们合并成单因素 scaling 证明。已将判断写入 [Agentic RL](../topics/agentic_rl.md#mimo-v26-environment-contract)，对应[环境、调度、grader 和评测实验 A–E](../experiments/mimo_v26_environment_and_mixer.md)均为 NEW，没有 VERIFIED 结果。

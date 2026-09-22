@@ -934,13 +934,17 @@ reward model、judge prompt、unit test、tool environment 任一变化都可能
 
 2026-09-22 定向精读：[MiMo-V2.6 / CodeMidas 分享报告](../tech_reports/mimo_v26.md)。[CodeMidas](https://arxiv.org/html/2609.22068v1) 从已有功能构造规格、开发起点与 hidden verifier；[MiMo-V2.6 §6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf) 将任务接受率、rollout 耗时与消费配比共同纳入 Sample Mixer。数字为作者报告，本仓库尚未复现。
 
-**问题边界：**可运行环境不必然提供正确 reward；按比例投递也不必然按比例训练。若某 source 又慢又容易被过滤，scheduler 不作校正，配置的训练目标会在运行中发生偏移。
+**问题边界：**可运行环境不必然提供正确 reward；按比例投递也不必然按比例训练。若某 source 又慢又容易被过滤，scheduler 不作校正，可能造成消费配比偏移，或在严格等待各 source 收齐配额时拖长 batch 收集时间。
 
 **机制与配置建议（本仓库推断）：**以 task/env/verifier/harness 版本标识样本；将 TASK_FAIL 与 INFRA_ERROR 分离；按 source 的目标保留量 `B_i`、接受率 `r_i` 和耗时 `t_i` 估计需求，所需并发大致随 `t_i × B_i/r_i` 增长，并加全局预算、上限和健康检查。用 consumed distribution 验证目标，而非只统计 submitted distribution。
+
+**环境状态与准入状态分开维护：**环境验收记录规格、执行稳定性、误判和泄漏证据；训练准入记录当前 policy/harness/budget/reward 下的有效 group 比例。单个 group 全通过或全失败，不足以永久淘汰整个任务。更强策略可能发现新漏洞，因此可信性也需复审。该管理方式是[阅读后的设计判断](../tech_reports/mimo_v26.md#judgment-environment)，不是报告已实现的生命周期系统。
 
 **生产陷阱：**冷启动时短轨迹先完成，source-only 均值会低估同 source 下长 harness 的 KV 占用；冻结 MoE router 也不能排除 micro-batch 内 EP rank 的极端负载。总池容量、单节点 packing RSS、每层 expert 峰值都需单独观测。
 
 **排查顺序：**先核验 env/grader 健康和 reward 版本，再对比 submitted → completed → accepted → consumed 各阶段配比，随后检查耗时分布、harness 分层、staleness 淘汰和 KV/host 高水位。不要在 grader 出故障时因接受率下降自动扩大十倍并发。
+
+**恢复与效果验收：**source 配比之外，还应检查 source 内的长度、harness、任务身份分布，以及 replay 占比、policy age 和重复消费。即使分布相近，样本新鲜度变化仍可能改变 clip fraction 和学习信号。Grader 的错误修正与正确解排序应分开审核；评测同时报告相同资源上限下的表现及实际成本，避免用训练 grader 分数或单一成功率替代独立效果。完整依据与反例见[四条工程观点](../tech_reports/mimo_v26.md#engineering-judgments)。
 
 **相邻系统：**环境供应连接 dataset lifecycle，grader 连接奖励可靠性，Sample Mixer 连接 admission/backpressure，replay 连接 checkpoint lineage。GRS 对部分原先全通过的任务形成非二元 reward，过滤条件应以实际学习信号为准；GAR 的 sequence advantage redistribution 不能等同于每个 action 的因果归因。
 
