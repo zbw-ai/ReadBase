@@ -108,3 +108,18 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 | 稀疏权重更新失败不能留下无法识别的混合状态 | 固定 baseline，分别应用全量更新与 bytewise changed-position 覆写；注入部分应用失败、重复更新、同路径内容变化 | 比较参数及衍生表示，记录 baseline identity、完成事件与 admission；同路径 coalescing 不证明文件内容不可变，吞吐评估包含完整 staging 成本。 |
 
 先在小模型上建立基线；若移植到 AReaL，需另核对实际 backend、版本计数定义及 checkpoint 支持范围。未观察到失配不能证明其他模型、精度与拓扑组合正确。
+
+<a id="october-2026-cases"></a>
+
+## 2026-10-08 补充：组就绪、终止和恢复（NEW，未执行）
+
+来源：[13 组前沿信号](../tracking/frontier_scan_2026-10-08.md)，关联 [RL 三个边界](../topics/agentic_rl.md#october-2026-contracts)。下表是实验设计；没有运行命令或实验结果，不构成 VERIFIED。
+
+| 实验 | 对照与故障注入 | 验收与可推翻的判断 |
+|---|---|---|
+| 完整组 vs partial group | 固定 prompt 和初始权重，构造长短成员；分别在生成、导出时让一个成员失败，对照 strict drop / 最小有效组 | 同时记录 ready-group latency、成功导出数、reward/advantage 分母、丢弃原因和全部 session 的清理；吞吐改善但长度分布明显偏移时，不能认定训练质量等价 |
+| 多结束 ID | 选择 tokenizer EOS 与 generation config turn-end 不同的模型，分别走 Transformers/vLLM；注入正常结束与长度截断 | 对照生成 token、completion mask、loss 有效 token 数和 clipped 指标；后端停止正确但 trainer 丢弃样本仍判失败 |
+| retained serving recovery | 固定小模型，训练结束但 checkpoint 未提交、manager 丢失、refit 中断三处分别失败；保留/丢失 serving owner 各一组 | 检查 fencing、replay receipt、checkpoint cut、weight baseline；只有 durable checkpoint 可释放对应 replay；失去 Ray/owner 的冷启动不伪装热恢复 |
+| 任务状态 verifier | 相同任务分别制造正确最终状态、合法工具调用但状态错误、额外副作用及环境故障 | 分开记录 task success / model failure / system failure，检查 oracle 隐藏与状态隔离；按 workload 验收，不用单次成功声称可靠 |
+
+先固定上游 commit、模型、tokenizer、backend 与容差，再选一项执行。网络/显存优化的收益需计入完整 rollout–train–refit 周期；本仓库 Markdown 检查不是上述实验通过。

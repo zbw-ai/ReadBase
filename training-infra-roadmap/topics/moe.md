@@ -364,6 +364,18 @@ EP 的最优放置没有“一律单机”答案：
 - [MoE / 5D 高频面试题](../interview/moe.md)
 - [Megatron Core MoE 2026 中文翻译入口](../README.md#megatron-core-moe-2026-zh-pdf)
 
+<a id="october-2026-joint-design"></a>
+
+## 2026-10：把驻留、路由、并行与精度一起选择
+
+[Olmo-core 3](https://allenai.org/blog/olmocore3)将 expert 常驻、activation 路由和并行布局放在同一训练栈中优化；[HAPMoE](https://arxiv.org/abs/2609.39350v1)则将设备 profiling、路由不均和 stage 显存用于并行配置搜索。两者在[本轮扫描](../tracking/frontier_scan_2026-10-08.md#a1)中的证据层级不同：前者是官方工程文章，后者是论文方法，尚未在本仓库复现。
+
+配置时先画实际数据移动：每个 microbatch 搬 expert 参数还是 token activation，哪些张量跨节点，路由元数据是否迫使 CPU 同步，精度转换发生在哪个边界。再分别量出 exposed communication、GEMM、路由与转换成本。开 overlap 后若 GEMM 拉长，继续看 SM/HBM 争用，不能仅凭通信条重叠就判定收益。
+
+采用规划器时，需把计算能力、collective 延迟、显存和路由分布作为可测输入。HAPMoE 的 PP/TP/DP/EP/TPE/CP 是搜索变量，不改变上文两套 mesh 的 rank 约束；相对稳定的 profiling 窗口也不是动态路由始终稳定的保证。生产上若路由偏斜或硬件状态改变，应先检查模型预测误差和 stage p99，再决定重新规划。这里是工程推断，不是已验证的自动调优方案。
+
+选读入口：[P1 优先组合](../reading_queue/P1.md#october-2026-priority)。先补 Olmo 技术报告消融与代码审阅，再决定是否制作完整 note。
+
 ## 参考资料
 
 - [Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)

@@ -28,6 +28,8 @@
 
 ## 原始扫描与专题索引
 
+最新：[2026-10-08 Frontier Scan](frontier_scan_2026-10-08.md)——13 组信号，重点为 Olmo-core 3、组就绪调度、RL 终止/恢复语义；附六个 RL 框架 169 条 merged PR 索引，外围 GitHub 与 arXiv 发现缺口保留分来源回退游标。
+
 <details>
 <summary>展开扫描、旧月报与专题文件列表</summary>
 

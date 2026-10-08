@@ -60,7 +60,9 @@ flowchart LR
 - `IMPLEMENTED`：进入真实工程实践。
 - `OBSOLETE`：已过时或被新系统替代。
 
-最新信号入口：[9/20 scan](tracking/frontier_scan_2026-09-20.md) → [DeepSeek 技术报告](reading_queue/P1.md#deepseek-v41-report) / [NVFP4 端到端成本](reading_queue/P1.md#nvfp4-refit-reading)。
+最新信号入口：[10/08 scan](tracking/frontier_scan_2026-10-08.md) → [Olmo-core 3 / VenusRL 优先阅读](reading_queue/P1.md#october-2026-priority) → [MoE 联合设计](topics/moe.md#october-2026-joint-design) / [RL 三个边界](topics/agentic_rl.md#october-2026-contracts) → [未执行的验证方案](experiments/rl_state_boundaries.md#october-2026-cases)。
+
+此前信号入口：[9/20 scan](tracking/frontier_scan_2026-09-20.md) → [DeepSeek 技术报告](reading_queue/P1.md#deepseek-v41-report) / [NVFP4 端到端成本](reading_queue/P1.md#nvfp4-refit-reading)。
 
 此前入口：[9/18 Frontier Scan](tracking/frontier_scan_2026-09-18.md) → [CSBP P1](reading_queue/P1.md#csbp-reading)；RL correctness 延续 [状态边界 topic](topics/agentic_rl.md#rl-state-boundaries) → [故障注入计划](experiments/rl_state_boundaries.md)，实验尚未执行。
 

@@ -1,5 +1,21 @@
 # Agentic RL Infrastructure
 
+<a id="october-2026-contracts"></a>
+
+## 2026-10：可训练、已结束与可恢复是三个不同边界
+
+[10/08 扫描](../tracking/frontier_scan_2026-10-08.md)把组调度、终止 token 和恢复状态连到同一问题：什么证据足以允许一个样本进入下一阶段。以下是来源形成的工程判断，尚未完成迁移或复现。
+
+| 边界 | 机制与配置判断 | 排查重点 |
+|---|---|---|
+| 可训练的组 | [VenusRL](https://arxiv.org/abs/2610.03286v1)关注完整组就绪；[AReaL #1721](https://github.com/areal-project/AReaL/pull/1721)允许 v2 offline partial group。两者策略不同，先明确算法允许的最小有效组与归一化域 | 检查真正成功导出的成员数、长样本是否更易丢弃、全组 session 是否清理；GPU 忙不能代替 trainer-ready 指标 |
+| 已结束的样本 | [TRL #7505](https://github.com/huggingface/trl/pull/7505)说明 generation config 的结束 ID 必须与 trainer mask 一致；[ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox)则检查任务最终状态 | 区分 EOS、turn-end、长度截断、环境成功和 system failure；模型停止生成不代表任务完成 |
+| 可恢复的运行状态 | [slime #2444](https://github.com/THUDM/slime/pull/2444)区分 trainer attempt、serving owner 与 durable checkpoint；[NeMo #4410](https://github.com/NVIDIA-NeMo/RL/pull/4410)的 staleness 参数约束准入而非驱逐所有迟到样本 | 检查谁拥有 replay、何时释放 pin、恢复后使用哪个 policy version；作者局部/相关版本测试不替代当前部署验证 |
+
+配置建议：先用同一条样本追踪 task ID、group ID、policy version、terminal reason、export receipt、训练消费和 checkpoint cut，再调 partial acceptance、ready-first 或恢复策略。采用 [ROLL NCCL suspend](../tracking/frontier_scan_2026-10-08.md#a8) 或 [verl layout refit](../tracking/frontier_scan_2026-10-08.md#a11)时，还需验证 communicator 空闲和 weight update 完成两个边界；成功收包不等于运行时权重已可服务。
+
+待做：[最小对照实验](../experiments/rl_state_boundaries.md#october-2026-cases)。阅读从 [P1](../reading_queue/P1.md#october-2026-priority)进入，不把所有框架更新变成必读任务。
+
 ## Infra Agent 的实验反馈与证据边界
 
 为 rollout runtime 引入 Agent 调优时，建议将交付单元定义为“可证伪假设 + 单变量改动 + 正确性检查 + 服务级对照”，记录人工介入与实验成本。这是本仓库建议，尚未在 AReaL 验证收益。

@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "report": "../../frontier_scan_2026-10-08.md",
+  "timezone": "Asia/Shanghai",
+  "scan_window": {
+    "start": "2026-09-22T16:52:05+08:00",
+    "end": "2026-10-08T10:52:31+08:00"
+  },
+  "accepted_groups": 13,
+  "observed_items": 13,
+  "accepted": [
+    {
+      "signal_id": "A1",
+      "source_id": "blog:allenai/olmocore3",
+      "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
+      "author": "Ai2",
+      "published_date": "2026-10-01",
+      "url": "https://allenai.org/blog/olmocore3",
+      "decision": "Deep Dive",
+      "verification": "official article body and code entry; linked technical report fetch failed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A2",
+      "source_id": "arxiv:2610.03286v1",
+      "title": "VenusRL: A Fully Disaggregated Agentic RL System with Priority Scheduling and Scalable Interaction",
+      "author": [
+        "Zhang, Mingjun",
+        "Li, Yucheng",
+        "Zhang, Menghao",
+        "Zhu, Shuyong",
+        "Zhang, Ping",
+        "Hu, Xiaohe",
+        "Chen, Jun",
+        "Wang, Zhixin",
+        "Wang, Xutong",
+        "Liu, He",
+        "Jia, Yanmin",
+        "Zhu, Shengrong",
+        "Sun, Peng",
+        "Zhang, Mingjie",
+        "Liu, Liming",
+        "Hou, Jinlong",
+        "Cheng, Yuan",
+        "Zhang, Yujun"
+      ],
+      "published_date": "2026/10/02",
+      "url": "https://arxiv.org/abs/2610.03286v1",
+      "decision": "Deep Dive",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A3",
+      "source_id": "arxiv:2609.39350v1",
+      "title": "HAPMoE: Heterogeneity-Aware Automatic Parallelism Planning for Mixture-of-Experts Models Training",
+      "author": [
+        "Fan, Mengyuan",
+        "Cong, Peizhuang",
+        "Huang, Zixiao",
+        "Xu, Si",
+        "Qiao, Tong",
+        "Li, Yanghao",
+        "Yang, Jing",
+        "Yang, Tong",
+        "Zhang, Quanlu",
+        "Wang, Yu"
+      ],
+      "published_date": "2026/09/30",
+      "url": "https://arxiv.org/abs/2609.39350v1",
+      "decision": "Read",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A4",
+      "source_id": "arxiv:2610.07593v1",
+      "title": "TRANSIT: Transparent Scale-in for Multi-Node LLM Training",
+      "author": [
+        "Kim, Hyungyo",
+        "Satchanov, Nicholas",
+        "Shah, Hrishi",
+        "Ye, Gaohan",
+        "Lou, Jiaqi",
+        "Walkup, Robert",
+        "Salaria, Shweta",
+        "Chung, I-Hsin",
+        "Franke, Hubertus",
+        "Seelam, Seetharami",
+        "Mohan, Apoorve",
+        "Kim, Nam Sung"
+      ],
+      "published_date": "2026/10/06",
+      "url": "https://arxiv.org/abs/2610.07593v1",
+      "decision": "Read",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A5",
+      "source_id": "blog:microsoft/thinkingbox",
+      "title": "ThinkingBox",
+      "author": "Tuhin Kundu; Microsoft / Hugging Face joint post",
+      "published_date": "2026-10-03",
+      "url": "https://huggingface.co/blog/microsoft/thinkingbox",
+      "decision": "Read",
+      "verification": "official vendor post; no local execution",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A6",
+      "source_id": "blog:nvidia/aicr-v1-0",
+      "title": "AICR v1.0: Open, Stable, and Verifiable GPU Cluster Configuration",
+      "author": "Mark Chmarny; Nathan Taber",
+      "published_date": "2026-10-06",
+      "url": "https://developer.nvidia.com/blog/aicr-v1-0-open-stable-and-verifiable-gpu-cluster-configuration/",
+      "decision": "Read",
+      "verification": "human-authored article body, not AI summary; no execution",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A7",
+      "source_id": "blog:nvidia/doca-gpunetio-gda-ki-unified-gpu-networking",
+      "title": "How DOCA GPUNetIO Unifies GPU-Initiated Networking Across the NVIDIA Software Stack",
+      "author": "Elena Agostini; Simon Schwitanski; Pak Markthub",
+      "published_date": "2026-10-06",
+      "url": "https://developer.nvidia.com/blog/doca-gpunetio-gda-ki-unified-gpu-networking",
+      "decision": "Read",
+      "verification": "official article body; no runtime compatibility validation",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A8",
+      "source_id": "github:alibaba/ROLL@v0.4.0",
+      "title": "v0.4.0",
+      "author": "gaow0007",
+      "published_at": "2026-09-29T04:09:29Z",
+      "url": "https://github.com/alibaba/ROLL/releases/tag/v0.4.0",
+      "decision": "Read",
+      "verification": "release API + tag nccl_suspend.py body read; no runtime test",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A9",
+      "source_id": "github:huggingface/trl@v1.14.2",
+      "title": "v1.14.2",
+      "author": "qgallouedec (release); albertvillanova (#7505)",
+      "published_date": "2026-10-06",
+      "url": "https://github.com/huggingface/trl/releases/tag/v1.14.2",
+      "related_pr": "https://github.com/huggingface/trl/pull/7505",
+      "merge_short_sha": "062ad83",
+      "decision": "Read",
+      "verification": "official release + PR page merge date, description and test-change listing; not all CI passed; no local tests",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A10",
+      "source_id": "github:areal-project/AReaL#1721",
+      "title": "feat(v2): support partial rollout groups",
+      "author": "sitabulaixizawaluduo",
+      "merged_at": "2026-09-23T08:09:13Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1721",
+      "decision": "Read",
+      "verification": "metadata_description_and_patch; upstream test claims not independently executed",
+      "patch_sha256": "4260fa8ddca37237d9567eb4da4fb9d82d18f7662adb3c6a9c0501cebddca495",
+      "patch_commit": "9cfaae1d500c60af329f3109f9c7739835eebc61",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A11",
+      "source_id": "github:verl-project/verl#7987",
+      "title": "[rollout, vllm] fix: stage bf16 MoE weights in place when the kernel layout changes shape",
+      "author": "wengeezhang",
+      "merged_at": "2026-09-24T05:18:38Z",
+      "url": "https://github.com/verl-project/verl/pull/7987",
+      "decision": "Read",
+      "verification": "metadata_and_description; upstream test claims not independently executed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A12",
+      "source_id": "github:THUDM/slime#2444",
+      "title": "Support manual Megatron restarts with retained serving",
+      "author": "zhuzilin",
+      "merged_at": "2026-10-07T01:46:32Z",
+      "url": "https://github.com/THUDM/slime/pull/2444",
+      "decision": "Read",
+      "verification": "metadata_and_description; upstream test claims not independently executed",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    },
+    {
+      "signal_id": "A13",
+      "source_id": "github:NVIDIA-NeMo/RL#4410",
+      "title": "feat(ppo): enable ready-first full-batch scheduling",
+      "author": "youngeunkwon0405",
+      "merged_at": "2026-10-06T02:20:10Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4410",
+      "decision": "Read",
+      "verification": "metadata_and_description; upstream test claims not independently executed",
+      "related_source_id": "github:NVIDIA-NeMo/RL#3613",
+      "related_merged_at": "2026-09-29T13:44:47Z",
+      "first_seen": "2026-10-08",
+      "lifecycle_status": "NEW"
+    }
+  ],
+  "arxiv_citation_metadata": [
+    {
+      "signal_id": "A2",
+      "source_id": "arxiv:2610.03286v1",
+      "url": "https://arxiv.org/abs/2610.03286v1",
+      "citation_title": "VenusRL: A Fully Disaggregated Agentic RL System with Priority Scheduling and Scalable Interaction",
+      "citation_author": [
+        "Zhang, Mingjun",
+        "Li, Yucheng",
+        "Zhang, Menghao",
+        "Zhu, Shuyong",
+        "Zhang, Ping",
+        "Hu, Xiaohe",
+        "Chen, Jun",
+        "Wang, Zhixin",
+        "Wang, Xutong",
+        "Liu, He",
+        "Jia, Yanmin",
+        "Zhu, Shengrong",
+        "Sun, Peng",
+        "Zhang, Mingjie",
+        "Liu, Liming",
+        "Hou, Jinlong",
+        "Cheng, Yuan",
+        "Zhang, Yujun"
+      ],
+      "citation_date": "2026/10/02",
+      "citation_abstract_sha256": "d8997f7fa4676f363f07fe482a298b39552f17aee15a4b540bb61cc345c4bdf9",
+      "raw_html_sha256": "d91ffd5b2c811264b45e8faef37a0982de907752c36537e9c26931183d0a625a",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed"
+    },
+    {
+      "signal_id": "A3",
+      "source_id": "arxiv:2609.39350v1",
+      "url": "https://arxiv.org/abs/2609.39350v1",
+      "citation_title": "HAPMoE: Heterogeneity-Aware Automatic Parallelism Planning for Mixture-of-Experts Models Training",
+      "citation_author": [
+        "Fan, Mengyuan",
+        "Cong, Peizhuang",
+        "Huang, Zixiao",
+        "Xu, Si",
+        "Qiao, Tong",
+        "Li, Yanghao",
+        "Yang, Jing",
+        "Yang, Tong",
+        "Zhang, Quanlu",
+        "Wang, Yu"
+      ],
+      "citation_date": "2026/09/30",
+      "citation_abstract_sha256": "62c1faab997e2759dd641321e22a23295be2eea719b48dbd26e9826f28ca2708",
+      "raw_html_sha256": "1f8427e0a05f0b08aaa94d509cdbc95fadd53f52043d019433a8a7c709e5ab1c",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed"
+    },
+    {
+      "signal_id": "A4",
+      "source_id": "arxiv:2610.07593v1",
+      "url": "https://arxiv.org/abs/2610.07593v1",
+      "citation_title": "TRANSIT: Transparent Scale-in for Multi-Node LLM Training",
+      "citation_author": [
+        "Kim, Hyungyo",
+        "Satchanov, Nicholas",
+        "Shah, Hrishi",
+        "Ye, Gaohan",
+        "Lou, Jiaqi",
+        "Walkup, Robert",
+        "Salaria, Shweta",
+        "Chung, I-Hsin",
+        "Franke, Hubertus",
+        "Seelam, Seetharami",
+        "Mohan, Apoorve",
+        "Kim, Nam Sung"
+      ],
+      "citation_date": "2026/10/06",
+      "citation_abstract_sha256": "8f2d884103f1c4435f235bf9ca3a47707f1ffe482f4978aa540e4efe9ad370e0",
+      "raw_html_sha256": "f03b5bbeea5654b18a11548510ed653c62885b971511a48d51746d331fba9903",
+      "verification": "citation metadata and method HTML read; no reproduction; full paper review not claimed"
+    }
+  ],
+  "verified_release_api_snapshots": [
+    {
+      "repo": "alibaba/ROLL",
+      "latest_returned": {
+        "tag": "v0.4.0",
+        "published_at": "2026-09-29T04:09:29Z",
+        "url": "https://github.com/alibaba/ROLL/releases/tag/v0.4.0"
+      },
+      "response_sha256": "5fcb07e83010f03817610034e8986d9518d5d2fc133971b57cb5a37edc14fa9d"
+    },
+    {
+      "repo": "OpenRLHF/OpenRLHF",
+      "latest_returned": {
+        "tag": "v0.11.2",
+        "published_at": "2026-09-14T01:51:43Z",
+        "url": "https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.2"
+      },
+      "response_sha256": "9802fc869b24f463db52f7e432a8b684c89a2eab216ccd884d4902924db955e8"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "latest_returned": {
+        "tag": "v0.7.0",
+        "published_at": "2026-07-29T04:31:13Z",
+        "url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.7.0"
+      },
+      "response_sha256": "94e95df29e04793c881b83011c88d8310b64809d52c60e77a021d3a27934d781"
+    }
+  ],
+  "github_index_count": 169,
+  "coverage_limits": [
+    "arXiv discovery is targeted, not exhaustive category enumeration.",
+    "Default-branch direct commits and peripheral repo PR pagination not completed.",
+    "AReaL/slime release REST timed out; verl release REST truncated and not used.",
+    "OpenRLHF web latest cached v0.11.0; REST corrected latest to v0.11.2.",
+    "Only AReaL #1721 patch and ROLL tag implementation were directly read; other selected PR bodies describe implementation/tests, not independent code verification.",
+    "Primary article metadata checked; no performance reproduction."
+  ],
+  "resume_cursors": {
+    "global": "2026-10-08T10:52:31+08:00",
+    "six_rl_framework_merged_prs": "2026-10-08T10:43:00+08:00",
+    "arxiv_discovery_backtrack": "2026-09-22T16:52:05+08:00",
+    "github_other_backtrack": "2026-09-22T17:06:16+08:00"
+  }
+}

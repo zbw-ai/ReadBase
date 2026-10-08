@@ -18,6 +18,8 @@
 
 | 入口 | 用途 |
 |---|---|
+| [Frontier Scan 2026-10-08](tracking/frontier_scan_2026-10-08.md) | 最新扫描；13 组信号与六框架 169 条 merged PR 索引，覆盖缺口见报告 |
+| [10/08 优先阅读](reading_queue/P1.md#october-2026-priority) | Olmo-core 3 / VenusRL；关联 [MoE](topics/moe.md#october-2026-joint-design) 与 [RL 语义边界](topics/agentic_rl.md#october-2026-contracts) |
 | [Scan Log](tracking/scan_log.md) | 记录每次扫描窗口和下一次游标 |
 | [Frontier Scan Template](tracking/frontier_scan_template.md) | 从上次扫描游标到现在的最新前沿扫描模板 |
 | [Monthly Signal Report Template](tracking/monthly_signal_report_template.md) | 每月高质量正式信号沉淀模板 |
@@ -27,7 +29,7 @@
 | [Release Notes](tracking/release_notes.md) | 模型、框架、训练栈发布记录 |
 | [Infra Trends](tracking/infra_trends.md) | 训练基础设施演进时间线 |
 | [Agentic RL](tracking/agentic_rl.md) | Agentic RL / rollout infra / verifier 专题追踪 |
-| [Frontier Scan 2026-09-20](tracking/frontier_scan_2026-09-20.md) | 最新扫描；DeepSeek 技术报告、NVFP4、准入与缓存生命周期 |
+| [Frontier Scan 2026-09-20](tracking/frontier_scan_2026-09-20.md) | 历史扫描；DeepSeek 技术报告、NVFP4、准入与缓存生命周期 |
 | [Frontier Scan 2026-09-18](tracking/frontier_scan_2026-09-18.md) | 前次扫描；CSBP、GeoMesh、COMPASS-ABS 与 RL correctness |
 | [CSBP 阅读入口](reading_queue/P1.md#csbp-reading) | 从 target-block loss 依赖推导通信归属 |
 | [Frontier Scan 2026-09-16](tracking/frontier_scan_2026-09-16.md) | 前次扫描；RL 状态边界与长上下文 |
