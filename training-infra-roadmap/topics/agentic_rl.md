@@ -995,3 +995,15 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 环境与 kernel 也采用同样原则。[Envs-FORGE](https://arxiv.org/abs/2608.14312)提示任务、fixture、oracle 和容器需要联合验收；[Lazy Pod](https://arxiv.org/abs/2608.19412)提示 Ready 之后仍存在延后读失败；[Contract-Grade Verifier](https://arxiv.org/abs/2608.12700)提示优化后的 kernel 需要与真实语义契约对齐。它们解决的对象不同，不能把“通过测试”统一解释为生产正确。
 
 下一步以[最小验证场景](../experiments/rl_state_boundaries.md#retrospective-test-cases)为入口，先补证据再选择改动；本次没有实现或运行这些实验。
+
+<a id="history-2025-h1-2026"></a>
+
+## 从 2025 到 2026 上半年：先建立运行路径，再核验状态契约
+
+[季度 / 月度复盘](../tracking/monthly_reviews.md)把当前问题的来路接起来：[2025 Q1](../tracking/quarterly_signal_2025-Q1.md)的 R1 / DAPO 说明采样、截断与 loss reduction 会改变学习信号；[Q2](../tracking/quarterly_signal_2025-Q2.md)的 AReaL / LlamaRL 将 rollout 与训练解耦、权重交付变成平台问题；[Q3](../tracking/quarterly_signal_2025-Q3.md)的 batch invariance 进一步说明，同版本权重不能保证同一数值 policy；[Q4](../tracking/quarterly_signal_2025-Q4.md)的 OpenEnv 与 DeepSeek-V3.2 则把环境接口、routing 与实际采样分布放入契约。这里描述的是公开证据的演进，不是断言所有系统都按这一顺序发展。
+
+到 [2026 上半年](../tracking/github_history_2025_to_2026_h1.md)，值得迁移的设计细节更加具体：恢复 policy version 时也要恢复准入计数基线；replay checkpoint 应区分已生成和已消费；异步 save 要区分不可变 staging 与后台持久化；不同 TP/CP 切分下，auxiliary loss 的归约域也必须等价。配置建议是先给每个状态注明所有者、版本、生命周期与恢复规则，再决定把哪段移到异步线程或独立 GPU。
+
+生产排查时不要仅凭 PR 名称选方案。[slime #906](https://github.com/THUDM/slime/pull/906) 的标题含 true on-policy，但正文明确缺少正确 backward；[AReaL #990](https://github.com/areal-project/AReaL/pull/990) 修复的是 token 统计，不能当作训练 loss 修复；[slime #1664](https://github.com/THUDM/slime/pull/1664) 移除当时 FSDP backend，也不能推出 FSDP 在所有系统中不适用。应先定位自己实际采用的 commit 和 backend，再对照 forward、backward、恢复与统计四条路径。
+
+本节是历史材料形成的工程推断，尚未完成迁移实验。与[7–9 月不变量](#monthly-retrospective-invariants)及[候选验证场景](../experiments/rl_state_boundaries.md#history-replay-parity)互相衔接。

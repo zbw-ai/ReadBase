@@ -1,6 +1,6 @@
 # Reading Queue
 
-过去扫描不需要逐篇补读：先走[按月复盘](../tracking/monthly_reviews.md)，每月只选择与当前工作最相关的一两份。历史重评不会自动增加当前 P0，也不把已收录视作已读。
+过去扫描不需要逐篇补读：先走[按季度 / 月度复盘](../tracking/monthly_reviews.md)，每月只选择与当前工作最相关的一两份。历史重评不会自动增加当前 P0，也不把已收录视作已读。
 
 `reading_queue/` 是筛选层，用来把 `tracking/` 中的信号转化为明确阅读计划。
 
@@ -18,3 +18,5 @@
 - P1 可以更多，但每月清理一次。
 - Done 里必须写清楚产出：paper note / topic update / insight / experiment / playbook。
 - 如果一条材料连续一个月没有动作，要么降级观察，要么删除。
+
+历史候选先读[2025 季度 / 2026 月度复盘](../tracking/monthly_reviews.md)，按当前问题选择一至两篇。本轮只更新候选与证据，不批量加入 P0/P1，也不替用户标记已读。

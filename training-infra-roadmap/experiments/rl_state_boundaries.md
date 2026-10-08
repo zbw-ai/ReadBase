@@ -94,3 +94,17 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 | kernel 合同 | 一个已有算子，对照可信高精度参考；异常值、边界 shape、重复执行和 backward | 规格、误差、NaN/Inf 语义、gradient、计时条件 | 先验证适用规格再计性能；不能为追求一致性随意修改数学语义或容差 |
 
 代码与版本选择前先读 [Agentic RL 不变量](../topics/agentic_rl.md#monthly-retrospective-invariants)。上游 PR 的测试通过声明是来源证据，不是本实验的结果。
+
+<a id="history-replay-parity"></a>
+
+## 历史复盘补充：并行语义与恢复计数（NEW）
+
+来源：[2025—2026 上半年 GitHub 补证](../tracking/github_history_2025_to_2026_h1.md)，关联[主题中的历史契约](../topics/agentic_rl.md#history-2025-h1-2026)。以下仅是实验设计，未运行，不构成 VERIFIED。
+
+| 待验证判断 | 最小对照与故障注入 | 验收证据与边界 |
+|---|---|---|
+| 相同 token 的训练语义不随 TP/CP 与 batching 意外改变 | 固定参数、token、mask 与随机输入，比较单卡和受支持 TP/CP 下的主 loss、MoE aux/z loss、梯度；另固定权重比较 serving 单请求/混合 batch 的 logprob | 分别报告各 loss/梯度误差、归约域和 logprob 差异。容差依 dtype 与 kernel 基线预先确定；日志 token 数修复不替代 loss 等价性验收。 |
+| 恢复后准入计数与消费位置自洽 | 在生成完成但未消费、准入计数已增长、后台 checkpoint staging 后但未落盘三处中断；恢复同一训练版本，检查 replay/重采样策略 | 逐 sample ID 核对 consumed、丢弃原因、policy age 与重复消费；验证 accepted counter 不导致错误容量判断。允许有声明的重新采样，不预设所有算法都要求 exactly-once。 |
+| 稀疏权重更新失败不能留下无法识别的混合状态 | 固定 baseline，分别应用全量更新与 bytewise changed-position 覆写；注入部分应用失败、重复更新、同路径内容变化 | 比较参数及衍生表示，记录 baseline identity、完成事件与 admission；同路径 coalescing 不证明文件内容不可变，吞吐评估包含完整 staging 成本。 |
+
+先在小模型上建立基线；若移植到 AReaL，需另核对实际 backend、版本计数定义及 checkpoint 支持范围。未观察到失配不能证明其他模型、精度与拓扑组合正确。

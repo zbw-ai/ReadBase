@@ -1,0 +1,75 @@
+{
+  "coverage": "Seven selected official release-note summaries retained from 2026-09-22 review; not an exhaustive release index. Metadata re-enumeration remains pending on 2026-10-08.",
+  "sources": [
+    {
+      "source_id": "github-release:NVIDIA/TransformerEngine@v2.0",
+      "repo": "NVIDIA/TransformerEngine",
+      "tag": "v2.0",
+      "published_date_utc": "2025-02-13",
+      "url": "https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.0",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:NVIDIA/TransformerEngine@v2.8",
+      "repo": "NVIDIA/TransformerEngine",
+      "tag": "v2.8",
+      "published_date_utc": "2025-10-07",
+      "url": "https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.8",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:NVIDIA/nccl@v2.28.7-1",
+      "repo": "NVIDIA/nccl",
+      "tag": "v2.28.7-1",
+      "published_date_utc": "2025-10-18",
+      "url": "https://github.com/NVIDIA/nccl/releases/tag/v2.28.7-1",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:NVIDIA/TransformerEngine@v2.10",
+      "repo": "NVIDIA/TransformerEngine",
+      "tag": "v2.10",
+      "published_date_utc": "2025-12-11",
+      "url": "https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.10",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:deepspeedai/DeepSpeed@v0.18.9",
+      "repo": "deepspeedai/DeepSpeed",
+      "tag": "v0.18.9",
+      "published_date_utc": "2026-03-30",
+      "url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.9",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:NVIDIA/TransformerEngine@v2.14.1",
+      "repo": "NVIDIA/TransformerEngine",
+      "tag": "v2.14.1",
+      "published_date_utc": "2026-04-24",
+      "url": "https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.14.1",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    },
+    {
+      "source_id": "github-release:pytorch/pytorch@v2.12.1",
+      "repo": "pytorch/pytorch",
+      "tag": "v2.12.1",
+      "published_date_utc": "2026-06-18",
+      "url": "https://github.com/pytorch/pytorch/releases/tag/v2.12.1",
+      "decision": "Observe",
+      "review_date": "2026-09-22",
+      "verification": "Official release note read during original review; no GPU reproduction"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # AI Training Infrastructure Handbook
 
+历史阅读从[2025 季度 / 2026 月度复盘](tracking/monthly_reviews.md)进入：先理解技术主线，再按需查原始扫描。[2025—2026 H1 GitHub 补证](tracking/github_history_2025_to_2026_h1.md)与[7–9 月既有审计](tracking/github_retrospective_2026-07_to_2026-09.md)分别记录实现证据和覆盖边界。
+
 `training-infra-roadmap` 是 ReadBase 的 Phase 1：Training Infrastructure。
 
 它不是孤立的知识库，而是 Personal Research Operating System 的第一阶段：通过 tracking、reading queue、notes、topics、experiments、playbooks 和 learning log，建立能够支撑超大规模训练平台设计、优化、排障和长期技术判断的工程体系。

@@ -1,12 +1,52 @@
 # Monthly Signal Report, 2026-03
 
-## 2026-09-22 回看导读：局部优化能否变成可调度能力
+> 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
-NIMBLE、MAC-Attention 与 Pareto Bandit 的共同阅读问题，是优化所依赖的 workload 假设是否能被 runtime 观测和利用。一个 kernel 的局部收益，经过调度、通信和不均匀请求后，未必仍是整作业收益。
+## 2026-09-22 历史复盘：硬件瓶颈迁移与框架契约开始并行演进
 
-**只带走一个动作：** 记录优化适用的长度、batch、拓扑和精度条件；看到倍数时先检查测量边界。本月原始检索是各分类 latest-50，不能作为全月穷尽覆盖。
+> 本节为 **2026-09-22 Historical Review**，把此前简短回看导读展开为阅读判断；下方原月报、原 Accepted / Decision 与 **2026-07-23 Historical Audit** 原文保留。这里的补选发生在 9 月，不冒充当月发现，不改 frontier cursor，也不表示已经完成阅读或实验。GitHub 覆盖已由前一轮的 7–9 月，扩展到 [2025—2026 H1 历史索引](github_history_2025_to_2026_h1.md)；代码枚举的完整性与论文、博客的定向核验分开计量。元数据、版本和 Decision 变化见 [H1 来源审计](audits/2026-09-22-history/2026-h1-sources.json)。
 
-本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+### 三条发展主线
+
+1. **Blackwell 上的 attention 不能只延续 Hopper 的优化排序。** 补入 [FlashAttention-4](https://arxiv.org/abs/2603.05451v1)：Tensor Core、shared memory 和 exponential 单元增长不一致，需要重排异步 MMA pipeline、softmax 工作和 backward 数据路径。读 kernel 的重点是新的受限资源，而不是版本号。
+2. **网络吞吐取决于流量分布能否匹配路径。** 已有 [NIMBLE](https://arxiv.org/abs/2604.00317v1) 对运行时流量偏斜做容量归一的拥塞优化，并通过中间 GPU 与匹配 NIC 的 RDMA pipeline 转发。应同时记录被均衡的链路与额外数据移动；微基准收益不直接等于训练收益。
+3. **RL 框架成熟度包含稳定 API 与试验区的边界。** [TRL v1.0](https://huggingface.co/blog/trl-v1) 解释了方法变化下的库契约，而其 asynchronous GRPO、生产化扩展仍放在未来工作。不能把 3 月的设计愿景记成已经验证的异步实现。
+
+### 本月两份可选深读
+
+| 选择 | 核验信息 | 阅读时必须回答的问题 | 当前 Decision |
+|---|---|---|---|
+| Kernel：FlashAttention-4 | Ted Zadouri、Markus Hoehnerbach、Jay Shah、Timmy Liu、Vijay Thakkar、Tri Dao；2026-03-05 | MMA 更快后，softmax、shared memory 和 backward reduction 谁成为瓶颈？ | 未收录 → Read；高影响；对照 FA3 的 pipeline |
+| 网络：NIMBLE | Jinghan Yao、Kaushik Kandadi、Bharath Ramesh、Hari Subramoni、Dhabaleswar K. Panda；2026-03-31 | 流量重分配在哪种 skew / topology 下值得额外转发？ | Read → Read；高影响；画端点、NVLink、NIC 路径 |
+
+### 补选与未升级材料
+
+- **新增精选：FlashAttention-4，Read，★★★★★，状态 NEW；Source ID `arxiv:2603.05451v1`。** 下一步把计算单元、数据驻留位置和异步依赖放到同一张图，目标为 [FlashAttention](../topics/flashattention.md) 与 kernel 实验；本文未复现性能。
+- **新增精选：TRL v1.0，未收录 → Read，★★★★☆，状态 NEW；Source ID `blog:huggingface/trl-v1`。** Quentin Gallouédec、Steven Liu、Pedro Cuenca、Sergio Paniego；2026-03-31；官方团队博客。下一步对照 AReaL 的用户 API、后端接口与实验性功能，明确什么是兼容性承诺；目标为 [Agentic RL](../topics/agentic_rl.md)。
+- **日期边界：NIMBLE 与 [MAC-Attention](https://arxiv.org/abs/2604.00235v1) 都首次提交于 3 月 31 日 UTC。** 后者为 20:57 UTC，已经是北京时间 4 月 1 日；旧月报按 arXiv 日期收录，和页首 Asia/Shanghai 自然月不是完全相同的切分。本复盘沿用论文原始日期串联，不改旧计数。
+- MAC-Attention 原 Read 保留，但从本轮两份优先深读中后移：它复用相似 query 的 attention 结果，RL 使用前仍需单独验证 logprob 与目标分布影响，不能凭长上下文速度收益就推定训练等价。
+- CoLLM / REM-CTX 仍 **Observe**：前者主场景是 PEFT 与 serving 共置，后者偏任务与 reward；尚未补出比异步状态边界更直接的训练系统机制。ParetoBandit 保留原 Read，本轮不再扩大 routing 阅读面。
+
+### OpenAI / Anthropic / NVIDIA / DeepSeek Watch · 历史复盘
+
+| 厂商 | 本次判断 | 覆盖与理由 |
+|---|---|---|
+| OpenAI | Observed（沿用原记录） | 内部 agent monitoring 与安全文章没有在本次变成训练调度证据 |
+| Anthropic | Observed | [engineering 索引](https://www.anthropic.com/engineering) 的 3 月 harness / eval 条目可见；未把应用开发流程当作 RL runtime 实现 |
+| NVIDIA | Accepted（共同署名论文） / Not verifiable（博客全集） | FA4 primary 作者与方法已核验；不据此声称补齐 NVIDIA 3 月博客归档 |
+| DeepSeek | Not found / not verifiable in this scan | 已查 [API changelog](https://api-docs.deepseek.com/updates/) 与 [官方 HF organization](https://huggingface.co/deepseek-ai)；当前 HF 页面不足以重建 3 月完整发布史 |
+
+### Hugging Face Watch · 历史复盘
+
+**Accepted：TRL v1.0 官方团队博客。** 稳定方法与 experimental API 的分层是已披露设计；异步 GRPO 的完善、MoE/EP 与结构化诊断是文章列出的下一步。已打开 [HF Blog](https://huggingface.co/blog) 和 [Transformers](https://github.com/huggingface/transformers/releases)、[Accelerate](https://github.com/huggingface/accelerate/releases)、[PEFT](https://github.com/huggingface/peft/releases)、[Kernels](https://github.com/huggingface/kernels/releases) 官方 release 入口；当月逐页代码覆盖以统一 GitHub 索引为准。当前页面不是历史快照，未单独确认的旧版本不据此生成新信号，社区文章也不借用官方团队身份。
+
+**覆盖边界：** 原月报 latest-50 检索明显偏月末，本次补 FA4 与 TRL v1 两条月内主线，但没有重新枚举全部 arXiv。RL Framework Watch 保留原 AReaL / verl / slime / ROLL Historical Audit；升级阅读判断与框架历史计数相互独立。
+
+### RL Framework Watch · 2026-09-22 代码补证
+
+[AReaL #990](https://github.com/areal-project/AReaL/pull/990) 修的是 PPO token 统计日志，**不能称为修改训练 loss**；[slime #1664](https://github.com/THUDM/slime/pull/1664) 删除 FSDP 支持，说明当前 README 不能倒推旧 backend 能力。另据 [DeepSpeed v0.18.9](https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.9)（3 月 30 日 UTC / 上海 3 月 31 日），AutoSP 已合入，且包含 AutoTP Universal Checkpoint、Muon ZeRO3 支持；4 月论文出现不是代码能力的起点。 这些是本轮 [GitHub 历史审计](github_history_2025_to_2026_h1.md) 核实的代码/版本证据；不改变下方 2026-07-23 Historical Audit 的原计数，不代表本仓库已运行回归实验。
+
+---
 
 - Window: 2026-03-01 00:00:00 ~ 2026-03-31 23:59:59
 - Timezone: Asia/Shanghai
@@ -144,4 +184,4 @@ NIMBLE、MAC-Attention 与 Pareto Bandit 的共同阅读问题，是优化所依
 - serving routing / attention IO / KV cache 是否继续反向约束 rollout infra。
 
 
-[返回月度阅读入口](monthly_reviews.md)
+[返回月度阅读入口](monthly_reviews.md) · [2025—2026 H1 GitHub 历史索引](github_history_2025_to_2026_h1.md)

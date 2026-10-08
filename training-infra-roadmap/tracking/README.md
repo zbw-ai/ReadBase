@@ -4,11 +4,11 @@
 
 它不追求完整解读，也不替代 `papers/`、`tech_reports/`、`engineering_blogs/` 或 `topics/`。它的职责是记录三类输入：frontier scan 负责从上次游标到现在的最新扫描，monthly signal 负责高质量正式沉淀，historical backfill 负责按原始月份补录过去已经证明重要但仓库还没吸收的历史精华材料。
 
-## 默认阅读入口：按月复盘
+## 默认阅读入口：2025 按季度，2026 按月
 
-不必逐份补读 frontier scans。先看[2026 年月度总览](monthly_reviews.md)，再按问题选择[7 月](monthly_signal_2026-07.md)、[8 月](monthly_signal_2026-08.md)或[9 月阶段报告](monthly_signal_2026-09.md)。月报先解释技术主线和工程后果，原记录保留作证据。
+先看[时间线总览](monthly_reviews.md)，不必逐份补读 frontier scans。2025 年按 [Q1](quarterly_signal_2025-Q1.md) / [Q2](quarterly_signal_2025-Q2.md) / [Q3](quarterly_signal_2025-Q3.md) / [Q4](quarterly_signal_2025-Q4.md)理解来路，2026 年按月追踪问题演进。各份先解释技术主线和工程后果，再给少量选读；原扫描保留作证据。
 
-本次[GitHub 历史复盘](github_retrospective_2026-07_to_2026-09.md)覆盖 15 库、7–9 月完整事件索引，并对 20 项 PR 深入复核；[历史材料重评](monthly_reviews.md)明确区分原来 Observe 后升级与原来已 Read 的重新提要。
+[2025—2026 H1 GitHub 历史补证](github_history_2025_to_2026_h1.md)保留 24 项 PR 审阅、版本边界与待重建索引；[7–9 月上一轮 GitHub 复盘](github_retrospective_2026-07_to_2026-09.md)保留已完成的事件索引。两轮覆盖状态分别标注，不把重点 diff 审阅写成全量代码审计。
 
 ## 知识流转
 

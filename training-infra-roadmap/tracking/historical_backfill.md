@@ -1,5 +1,7 @@
 # Historical Backfill
 
+阅读主入口是[2025 按季度、2026 按月的复盘](monthly_reviews.md)；本页及按原始月份保存的 backfill 仅作为轻量来源账本。2026-09-22 复盘批次于 2026-10-08 继续补登记，不把补登记时间冒充材料首发时间。
+
 `historical_backfill.md` 是历史补录总入口。它不直接承载越来越长的材料清单；具体条目按材料原始发布时间月份放入 [backfill/](backfill/README.md)。
 
 Historical Backfill 不是前沿扫描，也不是 weekly/monthly signal。
@@ -47,6 +49,14 @@ tracking/backfill/2025-05.md
 ## 月份索引
 
 已开始整理：
+
+- [2026-04](backfill/2026-04.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2026-03](backfill/2026-03.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2026-01](backfill/2026-01.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2025-12](backfill/2025-12.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2025-10](backfill/2025-10.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2025-07](backfill/2025-07.md)：本轮历史精选，阅读主线见季度/月度复盘
+- [2025-02](backfill/2025-02.md)：本轮历史精选，阅读主线见季度/月度复盘
 
 - [2026-07](backfill/2026-07.md)：NVIDIA GR00T 端到端 embodied platform
 - [2026-06](backfill/2026-06.md)：PyTorch Miles 与 RL post-training infra

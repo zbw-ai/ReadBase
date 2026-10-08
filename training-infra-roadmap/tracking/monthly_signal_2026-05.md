@@ -1,12 +1,53 @@
 # Monthly Signal Report, 2026-05
 
-## 2026-09-22 回看导读：重视数据复用与网络观测，而非只调并行度
+> 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
-共享 prefix、异构并行、Attention/FFN disaggregation 与 NCCL Inspector 指向两个问题：是否重复计算了同样的数据，是否真正知道网络在等什么。到了 8 月，这条线会延伸为 prefix-aware training、weight movement 和 attention workload 调度。
+## 2026-09-22 历史复盘：用有效样本的成本连接网络与数据复用
 
-**只带走一个动作：** 把观测到的长尾拆成到达不同步、传输、计算与排队。原先 Observe 的 serving 材料仍需自己的证据，不能仅因 agent 热门就全部升级。
+> 本节为 **2026-09-22 Historical Review**，把此前简短回看导读展开为阅读判断；下方原月报、原 Accepted / Decision 与 **2026-07-23 Historical Audit** 原文保留。这里的补选发生在 9 月，不冒充当月发现，不改 frontier cursor，也不表示已经完成阅读或实验。GitHub 覆盖已由前一轮的 7–9 月，扩展到 [2025—2026 H1 历史索引](github_history_2025_to_2026_h1.md)；代码枚举的完整性与论文、博客的定向核验分开计量。元数据、版本和 Decision 变化见 [H1 来源审计](audits/2026-09-22-history/2026-h1-sources.json)。
 
-本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+### 三条发展主线
+
+1. **训练网络的尾部决定同步作业的有效进度。** [MRC + SRv6](https://arxiv.org/abs/2605.04333v1) 联合设计 RDMA transport、多平面 Clos 与故障绕行。工程阅读应把 transport、路由和故障域放在同一图上；厂商大规模部署证明的是该组合的可行性，不能推出任意现有集群都能直接迁移。
+2. **shared prefix 的训练复用必须保留梯度。** [Schedule-Level Shared-Prefix Reuse v1](https://arxiv.org/abs/2606.01143v1) 先做 prefix forward，再跑 suffix micro-batch 并累积 prefix 梯度，最后只做一次 prefix backward。它和 serving prefix cache 的差别在于 backward 与 optimizer-update 等价性。
+3. **观测要把 collective 与具体作业、rank、message size 关联。** [NCCL Inspector + Prometheus](https://developer.nvidia.com/blog/real-time-performance-monitoring-and-faster-debugging-with-nccl-inspector-and-prometheus/) 让持续通信指标进入时序系统。进一步将其与 trainer/rollout/weight-update 时间线关联，是本仓库的工程推论，不能仅凭 bus bandwidth 低就判网络故障。
+
+### 本月两份可选深读
+
+| 选择 | 核验信息 | 阅读时必须回答的问题 | 当前 Decision |
+|---|---|---|---|
+| 网络：MRC + SRv6 | Joao Araujo 等；2026-05-05；OpenAI/Microsoft 等联合工业报告 | flow collision、链路失效与 collective 长尾如何分别被处理？ | Read → Deep Dive；高影响；先读拓扑与失败路径 |
+| 数据复用：Shared-Prefix Reuse v1 | Pengbo Li 等；2026-05-31；版本固定 v1 | prefix 梯度何时累积完，packing/DP/EP/CP 改变后哪些语义必须不变？ | Read → Deep Dive；高影响；先做更新等价性实验设计 |
+
+### 重评与未升级材料
+
+本月 **不新增精选**，已有材料足够形成网络与数据路径的完整阅读对照；精力用于把两个 Read 的问题拆实。
+
+- **日期核验：Shared-Prefix Reuse 的 ID 为 `2606.01143`，v1 首次提交为 5 月 31 日。** 旧月报归 5 月有 primary 日期依据；6 月 v3 的作者与摘要细节有变化，本次不混用其 GRPO 专属表述、结果与 v1。
+- NCCL Inspector 保留 **Read**：Ava Arnaz、Sirshak Das、Jill Foster、Daniel Kim、Pavel Shamis、Gargi Prasad；2026-05-07。下一步先匹配 communicator/rank/message-size，再判断等待来自计算到达不同步还是传输；目标仍为 [NCCL](../topics/nccl.md) 与排障记录。
+- Leyline / Move the Query 仍 **Observe**：KV ownership 对长轨迹有用，但尚未补出与当前 trainer 的 logprob、恢复和 policy-version 对接证据，不因 agentic 标签自动升级。
+- Throughput-Optimized Networks 仍 **Observe**：与 MRC 的网络主线重叠，优先读有明确生产故障语义的原核心材料。PithTrain 仍 Observe：代码紧凑并不替代可恢复状态、样本背压与一致性的证据。
+
+### OpenAI / Anthropic / NVIDIA / DeepSeek Watch · 历史复盘
+
+| 厂商 | 本次判断 | 覆盖与理由 |
+|---|---|---|
+| OpenAI | Accepted / Deep Dive | MRC 主源作者、日期和 transport / topology / failure 机制已核验；不把模型/产品新闻纳入 |
+| Anthropic | Not found / not verifiable in this scan | engineering 当前索引未提供本次足以核验的 5 月训练系统精选，不能据此断言全月无材料 |
+| NVIDIA | Accepted / Read | NCCL Inspector 的实时指标、部署方式和日期已重核；Dynamo/Slurm 原 Observe 不升级 |
+| DeepSeek | Observed（跨月延续） | 已查 [API changelog](https://api-docs.deepseek.com/updates/) 与 [官方 HF organization](https://huggingface.co/deepseek-ai)；V4 是 4 月公开事件，5 月阅读延续不重复计新发布 |
+
+### Hugging Face Watch · 历史复盘
+
+已打开 [HF Blog](https://huggingface.co/blog) 和 [Transformers](https://github.com/huggingface/transformers/releases)、[Accelerate](https://github.com/huggingface/accelerate/releases)、[PEFT](https://github.com/huggingface/peft/releases)、[Kernels](https://github.com/huggingface/kernels/releases) 官方 release 入口；当月逐页代码覆盖以统一 GitHub 索引为准。当前页面不是历史快照，未单独确认的旧版本不据此生成新信号，社区文章也不借用官方团队身份。
+
+没有新的 HF 精选。**覆盖边界：** 本次重核 MRC、prefix reuse、NCCL Inspector，没有逐篇重审全月 serving 论文；原 top-80 截断仍有可能漏项。RL Framework Watch 保留 AReaL、slime、OpenRLHF 的 Historical Audit，特别把 loss aggregation 修正当作复用实验的正确性前置条件，而不是添加一条未经复验的性能结论。
+
+### RL Framework Watch · 2026-09-22 代码补证
+
+[AReaL #1345](https://github.com/areal-project/AReaL/pull/1345) 在恢复 version 时同步重置 staleness accepted 基线；[slime #1806](https://github.com/THUDM/slime/pull/1806) 用 bytewise delta 替换非浮点增量求和。前者作用于 checkpoint/recovery 与 scheduler，后者作用于 weight sync；共同验收目标是恢复后接纳的样本和发布的字节仍属于正确版本。 这些是本轮 [GitHub 历史审计](github_history_2025_to_2026_h1.md) 核实的代码/版本证据；不改变下方 2026-07-23 Historical Audit 的原计数，不代表本仓库已运行回归实验。
+
+---
 
 - Window: 2026-05-01 00:00:00 ~ 2026-05-31 23:59:59
 - Timezone: Asia/Shanghai
@@ -183,4 +224,4 @@
 - NVIDIA / PyTorch 是否继续把可观测性、fault tolerance 和 distributed runtime 做成训练栈的一等能力。
 
 
-[返回月度阅读入口](monthly_reviews.md)
+[返回月度阅读入口](monthly_reviews.md) · [2025—2026 H1 GitHub 历史索引](github_history_2025_to_2026_h1.md)

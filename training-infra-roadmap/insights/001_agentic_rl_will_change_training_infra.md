@@ -93,3 +93,9 @@ Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁�
 因此新增一个判断准则：**一项材料是否改变了我们对有效样本、状态所有权或可验证结果的定义？** 满足这个条件的“小修复”和负面 field report 可以比一般发布更值得读。反过来，相关性提高不代表实验结论被证明；BPO 的生产 snapshot 成本、环境合成的规模化、kernel verifier 的通用性仍需自己的验证。
 
 这是复盘推断，落点见[工程不变量](../topics/agentic_rl.md#monthly-retrospective-invariants)和[候选实验](../experiments/rl_state_boundaries.md#retrospective-test-cases)，尚不属于 VERIFIED。已有个人阅读状态不变。
+
+## 2025—2026 上半年回看：功能出现不代表契约已经闭合
+
+[季度/月度材料](../tracking/monthly_reviews.md)和[历史 PR](../tracking/github_history_2025_to_2026_h1.md)提供了一个反例：框架可以已经支持 async rollout，却仍在后续补 generation version、输入顺序、replay 消费位置或 checkpoint 计数。我的推断是，评估框架应按“当前 workload 所需的状态能否解释和恢复”排序，而非按功能首次发布日排序。相反，如果业务允许丢弃未消费 rollout、重新采样且有明确代价预算，就不必强行引入全量持久化。
+
+这也改变了阅读优先级：先读会影响 policy 证据、梯度等价性与恢复边界的材料，再比较峰值吞吐。PR 标题、示例和论文实验分别提供不同层次证据；默认分支删除一种 backend 也只是具体项目在某版本的选择。落点见 [历史状态契约](../topics/agentic_rl.md#history-2025-h1-2026)，后续[验证设计](../experiments/rl_state_boundaries.md#history-replay-parity)仍为 NEW，不能据此声称本仓库已经验证生产收益。
