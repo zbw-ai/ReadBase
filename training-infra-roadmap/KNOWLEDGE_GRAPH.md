@@ -1,5 +1,7 @@
 # Knowledge Graph
 
+最新正式月报：[2026-09](tracking/monthly_signal_2026-09.md) → [可信经验的交付条件](topics/agentic_rl.md#september-2026-monthly)；月底实现与晚发现材料归回原月份，未执行的实验不记为 VERIFIED。
+
 历史阅读从[2025 季度 / 2026 月度复盘](tracking/monthly_reviews.md)进入：先理解技术主线，再按需查原始扫描。[2025—2026 H1 GitHub 补证](tracking/github_history_2025_to_2026_h1.md)与[7–9 月既有审计](tracking/github_retrospective_2026-07_to_2026-09.md)分别记录实现证据和覆盖边界。
 
 这张图不追求把所有关系一次画完。第一版的图太像“全量依赖网”，边太多，读者很难知道该从哪里进入。

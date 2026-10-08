@@ -18,6 +18,7 @@
 
 | 入口 | 用途 |
 |---|---|
+| [Monthly Signal 2026-09](tracking/monthly_signal_2026-09.md) | 9 月正式月报：环境生产、经验交付、恢复、低精度与并行验收；月底材料按原始月份归档 |
 | [Frontier Scan 2026-10-08](tracking/frontier_scan_2026-10-08.md) | 最新扫描；13 组信号与六框架 169 条 merged PR 索引，覆盖缺口见报告 |
 | [10/08 优先阅读](reading_queue/P1.md#october-2026-priority) | Olmo-core 3 / VenusRL；关联 [MoE](topics/moe.md#october-2026-joint-design) 与 [RL 语义边界](topics/agentic_rl.md#october-2026-contracts) |
 | [Scan Log](tracking/scan_log.md) | 记录每次扫描窗口和下一次游标 |

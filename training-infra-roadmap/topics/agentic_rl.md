@@ -1,5 +1,13 @@
 # Agentic RL Infrastructure
 
+<a id="september-2026-monthly"></a>
+
+## 9 月月度判断：可信经验需要完整的交付条件
+
+[9 月正式月报](../tracking/monthly_signal_2026-09.md)把任务供给、样本交付、数值表示和恢复放在一起：MiMo / CodeMidas 关注哪些经验值得生成，Conduit 关注何时送达 learner，DSec 关注环境现场怎样保留，月底 AReaL / ROLL / NeMo 的实现进一步细化导出、通信空闲与 refit 边界。工程推断是：有效吞吐应以满足训练条件的经验为分母，同时记录其失败、丢弃与恢复成本。
+
+这不要求所有框架采用同一协议。应先固定 group、policy version、环境状态和权重表示的所有者，再明确每个发布点需要哪些确认。月报保留上游测试与本仓库验证的差别；后续可复用[实验候选](../experiments/rl_state_boundaries.md#october-2026-cases)，当前尚未执行。
+
 <a id="october-2026-contracts"></a>
 
 ## 2026-10：可训练、已结束与可恢复是三个不同边界

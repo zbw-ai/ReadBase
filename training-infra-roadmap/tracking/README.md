@@ -6,6 +6,8 @@
 
 ## 默认阅读入口：2025 按季度，2026 按月
 
+最新正式月报：[2026 年 9 月](monthly_signal_2026-09.md)，覆盖 9/1–9/30 的五条工程主线，并归回 10/08 扫描中晚发现的 9 月材料；日期归档完整，来源覆盖缺口仍显式保留。
+
 先看[时间线总览](monthly_reviews.md)，不必逐份补读 frontier scans。2025 年按 [Q1](quarterly_signal_2025-Q1.md) / [Q2](quarterly_signal_2025-Q2.md) / [Q3](quarterly_signal_2025-Q3.md) / [Q4](quarterly_signal_2025-Q4.md)理解来路，2026 年按月追踪问题演进。各份先解释技术主线和工程后果，再给少量选读；原扫描保留作证据。
 
 [2025—2026 H1 GitHub 历史补证](github_history_2025_to_2026_h1.md)保留 24 项 PR 审阅、版本边界与待重建索引；[7–9 月上一轮 GitHub 复盘](github_retrospective_2026-07_to_2026-09.md)保留已完成的事件索引。两轮覆盖状态分别标注，不把重点 diff 审阅写成全量代码审计。
