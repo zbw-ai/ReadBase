@@ -32,7 +32,7 @@
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
 | 2026-10-09 | 导航与学习路线 | [原训练手册入口](02-training-infra/README.md#original-library)统一收编旧入口；五个技术 Part 采用两层编号；[具身六阶段](05-embodied-infra/roadmap.md)仍为当前重点 |
-| 2026-10-09 | MiMo 技术研究 | [V2.6 报告解读](research/tech_reports/mimo_v26.md)：核心结论、环境与奖励设计、训练系统、算法演进及复现条件；保留七张原图，区分实验结果与工程推断 |
+| 2026-10-09 | MiMo 技术研究 | [V2.6 系统设计](research/tech_reports/mimo_v26.md#3-强化学习基础设施)：统一轨迹、多框架并发、控制与数据面分离、训推概率一致性；区分生产机制与开源交付，未复现训练 |
 | 2026-09-22 | 学习结构／实验设计 | 各技术 Part 根目录并列；新增 [A100 E00–E08 课程](practice/experiments/a100_fsdp_io_lab.md)，覆盖训练、I/O、恢复、推理和 RL，尚未执行 |
 | 2026-10-08 | 研究复盘 | [季度／月度总览](research/tracking/monthly_reviews.md)与[九月正式月报](research/tracking/monthly_signal_2026-09.md)：保留云端历史补证及月底增补，原始新信号见[十月扫描](research/tracking/frontier_scan_2026-10-08.md) |
 | 2026-09-22 | 实现证据 | [7–9 月 GitHub 历史复盘](research/tracking/github_retrospective_2026-07_to_2026-09.md)：保留事件索引、重点 PR 复核和证据边界 |

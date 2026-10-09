@@ -228,7 +228,16 @@ Grader 输出不可用时，报告采用原 advantage fallback；正式训练仍
 
 ## 3. 强化学习基础设施
 
-本节分析异构任务的执行、数据传输与采样调度，并进一步讨论长上下文和权重更新下的状态、显存及概率一致性。
+摘要中的四项基础设施能力，共同解决一个问题：**怎样把不同 Agent 框架产生的长程交互，转化为可调度、可传输且训练语义明确的数据。** 它们分别约束轨迹结构、执行资源、数据流和概率计算，不能仅理解为吞吐优化。[M] §6.1–6.4。
+
+| 摘要中的表述 | 需要解决的系统问题 | 报告披露的主要机制 |
+|---|---|---|
+| Unified trajectory representation | 多轮、子 agent 与上下文压缩使一次任务不再对应单条对话；reward、mask 与 cache 应作用于哪一级？ | Sample → Sequence → Context → Segment 层次结构 |
+| High-concurrency multi-framework rollout | 不同 harness 的调用方式与依赖不同，大量任务等待工具时仍占用运行状态 | Agent Loop 管理生命周期，persistent host actor pool 承载多个执行租户 |
+| Decoupled control and data planes | 长轨迹与多模态 payload 汇聚到 driver 会形成内存和传输瓶颈 | Metadata 调度、分布式 payload 存储、消费侧按需 packing |
+| Training–inference consistency | 同一权重在不同引擎中的数值路径与采样归一化可能不同 | 专家权重 QDQ、routing replay、采样候选集合 replay |
+
+本文的分析重点是这些机制之间的依赖：轨迹结构定义数据边界，执行系统产生相应记录，数据面保留训练所需信息，一致性机制再使用这些信息计算更新。报告披露的是生产系统设计；公开训练框架的交付范围另见本节末尾。
 
 ### 3.1 Runtime：执行编排与数据传输
 
@@ -238,13 +247,45 @@ Grader 输出不可用时，报告采用原 advantage fallback；正式训练仍
 
 **图解。**Harness Pool 与 Inference Engine 负责多轮执行；metadata / payload 路径区分调度与数据传输；Training Engine 经 QDQ weights 路径将更新后的权重提供给推理侧。图中模块是职责划分，不能直接当作一套完整集群部署清单。
 
+#### 统一轨迹表示：训练数据的层次与责任边界
+
+[M] §6.1 将 rollout 从以推理请求为中心的执行，改为以 Agent Loop 为中心。Loop 负责环境 setup、交互、reward evaluation 和 cleanup，并按需调用推理引擎。推理引擎保持 token-in / token-out 接口；Loop 同时维护字符串与 token 前缀，通过 prefix matching 识别请求延续的 dialogue，只对新增 suffix 做 tokenization。
+
+| 层次 | 语义 | 对训练与运行时的作用 |
+|---|---|---|
+| Sample | Sample Mixer 派发的一个 prompt | 在 GRPO 等组相对算法中产生一组 Sequences；整组接受或拒绝 |
+| Sequence | 一次 Agent Loop 执行，即该 prompt 的一次尝试 | 承载一次任务执行，可包含多个并发 Contexts |
+| Context | 一个对话分支 | Prefix matching、KV 复用与训练数据导出的基本单位 |
+| Segment | 一条 system / user 消息、一次模型生成或一个工具结果 | 确定内容来源；仅模型生成部分具备参与 loss 的资格，仍可能被额外 mask |
+
+例如，一次代码任务可能同时包含主 agent 对话和检查子 agent 对话。下面仅演示层次关系，不是公开代码的字段定义：
+
+```text
+Sample：修复一个软件问题
+  Sequence A：第一次尝试
+    Context 1：主 agent 对话
+      Segment：用户要求 → 模型工具调用 → 工具结果 → 模型后续生成
+    Context 2：子 agent 对话
+      Segment：子任务要求 → 模型检查与回复
+  Sequence B：另一次独立尝试
+    Context 1：另一条解题路径
+```
+
+统一表示的作用是使不同 harness 的产物可以进入同一套筛选、mask 与 packing 流程。它本身不保证 credit assignment 正确。例如，工具返回应作为条件输入，而不能仅因出现在记录里就作为模型 action 计算 loss；对于历史 prefix，还需要明确哪些是条件、哪些是本次生成的训练目标。
+
+报告的 Penalty Module 将检测规则与训练动作分开：Rule 可作用于 segment / context / sequence；Strategy 决定 mask、advantage shaping 或仅监测。上下文没有存活的模型 turn 后被丢弃，sequence 没有存活 context 后得到零 advantage，sample 没有存活 sequence 后被拒绝。[M] §6.1。这些行为说明统一表示已经参与定义训练样本，而不只是统一日志格式。
+
+#### 多框架高并发：复用宿主资源，保留独立任务状态
+
+这里的 multi-framework 主要指不同 **Agent harness / codebase**，并非同时混用多个深度学习训练框架。每个训练 group 使用共同的 harness 配置，以便组内比较；不同 codebase 进入不同 host pools。Pool 的宿主资源份额在启动时设定，Sample Mixer 每步调度的训练数据配比则是另一层控制。[M] §6.2。
+
 - **Harness Pool**：固定规模的 persistent Ray host actors 承载多个并发租户，避免每条 trajectory 一个 actor 导致 GCS file descriptor 耗尽。阻塞环境操作与 tokenization 放到后台线程，避免堵塞共享 event loop。不同 harness codebase 用不同 pool；同一个比较 group 保持相同 harness 配置。[M] §6.2。
 - **Payload Porter**：tokens、logprobs、MoE routing、top-p candidates、视觉数据写入分布式 store；driver 只处理 reward、长度与 payload keys。按训练消费位置读取和 packing，不把整个 batch 聚合到 driver。[M] §6.2。
 - **Sample Mixer**：根据各 source 的目标份额、有效率、执行时间和当前缺口分配并发。组内评估、dynamic sampling 与 partial rollout 一起决定最终被训练的数据。[M] §6.3。
 
 报告生产训练使用 **Megatron-LM + SGLang**。[M] §6.4。发布说明中的 **verl + uni-agent + mini-swe-agent** 指向社区复现实验栈；本文没有将二者视为完全相同的实现，也没有完成公开 RL 框架的源码复现。
 
-#### 沿一条 trajectory 追踪数据：为什么 driver 不应该收齐所有 tensor
+#### 控制面与数据面：按轨迹生命周期追踪数据
 
 | 阶段 | 控制逻辑需要什么 | 大 payload 留在哪里 |
 |---|---|---|
@@ -253,6 +294,10 @@ Grader 输出不可用时，报告采用原 advantage fallback；正式训练仍
 | Rollout 完成 | 长度、reward、payload key 等 metadata | Tokens、logprobs、routing、candidate sets、视觉输入进入 distributed store |
 | Group 评分与筛选 | Grader 结果、组内统计、接受与过滤决定 | 评分或 hook 按需取字段，advantage 写回 store |
 | 形成训练 batch | 各 source 配额、packing 与 rank 分配计划 | Packer 在消费处读取需要的行与 CP window，不在 driver 聚合 full batch |
+
+控制面负责决定哪些 group 已就绪、是否接受、分配给哪些训练 ranks；数据面负责保存和提供 tokens、logprobs、routing、candidate sets 与多模态输入。报告的 yield hook 生成 packing 和 rank 分配计划，不接触 tensor；每个 TP group 的 packer 读取其 CP window 所需数据，并以只读内存副本供组内 ranks 使用。[M] §6.2。
+
+这种分离不等于 rollout 与 trainer 之间已经没有同步约束。组评分、source 配额、样本陈旧度以及 payload 可读性仍限制 batch 就绪。本文据此提出的接口要求是：payload 身份、可读时点、消费确认和释放条件应可追踪；报告并未完整披露这些对象在所有失败路径上的原子性与恢复协议。
 
 以上按 [M] §4.1、§5.1、§6.2–6.4 整理。它解释生命周期，不代表原报告披露了所有对象清理和失败重试细节。尤其要继续检查取消任务、grader fallback、过期 group 和 packer 失败后，数据由谁释放。
 
@@ -316,9 +361,31 @@ Partial rollout 在权重更新后恢复未完成序列，需要 re-prefill；�
 2. **执行路径一致**：R3 保存 rollout 选中的 expert indices，训练时 replay，处理数值差异触发的离散 expert 切换。
 3. **概率归一化一致**：保存 top-k/top-p 实际候选集合，在同一集合上计算训练 logprob；不能把截断后的 rollout 概率和 full-vocabulary training 概率直接作比值。
 
+#### 一致性的目标：区分策略更新与执行差异
+
+训练中常用的 importance ratio 比较当前策略与生成样本时的行为策略。两者的权重允许不同；需要排除的是由引擎执行路径、低精度权重口径和概率归一化不一致引入的额外偏差。行为 logprob 必须保留生成时的记录，不能在权重更新后重算并冒充原行为概率。
+
+一个示意例子可以说明 candidate-set replay 的必要性。假设权重尚未更新，某一步 full-vocabulary 概率为 `P(A)=0.3`、`P(B)=0.2`，其他 tokens 合计 0.5。若实际 sampler 只保留候选集合 `{A,B}`，则采样 A 的概率是 `0.3/(0.3+0.2)=0.6`。如果 rollout 记录 0.6，训练侧却使用未截断的 0.3，算出的 ratio 为 0.5；在这个例子中，差异完全来自归一化口径，并不代表策略发生了变化。该例为本文解释，不是原报告测量。这里对齐的是固定 rollout 候选集合上的归一化；它不保证参数更新后重新运行 sampler 仍会选出同一集合，也不能单凭这一机制断言跨策略版本的偏差已被消除。
+
+QDQ、R3 和候选集合 replay 分别处理权重数值、离散 expert 选择和采样支持集合。它们共同减少已识别的训推差异，但不构成所有 kernel 数值误差已经消失或整体训练必然稳定的证明。[M] §6.4。由此，MoE IDs 与采样集合也成为训练数据的一部分，进一步解释了统一轨迹、Context Cache 和分布式 payload 存储为何需要协同设计。
+
 同一 policy version 内，Context Cache 保留 MoE IDs、candidate sets、视觉输入等状态；多轮只传新图像增量。训练时视觉 encoder 先按图像负载分配，生成 embeddings 后再分发到对应 token ranks。[M] §6.2、§6.4。代价是更重的有状态缓存与数据生命周期管理。
 
 推测解码也按 **端到端吞吐** 选择配置：报告中 mixed-task RL 的 block-6 相对 block-8 吞吐约高 6%，而 accepted length 变化不大。[M] §6.4。不能只凭 draft acceptance rate 决定最快配置；该数字也不是通用部署加速比。
+
+### 3.6 开放材料与生产系统的对应关系
+
+摘要所说的开放训练动态、环境与 RL framework，应分别核查其交付物，不能推导为 §6 所有生产组件已经逐项原样开源。
+
+| 材料 | 已核查的对应内容 | 尚不能据此确认的内容 |
+|---|---|---|
+| 训练动态 | 公开看板的 step、成本、评测与事件记录 | 完整集群 telemetry、全部 trajectory、所有干预和恢复状态 |
+| RL environments | 五领域任务表、环境镜像入口与验收依赖 | 所有环境都已可在本地直接执行，或全部 pretraining / SFT 数据已开放 |
+| RL framework | 官方 verl fork 的领域入口；Code runner 对接 uni-agent session / gateway / TransferQueue 与 mimoagent 环境、harness、评分 | 生产系统的四层 trajectory、Harness Pool、Payload Porter 与全部一致性机制均有等价公开实现 |
+
+代码对应关系可从固定 commit 的 [README](https://github.com/XiaomiMiMo/verl/blob/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/README.md)与 [mimoagent_runner.py](https://github.com/XiaomiMiMo/verl/blob/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/recipes/code/mimoagent_runner.py)核查。后者负责桥接执行与评分，而不是生产系统四项能力全部开放的证据。更完整的资源清单与卡数边界见[第 8 节](#8-开源资源与复现条件)。
+
+对框架研究而言，优先验证四项接口条件，比单纯对齐模块名称更有价值：轨迹中的可训练 token 是否明确；并发执行是否改变组的身份与配比；payload 的消费和回收是否闭合；训练概率是否与实际 sampler 的定义相容。相关工程归纳见 [Agentic RL 专题](../../04-rl-infra/topics/agentic_rl.md#统一轨迹表示与概率一致性)。
 
 ## 4. 实验结果与运行稳定性
 

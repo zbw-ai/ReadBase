@@ -1037,3 +1037,15 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 生产排查时不要仅凭 PR 名称选方案。[slime #906](https://github.com/THUDM/slime/pull/906) 的标题含 true on-policy，但正文明确缺少正确 backward；[AReaL #990](https://github.com/areal-project/AReaL/pull/990) 修复的是 token 统计，不能当作训练 loss 修复；[slime #1664](https://github.com/THUDM/slime/pull/1664) 移除当时 FSDP backend，也不能推出 FSDP 在所有系统中不适用。应先定位自己实际采用的 commit 和 backend，再对照 forward、backward、恢复与统计四条路径。
 
 本节是历史材料形成的工程推断，尚未完成迁移实验。与[7–9 月不变量](#monthly-retrospective-invariants)及[候选验证场景](../../practice/experiments/rl_state_boundaries.md#history-replay-parity)互相衔接。
+
+## 统一轨迹表示与概率一致性
+
+[MiMo-V2.6 的系统分析](../../research/tech_reports/mimo_v26.md#3-强化学习基础设施)提供了一个具体设计：Sample / Sequence / Context / Segment 分别对应组级任务、单次执行、对话分支和消息或生成单元。Context 是前缀匹配、缓存与导出的单位；Segment 区分条件输入和可训练模型输出。来源为报告 §6.1–6.4，尚未在本仓库实现。
+
+由此可以提出三项接口验收要求：
+
+- **轨迹身份**：保留 group、执行与 context 的关系，记录生成来源和 action mask。子 agent、上下文压缩或重试之后，不能仅靠拼接最终文本决定 loss 范围。
+- **数据生命周期**：driver 处理 metadata，payload 在消费侧读取；应验证数据就绪、消费确认、取消与释放的关系。控制面和数据面分离并不取消组完整性、评分和 staleness 约束。
+- **概率语义**：保存实际行为 logprob；在 replay 路径上对齐 expert 选择与采样候选集合。即使权重未更新，full-vocabulary 概率与 top-k/top-p 重归一化后的概率也不能直接相除解释为策略变化。
+
+这些是从公开机制推导的设计要求，不等于已证明所有 backend 都逐位一致。框架迁移时应先对固定 token、prefix、policy version 和采样配置做概率审计，再讨论异步与吞吐收益；生产设计与公开代码的覆盖差异见[对应关系表](../../research/tech_reports/mimo_v26.md#36-开放材料与生产系统的对应关系)。
