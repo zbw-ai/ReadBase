@@ -35,7 +35,7 @@
 - Reason：它把 CP 从 job-level 固定配置推进为 micro-batch-level 调度决策，直接针对 1K-16K 长尾序列下的 padding 与通信浪费。
 - Status：NEW
 - 建议动作：代码级阅读 scheduler、local token ownership 和 loss normalization；评估是否可迁移到 AReaL 的 Megatron training path
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 verl 保留静态 CP 拓扑与每 rank 最大 sequence budget，但允许每个 packed micro-batch 根据实际长度选择更小的 local CP group。短 batch 不再被迫使用 CP4，因而减少不必要的 CP communication、padding 和 output routing。
 
@@ -58,7 +58,7 @@ verl 保留静态 CP 拓扑与每 rank 最大 sequence budget，但允许每个 
 - Reason：它把“训练和推理 logprob 要一致”从一句原则落实到 exact top-k order、DeepEP dispatch、batch-invariant FP8 kernel、DSA sparse attention 与 KV cache 表示。
 - Status：NEW
 - 建议动作：精读 route metadata capture、ordered gather、deterministic backward 和 CI alignment gate；与 AReaL 的 train-rollout consistency tests 对照
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md)
 
 这条改动覆盖 Megatron training、SGLang rollout、DeepGEMM、DeepEP、DSA sparse attention 和 FP8 KV cache。DeepEP 路径记录精确 top-k slot 顺序并传输 compact route metadata，按 token owner 顺序 gather，并为 backward 保持确定性；dense/MoE kernel 则对齐 accumulation order、router GEMM、activation quantization 与 padding 规则。
 
@@ -81,7 +81,7 @@ verl 保留静态 CP 拓扑与每 rank 最大 sequence budget，但允许每个 
 - Reason：它攻击的不是 steady-state kernel，而是大模型弹性扩缩容和 RL role switching 中越来越明显的 weight materialization 冷启动。
 - Status：NEW
 - 建议动作：精读 FabricArena memory layout、remote mapping lifetime、failure semantics 和安全隔离；等待 promised code 后再判断可复现性
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 FlashBoot 将数万块 per-tensor allocation 变为 contiguous、exportable、inter-node addressable 的 `FabricArena`。`FlashLoad` 从 CPU 做 bulk zero-copy transfer；`FlashClone` 通过 remote mapping 复制 resident model，避开跨节点 clone 前 `10-110s` 的 NCCL communicator setup。
 
@@ -104,7 +104,7 @@ FlashBoot 将数万块 per-tensor allocation 变为 contiguous、exportable、in
 - Reason：它把 speculative lookahead 从“减少 target decode 次数”转为“提前预测下一步真正需要的 KV block”，为 long-horizon rollout 的 KV 分层提供了新路径。
 - Status：NEW
 - 建议动作：核对 sparse-attention accuracy boundary、prefetch miss、host/remote tier bandwidth 和 speculative draft overhead
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 OasisKV 不把 full KV cache 常驻 HBM，而是利用 speculative decoding 的 lookahead token 预测未来重要 token，后台识别 KV blocks，并从 host/remote memory 预取到 HBM。它因此把 capacity expansion、sparse attention 与 prefetch timing 合并成一个 decode pipeline。
 
@@ -127,7 +127,7 @@ OasisKV 不把 full KV cache 常驻 HBM，而是利用 speculative decoding 的 
 - Reason：它展示了一个常被忽略的 TP 原则：算子需要全局统计量，不等于必须 all-gather 全向量。
 - Status：NEW
 - 建议动作：核对 persistent-kernel deadlock avoidance、P2P reduction topology 与不同 TP size 的收益曲线
-- 关联主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [NCCL](../../systems/topics/nccl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [NCCL](../../01-systems/topics/nccl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 QK-Norm 的 normalization factor 依赖完整 hidden vector，标准 TP 实现容易 all-gather 整个向量。SwiftQK 只交换 scalar normalization statistics，并在 deadlock-safe persistent kernel 中让剩余 P2P reduction 与 independent element-wise compute overlap。
 
@@ -150,7 +150,7 @@ QK-Norm 的 normalization factor 依赖完整 hidden vector，标准 TP 实现�
 - Reason：它推翻了 per-step agent router 的常见离线评估假设：换模型会改变后续环境状态，不能把新输出简单缝回旧 trajectory。
 - Status：NEW
 - 建议动作：与 NVIDIA Switchyard 一起读；把 live branching evaluation、same-model noise floor 和 serving determinism 纳入 router benchmark
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 论文在 SWE-bench agent trajectory 的控制点重建环境并 fork，由不同模型继续执行；same-model control 用于隔离 sampling/replay noise。约 900 rollouts 中，换模后 `61%-94%` action 被改写，只有 `3%` replayed state 仍有效；log-stitching 对所有 success-relevant outcome flip 都预测错误。
 
@@ -173,7 +173,7 @@ QK-Norm 的 normalization factor 依赖完整 hidden vector，标准 TP 实现�
 - Reason：这不是单纯的轻量模型发布，而是把 BF16 customization base、NVFP4 deployment、MTP/DSpark、NeMo RL 与可复核 evaluation recipes 放到同一条工业交付路径。
 - Status：NEW
 - 建议动作：优先读 model card 的 architecture/training/deployment recipes；厂商 benchmark 需与外部 live workload 结果交叉看
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md)
 
 Nemotron 3.5 Lightning 是 `30B total / 3B active` 的 Mamba-2 + MoE + selective Attention hybrid，提供 BF16 reference weights、NVFP4 deployment path、MTP/DSpark 路径，并将 SFT、RL、distillation 与 domain adaptation 明确列为主要用途。官方 model card 标注最高 1M context，但单 H100 recipe 使用 256K；这两者不能混为同一部署承诺。
 
@@ -248,5 +248,5 @@ NVIDIA 同期继续强化 Switchyard 这一 OpenAI/Anthropic-compatible typed tr
 
 - [x] 更新 [Scan Log](scan_log.md)。
 - [ ] 阅读：verl Dynamic CP implementation；slime GLM-5 train/rollout alignment；FlashBoot state layout。
-- [ ] 形成工程判断后再更新 [Long-context Training](../../training-infra/topics/long_context_training.md) 与 [Agentic RL](../../rl-infra/topics/agentic_rl.md)，不根据摘要抢跑沉淀。
+- [ ] 形成工程判断后再更新 [Long-context Training](../../02-training-infra/topics/long_context_training.md) 与 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)，不根据摘要抢跑沉淀。
 - [ ] 可验证实验：在 AReaL 128K workload 上记录长度分布、固定 CP 通信占比与 hypothetical local CP；分解 refit 的 transfer、layout transform、update 时间。

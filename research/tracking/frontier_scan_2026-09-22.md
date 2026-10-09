@@ -124,7 +124,7 @@
 
 1. 先读 DSec §6.2–6.3，与 V4.1-Flash §5.2 和 MiMo 环境/恢复报告交叉理解；保持现有 P0 与用户阅读状态。
 2. Conduit 加入数据/状态 P1；FP8 论文加入低精度 P1。tokenizers 暂留雷达，避免队列继续无界增长。
-3. 本轮局部判断已接入 [Agentic RL](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries) 与 [故障注入计划](../../practice/experiments/rl_state_boundaries.md)，没有本地 GPU 或上游 tests 结果。
+3. 本轮局部判断已接入 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) 与 [故障注入计划](../../practice/experiments/rl_state_boundaries.md)，没有本地 GPU 或上游 tests 结果。
 4. 下轮 vLLM/SGLang 从 9/20 10:27:43 回退去重；回查 NVIDIA 9/21 正文与 TRL 版本差异。arXiv 本轮检查 cs.DC/cs.LG/cs.CL/cs.AI/cs.AR recent 和选中论文原始页面，未做全分类穷尽审阅。
 
 导航：[Scan Log](scan_log.md) · [Tracking](README.md) · [Knowledge Graph](../../KNOWLEDGE_GRAPH.md) · [Master Reading List](../MASTER_READING_LIST.md)。

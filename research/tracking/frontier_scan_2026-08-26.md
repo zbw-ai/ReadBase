@@ -33,7 +33,7 @@ OpenAI Jalapeño 与 Microsoft Maia 200 都把 locality、memory、network 和 s
 - Reason：这不是单一 kernel 或模型优化，而是 OpenAI 首次用公开 workload 展示自研 inference silicon、memory、network、serving software 与模型协同设计的路线。
 - Status：NEW
 - 建议动作：先读 benchmark methodology、prefill/decode 资源设计与 memory locality，再把 package TDP 归一化和真实整机能耗的证据边界分开记录
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 官方在 GPT-OSS 120B、DeepSeek R1 670B 和 Kimi K2.5 1T 上报告峰值 throughput-per-watt 提升 `1.5-1.9x`、端到端 latency 降低 `1.7-3.6x`；Jalapeño rated power 为 700W，测试 workload 的 sustained power 不超过 550W。文章强调把 KV cache 和模型状态尽量保留在本地，并让同一类 accelerator 同时服务 prefill/decode，而不是为单一 operating point 做专用分区。
 
@@ -56,7 +56,7 @@ OpenAI Jalapeño 与 Microsoft Maia 200 都把 locality、memory、network 和 s
 - Reason：它给出了一条比“增加 Tensor Core 峰值”更重要的架构路线：由软件显式编排 specialized memory 与 data-movement engine，让算子实现围绕数据流而不是线程抽象组织。
 - Status：NEW
 - 建议动作：精读 memory hierarchy、dataflow programming model、collective/network interface 和 workload mapping，判断哪些思想能迁移到 compiler/runtime 层
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [FP8](../../01-systems/topics/fp8.md)
 
 Maia 200 报告 `10,145 TFLOP/s FP4`、`5,072 TFLOP/s FP8`、750W TDP 与 7 TB/s HBM bandwidth，并把架构定义为 Software Defined Locally Accessed Dataflow Architecture。真正值得读的不是峰值数字，而是它如何让软件控制 memory/data movement engine，以及这种控制面如何避免通用 thread-centric execution 在大模型 inference 上产生的数据搬运浪费。
 
@@ -79,7 +79,7 @@ Maia 200 硬件已于 2026 年 1 月由 Microsoft 公布；本次新信号是 8 
 - Reason：它把“collective 慢”拆成网络传输和 barrier 前等待，并证明相同硬件、相同 kernel、统一 fabric 上仍会出现系统性 rank arrival skew；这会直接改变 NCCL、TP/EP 和 straggler 的诊断顺序。
 - Status：NEW
 - 建议动作：优先读 trace attribution method、GEMM variance 分布与 augmented Hockney model，再对照自己的训练 trace 检查 collective enqueue/arrival skew
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 作者分析 4 个 language models、3 代 GPU architecture 上数十万次 collective，观察到 rank 到达 barrier 的差距可达数百到数千微秒；在 8-GPU scale-up domain 中，等待可占 collective communication time 的 50% 以上。基于 per-rank kernel trace 的归因结果显示，跨 rank GEMM runtime variation 解释了 78% 的该类开销。
 

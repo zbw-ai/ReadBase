@@ -32,7 +32,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[FSDP](../../training-infra/topics/fsdp.md), [ZeRO](../../training-infra/topics/zero.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[FSDP](../../02-training-infra/topics/fsdp.md), [ZeRO](../../02-training-infra/topics/zero.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 这条信号对训练 infra 很实用：新 optimizer 不只是算法问题，它会反向约束参数/梯度/optimizer state 的 sharding layout。未来如果尝试 Muon、matrix optimizer 或 ZeRO-3 optimizer 改造，这篇应该优先读。
 
@@ -54,7 +54,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 这条非常适合后续扩写 MoE：MoE 的瓶颈不只是 routing loss 或 expert load balance，而是 EP communication library 如何利用 NVL72/576、CloudMatrix384 这类 superpod 拓扑。
 
@@ -76,7 +76,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
+- 关联主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
 
 这是典型的工程博客价值：它不是讲 TP 定义，而是讲万卡训练里 GPU 故障/降级时，怎样尽量不让整个 job 因均匀 TP 假设而损失 goodput。
 
@@ -98,7 +98,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ### Bringing PyTorch Monarch to AMD GPUs: Single-Controller Distributed Training on ROCm
 
@@ -118,7 +118,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[FSDP](../../training-infra/topics/fsdp.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[FSDP](../../02-training-infra/topics/fsdp.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ## Observed / Rejected Candidates
 
@@ -181,6 +181,6 @@
 
 - [x] 更新 [Scan Log](scan_log.md)
 - [ ] 读 [Rollout Infrastructure Tax](https://arxiv.org/abs/2607.01415)
-- [ ] 快速读 NVIDIA Nonuniform TP，判断是否更新 [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
-- [ ] 快速读 MatrixFSDP，判断是否更新 [FSDP](../../training-infra/topics/fsdp.md) / [ZeRO](../../training-infra/topics/zero.md)
-- [ ] 快速读 UBEP，判断是否更新 [MoE](../../training-infra/topics/moe.md) / [NCCL](../../systems/topics/nccl.md)
+- [ ] 快速读 NVIDIA Nonuniform TP，判断是否更新 [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
+- [ ] 快速读 MatrixFSDP，判断是否更新 [FSDP](../../02-training-infra/topics/fsdp.md) / [ZeRO](../../02-training-infra/topics/zero.md)
+- [ ] 快速读 UBEP，判断是否更新 [MoE](../../02-training-infra/topics/moe.md) / [NCCL](../../01-systems/topics/nccl.md)

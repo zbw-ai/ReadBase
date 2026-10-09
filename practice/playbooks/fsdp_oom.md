@@ -49,8 +49,8 @@
 
 ## 关联 Topics
 
-- [FSDP](../../training-infra/topics/fsdp.md)
-- [Checkpointing](../../training-infra/topics/checkpointing.md)
+- [FSDP](../../02-training-infra/topics/fsdp.md)
+- [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 ## 关联 Papers / Reports / Blogs
 

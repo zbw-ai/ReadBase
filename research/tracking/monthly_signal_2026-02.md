@@ -23,7 +23,7 @@
 
 - **月份纠正：FT-HSDP 的 ID 为 `2602.00277`，首次提交却是 1 月 30 日。** 旧 2 月 Accepted 留作原始索引记录，不能再称其为 2 月首次发表；历史归月以 source 日期而非 ID 前缀为准。
 - **版本纠正：[2602.21788v1](https://arxiv.org/abs/2602.21788v1) 在 2 月 25 日题为 *DHP: Efficient Scaling of MLLM Training with Dynamic Hybrid Parallelism*；[v2](https://arxiv.org/abs/2602.21788v2) 在 6 月 8 日改为 FCP。** 作者均为 Yifan Niu、Han Xiao、Dongyi Liu、Wei Zhou、Jia Li。旧月报采用了后续 FCP 题名与机制表述；本次保留历史文本，但将该内容标为 6 月版本回看，不能视为 2 月已经披露了 v2 的全部方法与结果。
-- **新增精选：[FlexMARL](https://arxiv.org/abs/2602.09578v1)，Observe → Read，★★★★☆，状态 NEW。** Zhida Jiang 等，2026-02-10；Source ID `arxiv:2602.09578v1`。experience store、micro-batch 驱动的异步 pipeline、按 agent 绑定训练资源，补齐了多 agent 的数据/训练状态交换边界。下一步比较 AReaL 的 trajectory ownership 与公平调度；目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md)，不直接移植作者自报加速倍数。
+- **新增精选：[FlexMARL](https://arxiv.org/abs/2602.09578v1)，Observe → Read，★★★★☆，状态 NEW。** Zhida Jiang 等，2026-02-10；Source ID `arxiv:2602.09578v1`。experience store、micro-batch 驱动的异步 pipeline、按 agent 绑定训练资源，补齐了多 agent 的数据/训练状态交换边界。下一步比较 AReaL 的 trajectory ownership 与公平调度；目标为 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)，不直接移植作者自报加速倍数。
 - **新增精选：Anthropic *Quantifying infrastructure noise in agentic coding evals*，未收录 → Read，★★★★☆，状态 NEW。** Gian Segato；2026-02-05；Source ID `blog:anthropic/infrastructure-noise`。下一步把 reservation / hard limit / timeout / infra-error 写成同一张环境配置表，作为 [Rollout Latency](../../practice/playbooks/rollout_latency.md) 后续实验输入；本文未执行实验。
 - RLHFless 仍 **Observe**：serverless 弹性相关，但先用 ECHO-2 的传播与供给模型校验冷启动是否落在可用窗口。HyperOffload / LLMTailor 保留 Observe：仍缺当前硬件与恢复语义的针对性验证。
 
@@ -79,7 +79,7 @@
 - Decision：Read
 - Reason：它用 O(100K) GPU 训练经验讨论 synchronous training 的 failure frequency、long recovery time 和低效率，并提出以 DP replica 为容错单元的 FT-HSDP。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 - 最终应流向：paper note / topic / playbook
 
 这条材料最重要的不是 HSDP 名字本身，而是它把容错粒度从“整个 job”降到“局部 DP replica”。这会改变你理解 checkpoint、rank restart、elastic training 和 large-scale goodput 的方式。
@@ -96,7 +96,7 @@
 - Decision：Read
 - Reason：它把 centralized learning、distributed rollout、remote inference workers、policy dissemination latency 和 bounded policy staleness 放进同一个 RL post-training 系统设计里。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 - 最终应流向：paper note / topic / playbook
 
 这条适合补齐“rollout 不一定和 trainer 同地、同速、同版本”的工程判断。以后看 verl、AReaL、OpenRLHF、NeMo RL 时，可以用它的问题框架审视 policy freshness、dissemination latency 和成本效率。
@@ -113,7 +113,7 @@
 - Decision：Read
 - Reason：它把 long-context training 中真实序列长度异构导致的 load imbalance、redundant communication 和低硬件利用率作为核心问题，而不是只讨论静态 CP size。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：paper note / topic / experiment
 
 这条和 128K SFT/RL 很贴近。真实训练里不是每条样本都接近 max length，固定 CP group 很容易产生 token imbalance；FCP 这类方向提醒我们配置并行度时要同时看 length distribution、packing 和通信组重配置代价。
@@ -130,7 +130,7 @@
 - Decision：Read
 - Reason：它针对分布式大模型训练中的 communication-computation overlap，把通信参数、计算瓶颈和搜索复杂度放进统一 cost model。
 - 建议动作：进入 [P1](../reading_queue/P1.md)，但优先级低于 RL rollout 和 long-context 主线
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
 - 最终应流向：topic / experiment
 
 这条对性能排障有价值：当 step time 慢时，不要只问 NCCL 带宽够不够，还要看 overlap 是否因为计算瓶颈、bucket/collective 参数或调度顺序失效。
@@ -147,7 +147,7 @@
 - Decision：Observe
 - Reason：它把 MoE inference 中 expert hotspot migration、compute skew 和 network congestion 视为耦合问题，并用 real-time predictive prefetching 同时平衡计算和通信。
 - 建议动作：暂不进入队列，后续扩展 inference infra / MoE serving 时再读
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), inference infra
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), inference infra
 - 最终应流向：topic / insight
 
 这条偏 inference，但对 RL infra 有旁路价值：如果 rollout model 或 verifier 采用 MoE，expert 热点和 all-to-all/remote expert 访问会直接反映到 rollout latency 和 tail latency。
@@ -197,7 +197,7 @@
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [NCCL](../../systems/topics/nccl.md)
+- 需要更新的 topic：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [NCCL](../../01-systems/topics/nccl.md)
 - 需要更新的 insight：后续可补一篇“bounded staleness 是 RL infra 的第一等系统参数”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 后续应加入 remote rollout worker、policy dissemination、staleness budget 排查
 - 需要新增的 experiment：long-context length distribution vs CP group utilization；communication overlap 参数敏感性

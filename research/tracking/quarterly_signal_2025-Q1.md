@@ -33,7 +33,7 @@
 | 原始时间 / 本次核验 | 模型 2025-01-20 发布；论文 v1 为 2025-01-22；2026-09-22 回看 |
 | Impact / Decision | 高 / **Read** |
 | Reason / 一句话价值 | 解释 rollout、规则验证与多阶段数据生产为何进入训练平台的核心工作负载 |
-| Related topics | [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[MoE](../../training-infra/topics/moe.md)、[Rollout Latency](../../practice/playbooks/rollout_latency.md) |
+| Related topics | [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[MoE](../../02-training-infra/topics/moe.md)、[Rollout Latency](../../practice/playbooks/rollout_latency.md) |
 | Next / 目标去向 | 对照现有笔记补一张训练数据流与成本边界表；topic / insight 候选 |
 | Lifecycle | **NEW**：本次复盘候选；旧笔记已有状态不变 |
 
@@ -51,7 +51,7 @@
 | 原始时间 / 本次核验 | arXiv v1 2025-03-18；正文标注 March 17；2026-09-22 核验，均属 Q1 |
 | Impact / Decision | 高 / **Deep Dive** |
 | Reason / 一句话价值 | 让采样、长度限制和 loss reduction 从外围配置变成可验证的训练语义 |
-| Related topics | [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Distributed Training](../../training-infra/topics/distributed_training.md) |
+| Related topics | [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Distributed Training](../../02-training-infra/topics/distributed_training.md) |
 | Next / 目标去向 | 固定同一批轨迹，比较不同 micro-batch 切分下的梯度；paper / experiment 候选 |
 | Lifecycle | **NEW** |
 
@@ -69,7 +69,7 @@
 | 原始时间 / 本次核验 | 2025-02-16 / 2026-09-22 |
 | Impact / Decision | 高 / **Read** |
 | Reason / 一句话价值 | 把稀疏算法收益约束到训练、GQA 数据复用与实际访存路径上 |
-| Related topics | [Long-context Training](../../training-infra/topics/long_context_training.md)、[FlashAttention](../../systems/topics/flashattention.md)、[Context Parallelism](../../training-infra/topics/context_parallelism.md) |
+| Related topics | [Long-context Training](../../02-training-infra/topics/long_context_training.md)、[FlashAttention](../../01-systems/topics/flashattention.md)、[Context Parallelism](../../02-training-infra/topics/context_parallelism.md) |
 | Next / 目标去向 | 对照 dense attention，列出 forward/backward 工作量、索引与内存开销；paper / experiment 候选 |
 | Lifecycle | **NEW** |
 
@@ -87,7 +87,7 @@ DeepEP 将 MoE dispatch/combine 分成训练与 prefill 需要的高吞吐路径
 | 原始窗口 / 本次核验 | Q1 历史快照 / 2026-09-22；精确开源首日未在本次另行证明 |
 | Impact / Decision | 高 / **Deep Dive** |
 | Reason / 一句话价值 | 将 MoE 路由、网络域、FP8 scaling 与 GEMM 的接口约束变成可检查的工程对象 |
-| Related topics | [MoE](../../training-infra/topics/moe.md)、[FP8](../../systems/topics/fp8.md)、[NCCL](../../systems/topics/nccl.md)、[DeepSeek-V3](../tech_reports/deepseek_v3.md) |
+| Related topics | [MoE](../../02-training-infra/topics/moe.md)、[FP8](../../01-systems/topics/fp8.md)、[NCCL](../../01-systems/topics/nccl.md)、[DeepSeek-V3](../tech_reports/deepseek_v3.md) |
 | Next / 目标去向 | 用固定 shape 画 dispatch → layout/cast → GEMM → combine 时间线；engineering blog / experiment 候选 |
 | Lifecycle | **NEW** |
 

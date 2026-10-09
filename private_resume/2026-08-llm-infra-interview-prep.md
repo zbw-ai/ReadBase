@@ -374,7 +374,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **关键手算**：FP16/BF16 的 fraction 分别为 10/7 位，`[1,2)` 内间隔为 `2^-10 / 2^-7`。`1+2^-8` 可被 FP16 精确表示，却在 BF16 中处于两个值的中点，ties-to-even 舍入成 1。NVIDIA E4M3/E5M2/E2M1 的未 scaling 最大有限值分别是 **448 / 57344 / 6**。
 
-**追问与边界**：FP16 最小 normal/subnormal 是 `2^-14 / 2^-24`；实际执行还要看 flush-to-zero。BF16 通常不用 GradScaler，不等于没有舍入误差。量化副本、master weights、gradient、optimizer states 分开记账，不能说“FP8 让训练总显存减半”。[完整 dtype 表与例子](../systems/topics/fp8.md#float-formats)
+**追问与边界**：FP16 最小 normal/subnormal 是 `2^-14 / 2^-24`；实际执行还要看 flush-to-zero。BF16 通常不用 GradScaler，不等于没有舍入误差。量化副本、master weights、gradient、optimizer states 分开记账，不能说“FP8 让训练总显存减半”。[完整 dtype 表与例子](../01-systems/topics/fp8.md#float-formats)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -387,7 +387,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **关键手算**：E4M3 历史 amax=2，量化乘数 `r=448/2=224`；新值 4 若仍用旧 scale，`4r=896` 超范围。按饱和处理截到 448 后只能还原为 2。预留 margin 可以留出范围，但会牺牲小值表示能力；全零 tensor 需要安全 scale，不能除零。
 
-**追问与边界**：不仅看 amax，还看量化成零/饱和比例和相对误差；恢复时 scale/history 必须对齐。FP8 tensor scaling 管表示范围，训练 loss scaling 沿链式法则放大梯度，二者不是一个开关。[原理与配置考虑](../systems/topics/fp8.md#fp8-scaling)
+**追问与边界**：不仅看 amax，还看量化成零/饱和比例和相对误差；恢复时 scale/history 必须对齐。FP8 tensor scaling 管表示范围，训练 loss scaling 沿链式法则放大梯度，二者不是一个开关。[原理与配置考虑](../01-systems/topics/fp8.md#fp8-scaling)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -400,7 +400,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **关键追问**：恢复才坏看 scale/history，多卡才坏看 tensor 布局和 scale 对应的通信组；无 NaN 只说明没有非有限值，不代表收敛和任务质量合格。原 step 60% 的 GEMM 快 2 倍，总加速最多 `1/(0.4+0.6/2)=1.43x`；若新增开销占原 step 10%，只剩 `1.25x`。
 
-**工程边界**：短窗口对齐后还要看长期效果；3D/视频增加几何、拓扑或时序质量回归。这里是机制与验证方案，不冒充本人完整 FP8/FP4 生产收敛经历。[诊断指标与回退方法](../systems/topics/fp8.md#fp8-debug) · [通用训练异常](#train-anomaly-01)
+**工程边界**：短窗口对齐后还要看长期效果；3D/视频增加几何、拓扑或时序质量回归。这里是机制与验证方案，不冒充本人完整 FP8/FP4 生产收敛经历。[诊断指标与回退方法](../01-systems/topics/fp8.md#fp8-debug) · [通用训练异常](#train-anomaly-01)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -411,7 +411,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **直接回答**：整 tensor 共用 scale 时，outlier 会挤占范围；block scaling 将影响限制到局部。MXFP8 每 32 元素共享 E8M0 二次幂 scale；NVFP4 使用 E2M1 数据、E4M3 block scale 和 FP32 全局 scale。更细的 scale 会增加元数据、量化和布局成本，不是免费精度。
 
-**必备追问**：核对的 **TE 2.18** 默认 NVFP4 weights 用 **16×16** scaling，activation/gradient 用 **1×16**。MXFP8 转置改变分组，常需从高精度源分别生成 row/column 量化版本，不能只转置量化值。具体训练支持须按卡型和版本查表；不能将 SM 10.0/10.3 的 recipe 支持外推到所有 Blackwell SKU。[布局、稳定性与硬件边界](../systems/topics/fp8.md#block-scaling)
+**必备追问**：核对的 **TE 2.18** 默认 NVFP4 weights 用 **16×16** scaling，activation/gradient 用 **1×16**。MXFP8 转置改变分组，常需从高精度源分别生成 row/column 量化版本，不能只转置量化值。具体训练支持须按卡型和版本查表；不能将 SM 10.0/10.3 的 recipe 支持外推到所有 Blackwell SKU。[布局、稳定性与硬件边界](../01-systems/topics/fp8.md#block-scaling)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -426,7 +426,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **三个易混点**：coalescing 是同一 warp 的地址尽量合并成少量内存事务；shared-memory bank conflict 是片上 bank 访问冲突；register spill 的 local memory 是线程私有地址空间，可能产生显存访问，不代表片上。
 
-**手算与卡型追问**：BF16 tile `BM=BN=128,BK=64`，A/B 单 stage 共 **32 KiB**，三 stage 约 **96 KiB**，还没算其他开销。比较 GPU 要说清 SKU/PCIe或SXM、显存容量/带宽、L2、dense算力、互联和软件支持；A100 无 Hopper 那样的原生 FP8 路径，Blackwell 也要按具体 recipe 核对。[执行与内存详解](../systems/topics/transformer_engine.md#gpu-execution) · [通信语义](#infra-04)
+**手算与卡型追问**：BF16 tile `BM=BN=128,BK=64`，A/B 单 stage 共 **32 KiB**，三 stage 约 **96 KiB**，还没算其他开销。比较 GPU 要说清 SKU/PCIe或SXM、显存容量/带宽、L2、dense算力、互联和软件支持；A100 无 Hopper 那样的原生 FP8 路径，Blackwell 也要按具体 recipe 核对。[执行与内存详解](../01-systems/topics/transformer_engine.md#gpu-execution) · [通信语义](#infra-04)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -439,7 +439,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **手算**：K=N=4096，M=1 的强度约 **1 FLOP/byte**，M=512 约 **409.6**。假设教学 GPU 是 dense 200 TFLOPS、2 TB/s，ridge point 为 **100 FLOP/byte**；越过 ridge 只表示有可能 compute-bound，不是跑满的保证。
 
-**边界**：上述权重约 32 MiB，重复微基准可能命中 L2，不能继续用冷 HBM 假设解释；dense/sparse 峰值也不能混用。[完整推导](../systems/topics/transformer_engine.md#roofline) · [端到端 Profiling](#p2-03)
+**边界**：上述权重约 32 MiB，重复微基准可能命中 L2，不能继续用冷 HBM 假设解释；dense/sparse 峰值也不能混用。[完整推导](../01-systems/topics/transformer_engine.md#roofline) · [端到端 Profiling](#p2-03)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -463,7 +463,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **直接回答**：Autograd 在前向记录需要梯度的运算，反向按链式法则使用保存的中间量。Tensor 还包含 storage、shape、stride 和 offset；view 要求 stride 兼容，reshape 可能复制，transpose 常只改元数据，但可能改变后续 kernel 的访问效率或引入 contiguous 拷贝。
 
-**手算与边界**：连续 `[2,3]` stride 是 `(3,1)`，转置后 `[3,2]` 是 `(1,3)`；元素地址由 offset 与各轴 `index×stride` 决定。in-place 改坏反向所需 tensor 可能触发 version-counter 错误；detach 切梯度链但不等于深拷贝，`.grad` 会累积。不要用到处加 contiguous/retain_graph 掩盖问题。[存储与执行细节](../systems/topics/transformer_engine.md#pytorch-execution)
+**手算与边界**：连续 `[2,3]` stride 是 `(3,1)`，转置后 `[3,2]` 是 `(1,3)`；元素地址由 offset 与各轴 `index×stride` 决定。in-place 改坏反向所需 tensor 可能触发 version-counter 错误；detach 切梯度链但不等于深拷贝，`.grad` 会累积。不要用到处加 contiguous/retain_graph 掩盖问题。[存储与执行细节](../01-systems/topics/transformer_engine.md#pytorch-execution)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -476,7 +476,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **三个追问**：graph break 是不能继续捕获；recompile 是所有缓存版本的 guards 均不满足，另一版本匹配则复用。用 `TORCH_LOGS="graph_breaks,recompiles,guards"` 定位；`fullgraph=True` 可暴露 break，`dynamic=True` 不保证零重编译。动态视频尺寸/vertex budget 要比较 bucketing、padding 与缓存增长成本。
 
-**项目边界**：本人 decode `6–8x` 仍只属于 [CUDA Graph 项目题](#resume-13)，不迁移成 compile 或 Diffusion 的实测收益。[编译排障详解](../systems/topics/transformer_engine.md#torch-compile) · [计时练习](2026-09-interview-coding.md#coding-06)
+**项目边界**：本人 decode `6–8x` 仍只属于 [CUDA Graph 项目题](#resume-13)，不迁移成 compile 或 Diffusion 的实测收益。[编译排障详解](../01-systems/topics/transformer_engine.md#torch-compile) · [计时练习](2026-09-interview-coding.md#coding-06)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -489,7 +489,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 **低精度追问**：经典 FP8 HYBRID 可用 E4M3 的 X/W 和 E5M2 的 dY，不能说 backward 两个输入都用 E5M2。Operand、内部累加、输出、梯度 buffer 和 optimizer states 的 dtype 分开讲；autocast 不自动创建独立 master weights。
 
-**FP16＋GradScaler 顺序**：autocast forward → scaled loss backward → 完整 effective batch 后 unscale → 按需裁剪 → `scaler.step(optimizer)` → `scaler.update()`；非有限梯度会使 scaler 跳过更新。累积期间 scale 保持不变。BF16 通常不用 GradScaler。[详细 shape/dtype 账](../systems/topics/fp8.md#fp8-gemm) · [NumPy 梯度检查](2026-09-interview-coding.md#coding-05)
+**FP16＋GradScaler 顺序**：autocast forward → scaled loss backward → 完整 effective batch 后 unscale → 按需裁剪 → `scaler.step(optimizer)` → `scaler.update()`；非有限梯度会使 scaler 跳过更新。累积期间 scale 保持不变。BF16 通常不用 GradScaler。[详细 shape/dtype 账](../01-systems/topics/fp8.md#fp8-gemm) · [NumPy 梯度检查](2026-09-interview-coding.md#coding-05)
 
 ↩ [返回本 Part](#part-foundations) · ↑ [返回面试速查](#interview-console)
 
@@ -565,7 +565,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 #### 3. 三个容易被追问的边界
 
-- **Folding 不是多出一批卡**：同一 PP 划分下，`world_size = PP × TP × CP × DP = PP × ETP × EP × EDP`。它解除 Attention/Expert 切分绑定；截图的“打破 EP≤DP”针对传统受限布局，不是说所有版本都用同一种 DP 定义，更不能把 EP 额外乘到总卡数上。[双网格、8/256 GPU 例子](../training-infra/topics/moe.md#parallel-folding)
+- **Folding 不是多出一批卡**：同一 PP 划分下，`world_size = PP × TP × CP × DP = PP × ETP × EP × EDP`。它解除 Attention/Expert 切分绑定；截图的“打破 EP≤DP”针对传统受限布局，不是说所有版本都用同一种 DP 定义，更不能把 EP 额外乘到总卡数上。[双网格、8/256 GPU 例子](../02-training-infra/topics/moe.md#parallel-folding)
 - **Sync-free 不是取消分布式同步**：这里主要减少为了获知动态 expert token 数而发生的 CPU–GPU 同步，让调度信息尽量留在设备端；collective、数据依赖和梯度语义仍需保证。Dropless MoE 的 Graph 捕获范围取决于 kernel、内存与框架支持，可能只捕获静态子图。[报告 §4.3.7](https://arxiv.org/html/2603.07685v1#S4.SS3.SSS7)
 - **低精度是跨维度手段，不是全部改成 FP8/FP4**：它可能同时影响 activation、GEMM 和部分通信，但要核对硬件/算子支持、量化额外开销与敏感路径精度；precision-aware optimizer 也不等于把所有 optimizer state 无条件降精度。[低精度与收敛边界](https://arxiv.org/html/2603.07685v1#S5)
 
@@ -679,7 +679,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   例：2 台 × 8 GPU，`TP=2、CP=8、PP=DP=1`；可取 `hierarchical_context_parallel_sizes=[4,2]`，即机内 4 路 A2A、机间 2 路 P2P，`TP×4=8` 恰好占满单机。前提是 **TP 后本地 Q/KV heads 能被 4 整除**；例如总 Q heads=32、KV heads=8，TP 后分别为 16 和 4。配置合法不代表更快，还要测 A2A 重排、P2P overlap 和显存峰值。
 
-  [展开原理：QKV shape、16 GPU 分组、配置、收益与排障](../training-infra/topics/context_parallelism.md#hierarchical-cp) · [官方通信类型定义](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html#core.transformer.transformer_config.TransformerConfig.cp_comm_type)
+  [展开原理：QKV shape、16 GPU 分组、配置、收益与排障](../02-training-infra/topics/context_parallelism.md#hierarchical-cp) · [官方通信类型定义](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html#core.transformer.transformer_config.TransformerConfig.cp_comm_type)
 
 - **PP bubble 怎么算，VPP 解决什么问题**：设 `p` 是物理 PP stages，`m=GBS/(MBS×DP)` 是每次 iteration 的 microbatch 数，stage 均衡且忽略通信时，non-interleaved 1F1B 有：
 
@@ -692,7 +692,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   面试官问“额外开销”常用第一式，问“占总时间比例”用第二式。优化顺序是减小 `p`、在 GEMM 和收敛允许时增加 `m`、按真实计算量平衡 stage、再使用 VPP/interleaved 1F1B 和 P2P overlap。`VPP=v` 不增加 GPU，而是把模型切成 `p×v` 个 virtual chunks，每个物理 rank 持有多个不连续 chunk；在 interleaved 1F1B 中，若 `v` 个 chunks 的 forward/backward 近似均衡，microbatch/layer divisibility 或 custom pipeline layout 满足调度约束，并先忽略新增通信，理想 `bubble/useful≈(p-1)/(m×v)`。代价是 P2P 次数约增大 `v` 倍、activation 生命周期和调度更复杂，chunk 太小还会损害 kernel efficiency。
 
-- **深入阅读**：[Megatron 5D 并行：每一维的动机、实现、通信、组合和考察方式](../training-infra/topics/distributed_training.md#five-d-framework)；[MoE Parallel Folding：双逻辑网格、公式、8/256 GPU 示例和排障](../training-infra/topics/moe.md#parallel-folding)。
+- **深入阅读**：[Megatron 5D 并行：每一维的动机、实现、通信、组合和考察方式](../02-training-infra/topics/distributed_training.md#five-d-framework)；[MoE Parallel Folding：双逻辑网格、公式、8/256 GPU 示例和排障](../02-training-infra/topics/moe.md#parallel-folding)。
 - **项目证据或知识边界**：你有 Megatron 后端的配置、集成与调优经验；不要声称设计了全部并行算法。
 - **高概率追问**：为什么 Dense optimizer shard group 可能是 `DP×CP`，但 microbatch 数只除以 DP？ETP 为什么不一定等于 TP？VPP 与 Zero-Bubble 有何区别？
 
@@ -777,7 +777,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   - `full + block + num_layers=2` 通常只对当前 chunk 前 2 层做整层重算；`full + uniform + num_layers=2` 则让所有本地层每 2 层一组重算。有 VPP 时按当前 model chunk 计数，不按全模型层数。
   - `distribute_saved_activations` 分片的是 checkpoint 保存的输入，不是分摊重算任务；0.17 CLI 要求 TP>1、full，且不能与 SP 同开。
 
-  [完整原理、七类模块、配置与排障](../training-infra/topics/long_context_training.md#selective-recompute) · [0.17 官方参数](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.transformer.transformer_config.html)。
+  [完整原理、七类模块、配置与排障](../02-training-infra/topics/long_context_training.md#selective-recompute) · [0.17 官方参数](https://docs.nvidia.com/megatron-core/developer-guide/0.17.0/apidocs/core/core.transformer.transformer_config.html)。
 
 - **第三本账：logits、loss 和容易漏掉的 buffer**：
 
@@ -802,7 +802,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   先修 shape 回退、dtype upcast、buffer 生命周期或泄漏，再根据峰值来源选择 MBS、recompute、CP/TP/PP、offload、fused op 或 allocator 配置。修复后同时验证 tensor shape、峰值显存、loss、吞吐、checkpoint 和长稳，不以“不再 OOM”为结束。
 
-- **深入阅读**：[5D 并行如何改变每-rank 参数、activation 和通信](../training-infra/topics/distributed_training.md#five-d-config)、[Data Parallelism](../training-infra/topics/data_parallelism.md)。
+- **深入阅读**：[5D 并行如何改变每-rank 参数、activation 和通信](../02-training-infra/topics/distributed_training.md#five-d-config)、[Data Parallelism](../02-training-infra/topics/data_parallelism.md)。
 - **项目证据或知识边界**：可结合 [RESUME-07](#resume-07) 的 full-sequence logits 7.6GB 冗余分配、长样本 OOM 和 checkpoint/weight sync 峰值；dtype 与 `tokens×vocab×dtype×live copies` 精确拆解必须以原始 shape/日志为准，不默认说成 FP32。
 - **高概率追问**：为什么 CP 不切参数却能参与 Dense optimizer sharding？为什么 microbatch 数只除以 DP，而 `d_dense` 默认是 `DP×CP`？某一 rank 单独 OOM有哪些原因？reserved 很高但 allocated 不高怎么办？
 
@@ -832,9 +832,9 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **DataLoader 追问怎么展开**：底稿确认 `num_workers=0→8` 与 prefetch。Workers 主要并行准备 CPU 数据；`num_workers=0` 本身不证明 GPU 一定在等数据，需看 `next(data_iter)` 与 GPU 空洞是否对齐。Pinned memory、`persistent_workers`、`prefetch_factor` 和 non-blocking H2D 是需要核查的配置，不在未确认时说成这次全部启用。CPU 准备下一批与 GPU 计算重叠，和 H2D copy 与 kernel 真正重叠，是两件事；后者还需要合适的独立 stream、pinned memory、可用 DMA engine 和正确依赖，不能只凭 `non_blocking=True` 判断。[PyTorch 官方教程](https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html)
 
-- **Selective recompute 怎么选**：先找峰值里实际存活的 activation，再选择省显存相对划算的重建边界；`core_attn` 是默认候选，不是所有模型的最优解，Flash/TE fused attention 下尤其要重新比较。窄边界仍放不下时再扩大到 MLP/MoE 或整层。项目只确认“从偏重 full recompute 收敛到 selective”，不虚构精确 module list；`31s→9.3s` 仍是联合结果。口述与参数见[选择性重计算速答](#megatron-selective-recompute)，原理见[完整工程章节](../training-infra/topics/long_context_training.md#selective-recompute)。
+- **Selective recompute 怎么选**：先找峰值里实际存活的 activation，再选择省显存相对划算的重建边界；`core_attn` 是默认候选，不是所有模型的最优解，Flash/TE fused attention 下尤其要重新比较。窄边界仍放不下时再扩大到 MLP/MoE 或整层。项目只确认“从偏重 full recompute 收敛到 selective”，不虚构精确 module list；`31s→9.3s` 仍是联合结果。口述与参数见[选择性重计算速答](#megatron-selective-recompute)，原理见[完整工程章节](../02-training-infra/topics/long_context_training.md#selective-recompute)。
 - **MFU 算术门禁**：模型 FLOPs/step、硬件峰值口径和计时范围相同时，标准 MFU 应近似与 step time 成反比；`31/9.3≈3.33` 与 `45.2/23≈1.97` 不能自动闭合。因此需回查 estimator、data wait 是否计时、模型实际处理的 token/长度分布、packing、microbatch 与平均窗口，并单列 loss-mask 选中的监督 token。补齐前保留两组数字，但不声明同一单一计时窗口，也不用其中一个反推另一个。
-- **深入阅读**：[长上下文训练：SFT 优化、selective recompute 与验证顺序](../training-infra/topics/long_context_training.md#qwen35-9b-sft)、[Megatron-Core TransformerConfig](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)。
+- **深入阅读**：[长上下文训练：SFT 优化、selective recompute 与验证顺序](../02-training-infra/topics/long_context_training.md#qwen35-9b-sft)、[Megatron-Core TransformerConfig](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.transformer.transformer_config.html)。
 - **项目证据或知识边界**：最新版简历确认总结果、DataLoader 并发、selective recompute 与 TP/CP 调整方向，但没有逐项贡献。`num_workers=0→8` 来自底稿；若面试只按公开简历回答，可说“提高 DataLoader 并发并预取”。
 - **高概率追问**：为什么 MFU 与 step time 比值不闭合？prefetch 如何证明真的重叠？FlashAttention 后 `core_attn` 重算还值得吗？`moe_act` 与整个 `moe` 有什么不同？workers 过多有什么反作用？为什么不继续增大 TP？
 
@@ -863,7 +863,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **追问展开：如何选择优化顺序**：先按实际分片计算参数、activation、logits/loss 的峰值，排除非预期 full materialization；再比较 Attention TP/CP 与 Expert ETP/EP 的映射，避免 expert GEMM 过碎，并检查 expert token histogram；最后按 profile 选择 packing、selective recompute、Grouped GEMM/融合算子、loss chunk 和通信 overlap。这是分析与选型顺序，不表示每项都已在 `-50%` benchmark 中验证过。
 
 - **验证顺序**：先看 peak allocated 与 tensor shape 是否符合 CP/TP/EP 理论；再看 `data wait / attention / expert GEMM / dispatch A2A / TP-CP collective / loss / backward / optimizer`；最后以相同有效 token、长度分布和统计窗口比较平均值与 p95，并验 loss、logprob、expert load、checkpoint/recovery。
-- **深入阅读**：[128K MoE 的优化账本与 CP-local logits](../training-infra/topics/long_context_training.md#qwen35-35b-a3b-128k)。
+- **深入阅读**：[128K MoE 的优化账本与 CP-local logits](../02-training-infra/topics/long_context_training.md#qwen35-35b-a3b-128k)。
 - **项目证据或知识边界**：确定事实分别是 Qwen3.5-35B-A3B/128K 的平均 step time 约降低 50%，以及 [RESUME-07](#resume-07) 的代码级 CP-local logits 修复。两者是否属于同一 benchmark、具体 TP/CP/EP、各项贡献和最终绝对 step time，都须以原始配置/日志补齐。
 - **高概率追问**：A3B 为什么仍会 OOM？TP 与 EP 怎样避免重复乘 world size？为什么 loss/logprob 会成为 128K 峰值？平均下降 50% 是否掩盖 p99？
 
@@ -919,7 +919,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **显存公式**：旧路径主张量近似 `T × (V/TP) × dtype_bytes × live_copies`；新路径是 `(T/CP) × (V/TP) × dtype_bytes` 加上可忽略得多的 `[T]` scalar gather。7.6GB 是最新简历确认的冗余分配结果，不在缺少原始 shape 日志时倒推出唯一 `T/V/dtype/live_copies` 组合。
 - **如何证明**：在 all-gather 前后记录 per-rank shape/stride/dtype 与 `max_memory_allocated`；确认 labels、mask、logits 的 zigzag 对齐；用 CP=1 参考和 CP>1 修复版比较 token logprob、entropy、loss、grad 与多 rank checksum；同时跑 train 和 forward-only/compute-logp 路径，并验证 BSHD/THD、padding/unpadding 与 critic 回归。
 - **代码证据**：本地项目提交 `be6fb98f`；核心接口是 `gather_thd_outputs=False`、`split_packed_labels_for_thd_cp`、`gather_packed_scalar_from_thd_cp` 与 `_pcp_output_layout`。
-- **深入阅读**：[CP-local logits、chunked logprob 与排障流程](../training-infra/topics/long_context_training.md#cp-local-logits)。
+- **深入阅读**：[CP-local logits、chunked logprob 与排障流程](../02-training-infra/topics/long_context_training.md#cp-local-logits)。
 - **项目证据或知识边界**：可以把“为什么 chunk 无法挽救 full logits gather”和“只聚合标量”作为直接源码证据；没有公开原始 shape 记录时不虚构 7.6GB 的精确拆解。
 - **高概率追问**：为什么 sequence chunking 救不了已分配的 full logits？TP vocab shard 如何计算 exact logprob？zigzag split 为什么取头尾两段？为什么 critic 不复用 actor 路径？
 
@@ -948,7 +948,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **速查分类**：Attention fusion 主要减少 `QKᵀ → scale/mask → softmax → dropout → PV` 的 HBM 往返；elementwise/norm fusion 合并短小链路；training fusion 合并多 tensor 更新或梯度累加；MoE fusion 把多个小 expert GEMM 聚合并减少 token 搬运。
 - **常见接入点**：QKV/RoPE、scaled masked softmax、bias+GeLU/SwiGLU、bias+dropout+residual、residual+RMSNorm、gradient accumulation、multi-tensor optimizer、vocab-parallel CE，以及 MoE router/permute/unpermute/Grouped GEMM。Grouped GEMM 与 shared-expert overlap 是同一优化链上的配套能力，不都等同于 elementwise fusion。具体启用项以 layer spec、配置和 kernel trace 为准。
 - **何时可能负优化**：shape 太小/太怪触发 fallback；为 fusion 做额外 layout conversion；register/shared-memory 压力降低 occupancy；graph/compiler 频繁重编译；数值精度或 dropout RNG 语义不一致。
-- **深入阅读**：[Transformer Engine 与 NVIDIA 融合算子工程清单](../systems/topics/transformer_engine.md#fusion-map)。
+- **深入阅读**：[Transformer Engine 与 NVIDIA 融合算子工程清单](../01-systems/topics/transformer_engine.md#fusion-map)。
 - **项目证据或知识边界**：项目可以讲 Grouped MatMul、融合算子接入与性能验证；不声称自己编写了底层 CUDA kernel。具体启用了哪些开关，以项目配置和 profiler kernel name 为准。
 - **高概率追问**：FlashAttention 与普通 elementwise fusion 的本质差异？fused cross entropy 如何避免 full-vocab logits？为什么开了 fused flag 可能没生效？如何做数值验收？
 
@@ -1067,7 +1067,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   GQA/MQA 还要检查 `num_query_heads`、`num_kv_heads` 与 TP 的可整除/复制规则，不能机械写成 `n_kv/t`。例如 MCore 0.17 的 `TP > num_query_groups` 支持路径会额外聚合 QKV feature，反向对应 feature ReduceScatter；这是 KV 分组布局的特殊处理，不是 SP 的 sequence AllGather。“四次 AllReduce/层”是经典、无额外重排的 no-SP MHA+MLP 主路径计数，正常对齐的 GQA 也可能相同，但不是所有模型的固定 profiler 次数。[Attention 实现](https://github.com/NVIDIA/Megatron-LM/blob/core_r0.17.0/megatron/core/transformer/attention.py)。TP 切 head/hidden；CP 才切 `S`，并让本地 Q 访问跨 rank KV。完整 SP/CP 区别见 [MEGATRON-04](#megatron-04)。
 
 - **项目证据或知识边界**：这是框架机制题；简历只有使用/调优证据，无需假装亲自实现 TP layer。
-- **从 TP 接到算法原理**：[Ring AllReduce：两阶段、四卡例子与通信量](#ring-allreduce-quick)；[TP 前后向公式与 SP 完整布局](../training-infra/topics/tensor_parallelism.md#tp-collective-derivation)。
+- **从 TP 接到算法原理**：[Ring AllReduce：两阶段、四卡例子与通信量](#ring-allreduce-quick)；[TP 前后向公式与 SP 完整布局](../02-training-infra/topics/tensor_parallelism.md#tp-collective-derivation)。
 - **高概率追问**：为什么 Row forward 用求和而非拼接？Column backward 为什么需要 AllReduce？dW 在哪个 group 同步？开 SP 后有哪些额外 AllGather？Ring 每一步传什么，为什么共 `2(p−1)` 步？
 
 <details>
@@ -1127,7 +1127,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
   Megatron Core 的 `sequence_parallel` 并不是字面意义上的默认开启，但官方建议 TP 时启用，并要求 TP 与 EP 同时使用时启用。TP、CP、SP 同开时，CP 先把语义 context 切为 `S/CP`；在 SP 覆盖的区域，activation 还可沿 TP group 形成近似 `S/(CP×TP)` 的本地分片，但 Attention 的全局上下文仍由 CP 通信保证。
 
-- **深入阅读**：[5D 总览中的 SP/CP 对比](../training-infra/topics/distributed_training.md#sp-vs-cp)、[Sequence Parallelism](../training-infra/topics/sequence_parallelism.md)、[Context Parallelism](../training-infra/topics/context_parallelism.md)。
+- **深入阅读**：[5D 总览中的 SP/CP 对比](../02-training-infra/topics/distributed_training.md#sp-vs-cp)、[Sequence Parallelism](../02-training-infra/topics/sequence_parallelism.md)、[Context Parallelism](../02-training-infra/topics/context_parallelism.md)。
 - **项目证据或知识边界**：你有 CP/THD/packed 配置经验；底层通信算法若未改过，应定位为使用与诊断。
 - **高概率追问**：为什么 SP 不进入 world-size？为什么 TP+EP 要启用 SP？CP 为什么能替代一部分 full recompute？GQA/MQA 下 KV 通信怎样变化？
 
@@ -1155,7 +1155,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **追问：Megatron-FSDP 是什么，和这里是同一实现吗？** 不是。NVIDIA 另有区别于 PyTorch FSDP/FSDP2 的 **Megatron-FSDP** 实现，也不能把它与经典 Distributed Optimizer 混为一谈。其 `--data-parallel-sharding-strategy` 可选 `optim`、`optim_grads`、`optim_grads_params`，分片范围依次接近 ZeRO-1/2/3；混合精度下 `optim` 也分片 main weights。这些是 NVIDIA 实现的配置，不是 PyTorch FSDP 的通用参数，也不表示三种实现有相同显存公式。[NVIDIA 分片策略 API](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.distributed.fsdp.src.megatron_fsdp.megatron_fsdp.html) · [FSDP 实现对照](#dist-01)。
 
-- **延伸阅读**：[DP 策略、PyTorch DP/DDP/FSDP、Megatron DP group 与通信算子](../training-infra/topics/data_parallelism.md#dp-concept-and-implementations)。
+- **延伸阅读**：[DP 策略、PyTorch DP/DDP/FSDP、Megatron DP group 与通信算子](../02-training-infra/topics/data_parallelism.md#dp-concept-and-implementations)。
 
 - **项目证据或知识边界**：你做过 distributed checkpoint 和 optimizer 相关故障；若没改 optimizer 核心，明确为集成/排障经验。使用过 Megatron-Core 不自动等于使用过 Megatron-FSDP，具体后端以项目配置为准。
 - **高概率追问**：DP=1 时还有什么冗余 buffer？overlap grad reduce 如何实现？ZeRO-3 与 TP/PP 怎么组合？
@@ -1182,7 +1182,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **Router 的最短数据流**：`hidden states → router score → top-k expert IDs/weights → token dispatch/permute → expert FFN → weighted combine → restore token order`。常见 token-choice routing 是每个 token 选 expert；capacity、dropless、aux loss 或 bias-based balance 决定过载如何处理，但具体机制必须以模型配置为准。
 - **先问清这四个量**：总专家数 `E`、每 token 的 `top-k`、单 expert 的 `FFN intermediate size`、shared expert 数量。再补 router/balance、capacity/dropless、EP/ETP/EDP 和物理拓扑，才能判断 activated parameters、GEMM 粒度和通信量。
-- **深入阅读**：[Dense 与 MoE：结构、路由、专家粒度和 shared expert](../training-infra/topics/moe.md#dense-vs-moe)；继续追问系统代价时进入 [MEGATRON-06](#megatron-06)。
+- **深入阅读**：[Dense 与 MoE：结构、路由、专家粒度和 shared expert](../02-training-infra/topics/moe.md#dense-vs-moe)；继续追问系统代价时进入 [MEGATRON-06](#megatron-06)。
 - **项目证据或知识边界**：项目可确认的是 X1 200B MoE 模型的适配与性能优化；当前材料没有已核验、可公开的 `E / top-k / expert FFN intermediate size / shared expert` 配置，面试前按证据卡补齐，不从相似模型猜。
 - **高概率追问**：total parameters 与 activated parameters 怎么算？top-1/top-2 的效果和成本？fine-grained expert 为什么可能更难跑快？shared expert 是否参与 EP？
 
@@ -1229,7 +1229,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **项目怎么接**：可接回 [X1 200B MoE](#resume-01a)，讲本人做过的并行配置、Grouped MatMul、融合和通信掩盖；未亲自实现或验证的 router、DeepEP/HybridEP、底层 collective，只说机制理解或候选方案。
 - **高概率追问**：怎么证明是网络慢而不是热点专家拖慢？top-1/top-2 是否意味着网络字节数严格翻倍？为什么重算也救不了 dispatcher buffer OOM？改变 EP 后 checkpoint 和 optimizer 状态怎么对应？
-- **深入原理**：[MoE 路由与系统账本](../training-infra/topics/moe.md#4-router容量与负载均衡) · [Parallel Folding 与拓扑](../training-infra/topics/moe.md#parallel-folding) · [MoE 通用面试题](../interview/topics/moe.md#ep-tradeoffs)。
+- **深入原理**：[MoE 路由与系统账本](../02-training-infra/topics/moe.md#4-router容量与负载均衡) · [Parallel Folding 与拓扑](../02-training-infra/topics/moe.md#parallel-folding) · [MoE 通用面试题](../interview/topics/moe.md#ep-tradeoffs)。
 
 <details>
 <summary>面试意图与回答提醒</summary>
@@ -1325,7 +1325,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **FSDP1 与 FSDP2 的执行骨架**：二者都有“按模块 gather 参数—计算—reshard—reduce-scatter 梯度”的核心生命周期。FSDP1 通常由 wrapper 把参数展平为 `FlatParameter` 后切 shard；FSDP2 的 `fully_shard` 在原参数上使用 DTensor 分片，并用 module hooks 组织通信，因而保留 per-parameter FQN、组合其他 parallelism 和 checkpoint 更自然。通用 collective 的输入输出语义见 [INFRA-04](#infra-04)；raw TP/PP/CP/EP shard 的 checksum 不能直接要求相等，排障口径见 [TRAIN-ANOMALY-01](#train-anomaly-01)。
 
 - **现场画账**：先写 `P/G/O` 三类 model state：ZeRO-1=`O`，ZeRO-2=`O+G`，ZeRO-3/FSDP FULL_SHARD=`O+G+P`；再补 activation、通信 buffer 和 workspace，避免说成“总显存除以 DP”。
-- **深入阅读**：[FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](../training-infra/topics/fsdp.md#fsdp-zero-map)。
+- **深入阅读**：[FSDP/FSDP2、ZeRO 与 Megatron 训练后端选型](../02-training-infra/topics/fsdp.md#fsdp-zero-map)。
 - **项目证据或知识边界**：你的主项目以 Megatron-Core 后端为主，对 FSDP/FSDP2 的口径是机制理解、框架选型与集成判断；不声称实现过 FSDP 核心 sharding/hooks。
 - **高概率追问**：FSDP2 为什么不用 FlatParameter？`FULL_SHARD` 与 `reshard_after_forward` 分别属于哪代 API？Megatron-FSDP 是 PyTorch FSDP2 吗？`SHARD_GRAD_OP` 为什么不能严格等同 ZeRO-2？FSDP 与 TP 能否组合？
 
@@ -1357,7 +1357,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 
 - **项目口径**：选择 Megatron 不是因为其他框架“不行”，而是项目需要 MoE/长上下文多维并行，并且已有 SFT/RLVR、MBridge、checkpoint 和权重同步资产更贴合。你的直接生产证据在 Megatron-Core 的特性使用、集成和调优；DeepSpeed、Accelerate、FSDP/FSDP2 只按机制理解与选型判断回答，不声称修改过底层 sharding、hook 或 runtime。
 - **小模型追问**：模型状态能放下时先比较 DDP；FSDP2 省常驻显存，但小计算量可能无法覆盖参数 AG 的成本。不要把“参数少”与“必选 FSDP2”画等号；动态模型结构、团队资产和真实有效吞吐同样影响选择。
-- **深入阅读**：[训练后端决策树与显存账](../training-infra/topics/fsdp.md#backend-selection) · [Hugging Face Accelerate：FSDP 与 DeepSpeed](https://huggingface.co/docs/accelerate/concept_guides/fsdp_and_deepspeed)。
+- **深入阅读**：[训练后端决策树与显存账](../02-training-infra/topics/fsdp.md#backend-selection) · [Hugging Face Accelerate：FSDP 与 DeepSpeed](https://huggingface.co/docs/accelerate/concept_guides/fsdp_and_deepspeed)。
 - **高概率追问**：Accelerate 自己是否实现了 ZeRO？30B Dense、8 卡怎么选？200B MoE 呢？FSDP2+TP 的代价是什么？为什么团队熟悉度是技术指标？
 
 <details>
@@ -1496,7 +1496,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 ![视频 DiT 的 Ulysses sequence parallel 数据流](../assets/handbook/topics/ulysses-video-cp.svg)
 
 - **配置约束**：`world_size = ulysses_degree × ring_degree` 只描述这组序列并行网格，不应与外层 DP/PP 重复计算；Ulysses degree 通常受 attention heads/KV heads 以及 kernel layout 约束。官方 HunyuanVideo 公开的是 xDiT/USP 推理示例，项目训练方案只能作为机制参照，不能拿官方推理数字冒充训练收益。
-- **深入阅读**：[视频 DiT：从原始帧到 Ulysses/Ring 并行](../training-infra/topics/long_context_training.md#video-dit-ulysses)。
+- **深入阅读**：[视频 DiT：从原始帧到 Ulysses/Ring 并行](../02-training-infra/topics/long_context_training.md#video-dit-ulysses)。
 - **项目证据或知识边界**：确认事实是华为 TX 阶段负责文生视频/文生图模型的国产卡迁移、功能/精度/性能闭环；HunyuanVideo-14B 与该输入 shape 是面试讲解例子。未核验的 VAE stride、patch size、head 数、并行 degree 和分项收益不要说成项目事实。
 - **高概率追问**：为什么原始 129 帧不等于 129 tokens？Ulysses 与 Megatron CP/Ring Attention 的区别？All-to-All 为什么容易受跨节点拓扑影响？head 数不够怎么扩？
 
@@ -1523,7 +1523,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   > 优化先看能否减少 stage、增加合理的 microbatch 数并平衡各 stage，再评估 VPP。VPP 让一个物理 rank 持有多个 model chunks，能缩小理想 bubble，但会增加 P2P 和调度复杂度，不保证真实 step 一定更快。
 
 - **VPP 公式的前提**：只有 chunks 的 forward/backward 近似均衡、microbatch/layer divisibility 或 custom layout 满足调度约束，且先忽略新增通信时，理想 bubble 才约再除以 VPP size。还需检查 activation 生命周期和小 chunk 的 kernel efficiency；完整推导见 [MEGATRON-01](#megatron-01)。
-- **深入阅读**：[5D 总览：Pipeline Parallelism 与 VPP](../training-infra/topics/distributed_training.md#pipeline-vpp)、[Pipeline Parallelism](../training-infra/topics/pipeline_parallelism.md)。
+- **深入阅读**：[5D 总览：Pipeline Parallelism 与 VPP](../02-training-infra/topics/distributed_training.md#pipeline-vpp)、[Pipeline Parallelism](../02-training-infra/topics/pipeline_parallelism.md)。
 - **项目证据或知识边界**：技能栏“了解/使用”；如项目未重点调 PP，明确无直接性能案例。
 - **高概率追问**：为什么 first/last stage 更容易不平衡？长上下文下 PP 是否更划算？
 
@@ -1573,7 +1573,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
   > 所以先找峰值来源：activation 很重就比较 selective/full recompute；参数或 optimizer state 很重则评估对应 offload。最终看峰值显存和 step time，尤其是没有被计算掩盖的传输时间，不能因为用了异步 copy 就认为成本消失。
 
 - **项目证据或知识边界**：直接对应 selective recompute 与 offload PCIe 诊断。
-- **重点延伸**：[选择性重计算：口述与参数](#megatron-selective-recompute) · [原理、模块选择与实验流程](../training-infra/topics/long_context_training.md#selective-recompute)。Offload 也可以搬 activation，不只搬模型状态；对难以低成本重建的 activation，要比较传输能否被掩盖。
+- **重点延伸**：[选择性重计算：口述与参数](#megatron-selective-recompute) · [原理、模块选择与实验流程](../02-training-infra/topics/long_context_training.md#selective-recompute)。Offload 也可以搬 activation，不只搬模型状态；对难以低成本重建的 activation，要比较传输能否被掩盖。
 - **高概率追问**：full recompute 约增加多少计算？哪些层适合 selective？NVMe offload 何时可用？
 
 <details>
@@ -1626,7 +1626,7 @@ Core 10 用于建立自我介绍、项目和机制之间的回答链，已计入
 - **项目版本与选择背景**：该分支固定 `mbridge==0.15.1` 和 `megatron-bridge==0.3.0`，旧链路默认 mbridge。`mbridge` 是较早的原型，其思想后来被官方 Megatron Bridge 采用；官方库提供更新模型及 PEFT/LoRA 支持，但实际迁移仍需逐模型验证，不能仅凭 package 更新作决定。
 
 - **项目证据或知识边界**：你的 ownership 是在 RL 框架里使用、选择和集成 Bridge backend，并验证权重转换/恢复；不是 mbridge 或 NVIDIA Megatron Bridge 的作者。
-- **深入阅读**：[Bridge 层的职责、两套实现和项目落点](../training-infra/topics/fsdp.md#bridge-layer)；[verl/AReaL 训练后端与 rollout 布局选型](../rl-infra/topics/rl_framework_selection.md)。
+- **深入阅读**：[Bridge 层的职责、两套实现和项目落点](../02-training-infra/topics/fsdp.md#bridge-layer)；[verl/AReaL 训练后端与 rollout 布局选型](../04-rl-infra/topics/rl_framework_selection.md)。
 - **高概率追问**：Bridge 与 Megatron-Core 谁负责 process group？为什么不能直接 `load_state_dict`？转换正确性如何验证？为什么项目仍保留旧 mbridge？
 
 <details>
@@ -1726,7 +1726,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 
 **机制主线**：分池让训练与生成重叠；逐样本流转减少批次等待；staleness 预算允许有限超前生产；partial rollout 减少发布权重前的长尾等待；bucket 化传输缩短权重同步。对应[架构原图与模式比较](#verl-04)、[组批与供需](#verl-12)、[预算参数](#verl-13)、[跨版本轨迹校正](#verl-14)和[权重同步](#verl-03)。
 
-**公开结果速记**：7B Math/128 卡在不同累计 step 窗口报告 `2.35–2.67x`，30B-A3B/128 卡为 `1.72–2.01x`，7B 多轮工具/32 卡为 `1.55–1.60x`。原始时间、效果指标与消融统一放在 [VERL-15](#verl-15)，不是本人项目数据，也不是等质量 time-to-target。完整阅读路线见[专题导航](#fully-async-study)，工程延伸见[现有 Agentic RL 章节](../rl-infra/topics/agentic_rl.md#meituan-fully-async-practice)。
+**公开结果速记**：7B Math/128 卡在不同累计 step 窗口报告 `2.35–2.67x`，30B-A3B/128 卡为 `1.72–2.01x`，7B 多轮工具/32 卡为 `1.55–1.60x`。原始时间、效果指标与消融统一放在 [VERL-15](#verl-15)，不是本人项目数据，也不是等质量 time-to-target。完整阅读路线见[专题导航](#fully-async-study)，工程延伸见[现有 Agentic RL 章节](../04-rl-infra/topics/agentic_rl.md#meituan-fully-async-practice)。
 
 - **Benchmark 门禁**：先声明分子、分母和窗口，固定模型/checkpoint、prompt-response 长度分布、采样参数、硬件、并发上限和统计区间；warmup、checkpoint、validation、失败重试和过滤样本要明确是否包含。除吞吐外同时报告 queue depth、trainer idle、policy version lag 和 rejected/stale ratio，防止用堆积旧样本换表面吞吐。
 - **项目证据或知识边界**：`76 → 211–255` 是 async 初始配置与优化配置的比较；`236–293` 是 `2T+2R` 候选窗口，二者都不是全程平均。同步“约 200”只用于说明最初的阶段拆解和选型背景，只有在相同 workload、窗口和 `tokens/s/GPU` 分母确认后才能做性能比较；确认前不要说 Fully Async 超过同步，更不能说相比同步提升三倍。CUDA Graph 的 `14x` 来自另一项 35B 真实 RL decode 证据，也不能用于解释这里的 211–255。
@@ -1762,7 +1762,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
   > PPO 是“让高 advantage 的回答更可能出现，但用 clipped ratio 避免新策略一步走太远”；通常需要 Critic 估 value，LLM RLHF recipe 还常另加 Reference KL。GRPO 是“同一个 prompt 采样一组回答，用组内 reward 相对高低做 advantage”，因此可以省掉 Critic，但依赖完整且可比较的 group。DAPO 可以理解为面向大模型 RL 的 GRPO 工程增强：用 Clip-Higher、dynamic sampling、token-level policy-gradient loss 和 overlong reward shaping 处理探索不足、无效 group、长短样本权重和硬截断问题，目标是提高训练效率与稳定性。
 
 - **系统映射**：PPO 重点守住 `value/GAE/old_logp`；GRPO 重点守住 `prompt-group membership/reward std/response mask`；DAPO 还要求动态采样、有效 group 过滤、token-level normalization 和 overlong 标记不能在异步队列里错位。
-- **深入阅读**：[PPO、GRPO、DAPO：从公式到 RL Infra 数据契约](../rl-infra/topics/agentic_rl.md#ppo-grpo-dapo)。
+- **深入阅读**：[PPO、GRPO、DAPO：从公式到 RL Infra 数据契约](../04-rl-infra/topics/agentic_rl.md#ppo-grpo-dapo)。
 - **项目证据或知识边界**：你以 RL Infra 的算法落地和正确性为主，不必把自己包装成算法提出者；重点回答算法变化如何改变 rollout、资源和校验。
 - **高概率追问**：GRPO 没有 Critic 为什么仍有 baseline？group reward std=0 怎么办？DAPO 的 dynamic sampling 为什么影响吞吐？
 
@@ -1884,7 +1884,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 - **代码展开**：`RayPPOTrainer` 对应算法控制，`ResourcePool/WorkerGroup` 对应资源与集体调用，`DataProto/TensorDict` 对应 batch 协议；TransferQueue 是后续数据传输/存储链路的一部分，不与 TensorDict 当成同类容器。具体 Worker/Engine 类名按项目分支说明。
 
 - **四层画法**：`Algorithm Controller → ResourcePool/WorkerGroup → Data Contract → Backend SPMD Engine`。面试时分别说明“谁决定下一阶段”“谁占哪些 GPU”“传什么 batch/metadata”“谁执行 collective”。
-- **深入阅读**：[verl 的 single-controller、SPMD engine 与数据/资源边界](../rl-infra/topics/rl_framework_selection.md#verl-controller-spmd)。
+- **深入阅读**：[verl 的 single-controller、SPMD engine 与数据/资源边界](../04-rl-infra/topics/rl_framework_selection.md#verl-controller-spmd)。
 
 - **项目证据或知识边界**：你有 verl 二次开发经验；面试前至少能指出自己改过的 trainer/worker/config 路径和一个 upstream 差异。
 - **高概率追问**：controller 是否会成为瓶颈？DataProto 如何跨 rank dispatch？旧 `megatron_workers` 与新 Engine Workers 有何变化？
@@ -1910,7 +1910,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
   > 我先分清三个问题：角色是否独立、是否共用 GPU、执行时是否重叠。Colocate 是训练和生成复用同一批 GPU，通常靠分时运行、offload 和状态切换节省资源，但要处理训练状态与 KV cache 的显存竞争。分离部署使用独立资源池，适合让训练和生成重叠、分别扩容，代价是跨池权重同步、样本陈旧和恢复更复杂；它并不要求异构硬件。我们选 3T+1R 还是 2T+2R，依据是两侧产消速率和等待时间，而不是固定认为分离更快或 rollout 卡越多越好。
 
 - **版本补充**：当前 verl v0.9.0 的 Unified V1 将 `sync / colocate_async / separate_async` 放进一套执行模型；这是 upstream 演进，不应倒推成项目 v0.7.1 已经具备同样实现。
-- **深入阅读**：[colocate、disaggregate 与时间并发的三轴判断](../rl-infra/topics/rl_framework_selection.md#placement-three-axes)。
+- **深入阅读**：[colocate、disaggregate 与时间并发的三轴判断](../04-rl-infra/topics/rl_framework_selection.md#placement-three-axes)。
 
 - **项目证据或知识边界**：直接对应你的 fully async 项目；3T+1R/2T+2R 是本项目布局，不是通用最佳实践。
 - **高概率追问**：为什么 2T+2R 后瓶颈转向 actor？动态资源调度何时更优？colocate 如何释放 KV/optimizer 显存？
@@ -2015,7 +2015,7 @@ X1 MoE 优化 → Dense/MoE 结构与 router → 5D 并行选择 → 本 rank �
 **One Step Off Policy 放在哪里？** 它先用固定落后一轮的数据让训练/生成重叠，是这次分享的演进背景；不是图 b 的别名。图 b 讲的是“一个权重发布周期内逐批训练”，图 c/d 再允许超前生产与续跑。不要把这几种时间尺度都称作“step”而混为一谈。
 
 - **项目流程**：项目 v0.7.1/公司分支里，Rollouter 按 freshness/capacity 写队列，Trainer 拼训练 batch，更新后同步新权重；`require_batches`、partial rollout、bounded staleness 和 correction 一起决定 goodput。当前 v0.9.0 的 unified async/replay/stale-drop 是后续 upstream 能力，必须分开表述。
-- **深入阅读**：[Fully Async、streaming、partial rollout 与 staleness 的统一状态机](../rl-infra/topics/agentic_rl.md#async-streaming-partial-staleness)。
+- **深入阅读**：[Fully Async、streaming、partial rollout 与 staleness 的统一状态机](../04-rl-infra/topics/agentic_rl.md#async-streaming-partial-staleness)。
 
 - **项目证据或知识边界**：你的项目基于当时的 v0.7.1/公司分支，Fully Async 仍在快速演进；当前官方已到 v0.9.0，并对 trainer、Agentic RL 和相关数据/权重链路继续重构。面试时必须区分项目实现与当前 upstream，不能把两者类名和能力直接混用。
 - **高概率追问**：图 b 为何仍叫 off-policy？图 c 为什么还会卡长尾？Fully Async 为何仍有黄色同步条？图中 `k` 与 PPO mini-batch、optimizer step 有何关系？
@@ -2231,7 +2231,7 @@ Decoupled PPO：
 
   > 我不会先给两者排固定名次，而是先锁定项目版本、模型和硬件。第一关是训练接口能否闭环：权重能否更新，token 和 rollout logprob 能否与 Trainer 对齐，暂停恢复后 cache 是否正确。通过这一关，再用真实长度和并发比较吞吐、尾延迟、更新停顿和故障恢复。多轮 Agent 的 prefix reuse、session 与 tool calling 是重点测试项，两种后端都要实际验证。最终选的是在我们 workload 下有效训练供给稳定、维护成本可控的后端，不是 serving 榜单最高的一项。
 
-- **深入阅读**：[vLLM 与 SGLang：面向 RL rollout 的选型矩阵](../rl-infra/topics/rl_framework_selection.md#vllm-sglang-selection)。
+- **深入阅读**：[vLLM 与 SGLang：面向 RL rollout 的选型矩阵](../04-rl-infra/topics/rl_framework_selection.md#vllm-sglang-selection)。
 - **项目证据或知识边界**：你接入过两个后端；准备各自一次兼容性或稳定性问题，并明确比较对应的版本、模型和硬件。
 - **高概率追问**：为什么同权重 logprob 会不一致？SGLang/vLLM 权重更新如何处理 cache？prefix 命中率高为何仍可能 E2E 更慢？
 
@@ -2338,7 +2338,7 @@ Decoupled PPO：
 
   > 我把演进归纳为“从多条实验路径收敛到统一 engine 和统一 async 执行模型”。v0.7 开始强化 engine abstraction、server-based rollout 和 TransferQueue，Fully Async 的 producer-consumer 形态逐步成型；v0.8 推进 Unified Engine 迁移，把 sync trainer 也接入 TransferQueue，并扩展 OPD/Uni-Agent 等能力，但多条新旧路径仍在过渡；v0.9 的 Unified V1 进一步统一 `sync / colocate_async / separate_async`，补 replay/stale drop/wait、streaming dataloader/recovery、Uni-Agent Gateway 和 `delta_sharded` 等权重更新能力。这里会有 breaking change，不能拿当前类名解释旧项目。我实际项目基于 v0.7.1/公司分支，当前 upstream 只用于重评和迁移判断。
 
-- **深入阅读**：[verl v0.7–v0.9 的架构演进与迁移风险](../rl-infra/topics/rl_framework_selection.md#verl-release-evolution)。
+- **深入阅读**：[verl v0.7–v0.9 的架构演进与迁移风险](../04-rl-infra/topics/rl_framework_selection.md#verl-release-evolution)。
 - **高概率追问**：TransferQueue 为什么重要？Unified Engine 解决什么重复？`colocate_async` 与 `separate_async` 的差别？升级如何做 numeric regression？
 
 <details>
@@ -2680,7 +2680,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 在标准 token-level 路径中，`r_t = exp(logp_current,t − logp_prox,t)`；behavior 与 proximal 的差异由配置的 correction/rejection 处理，不能把二者混掉。严格 fresh sampling、固定 prefix 且无额外 clipping 时，sampled-token PG 对应局部 reverse-KL 的梯度方向；异步旧样本、PPO clipping、advantage clipping 和 trajectory weighting 会改变估计，不能宣称项目 loss 就是完整轨迹 reverse-KL 的精确无偏梯度。
 
-代码核验位置是项目 `areal/trainer/ppo/actor.py` 的 `mopd_advantage` 与 `grpo_loss_fn`、`areal/utils/functional/functional.py` 的 `ppo_actor_loss_fn`。机制续读：[MOPD 专题：最小数据流与算法边界](../rl-infra/topics/mopd.md#opd-的最小数据流)。
+代码核验位置是项目 `areal/trainer/ppo/actor.py` 的 `mopd_advantage` 与 `grpo_loss_fn`、`areal/utils/functional/functional.py` 的 `ppo_actor_loss_fn`。机制续读：[MOPD 专题：最小数据流与算法边界](../04-rl-infra/topics/mopd.md#opd-的最小数据流)。
 
 - **为什么不继续依赖 TILE merge**：项目已确认的事实只有“初步效果没有达到多个领域能力同时保留的目标”。可以从系统选型角度说，静态 model merge 不会自动利用原 RL 数据在 Student 的访问分布上继续学习；但在没有实验记录前，不补造 TILE 的内部机制、系数敏感性、具体掉点或论文归属。
 - **三层验证门禁**：
@@ -2722,7 +2722,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 - **架构展开**：verl 的重点是灵活编排 RL 多角色计算与后端；项目所用 AReaL online 路径的重点是持续生产 trajectory，并管理 session、cohort、policy version 和 staleness。当前 upstream 的能力与项目采用时的分支必须分开。
 
 - **选型维度**：`workload 形态 → 训练后端/模型支持 → rollout/agent 接口 → placement 与 weight sync → correctness → 可观测/恢复 → 二开半径与团队维护成本`。公开 benchmark 只能提供候选，最终要用自己的模型、长度分布、并发和故障场景做 A/B。
-- **详细专题**：[verl 与 AReaL：RL 框架架构选型指南](../rl-infra/topics/rl_framework_selection.md)——包含架构、优劣、当前选型矩阵、公平 benchmark 和 2 分钟回答。
+- **详细专题**：[verl 与 AReaL：RL 框架架构选型指南](../04-rl-infra/topics/rl_framework_selection.md)——包含架构、优劣、当前选型矩阵、公平 benchmark 和 2 分钟回答。
 - **项目证据或知识边界**：你分别有 verl RLVR 和 AReaL Agentic RL 项目，是强项目证据；说明“当时评估的版本”和公司二次开发。对 slime、ROLL 只说当时评估维度与选择，不编造没有记录的排名或缺陷。
 - **高概率追问**：verl v0.9 后差异是否还成立？所谓“框架重”具体体现在哪里？AReaL 项目链路与 2.x 有何区别？同一任务怎么做公平选型 benchmark？
 
@@ -2833,8 +2833,8 @@ A_total,t = A_mopd,t + λ × A_task,t
 | 还有什么容易漏讲的优化？ | Gateway 将数据请求和 reward/end/abort 等生命周期 RPC 分成两个连接池，避免长请求挤占回收通道；Worker 内部 condition 等待 credit，启动锁只保护短状态转换，不锁住整个等待过程。 |
 | 如何保证输出能训练？ | 先检查完整、成功结束、reward 齐全且不过旧的 cohort；export 后检查空轨迹、重复 ID 和组大小，再 ACK。执行器随后仍要整理 tensor、过滤样本，所以 ACK 只确认导出，不等于已接受训练，更不是持久化的“恰好训练一次”。 |
 
-- **版本先说清**：上表核验的是指定 `trail` 仓库 `e9081cab`，核心已合入提交为 `c9fa6925`（作者 suran662，含 wangxy74 共同作者记录）。8 月 wangxy 的异步分支重新集中 Gateway admission、改为 Trainer 消费终态 cohort，**尚未合入这个快照**；后续个人 quota 分支也不是该 HEAD。详见[版本与署名边界](../rl-infra/topics/agentic_rl.md#gateway-code-versions)。
-- **深入阅读**：[完整工程章节：调用链、容量公式、选路、失败处理与源码索引](../rl-infra/topics/agentic_rl.md#project-gateway-ownership) · [后续个人分支](../rl-infra/topics/agentic_rl.md#gateway-personal-followups) · [吞吐结果怎么讲](#resume-19)。
+- **版本先说清**：上表核验的是指定 `trail` 仓库 `e9081cab`，核心已合入提交为 `c9fa6925`（作者 suran662，含 wangxy74 共同作者记录）。8 月 wangxy 的异步分支重新集中 Gateway admission、改为 Trainer 消费终态 cohort，**尚未合入这个快照**；后续个人 quota 分支也不是该 HEAD。详见[版本与署名边界](../04-rl-infra/topics/agentic_rl.md#gateway-code-versions)。
+- **深入阅读**：[完整工程章节：调用链、容量公式、选路、失败处理与源码索引](../04-rl-infra/topics/agentic_rl.md#project-gateway-ownership) · [后续个人分支](../04-rl-infra/topics/agentic_rl.md#gateway-personal-followups) · [吞吐结果怎么讲](#resume-19)。
 - **项目证据或知识边界**：能讲清团队代码不等于亲自提交全部实现；共同作者记录也不能独立证明谁完成了大部分工作。代码静态核验能证明机制，不能复现 `+60%` 的实验结果。
 - **高概率追问**：session 为什么不能随便迁移？工具执行时是否还占槽？partial deadline 限制的是排队还是成员到齐？网络超时是否意味着远端请求已经取消？
 
@@ -2866,7 +2866,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 | 故障观察 | group 建立、collective hang、bucket/checksum、各 replica active version | export 完整性、manifest/version、文件可见性、loader/refit、残留目录 |
 
 - **版本/支持边界**：在本地项目分支中，actor–rollout colocate 显式要求 disk；这不等于所有 colocate role 都只能用 disk，ref/critic 的共置条件不同。该分支的 SGLang LoRA 路径不支持 XCCL。XCCL group 包含参与传输的 trainer sender rank(s) 和 rollout ranks，不是默认把全部 trainer ranks 都拉进一个组。
-- **深入阅读**：[AReaL XCCL 与 disk 权重同步：数据路径、状态机与选型](../rl-infra/topics/agentic_rl.md#areal-weight-sync-xccl-disk)；相邻问题：[VERL-03 训练到 rollout 权重同步](#verl-03)、[AREAL-06 原子发布与回滚](#areal-06)。
+- **深入阅读**：[AReaL XCCL 与 disk 权重同步：数据路径、状态机与选型](../04-rl-infra/topics/agentic_rl.md#areal-weight-sync-xccl-disk)；相邻问题：[VERL-03 训练到 rollout 权重同步](#verl-03)、[AREAL-06 原子发布与回滚](#areal-06)。
 - **项目证据或知识边界**：可以说“verl/AReaL 在项目固定 workload 下最终都采用 XCCL，权重同步更快”；未形成统一公开 benchmark 时不报倍数，不把 disk 临时权重目录说成训练恢复 checkpoint。
 - **高概率追问**：为什么 set_version 必须在传输成功后？部分 rollout rank 失败怎么办？何时宁可选 disk？colocate 为什么可能限制传输路径？
 
@@ -2898,7 +2898,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 
 - **两组数字不得混用**：AReaL Agentic RL decode 是 `6–8x`；另一个 verl 35B RLVR workload 的 decode 记录为约 `14x`。它们的模型、框架、batch/concurrency、graph coverage 和统计窗口不同，不能拼成同一结论。
 - **验证方法**：同模型、gen-TP、batch/concurrency、输入/输出长度和 sampling 配置，warmup 后比较 eager 与 graph 的 decode-only latency/token throughput；记录 graph hit/fallback、CPU launch gap、GPU utilization、private-pool 显存与 E2E rollout/step time。
-- **深入阅读**：[Agentic RL 中的 CUDA Graph：capture、bucket、失效与指标边界](../rl-infra/topics/agentic_rl.md#cuda-graph-decode)。
+- **深入阅读**：[Agentic RL 中的 CUDA Graph：capture、bucket、失效与指标边界](../04-rl-infra/topics/agentic_rl.md#cuda-graph-decode)。
 - **项目证据或知识边界**：对外主数字使用最新简历 `6–8x`；`14x` 只能在明确说“另一项 verl 35B RLVR workload”时补充。
 - **高概率追问**：continuous batching 为什么还能用 graph？权重同步后是否必须 recapture？graph 为什么可能额外 OOM？GPU 已经 compute-bound 时收益多大？
 
@@ -2935,7 +2935,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 - **失败处理的关键细节**：registration/start 的幂等重试与生成重试不同。bridge 继承训练配置时显式设 `generation retry=0`，避免原生成尚未取消就重发；网络超时先核对远端状态，不随机换 Worker。组拒绝后清理本地 session/容量，不等于已经确认 GPU 请求被立即中止。
 - **简历口述修正版（本次不改简历文件）**：“参与重构外部 Agent 接入与 Rollout 调度链路，协同实现 cohort 粘性路由、session 容量准入、负载感知分发和失败回收；项目记录 Rollout 平均推理吞吐提升 60%，Rejected Group 由 33.18% 降至 2.73%。”具体个人提交另答 [AREAL-09](#areal-09)。
 - **待观测验证的机制链**：用 active sessions/空槽时间看利用率，用每个 engine 的 running/waiting 看局部拥塞，用 partial-timeout、missing-reward、stale 等原因分布看拒绝率，再看完整 cohort 供给、有效训练 token 和 update interval。机制合理不等于已经做过独立消融。
-- **深入阅读**：[供给与补位的三个预算](../rl-infra/topics/agentic_rl.md#gateway-streaming-refill) · [源码细节与 ownership](../rl-infra/topics/agentic_rl.md#project-gateway-ownership)。
+- **深入阅读**：[供给与补位的三个预算](../04-rl-infra/topics/agentic_rl.md#gateway-streaming-refill) · [源码细节与 ownership](../04-rl-infra/topics/agentic_rl.md#project-gateway-ownership)。
 - **项目证据或知识边界**：保留记录值 `+60%`、`33.18%→2.73%`，但需补原始统计协议；分母若包含不同的 admitted、terminal 或 attempted cohorts，就不能直接横比。数值相减为 `-30.45pp`，若同口径相对降幅约 `91.8%`；算术换算不能替代分母核验。三项缺少独立消融，不拆贡献。
 - **高概率追问**：Gateway 轮询和 engine 负载感知有什么区别？为什么生成完成后还可能不能补新 cohort？partial group 能不能训练？并发加大会不会反而增加 stale 和 timeout？
 
@@ -3089,7 +3089,7 @@ A_total,t = A_mopd,t + λ × A_task,t
 - **项目 API 展开**：admin key 调 `/rl/start_session` 获取 session ID/key；session key 请求项目分支的 `/chat/completions`、`/responses` 或 `/v1/messages`，终结时写 `/rl/set_reward`、`/rl/end_session`。外层 ingress 是否添加 `/v1` 前缀以部署路由为准，不能把 SDK 常用路径直接当服务端事实。InteractionCache 保存交互数据，CohortManager 管理 group/capacity/staleness，Trainer export/tensorize 后消费。
 
 - **项目链路（本次核验的主线）**：`External Agent/Evals → Gateway 粘性路由 → Proxy Worker session admission / engine 选路 → vLLM/SGLang → InteractionCache → 完整、成功、rewarded/ended 且新鲜的 cohort → trainer export/ACK/update`。团队主线与后续 admission、safe retry、lifecycle 分支的区别见 [AREAL-09](#areal-09)。
-- **深入阅读**：[外部 Agent 接入协议与 online proxy/cohort 数据流](../rl-infra/topics/agentic_rl.md#external-agent-gateway)。
+- **深入阅读**：[外部 Agent 接入协议与 online proxy/cohort 数据流](../04-rl-infra/topics/agentic_rl.md#external-agent-gateway)。
 - **项目证据或知识边界**：这是项目使用的 online proxy/cohort 路径；AReaL 2.1 的具体 API 文档可用于解释协议，但不要把后续独立微服务实现倒推到项目版本。
 - **高概率追问**：为什么要 admin/session 两级 key？客户端重试如何不生成重复 trajectory？reward 先于 end 或晚于 end 怎么办？Tool state 由谁恢复？
 
@@ -3227,11 +3227,11 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
   **通信量与算法选择**：四卡时，每 rank 发送 `1.5N`、接收 `1.5N`，收发合计 `3N`。简化单环模型为 `T≈2(p−1)α + 2(p−1)Nβ/p`，α 表示每轮延迟、β 表示每字节传输时间，暂不计本地规约和拓扑竞争。`2(p−1)` 是逻辑轮次，不是 kernel launch 次数；NCCL 会按消息量和硬件选择 Ring、Tree、NVLS 等支持路径，不能说“大消息或 TP 一定用 Ring”。[NCCL 算法配置](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html#nccl-algo)、[带宽统计口径](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md)。
 
-  **逐步传哪块看这里**：[四卡六步传块表、公式推导与源码入口](../systems/topics/nccl.md#ring-allreduce)。↩ [返回 TP 题](#megatron-02) · ↑ [返回面试速查控制台](#interview-console)
+  **逐步传哪块看这里**：[四卡六步传块表、公式推导与源码入口](../01-systems/topics/nccl.md#ring-allreduce)。↩ [返回 TP 题](#megatron-02) · ↑ [返回面试速查控制台](#interview-console)
 
 - **两个边界**：`AllReduce = ReduceScatter + AllGather` 只在 count 可分片、dtype、reduction op 和 layout 兼容时数学等价，底层不一定机械调用两个 API，浮点归约顺序也不保证 bitwise 一致。NCCL 2.31.2 有 fixed-count `ncclAlltoall`，但没有通用 `ncclAlltoallv` host API；框架/dispatcher 的 AllToAllV 必须校验每对 peer 的 send/recv count。PyTorch `dist.barrier()` 是框架同步语义，也不能简单当作 NCCL 通用 host Barrier API。
 - **正确性与性能**：正确性先查 group membership、collective 顺序、count/shape、dtype/op/root/peer、buffer lifetime 和 stream wait；性能再看消息大小、频率、ring/tree/topology、p95/p99 和 exposed communication。异步发起不等于已经与计算重叠。
-- **深入阅读**：[通信算子：四卡输入输出、5D 映射和 hang 排障](../systems/topics/nccl.md#collective-map) · [Ring AllReduce 原理](../systems/topics/nccl.md#ring-allreduce) · [TP 前后向推导](../training-infra/topics/tensor_parallelism.md#tp-collective-derivation)。
+- **深入阅读**：[通信算子：四卡输入输出、5D 映射和 hang 排障](../01-systems/topics/nccl.md#collective-map) · [Ring AllReduce 原理](../01-systems/topics/nccl.md#ring-allreduce) · [TP 前后向推导](../02-training-infra/topics/tensor_parallelism.md#tp-collective-derivation)。
 - **项目证据或知识边界**：你有 NCCL/XCCL、MoE AllToAll、weight sync 和大规模故障定位经验；若没有实现 NCCL kernel/算法，明确个人边界是使用、集成、性能分析和排障。
 - **高概率追问**：Broadcast 与 AllGather 有何区别？为什么 RS+AG 与 AR 只说语义等价？gradient 和 parameter 分别在哪一步通信？AllToAllV 如何避免 count 不一致 hang？ring/tree 怎么选？
 
@@ -3308,7 +3308,7 @@ AReaL online 链路 → ready-cohort wait/长尾 → staleness 与 weight versio
 
 - **公开系统证据，不作为个人项目数字**：MegaScale 在 12,288 GPUs 上训练 175B 模型，并披露一个万卡生产作业数周内重启超过 100 次；Llama 3 论文披露 405B 训练最多使用 16K H100，在 54 天观测窗内发生 466 次中断，其中 419 次为非计划中断。它们共同说明故障处理和长期有效训练时间是万卡系统的一等指标。
 - **待本人补证（不作为口述事实）**：从 X1 3K 经历中选一个确有证据的事件，记录“表面症状 → first bad event/rank → 故障域 → 本人提供的 profile/复现 → 对应团队修复 → 同 workload 回归 → 长窗口验证”。具体事件未确认前，保留上述系统方法回答，不补写 GPU/NIC/checkpoint 事故。
-- **深入阅读**：[大规模训练稳定性与容错：从千卡到万卡](../training-infra/topics/fault_tolerance.md#large-scale-training)；具体 collective hang 继续看 [INFRA-03](#infra-03) 与 [NCCL 专题](../systems/topics/nccl.md#hang-diagnosis)。
+- **深入阅读**：[大规模训练稳定性与容错：从千卡到万卡](../02-training-infra/topics/fault_tolerance.md#large-scale-training)；具体 collective hang 继续看 [INFRA-03](#infra-03) 与 [NCCL 专题](../01-systems/topics/nccl.md#hang-diagnosis)。
 - **高概率追问**：为什么 `T_step` 看 max 而不是平均？慢 rank 和网络拥塞怎么区分？TP/EP/CP/DP 如何映射拓扑？固定 world-size 与 elastic recovery 怎么选？checkpoint 间隔怎么定？如何避免恢复时击穿存储？goodput 怎么计算？
 
 <details>
@@ -3707,7 +3707,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 > **标准 SFT/RLVR 阶段，在当时比较 verl、slime、ROLL 后选择了完整度和后端生态更匹配的 verl；Agentic RL 阶段因长时 session、外部 Agent、fully async 和 Gateway 改造需求转向 AReaL，同时自行补齐外围生产能力。**
 
-详细比较与当前版本重评：[verl 与 AReaL：RL 框架架构选型指南](../rl-infra/topics/rl_framework_selection.md)。
+详细比较与当前版本重评：[verl 与 AReaL：RL 框架架构选型指南](../04-rl-infra/topics/rl_framework_selection.md)。
 
 <a id="vi-evidence-cards"></a>
 ### VII.2 六张项目证据卡：已确认事实与待核验项
@@ -3927,21 +3927,21 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 ### VII.6 继续阅读：仓库内现有材料
 
-- [浮点表示、FP8 scaling、GEMM dtype 与低精度验证](../systems/topics/fp8.md)
-- [GPU 执行、Roofline、PyTorch/compile 与融合算子](../systems/topics/transformer_engine.md)
+- [浮点表示、FP8 scaling、GEMM dtype 与低精度验证](../01-systems/topics/fp8.md)
+- [GPU 执行、Roofline、PyTorch/compile 与融合算子](../01-systems/topics/transformer_engine.md)
 - [Python3 Coding：模型、数据结构、梯度检查与 GPU benchmark](2026-09-interview-coding.md#coding-top)
 
-- [Agentic RL Infrastructure](../rl-infra/topics/agentic_rl.md)
-- [Megatron 5D 并行总览](../training-infra/topics/distributed_training.md)
-- [Dense/MoE、Expert 路由与 Parallel Folding 工程章节](../training-infra/topics/moe.md#dense-vs-moe)
-- [NCCL 与分布式通信算子](../systems/topics/nccl.md#collective-map)
-- [大规模训练稳定性与容错：从千卡到万卡](../training-infra/topics/fault_tolerance.md#large-scale-training)
+- [Agentic RL Infrastructure](../04-rl-infra/topics/agentic_rl.md)
+- [Megatron 5D 并行总览](../02-training-infra/topics/distributed_training.md)
+- [Dense/MoE、Expert 路由与 Parallel Folding 工程章节](../02-training-infra/topics/moe.md#dense-vs-moe)
+- [NCCL 与分布式通信算子](../01-systems/topics/nccl.md#collective-map)
+- [大规模训练稳定性与容错：从千卡到万卡](../02-training-infra/topics/fault_tolerance.md#large-scale-training)
 - [Tensor Parallelism 面试题](../interview/topics/tensor_parallelism.md)
 - [MoE 面试题](../interview/topics/moe.md)
 - [Checkpoint 面试题](../interview/topics/checkpoint.md)
 - [FSDP 面试题](../interview/topics/fsdp.md)
-- [FSDP/FSDP2、ZeRO、Megatron 与 Bridge 选型](../training-infra/topics/fsdp.md)
-- [verl 与 AReaL：RL 框架架构选型](../rl-infra/topics/rl_framework_selection.md)
+- [FSDP/FSDP2、ZeRO、Megatron 与 Bridge 选型](../02-training-infra/topics/fsdp.md)
+- [verl 与 AReaL：RL 框架架构选型](../04-rl-infra/topics/rl_framework_selection.md)
 - [FlashAttention 面试题](../interview/topics/flashattention.md)
 - [Megatron-LM 论文笔记](../research/papers/megatron_lm.md)
 - [Megatron Core MoE 2026 中文翻译（5 部分 PDF）](../research/MASTER_READING_LIST.md#megatron-core-moe-2026-zh-pdf)
@@ -3954,7 +3954,7 @@ collective 输入输出 → loss/NaN/梯度/收敛异常 → 万卡规模效应/
 
 - NVIDIA Megatron-Core：[Scalable Training of Mixture-of-Experts Models with Megatron Core](https://arxiv.org/abs/2603.07685)、[MoE Parallel Folding](https://arxiv.org/abs/2504.14960)、[MoE Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/moe.html)、[Parallelism Strategies Guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html)、[Context Parallelism](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html)、[Distributed Optimizer](https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/dist_optimizer.html)、[Pipeline Schedules](https://docs.nvidia.com/megatron-core/developer-guide/latest/apidocs/core/core.pipeline_parallel.schedules.html)、[`theoretical_memory_usage.py`](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/theoretical_memory_usage.py)。Release 页面核验到 `core_v0.18.2`，commit `571370c`；MoE 技术报告和上述公式补充核验于 2026-09-01。
 - PyTorch/DeepSpeed/Bridge：[FSDP2 `fully_shard`](https://docs.pytorch.org/docs/main/distributed.fsdp.fully_shard.html)、[FSDP1](https://docs.pytorch.org/docs/stable/fsdp.html)、[DeepSpeed ZeRO Tutorial](https://www.deepspeed.ai/tutorials/zero/)、[`mbridge`](https://pypi.org/project/mbridge/)、[NVIDIA Megatron Bridge](https://docs.nvidia.com/nemo/megatron-bridge/latest/)。FSDP/ZeRO 是 DP state sharding，Megatron 多维并行解决的约束更广；两类能力可以组合。`mbridge` 与 NVIDIA `megatron-bridge` 是独立 package。
-- RL 算法：[PPO](https://arxiv.org/abs/1707.06347)、[DeepSeekMath/GRPO](https://arxiv.org/abs/2402.03300)、[DAPO](https://arxiv.org/abs/2503.14476)。主文档只保留工程口述，公式和数据契约见 [Agentic RL topic](../rl-infra/topics/agentic_rl.md#ppo-grpo-dapo)。
+- RL 算法：[PPO](https://arxiv.org/abs/1707.06347)、[DeepSeekMath/GRPO](https://arxiv.org/abs/2402.03300)、[DAPO](https://arxiv.org/abs/2503.14476)。主文档只保留工程口述，公式和数据契约见 [Agentic RL topic](../04-rl-infra/topics/agentic_rl.md#ppo-grpo-dapo)。
 - verl：[GitHub](https://github.com/verl-project/verl)、[HybridFlow Programming Guide](https://verl.readthedocs.io/en/latest/hybrid_flow.html)、[0.7 Architecture](https://verl.readthedocs.io/en/latest/blog/v0.7.html)、[v0.7.0](https://github.com/verl-project/verl/releases/tag/v0.7.0)、[v0.8.0](https://github.com/verl-project/verl/releases/tag/v0.8.0)、[v0.9.0](https://github.com/verl-project/verl/releases/tag/v0.9.0)、[v0.9.0 Fully Async](https://github.com/verl-project/verl/blob/v0.9.0/docs/advance/fully_async.md)。项目历史参照为 `v0.7.1`（`bec9ef7`）；当前重评基线为 `v0.9.0`（`483b8a0`），不能把后续能力倒推到项目版本。
 - 项目产出图示来源：[Athena-Brain v2, Figure 3](https://arxiv.org/pdf/2607.18985v2)、[Capek 0.5 v1, Figure 6](https://arxiv.org/pdf/2608.06756v1)。两图用于说明自研版 verl 支撑的 LLM/MLLM 后训练链路；个人 ownership 是框架建设、集成、性能与正确性保障，不把算法 recipe、模型产出或论文 authorship 归到个人名下。
 - Rollout backend：[vLLM OpenAI-compatible server](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/)、[SGLang docs](https://docs.sglang.io/)。后端选型必须锁定版本、模型、硬件与真实 RL workload。

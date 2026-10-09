@@ -22,7 +22,7 @@ Agent Lightning 连接起下一季度的环境主线：当 agent 有自己的工
 
 更贴近今天 RL 工程的是 engine switching：训练与推理共享资源后，换引擎仍要付出权重装载和布局转换成本。附录 G 记录了 H800 上 H2D 与 broadcast 争用 PCIe，导致理想的三阶段流水退化，最终采用两阶段安排。**工程判断：** 画出来能 overlap 的操作，实际可能争用同一条物理通路；应按 H2D、broadcast、reload 分段测时。[RL infrastructure 与附录 G](https://arxiv.org/html/2507.20534v1#A7)
 
-**Reason：** 同一份报告同时提供数值失稳机制与状态搬运的负面工程案例。**Next：** 优先读 §2.4、§3.3 和附录 G，画出 colocated RL 的权重切换时间线，再回读 MuonClip。Related topics：[MoE](../../training-infra/topics/moe.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md)。目标流向：tech report / experiment；当前 Status：NEW。
+**Reason：** 同一份报告同时提供数值失稳机制与状态搬运的负面工程案例。**Next：** 优先读 §2.4、§3.3 和附录 G，画出 colocated RL 的权重切换时间线，再回读 MuonClip。Related topics：[MoE](../../02-training-infra/topics/moe.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md)。目标流向：tech report / experiment；当前 Status：NEW。
 
 ### 2. Agent Lightning：先把 agent 执行变成可训练的数据接口
 
@@ -32,7 +32,7 @@ Agent Lightning 连接起下一季度的环境主线：当 agent 有自己的工
 
 **工程判断：** 日志可观测不等于轨迹可训练；接入时仍要确认哪次模型调用对应哪段 action、reward 如何归属，以及工具结果如何进入下一状态。原工作在 SQL、RAG 和数学工具任务上的实验，不能推出所有复杂 harness 都已零成本接入。**版本边界：** 2025 年论文与[2026 年 8 月月报](monthly_signal_2026-08.md)里的 Agent Lightning v1.0 是不同时间点，不能引用当前 README 的新功能证明原版能力。
 
-**Reason：** 它解释了为什么 agent 训练需要独立的数据协议，而不仅需要更快的 rollout。**Next：** 对照一个实际 AReaL rollout，标注 execution event、transition 与 reward 的对应关系，列出无法无损映射的字段。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)。目标流向：paper / topic；当前 Status：NEW。
+**Reason：** 它解释了为什么 agent 训练需要独立的数据协议，而不仅需要更快的 rollout。**Next：** 对照一个实际 AReaL rollout，标注 execution event、transition 与 reward 的对应关系，列出无法无损映射的字段。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)。目标流向：paper / topic；当前 Status：NEW。
 
 ### 3. Batch invariance：同一份权重不必然产生同一个 policy
 
@@ -42,7 +42,7 @@ Agent Lightning 连接起下一季度的环境主线：当 agent 有自己的工
 
 RL 的后果是 rollout 与 trainer 即使持有同版权重，也可能计算出不同 logprob。**工程判断：** 在排查 importance ratio 异常前，应先隔离相同 token、相同权重、不同 batching/切分下的差异，再处理真正的 policy staleness。文章中的实现和性能实验有指定模型与硬件边界；不能推出所有 TP/EP collective、低精度路径和 MoE routing 都已经一致。
 
-**Reason：** 它把训推偏差落到可以复现的 kernel 行为，能直接改变 RL 故障定位顺序。**Next：** 设计单请求/混合 batch、prefill/decode、不同 chunk size 的 logprob 对照，分别记录误差与吞吐代价。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[FlashAttention](../../systems/topics/flashattention.md)、[Distributed Training](../../training-infra/topics/distributed_training.md)。目标流向：engineering blog / experiment；当前 Status：NEW。
+**Reason：** 它把训推偏差落到可以复现的 kernel 行为，能直接改变 RL 故障定位顺序。**Next：** 设计单请求/混合 batch、prefill/decode、不同 chunk size 的 logprob 对照，分别记录误差与吞吐代价。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[FlashAttention](../../01-systems/topics/flashattention.md)、[Distributed Training](../../02-training-infra/topics/distributed_training.md)。目标流向：engineering blog / experiment；当前 Status：NEW。
 
 ### 4. NVFP4：缩窄 GEMM 必须同时维护 forward/backward 的一致性
 
@@ -52,7 +52,7 @@ RL 的后果是 rollout 与 trainer 即使持有同版权重，也可能计算�
 
 这不等于所有训练状态都变成 4-bit：报告保留 FP32 主权重、梯度累积和 optimizer state，attention 与若干敏感层也维持更高精度。**工程判断：** 显存预算仍要逐项计算，验收同时包含 loss 差距、异常值、cast/transform 成本和端到端 step time。该报告证明的是所述混合精度 recipe 的可行性，不能拿 FP4 Tensor Core 峰值当作训练加速承诺。
 
-**Reason：** 它把“能否低精度训练”推进到长程收敛与梯度语义。**Next：** 先制作每类张量的存储/计算/累积精度表，再设计小规模 loss-parity 对照；[Q4](quarterly_signal_2025-Q4.md)继续跟踪 Transformer Engine 的实际 recipe 发布。Related topics：[FP8](../../systems/topics/fp8.md)、[Transformer Engine](../../systems/topics/transformer_engine.md)。目标流向：tech report / experiment；当前 Status：NEW。
+**Reason：** 它把“能否低精度训练”推进到长程收敛与梯度语义。**Next：** 先制作每类张量的存储/计算/累积精度表，再设计小规模 loss-parity 对照；[Q4](quarterly_signal_2025-Q4.md)继续跟踪 Transformer Engine 的实际 recipe 发布。Related topics：[FP8](../../01-systems/topics/fp8.md)、[Transformer Engine](../../01-systems/topics/transformer_engine.md)。目标流向：tech report / experiment；当前 Status：NEW。
 
 ### 5. DeepSeek-V3.2-Exp：稀疏 attention 改变访问模式，也增加新的训练对象
 
@@ -62,7 +62,7 @@ DSA 先用 lightning indexer 选择 token，再让主 attention 只访问选出�
 
 重要边界是主 attention 降为 `O(Lk)`，**indexer 仍为 `O(L²)`**；成本较低不等于总系统已经线性。**工程判断：** 应拆分 indexer、top-k、稀疏 KV 访问与主 attention 的成本，并验证短序列和不同长度分布下是否受益。厂商在特定 H800 服务配置下给出的成本曲线，也不能直接当成任意训练任务的 speedup。
 
-**Reason：** 它提供了从 dense 模型继续训练到可运行稀疏模型的完整机制。**Next：** 先对照训练两阶段与 kernel 数据流，不急于追模型榜单；11 月的 indexer RoPE 修复属于[Q4 后续更新](quarterly_signal_2025-Q4.md)，不当作 9 月原始结论。Related topics：[Long-context Training](../../training-infra/topics/long_context_training.md)、[FlashAttention](../../systems/topics/flashattention.md)、[MoE](../../training-infra/topics/moe.md)。目标流向：tech report / experiment；当前 Status：NEW。
+**Reason：** 它提供了从 dense 模型继续训练到可运行稀疏模型的完整机制。**Next：** 先对照训练两阶段与 kernel 数据流，不急于追模型榜单；11 月的 indexer RoPE 修复属于[Q4 后续更新](quarterly_signal_2025-Q4.md)，不当作 9 月原始结论。Related topics：[Long-context Training](../../02-training-infra/topics/long_context_training.md)、[FlashAttention](../../01-systems/topics/flashattention.md)、[MoE](../../02-training-infra/topics/moe.md)。目标流向：tech report / experiment；当前 Status：NEW。
 
 ## OpenAI / Anthropic / NVIDIA / DeepSeek Watch
 
@@ -73,13 +73,13 @@ DSA 先用 lightning indexer 选择 token，再让主 attention 只访问选出�
 | NVIDIA | **Accepted / Read**：9 月 NVFP4 报告，见核心 4。 | 报告出现与 Transformer Engine recipe 的发布是两个事件；Q4 才按具体 release 补实现观察。 |
 | DeepSeek | **Accepted / Read**：V3.2-Exp，见核心 5；API 公告与官方 HF 权重入口均已检查。 | 8 月 V3.1、9 月 Terminus 属版本背景；12 月 V3.2 的完整 RL 协议不倒灌进本季。 |
 
-Watch 中的 Observed 项 Impact 为中，Reason 是有直接工程联系但不挤占本季五份核心；Next 是遇到对应实现问题时按指定 source 回查，Related topics 为 [Agentic RL](../../rl-infra/topics/agentic_rl.md) / [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)，Status：NEW。
+Watch 中的 Observed 项 Impact 为中，Reason 是有直接工程联系但不挤占本季五份核心；Next 是遇到对应实现问题时按指定 source 回查，Related topics 为 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) / [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)，Status：NEW。
 
 ## Hugging Face Watch
 
 [Vision Language Model Alignment in TRL](https://huggingface.co/blog/trl-vlm-alignment)（Sergio Paniego 等，2025-08-07）和 [Tricks from OpenAI gpt-oss YOU 🫵 can use with transformers](https://huggingface.co/blog/faster-transformers)（Aritra Roy Gosthipaty 等，2025-09-11）均是 **Hugging Face 官方团队文章，Observed / Observe**。前者提供多模态 trainer 与 vLLM 接入材料，后者把 kernel 分发、MXFP4、TP/EP 和 cache 路径放到具体框架实现中。它们是兼容性与实现参考，不能把示例演示外推成大型集群的性能验证。
 
-TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR 入口统一见 [GitHub 历史索引](github_history_2025_to_2026_h1.md)。此处对 Accelerate / PEFT **未额外提升核心材料**，不表示当季没有变化；索引枚举与逐项代码审计是不同覆盖层级。社区文章未因出现在 Hub 自动接受。Impact：中；Reason：补框架兼容性背景；Next：需要复现时锁定当季版本核对 trainer/backend 接口；Related topics：[RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)、[FP8](../../systems/topics/fp8.md)；Status：NEW。
+TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR 入口统一见 [GitHub 历史索引](github_history_2025_to_2026_h1.md)。此处对 Accelerate / PEFT **未额外提升核心材料**，不表示当季没有变化；索引枚举与逐项代码审计是不同覆盖层级。社区文章未因出现在 Hub 自动接受。Impact：中；Reason：补框架兼容性背景；Next：需要复现时锁定当季版本核对 trainer/backend 接口；Related topics：[RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)、[FP8](../../01-systems/topics/fp8.md)；Status：NEW。
 
 ## RL Framework Watch
 
@@ -94,7 +94,7 @@ TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR �
 | OpenRLHF | 当季 merged PR / release 历史索引。 | `rollout / training`：保持框架比较背景，未对当季各路径逐一做代码验收，暂不提出 AReaL 的直接移植建议。 |
 | NeMo RL | 当季 merged PR / release 历史索引。 | `training / inference backend`：后续 Q4 的 Nemotron 报告能提供实际使用证据；不提前把该报告中的配套实现归到本季。 |
 
-Emerging framework：Agent Lightning 以论文和当时系统设计为 Accepted / Read，子系统为 `data/trajectory path`；迁移到 AReaL 的价值是执行与训练接口的分离，不能等同于直接替换 scheduler。上表其余观察 Impact 为中；Reason 是保留横向实现入口，Next 均为有实际问题时按历史 diff 定点核验，Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)。
+Emerging framework：Agent Lightning 以论文和当时系统设计为 Accepted / Read，子系统为 `data/trajectory path`；迁移到 AReaL 的价值是执行与训练接口的分离，不能等同于直接替换 scheduler。上表其余观察 Impact 为中；Reason 是保留横向实现入口，Next 均为有实际问题时按历史 diff 定点核验，Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)。
 
 ## 今天怎样继续，而不是把五份都排成必读
 

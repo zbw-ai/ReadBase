@@ -80,7 +80,7 @@
 - Decision：Read
 - Reason：它把 SGLang rollout、Megatron-LM training、Ray orchestration、NCCL/RDMA weight sync、MoE-aware rollout/training alignment、observability 和 fault tolerance 组合成一个 RL post-training stack。
 - 建议动作：已进入 [P1](../reading_queue/P1.md)，读完 AReaL / HybridFlow 后做对照。
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：engineering blog / topic / playbook
 
 这条是 6 月最值得收的 RL Infra 信号。它的价值不在“又一个 RL 框架”，而在把 rollout 和 trainer 的性能画像分开：rollout 偏 memory bandwidth / KV cache / decode，training 偏 compute / communication，同时又要求 policy 版本、低精度 recipe、MoE routing 和 weight sync 保持一致。
@@ -97,7 +97,7 @@
 - Decision：Read
 - Reason：它把 MoE 训练吞吐优化落到 fused kernels、FP8/NVFP4、feature scaling、tensor clamping、bias addition、dynamic scheduling、cuDNN Frontend、Transformer Engine 和 Megatron Core 的组合边界。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [FP8](../../01-systems/topics/fp8.md)
 - 最终应流向：engineering blog / topic / experiment
 
 这类博客是当前知识库必须一等收录的材料：很多 MoE 训练栈优化不会先以论文形式出现，而是直接体现在 TE / cuDNN / Megatron Core 的 kernel 和 runtime 里。
@@ -114,7 +114,7 @@
 - Decision：Read
 - Reason：它把低精度训练从“格式选择”推进到 GEMM shape、Fprop/Dgrad/Wgrad、dynamic quantization overhead、kernel dispatch 和 Transformer Engine profiling 的工程流程。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[FP8](../../systems/topics/fp8.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 关联主题：[FP8](../../01-systems/topics/fp8.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 - 最终应流向：engineering blog / topic / experiment
 
 同月 NVIDIA 还发布了 JAX / MaxText NVFP4 on Blackwell 的文章，显示 NVFP4 训练不只是 inference quantization，而是正在进入 pretraining recipe。后续扩写 FP8/NVFP4 时应把这两篇作为同一条技术线阅读。
@@ -131,7 +131,7 @@
 - Decision：Read
 - Reason：它针对 agentic long-context decoding 的 bursty demand，把 projection/FFN path 和 core-attention computation 解耦，说明长上下文 agent serving 的弹性扩展不应只靠复制完整模型实例。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：topic / playbook
 
 这条对 RL Infra 的间接价值很高：长时程 agent rollout 的瓶颈很可能先出现在 decode / KV / attention serving，而不是 trainer step。
@@ -148,7 +148,7 @@
 - Decision：Read
 - Reason：它把 PD disaggregation 推到 memory-heterogeneous accelerators，指出 prefill / decode 不一定应该使用同一类 HBM GPU，核心问题变成 KV format、cross-vendor transfer 和 phase-specific hardware mapping。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), inference infra, rollout serving
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), inference infra, rollout serving
 - 最终应流向：topic / insight
 
 如果你做 RL infra，这篇不是“纯推理论文”：rollout serving 会越来越像异构 inference system，prefill/decode/KV ownership 会影响样本吞吐和成本。
@@ -165,7 +165,7 @@
 - Decision：Read
 - Reason：它把 packed sequence、hybrid-context sequence 和 sequence parallelism 的 causal attention correctness 放在一起讨论，直接触达 128k / long-context training 的数据 packing 与并行切分边界。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 - 最终应流向：topic / experiment
 
 这条适合和你正在看的 128k SFT 配置联系起来：长上下文训练不是只调 `max_length`，packing、causal mask、sequence parallel 和 attention correctness 都会互相影响。
@@ -227,7 +227,7 @@
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md), [Transformer Engine](../../systems/topics/transformer_engine.md)
+- 需要更新的 topic：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md)
 - 需要更新的 insight：可以后续补一篇“RL Infra 的上游约束来自 inference serving”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 后续应加入 long-context decode / KV / prefill-decode 相关排障路径
 - 需要新增的 experiment：低精度 GEMM profiling、long-context serving KV benchmark、MoE kernel profiling

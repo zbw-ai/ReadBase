@@ -38,7 +38,7 @@
 - Reason：它针对 VLM post-training 中 prefix/video processing 占比高、rollout decode compute utilization 低的问题，在不引入 policy staleness 的情况下重排三阶段时间线，和 BiDiRL/AWEX/TMax 形成很有价值的对照。
 - Status：NEW
 - 建议动作：先画 serial colocation、disaggregation、Rollplex 三条 timeline，再确认哪些 tensor 可共享物理存储、哪些 TP layout 必须重构
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 传统同步 runtime 按 rollout、reference scoring、actor training 串行推进。VLM 的 dense video/prompt prefix 在多个阶段重复出现，而 decode 阶段往往受 memory bandwidth 和串行 token generation 限制，留下未充分使用的 compute。Rollplex 将 reference/training 的 prefix 部分提前到 rollout decode window，与 decode 并发执行，但 response 仍来自当前 policy，因此不需要用更旧 rollout 换吞吐。
 
@@ -61,7 +61,7 @@
 - Reason：它提供的是从 BF16 checkpoint 到可部署 NVFP4 agent model 的完整工业 recipe，而不是只公布一个量化权重；尤其展示了不同 checkpoint 在质量恢复与部署约束之间的取舍。
 - Status：NEW
 - 建议动作：拆解 PTQ initialization、teacher/student forward、KL target、checkpoint selection 和 deployment validation 五个阶段，判断哪些环节可迁移到现有 Megatron/Model Optimizer 流程
-- 关联主题：[FP8 / Low Precision](../../systems/topics/fp8.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[FP8 / Low Precision](../../01-systems/topics/fp8.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 QAD 以 frozen BF16 teacher 为目标，让 W4A16-NVFP4 student 通过 KL distillation 恢复量化损失。NVIDIA 报告模型 footprint 从 65.85 GB 降至 21.19 GB，并声称最高约 4 倍吞吐；这些都是厂商结果，不能直接外推到其他模型、batch 或 runtime。
 
@@ -83,7 +83,7 @@ QAD 以 frozen BF16 teacher 为目标，让 W4A16-NVFP4 student 通过 KL distil
 - Reason：长 trajectory 进入 RL training 后，attention activation 不再能只靠 TP/DP 处理；CP 必须同时维护 token partition、action mask、advantages、logprobs 与 loss reduction 的对齐。
 - Status：NEW
 - 建议动作：追踪 `sequence_packing_utils.py` 和 RL loss path，检查 CP scatter/gather 前后的 position、mask、advantage 与 denominator
-- 关联主题：[Context Parallelism](../../training-infra/topics/context_parallelism.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 该合并不是简单放开一个 `context_parallel_size` 参数，而是覆盖 packed 与 unpacked RL path，并处理 Transformer Engine、CUDA Graph 与 `CP>1` 的组合。它标志着 long-context RL 正在进入 Megatron 的标准并行栈。
 
@@ -106,7 +106,7 @@ QAD 以 frozen BF16 teacher 为目标，让 W4A16-NVFP4 student 通过 KL distil
 - Reason：在线 expert balance 的主要问题不是能不能迁移，而是 routing 结果出来后再迁移已经落入 critical path；FreeBalance 用跨层 residual similarity 提前预测下一层负载。
 - Status：NEW
 - 建议动作：阅读 predictor input、migration granularity、错误预测成本和 expert state movement，判断对 DeepSeek-style EP serving 的可迁移性
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 FreeBalance 利用 residual network 中跨层 hidden representation 的相似性，在目标 router 执行前预测 rank/expert workload，并把 expert migration 与 attention 等前置计算重叠。cost model 限制 swap 数量，使同步开销不超过可隐藏窗口。
 
@@ -128,7 +128,7 @@ FreeBalance 利用 residual network 中跨层 hidden representation 的相似性
 - Reason：同一个抽象参数在不同 inference backend 下释放的 state 不同；错误复用 SGLang 假设会让 vLLM weight/LoRA sync 写入已解除 VA mapping 的 buffer。
 - Status：NEW
 - 建议动作：把 AReaL 各 inference backend 的 sleep/resume contract 写成 state matrix：weights、LoRA、KV cache、CUDA VA、host backup、communicator 分别处于什么状态
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 SGLang 的 level-1 release 只释放 KV cache，base weights 仍映射，因此可以跳过 weights resume。vLLM level-1 sleep 则通过 CuMemAllocator 备份并 `unmap_and_release` 带 `weights` tag 的分配，其中包括 LoRA buffers；若直接执行 `copy_()` 同步，会写到未映射 VA 并触发 `cudaErrorInvalidValue`。
 
@@ -150,7 +150,7 @@ SGLang 的 level-1 release 只释放 KV cache，base weights 仍映射，因此�
 - Reason：RL rollout 不能只返回正确 token；behavior policy logprob 必须对应最终 accepted tokens，否则 importance ratio、KL 或 off-policy correction 都可能被污染。
 - Status：NEW
 - 建议动作：对照 AReaL trajectory schema，确认 speculative draft/reject/accept 后保存的是 target distribution、draft distribution 还是实际 sampling distribution
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 实现允许 DSpark 请求 output logprobs，并统一使用 speculative-v2 processor 计算 accepted-token logprob，同时启用已有 grammar/logprob integration coverage。它的价值不是“多返回一个字段”，而是保持 trajectory 中 token 与 behavior probability 一一对应。
 
@@ -160,7 +160,7 @@ SGLang 的 level-1 release 只释放 KV cache，base weights 仍映射，因此�
 |---|---|---|---|---|
 | AReaL Qwen3-VL model-owned THD | github:areal-project/AReaL#1608 | P0 | Read | packing 前合并 multimodal embeddings，并加入 alignment/parity/distributed-forward tests；是重要 VLM trajectory/training 边界，但当前不改变 text-only RL 主线。 |
 | vLLM FlashInfer NVLink one-sided All2All | github:vllm-project/vllm#51924 | P0 | Read | 增加 DeepSeek Blockwise FP8 payload/scale layout 校验与 MoE sequence parallelism，并在 8×B300 上做模型验证；实现扎实，但尚无独立端到端 speedup。 |
-| SimpleOPD | arxiv:2608.14277 | P1 | Read | tokenizer-agnostic alignment 与 termination-token advantage masking 解决 OPD correctness 问题，直接关联 [MOPD](../../rl-infra/topics/mopd.md)；缺少 rollout runtime 证据。 |
+| SimpleOPD | arxiv:2608.14277 | P1 | Read | tokenizer-agnostic alignment 与 termination-token advantage masking 解决 OPD correctness 问题，直接关联 [MOPD](../../04-rl-infra/topics/mopd.md)；缺少 rollout runtime 证据。 |
 | The Integer Alibi | arxiv:2608.13756 | P1 | Read | 将 CUTLASS/Triton INT8 序列分歧定位到 scale application/output rounding，提醒 kernel deterministic 不等于 cross-kernel equivalent；当前规模与 workload 较窄。 |
 | Envs-FORGE | arxiv:2608.14312 | P1 | Read | 联合生成 instruction、fixture、oracle、tests 和 Docker environment，并用 gold verification 过滤；更偏 environment synthesis/data pipeline，不是 runtime scheduling。 |
 | NeMo RL fine-grained activation CPU offload | github:NVIDIA-NeMo/RL#2279 | P1 | Observe | 可按 `moe_act/core_attn/qkv_linear/...` 模块 offload，支持 dense/MoE；未给出峰值显存和 tokens/s，需评估与 rollout overlap 的资源竞争。 |
@@ -236,5 +236,5 @@ SGLang 的 level-1 release 只释放 KV cache，base weights 仍映射，因此�
 
 - [x] 更新 [Scan Log](scan_log.md) 与 [Tracking README](README.md)。
 - [ ] 精读 Rollplex，和 BiDiRL/AWEX/TMax 画一张 scheduler taxonomy，不急着新建 topic。
-- [ ] 阅读 Megatron-LM #5882 的 CP data path；若确认改变 long-context RL 工程判断，再更新 [Long-context Training](../../training-infra/topics/long_context_training.md) 与 [Agentic RL](../../rl-infra/topics/agentic_rl.md)。
+- [ ] 阅读 Megatron-LM #5882 的 CP data path；若确认改变 long-context RL 工程判断，再更新 [Long-context Training](../../02-training-infra/topics/long_context_training.md) 与 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)。
 - [ ] 将 verl #7434 的 backend state matrix 用于后续 AReaL sleep/resume/weight-sync review。

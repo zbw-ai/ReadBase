@@ -10,7 +10,7 @@ FlashAttention-3 面向 Hopper 架构，关注 asynchrony、低精度和更高�
 
 ## 与知识图谱的关系
 
-[FlashAttention-2](flashattention2.md) → FlashAttention-3 → [FP8](../../systems/topics/fp8.md) → [Transformer Engine](../../systems/topics/transformer_engine.md)。
+[FlashAttention-2](flashattention2.md) → FlashAttention-3 → [FP8](../../01-systems/topics/fp8.md) → [Transformer Engine](../../01-systems/topics/transformer_engine.md)。
 
 ## 待补问题
 

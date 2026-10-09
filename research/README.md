@@ -23,4 +23,4 @@
 
 生命周期沿用 `NEW → READING → SUMMARIZED → DIGESTED → VERIFIED → IMPLEMENTED`，被替代的材料可标记 `OBSOLETE`；不是每条材料都必须走完全程。独立的 [Reading Inbox](../reading_inbox/README.md)保持原用途，不因本次目录迁移被合并；全局结构变化只在[总入口](../README.md)记录。
 
-[返回总入口](../README.md) · [最近更新](../README.md#recent-updates) · [知识图谱](../KNOWLEDGE_GRAPH.md) · [回到 Part I：系统基础](../systems/README.md) · [进入 Part VI：工程实践](../practice/README.md)
+[返回总入口](../README.md) · [最近更新](../README.md#recent-updates) · [知识图谱](../KNOWLEDGE_GRAPH.md) · [回到 Part I：系统基础](../01-systems/README.md) · [进入 Part VI：工程实践](../practice/README.md)

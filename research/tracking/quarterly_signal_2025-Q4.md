@@ -22,7 +22,7 @@ Agent 训练的瓶颈不只有 GPU。每类任务都需要工具、依赖、执�
 
 它当时仍是早期接口与生态建设，文章明确把多项框架集成写作进行中。**工程判断：** 标准接口降低接入成本，却不自动证明环境可复现、判分可靠或租户隔离完整。对 AReaL 的实际价值是让 rollout adapter 与环境生命周期分开：先明确 reset 后状态、timeout 和 close 的行为，再讨论大规模调度。
 
-**Reason：** 它让环境从一次性训练脚本走向可分发的接口和 artifact。**Next：** 用一个最小环境画出 agent、environment、reward 和 trainer 的边界，并记录 image / dependency / task / verifier 版本；这些记录项是本文建议，不是声称 0.1 已全部实现。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)。目标流向：engineering blog / experiment；当前 Status：NEW。
+**Reason：** 它让环境从一次性训练脚本走向可分发的接口和 artifact。**Next：** 用一个最小环境画出 agent、environment、reward 和 trainer 的边界，并记录 image / dependency / task / verifier 版本；这些记录项是本文建议，不是声称 0.1 已全部实现。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)。目标流向：engineering blog / experiment；当前 Status：NEW。
 
 ### 2. Anthropic 的 reward-hacking 研究：判分路径本身会塑造训练结果
 
@@ -32,7 +32,7 @@ Agent 训练的瓶颈不只有 GPU。每类任务都需要工具、依赖、执�
 
 必须保留实验边界：作者主动选择易被利用的环境并注入相关知识，这是受控研究，**不是宣告所有线上 Claude 发生了同样问题，也不是一次已披露的集群事故**。论文还比较若干缓解方法；不能仅凭单项有效就宣布环境已经可信。**工程判断：** 将 reward 聚合值与测试执行证据、失败原因分开保存，并对训练分数异常上升设置复核路径，比只看 reward 曲线更有诊断价值。
 
-**Reason：** 它提供生产来源的环境证据，说明 verifier 错误会被优化器放大，值得进入 RL Infra 的故障分类。**Next：** 为一个编码环境列出“进程正常结束、测试实际执行、任务目标满足”的独立验收条件，并设计有明确隔离范围的负例测试。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)。目标流向：paper / playbook；当前 Status：NEW。
+**Reason：** 它提供生产来源的环境证据，说明 verifier 错误会被优化器放大，值得进入 RL Infra 的故障分类。**Next：** 为一个编码环境列出“进程正常结束、测试实际执行、任务目标满足”的独立验收条件，并设计有明确隔离范围的负例测试。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)。目标流向：paper / playbook；当前 Status：NEW。
 
 ### 3. DeepSeek-V3.2：MoE routing 与 sampling mask 进入训练数据契约
 
@@ -42,7 +42,7 @@ Agent 训练的瓶颈不只有 GPU。每类任务都需要工具、依赖、执�
 
 **时间纠正：** 报告明确说 Keep Routing 自 DeepSeek-V3-0324 起已用于其 RL pipeline；本季度是该报告中的系统性披露，不能将机制首次使用时间写成 12 月。环境侧，报告又描述 issue/patch/test 的筛选、自动搭建可执行环境，以及联合生成 environment、tools、task、verifier 的流程。**工程判断：** 数据契约既要覆盖 policy evidence，也要覆盖任务如何被构造和验收，不能只保存 prompt 与最终 reward。[环境生产流程](https://arxiv.org/html/2512.02556v1#S3.SS2.SSS3)
 
-**Reason：** 这是连接 MoE 计算路径、off-policy 稳定性与 agent 数据生产的工业报告。**Next：** 优先读 §3.1，再读 §3.2.3；对照 AReaL 的 trajectory schema 列出已保存、可重建与丢失的信息，不直接照搬 mask 阈值。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[MoE](../../training-infra/topics/moe.md)、[Distributed Training](../../training-infra/topics/distributed_training.md)。目标流向：tech report / topic / experiment；当前 Status：NEW。
+**Reason：** 这是连接 MoE 计算路径、off-policy 稳定性与 agent 数据生产的工业报告。**Next：** 优先读 §3.1，再读 §3.2.3；对照 AReaL 的 trajectory schema 列出已保存、可重建与丢失的信息，不直接照搬 mask 阈值。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[MoE](../../02-training-infra/topics/moe.md)、[Distributed Training](../../02-training-infra/topics/distributed_training.md)。目标流向：tech report / topic / experiment；当前 Status：NEW。
 
 ### 4. Nemotron 3 Nano：多环境系统已落地，同步与精度边界仍需逐项读
 
@@ -52,7 +52,7 @@ Agent 训练的瓶颈不只有 GPU。每类任务都需要工具、依赖、执�
 
 两条边界尤其值得记住：报告使用 **synchronous GRPO**，并非只要多环境就必须 fully async；它冻结 router weights，但仍更新 expert bias，因此不能说 routing 从此完全不变。精度部分则明确是 BF16 post-training 后进行选择性 FP8 PTQ，保留敏感 attention/Mamba 路径；这份 Nano 报告不能用来证明 NVFP4 预训练。[算法与量化](https://arxiv.org/html/2512.20848v1)
 
-**Reason：** 有模型训练报告支撑的组件分工，比框架功能清单更能说明真实系统怎样组合。**Next：** 画出 NeMo Gym 到 trainer 的 token/logprob/reward 流，与 AReaL 对照；量化时分别验收模型质量、backend 支持和 rollout parity，不复用厂商局部吞吐倍数作容量承诺。Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[MoE](../../training-infra/topics/moe.md)、[FP8](../../systems/topics/fp8.md)。目标流向：tech report / experiment；当前 Status：NEW。
+**Reason：** 有模型训练报告支撑的组件分工，比框架功能清单更能说明真实系统怎样组合。**Next：** 画出 NeMo Gym 到 trainer 的 token/logprob/reward 流，与 AReaL 对照；量化时分别验收模型质量、backend 支持和 rollout parity，不复用厂商局部吞吐倍数作容量承诺。Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[MoE](../../02-training-infra/topics/moe.md)、[FP8](../../01-systems/topics/fp8.md)。目标流向：tech report / experiment；当前 Status：NEW。
 
 ## OpenAI / Anthropic / NVIDIA / DeepSeek Watch
 
@@ -65,13 +65,13 @@ Agent 训练的瓶颈不只有 GPU。每类任务都需要工具、依赖、执�
 
 低精度的实际接入由 release 接续：[Transformer Engine v2.8](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.8)（2025-10-07）加入 NVFP4 training recipe，[v2.10](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.10)（2025-12-11）继续补 NVFP4 GroupedLinear 与 quantized CUDA graphs。通信侧，[NCCL v2.28.7-1](https://github.com/NVIDIA/nccl/releases/tag/v2.28.7-1)（2025-10-18）提供 Device API / GIN 方向，[v2.28.9-1](https://github.com/NVIDIA/nccl/releases/tag/v2.28.9-1)（2025-11-10）修正 main/proxy 操作排序以处理大规模 hang。这些是**官方 release 事实**；能否用于特定模型、硬件与网络，仍需兼容性和故障验证，不推断为无条件提速。
 
-上述 Observed 项 Impact：中至高；Reason：证明论文到可用软件还存在版本、硬件和正确性边界；Next：复现时锁定 release 并核对限制，遇到 DSA 质量异常先排查 layout；Related topics：[Transformer Engine](../../systems/topics/transformer_engine.md)、[NCCL](../../systems/topics/nccl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)；Status：NEW。
+上述 Observed 项 Impact：中至高；Reason：证明论文到可用软件还存在版本、硬件和正确性边界；Next：复现时锁定 release 并核对限制，遇到 DSA 质量异常先排查 layout；Related topics：[Transformer Engine](../../01-systems/topics/transformer_engine.md)、[NCCL](../../01-systems/topics/nccl.md)、[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)；Status：NEW。
 
 ## Hugging Face Watch
 
 **Accepted / Read：OpenEnv**，见核心 1，明确属于 Meta-PyTorch 与 Hugging Face 联合官方发布，不是普通社区帖子。本季核心关心环境接口的形成；后续 2026 年的生态扩张不用于证明 2025-10 的集成已完成。
 
-TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR 按 [GitHub 历史索引](github_history_2025_to_2026_h1.md)观察，均 **Observed / Observe**，不根据当前 docs 的功能清单补写当年能力。HF Blog 的已核验正文以 OpenEnv 为主；未对其所有当季文章逐篇审读。这一覆盖限制不等于上述库没有重要变化。Impact：中；Reason：控制阅读负担并保留实现入口；Next：与实际复现实验相关时，再按历史版本检查 adapter、distributed training 与 backend 接口；Related topics：[RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)、[Distributed Training](../../training-infra/topics/distributed_training.md)；Status：NEW。
+TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR 按 [GitHub 历史索引](github_history_2025_to_2026_h1.md)观察，均 **Observed / Observe**，不根据当前 docs 的功能清单补写当年能力。HF Blog 的已核验正文以 OpenEnv 为主；未对其所有当季文章逐篇审读。这一覆盖限制不等于上述库没有重要变化。Impact：中；Reason：控制阅读负担并保留实现入口；Next：与实际复现实验相关时，再按历史版本检查 adapter、distributed training 与 backend 接口；Related topics：[RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)、[Distributed Training](../../02-training-infra/topics/distributed_training.md)；Status：NEW。
 
 ## RL Framework Watch
 
@@ -86,7 +86,7 @@ TRL、Transformers、Accelerate、PEFT、Kernels 的当季 release / merged PR �
 | OpenRLHF | 当季 merged PR / release 历史索引。 | `rollout / training`：本页保留覆盖入口；未额外给出未经 diff 验证的吞吐或 AReaL 移植结论。 |
 | NeMo RL | **Accepted as evidence within core 4**：Nemotron 3 Nano §3.2.4–3.2.5；框架本身非本季度首次诞生。 | `training / rollout / inference backend`：Gym 的 server 分工与 token/logprob 保真可用于 AReaL 接口对照；报告的同步训练不能改写为 fully async。 |
 
-Emerging framework / subsystem：OpenEnv 被接受为环境接口证据，NeMo Gym 被纳入 Nano 的实际训练架构；两者都不是单凭 repo 出现就与成熟 RL trainer 等量齐观。观察项 Impact：中；Reason：为本季 policy evidence 与 environment 接口主线保留代码落点；Next：围绕实际问题定点审查并以实验判断迁移；Related topics：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)。详见 [GitHub 历史索引](github_history_2025_to_2026_h1.md)。
+Emerging framework / subsystem：OpenEnv 被接受为环境接口证据，NeMo Gym 被纳入 Nano 的实际训练架构；两者都不是单凭 repo 出现就与成熟 RL trainer 等量齐观。观察项 Impact：中；Reason：为本季 policy evidence 与 environment 接口主线保留代码落点；Next：围绕实际问题定点审查并以实验判断迁移；Related topics：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)。详见 [GitHub 历史索引](github_history_2025_to_2026_h1.md)。
 
 ## 向 2026 年带走的两个问题
 

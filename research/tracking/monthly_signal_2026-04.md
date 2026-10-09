@@ -21,9 +21,9 @@
 
 ### 补选、日期核验与未升级材料
 
-- **新增精选：DeepSeek-V4，Deep Dive，★★★★★，状态 NEW；Source ID `arxiv:2606.19348v1`。** [官方发布页](https://deepseek.com/en/news/v4-preview/)与[官方权重卡](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash)交叉核验；下一步把 §5.2.3 的续采、§5.2.4 的样本数据路径、§5.2.5 的环境供给对照 AReaL，目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)。公开机制可读，厂商规模与性能仍是自报证据，不表示仓库复现。
+- **新增精选：DeepSeek-V4，Deep Dive，★★★★★，状态 NEW；Source ID `arxiv:2606.19348v1`。** [官方发布页](https://deepseek.com/en/news/v4-preview/)与[官方权重卡](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash)交叉核验；下一步把 §5.2.3 的续采、§5.2.4 的样本数据路径、§5.2.5 的环境供给对照 AReaL，目标为 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)。公开机制可读，厂商规模与性能仍是自报证据，不表示仓库复现。
 - **DeepSeek-V4 的 `2606` ID 前缀与日期不一致，已显式保留。** raw `citation_date` / `citation_online_date` 均为 `2026/04/26`，v1 submission history 为 `2026-04-26 14:49:33 UTC`，[PDF 扉页](https://arxiv.org/pdf/2606.19348v1)同日；4 月 24 日官方发布页目前直接链接同一报告，[HF 官方团队文章](https://huggingface.co/blog/deepseekv4)也记录当天发布及相同架构。故按最早可核验官方公开事件归 4 月；不推测编号差异的原因，也不把当前 HF 文件当作 4 月字节级快照。
-- **新增精选：TSP，Observe → Read，★★★★☆，状态 NEW；Source ID `arxiv:2604.26294v1`。** Vasu Shyam、Anna Golubeva、Quentin Anthony；2026-04-29。下一步列出 attention/MLP 的数据移动顺序与 memory/communication trade-off，目标为 [Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md)。升级原因是补充“同轴布局换显存”的独立判断，而非单纯再收一种并行简称。
+- **新增精选：TSP，Observe → Read，★★★★☆，状态 NEW；Source ID `arxiv:2604.26294v1`。** Vasu Shyam、Anna Golubeva、Quentin Anthony；2026-04-29。下一步列出 attention/MLP 的数据移动顺序与 memory/communication trade-off，目标为 [Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md)。升级原因是补充“同轴布局换显存”的独立判断，而非单纯再收一种并行简称。
 - NVIDIA FP8 RL 原 Read 保留：Guyue Huang 等，2026-04-20；block-wise FP8 对齐、importance sampling 与 QKV scale 同步需要一起看。本文未把厂商的未来 kernel 优化预期当作实测结果。
 - ZipCCL / TACO 仍 **Observe**：压缩字节不自动解决 critical-path 上的等待；先与 CommFuse 的 overlap 路径建立同配置对照。CacheFlow 仍 Observe：需先验证 KV 恢复语义与 rollout policy version 的对应关系。
 
@@ -79,7 +79,7 @@
 - Decision：Read
 - Reason：它把 GRPO、rollout generation、Megatron training、NeMo RL、FP8 linear layers、FP8 KV cache/attention、importance sampling 和 vLLM/Megatron 数值对齐放到同一个 RL training loop 里讨论。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：engineering blog / topic / experiment
 
 这条是 4 月最贴你当前方向的工程博客。它的价值不在“FP8 能加速”，而在指出 RL 低精度训练有独特难点：rollout engine 和 trainer engine 不同，policy 每步更新，KV cache 和 attention 也会进入低精度路径，数值误差会影响 importance sampling 和训练稳定性。
@@ -96,7 +96,7 @@
 - Decision：Read
 - Reason：它直接指出 rollout phase 可占总 step time 的 50--80%，并把 long-tailed trajectories、MoE imbalance、intra-trajectory policy consistency、data integrity、bounded staleness 作为异步 RL 系统的核心约束。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MoE](../../training-infra/topics/moe.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MoE](../../02-training-infra/topics/moe.md)
 - 最终应流向：paper note / topic / playbook
 
 DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提升吞吐”后面的代价讲得更工程化：只追求 overlap 会破坏策略一致性和样本新鲜度，必须显式限制 staleness，并处理长尾轨迹拖慢全局进度的问题。
@@ -113,7 +113,7 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - Decision：Read
 - Reason：它把 long-context training 的 Sequence Parallelism 和 activation checkpointing 自动化，指出现有训练库更擅长大参数模型，而不是让用户容易组合长上下文优化。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 - 最终应流向：topic / experiment
 
 这条适合和你正在看的 128k SFT 配置联系起来。长上下文训练的难点不是只把 `max_length` 调大，而是要让 sequence sharding、activation checkpoint、attention kernel、batch packing 和并行布局一起成立。AutoSP 的信号是：这些组合未来会越来越需要 compiler/runtime 帮忙。
@@ -130,7 +130,7 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - Decision：Read
 - Reason：它把 Muon、MOP、REKLS 等 emerging optimizers 接入 Megatron Core / NeMo Megatron Bridge，并讨论 layer-wise distributed optimization、distributed Newton-Schulz、data/tensor parallelism 和 GB300 NVL72 上的训练吞吐。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [FSDP](../../training-infra/topics/fsdp.md), [ZeRO](../../training-infra/topics/zero.md), [Transformer Engine](../../systems/topics/transformer_engine.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [FSDP](../../02-training-infra/topics/fsdp.md), [ZeRO](../../02-training-infra/topics/zero.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md)
 - 最终应流向：engineering blog / topic / insight
 
 这条和 7 月的 MatrixFSDP 可以形成一条线：新 optimizer 不只是算法 recipe，它会碰到 sharding、all-reduce、Newton-Schulz iteration、通信隐藏和 optimizer state 生命周期。训练 infra 工程师需要关心的是“这个 optimizer 如何在 3D parallel / ZeRO/FSDP / Megatron Core 下落地”。
@@ -147,7 +147,7 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - Decision：Read
 - Reason：它针对 TP/DP 中 reduce-scatter / all-gather overlap 的 tail latency，把 collective 拆成 P2P communication 并重新调度，关注的是通信隐藏失败时的尾部拖慢。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md)
+- 关联主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md)
 - 最终应流向：paper note / topic / playbook
 
 这条比单纯“压缩通信量”的论文更适合作为生产排障入口。真实训练里 step time 抖动经常不是平均通信时间，而是某些 collective 或 overlap schedule 的尾部没有藏住。CommFuse 可以作为后续分析 TP/DP overlap 的材料。
@@ -164,7 +164,7 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - Decision：Read
 - Reason：它展示 Context Parallelism 如何让超长生物结构输入跨 GPU 保留全局上下文，并包含 halo-exchange local attention、长序列 tiling/repartition 等实现细节。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Context Parallelism](../../training-infra/topics/context_parallelism.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 关联主题：[Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 - 最终应流向：engineering blog / topic
 
 虽然它不是 LLM 文本训练文章，但它对 CP 的工程价值很强：CP 的本质是“单个样本的长上下文跨 GPU 保留全局依赖”，不是只服务 chat context。这个案例能帮助你跳出“CP=长文本”的窄视角。
@@ -226,7 +226,7 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [FP8](../../systems/topics/fp8.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 需要更新的 topic：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [FP8](../../01-systems/topics/fp8.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 需要更新的 insight：可以后续补一篇“RL training stack 的瓶颈来自调度、精度和 serving engine 三方一致性”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 应加入 DORA 的 long-tailed trajectory / bounded staleness 视角；NCCL/TP 排障后续可加入 CommFuse 的 tail latency 思路
 - 需要新增的 experiment：FP8 RL rollout/training numerical drift check、sequence parallel activation checkpoint benchmark、communication overlap tail latency probe

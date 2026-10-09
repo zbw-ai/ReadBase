@@ -33,7 +33,7 @@
 - Reason：decode-heavy LLM 的关键路径上存在大量小消息 collective，优化目标不再只是带宽，而是逼近 scale-up network 的绝对 latency lower bound。
 - Status：NEW
 - 建议动作：不立即扩 P1；先与 NCCL Device API、LL/LL128 和 vLLM/SGLang tensor-parallel decode trace 对照
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 作者基于 NCCL device-side API 构建 symmetric collectives，使用 barrier-free synchronization、symmetric memory 和 multicast，将小中消息的 overhead 压到 absolute hardware Speed-of-Light 下界的 7% 以内。最值得验证的是收益落在哪些 message size、GPU 数和 NVLink/NVSwitch topology，而不是只记住峰值。
 
@@ -52,7 +52,7 @@
 - Reason：它把 NVFP4 rollout 的失败定位为 training-inference activation error 与 log-prob gap，而不是笼统归因为 FP4 精度不足。
 - Status：NEW
 - 建议动作：作为 AReaL / veRL 低精度 rollout 的实验候选，先核对开源实现、支持模型和 quantization path
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md), [MoE](../../training-infra/topics/moe.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md), [MoE](../../02-training-infra/topics/moe.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 QUADS 在 trainer 侧使用 asymmetric QAT，在 rollout 侧补偿高误差 activation channels，同时保留 native W4A4 GEMM。它给出的工程判断很明确：RL rollout 加速不能只测吞吐，还必须持续监控 rollout/trainer log-prob gap、policy consistency 和数值漂移。
 
@@ -71,7 +71,7 @@ QUADS 在 trainer 侧使用 asymmetric QAT，在 rollout 侧补偿高误差 acti
 - Reason：它将 shared-prompt no-autograd evaluation、model-state retention 和 response branch replay 组合成 million-token GRPO execution path。
 - Status：NEW
 - 建议动作：先读 execution graph 与 correctness limitation，不把“能跑通”误写成“能正确训练”
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 
 作者在 8xH20 上走通 Qwen3.6-27B 的 2.1M-position grouped scoring/backward，并在 32xH20 上验证 GLM-5.2 全 78 层的 2.1M-token path。但论文明确承认 prompt state 被 detached，部分 distributed forward 和 gradient composition 尚未完成，因此当前价值是 execution capacity 证据，不是完整训练正确性。
 
@@ -90,7 +90,7 @@ QUADS 在 trainer 侧使用 asymmetric QAT，在 rollout 侧补偿高误差 acti
 - Reason：它不是 simulator 或小规模 demo，而是在异构、易失、互联网连接的 330 个 contributor nodes 上完成真实 8.6B pretraining。
 - Status：NEW
 - 建议动作：观察其 pipeline sharding、asynchronous optimization、fault-tolerant collective 与 security/ownership 边界
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 Agora 报告约 170K tokens/s、4.2 tokens/TFLOP，并达到 centralized H100 baseline 约 63% 的效率。它不会替代数据中心训练，但为跨地域低带宽、preemptible compute 的 pipeline ownership 与恢复协议提供了少见的完整证据。
 
@@ -109,7 +109,7 @@ Agora 报告约 170K tokens/s、4.2 tokens/TFLOP，并达到 centralized H100 ba
 - Reason：它用数千 GPU 的生产数据说明 DBE / GPU Lost 具有强随机性，精确预测失败时刻不如对节点做相对风险排序。
 - Status：NEW
 - 建议动作：沉淀到 fault-tolerance 时重点讨论 risk-aware placement、preventive drain 与 spare priority
-- 关联主题：[Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [MegaScale](../tech_reports/megascale.md)
+- 关联主题：[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [MegaScale](../tech_reports/megascale.md)
 
 HeaRank 在线上将未来故障覆盖率从现网方案的 21% 提升到 top-5% 节点中的 64%。真正可迁移的不是模型本身，而是控制面决策：当 failure timing 不可预测时，用风险排序影响 job placement 和维护优先级。
 
@@ -128,7 +128,7 @@ HeaRank 在线上将未来故障覆盖率从现网方案的 21% 提升到 top-5%
 - Reason：它不是单点 kernel 优化，而是围绕 Hybrid SWA + MoE + multimodal composite architecture 重做 KV storage、prefetch、prefix tree、placement、distributed cache 和 routing。
 - Status：NEW
 - 建议动作：与 vLLM / SGLang 的 PD disaggregation、KV connector 和 cache-aware routing 对照
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 报告把 SWA 的理论 O(W) 优势落实为 layerwise prefetch、SWA-aware prefix cache tree、GCache RDMA networking 和 KV-cache-affinity routing。对 RL Infra 的直接价值是：rollout serving 的 attention pattern、KV locality 与 router placement 必须联合设计。
 
@@ -147,7 +147,7 @@ HeaRank 在线上将未来故障覆盖率从现网方案的 21% 提升到 top-5%
 - Reason：两次 patch 都不是普通兼容性修复，而是会产生 hidden-state corruption、重复乱码或长输入 NaN 的静默正确性问题。
 - Status：NEW
 - 建议动作：升级前增加 mixed-dtype fusion、long-input FP4 MoE、PD disaggregation 和 CP 的数值回归
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 这组 release 再次说明：推理框架性能升级不能只跑 throughput benchmark。graph fusion 的 dtype guard、低精度 MoE 长序列输出、PD/CP 状态共享都必须有 correctness oracle 和退化输出监控。
 

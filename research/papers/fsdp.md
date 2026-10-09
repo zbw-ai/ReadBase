@@ -10,7 +10,7 @@ FSDP 是 PyTorch 原生的参数/梯度/optimizer state 分片方案。重点看
 
 ## 与知识图谱的关系
 
-[ZeRO](zero.md) → [FSDP Topic](../../training-infra/topics/fsdp.md) → [Checkpointing](../../training-infra/topics/checkpointing.md)。
+[ZeRO](zero.md) → [FSDP Topic](../../02-training-infra/topics/fsdp.md) → [Checkpointing](../../02-training-infra/topics/checkpointing.md)。
 
 ## 待补问题
 

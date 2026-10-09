@@ -21,8 +21,8 @@
 
 ### 补选与未升级材料
 
-- **新增精选：FlashAttention-4，Read，★★★★★，状态 NEW；Source ID `arxiv:2603.05451v1`。** 下一步把计算单元、数据驻留位置和异步依赖放到同一张图，目标为 [FlashAttention](../../systems/topics/flashattention.md) 与 kernel 实验；本文未复现性能。
-- **新增精选：TRL v1.0，未收录 → Read，★★★★☆，状态 NEW；Source ID `blog:huggingface/trl-v1`。** Quentin Gallouédec、Steven Liu、Pedro Cuenca、Sergio Paniego；2026-03-31；官方团队博客。下一步对照 AReaL 的用户 API、后端接口与实验性功能，明确什么是兼容性承诺；目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md)。
+- **新增精选：FlashAttention-4，Read，★★★★★，状态 NEW；Source ID `arxiv:2603.05451v1`。** 下一步把计算单元、数据驻留位置和异步依赖放到同一张图，目标为 [FlashAttention](../../01-systems/topics/flashattention.md) 与 kernel 实验；本文未复现性能。
+- **新增精选：TRL v1.0，未收录 → Read，★★★★☆，状态 NEW；Source ID `blog:huggingface/trl-v1`。** Quentin Gallouédec、Steven Liu、Pedro Cuenca、Sergio Paniego；2026-03-31；官方团队博客。下一步对照 AReaL 的用户 API、后端接口与实验性功能，明确什么是兼容性承诺；目标为 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)。
 - **日期边界：NIMBLE 与 [MAC-Attention](https://arxiv.org/abs/2604.00235v1) 都首次提交于 3 月 31 日 UTC。** 后者为 20:57 UTC，已经是北京时间 4 月 1 日；旧月报按 arXiv 日期收录，和页首 Asia/Shanghai 自然月不是完全相同的切分。本复盘沿用论文原始日期串联，不改旧计数。
 - MAC-Attention 原 Read 保留，但从本轮两份优先深读中后移：它复用相似 query 的 attention 结果，RL 使用前仍需单独验证 logprob 与目标分布影响，不能凭长上下文速度收益就推定训练等价。
 - CoLLM / REM-CTX 仍 **Observe**：前者主场景是 PEFT 与 serving 共置，后者偏任务与 reward；尚未补出比异步状态边界更直接的训练系统机制。ParetoBandit 保留原 Read，本轮不再扩大 routing 阅读面。
@@ -79,7 +79,7 @@
 - Decision：Read
 - Reason：它把 GPU cluster 中异构 intra-node / inter-node interconnect 的 traffic skew、link underutilization、latency spike、NCCL/MPI/UCX static routing 局限和 execution-time multipath balancing 放在一起讨论。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 - 最终应流向：paper note / topic / playbook
 
 这条适合作为 NCCL / network 专题的补充材料。真实训练集群里，通信慢不一定是“带宽不够”，也可能是路径选择和 traffic skew 让少数链路成为热点。后续排查 step time 抖动、all-to-all 慢、跨节点 TP/EP 不稳定时，这类 runtime multipath 思路值得知道。
@@ -96,7 +96,7 @@
 - Decision：Read
 - Reason：它针对 long-context decoding 每 token 重读 KV cache 的 IO-bound 问题，提出复用相似 query 的 attention computation，而不是简单压缩或丢弃 KV。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [FlashAttention](../../systems/topics/flashattention.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [FlashAttention](../../01-systems/topics/flashattention.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：topic / playbook / experiment
 
 这条更偏 inference，但对 RL infra 有间接价值：long-horizon agent rollout 通常包含大量相似上下文、重复检索结果和多轮工具调用。如果 decoding 长尾被 KV/attention IO 支配，trainer 侧再怎么优化也无法提升样本吞吐。
@@ -113,7 +113,7 @@
 - Decision：Read
 - Reason：它把多模型 LLM serving 的 routing 看成非平稳在线控制问题，显式处理价格/质量变化、成本上限和 open-ended request stream。
 - 建议动作：进入 [P1](../reading_queue/P1.md)，但优先级低于 RL/training 核心材料
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), inference infra
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), inference infra
 - 最终应流向：topic / insight
 
 这条不是训练系统核心论文，但会影响 RL infra 的周边系统。未来 rollout / verifier / reward pipeline 很可能同时调用多个模型或多个 serving backend，routing 策略会影响成本、延迟和反馈质量。
@@ -170,7 +170,7 @@
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [FlashAttention](../../systems/topics/flashattention.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 需要更新的 topic：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [FlashAttention](../../01-systems/topics/flashattention.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 - 需要更新的 insight：可以后续补一篇“rollout infra 的上游瓶颈来自 serving routing 和 attention IO”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 后续应加入 long-context decoding IO、serving routing、GPU cluster path skew 的排查入口
 - 需要新增的 experiment：attention reuse / KV IO benchmark、serving routing latency/cost simulation、NCCL path skew observability checklist

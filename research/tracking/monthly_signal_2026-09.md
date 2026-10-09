@@ -145,6 +145,6 @@
 2. **样本是否可消费：** 以 partial group、token lineage、refit admission 为线索，选一个实际 backend 做受控失败实验；关注长度分布与 policy age，不只看 tokens/s。
 3. **优化是否真正省成本：** HAPMoE 的配置误差、低精度 refit 峰值、kernel layout 与端到端成本一起量；10 月新材料只作为下一阶段阅读，不能补作 9 月已验证结果。
 
-本月判断承接 [Agentic RL topic](../../rl-infra/topics/agentic_rl.md#september-2026-monthly)、[MoE 联合设计](../../training-infra/topics/moe.md#october-2026-joint-design)与[未执行的验证候选](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)。P1 沿用 DeepSeek、NVFP4 与 CSBP 等已有入口，HAPMoE 先按集群需求选读；本次完成月度归纳与导航，不改变用户的个人已读状态，也不将仓库笔记标成 VERIFIED。
+本月判断承接 [Agentic RL topic](../../04-rl-infra/topics/agentic_rl.md#september-2026-monthly)、[MoE 联合设计](../../02-training-infra/topics/moe.md#october-2026-joint-design)与[未执行的验证候选](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)。P1 沿用 DeepSeek、NVFP4 与 CSBP 等已有入口，HAPMoE 先按集群需求选读；本次完成月度归纳与导航，不改变用户的个人已读状态，也不将仓库笔记标成 VERIFIED。
 
 [返回月度入口](monthly_reviews.md) · [历史补扫与证据](github_retrospective_2026-07_to_2026-09.md)

@@ -24,7 +24,7 @@
 本月 **不新增精选**，已有材料足够形成网络与数据路径的完整阅读对照；精力用于把两个 Read 的问题拆实。
 
 - **日期核验：Shared-Prefix Reuse 的 ID 为 `2606.01143`，v1 首次提交为 5 月 31 日。** 旧月报归 5 月有 primary 日期依据；6 月 v3 的作者与摘要细节有变化，本次不混用其 GRPO 专属表述、结果与 v1。
-- NCCL Inspector 保留 **Read**：Ava Arnaz、Sirshak Das、Jill Foster、Daniel Kim、Pavel Shamis、Gargi Prasad；2026-05-07。下一步先匹配 communicator/rank/message-size，再判断等待来自计算到达不同步还是传输；目标仍为 [NCCL](../../systems/topics/nccl.md) 与排障记录。
+- NCCL Inspector 保留 **Read**：Ava Arnaz、Sirshak Das、Jill Foster、Daniel Kim、Pavel Shamis、Gargi Prasad；2026-05-07。下一步先匹配 communicator/rank/message-size，再判断等待来自计算到达不同步还是传输；目标仍为 [NCCL](../../01-systems/topics/nccl.md) 与排障记录。
 - Leyline / Move the Query 仍 **Observe**：KV ownership 对长轨迹有用，但尚未补出与当前 trainer 的 logprob、恢复和 policy-version 对接证据，不因 agentic 标签自动升级。
 - Throughput-Optimized Networks 仍 **Observe**：与 MRC 的网络主线重叠，优先读有明确生产故障语义的原核心材料。PithTrain 仍 Observe：代码紧凑并不替代可恢复状态、样本背压与一致性的证据。
 
@@ -80,7 +80,7 @@
 - Decision：Read
 - Reason：它来自 OpenAI / Microsoft 生产训练集群经验，直接讨论 synchronous pretraining 的 tail latency、RDMA transport、multipath load balancing、multi-plane Clos、SRv6 static source routing 和网络故障绕行。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
 - 最终应流向：topic / playbook / insight
 
 这条是 5 月最值得补的训练 infra 信号。它的重点不是“又一个网络协议”，而是说明大规模同步训练的性能上限会被网络 tail latency 和 failure recovery 直接支配。对万卡训练来说，通信库、路由、拓扑和故障语义是同一个系统问题。
@@ -97,7 +97,7 @@
 - Decision：Read
 - Reason：它针对 GRPO / RL post-training 中同一 prompt 采多条 trajectory 的场景，把 shared prefix 的 forward/backward 复用提升到训练 schedule 层，直接减少 long-context RL 的重复计算。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：topic / playbook / experiment
 
 这条非常贴近你现在的 RL infra 主线：long-context rollout 的 prompt-side prefix 可能包含检索结果、工具 schema、视觉 token 或系统指令，如果每条 trajectory 都重复算 prefix，trainer 侧会被无效计算拖慢。它提示我们以后看 RL 训练吞吐时，要把“prefix 是否能跨 trajectory 复用”当成一等系统问题。
@@ -114,7 +114,7 @@
 - Decision：Read
 - Reason：它指出多模态训练里 encoder、LLM、长上下文 fused sequence 的最佳并行布局不同，单一 LLM-centric TP/CP/PP/DP/EP layout 会限制吞吐和 placement。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 - 最终应流向：topic / insight
 
 这条对未来扩展到 multimodal / agent infra 很有价值。它把“并行策略”从模型整体配置推进到模块级布局：vision encoder、audio encoder、LLM backbone、cross-modal projector 可能需要不同 rank set 和通信边界。
@@ -131,7 +131,7 @@
 - Decision：Read
 - Reason：它系统探索 MoE serving 中 Attention-FFN disaggregation，把 memory-bound attention、compute-intensive expert FFN、MoE dispatch/combine communication 拆成独立资源调度问题。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：topic / playbook
 
 这条不是纯 serving paper。RL rollout 的模型越来越可能是 MoE，prefill/decode、attention、expert FFN 和 all-to-all 的瓶颈不一致。训练系统如果把 rollout 当成黑盒 inference service，就很难解释样本吞吐为什么抖。
@@ -148,7 +148,7 @@
 - Decision：Read
 - Reason：它把 NCCL collective 的可观测性、Prometheus 指标和实时排障放到生产训练集群视角，适合补 NCCL Hang / straggler / collective latency 的 playbook。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 - 最终应流向：engineering blog / playbook
 
 这条的价值不在工具名字，而在排障姿势：大规模训练里“GPU 利用率低 / step time 抖动 / NCCL Hang”如果没有 collective 级指标，很容易停留在猜测。NCCL Inspector 这类工具应该进入后续 playbook。
@@ -210,7 +210,7 @@
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [MoE](../../training-infra/topics/moe.md)
+- 需要更新的 topic：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [MoE](../../02-training-infra/topics/moe.md)
 - 需要更新的 insight：可以后续补一篇“RL Infra 的上游约束来自 serving 与 network”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 应加入 shared-prefix、Attention/FFN disaggregation、KV cache 相关判断；后续新增 NCCL Inspector 排障路径
 - 需要新增的 experiment：shared-prefix reuse microbenchmark、NCCL collective observability checklist、MoE serving disaggregation latency model

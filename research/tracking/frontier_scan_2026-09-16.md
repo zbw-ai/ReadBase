@@ -34,7 +34,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：CED、跨层 KV/index 复用与 SWA bounded replay 改变了长时 agent 的状态成本；这不是只更新 benchmark 分数的模型发布。
 - 已核对：model card 正文披露 CED、CSA2、FP4 main KV，以及 SFT → RL → OPD 路线。其 **890 bytes/token 指 global KV**，不能当作全部 KV、模型显存或训练 activation 大小；数字为厂商自报。技术报告 PDF 有官方入口，本轮未完成全文精读。
 - Next：先列清 encoder/decoder、global/SWA KV 与 replay 的状态边界，再核验训练侧 CP、重算和 rollout backend 支持；不直接套用 HF 自动生成的部署命令。
-- 主题：[Long Context](../../training-infra/topics/long_context_training.md)、[MoE](../../training-infra/topics/moe.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md)。
+- 主题：[Long Context](../../02-training-infra/topics/long_context_training.md)、[MoE](../../02-training-infra/topics/moe.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)。
 
 <a id="areal-groups"></a>
 ### 2. AReaL：Incomplete Group 的正确性跨越采样、归一化和 collective
@@ -45,7 +45,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：保留部分成功样本时，logical rollout 数、tensor row 数与有效 token 数必须各自有定义。
 - 代码证据：`min_usable_group_size` 根据 estimator 是否需要 group statistics 推导下限；该配置仅由 v1 rollout 路径消费。patch 同时覆盖 ragged gather、zero-trajectory rank、动态补采停止条件及相应 tests。不是把 `drop_incomplete_group` 改成 false 就完成支持。
 - Next / AReaL 可迁移性：直接关联当前框架；逐项检查逻辑成员统计、padding loss mask、split trajectory 和 collective 次序，执行[故障注入方案](../../practice/experiments/rl_state_boundaries.md)。本轮只审阅测试，未运行上游测试。
-- 主题：[Agentic RL 状态边界](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries)。
+- 主题：[Agentic RL 状态边界](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries)。
 
 <a id="areal-checkpoint"></a>
 ### 3. AReaL：用不可变 generation 与 LATEST 发布 checkpoint
@@ -55,7 +55,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - 类型：framework / checkpoint/recovery；Impact：★★★★★；Decision：Read。
 - Reason / 一句话价值：checkpoint payload 落盘和“可以被恢复端发现”必须分离。
 - 代码证据：每步写入不可变 generation，payload 完成后才发布 LATEST；Megatron async save 延迟到 finalize；多个 engine 的非发布保存先 drain，再安排最终 publisher；actor/critic 保存与加载使用稳定映射。legacy SPMD layout 仍保留，不能泛化为所有路径都已事务化。
-- Next / AReaL 可迁移性：检查 actor 完成但 critic 失败时 LATEST 是否保持上一个完整 generation；结合 [Checkpointing](../../training-infra/topics/checkpointing.md) 验证 storage 的 rename/可见性语义。
+- Next / AReaL 可迁移性：检查 actor 完成但 critic 失败时 LATEST 是否保持上一个完整 generation；结合 [Checkpointing](../../02-training-infra/topics/checkpointing.md) 验证 storage 的 rename/可见性语义。
 
 <a id="nemo-recovery"></a>
 ### 4. NeMo RL：重启 generation shard 后，等下一轮 refit 再准入
@@ -66,7 +66,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：进程存活不是已持有当前 policy 的证据。
 - 代码证据：replacement 先进入 stale，参与后续 refit 后才回到 serving；tests 明确覆盖 mid-refit 完成重启仍须等待下一轮、current weight version、restart budget/backoff 和 timeout。自动重启默认关闭；本轮未做 GPU 或 Ray 复现。
 - Next / AReaL 可迁移性：迁移的是 incarnation、version 与 admission 联合约束，不能直接照搬 NeMo controller。对照 AReaL router 与 weight updater，注入“重启恰好发生在 refit 中途”。
-- 主题：[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries)。
+- 主题：[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries)。
 
 <a id="nemo-full-opd"></a>
 ### 5. NeMo RL：Full-vocabulary OPD 的数据边界与独立正确性检验
@@ -77,7 +77,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：把 teacher hidden states 运到 student 再做词表投影，可以缩窄 payload，但必须正确重建 teacher 分布。
 - 已读 patch：`docs/about/algorithms/mopd.md`、recipe 和测试入口。当前限 Megatron + SingleController、一个 teacher；hidden-state 路径另要求 student PP=1、temperature=1，并拒绝不能由线性 output head 重建的 post-logit transforms。chunk 控制词表工作集。
 - Next / AReaL 可迁移性：用同一 checkpoint 做 self-distillation，并注入错位 token、错误 head shard、payload 损坏。KL 分解恒等式可能在错误输入下仍成立，不能替代独立 oracle；迁移时先定义 teacher/student token 与 vocab contract。
-- 主题：[MOPD](../../rl-infra/topics/mopd.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md)。
+- 主题：[MOPD](../../04-rl-infra/topics/mopd.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)。
 
 <a id="draft-cotraining"></a>
 ### 6. Online Draft Co-Training：CP branch attention 与 PP feature transport
@@ -89,7 +89,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - 已核对：causal 主序列 ring attention 与 rank-local branch attention 合并；TapChannel 在 PP stage 间单独搬运 target features。作者报告最高 122B 模型、256K context 的实验，未在此泛化为所有 RL 配置收益。
 - 代码状态：[官方仓库 issue #3698](https://github.com/NVIDIA-NeMo/RL/issues/3698) 是 upstream 路线图，列出 stacked draft PR；**论文结果不等于 main/release 已完整具备该能力**。
 - Next：为 AReaL 列出 draft feature owner、detach、CP mask、weight-version/refit contract，分别测 draft train、feature transport、rollout 和 E2E 开销。
-- 主题：[Context Parallelism](../../training-infra/topics/context_parallelism.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md)。
+- 主题：[Context Parallelism](../../02-training-infra/topics/context_parallelism.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)。
 
 <a id="memory-peaks"></a>
 ### 7. Flattening Every Memory Peak in Long-Context Mixture-of-Experts Training
@@ -100,7 +100,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：用四个独立峰值解释“已经做了 Attention 优化仍然 OOM”。
 - 已核对：dispatch chunk 上限、Ring-DTP vocabulary projection、checkpoint 输入 CPU offload、bucket 化 optimizer offload 分别约束不同工作集。作者声称保持 loss/gradient 语义；本轮未验证数值等价或复现性能，不摘取最高倍率作为整体收益。
 - Next：先用自己 workload 的 memory timeline 判断哪一峰值先溢出；比较 offload 的 PCIe/CPU 带宽代价，避免一次开启全部机制而失去归因能力。
-- 主题：[Long Context](../../training-infra/topics/long_context_training.md)、[MoE](../../training-infra/topics/moe.md)、[FSDP](../../training-infra/topics/fsdp.md)。
+- 主题：[Long Context](../../02-training-infra/topics/long_context_training.md)、[MoE](../../02-training-infra/topics/moe.md)、[FSDP](../../02-training-infra/topics/fsdp.md)。
 
 <a id="mkernel"></a>
 ### 8. mKernel: Fast Multi-GPU, Multi-Node Fused Kernels
@@ -111,7 +111,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：把 compute/NVLink/RDMA overlap 的粒度降到 tile，同时考虑通信占用 SM 的代价。
 - 已核对：persistent kernel 划分 compute/communication SM，运行时调节比例，分层搬运减少跨节点 bytes；host proxy 与 RDMA verbs 是重要实现选择。作者在两个 16-GPU H200 集群上的 kernel 测量，不是万卡训练 E2E 结论；不推导 IBGDA 普遍无用。
 - Next：先对 GEMM+collective 建立 bytes、rank arrival skew、SM 竞争的基线，再评估 tile fusion；关注 shape 小或网络拥塞时退化。
-- 主题：[NCCL](../../systems/topics/nccl.md)、[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)。
+- 主题：[NCCL](../../01-systems/topics/nccl.md)、[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)。
 
 <a id="hf-memory"></a>
 ### 9. HF 训练栈：Chunked Loss 与 FSDP2 checkpoint 边界应一起验收
@@ -122,7 +122,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：loss projection dtype 与 checkpoint wrapping 层级都能让配置名相同的训练走出完全不同的显存和算力路径。
 - 已核对：TRL 修正 chunked projection 的不必要 FP32 upcast；Accelerate 改为包住匹配的 transformer layer，并支持 checkpoint 输入 offload，另修复 FSDP2/PEFT full-state 保存遗漏 adapter shard。只按 release 声明登记，未本地运行。
 - Next：记录实际 GEMM dtype、autocast、每层保存 activation、adapter round-trip；同时检查 loss/gradient parity。上轮已收过 1M-token recipe，本轮不重复计为新发现。
-- 主题：[FSDP](../../training-infra/topics/fsdp.md)、[Long Context](../../training-infra/topics/long_context_training.md)、[Checkpointing](../../training-infra/topics/checkpointing.md)。
+- 主题：[FSDP](../../02-training-infra/topics/fsdp.md)、[Long Context](../../02-training-infra/topics/long_context_training.md)、[Checkpointing](../../02-training-infra/topics/checkpointing.md)。
 
 <a id="jax-moe"></a>
 ### 10. NVIDIA：JAX Dropless MoE 的 kernel、EP 与 offload 联合优化
@@ -133,7 +133,7 @@ GitHub REST API 对七个核心仓库均返回匿名 rate limit。官方 HTML �
 - Reason / 一句话价值：dropless MoE 的性能取决于 ragged grouped GEMM、dispatch/combine 和训练内存计划共同配合。
 - 已核对正文而非 AI-generated summary：TE、NCCL EP、host offload、XLA 配置均有工程入口。文中 GB200 的 10.4x 相对未优化 baseline，不能解读为比成熟 Megatron 快 10.4x；不把不同硬件的 scale-out 结果混为同一测量。
 - Next：先逐项归因 kernel time、通信 bytes 和 overlap；只迁移配置背后的机制，不复制整个 YAML 到 AReaL。
-- 主题：[MoE](../../training-infra/topics/moe.md)、[Transformer Engine](../../systems/topics/transformer_engine.md)、[NCCL](../../systems/topics/nccl.md)。
+- 主题：[MoE](../../02-training-infra/topics/moe.md)、[Transformer Engine](../../01-systems/topics/transformer_engine.md)、[NCCL](../../01-systems/topics/nccl.md)。
 
 ## Observed / Rejected Candidates
 

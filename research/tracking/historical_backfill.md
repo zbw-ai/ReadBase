@@ -100,7 +100,7 @@ tracking/backfill/2025-05.md
 - Decision：Read
 - Reason：它补的是“多轮工具调用 agent training 如何工程化”的判断缺口。
 - 建议动作：进入 P1
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), rollout / environment / evaluation
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), rollout / environment / evaluation
 - 最终应流向：engineering blog / topic / experiment
 - 生命周期状态：NEW
 
@@ -114,7 +114,7 @@ tracking/backfill/2025-05.md
 - Decision：Read
 - Reason：它补的是“NVIDIA training stack 如何进入 RL/post-training”的判断缺口。
 - 建议动作：进入 P1
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [NCCL](../../systems/topics/nccl.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [NCCL](../../01-systems/topics/nccl.md)
 - 最终应流向：engineering blog / topic / playbook
 - 生命周期状态：NEW
 
@@ -128,7 +128,7 @@ tracking/backfill/2025-05.md
 - Decision：Observe
 - Reason：它补的是“RL pipeline 底层调度抽象”的背景缺口，但不应抢占 P0。
 - 建议动作：仅索引
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 - 最终应流向：engineering blog / topic
 - 生命周期状态：NEW
 

@@ -139,13 +139,13 @@
 
 | 版本与原始时间（UTC） | 一句话价值与限制 | 相关主题 / 建议行动 |
 |---|---|---|
-| [Transformer Engine v2.0，2025-02-13](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.0) | MXFP8 cast/GEMM 与 FSDP2 路径进入版本；当时 Userbuffers overlap 的 MXFP8 限制需单独检查。 | [FP8](../../systems/topics/fp8.md)：按格式、并行与 overlap 组合验收，不能读成 NVFP4 已成熟。 |
-| [Transformer Engine v2.8，2025-10-07](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.8) | NVFP4 recipe 从 Q3 报告进入训练库；支持格式不等于所有模块或模型都有相同收益。 | [Transformer Engine](../../systems/topics/transformer_engine.md)：检查 recipe、cast 与同步开销。 |
-| [NCCL v2.28.7-1，2025-10-18](https://github.com/NVIDIA/nccl/releases/tag/v2.28.7-1) | GIN device API 与 communicator revoke 扩展设备通信和恢复控制，但 API 与硬件条件仍有限制。 | [NCCL](../../systems/topics/nccl.md)：分别验证数据路径和故障退出；后续 [v2.28.9-1](https://github.com/NVIDIA/nccl/releases/tag/v2.28.9-1) 的 ordering 修复也要检查。 |
-| [Transformer Engine v2.10，2025-12-11](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.10) | NVFP4 GroupedLinear 与 graph 路径继续落地，graph 与进程组销毁顺序也成为正确性条件。 | [MoE](../../training-infra/topics/moe.md)：检查 expert GEMM 与 graph 生命周期，不只看峰值吞吐。 |
-| [DeepSpeed v0.18.9，2026-03-30](https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.9) | AutoSP 已有代码版本，早于后续论文阅读时间；并行配置与 checkpoint 转换要一起看。 | [Distributed Training](../../training-infra/topics/distributed_training.md)：区分首次实现、论文与本仓库发现日。 |
-| [Transformer Engine v2.14.1，2026-04-24](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.14.1) | MXFP8 quantize + dbias fusion 的非确定性错误说明 fused 路径也需要数值回归。 | [FP8](../../systems/topics/fp8.md)：相同输入重复运行并对照未融合基线。 |
-| [PyTorch v2.12.1，2026-06-18](https://github.com/pytorch/pytorch/releases/tag/v2.12.1) | B200 FLASH_ATTN batch invariance 修复针对特定后端/硬件，不代表所有训推误差消失。 | [FlashAttention](../../systems/topics/flashattention.md)：按 backend、batch shape 与 dtype 构造对照。 |
+| [Transformer Engine v2.0，2025-02-13](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.0) | MXFP8 cast/GEMM 与 FSDP2 路径进入版本；当时 Userbuffers overlap 的 MXFP8 限制需单独检查。 | [FP8](../../01-systems/topics/fp8.md)：按格式、并行与 overlap 组合验收，不能读成 NVFP4 已成熟。 |
+| [Transformer Engine v2.8，2025-10-07](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.8) | NVFP4 recipe 从 Q3 报告进入训练库；支持格式不等于所有模块或模型都有相同收益。 | [Transformer Engine](../../01-systems/topics/transformer_engine.md)：检查 recipe、cast 与同步开销。 |
+| [NCCL v2.28.7-1，2025-10-18](https://github.com/NVIDIA/nccl/releases/tag/v2.28.7-1) | GIN device API 与 communicator revoke 扩展设备通信和恢复控制，但 API 与硬件条件仍有限制。 | [NCCL](../../01-systems/topics/nccl.md)：分别验证数据路径和故障退出；后续 [v2.28.9-1](https://github.com/NVIDIA/nccl/releases/tag/v2.28.9-1) 的 ordering 修复也要检查。 |
+| [Transformer Engine v2.10，2025-12-11](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.10) | NVFP4 GroupedLinear 与 graph 路径继续落地，graph 与进程组销毁顺序也成为正确性条件。 | [MoE](../../02-training-infra/topics/moe.md)：检查 expert GEMM 与 graph 生命周期，不只看峰值吞吐。 |
+| [DeepSpeed v0.18.9，2026-03-30](https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.9) | AutoSP 已有代码版本，早于后续论文阅读时间；并行配置与 checkpoint 转换要一起看。 | [Distributed Training](../../02-training-infra/topics/distributed_training.md)：区分首次实现、论文与本仓库发现日。 |
+| [Transformer Engine v2.14.1，2026-04-24](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.14.1) | MXFP8 quantize + dbias fusion 的非确定性错误说明 fused 路径也需要数值回归。 | [FP8](../../01-systems/topics/fp8.md)：相同输入重复运行并对照未融合基线。 |
+| [PyTorch v2.12.1，2026-06-18](https://github.com/pytorch/pytorch/releases/tag/v2.12.1) | B200 FLASH_ATTN batch invariance 修复针对特定后端/硬件，不代表所有训推误差消失。 | [FlashAttention](../../01-systems/topics/flashattention.md)：按 backend、batch shape 与 dtype 构造对照。 |
 
 Source ID 使用 `github-release:<repo>@<tag>`，原始日期、仓库与 tag 见 [精选 release 证据](audits/2026-09-22-history/selected_release_evidence.json)；以上背景源于 9 月 22 日定向审阅，10 月 8 日全量元数据重建仍待完成。DeepGEMM 的 `nv_dev_*` tag 不能自动解释为稳定版；FlashAttention 的空 release body 不足以推断新增机制；FlashMLA 无 release 记录时仍应查历史代码与报告。
 
@@ -153,6 +153,6 @@ Source ID 使用 `github-release:<repo>@<tag>`，原始日期、仓库与 tag �
 
 **趋势推断：** 2025 上半年把异步 rollout、权重交付与环境接口变成可运行路径；下半年补数值一致性与数据身份；到 2026 上半年，checkpoint、消费位置、版本计数和内存生命周期开始明确进入实现。但这不是所有框架同步变成熟的线性过程：backend 会被移除，示例可能缺关键梯度，指标修复也不能误写成训练算法修复。
 
-最值得保留的筛选规则是：遇到 `async`、`on-policy`、`checkpoint`、`FP4` 等名称，继续追问实际保留了哪些状态、在哪个版本可用、缺什么失败路径证据。可执行的后续验证见 [RL 状态实验](../../practice/experiments/rl_state_boundaries.md)，历史脉络已同步到 [Agentic RL 主题](../../rl-infra/topics/agentic_rl.md#history-2025-h1-2026)。
+最值得保留的筛选规则是：遇到 `async`、`on-policy`、`checkpoint`、`FP4` 等名称，继续追问实际保留了哪些状态、在哪个版本可用、缺什么失败路径证据。可执行的后续验证见 [RL 状态实验](../../practice/experiments/rl_state_boundaries.md)，历史脉络已同步到 [Agentic RL 主题](../../04-rl-infra/topics/agentic_rl.md#history-2025-h1-2026)。
 
 论文/官方文章的原始引用与核验边界分别见 [2025 H1](audits/2026-09-22-history/2025-h1-sources.json)、[2025 H2](audits/2026-09-22-history/2025-h2-sources.json)、[2026 H1](audits/2026-09-22-history/2026-h1-sources.json)。这些核验不替代实际阅读或实验；旧 scan 原文、历史 Accepted 数、学习状态与 frontier cursor 均保留。

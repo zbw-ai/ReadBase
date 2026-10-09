@@ -22,6 +22,6 @@
 - Finished: 2026-07
 - Source: https://arxiv.org/abs/2607.05378
 - Output: [CompactionRL paper note](../papers/compactionrl.md)
-- Updated: [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Frontier Scan 2026-07-07](../tracking/frontier_scan_2026-07-07.md)
+- Updated: [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Frontier Scan 2026-07-07](../tracking/frontier_scan_2026-07-07.md)
 - Final status: SUMMARIZED
 - Follow-up: 评估是否需要把 compaction-aware rollout schema 写成 experiment 或 playbook。

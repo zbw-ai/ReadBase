@@ -35,7 +35,7 @@
 - Reason：它抓住 agentic rollout 与普通 serving 的关键差异：trajectory 在 generation 与 environment 间交替，新的 prefill 会持续插入正在 decode 的批次；MoE 下这种并发还会触发跨 rank collective order 和 DeepEP mutable state 冲突。
 - Status：NEW
 - 建议动作：优先阅读 collective ordering、P/D scheduling boundary 和 DeepEP state isolation；判断 AReaL 当前 rollout backend 是否存在同类 rank-order hazard
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 AInfer-PD 不建立独立 prefill/decode GPU pool，而是在同一批 accelerator 上共享权重和 KV state。它通过跨 rank 协调 P/D collective 发起顺序，并为 DeepEP 的 P/D path 隔离通信状态，使 attention parallel 与 expert communication 可以安全交错。
 
@@ -58,7 +58,7 @@ AInfer-PD 不建立独立 prefill/decode GPU pool，而是在同一批 accelerat
 - Reason：这是直接面向生产集群的 scaling 证据。它同时比较 scale-up、scale-out、rack-scale、不同 parallelism 和 concurrent jobs，填补“benchmark 独占网络，但生产运行在 multi-tenant fabric”这一判断缺口。
 - Status：NEW
 - 建议动作：重点读 interference experiment、noise model、allocation scheme 和 parallelism sensitivity；提取能落到 scheduler、placement、network telemetry 与 noisy-neighbor diagnosis 的指标
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
 
 论文覆盖 Alps、Leonardo、LUMI、JUPITER、NVL72 GB300 和 DGX A100，规模最高 2400 GPUs，并用五种 parallelization strategy 研究网络、计算能力和互连技术的联合作用。它的价值不是再给一条最好看的 MFU 曲线，而是回答哪些并行维度在共享网络下最容易被邻居任务放大抖动。
 
@@ -81,7 +81,7 @@ AInfer-PD 不建立独立 prefill/decode GPU pool，而是在同一批 accelerat
 - Reason：这不是泛泛介绍 CP，而是一个能运行的 million-token SFT recipe，并明确写出哪些模型和 data semantics 不能用。它对当前 Qwen 128K SFT 配置比单纯的论文 benchmark 更有迁移价值。
 - Status：NEW
 - 建议动作：将配置与现有 Qwen3.5-9B 128K recipe 做逐项对照；先验证 attention pattern 兼容性，再考虑 CP size、activation offload 和 chunked loss
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [FSDP](../../training-infra/topics/fsdp.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [FSDP](../../02-training-infra/topics/fsdp.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 
 官方 example 用 8 张 H100 将 1,048,576-token Qwen3-8B 序列按 CP=8 切成每卡 131,072 tokens，并报告约 `373 s/step`、`56.2 GB/GPU`。配套 scaling 对照中，Qwen3-8B 从 1M/8 GPUs 的 `364 s` 扩到 2M/16 GPUs 的 `696 s`、4M/32 GPUs 的 `1346 s`；文档明确要求将这组三点用于观察 scaling ratio，不作为绝对时间横向比较。
 
@@ -104,7 +104,7 @@ AInfer-PD 不建立独立 prefill/decode GPU pool，而是在同一批 accelerat
 - Reason：partial rollout 只有在 runtime 能“边生成边提交状态、精确取消单请求、保留已观察 prefix、拒绝残缺样本”时才是可靠能力；这项改动把它从 scheduler 概念落实成 trajectory contract。
 - Status：NEW
 - 建议动作：对照 AReaL trajectory schema、abort API、resume semantics 与 routed-expert metadata；优先复制 contract test，而不是先复制实现
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 改动让 external SGLang `/generate` 同时支持 cumulative 和 incremental stream；cancel 时只终止对应 HTTP request，已经收到的 token/logprob/top-p/routed-expert metadata 保留到 sample，之后只恢复被中断的 siblings。异常 EOF、长度不一致或 stream mode mismatch 会显式失败，避免不完整输出悄悄进入 reward/training。
 
@@ -127,7 +127,7 @@ Qwen3-30B-A3B live E2E 验证覆盖 SGLang TP4/EP4 inference、Megatron TP4/EP4 
 - Reason：它给出 HybridEP 从“能编译”到 32x8 H100、EP32 训练完成的工业级兼容证据，也暴露 build-time flag、NVLink-domain divisibility 和 dependency pin 这类真实部署边界。
 - Status：NEW
 - 建议动作：作为 DeepEP/HybridEP 部署清单阅读；不要把 20/20 steps 解读成独立性能收益，重点记录 binary provenance、topology constraint 与 validation matrix
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 验证包括 Qwen3-30B-A3B 4x8 H100/EP8、Qwen3-235B-A22B 16x8 H100/EP16、Nemotron 3 Super 120B-A12B 32x8 H100/EP32，均完成 20/20 steps；Qwen3-30B-A3B 也在 4x8 B200 完成 20/20 steps。
 
@@ -150,7 +150,7 @@ PR 同时明确：多节点能力由 DeepEP build 时的 `HYBRID_EP_MULTINODE=1`
 - Reason：它直接面对 agentic task 中 environment interaction 主导 wall-clock 的问题，并把 replay 本身从复杂 pipeline 中剥离出来；对 AReaL 来说，真正可迁移的是 replay buffer 的 selection/provenance contract。
 - Status：NEW
 - 建议动作：阅读 Headroom 和 Drift 的精确定义、replay ratio、importance correction 与 Agentic Search wall-clock breakdown；先验证训练语义，再谈省 rollout 成本
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [MOPD](../../rl-infra/topics/mopd.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [MOPD](../../04-rl-infra/topics/mopd.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 Headroom 对历史 group 按“剩余学习空间”排序，Drift 再判断它与当前 policy 是否仍兼容。fresh on-policy stream 保持不变，也不引入额外 generation/training machinery。作者报告在 math、multimodal 和 Agentic Search 上优于 naive replay，并在 Agentic Search 以更低 wall-clock 达到可比质量。
 
@@ -224,4 +224,4 @@ Headroom 对历史 group 按“剩余学习空间”排序，Drift 再判断它�
 
 - [ ] 下一次扫描从 `2026-09-05 00:21:28` 开始，按 Source ID 去重，并补查本次不稳定的 DeepSeek API changelog。
 - [ ] 如果只读一篇，读 AInfer-PD；它最直接改变对 Agentic RL rollout workload 的建模方式。
-- [ ] TRL recipe 读完后，把对 Qwen3.5 hybrid attention 的适用边界更新到 [Long-context Training](../../training-infra/topics/long_context_training.md)，但先验证现有 verl/Transformers path，不能只据 TRL 文档泛化。
+- [ ] TRL recipe 读完后，把对 Qwen3.5 hybrid attention 的适用边界更新到 [Long-context Training](../../02-training-infra/topics/long_context_training.md)，但先验证现有 verl/Transformers path，不能只据 TRL 文档泛化。

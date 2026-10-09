@@ -34,7 +34,7 @@
 - 范围：用户指定材料及相关官方页面、代码；不是全域扫描，不变更 `scan_log.md` 游标或既有 Accepted 计数。
 - 影响等级：高；Decision: Deep Dive。
 - Reason: 将 Infra Agent 效果拆成可检查的数值、并发与性能问题，沉淀证据分层方法。
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Context Parallelism](../../training-infra/topics/context_parallelism.md)。
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Context Parallelism](../../02-training-infra/topics/context_parallelism.md)。
 - 一句话价值：用可证伪实验区分机制可信、生产收益可信与自主能力可信。
 - 下一步：[报告与待执行验证计划](../engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md)；[P1](../reading_queue/P1.md) 跟进源码和实验。
 - Status: DIGESTED；未复现。

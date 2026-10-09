@@ -10,7 +10,7 @@ GPipe 是 pipeline parallel 的基础材料。重点看 micro-batch、pipeline b
 
 ## 与知识图谱的关系
 
-GPipe → [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md) → [Megatron 2021](megatron_2021.md)。
+GPipe → [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md) → [Megatron 2021](megatron_2021.md)。
 
 ## 待补问题
 

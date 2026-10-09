@@ -78,7 +78,7 @@ Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有
 - Decision：Deep Dive
 - Reason：Rollout Infrastructure Tax 把 coding-agent RL 的成本中心定位到 sandbox、execution substrate、worker-hour 和 trajectory runtime；BiDiRL 进一步证明固定 rollout/train GPU 分区会制造结构性 bubble，并尝试用双向资源借用提高端到端吞吐。
 - 建议动作：Rollout Infrastructure Tax 保持 P0；完成 BiDiRL 剩余章节并形成 paper note
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：paper note / topic / playbook / experiment
 
 本月实际阅读已经把边界厘清：BiDiRL 借用的是完整 GPU replica 的执行角色，不是跨节点拆分单个算子；它能缓解 rollout/train 长期速率失配，但不能直接消除 GRPO 同组最后一个超长 response 的完成 barrier。后者仍需要 response-level scheduling、preemption/resume 或算法侧的 rollout allocation。
@@ -94,7 +94,7 @@ Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有
 - Decision：Deep Dive
 - Reason：CompactionRL 把 context compaction 纳入 RL policy；OpenAI 的内部事故与修复闭环则证明数小时轨迹不能只靠逐 action guard，需要 trajectory monitor、pause、replay、rollback 和 incident-derived eval。
 - 建议动作：CompactionRL 已完成笔记；下一步把 compaction state 与 trajectory control 写成 rollout schema / playbook
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 - 最终应流向：[CompactionRL note](../papers/compactionrl.md) / topic / playbook / experiment
 
 这两份材料共同改变了一个判断：长时 Agent 的“上下文”不是无限增长的 token buffer，而是需要训练、持久化、审计和恢复的系统状态。压缩策略回答“保留什么”，轨迹级控制面回答“何时暂停、如何回放、失败后从哪里恢复”。
@@ -110,7 +110,7 @@ Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有
 - Decision：Deep Dive
 - Reason：Libra 证明 packed microbatch 即使 token 数相同，`sum(sequence_length^2)` 仍可能相差很大，从而制造 DP straggler 和 PP bubble；这是当前 128K SFT/预训练配置最直接的工程信号。
 - 建议动作：进入 P1；用真实长度分布复算 token balance 与 attention-work balance 的差异
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md)
 - 最终应流向：topic / experiment
 
 作者报告其方案已用于 32K-1M token 生产任务并累计数十万 GPU-hours。这是厂商披露的生产证据，不等同于独立复现；但它足以否定“packing 后 token 数平衡就等于计算平衡”这一常见假设。
@@ -126,7 +126,7 @@ Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有
 - Decision：Deep Dive / Read
 - Reason：Kimi K3 把 2.8T MoE、perfectly balanced EP、1M context、persistent rollout/sandbox state 与 MXFP4 QAT 放在同一系统设计里；DeepSeek-V4-Flash-0731 则在相同 backbone 上通过重新 post-training、reasoning-effort、Responses API/Codex 适配和 DSpark speculative decoding 提升 Agent workload。
 - 建议动作：Kimi K3 进入 Deep Dive；DeepSeek 重点区分 backbone、post-training、harness 和 inference runtime 的贡献，不根据榜单反推未披露机制
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md)
 - 最终应流向：tech report / topic / insight
 
 工业报告的价值在于路线已经经过大规模系统验证，但证据强度仍需分层。Kimi K3 披露了训练与部署机制，适合形成系统笔记；DeepSeek 本次是开放权重与 model card，尚未公开完整 post-training recipe 和 harness 细节，应保持高关注但不把工程推断写成事实。
@@ -142,7 +142,7 @@ Kimi K3 与 DeepSeek 7 月权重发布仍保留在下方工业证据中；没有
 - Decision：Read
 - Reason：7 月多项修复都属于“训练继续运行但优化语义已经错误”：GRPO denominator 错误、sleep/wake 后回到初始权重、不完整 logprob 被当作行为策略证据、NCCL receive view 在 consumer 使用前被覆盖。
 - 建议动作：把 policy version、weight checksum、token/logprob completeness、buffer ownership 和 loss normalization 变成回归测试，而不是日志约定
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：topic / playbook / experiment
 
 本月最值得吸收的框架经验不是某个 benchmark，而是 **async 使状态生命周期变成 optimization semantics**。系统活着、GPU 有利用率、loss 能下降，都不能证明样本来自正确 policy，也不能证明不同 micro-batch 配置优化的是同一个目标。
@@ -216,9 +216,9 @@ CompactionRL 已完成阅读，不再占用队列名额。AReaL / HybridFlow 仍
 
 ## 对仓库的影响
 
-- 已完成：[CompactionRL paper note](../papers/compactionrl.md) 及 [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Long-context Training](../../training-infra/topics/long_context_training.md) 关联更新。
+- 已完成：[CompactionRL paper note](../papers/compactionrl.md) 及 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Long-context Training](../../02-training-infra/topics/long_context_training.md) 关联更新。
 - 正在进行：BiDiRL 已记录在 [2026-07 Learning Log](../learning_log/2026/2026-07.md)，生命周期为 `READING`。
-- 需要更新的 topic：[Agentic RL](../../rl-infra/topics/agentic_rl.md) 后续补 dynamic resource borrowing 与 policy-version contract；[Long-context Training](../../training-infra/topics/long_context_training.md) 后续补 attention-workload balancing。
+- 需要更新的 topic：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 后续补 dynamic resource borrowing 与 policy-version contract；[Long-context Training](../../02-training-infra/topics/long_context_training.md) 后续补 attention-workload balancing。
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 增加 group tail、sandbox tax、GPU bubble 和 stale-policy 诊断；新增 trajectory control / recovery 检查项。
 - 需要新增的 experiment：在真实 128K length distribution 上比较 token-balanced packing 与 `sum(length^2)`-balanced packing；验证 GRPO sleep/wake、micro-batch normalization 与 policy checksum。
 - 候选技术报告：Kimi K3 值得进入 `tech_reports/`；DeepSeek-V4-Flash-0731 等待更完整一手材料后再决定是否单独成稿。

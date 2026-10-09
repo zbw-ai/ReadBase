@@ -5,7 +5,7 @@
 - 作者：Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Patrick LeGresley, Jared Casper, Bryan Catanzaro
 - 时间：2019
 - 链接：https://arxiv.org/abs/1909.08053
-- 相关主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md)
+- 相关主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md)
 
 ---
 

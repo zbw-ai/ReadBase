@@ -55,7 +55,7 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 ## Follow-up
 
 - 将实际结果回填本页和 [9 月 Learning Log](../../research/learning_log/2026/2026-09.md)。
-- 关联：[Agentic RL](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries)、[Checkpointing](../../training-infra/topics/checkpointing.md)、[Knowledge Graph](../../KNOWLEDGE_GRAPH.md)。
+- 关联：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries)、[Checkpointing](../../02-training-infra/topics/checkpointing.md)、[Knowledge Graph](../../KNOWLEDGE_GRAPH.md)。
 
 ## 2026-09-22 补充计划：AWEX 与冻结权重
 
@@ -93,13 +93,13 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 | lazy environment | eager/lazy 对照，同一镜像；增加缓存占用并注入 snapshotter 重启 | Ready、首请求、全文件读取、后续错误、节点缓存水位 | 不把 Ready 当可用证明；失败可检测、可隔离、可恢复；不将 KServe 结果直接外推 DSec |
 | kernel 合同 | 一个已有算子，对照可信高精度参考；异常值、边界 shape、重复执行和 backward | 规格、误差、NaN/Inf 语义、gradient、计时条件 | 先验证适用规格再计性能；不能为追求一致性随意修改数学语义或容差 |
 
-代码与版本选择前先读 [Agentic RL 不变量](../../rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)。上游 PR 的测试通过声明是来源证据，不是本实验的结果。
+代码与版本选择前先读 [Agentic RL 不变量](../../04-rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)。上游 PR 的测试通过声明是来源证据，不是本实验的结果。
 
 <a id="history-replay-parity"></a>
 
 ## 历史复盘补充：并行语义与恢复计数（NEW）
 
-来源：[2025—2026 上半年 GitHub 补证](../../research/tracking/github_history_2025_to_2026_h1.md)，关联[主题中的历史契约](../../rl-infra/topics/agentic_rl.md#history-2025-h1-2026)。以下仅是实验设计，未运行，不构成 VERIFIED。
+来源：[2025—2026 上半年 GitHub 补证](../../research/tracking/github_history_2025_to_2026_h1.md)，关联[主题中的历史契约](../../04-rl-infra/topics/agentic_rl.md#history-2025-h1-2026)。以下仅是实验设计，未运行，不构成 VERIFIED。
 
 | 待验证判断 | 最小对照与故障注入 | 验收证据与边界 |
 |---|---|---|
@@ -113,7 +113,7 @@ python -m pytest tests/test_incomplete_rollout_groups.py -q
 
 ## 2026-10-08 补充：组就绪、终止和恢复（NEW，未执行）
 
-来源：[13 组前沿信号](../../research/tracking/frontier_scan_2026-10-08.md)，关联 [RL 三个边界](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)。下表是实验设计；没有运行命令或实验结果，不构成 VERIFIED。
+来源：[13 组前沿信号](../../research/tracking/frontier_scan_2026-10-08.md)，关联 [RL 三个边界](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)。下表是实验设计；没有运行命令或实验结果，不构成 VERIFIED。
 
 | 实验 | 对照与故障注入 | 验收与可推翻的判断 |
 |---|---|---|

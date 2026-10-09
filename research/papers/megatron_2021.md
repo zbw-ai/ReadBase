@@ -10,7 +10,7 @@
 
 ## 与知识图谱的关系
 
-[Megatron-LM](megatron_lm.md) → 3D Parallel → [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md) → [MegaScale](../tech_reports/megascale.md)。
+[Megatron-LM](megatron_lm.md) → 3D Parallel → [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md) → [MegaScale](../tech_reports/megascale.md)。
 
 ## 待补问题
 

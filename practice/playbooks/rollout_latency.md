@@ -129,10 +129,10 @@ grep -E "trajectory|store|upload|download|serialize|deserialize" train.log
 
 ## 关联 Topics
 
-- [Distributed Training](../../training-infra/topics/distributed_training.md)
-- [Context Parallelism](../../training-infra/topics/context_parallelism.md)
-- [Agentic RL](../../rl-infra/topics/agentic_rl.md)
-- [Checkpointing](../../training-infra/topics/checkpointing.md)
+- [Distributed Training](../../02-training-infra/topics/distributed_training.md)
+- [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
+- [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
+- [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 ## 关联 Papers / Reports / Blogs
 

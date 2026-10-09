@@ -51,9 +51,9 @@ GPU 利用率、训练成本、SLA、checkpoint cadence。
 
 ## 关联 Topics
 
-- [Distributed Training](../../training-infra/topics/distributed_training.md)
-- [NCCL](../../systems/topics/nccl.md)
-- [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- [Distributed Training](../../02-training-infra/topics/distributed_training.md)
+- [NCCL](../../01-systems/topics/nccl.md)
+- [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 ## 关联 Papers / Reports / Blogs
 

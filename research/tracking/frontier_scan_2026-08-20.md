@@ -31,7 +31,7 @@
 - Reason：它明确把 agent harness 从“训练外部的应用代码”提升为 post-training data plane owner，并系统列出 retokenization、sample merging、advantage、loss normalization 和 backend scheduling 五类 correctness 边界。
 - Status：NEW
 - 建议动作：先读 framework contract 与 coding-agent pipeline，再对照 AReaL trajectory schema 和 endpoint proxy
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 传统 RL runtime 自己拥有 environment loop；harnessed RL 则由部署时 harness 管理工具、上下文和控制流，trainer 只观察一组 LLM request-response。这个边界变化解释了为什么“能接一个 OpenAI-compatible endpoint”并不等于能正确训练：多个请求如何合并成 sample、重新 tokenize 后 token 是否一致、每个请求的 advantage 如何回填，都需要显式契约。
 
@@ -54,7 +54,7 @@
 - Reason：它没有要求 OpenHands/Claude Code/OpenCode 改写内部 control flow，而是在 harness 边界捕获 raw generation stream，并把 compaction/re-serialization 后的 token 对齐交给 trainer 复算。
 - Status：NEW
 - 建议动作：重点看 raw stream capture、token alignment、reward-hacking defense 与 sandbox image cache，不先看榜单
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 LEGO-RL 的三层设计分别解决 faithful optimization、reliable execution 和 observability。最有迁移价值的是 in-process LLM proxy：harness 可以压缩、重序列化上下文，但 trainer 仍基于捕获的原始 generation stream 重算 logprob，避免应用层文本变换悄悄改变训练 token。
 
@@ -76,7 +76,7 @@ LEGO-RL 的三层设计分别解决 faithful optimization、reliable execution �
 - Reason：这组变更同时覆盖 sample freshness、慢/坏 shard 隔离和 prompt replacement，说明大规模异步 RL 的正确抽象不是一个 staleness 参数，而是一套 admission + health + recovery protocol。
 - Status：NEW
 - 建议动作：将 NeMo sampler/recovery state machine 与 AReaL manager 的 admission、retry、replacement 和 checkpoint 语义逐项对照
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 `ArealAdmissionSampler` 把 dispatch 限制在 trainer version 前 `eta` 个 batch，并允许 ready-first mixed-version selection；配置层强制要求 importance-sampling correction，避免“异步”只放宽新鲜度却不修正行为策略。generation fleet health 再对 shard 做 probe、quarantine、least-outstanding routing；dropped rollout 则允许 shrink 或用 spare prompt replace，并以 `min_step_batch_fraction` 保住训练 batch 下限。
 
@@ -97,8 +97,8 @@ LEGO-RL 的三层设计分别解决 faithful optimization、reliable execution �
 - Decision：Deep Dive
 - Reason：它把 generation、teacher forward 和 student update 从串行同进程拆开，并提供可运行 multi-teacher routing；MOPD 因而第一次进入 Hugging Face 的通用 post-training trainer 路线。
 - Status：NEW
-- 建议动作：对照 [MOPD](../../rl-infra/topics/mopd.md) 检查 weight transfer、staleness、teacher routing failure 与 loss denominator
-- 关联主题：[MOPD](../../rl-infra/topics/mopd.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 建议动作：对照 [MOPD](../../04-rl-infra/topics/mopd.md) 检查 weight transfer、staleness、teacher routing failure 与 loss denominator
+- 关联主题：[MOPD](../../04-rl-infra/topics/mopd.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 该 trainer 让后台 worker 从 student vLLM server 生成 on-policy completion，再把完整序列发送给独立 teacher endpoint 做 teacher-forced scoring，training 可与 generation/teacher scoring 并发。多 teacher 模式由每条样本的 `teacher_id` 显式路由，缺失映射直接报错，不静默落到错误 teacher。
 
@@ -120,8 +120,8 @@ LEGO-RL 的三层设计分别解决 faithful optimization、reliable execution �
 - Decision：Deep Dive
 - Reason：它直接回答当前 MOPD 专题最关键的疑问：能力整合失败未必是 gradient conflict，而可能是长短序列、收敛速度和异步 reward staleness 共同扭曲 token-level optimization budget。
 - Status：NEW
-- 建议动作：精读 token-share balancing、gap-aware budget 和 student reward refresh，再更新 [MOPD](../../rl-infra/topics/mopd.md)
-- 关联主题：[MOPD](../../rl-infra/topics/mopd.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 建议动作：精读 token-share balancing、gap-aware budget 和 student reward refresh，再更新 [MOPD](../../04-rl-infra/topics/mopd.md)
+- 关联主题：[MOPD](../../04-rl-infra/topics/mopd.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 Open-MOPD 在 SmolLM3-3B-Base 上使用 oracle routing，把 teacher routing ambiguity 从实验中拿掉。作者报告标准 M-OPD 只恢复 domain-routed oracle ensemble 可用 headroom 的 35.6%，并将问题拆为 sequence-length disparity、不同 capability 的 convergence drift 和异步更新造成的 reward staleness。
 
@@ -143,7 +143,7 @@ Open-MOPD 在 SmolLM3-3B-Base 上使用 oracle routing，把 teacher routing amb
 - Reason：多轮 trajectory 的 generated tokens 不是单个连续区间；若仍按 first-generation offset 连续写入 old logprob，importance ratio 和 loss mask 会在 observation gap 后整体错位。
 - Status：NEW
 - 建议动作：把该 PR 的 multi-region mask 测试移植成 AReaL trajectory packing regression case
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 这项变更虽然标题是 “Share prefill in sequence packing”，但主要工程价值是 correctness：每一轮生成区间分别形成 mask，per-turn logprobs 按实际 generated-token position scatter 到 packed tensor；无法安全折叠的 trajectory 回退到 per-turn rows。它还避免把 float32 wire logprobs 悄悄降为 bf16。
 
@@ -165,7 +165,7 @@ Open-MOPD 在 SmolLM3-3B-Base 上使用 oracle routing，把 teacher routing amb
 - Reason：VLM colocation 不能把 `text_config` 当成完整 model contract；vision tower、nested config、router dtype 和 inference TP layout 都必须参与 train-to-inference metadata exchange。
 - Status：NEW
 - 建议动作：阅读 AWEX reader/writer contract tests，并检查 Qwen3.5-VL 项目是否仍有手写 metadata 假设
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 实现将完整 composite Hugging Face config 交给 native AWEX 解析，而不是只传一个扁平化 text config；Dense 和 MoE 路径均增加 contract tests。MoE 还需要从 nested `text_config` 读取 router dtype，否则 train-side converter 可能用错误 dtype 写入 inference engine。
 
@@ -251,6 +251,6 @@ Open-MOPD 在 SmolLM3-3B-Base 上使用 oracle routing，把 teacher routing amb
 
 - [x] 更新 [Scan Log](scan_log.md) 与 [Tracking README](README.md)。
 - [ ] 精读 Agent Lightning v1.0，输出 harness/trainer ownership matrix，不急着新建 topic。
-- [ ] 精读 Open-MOPD 后轻量更新 [MOPD](../../rl-infra/topics/mopd.md)，重点补 token budget 和 reward age 诊断。
+- [ ] 精读 Open-MOPD 后轻量更新 [MOPD](../../04-rl-infra/topics/mopd.md)，重点补 token budget 和 reward age 诊断。
 - [ ] 将 Megatron #5887 的 multi-region logprob test 转成 AReaL packing correctness 实验候选。
 - [ ] 下一次扫描从 `2026-08-20 10:21:56` 开始，继续按 Source ID 去重。

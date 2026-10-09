@@ -1,6 +1,6 @@
 # Interview: Tensor Parallelism
 
-相关手册章节：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
+相关手册章节：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
 
 ## 高频面试题
 
@@ -41,7 +41,7 @@
 - 把 AllToAllV 当成所有 NCCL 版本都有的通用 host API；
 - 只说 ring/tree，不说消息、group 和 tensor 语义。
 
-完整四卡示例、NCCL 2.31.2 API 边界、5D/FSDP 映射和 hang 排障见 [NCCL 与分布式通信算子](../../systems/topics/nccl.md#collective-map)。
+完整四卡示例、NCCL 2.31.2 API 边界、5D/FSDP 映射和 hang 排障见 [NCCL 与分布式通信算子](../../01-systems/topics/nccl.md#collective-map)。
 
 ## 追问问题
 

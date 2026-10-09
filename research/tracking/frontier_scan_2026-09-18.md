@@ -50,7 +50,7 @@
 - 已核验代码：replica 先 await head server 的 `resume_engine_generation()`，返回后才向所有 server 发 `open_submission_gate()`；不能简单删掉显式 resume，因为跳过 KV restore 的路径仍需要它。
 - 一句话价值：weight version 一致还不够，请求准入必须晚于跨 rank 恢复完成。
 - Subsystem：scheduler / weight sync / inference backend；Dimension：liveness / correctness。Transfer to AReaL：可迁移两阶段准入契约，不能直接照搬 vLLM 版本相关 RPC。
-- Next：并入 [P1 状态边界组合](../reading_queue/P1.md#rl-state-boundaries-reading)、[topic](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries)及[实验计划](../../practice/experiments/rl_state_boundaries.md)。上游描述给出 fully async GLM-5.2 验证，本仓库未复现。
+- Next：并入 [P1 状态边界组合](../reading_queue/P1.md#rl-state-boundaries-reading)、[topic](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries)及[实验计划](../../practice/experiments/rl_state_boundaries.md)。上游描述给出 fully async GLM-5.2 验证，本仓库未复现。
 
 ### A5 · AReaL：逐 interaction reward 一次提交
 
@@ -144,5 +144,5 @@
 ## 流转
 
 - 新增 [CSBP P1](../reading_queue/P1.md#csbp-reading)，其余主线不扩张 P0。
-- A4/A5 的状态契约补入 [Agentic RL](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries) 与[故障注入计划](../../practice/experiments/rl_state_boundaries.md)，没有运行结果，不标 VERIFIED。
+- A4/A5 的状态契约补入 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) 与[故障注入计划](../../practice/experiments/rl_state_boundaries.md)，没有运行结果，不标 VERIFIED。
 - [9 月维护记录](../learning_log/2026/2026-09.md) · [Scan Log](scan_log.md) · [Tracking](README.md) · [Knowledge Graph](../../KNOWLEDGE_GRAPH.md) · [Master Reading List](../MASTER_READING_LIST.md)。

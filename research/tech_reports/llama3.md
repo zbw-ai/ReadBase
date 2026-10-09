@@ -5,7 +5,7 @@
 - 作者：Meta Llama Team
 - 时间：2024
 - 链接：https://arxiv.org/abs/2407.21783
-- 相关主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 相关主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 ---
 

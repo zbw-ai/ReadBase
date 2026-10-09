@@ -10,7 +10,7 @@ ZeRO-Infinity 把 GPU/CPU/NVMe 组成分层内存系统。重点看 offload engi
 
 ## 与知识图谱的关系
 
-[ZeRO](zero.md) → [ZeRO-Offload](zero_offload.md) → ZeRO-Infinity → [Checkpointing](../../training-infra/topics/checkpointing.md)。
+[ZeRO](zero.md) → [ZeRO-Offload](zero_offload.md) → ZeRO-Infinity → [Checkpointing](../../02-training-infra/topics/checkpointing.md)。
 
 ## 待补问题
 

@@ -35,7 +35,7 @@
 - Reason：这是核心厂商对 automated research 如何进入真实 research loop 的少见披露。真正的信号不是“agent 会写更多代码”，而是长任务、并发 sessions、实验运行、infra troubleshooting、安全控制和 GPU allocation 已经形成同一个运行系统。
 - Status：NEW
 - 建议动作：精读 methods appendix 与 task-horizon/intervention 图；把“agent throughput”拆成成功率、人工介入、实验完成、monitoring coverage 和 compute utilization，避免用 token/code volume 代替研究进展
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 OpenAI 将 automated research intern 定义为：在人工指导下完成边界明确、原本需要熟练研究者数天的任务。官方称截至 8 月中旬，研究组织每个 human workday 对应 `3.1 agent-workdays`；但在可判定结果的成功任务中，超过一半的 4-8 小时任务仍发生至少一次人工介入。
 
@@ -58,7 +58,7 @@ OpenAI 将 automated research intern 定义为：在人工指导下完成边界�
 - Reason：长时、多轮、异步 rollout 最难的部分不是单次 decode，而是把跨 call token、route、weight version 和失败状态重组为可训练且可恢复的 trajectory。这项改动把隐含在 controller 内的状态提升为 data-plane contract。
 - Status：NEW
 - 建议动作：优先阅读 `tq_token_sink.py`、`rollout_reassembler.py`、`route_plan.py` 与 replay-buffer cleanup tests；对照 AReaL 是否具备同等级的 lineage、idempotency、partial-group validity 和 restart semantics
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 该改动让 generation side 将 token delta 送入外部 TransferQueue，由 route plan 和 finalizer 重组 rollout，再提交给 replay buffer。未完成或占位 sample 会通过 `valid_mask` 被排除在 GRPO/GDPO/Reinforce++ 的 group baseline 之外，避免一个恢复中的假样本污染 siblings 的 advantage。
 
@@ -81,7 +81,7 @@ OpenAI 将 automated research intern 定义为：在人工指导下完成边界�
 - Reason：训练权重装入 rollout engine 时，backend-specific post-load processing 是通用 loader 容易遗漏的正确性边界。使用 vLLM 原生 API 可以减少 duplicated glue code，但官方数据同时证明它并非所有模型与精度都更快。
 - Status：NEW
 - 建议动作：对照 AReaL 的 full/delta weight update path，检查 post-load hook、MoE expert layout、quant scale 与 MTP/Eagle draft weight 是否有显式 capability matrix；不要只比较 transfer time
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [MoE](../../training-infra/topics/moe.md), [MOPD](../../rl-infra/topics/mopd.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [MoE](../../02-training-infra/topics/moe.md), [MOPD](../../04-rl-infra/topics/mopd.md)
 
 当前新路径仅支持 non-colocated vLLM 和默认 NCCL full-weight transport，默认关闭；不支持 colocated、`nccl_reshard`、sparse delta、NIXL/checkpoint-engine、ModelOpt quantization、trainer-refit 的 Eagle/MTP draft weights，以及 grouped-MoE MXFP8 slabs。
 
@@ -104,7 +104,7 @@ OpenAI 将 automated research intern 定义为：在人工指导下完成边界�
 - Reason：hybrid/linear-attention 模型的长上下文训练不能只复用 softmax attention 的 ring attention。GDP 需要跨 CP rank 传播状态 summary；现在 Megatron 将 communication/autograd contract 与本地 kernel backend 分离，并为 CuTeDSL 建立可测试实现。
 - Status：NEW
 - 建议动作：阅读 shared GDP CP adapter 与 packed-sequence metadata；判断现有 Qwen3.5 类 hybrid model 在 Megatron/AReaL 路径中是否使用 FLA 或 CuTeDSL，以及 CP、packing、recompute 三者的兼容边界
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 
 该实现允许 GDP chunkwise CP 在 FLA 与 CuTeDSL 间选择本地 backend，共享跨 rank forward-prefix / backward-suffix summary 的 autograd adapter。测试覆盖 BLH、packed THD、selective recompute，并要求 CuTeDSL GDP 路径在当前测试中运行于 SM100。
 
@@ -127,7 +127,7 @@ OpenAI 将 automated research intern 定义为：在人工指导下完成边界�
 - Reason：checkpoint 能加载不等于训练能等价恢复。旧实现可能让 DP/CP peers 恢复另一个 rank 的 CUDA RNG tracker state，并在创建 DataLoader iterator 时继续消耗刚恢复的 CPU RNG，造成 silent divergence。
 - Status：NEW
 - 建议动作：把 per-rank RNG fingerprint、first-N sample IDs 与 resume 后首步 loss/gradient parity 纳入 checkpoint recovery test；特别检查 EP/ETP seed stream 和 world-size change 行为
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [MegaScale](../tech_reports/megascale.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [MegaScale](../tech_reports/megascale.md)
 
 修复后 `torch_dist` checkpoint 将 RNG state 按 `(pp, tp, dp_cp)` 建 shard key；如果 world size 改变则不再加载不匹配的 RNG state。DataLoader 也改用独立 generator，避免 iterator 创建改变 default CPU RNG。
 
@@ -197,4 +197,4 @@ OpenAI 将 automated research intern 定义为：在人工指导下完成边界�
 
 - [ ] 下一次扫描从 `2026-09-07 10:00:26` 开始，按 Source ID 去重。
 - [ ] 如果只读一份材料，先读 OpenAI report 获取系统全貌；如果只做一个代码级 deep dive，读 NeMo RL token ledger。
-- [ ] 后续更新 [Checkpointing](../../training-infra/topics/checkpointing.md) 前，先核对 AReaL/verl 当前 RNG checkpoint key、DataLoader generator 和 world-size reshard 行为，避免把 Megatron 的根因直接类推成已存在问题。
+- [ ] 后续更新 [Checkpointing](../../02-training-infra/topics/checkpointing.md) 前，先核对 AReaL/verl 当前 RNG checkpoint key、DataLoader generator 和 world-size reshard 行为，避免把 Megatron 的根因直接类推成已存在问题。

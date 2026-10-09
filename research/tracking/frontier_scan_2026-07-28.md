@@ -36,7 +36,7 @@
 - Reason：这是本窗口最完整的超大模型系统报告信号，训练、MoE、长上下文、Agentic RL、量化和部署信息同时出现，不能按普通模型发布略过。
 - Status：NEW
 - 建议动作：优先精读 training infrastructure、KDA co-design、perfectly balanced EP、million-token agentic RL 和 deployment 章节，再决定是否新增 `tech_reports/kimi_k3.md`
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [FP8](../../01-systems/topics/fp8.md)
 
 Kimi K3 采用 2.8T MoE、104B activated parameters、93 层和 1,048,576 context。官方报告把基础设施贡献明确写成四条：KDA 的算法系统协同、带高效显存管理的 perfectly balanced expert-parallel training、保存 rollout 与 sandbox state 的 million-token agentic RL，以及 deployment innovations。
 
@@ -57,7 +57,7 @@ Kimi K3 采用 2.8T MoE、104B activated parameters、93 层和 1,048,576 contex
 - Reason：它修正了长上下文训练中一个常见但危险的假设：packing 只平衡 token 和线性算子，不能平衡按平方增长的 attention workload。
 - Status：NEW
 - 建议动作：精读 workload model、Variance-Reduced Sequence Placement、Tiled Attention Pooling 和 bounded communication domain；对照当前 128K SFT 的长度分布与 step-time 抖动
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 Libra 把 packed sequence 和对应 CP group 组织进固定大小的 sequence pool。DP 扩容时增加 pool 数，而不是扩大每个 attention exchange domain；这样 attention balancing 不随 DP degree 无限扩张通信域。Variance-Reduced Sequence Placement 先把互补 workload 放在一起，Tiled Attention Pooling 再在 pool 内分发 sequence-head tiles，并把 tile exchange 与 attention 计算流水重叠。
 
@@ -78,7 +78,7 @@ Libra 把 packed sequence 和对应 CP group 组织进固定大小的 sequence p
 - Reason：这是 silent correctness bug：训练可以继续、系统不会 crash，但 sleep/wake 后的 rollout 可能来自初始 checkpoint，而不是当前 policy。
 - Status：NEW
 - 建议动作：检查所有使用 vLLM sleep mode 的 GRPO recipe；验证 wake 后 parameter checksum、policy version、sample logprob 与 rollout metadata
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 vLLM sleep level 2 会丢弃 model weights。旧路径 wake 后调用 `reload_weights`，其语义是重新加载初始 checkpoint；修复后 TRL 显式记录 `_llm_weights_sleeping`，并在生成前调用 `sync_weights()` 推送当前训练 policy。
 
@@ -99,7 +99,7 @@ vLLM sleep level 2 会丢弃 model weights。旧路径 wake 后调用 `reload_we
 - Reason：它把 harness 设计和 token 成本、cache validity、trajectory state 可检查性直接连接起来，适合与 CORVUS、CompactionRL 和 AReaL rollout contract 对照。
 - Status：NEW
 - 建议动作：阅读 pass-by-reference、SQLite typed memory、model-callable harness API 和 evaluation methodology；不要只看 SWE-bench 分数
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 NOOA 用单个 Python class 表达 agent：methods 是 capabilities，fields 是 state，docstrings / type annotations 是 prompt 与执行契约。最有 infra 价值的是 pass-by-reference：工具结果不必反复序列化进 transcript，长轨迹可以保持 append-only 与 prefix-cache friendly。
 
@@ -120,7 +120,7 @@ NVIDIA 报告其 SWE-bench Verified 达到 82.2%、约 1.1M tokens/task，对比
 - Reason：Agent serving 的瓶颈开始从 LLM decode 扩展到 sandbox cold start、依赖预取、结果缓存和 artifact transport，这些同样会拖慢 RL rollout。
 - Status：NEW
 - 建议动作：进入 P1 候选；重点读 intent-driven prewarming 的误判成本、dependency graph、sandbox lifecycle 和 failure isolation
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 SpecBox 在 LLM 仍生成 token 时，根据 keyword 与 streaming embedding 推测即将发生的工具调用，并提前启动 sandbox；随后通过 dependency graph 做跨 step stochastic prefetch。系统还加入 semantic result cache 和 shared-memory out-of-band transport，减少重复执行和网络序列化。
 
@@ -141,7 +141,7 @@ SpecBox 在 LLM 仍生成 token 时，根据 keyword 与 streaming embedding 推
 - Reason：它指出 token-level sparse attention 可能只把 O(L²) 瓶颈从 attention kernel 转移到 top-k indexer，并利用相邻 query 的候选重叠消除重复全前缀扫描。
 - Status：NEW
 - 建议动作：进入 P1 候选；确认 accuracy fidelity、query group size、MTP decode grouping 与训练可用性
-- 关联主题：[FlashAttention](../../systems/topics/flashattention.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[FlashAttention](../../01-systems/topics/flashattention.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 PIVOT 把一组相邻 query 聚合为 proxy query，只做一次 full-prefix traversal 生成 candidate set。Reuse 直接共享 proxy top-k，Refine 再由每个 query 对 candidate set 重打分。prefill 用连续 query 分组，decode 则复用一个 MTP step 中共同生成的 queries。
 
@@ -162,7 +162,7 @@ PIVOT 把一组相邻 query 聚合为 proxy query，只做一次 full-prefix tra
 - Reason：static token-count bucket 不能代表真实 fused-MoE GEMM 形状；expert routing skew 会改变 padding、reuse 和最佳 kernel。
 - Status：NEW
 - 建议动作：进入 P1 候选；重点读 routing histogram representation、offline tuning cost、GPU-side dispatch overhead 与 workload drift
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md)
 
 DA-MoE 在 GPU 上读取 live routing histogram，并与 offline-tuned distributions 匹配，选择更合适的 fused-MoE kernel，避免 CPU-GPU synchronization。作者在 HumanEval-X serving traces 上报告：DeepSeek-V3 geomean fused-MoE latency 1.16x、Kimi K2 1.29x，峰值分别 1.40x 和 1.56x。
 
@@ -183,7 +183,7 @@ DA-MoE 在 GPU 上读取 live routing histogram，并与 offline-tuned distribut
 - Reason：它处理 GRPO 类方法在长任务中的 `all-failed group`：不是普遍替换 outcome reward，而是在组内没有任何成功信号时，用新状态覆盖度提供相对方向。
 - Status：NEW
 - 建议动作：进入 P1 候选；检查 observation equivalence、coverage gaming、额外 state storage 与 group scheduler 语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 长任务中 repeated / low-effect actions 往往占据 policy 高概率区域，真正改变环境状态的动作采样不足；当一组 rollout 全失败时，outcome reward 无法比较，形成 self-reinforcing credit trap。ProGPO 只在 group 全零时，用 first-visit observation coverage 给到达更多新状态的 trajectory/step 更高相对 advantage。
 
@@ -204,7 +204,7 @@ DA-MoE 在 GPU 上读取 live routing histogram，并与 offline-tuned distribut
 - Reason：长任务 RL 的 reward 不只是一个模型调用，而是需要 trajectory condense、evidence grounding、主动查找、分析和低延迟 serving 的独立系统。
 - Status：NEW
 - 建议动作：进入 P1 候选；重点读 reward-server architecture、trajectory storage、step-level judgment、judge drift 与吞吐数据
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 SeekJudge 把 Condense、Ground、Seek、Analyze 四种角色组织成 Seek-Analyze loop，并蒸馏到共享 9B backbone。其目标不是给最终输出做一次 LLM-as-a-judge，而是对长 GUI trajectory 形成可用于在线 RL 的 step-level reward。
 
@@ -225,7 +225,7 @@ SeekJudge 把 Condense、Ground、Seek、Analyze 四种角色组织成 Seek-Anal
 - Reason：它把长轨迹中的 stale file snapshot 识别为数据结构问题，而不是单纯 context window 不够；这与 CompactionRL 和 NOOA 构成互补关系。
 - Status：NEW
 - 建议动作：进入 P1 候选；对照当前 coding-agent transcript，区分 immutable event、mutable world state 与 tool result reference
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [CompactionRL](../papers/compactionrl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [CompactionRL](../papers/compactionrl.md)
 
 传统 append-only trajectory 把 file-read action 和当时的 file content 永久绑定；文件被 agent 或人修改后，历史 snapshot 变旧，agent 会重复读并继续追加副本。CORVUS 把 file-read action 与 observation 解耦，用 synchronized registry 在每次 reasoning cycle 注入当前内容。
 

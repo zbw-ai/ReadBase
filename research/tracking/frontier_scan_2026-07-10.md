@@ -32,7 +32,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，与 AReaL / DORA / Staleness-Constrained Rollout Coordination 对照阅读
 - 预计阅读：1.5h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 这篇值得看的核心不是“又一个 RL objective”，而是它把每个 prompt 只做 single rollout、value model 训练和 token-level clipping 放进同一套异步系统设计。若结论可复现，它会直接改变 rollout worker 的批处理方式、样本新鲜度控制和 trainer 消费协议。
 
@@ -54,7 +54,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，优先读 environment、AsyncGRPO batching 和 vLLM fixes
 - 预计阅读：45min
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [FSDP](../../training-infra/topics/fsdp.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [FSDP](../../02-training-infra/topics/fsdp.md)
 
 最值得注意的是 `Σ L_i²` 负载均衡和 token-budget packing：对长短不一的 rollout，只平衡 token 数并不能平衡 attention wall time。release 给出的 4B benchmark 为 `+19% MFU`，这个数字需要后续实验复核，但设计方向与长上下文 RL 的真实 straggler 问题高度一致。
 
@@ -76,7 +76,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，重点读 distributed training 与 profiling 两节
 - 预计阅读：45min
-- 关联主题：[FSDP](../../training-infra/topics/fsdp.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[FSDP](../../02-training-infra/topics/fsdp.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 对训练平台最关键的不是版本号，而是两个边界变化：FSDP2 开始显式拆 communicator 以重叠 all-gather / reduce-scatter；`torchcomms` 把 partial-group recovery、structured logging 和 collective tracing 当作通信后端能力。这些都指向“collective 不只是性能原语，也是可恢复、可观测的生产控制面”。
 
@@ -98,7 +98,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，重点验证 Qwen3 / MoE / TP 场景的兼容性和性能边界
 - 预计阅读：45min
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 它的 infra 价值在“统一模型代码路径”，不是单次 benchmark。若 training、evaluation 和 rollout inference 能共享同一份 Transformers 实现，新增模型的适配成本、训练/推理数值漂移和自定义 vLLM model 维护成本都会下降；真正要验证的是 graph rewrite 对复杂 MoE、custom op 和长上下文 kernel 的覆盖率。
 

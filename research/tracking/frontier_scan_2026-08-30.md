@@ -35,7 +35,7 @@ NeMo RL 展示了 generation shard 死亡后为何会在下一次 weight sync �
 - Reason：它处理的是异步 RL 最危险的一类故障：generation actor 已死，但 trainer/Ray actor 看似健康，下一次 weight sync 因 communicator 仍包含死 rank 而永久阻塞。该设计把“失败重试”推进为跨 scheduler、collective、weight sync 和 state recovery 的完整协议。
 - Status：NEW
 - 建议动作：精读 membership arithmetic、communicator reconcile、failure taxonomy、partial row re-dispatch 与 chaos test；对照 AReaL manager 的 worker health、weight sync group、in-flight trajectory 和 checkpoint 恢复语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 根因不是“Ray 没检测到 worker 死亡”这么简单。refit communicator 在启动时覆盖所有 training/inference ranks；一个 generation rank 消失后，下一次 NCCL broadcast 仍要求它参与，而且 trainer future 先被等待，导致真正能暴露 dead actor 的 inference future 还没机会返回，系统先进入无异常、无 CPU 消耗、无进度的永久挂起。
 
@@ -58,7 +58,7 @@ NeMo RL 展示了 generation shard 死亡后为何会在下一次 weight sync �
 - Reason：这是典型的“训练不 crash，但目标函数悄悄算错”。动态 padding 的 batch width 只能说明本 batch 最长样本长度，不能证明某条 trajectory 因 token budget 截断；把两者混用会同时污染 reward、advantage 和 truncation metric。
 - Status：NEW
 - 建议动作：检查当前生产 workflow 是否完整保留 inference stop reason；对 timeout、environment stop、EOS、length truncation 分别建立 trajectory terminal contract 和单测
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 修复将 inference response 的 stop reason 显式转换成每条 trajectory 的 `is_truncated`，在 PPO actor 中统一用于 terminal reward masking、GAE 是否 bootstrap 和指标统计。对于 token-level 与 turn-level GAE，bootstrap value 改为每条 trajectory 的 final valid token，而不是 padded tensor 的最后一列；旧 custom workflow 没有该 metadata 时才保留兼容 heuristic。
 
@@ -82,7 +82,7 @@ NeMo RL 展示了 generation shard 死亡后为何会在下一次 weight sync �
 - Reason：它不是又一个 RL algorithm，而是尝试为 reasoning-model post-training 建立可迁移的系统语言。对正在阅读 AReaL、verl、BiDiRL、TMax 的工程师，这篇适合作为统一比较坐标系。
 - Status：NEW
 - 建议动作：先读 framework taxonomy、work-depth model 和 practical guidelines；把 AReaL 当前 actor/reference/critic/reward/generation placement 映射到论文表格，再识别真正的 critical path
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
 
 论文把 RL-for-LLM 的性能问题拆成两层：模型内部仍有 DP/TP/PP/SP/CP/EP；模型之间则存在 policy、reference、critic、reward、generation 的 placement、fusion、disaggregation 和 async overlap。其价值是提醒我们：单独优化 rollout tokens/s 或 update MFU 都可能无效，最终要看 dependency graph 的 work、depth、通信和资源空洞。
 
@@ -106,7 +106,7 @@ NeMo RL 展示了 generation shard 死亡后为何会在下一次 weight sync �
 - Reason：它抓住了 chunked prefill 的非均匀成本：越晚的 chunk 看到越长 prefix KV，attention 越贵。动态 resize 会引入 scheduler overhead；VPP 改为固定 chunk、重排 virtual stages，把重 middle stage 与相邻轻 head/tail stage 交错。
 - Status：NEW
 - 建议动作：读 latency model、V-shaped mapping、cross-request drain bubble 和 vLLM-Ascend implementation；判断相同方法能否迁移到 CUDA runtime，以及它与 disaggregated prefill/decode 的边界
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 
 论文在 vLLM-Ascend 上对三个 MoE 模型、最长 1M tokens、16 张 Ascend 910C 做评测，报告相对 DCPP 的长序列吞吐最高提升 `13.1%`、混合 workload `6.7%`；512K DeepSeek-V3.1 prefill 的 pipeline bubble ratio 从 `6.4%` 降到 `0.1%`。这些数字仍需在 CUDA/NVIDIA 栈复现，但“固定 chunk + virtual-stage 重排”是比继续调 chunk size 更值得保留的系统设计。
 

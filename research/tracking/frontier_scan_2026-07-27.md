@@ -12,7 +12,7 @@
 
 本次共有八条值得保留的系统信号。最重要的不是论文数量，而是四条正在汇合的工程主线：
 
-1. **OPD 正在突破同 tokenizer 限制。** BPM 把 Teacher 的 next-token distribution 映射到共享 byte space，使不同模型家族之间可以做 full-vocabulary on-policy distillation；这直接补上了 [MOPD](../../rl-infra/topics/mopd.md) 面向异构 Teacher 时最现实的接口缺口。
+1. **OPD 正在突破同 tokenizer 限制。** BPM 把 Teacher 的 next-token distribution 映射到共享 byte space，使不同模型家族之间可以做 full-vocabulary on-policy distillation；这直接补上了 [MOPD](../../04-rl-infra/topics/mopd.md) 面向异构 Teacher 时最现实的接口缺口。
 2. **Agentic RL 框架开始重新争夺“可修改性”。** Molt 选择 PyTorch-native、token-first contract 和单异步循环，试图证明研究者不必为大规模异步 RL 接受一套难以读懂的厚重 runtime。
 3. **Rollout 优化不只发生在 scheduler。** VIGOR 从算法侧动态分配 group rollout 数；OpenForgeRL 把真实 harness 与训练后端拆开；TRL 则暴露了 generation batch 和 gradient accumulation 不对齐时可能静默改变梯度尺度。
 4. **权重生命周期正在成为训练与推理的共同基础设施。** ModelExpress 统一冷启动、peer fan-out、JIT cache 迁移和 RL refit；verl 的 sharded delta sync 则证明 trainer layout 到 inference layout 的增量转换必须由 backend 显式声明，而不是让通用传输层猜测。
@@ -35,8 +35,8 @@
 - Decision：Deep Dive
 - Reason：它移除了 full-vocabulary OPD 的 same-tokenizer 前提，使 Qwen、GLM、MiniMax 等异构 Teacher 的 dense token supervision 有了质量守恒、内容对齐的转换方式。
 - Status：NEW
-- 建议动作：作为下一篇精读候选；读 byte-prefix marginal、跨 token 边界 lower bound、whitespace mask 与通信 payload，再决定如何更新 [MOPD](../../rl-infra/topics/mopd.md)
-- 关联主题：[MOPD](../../rl-infra/topics/mopd.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 建议动作：作为下一篇精读候选；读 byte-prefix marginal、跨 token 边界 lower bound、whitespace mask 与通信 payload，再决定如何更新 [MOPD](../../04-rl-infra/topics/mopd.md)
+- 关联主题：[MOPD](../../04-rl-infra/topics/mopd.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 BPM 不把 Teacher token 生硬映射到“看起来相近”的 Student token，而是在共享 byte space 中，把每个 Teacher token 的概率分配给其 byte prefix 对应的最长 Student token；无法对齐的质量进入显式 residual category。作者报告超过 99% 的训练位置可精确恢复 Teacher-induced byte-prefix marginal，其余位置采用保持概率质量的 chain-factorized lower bound。
 
@@ -57,7 +57,7 @@ BPM 不把 Teacher token 生硬映射到“看起来相近”的 Student token�
 - Reason：它把“checkpoint 下载”“serving replica 扩容”“kernel cache 复用”和“trainer-to-rollout weight refit”统一成同一个 artifact discovery、layout compatibility 与高速传输问题。
 - Status：NEW
 - 建议动作：精读 Figure 1/2/7；对照 AReaL 当前 weight update 路径，拆出 source identity、layout plan、receiver pull、partial failure 与 checksum contract
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md)
 
 ModelExpress 优先复用已经驻留 GPU、完成 runtime layout 转换的兼容权重副本，通过 NIXL 做 P2P RDMA；没有 peer 时再退回 ModelStreamer、GDS 或普通 loader。兼容性由模型和 runtime layout 共同生成的 `mx_source_id` 约束，避免把“模型名相同”错误地当作 tensor layout 相同。
 
@@ -79,7 +79,7 @@ ModelExpress 优先复用已经驻留 GPU、完成 runtime layout 转换的兼�
 - Reason：它不是又包一层 trainer API，而是把 token correctness、policy version、partial rollout、weight sync 和 FSDP2/MoE 并行压进一条可读的 PyTorch-native async loop，适合与 AReaL/verl 做代码级架构对照。
 - Status：NEW
 - 建议动作：先读 architecture、agent contract、async queue 和 token-span 数据结构，再核对论文中“与 Megatron stack 统计相当”的 matched protocol
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FSDP](../../training-infra/topics/fsdp.md), [MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FSDP](../../02-training-infra/topics/fsdp.md), [MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 Molt 使用 Ray 做 placement 与 async queue、vLLM 做 rollout、NVIDIA AutoModel + FSDP2 做训练；仓库把 token ids、logprobs、action ranges、reward 和 multimodal tensors 作为同一条 token-first contract。其价值在于研究修改路径短，而不是“代码行少”本身：算法、环境与系统状态是否能沿同一条数据流被检查，决定了 Agentic RL 新 estimator 和新 rollout mode 的迭代成本。
 
@@ -100,7 +100,7 @@ Molt 使用 Ray 做 placement 与 async queue、vLLM 做 rollout、NVIDIA AutoMo
 - Reason：它直接处理固定 `n` GRPO 的无效 rollout：不是先生成更多再过滤，而是先少量采样，再把剩余预算逐轮分配给 group reward variance 高的 prompt。
 - Status：NEW
 - 建议动作：进入 P1 候选；重点确认 progressive allocation 是否会放大长样本尾延迟，以及 scheduler 如何在不阻塞 batch 的前提下追加同组 rollout
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 VIGOR 从每个 prompt 少量 rollout 开始，在固定总预算内，把新增 rollout 分给 group reward variance 最高的 prompt。它从 sampling policy 上减少无梯度或低信息 group，而不是直接优化推理 kernel。作者报告数学任务达到目标精度最多少用 2.3x rollout，coding 达到 GRPO 最终 full pass rate 少用 1.49x rollout。
 
@@ -121,7 +121,7 @@ VIGOR 从每个 prompt 少量 rollout 开始，在固定总预算内，把新增
 - Reason：它把 Claude Code、Codex、OpenClaw 一类 stateful/multi-process harness 当作真实 rollout program，而不是要求 agent 行为先被重写成训练框架内部 DSL。
 - Status：NEW
 - 建议动作：进入 P1 候选；等代码公开后再把它纳入 framework implementation 对比，当前先读 proxy trace contract、container isolation、failure/retry 和 token ownership
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 OpenForgeRL 用轻量 proxy 接管并记录 harness 的 model calls，再把数据交给标准 RL backend（论文以 veRL 为例）；Kubernetes orchestrator 为每条 rollout 启动独立远端 container。这个边界允许训练端不理解 harness 内部每个进程，但会把 trace completeness、工具副作用、容器恢复与 attribution 变成新的 correctness contract。
 
@@ -142,7 +142,7 @@ arXiv 页面称其为 open-source framework，但正文当前仍写代码、数�
 - Reason：它指出百万 token 场景中 native MTP draft 的 full-attention KV read 会压过 draft compute，并给出不改变 target verification/output distribution 的 bounded-working-set 解法。
 - Status：NEW
 - 建议动作：进入 P1 候选；核对 acceptance length、draft depth、hybrid attention target 与 SGLang implementation，再判断是否值得做本地复现
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [FlashAttention](../../systems/topics/flashattention.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [FlashAttention](../../01-systems/topics/flashattention.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 Windowed-MTP 只给 draft attention 加 StreamingLLM-style sliding window 和 attention sink，target 仍做 full-attention verification。因此它改变“候选 token 怎么提议”，不改变“哪些 token 被最终接受”。作者在三类架构、1M context、单 GPU SGLang 上报告 per-decode-step cost 降低 28%–44%，并通过 ring buffer 回收占总 KV 7.7%–11% 的 unread draft KV。
 
@@ -163,7 +163,7 @@ Windowed-MTP 只给 draft attention 加 StreamingLLM-style sliding window 和 at
 - Reason：它把 delta sync 从 flat `Shard(0)` 推进到 `Shard(k)`、multi-shard mesh 和 manual split，并明确“如何转换到 HF coordinates”应由训练 backend 负责。
 - Status：NEW
 - 建议动作：代码级阅读 `BlockPlacement`、HF delta export、seed/full fallback、receiver checksum；与 AReaL 的 weight sync layout contract 对照
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FSDP](../../training-infra/topics/fsdp.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FSDP](../../02-training-infra/topics/fsdp.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 PR 把每个 rank 的本地 shard 描述为 full tensor 中的 hyper-rectangular block，并让 backend 输出最终 HF-coordinate delta entries；通用 delta engine 只负责 collectives、bucketing 和 wire protocol。这样可以 fail loud 地拒绝尚未实现的 expert/manual layout，而不是把本地位置误解释为全局参数位置。
 
@@ -185,7 +185,7 @@ PR 把每个 rank 的本地 shard 描述为 full tensor 中的 hyper-rectangular
 - Reason：这是一类不会 crash、甚至 loss curve 看起来仍可训练，但实际梯度被静默放大或缩小的 RL correctness bug；它直接影响实验可比性。
 - Status：NEW
 - 建议动作：检查所有自有 recipe 中 `steps_per_generation` 与 `gradient_accumulation_steps`；对 AReaL/verl 等实现核对 generation batch token denominator 的语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 在 DAPO/CISPO/VESPO loss 中，`num_items_in_batch` 统计整个 generation batch 的 completion tokens，覆盖 `steps_per_generation` 个 micro-steps；optimizer 却只在 `gradient_accumulation_steps` 个 micro-steps 后更新。两者不相等时，累计梯度会额外乘上 `gradient_accumulation_steps / steps_per_generation`：例如 `4/2` 配置得到预期梯度的 0.5x，`8/32` 得到 4x。
 

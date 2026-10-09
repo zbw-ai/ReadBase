@@ -39,7 +39,7 @@
 - Reason：它不是只有权重与榜单的模型发布，而是公开了大规模 MoE 在 FP4、sparse indexer、speculative decoding、chunked prefill 和超长 reasoning 场景下的可运行 serving 配方。
 - Status：NEW
 - 建议动作：先读 model card 的 deployment recipes，再分别追 vLLM `deep_gemm_mega_moe` / FP4 indexer cache 与 SGLang DSPARK / chunked prefill 的实现边界
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [FP8 / Low Precision](../../systems/topics/fp8.md), [MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [FP8 / Low Precision](../../01-systems/topics/fp8.md), [MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 正式版本为 1.7T 参数模型，基于 V4-Pro Preview 结构并附加 DSpark speculative decoding。官方将 `reasoning_effort` 暴露为 low/high/max，并建议 high/max 场景允许最高 384K output；这意味着 serving 系统必须同时处理长 decode、KV/state 容量和 speculative path 的稳定性，而不能只优化短请求吞吐。
 
@@ -63,7 +63,7 @@ vLLM recipe 使用 4 个 GB300 节点、DP4、expert parallel、`deep_gemm_mega_
 - Reason：它把用户最关心的“异步 rollout 能提前多少、何时会过时、为什么长尾导致 bubble”从经验配置变成 engine-capacity-aware 的可推导参数。
 - Status：NEW
 - 建议动作：画出 B/B、G/G、G/B、R/G、R/B 五种模式的 timeline，并对照 AReaL 当前 rollout queue、policy version 和 GRPO group consumption 语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MOPD](../../rl-infra/topics/mopd.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MOPD](../../04-rl-infra/topics/mopd.md)
 
 实现定义 collection lag `L`：当前消费的 rollout 是在多少个 training step 之前生成的。若用户未显式设置 `--rl-generation-lag` 或 inflight request 上限，系统根据 inference DP、engine `max_requests`、GRPO group size 与每步 prompt groups 自动估计可用容量。官方 patch 给出的上界形态是：
 
@@ -91,7 +91,7 @@ submission 可按 rollout、group 或 batch，consumption 可按 group 或 batch
 - Reason：它解决的不是某次 rollout exception，而是长 horizon 环境中少数坏 prompt、环境进程卡死、部分 row 丢失或 backpressure 无进展如何被隔离、分类和有界恢复。
 - Status：NEW
 - 建议动作：精读 failure budget、row-level resend、progress watchdog 和 permit release；对照 AReaL rollout worker 的 timeout/retry/skip 语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 实现分别为基础设施失败与 deterministic prompt/data failure 设置重试预算；native generation、environment step 与 whole rollout 也有独立 deadline。系统优先重发缺失 row，再决定是否重试整个 group，避免一个局部失败放大全局重算。
 
@@ -113,7 +113,7 @@ watchdog 以 `(committed groups, train steps)` 作为进度信号，同时观察
 - Reason：这是 training stack 向 disaggregated inference 延伸的完整实现证据，特别适合判断 KV handoff 的 state ownership、生命周期与 failure boundary，而不是只看 P/D 分离概念图。
 - Status：NEW
 - 建议动作：沿 request lifecycle 阅读 `prefill complete -> pin -> send -> decode import -> complete -> release`，再和 vLLM/SGLang 的 KV transfer connector 对照
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 prefill 侧会在完成后 pin 住 KV blocks，直到 coordinator 发出 `RELEASE_KV`；decode 侧分配或导入本地 blocks，并可利用已有 prefix cache，减少源端实际需要传输的范围。handoff 按目标容量进入 FIFO 队列，NIXL 是默认 transfer backend。
 
@@ -135,7 +135,7 @@ prefill 侧会在完成后 pin 住 KV blocks，直到 coordinator 发出 `RELEAS
 - Reason：当 state dict、parallel layout 与 world size 固定时，FullyParallel shard distribution 是确定的，重复 world-wide metadata all-gather 属于可消除的控制面开销。
 - Status：NEW
 - 建议动作：把 checkpoint profile 拆成 `metadata gather -> distribution plan -> tensor IO`，确认当前瓶颈是否真的在 planner/control plane
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 实现按 process group 缓存 FullyParallel distribution，磁盘文件以最小 global rank 标识，并采用临时文件加 `os.replace`。同一次 gather 可同时生成 save/load distribution；READ 路径可以跳过后续 collective。
 
@@ -217,6 +217,6 @@ Anthropic 文章原始时间为 2026-08-13，上一份 08-14 scan 错误写成 `
 ## 下一步动作
 
 - [x] 更新 [Scan Log](scan_log.md) 与 [Tracking README](README.md)。
-- [ ] 精读 Megatron-LM #4127，若改变对 AReaL staleness/queue 的判断，再更新 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 或 AReaL 工程分析。
+- [ ] 精读 Megatron-LM #4127，若改变对 AReaL staleness/queue 的判断，再更新 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 或 AReaL 工程分析。
 - [ ] 阅读 DeepSeek-V4-Pro-0813 serving recipes，区分模型结构约束、厂商推荐配置与可迁移 runtime 机制。
 - [ ] 后续将 NeMo RL #3589 作为 rollout failure semantics 案例，将 #5553 作为 checkpoint metadata scaling 案例沉淀；不在未读完时提前扩写 topic。

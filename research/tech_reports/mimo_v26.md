@@ -57,7 +57,7 @@
 
 三组实验的模型、数据和训练流程不同，结果只能在各自实验条件下解释，增益不能相加。来源：[C] §4、[M] §5、§7。
 
-相关入口：[Agentic RL](../../rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[RL 框架选型](../../rl-infra/topics/rl_framework_selection.md)、[长上下文训练](../../training-infra/topics/long_context_training.md)、[MoE](../../training-infra/topics/moe.md)、[阅读决策](../reading_queue/P1.md#mimo-v26-reading)。
+相关入口：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[RL 框架选型](../../04-rl-infra/topics/rl_framework_selection.md)、[长上下文训练](../../02-training-infra/topics/long_context_training.md)、[MoE](../../02-training-infra/topics/moe.md)、[阅读决策](../reading_queue/P1.md#mimo-v26-reading)。
 
 #### 术语定义
 
@@ -514,7 +514,7 @@ MOPD2 的三条监督路径仍是：完整自主 rollout、teacher trajectory pr
 | 质量与效果是否来自同一目标 | 独立 grader 审核和预算受控的评测 | 仅代理分数变好时重审目标；实际效果可靠再判断扩算力收益 |
 | 哪一段限制稳定供给 | Rollout、grader、packing、training 的等待和峰值 | 按实际瓶颈扩容或优化，并复查它是否改变样本分布 |
 
-这四条观点的共同落点是：**把“这条经验为什么值得进入梯度”变成系统可以回答的问题。** 它需要可追踪的 task/env/verifier/harness 版本、行为策略记录、过滤原因与独立评测；这些记录本身不保证模型更强，但能使失败归因和下一轮投入更有依据。观点已沉淀到 [Agentic RL](../../rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract) 与 [长期 insight](../insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
+这四条观点的共同落点是：**把“这条经验为什么值得进入梯度”变成系统可以回答的问题。** 它需要可追踪的 task/env/verifier/harness 版本、行为策略记录、过滤原因与独立评测；这些记录本身不保证模型更强，但能使失败归因和下一轮投入更有依据。观点已沉淀到 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract) 与 [长期 insight](../insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
 
 ## 7. 算法与基础设施的演进
 
@@ -576,7 +576,7 @@ MiMo-VL 提出的任务干扰问题，到 V2-Flash 的领域 teacher 整合，�
 
 MOPD2 的一个关键细节是：**SFT trajectory 提供历史上下文，student 仍生成新的 continuation**；它不是把原答案原样重放作 SFT。[M] §5.6、Figure 13。多轮轨迹可拆成多个完整历史 prefix，各自启动一个 student turn；这是改变训练访问的状态分布，也改变环境交互成本。它不能仅凭名称中的 on-policy 就被描述为完整自主交互始终 on-policy。
 
-**本文将 MOPD 理解为能力整合与修复接口，其价值取决于 teacher 能否在目标状态上提供有效的增量监督。** 如果瓶颈是 verifier 不可信、环境无法 reset，换成蒸馏并不会自动修好；如果缺陷已经定位、专门 teacher 更容易训练，定向修复值得先做小规模对照。详见 [MOPD 专题](../../rl-infra/topics/mopd.md#mimo-evolution-roles)和[发布后修复](#51-工具调用重复与-mopd-修复)。
+**本文将 MOPD 理解为能力整合与修复接口，其价值取决于 teacher 能否在目标状态上提供有效的增量监督。** 如果瓶颈是 verifier 不可信、环境无法 reset，换成蒸馏并不会自动修好；如果缺陷已经定位、专门 teacher 更容易训练，定向修复值得先做小规模对照。详见 [MOPD 专题](../../04-rl-infra/topics/mopd.md#mimo-evolution-roles)和[发布后修复](#51-工具调用重复与-mopd-修复)。
 
 ### 7.4 多模态任务的验收边界
 
@@ -682,7 +682,7 @@ Code 默认每 batch 64 prompts、每 prompt 16 rollouts，即 1,024 条尝试�
 ## 9. 局限性与待验证问题
 
 1. **开源与复现边界**：[M] Table 5 列出约 3k code、1k cyber、1k general、2k visual tasks，并另提约 1k music tasks。Table 6 的 11 项提升来自**同一 9B SFT 初始化分别进行 domain-specific GRPO 的 checkpoints**，不是一个统一 9B mixed-task RL checkpoint 的 11 项成绩；multi-harness coding 是另一组实验。不得将它们当成完整复现大规模 V2.6。
-2. **MOPD2 的状态覆盖**：行为修复复盘提供了专门 teacher 合入主模型的具体案例，尚未充分验证多轮 student 自主偏离后的状态覆盖；可沿 [MOPD topic](../../rl-infra/topics/mopd.md)继续研究。不能把案例中的成本比例外推为通用修复收益。
+2. **MOPD2 的状态覆盖**：行为修复复盘提供了专门 teacher 合入主模型的具体案例，尚未充分验证多轮 student 自主偏离后的状态覆盖；可沿 [MOPD topic](../../04-rl-infra/topics/mopd.md)继续研究。不能把案例中的成本比例外推为通用修复收益。
 3. **交付与复现边界**：已核验公开环境数据集、训练入口和 MOPD 模型仓库；未执行训练、镜像、权重或 grader 服务。固定版本、接口状态和核验方式见来源快照；源码阅读不等于复现。
 4. **仍然缺少的证据**：CodeMidas 环境构造总成本、各筛选步骤独立消融、跨 seed 主评测方差；V2.6 各模块对大 run 的独立贡献、grader 漏检率、盲审与真实维护成本的关联、完整集群布局、固定总成本对照。GAGAR 的质量审核和后续行为修复补上了一部分证据，未将整套流程变成可归因的单因素实验。
 

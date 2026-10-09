@@ -51,8 +51,8 @@ Tensor Parallel group 内所有 rank，可能扩散为全局 step hang。
 
 ## 关联 Topics
 
-- [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
-- [NCCL](../../systems/topics/nccl.md)
+- [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
+- [NCCL](../../01-systems/topics/nccl.md)
 
 ## 关联 Papers / Reports / Blogs
 

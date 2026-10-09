@@ -50,7 +50,7 @@
 
 - 核验范围：CodeMidas arXiv title / 19 authors / citation date、PDF 方法与结果；MiMo PDF 标题署名、官方发布日期、直播 status/benchmarks/notices；[来源快照](../../assets/handbook/mimo_v26/source_snapshot.json)。
 - 工程维度：environment、reward、rollout、scheduler、data/trajectory path、training、checkpoint/recovery、inference backend；对 AReaL 可迁移，但未实施。
-- 相关主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[MoE](../../training-infra/topics/moe.md)、[Long Context](../../training-infra/topics/long_context_training.md)。
+- 相关主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[MoE](../../02-training-infra/topics/moe.md)、[Long Context](../../02-training-infra/topics/long_context_training.md)。
 - 输出：[团队分享报告](../tech_reports/mimo_v26.md)、[P1](../reading_queue/P1.md#mimo-v26-reading)、[实验计划](../../practice/experiments/mimo_v26_environment_and_mixer.md)。DIGESTED 表示已形成系统判断，不表示实验 VERIFIED。
 - 覆盖边界：专题材料精读；没有执行四厂商/HF/RL framework 全量扫描，不补填其 watch 结论。
 

@@ -5,7 +5,7 @@
 - 作者：Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, Christopher Ré
 - 时间：2022
 - 链接：https://arxiv.org/abs/2205.14135
-- 相关主题：[FlashAttention](../../systems/topics/flashattention.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 相关主题：[FlashAttention](../../01-systems/topics/flashattention.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 
 ---
 

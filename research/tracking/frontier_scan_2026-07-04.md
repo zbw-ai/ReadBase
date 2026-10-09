@@ -32,7 +32,7 @@
 - Status：NEW
 - 建议动作：已进入 [P0](../reading_queue/P0.md)
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 这条信号是当前 RL Infra 最贴近生产系统的问题：训练吞吐不只由 GPU step time 决定，也由 rollout 环境启动、执行隔离、测试运行、轨迹采集和失败重试决定。它适合直接流向 rollout latency playbook 和 agentic RL topic。
 
@@ -53,7 +53,7 @@
 - Status：NEW
 - 建议动作：进入 P1 候选；先读 Rollout Infrastructure Tax
 - 预计阅读：1h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 ### Mixture-of-Parallelisms: Towards Memory-Efficient Training Stack for Mixture-of-Experts Models
 
@@ -73,7 +73,7 @@
 - Status：NEW
 - 建议动作：已进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ### PHOENIX: Resilient LLM Training with Hot-Swapping via Zero-Overhead Checkpoint
 
@@ -93,7 +93,7 @@
 - Status：NEW
 - 建议动作：已进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [MegaScale](../tech_reports/megascale.md)
 
 ### HCMS: Head-Chunked Multi-Stream Pipeline for Communication-Computation Overlap in Long-Sequence Parallel Attention
 
@@ -113,7 +113,7 @@
 - Status：NEW
 - 建议动作：已进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 
 ## Observed / Rejected Candidates
 
@@ -170,5 +170,5 @@
 
 - [x] 更新 [Scan Log](scan_log.md)
 - [ ] 阅读 [Rollout Infrastructure Tax](https://arxiv.org/abs/2607.01415)
-- [ ] 读完后更新 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 和 [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- [ ] 读完后更新 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 和 [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - [ ] 后续评估是否将 arxiv:2607.01120 加入 P1

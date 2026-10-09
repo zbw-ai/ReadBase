@@ -34,7 +34,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，与 AReaL / DORA / HybridFlow 对照资源所有权、权重切换和 staleness 边界
 - 预计阅读：1.5h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 作者在两个 32-GPU testbed 上报告相对 veRL、AReaL 和 ROLL 最高 1.94x 加速，且不改变收敛结果。真正值得验证的不是峰值数字，而是资源借用期间 model state、KV cache、通信域和失败恢复的切换成本是否能在真实长尾 rollout 中稳定摊薄。
 
@@ -56,7 +56,7 @@
 - Status：NEW
 - 建议动作：进入 [P1](../reading_queue/P1.md)，重点检查 KV layout、模型兼容性、跨 worker 传输和 cache 生命周期
 - 预计阅读：1.5h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 作者报告 scoring FLOPs 最高减少 5000x、latency 降低 37x、memory 降低 34x。这些数字是特定实验结果，不能直接外推到生产；但“generation state 能否被 verifier 复用”是极强的系统问题，会直接影响 rollout / verifier co-location、KV 传输协议和多模型数值兼容性。
 
@@ -77,7 +77,7 @@
 - Reason：它用压缩的二阶统计量选择 block，在明显低于 dense KV traffic 的前提下，尝试补回现有 sparse selector 在 retrieval-heavy 长上下文任务上的质量缺口。
 - Status：NEW
 - 建议动作：暂不进入 P1；先等待 kernel / code 与真实 serving latency 数据，再决定是否升级为实验
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [FlashAttention](../../systems/topics/flashattention.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [FlashAttention](../../01-systems/topics/flashattention.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 论文在 32K RULER 上报告均值 0.8195，dense 为 0.9040，NSA 为 0.2999；KV traffic 为 NSA 的 1.21x、dense 的约 1/15.15。当前最需要追问的是 selector 开销、prefill/decode 分别受益多少，以及 block pattern 是否能被现有 kernel 稳定利用。
 
@@ -99,7 +99,7 @@
 - Status：NEW
 - 建议动作：与 SGLang v0.5.15 作为一个 release comparison 进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [NCCL](../../systems/topics/nccl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [NCCL](../../01-systems/topics/nccl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 官方 release 报告 no-DP sequence parallel 带来 1.9%~5.0% end-to-end throughput 改善，并加入 all-to-all peer fault detection 以避免 silent corrupted output。对 RL Infra 最关键的是 sleep/offload、weight sync、DP/PD 调度和 failure semantics 是否能被上层 trainer 可靠消费，而不只是单模型吞吐。
 
@@ -121,7 +121,7 @@
 - Status：NEW
 - 建议动作：与 vLLM v0.25.0 作为一个 release comparison 进入 [P1](../reading_queue/P1.md)
 - 预计阅读：1h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 官方 release 报告 Spec V2 带来 11% end-to-end TPS 改善，IndexShare MTP 在长上下文下最高降低 1.9x draft-step cost。应把这些数字视为 release benchmark，而不是通用结论；更重要的是与 vLLM 对照两者如何管理 CUDA Graph、PD routing、KV connector、RL sleep/wake 和故障恢复。
 
@@ -143,7 +143,7 @@
 - Status：NEW
 - 建议动作：暂不扩充 P1；在下一次 P1 清理时优先提升，并与 activation checkpointing / ZeRO-Offload 做系统对照
 - 预计阅读：1h
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [MoE](../../training-infra/topics/moe.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [MoE](../../02-training-infra/topics/moe.md)
 
 在 128 张 GB200 上，官方报告 DeepSeek-V3 671B 从 activation rematerialization 的 578.3 提升到 908.2 TFLOPs/s/device，提升 57%；Llama 3.1 405B 的固定配置只提升 2.9%。这个差异非常重要：offload 不是固定收益开关，取决于 activation 体积、重计算成本、可重叠工作和 CPU-GPU 互联。
 
@@ -164,7 +164,7 @@
 - Reason：它给出模型维度、tile alignment、NVFP4、TP/EP/PP 与 serving latency 的具体共同设计约束，说明模型 shape 本身就是 infra 参数。
 - Status：NEW
 - 建议动作：暂不进入 P1；后续沉淀到 TP / MoE / FP8 时作为硬件约束来源
-- 关联主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 文章报告 GB300 NVFP4 GEMM 在 K/N 约 6144 附近饱和，达到 80% sustained throughput 约需 K > 3072、N > 2560，并建议维度至少按 128、优先 256/512 对齐。其 256K DeepSeek-R1 prefill 案例还展示 PP size 从 1 扩到 32 时降低 first-token latency；这些是硬件与特定 workload 相关的指导，不应机械变成所有模型的 shape 规则。
 
@@ -185,7 +185,7 @@
 - Reason：它用 profiler trace 解释 kernel count、dtype upcast、Tensor Core eligibility 与 memory traffic 为什么比单看 occupancy 更能定位 attention 性能问题。
 - Status：NEW
 - 建议动作：暂不进入 P1；作为 FlashAttention benchmark 与 128K SFT profiling 的实操参考
-- 关联主题：[FlashAttention](../../systems/topics/flashattention.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Experiments](../../practice/experiments/README.md)
+- 关联主题：[FlashAttention](../../01-systems/topics/flashattention.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Experiments](../../practice/experiments/README.md)
 
 文章在特定 A100-SXM4-80GB shape 上报告 SDPA math backend forward 为 7.239 ms，而 Flash backend 为 146.8 us。数字不应跨 shape 外推；真正可复用的是排障方法：先看 trace 中实际选择了哪个 backend、发生了多少 kernel launch、是否隐式 upcast，再讨论 occupancy。
 

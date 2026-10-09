@@ -33,7 +33,7 @@
 - Reason：它补齐了 sparse-prefill 从算法原型走向 runtime backend 的关键缺口，不再只比较 attention microbenchmark，而是显式适配现代 serving 的 KV layout、batching 和量化约束。
 - Status：NEW
 - 建议动作：优先读 operator contract、paged KV integration 和 sparsity/accuracy gate，再判断是否值得进入 SGLang backend 对照实验
-- 关联主题：[FlashAttention](../../systems/topics/flashattention.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[FlashAttention](../../01-systems/topics/flashattention.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 作者将第一版 FlashPrefill 的动态稀疏模式发现扩展为可部署路径：mean correction 控制高稀疏率误差，kernel 侧对齐 FlashAttention-3/4 的执行结构，并原生支持 FP8、paged KV cache 和 continuous batching。论文在 H20、128K context 上报告相对 FlashAttention-2 的最高 `47.26x` FP8 与 `27.19x` BF16 speedup；这些是作者报告的特定 attention workload 数字，不能直接等同于端到端 agent throughput。
 
@@ -54,7 +54,7 @@
 - Reason：它把 prefix-aware routing 从静态 hash/affinity 提升为受 load constraint 约束的周期计划，并主动给出 affinity 不值得开启的反例。
 - Status：NEW
 - 建议动作：重点看 shadow replay、hot-key replication threshold 和 plan refresh cadence，不只看 `2.3x` 数字
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 在 60 张 H100、Llama-3.3-70B FP8 workload 中，论文报告 3.5 秒 p99 SLO 下 `176±11 QPS`，是最强 baseline 的 `2.3x`，served KV hit rate 从 `64.1%` 提升到 `93.2%`。更重要的是作者明确展示 32B workload 的负结果：当恢复的 KV 计算不足以抵消负载倾斜时，affinity 会降低收益，因此上线前必须用真实 trace 做 shadow replay。
 
@@ -75,7 +75,7 @@
 - Reason：tool/skill schema 会跨请求复用但顺序和组合不断变化，普通 prefix cache 无法命中；ReCache 把资源编码变成 composition-invariant KV block，直接命中长时 agent inference 的结构性浪费。
 - Status：NEW
 - 建议动作：检查 resource-wise attention 是否需要改模型、资源隔离如何影响 cross-resource interaction，以及代码能否接入现有 serving backend
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 论文报告 invocation F1 `82.3%` 对 dense baseline `82.4%`，同时 TTFT 提升 `3.655x`、allocated KV tensor memory 降低 `92.43%`、attention 加速 `1.423x`。这些数字说明“复用 schema 编码”和“选择性访问资源”可以拆开优化；但 resource-wise attention 改变了 attention visibility，不能只把它当成无侵入 cache plugin。
 
@@ -95,7 +95,7 @@
 - Reason：这是 BiDiRL 类“训练资源借给生成”的思路进入主流 RL framework 的可运行实现，而且给出了明确的适用资源比例、staleness 变化和失效边界。
 - Status：NEW
 - 建议动作：与 AReaL 当前 colocate/separation scheduler 对照 switch cost、buffer starvation、weight freshness 和 vLLM sleep/wake 生命周期
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 该实现允许 `separate_async` trainer 在 prompts 提交后继续保持 trainer replicas 的 rollout mode，直到 replay buffer 拥有足够 sampleable groups，再回收 GPU 训练。作者在 3×8 H100、Qwen3.5-35B-A3B、最大 response 32K 的配置上报告 150 steps wall clock 从 18.80 小时降至 16.43 小时，tokens/s 提升 `10.1%`；mean staleness 从 `0.522` 增至 `0.556`。收益高度依赖 trainer GPU 占比和跨 step 生成速率稳定性，功能默认关闭且暂不兼容 PD disaggregation。
 
@@ -115,7 +115,7 @@
 - Reason：它不再每次同步完整模型，而是从分布式 AdamW state 重构变化并传输 sparse delta；这正面处理大模型异步 RL 中越来越显著的 weight-sync data-plane 成本。
 - Status：NEW
 - 建议动作：先理解 correctness protocol 和 full-sync fallback，再测 delta sparsity、anchor interval 与 end-to-end sync 占比
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 初始同步和周期 anchor 仍走 full weight，中间连续版本才使用 delta；缺失/歧义 optimizer state、跳步、版本不连续或不支持的 precision state 都回退 full sync。接收端 apply 成功之后才推进 tracker 和 detector watermark，失败不会误提交版本。当前范围仅覆盖 Megatron-v2/SGLang-v2 separation、AdamW、无 LoRA、单 minibatch 和 power-of-two combined world size，因此它更像一个正确性优先的第一版，而不是通用 delta protocol。
 
@@ -135,7 +135,7 @@
 - Reason：它把 weight sync 从“每个 inference worker 接收整参数”改成 destination-owned slice transfer，对超大 MoE 的 train→serve 重分片尤其关键。
 - Status：NEW
 - 建议动作：精读 lazy op-chain wire format、unsupported-op fail-fast、trainer ownership metadata 和 layerwise buffer lifecycle
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [MoE](../../training-infra/topics/moe.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [MoE](../../02-training-infra/topics/moe.md)
 
 vLLM 在初始化阶段用 zero-storage placeholder 记录原生 weight loader 执行的 `narrow/t/view` 等操作链，后续 inference worker 通过 NIXL/RDT 只向持有对应参数的 trainer rank 拉取目标 slice，不在 worker 上物化完整 HF tensor。作者在 8 trainer GPU→8 inference GPU、Qwen3-235B-A22B 上报告 472 GB warm sync：DP8+EP8 为 3.3 秒，TP8 为 6.1 秒。数字来自单一硬件和 layout，但设计解决的是更普遍的 source/destination sharding mismatch。
 
@@ -155,7 +155,7 @@ vLLM 在初始化阶段用 zero-storage placeholder 记录原生 weight loader �
 - Reason：DeepSeek-V4 已有 FP8 KV cache，但 prefill 仍可能回到 BF16 sparse path；该变更补上 FP8 query × FP8 KV 的完整 runtime dispatch 和真实 serving shape 防 hang 校验。
 - Status：NEW
 - 建议动作：对照 `flashmla_sparse` 与 `flashmla_sparse_q8` 的数据转换、workspace 和 padding 成本，关注长 context 下收益是否覆盖 dequant/requant
-- 关联主题：[FlashAttention](../../systems/topics/flashattention.md), [FP8](../../systems/topics/fp8.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[FlashAttention](../../01-systems/topics/flashattention.md), [FP8](../../01-systems/topics/fp8.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 H20、DeepSeek-V4-Flash、TP8、FP8 KV、CUDA graph 默认 serving 下，PR 报告 Q8KV8 相对 BF16 sparse backend 的 input throughput/TTFT 提升约 `4.4%-8.2%`，且 10K-200K context 的 LongBench-v2 子集绝对分数变化为 `-0.006`。这里最有价值的不是个位数 speedup，而是 dtype/layout contract、C0/C4/C128 behavior 和此前真实 hang shape 都进入 regression coverage。
 
@@ -175,7 +175,7 @@ H20、DeepSeek-V4-Flash、TP8、FP8 KV、CUDA graph 默认 serving 下，PR 报�
 - Reason：它暴露了大规模 RL data plane 的两个生产坑：silent TCP fallback 会制造虚假 RDMA 覆盖，per-GPU pinned-memory 默认值会在节点级放大成 TiB 级常驻内存。
 - Status：NEW
 - 建议动作：把 transport identity、registered-memory budget 和 no-fallback health check 纳入 AReaL trajectory queue 的观测项
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 实现将 `mooncake_cpu` 明确定义为 CPU RDMA，找不到合适 RoCE device 直接失败，不再静默退化 TCP；同时把每 client process 的 segment/buffer 默认值从 512+64 GiB 修正为 64+4 GiB，避免 8 GPU 节点把注册内存放大到约 4.6 TiB。作者给出 2-node/8-GPU 与 32-node/256-GPU DeepSeek-V3 各 10 steps 的验证。长期稳定性仍未被 10-step run 证明，但这是一条足够具体的生产实现信号。
 
@@ -195,7 +195,7 @@ H20、DeepSeek-V4-Flash、TP8、FP8 KV、CUDA graph 默认 serving 下，PR 报�
 - Reason：它把 power、cooling 和 rack headroom 从静态 capacity planning 变成 fleet telemetry + policy 驱动的动态调度对象，直接影响未来超大集群 scheduler 与 observability 的边界。
 - Status：NEW
 - 建议动作：先读 DPS control loop、resource-group budget 和 failure policy，再把厂商 performance-per-watt 数字与独立验证分开记录
-- 关联主题：[Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 NVIDIA 描述 DPS 持续采集 GPU/rack/group power telemetry，在固定 site envelope 内重新分配未使用 headroom，并通过 policy 验证和 emergency response 保持约束。官方报告 GB200 NVL72 与 Vera Rubin NVL72 代表性 inference workload 在近似保持吞吐时，performance/W 提升约 `1.5x` 与 `1.3-1.4x`，并宣称固定 power budget 下可容纳更多 rack。DPS 当前为 Developer Preview，数字属于 vendor-reported industrial evidence，不能视为通用 workload 保证。
 

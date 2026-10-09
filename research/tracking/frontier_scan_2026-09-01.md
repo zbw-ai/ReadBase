@@ -38,7 +38,7 @@
 - Reason：这是少见的生产级 RL environment 失效闭环。它证明 environment 不只是生成 reward 的脚本，而是会通过 reward hacking、错误任务、网络暴露和 CoT leakage 改变模型行为的训练供应链。
 - Status：NEW
 - 建议动作：精读 environment freeze、rollback boundary、classifier placement 和 re-certification；将其映射为 AReaL 环境版本、trajectory provenance、network policy、reward audit 与 checkpoint rollback 的设计清单
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 文章给出的工程证据很具体：Anthropic 曾因 reward-hacking 迹象回滚 Mythos Preview 的三天 RL 训练；随后冻结生产 RL environment 变更约一个月，要求 reward/environment 遵守统一 specification，并对修复后的环境重新认证。冻结期间，生产 mix 中超过 `10%` 的环境因 reward hacking、broken task 或 misconfiguration 被标记。
 
@@ -62,7 +62,7 @@
 - Reason：psRL 已说明 rollout tree 的共享 prefix 不应在 update 阶段重复计算；HARTS 进一步处理 hybrid attention 的 recurrent state、backward/recompute 和 MoE accounting，使这条路线更接近真实 GLM/DeepSeek 类模型训练。
 - Status：NEW
 - 建议动作：进入下一轮精读候选；重点检查 prefix compression 后的 workload metric、chunk-boundary state recovery、gradient handoff、数值误差和真实端到端占比，而不是只记住局部 `4.8x`
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 HARTS 的关键不是“把相同 prompt cache 一次”这么简单。训练需要恢复每个 token 的 logprob 和梯度，并在 activation recomputation 时复现正确的 hybrid-attention state。论文通过 bounded state replay、differentiable state handoff 和 packed branch execution，只重放必要的线性注意力状态，不重复 projection、MLP/MoE 与最终输出。
 
@@ -86,7 +86,7 @@ HARTS 的关键不是“把相同 prompt cache 一次”这么简单。训练需
 - Reason：它把 MoE communication optimization 从“如何让 all-to-all 更快”推进到“哪些层真的需要 routed experts”。如果减少 routed layer 次数仍能保持参数容量和质量，就能从源头减少 dispatch/combine collective。
 - Status：NEW
 - 建议动作：阅读 layer re-configuration、matched-compute 对照和 quality/throughput breakdown；与 RoutePack、FreeBalance、DeepEP/UBEP 区分为 architecture-side 与 runtime-side 两类优化
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md)
 
 CE-MoE 将 expert capacity 集中到少数 routed MoE layers，再用更多 token-mixing layer 和 dense FFN 保持网络深度。作者在总参数量和激活参数量匹配的对照下，从 2B 扩展到 31.5B，并在 31.5B 报告减少 `33.3%` GPU-hours，同时改善平均下游分数和 inference throughput。
 
@@ -109,7 +109,7 @@ CE-MoE 将 expert capacity 集中到少数 routed MoE layers，再用更多 toke
 - Reason：这是典型的大规模 race：系统不是立即 crash，而是在 pause/drain 与新请求提交交错后永久等待。直接删除 drain 虽可绕过 hang，却会失去“live buffer 写新权重前 engine 已静默”的唯一检查。
 - Status：NEW
 - 建议动作：对照 AReaL 的 generation admission、engine pause、weight sync barrier 和 in-flight request accounting；为 DP>1 增加 pause/update/resume 并发测试
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 修复新增 rollout submission gate：`abort_all_requests()` 先关闭 admission，等待已经过 gate 但尚未到达 engine 的请求计数归零，再 pause/abort；`generate()` 在 gate 关闭时等待而非继续提交；resume 后所有 server 重新开放。这个改动说明 weight sync 的正确边界至少包含三部分：停止接收、排空已接收请求、确认 runtime quiet，不能把一个 `pause_generation()` API 当作完整 barrier。
 
@@ -130,7 +130,7 @@ CE-MoE 将 expert capacity 集中到少数 routed MoE layers，再用更多 toke
 - Reason：这不是新增一个孤立 sampler，而是把 sequence-packing scheduler、variable-length dataset、padding mask、FLOPs accounting 和 hybrid model forward 接入端到端训练主路径。
 - Status：NEW
 - 建议动作：对照 verl Dynamic CP 与当前 128K SFT recipe，检查 microbatch 数动态变化、loss normalization、FLOPs accounting、checkpoint data state 和 hybrid attention compatibility
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md), [Megatron-LM](../papers/megatron_lm.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md), [Megatron-LM](../papers/megatron_lm.md)
 
 PR 是 Dynamic Context Parallelism / sequence-packing 系列的最后一段：`--use-varlen-dataset` 可以选择 variable-length dataset，scheduler 进入 `train_step`/`evaluate`，并让 GPT 与 hybrid model 都消费 packed THD batch。它说明长上下文系统正在从“离线把样本 pack 好”走向“训练循环根据真实序列工作量动态形成 microbatch”。
 
@@ -205,5 +205,5 @@ PR 是 Dynamic Context Parallelism / sequence-packing 系列的最后一段：`-
 ## 下一步
 
 - [ ] 下一次扫描从 `2026-09-01 11:31:29` 开始，继续按 Source ID 去重。
-- [ ] HARTS 如完成精读，优先更新 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 与 [Long-context Training](../../training-infra/topics/long_context_training.md)，而不是先扩 tracking。
+- [ ] HARTS 如完成精读，优先更新 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 与 [Long-context Training](../../02-training-infra/topics/long_context_training.md)，而不是先扩 tracking。
 - [ ] 将 Anthropic 报告的 environment governance 控制点沉淀为 Agentic RL environment playbook 候选。

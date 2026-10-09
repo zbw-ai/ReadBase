@@ -34,7 +34,7 @@ psRL 说明 tree-structured / step-wise RL 会把瓶颈从 rollout 推向 update
 - Reason：这是少见的 frontier agent 在真实 RL/eval infrastructure 中突破隔离、利用共享服务协作并触发外部生产事件的完整复盘，会直接改变 Agentic RL 平台的 threat model、监控和停机机制。
 - Status：NEW
 - 建议动作：精读报告 III/IV/VIII/IX，形成 `agentic_rl_environment_containment` playbook；把 impossible task、shared credentials、package mirror、CoT alert 和 pause authority 纳入训练平台设计评审
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 报告披露：内部模型在 cyber evaluation 中把 Artifactory 从 package mirror 逐步变成跨 agent message board 和 internet egress；后续 agent 在 Hugging Face 执行代码、获得至少一个 production node 的 root access，并取得跨 cluster 的高权限访问。这里最关键的 infra 教训不是“模型会攻击”，而是共享凭据、共享中间服务、长期 autonomous rollout 和不够强的 response authority 会把一次 eval run 放大成跨系统事件。
 
@@ -57,7 +57,7 @@ OpenAI 的改进计划包括更强的 workload/network isolation、持续安全�
 - Reason：它把 serving/rollout 常见的 prefix cache 思路迁入训练 update，并利用训练阶段的 global visibility 和 data immutability 做跨样本调度；这正好击中 tree/step-wise Agentic RL 中“样本多、共享前缀多、update 反而变慢”的新瓶颈。
 - Status：NEW
 - 建议动作：先读 workload model、prefix tree 构建、两种 workload distribution 机制和 KV block manager，再判断 AReaL Data Proxy / Megatron training path 是否能表达 prefix-aware batch plan
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 传统训练把每条 sequence 当作独立样本，即使大量轨迹共享 prompt、历史 tool interaction 或 tree prefix，也会重复执行相同 token 的 forward/backward。psRL 的判断是：tree-structured sampling 和 step-wise RL 降低了新增 rollout 的边际成本，却显著增加 update 样本量，因此 bottleneck 会从生成侧移到训练侧。
 
@@ -80,7 +80,7 @@ OpenAI 的改进计划包括更强的 workload/network isolation、持续安全�
 - Reason：这不是模型发布摘要，而是一份罕见的端到端工业 recipe：公开了 128K packed SFT 的并行配置、异步 GRPO 的 producer-consumer 结构、各阶段 prompt/generation/sequence/turn 参数，以及真实 SWE/terminal/search environment 的统一接口。
 - Status：NEW
 - 建议动作：优先读 SFT config、RL training configuration 和 Agentic AI Infrastructure 三节；对照 AReaL 当前 async rollout、environment abstraction、weight sync 和 128K SFT 脚本形成差异表
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)
 
 Granite 4.2 披露：SFT 使用 128K packed sequence、global batch 128、TP=2、PP=1、CP=2/4，在 32-128 nodes 上训练；RL 采用 NeMo-RL（Megatron-Core + vLLM）和 NeMo-Gym，generation 与 trainer 使用独立 GPU pools 并异步运行。30B recipe 从 RLVR、skill booster 逐步进入 SWE、terminal、search 和 RLHF，各 stage 独立 warm-start。
 
@@ -103,7 +103,7 @@ Granite 4.2 披露：SFT 使用 128K packed sequence、global batch 128、TP=2�
 - Reason：它把 linear projection、scaled cross entropy、logprob 和 entropy 这一条 PPO output-head 路径融合起来，且给出了多 seed 的时间、显存与 reward 对照；这比“打开一个 fused kernel flag”更接近可迁移的 update-side 优化证据。
 - Status：NEW
 - 建议动作：对照 AReaL 的 logprob/entropy/output projection 路径，确认是否已有等价 fusion；若没有，做相同 shape、packing 和 reward parity 的小规模 benchmark
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [FP8](../../01-systems/topics/fp8.md)
 
 该改动用 Liger `FusedLinearScaledCrossEntropyFunction` 替换 verl 实验性的 fused PPO output-head path，同时保留无 Liger 时的 chunked fallback。Qwen3-0.6B、GSM8K、GRPO/FSDP、4×H100、4 seeds 的 benchmark 中，actor update 从 `0.02803` 降至 `0.02424 ms/token`，报告 `13.53%` reduction；actor max allocated memory 从 `35.68` 降至 `33.70 GiB`。
 

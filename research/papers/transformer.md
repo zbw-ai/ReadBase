@@ -5,7 +5,7 @@
 - 作者：Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin
 - 时间：2017
 - 链接：https://arxiv.org/abs/1706.03762
-- 相关主题：[Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md), [FlashAttention](../../systems/topics/flashattention.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 相关主题：[Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md), [FlashAttention](../../01-systems/topics/flashattention.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ---
 

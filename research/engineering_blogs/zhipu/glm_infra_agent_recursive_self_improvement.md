@@ -77,8 +77,8 @@
 
 ## 和现有主题的关系
 
-- [Agentic RL](../../../rl-infra/topics/agentic_rl.md)：迁移实验方法到 rollout 延迟和状态传输；不跨版本照搬修复。
-- [Context Parallelism](../../../training-infra/topics/context_parallelism.md)：分片也会改变数值路径。
+- [Agentic RL](../../../04-rl-infra/topics/agentic_rl.md)：迁移实验方法到 rollout 延迟和状态传输；不跨版本照搬修复。
+- [Context Parallelism](../../../02-training-infra/topics/context_parallelism.md)：分片也会改变数值路径。
 - [P1](../../reading_queue/P1.md)：正文已精读，后续保留代码与实验跟进。
 - [知识图谱](../../../KNOWLEDGE_GRAPH.md) / [总阅读表](../../MASTER_READING_LIST.md)。
 

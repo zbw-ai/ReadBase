@@ -32,7 +32,7 @@
 - Status：NEW
 - 建议动作：作为本轮下一篇优先精读候选；先读 Section 2.2、2.3、4、5，暂不直接挤入已满的 P0
 - 预计阅读：2h
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [FP8](../../systems/topics/fp8.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FP8](../../01-systems/topics/fp8.md)
 
 K-EXAONE 2.0 从 K-EXAONE 的 48 层、128 experts 扩展到 78 层、256 experts，模型达到 750B 总参数、约 37B active parameters。它不是简单复制：expert duplication 后加入 norm-preserving rotation noise 打破对称性；更深层 expert 的异常 SwiGLU activation 则通过 clamping 约束，直接服务于低精度训练和推理稳定性。
 
@@ -56,7 +56,7 @@ K-EXAONE 2.0 从 K-EXAONE 的 48 层、128 experts 扩展到 78 层、256 expert
 - Status：NEW
 - 建议动作：P0 候选；重点核对 consistency contract、tensor identity、failure recovery、backend adapter 与跨组件 policy API
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 现有系统通常分别为 model loading、weight sync、KV cache 和 checkpoint 写专用数据通路；结果是状态 identity、placement、transport 与 compute engine 绑死，跨组件策略很难组合。TensorCast 提出的 Tensor-as-a-Service 把 tensor state management 与 compute logic 分开，向上暴露 lifecycle primitive，向下选择分布式执行和数据移动机制。
 
@@ -80,7 +80,7 @@ K-EXAONE 2.0 从 K-EXAONE 的 48 层、128 experts 扩展到 78 层、256 expert
 - Status：NEW
 - 建议动作：精读 correctness proof、tree verification、fast/slow update trigger；再判断是否能接入 AReaL 或 SGLang rollout backend
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MOPD](../../rl-infra/topics/mopd.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [MOPD](../../04-rl-infra/topics/mopd.md)
 
 普通 speculative decoding 假设 target 相对稳定，但 RL policy 在持续更新：drafter 不更新会迅速失配，频繁更新又可能吃掉生成收益。SpecRoll 使用 future-token heads 并行提案，快路径 Reflex 用延迟 verifier feedback 对当前 trajectory 的 hidden state 做 bounded correction，不反向传播；慢路径只在持续退化时更新 head parameters。
 
@@ -104,7 +104,7 @@ K-EXAONE 2.0 从 K-EXAONE 的 48 层、128 experts 扩展到 78 层、256 expert
 - Status：NEW
 - 建议动作：进入 Agentic RL topic 候选材料；重点读 production trace methodology、CPU critical path、GPU state prefetch 和 tail-latency protection
 - 预计阅读：1.5h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 论文把 Agent request 展开为 LLM inference、tool invocation 与 orchestration decision 的工作流，指出 CPU 因 host-side orchestration/tool execution 进入关键路径，负载则呈低平均利用率与突发 spike；不同模型角色和任务进一步制造 GPU imbalance。这个结果与 rollout infra 的经验一致：训练侧看到的 generation latency 只是完整 trajectory 的一部分。
 
@@ -128,7 +128,7 @@ Agora 原型动态回收 idle CPU core、用 role pool 和 affinity scheduling �
 - Status：NEW
 - 建议动作：不新建框架专题；把 slime 与 AReaL 的 colocated state machine 做一次代码级对照，再决定实验
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 slime v0.3.1 不是单点 feature release：它加入 `--release-train` 释放/重载 trainer worker、disk-level delta weight sync 与 engine-side `/pull_weights`、FLOPs-balanced microbatch、fused PPO logprob/entropy、top-p mask 以及 coding-agent trajectory/harness 稳定性修复。最值得吸收的是 sampling distribution 与 training loss 对齐、变长 workload balance 和 disaggregated weight update 被同时当作 runtime correctness 问题。
 
@@ -152,7 +152,7 @@ AReaL #1500 通过 AWEX 让 Megatron actor 与 SGLang rollout time-share 同一�
 - Status：NEW
 - 建议动作：作为 MoE topic 后续材料；核验 topology cost matrix、replica matching、guest-weight overlap 和 workload sensitivity
 - 预计阅读：1.5h
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 TAOT 把 hot rank overload 与 idle rank capacity 建模成 entropy-regularized optimal transport，通过 topology-aware communication cost matrix 产生 rank-level flow hint，再把它转换成 integer replica placement 与 token assignment。系统实现还让 guest expert weight transfer 与 home expert compute overlap，以隐藏动态复制成本。
 
@@ -165,7 +165,7 @@ TAOT 把 hot rank overload 与 idle rank capacity 建模成 entropy-regularized 
 | Operating Multi-Node Full Fine-Tuning on NVIDIA B300 | arxiv:2608.05944 | P1 | Observe / Read later | 16x B300、FSDP/ZeRO-3 的 power triage、NFS negative result 和 token-packing NCCL deadlock 很实用，但属于小规模 field report；先保留为 troubleshooting 证据，不挤占本轮主线。 |
 | Runtime Observability for Heterogeneous Attention Memory | arxiv:2608.05863 | P1 | Observe | attention memory risk ledger 与 fail-closed contract 有新意，也提供代码；但“served DeepSeek-V4 stack”等设置与证据链较复杂，需要先复核 artifacts 再升级。 |
 | CommBench | arxiv:2608.04450 | P1 | Observe | 100+ NVLink/RDMA communication tasks 很适合评估 AI systems coding，但它当前更像 benchmark，不直接改变训练平台架构。 |
-| Any-OPD | arxiv:2608.03316 | P1 | Observe | 与 [MOPD](../../rl-infra/topics/mopd.md) 有概念关联，但目标是异构 latent flow-matching generator，不是当前 LLM Agent RL 主线。 |
+| Any-OPD | arxiv:2608.03316 | P1 | Observe | 与 [MOPD](../../04-rl-infra/topics/mopd.md) 有概念关联，但目标是异构 latent flow-matching generator，不是当前 LLM Agent RL 主线。 |
 | Training a coding agent using the OpenCode harness in remote HF sandboxes | hf-blog:opencode-hf-sandbox | P1 | Read later | 与 TRL #6565 对应，展示 loop-owning remote sandbox 训练路径；工程相关，但主要是社区教程和框架示例，不单列 frontier signal。 |
 | NVIDIA 08-04 robotics / Alpamayo posts | blog:nvidia/2026-08-04 | Out of Scope | Ignore | 官方一手材料已扫描，但主要面向 robotics/world-action model 数据生成，不改变当前 Training/RL Infra 判断。 |
 
@@ -226,6 +226,6 @@ TAOT 把 hot rank overload 与 idle rank capacity 建模成 entropy-regularized 
 
 - [x] 更新 [Scan Log](scan_log.md)。
 - [ ] 需要阅读：K-EXAONE 2.0 Section 2.2 / 2.3 / 4 / 5；TensorCast abstraction and consistency；SpecRoll exactness and runtime cost。
-- [ ] 需要更新的 topic：确认精读后再更新 [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[MoE](../../training-infra/topics/moe.md) 与 [Long-context Training](../../training-infra/topics/long_context_training.md)，不根据摘要提前沉淀结论。
+- [ ] 需要更新的 topic：确认精读后再更新 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[MoE](../../02-training-infra/topics/moe.md) 与 [Long-context Training](../../02-training-infra/topics/long_context_training.md)，不根据摘要提前沉淀结论。
 - [ ] 需要新增的 report note：K-EXAONE 2.0 达到 technical report 建档门槛，但应在实际精读后创建，不生成空笔记。
 - [ ] 需要做实验验证的方向：AReaL AWEX colocated vs separated goodput；按 FLOPs / largest-first 排序 variable-length microbatch 的 reserved memory 与 step-time tail；policy update 下 speculative drafter acceptance decay。

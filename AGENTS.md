@@ -22,7 +22,9 @@ North Star: build a production-grade understanding of Large-Scale AI Systems thr
 - All paths in these rules are repository-root-relative unless explicitly marked as a relative-link example.
 - `README.md` is the umbrella entry point and prioritizes the long-term learning map. Keep one recent-updates list with at most five entries, linking directly to substantive content or project updates; refresh it after substantial content changes. Do not include private personal or salary data.
 - `KNOWLEDGE_GRAPH.md` is the single cross-track knowledge graph.
-- `systems/`, `training-infra/`, `inference-infra/`, `rl-infra/`, and `embodied-infra/` are peer tracks. Each has a `README.md` entry and `topics/` chapters, not its own full research radar, reading queue, or knowledge graph.
+- `01-systems/`, `02-training-infra/`, `03-inference-infra/`, `04-rl-infra/`, and `05-embodied-infra/` are peer tracks. Each has a `README.md` entry and `topics/` chapters, not its own full research radar, reading queue, or knowledge graph.
+- Keep these five root prefixes stable. Use second-level labels such as `1.1` and `2.1` in Part README topic navigation only; do not rename topic basenames or renumber their internal headings. Numbering identifies a category, not reading priority. Practice and interview remain `practice/` and `interview/`, labeled Part 06/07 in navigation.
+- The legacy `training-infra-roadmap/` jump pages are retired. Preserve their familiar navigation at `02-training-infra/README.md#original-library` and the root `README.md#familiar-entry`; do not recreate a parallel legacy root. Keep historical migration records intact, while updating their live links when needed. Ordinary GitHub directory renames do not redirect external bookmarks.
 - `research/papers/`, `research/tech_reports/`, and `research/engineering_blogs/` contain shared paper, model/system report, and engineering-source notes. Official docs, release notes, and vendor technical posts are first-class sources for implementation details.
 - `research/tracking/` is the shared research radar: frontier scans, scan logs, release notes, trends, monthly digests, and historical backfill. It records signal and triage, not full notes.
 - `research/reading_queue/` turns signals into shared P0/P1/Done reading decisions. The P0 target is at most three active items during future triage; structural migrations must not delete, demote, or mark existing items Done merely to satisfy that target.
@@ -31,8 +33,8 @@ North Star: build a production-grade understanding of Large-Scale AI Systems thr
 - `practice/experiments/`, `practice/projects/`, and `practice/playbooks/` contain verification, project evidence, and production runbooks respectively.
 - `interview/README.md` is an interview hub only; `interview/topics/` contains shared interview handbook notes. Preserve `private_resume/` and its existing main/Coding/materials paths; do not move private material into the public hub.
 - `reading_inbox/` remains independent from the curated research workflow.
-- `training-infra/roadmaps/` preserves historical training-focused learning plans; it is not the root learning map.
-- Core learning routes live inside their owning Part: `systems/roadmaps/` for GPU and distributed systems, and `inference-infra/roadmap.md`, `rl-infra/roadmap.md`, `embodied-infra/roadmap.md` for application tracks. Routes define learning order, coverage gaps, and mastery checks; reuse canonical topic bodies and shared experiments instead of duplicating them. A route is not a second research queue or evidence that an experiment has run.
+- `02-training-infra/roadmaps/` preserves historical training-focused learning plans; it is not the root learning map.
+- Core learning routes live inside their owning Part: `01-systems/roadmaps/` for GPU and distributed systems, and `03-inference-infra/roadmap.md`, `04-rl-infra/roadmap.md`, `05-embodied-infra/roadmap.md` for application tracks. Routes define learning order, coverage gaps, and mastery checks; reuse canonical topic bodies and shared experiments instead of duplicating them. A route is not a second research queue or evidence that an experiment has run.
 - `assets/handbook/` holds the migrated handbook figures; existing root-level `assets/` resources keep their paths.
 
 ## Document Templates
@@ -123,7 +125,7 @@ Important: if a paper does not change model/learning understanding, engineering 
 - Use relative Markdown links between files.
 - Keep links bidirectional when adding important relationships.
 - Update root `KNOWLEDGE_GRAPH.md` and `research/MASTER_READING_LIST.md` when adding a relationship that changes navigation.
-- Relative-link examples: from `research/papers/transformer.md` to a training chapter use `../../training-infra/topics/tensor_parallelism.md`; from that chapter back to the source use `../../research/papers/transformer.md`; from `research/tracking/README.md` to the shared queue use `../reading_queue/README.md`. Do not assume all topics remain one directory above a source note.
+- Relative-link examples: from `research/papers/transformer.md` to a training chapter use `../../02-training-infra/topics/tensor_parallelism.md`; from that chapter back to the source use `../../research/papers/transformer.md`; from `research/tracking/README.md` to the shared queue use `../reading_queue/README.md`. Do not assume all topics remain one directory above a source note.
 - Before claiming completion, verify internal Markdown links and image paths.
 
 ## Diagram Rules

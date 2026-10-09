@@ -134,6 +134,6 @@ A3 的数字来自[固定版本 design doc](https://github.com/NVIDIA-NeMo/RL/bl
 - 所列 GitHub REST commits 以 since 限定，vLLM 3 页（100+100+18）、SGLang 3 页（100+100+1），其余一页，均以不足 100 条结束。证明所选默认分支提交索引覆盖，不证明全部 PR、其他分支或全部 patch 已精读；O1–O5 和旧 NeMo/OpenRLHF 深读项继续保留。
 - OpenAI/Anthropic 直接 HTTP 403，已回退网页工具读取官方目录。厂商 Watch 是目录与命中页定向核查，不声称整个站点穷尽；AIPerf 发布日缺少时分秒，单独标记边界。
 - 下轮从本轮 Next cursor 继续，arXiv 回看 9/18 公告边界并按 Source ID 去重；HF TRL 版本口径仍需追查。
-- [P1](../reading_queue/P1.md)新增 DeepSeek 报告和 NVFP4 优先阅读；保留原 P0 三条与用户学习状态。将 gate mode 与原子容量契约补入 [Agentic RL](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries) 和[实验计划](../../practice/experiments/rl_state_boundaries.md)，尚未执行，不标 VERIFIED。
+- [P1](../reading_queue/P1.md)新增 DeepSeek 报告和 NVFP4 优先阅读；保留原 P0 三条与用户学习状态。将 gate mode 与原子容量契约补入 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) 和[实验计划](../../practice/experiments/rl_state_boundaries.md)，尚未执行，不标 VERIFIED。
 
 导航：[Tracking](README.md) · [Scan Log](scan_log.md) · [Master Reading List](../MASTER_READING_LIST.md) · [Knowledge Graph](../../KNOWLEDGE_GRAPH.md)。

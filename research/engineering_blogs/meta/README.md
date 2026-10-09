@@ -6,5 +6,5 @@
 
 - [Llama 2](../../tech_reports/llama2.md)
 - [Llama 3](../../tech_reports/llama3.md)
-- [FSDP](../../../training-infra/topics/fsdp.md)
-- [Distributed Training](../../../training-infra/topics/distributed_training.md)
+- [FSDP](../../../02-training-infra/topics/fsdp.md)
+- [Distributed Training](../../../02-training-infra/topics/distributed_training.md)

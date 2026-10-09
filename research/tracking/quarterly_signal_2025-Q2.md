@@ -35,7 +35,7 @@
 | 原始时间 / 本次核验 | 2025-05-30 / 2026-09-22 | 2025-05-29 / 2026-09-22 |
 | Impact / Decision | 高 / **Deep Dive** | 高 / **Read** |
 | Reason / 一句话价值 | 把异步效率与 staleness 控制放进同一个训练目标 | 暴露大模型 RL 的分布式组件放置和权重同步路径 |
-| Related topics | [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Rollout Latency](../../practice/playbooks/rollout_latency.md) | [Distributed Training](../../training-infra/topics/distributed_training.md)、[Checkpointing](../../training-infra/topics/checkpointing.md) |
+| Related topics | [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Rollout Latency](../../practice/playbooks/rollout_latency.md) | [Distributed Training](../../02-training-infra/topics/distributed_training.md)、[Checkpointing](../../02-training-infra/topics/checkpointing.md) |
 | Next / 目标去向 | 追踪轨迹 admission、policy version 和 trainer consume；topic / experiment 候选 | 画 trainer shard 到 generator shard 的映射与传输时间线；paper / insight 候选 |
 | Lifecycle | **NEW**：本次候选，既有状态不改 | **NEW** |
 
@@ -53,7 +53,7 @@
 | 原始时间 / 本次核验 | 2025-05-16 / 2026-09-22 |
 | Impact / Decision | 高 / **Deep Dive** |
 | Reason / 一句话价值 | 联合决定并行布局、显存与通信调度，避免把每个 kernel 的最优当成作业最优 |
-| Related topics | [MoE](../../training-infra/topics/moe.md)、[FP8](../../systems/topics/fp8.md)、[Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md)、[NCCL](../../systems/topics/nccl.md) |
+| Related topics | [MoE](../../02-training-infra/topics/moe.md)、[FP8](../../01-systems/topics/fp8.md)、[Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md)、[NCCL](../../01-systems/topics/nccl.md) |
 | Next / 目标去向 | 在固定 MoE workload 中分别计量可覆盖与暴露通信；paper / topic / experiment 候选 |
 | Lifecycle | **NEW** |
 
@@ -71,7 +71,7 @@
 | 原始时间 / 本次核验 | 论文 2025-04-24 / 2026-09-22 |
 | Impact / Decision | 中高 / **Read** |
 | Reason / 一句话价值 | 改变高性能 kernel 的实现和迭代方式，而不是提供某个 shape 的一次性性能冠军 |
-| Related topics | [FlashAttention](../../systems/topics/flashattention.md)、[FP8](../../systems/topics/fp8.md)、[Transformer Engine](../../systems/topics/transformer_engine.md) |
+| Related topics | [FlashAttention](../../01-systems/topics/flashattention.md)、[FP8](../../01-systems/topics/fp8.md)、[Transformer Engine](../../01-systems/topics/transformer_engine.md) |
 | Next / 目标去向 | 为一个现有热点写最小 tile dataflow，并比较正确性、编译成本与全 step 收益；paper / experiment 候选 |
 | Lifecycle | **NEW** |
 
@@ -89,7 +89,7 @@
 | 原始时间 / 本次核验 | 2025-06-06 / 2026-09-22 |
 | Impact / Decision | 中高 / **Read** |
 | Reason / 一句话价值 | 将样本、环境与多模型放置放进明确的调度和数据接口 |
-| Related topics | [RL Framework Selection](../../rl-infra/topics/rl_framework_selection.md)、[Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md) |
+| Related topics | [RL Framework Selection](../../04-rl-infra/topics/rl_framework_selection.md)、[Agentic RL](../../04-rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md) |
 | Next / 目标去向 | 对比完成、取消、超时、奖励返回的状态转移与 AReaL 数据入口；paper / topic / experiment 候选 |
 | Lifecycle | **NEW** |
 

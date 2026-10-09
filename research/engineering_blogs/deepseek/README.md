@@ -6,5 +6,5 @@
 
 - [DeepSeek-V3](../../tech_reports/deepseek_v3.md)
 - [DeepSeek-R1](../../tech_reports/deepseek_r1.md)
-- [MoE](../../../training-infra/topics/moe.md)
-- [FP8](../../../systems/topics/fp8.md)
+- [MoE](../../../02-training-infra/topics/moe.md)
+- [FP8](../../../01-systems/topics/fp8.md)

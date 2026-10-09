@@ -25,7 +25,7 @@
 
 重点读 expert 参数的驻留方式、GPU 上的路由元数据、EP/PP 和 distributed optimizer 如何配合，以及 MXFP8 的转换成本。文章报告的多组对比采用不同模型、硬件与负载；不能混成一个通用加速比。本轮核对官方文章与代码入口，tech report 链接抓取失败，**未完成报告全文和代码路径审计**。
 
-关联：[MoE](../../training-infra/topics/moe.md#october-2026-joint-design)、[FP8](../../systems/topics/fp8.md)。下一步：进入 [P1](../reading_queue/P1.md#october-2026-priority)，先画参数/activation 的驻留和迁移图，再补读技术报告的消融；预留 2h。
+关联：[MoE](../../02-training-infra/topics/moe.md#october-2026-joint-design)、[FP8](../../01-systems/topics/fp8.md)。下一步：进入 [P1](../reading_queue/P1.md#october-2026-priority)，先画参数/activation 的驻留和迁移图，再补读技术报告的消融；预留 2h。
 
 <a id="a2"></a>
 ### A2 · VenusRL：优化凑齐训练组的时间
@@ -38,7 +38,7 @@
 
 训练、生成、环境交互解耦后，长度预测与组级优先级影响 GPU slot、prefill 和 KV 分配；接近 staleness 边界的组获得更高优先级。环境侧另用 microVM 共享与 COW 控制内存。作者的性能结果只适用于论文实验；本轮未验证公开代码、稳定性或可直接迁移性。
 
-关联：[Agentic RL](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)。下一步：进入 [P1](../reading_queue/P1.md#october-2026-priority)，对照 AReaL 记录 ready-group latency、policy age、环境 OOM 和 KV eviction，先判断瓶颈是否相同；预留 2h。
+关联：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)。下一步：进入 [P1](../reading_queue/P1.md#october-2026-priority)，对照 AReaL 记录 ready-group latency、policy age、环境 OOM 和 KV eviction，先判断瓶颈是否相同；预留 2h。
 
 <a id="a3"></a>
 ### A3 · HAPMoE：异构硬件下联合搜索并行配置
@@ -51,7 +51,7 @@
 
 profile–model–search 联合选择 PP/TP/DP/EP/TPE/CP、stage 放置和重计算，并生成 Megatron 配置。这里的六维是搜索变量，**不能直接相乘当 world size**。方法针对相对稳定的部署窗口；路由分布持续变化需要重新 profile。跨厂商通信实现、模型误差及 launcher 的实用性仍需代码和实机验证。
 
-关联：[MoE](../../training-infra/topics/moe.md#october-2026-joint-design)、[Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md)。下一步：按当前集群构造算力/带宽/显存表，检查规划输入是否可测；暂留雷达，60min 选读 §3–5。
+关联：[MoE](../../02-training-infra/topics/moe.md#october-2026-joint-design)、[Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md)。下一步：按当前集群构造算力/带宽/显存表，检查规划输入是否可测；暂留雷达，60min 选读 §3–5。
 
 <a id="a4"></a>
 ### A4 · TRANSIT：用 CPU DRAM 换取更少的 GPU
@@ -64,7 +64,7 @@ profile–model–search 联合选择 PP/TP/DP/EP/TPE/CP、stage 放置和重计
 
 用户态 interposition 将分配引向 UVM，利用 warm-up 访存记录选择预取或 zero-copy；低复用数据可从 CPU DRAM 直接进入 GPU cache。论文的 **per-GPU throughput 不等于总吞吐**，缩卡保持每卡效率不能推出总训练时间不变。透明接入也不自动证明所有 allocator、CUDA graph 和 runtime 组合兼容。
 
-关联：[ZeRO](../../training-infra/topics/zero.md)、[FSDP](../../training-infra/topics/fsdp.md)。下一步：先列 NUMA/PCIe、host-memory 压力、总 tokens/s、GPU-hours 与排队时间的比较表；暂留雷达，60min 阅读 §3–5，未复现。
+关联：[ZeRO](../../02-training-infra/topics/zero.md)、[FSDP](../../02-training-infra/topics/fsdp.md)。下一步：先列 NUMA/PCIe、host-memory 压力、总 tokens/s、GPU-hours 与排队时间的比较表；暂留雷达，60min 阅读 §3–5，未复现。
 
 <a id="a5"></a>
 ### A5 · ThinkingBox：验证任务最终状态
@@ -77,7 +77,7 @@ profile–model–search 联合选择 PP/TP/DP/EP/TPE/CP、stage 放置和重计
 
 每次尝试使用隔离的任务状态，主要用确定性状态检查，必要时加限定 rubric；重复尝试衡量稳定性。多次均成功是有限样本的观测，不是可靠性保证。发布的评测集不能直接拿来训练后再报告同一评测成绩。
 
-关联：[Agentic RL](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)。下一步：沿已有 MiMo/CodeMidas 环境主线选读 45min，给一个任务增加最终状态、额外副作用、system failure 三类验收；暂留雷达。
+关联：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)。下一步：沿已有 MiMo/CodeMidas 环境主线选读 45min，给一个任务增加最终状态、额外副作用、system failure 三类验收；暂留雷达。
 
 <a id="a6"></a>
 ### A6 · NVIDIA AICR v1.0：配置需要可核验的实际状态
@@ -90,7 +90,7 @@ profile–model–search 联合选择 PP/TP/DP/EP/TPE/CP、stage 放置和重计
 
 Snapshot、Recipe、Bundle、Validation 分别表达观测、期望、交付物和验证。Recipe 本身不负责持续 reconcile，验证证据也只覆盖其声明的环境与检查项。本轮读的是人工正文与官方仓库入口，没有运行工具，不依据页面 AI-generated summary 推导能力。
 
-关联：[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)、[NCCL](../../systems/topics/nccl.md)。下一步：为一次实际集群升级拟定前后 snapshot 与通信验证表；暂留雷达，45min 选读。
+关联：[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)、[NCCL](../../01-systems/topics/nccl.md)。下一步：为一次实际集群升级拟定前后 snapshot 与通信验证表；暂留雷达，45min 选读。
 
 <a id="a7"></a>
 ### A7 · DOCA GPUNetIO：GPU 发起网络操作的公共底座
@@ -103,7 +103,7 @@ Snapshot、Recipe、Bundle、Validation 分别表达观测、期望、交付物�
 
 CPU 仍负责初始化 GPU/NIC 资源，GPU 执行部分提交与 completion 操作。开源 Verbs 路径和完整 DOCA SDK 的能力范围不同；不能写成所有网络功能都开源、都不需要 CPU。本轮核对官方正文，未对通信库的具体版本组合做兼容验证。
 
-关联：[NCCL](../../systems/topics/nccl.md)。下一步：画 CPU setup / GPU doorbell / completion / buffer lifetime 时序，再对照自己使用的 NCCL backend；暂留雷达，60min。
+关联：[NCCL](../../01-systems/topics/nccl.md)。下一步：画 CPU setup / GPU doorbell / completion / buffer lifetime 时序，再对照自己使用的 NCCL backend；暂留雷达，60min。
 
 ## Accepted：GitHub 实现进展
 
@@ -118,7 +118,7 @@ CPU 仍负责初始化 GPU/NIC 资源，GPU 执行部分提交与 completion 操
 
 已读 tag 文件：检查实际映射的 libnccl 和符号，代码要求 NCCL ≥ 2.29.7；不支持时明确报错。collective 调用必须在各 rank 同序且 communicator 空闲；`model_update/` 跨角色组不一起 idle，因此跳过。回滚只属 best effort，不能保证任意部分失败都恢复。release 另含 router replay 等变化，本轮不逐项认证。
 
-子系统：training / weight sync；维度：显存、正确性、可运维性。对 AReaL：可借鉴状态边界，不直接复制私有 handle 访问。下一步：先检查真实 NCCL runtime 和跨角色 group 清单，再设计暂停/恢复故障注入；关联 [RL 状态主题](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min 选读。
+子系统：training / weight sync；维度：显存、正确性、可运维性。对 AReaL：可借鉴状态边界，不直接复制私有 handle 访问。下一步：先检查真实 NCCL runtime 和跨角色 group 清单，再设计暂停/恢复故障注入；关联 [RL 状态主题](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min 选读。
 
 <a id="a9"></a>
 ### A9 · TRL v1.14.2：结束 token 会改变实际训练样本
@@ -144,7 +144,7 @@ CPU 仍负责初始化 GPU/NIC 资源，GPU 执行部分提交与 completion 操
 
 适用 v2 **offline** 路径，支持 strict drop 和 `min_usable_group_size`；online 行为不可类推。patch 中可见 controller 参数传递、data proxy 导出数量复核及测试改动。作者说明未本地运行 pytest 或多机 GPU 集成，本轮也未运行；新增测试代码不等于测试已通过。
 
-子系统：data/trajectory path / rollout；维度：正确性、资源生命周期。相关 [#1749](https://github.com/areal-project/AReaL/pull/1749) 处理 offload/recovery 所有权，属于同一主线的说明级补充证据。下一步：对照当前部署版本核对 partial acceptance、reward denominator 和 cleanup；关联 [topic](../../rl-infra/topics/agentic_rl.md#october-2026-contracts) / [实验](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)，45min。
+子系统：data/trajectory path / rollout；维度：正确性、资源生命周期。相关 [#1749](https://github.com/areal-project/AReaL/pull/1749) 处理 offload/recovery 所有权，属于同一主线的说明级补充证据。下一步：对照当前部署版本核对 partial acceptance、reward denominator 和 cleanup；关联 [topic](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts) / [实验](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)，45min。
 
 <a id="a11"></a>
 ### A11 · verl MoE refit：checkpoint layout 与 kernel layout 不是同一份语义
@@ -157,7 +157,7 @@ CPU 仍负责初始化 GPU/NIC 资源，GPU 执行部分提交与 completion 操
 
 PR 描述在 live storage 上建立 checkpoint-layout view，再逐层 fold 回运行布局；中间不能运行 forward。完整 layer buffering 还可能保存未分片权重，不能仅按网络 bucket 估峰值。本轮核对 API 的合并时间、作者与详细说明；patch 下载超时，**未独立审计实现**。PR 中内存估计、微型模型测量不能外推所有模型。
 
-子系统：weight sync / inference backend；维度：显存、正确性。对 AReaL：先建立 canonical weight → runtime layout → refit commit 的契约。下一步：补 patch，并做两轮 refit、失败重试和固定输入 logprob 对照；关联 [RL topic](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min。
+子系统：weight sync / inference backend；维度：显存、正确性。对 AReaL：先建立 canonical weight → runtime layout → refit commit 的契约。下一步：补 patch，并做两轮 refit、失败重试和固定输入 logprob 对照；关联 [RL topic](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min。
 
 <a id="a12"></a>
 ### A12 · slime：训练重启时保留 serving
@@ -170,7 +170,7 @@ PR 描述在 live storage 上建立 checkpoint-layout view，再逐层 fold 回�
 
 PR 描述独立 ServingCluster、存活 driver fencing、queue receipts 和共享 batch publication。需要重新提交到同一个存活 Ray 集群；不是自动重试，更不保证集群全失效后保留 serving。作者报告 GPU 故障实验，但 batch 的局部阶段加速不等于端到端加速。本轮读取详细说明；patch 获取失败，未独立复核测试和代码。
 
-子系统：checkpoint/recovery / data path / weight sync；维度：可靠性、内存、恢复成本。对 AReaL：借鉴 attempt/session 所有者分离。下一步：先列 serving owner、trainer、queue、checkpoint 的失效矩阵；关联 [topic](../../rl-infra/topics/agentic_rl.md#october-2026-contracts) / [实验](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)，60min。
+子系统：checkpoint/recovery / data path / weight sync；维度：可靠性、内存、恢复成本。对 AReaL：借鉴 attempt/session 所有者分离。下一步：先列 serving owner、trainer、queue、checkpoint 的失效矩阵；关联 [topic](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts) / [实验](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)，60min。
 
 <a id="a13"></a>
 ### A13 · NeMo RL：ready-first 准入与引擎恢复各有边界
@@ -185,7 +185,7 @@ PR 描述独立 ServingCluster、存活 driver fencing、queue receipts 和共�
 
 证据为 API 合并记录和 PR 详细说明，非独立 diff 审计。#4410 的相关 GPU study 包含其他改动，不能当此 PR revision 的 GPU 验证；#3613 的作者 chaos 结果是生成/恢复测试，不是完整 GRPO 收敛验证。
 
-子系统：scheduler / rollout / checkpoint/recovery；维度：吞吐、freshness、可靠性。对 AReaL：分开测组就绪、准入与恢复，不能直接迁移一个参数名。下一步：对照 A2、A10 阅读并补故障矩阵；关联 [topic](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min。
+子系统：scheduler / rollout / checkpoint/recovery；维度：吞吐、freshness、可靠性。对 AReaL：分开测组就绪、准入与恢复，不能直接迁移一个参数名。下一步：对照 A2、A10 阅读并补故障矩阵；关联 [topic](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)，60min。
 
 ## Observed / Rejected Candidates
 
@@ -245,8 +245,8 @@ Rejected：OpenAI 产品发布和 Anthropic research 目录中的科学/经济�
 ## 阅读队列与知识回写
 
 - [P1](../reading_queue/P1.md#october-2026-priority)：新增 Olmo-core 3 / VenusRL 两个优先精读项，附 TRL/AReaL correctness 短检查；不扩张 P0。
-- [MoE topic](../../training-infra/topics/moe.md#october-2026-joint-design)：补“布局、路由、精度联合决策”，明确规划假设。
-- [Agentic RL topic](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)：补 complete/partial group、终止 token、durable recovery 的不同边界。
+- [MoE topic](../../02-training-infra/topics/moe.md#october-2026-joint-design)：补“布局、路由、精度联合决策”，明确规划假设。
+- [Agentic RL topic](../../04-rl-infra/topics/agentic_rl.md#october-2026-contracts)：补 complete/partial group、终止 token、durable recovery 的不同边界。
 - [实验候选](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)：只设计对照与验收，未运行；不标 VERIFIED。
 
 ## 去重、覆盖与下一游标

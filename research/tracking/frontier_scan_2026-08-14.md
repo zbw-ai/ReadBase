@@ -36,7 +36,7 @@
 - Reason：它没有只把 synchronous RL 改成 asynchronous RL，而是让 scheduler 根据“现在有多少可训练样本”同时决定 rollout batching、Ref/Actor pipeline 和 GPU 角色分配。
 - Status：NEW
 - 建议动作：进入下一轮 P0 候选；重点读 readiness metric、rank migration boundary、KV state preservation 和 convergence comparison
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 TideRL 包含三个互相咬合的机制：`Continuous Task Batching` 在多轮 task pause/resume 之间保留 KV 状态；`Resource-Aware Ref-Actor Pipelining` 根据 ready backlog 和 arrival interval，在 decoupled streaming 与 colocated aggregation 之间选择；`Elastic Resource Scaling` 用相同 readiness 信号在 rollout 与 training 之间移动 rank。
 
@@ -59,7 +59,7 @@ TideRL 包含三个互相咬合的机制：`Continuous Task Batching` 在多轮 
 - Reason：它指出 prefix-aware routing 只能决定“发到哪里”，却不能控制 RLVR、RLHF 和 agentic sessions 如何争夺有限 KV capacity，也不能保证 trainer 指定的 workload mixture。
 - Status：NEW
 - 建议动作：与 vLLM Router、AReaL rollout admission 一起读；重点验证 workload cap、residency accounting 和 weight-sync rewarm
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 MISA-T 位于现有 cache-aware router 之前，增加 adaptive session admission、workload-aware KV-capacity allocation 和 residency-time-aware accounting。它不是简单把请求发给 prefix hit 最大的 worker，而是限制不同 workload 占用多少 KV、存活多久，并尽量保持 trainer 要求的数据比例。
 
@@ -82,7 +82,7 @@ MISA-T 位于现有 cache-aware router 之前，增加 adaptive session admissio
 - Reason：MoE RL 的 step time 同时由 dense attention token composition 和 sparse expert peak 决定；单独优化 packing 或 routing 可能只是把瓶颈推给另一侧。
 - Status：NEW
 - 建议动作：读 optimizer-step window planner、routing replay、EDP shard objective；评估是否可复用 AReaL 已有 sample packing 与 route metadata
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 RoutePack 利用 rollout 阶段已经产生的 sequence length 和逐层 expert demand，先做 layer-wise expert placement/rerouting，再在整个 optimizer-step window 内联合优化 DP packing。它保持 logical top-k routing 与既有 MoE kernel，不依赖 microbatch-level expert replication。
 
@@ -105,7 +105,7 @@ RoutePack 利用 rollout 阶段已经产生的 sequence length 和逐层 expert 
 - Reason：它解除 colocated roles 必须 replica 数完全相等的限制，使少量 multi-GPU inference worker 可以复用大量 single-GPU trainer rank 的同一批物理 GPU。
 - Status：NEW
 - 建议动作：代码级阅读 Ray scheduler 与 physical GPU mapping；区分 grouped colocation primitive 和 TideRL/BiDiRL 式动态资源迁移
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 典型配置可以是 `16 x 4-GPU SGLang workers` 与 `64 x 1-GPU actor workers` colocate。实现要求两侧总 GPU demand 完全相等，每个 inference group 的物理 GPU 在同一节点内连续且不跨节点，并通过 NodeAffinity 和显式 GPU IDs 启动 zero-GPU launcher。
 
@@ -128,7 +128,7 @@ RoutePack 利用 rollout 阶段已经产生的 sequence length 和逐层 expert 
 - Reason：它没有做参数分片，而是让 rank 0 的 NVLink-local peers 充当跨节点 relay，使多个 NIC 并行发送同一份 model bucket，直接针对 colocated RL 的 weight-sync wall time。
 - Status：NEW
 - 建议动作：对照 AReaL weight update path，核对 topology discovery、bucket scheduling、failure semantics 和 full-param gather 剩余开销
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [NCCL](../../systems/topics/nccl.md), [Tensor Parallelism](../../training-infra/topics/tensor_parallelism.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [NCCL](../../01-systems/topics/nccl.md), [Tensor Parallelism](../../02-training-infra/topics/tensor_parallelism.md)
 
 rank 0 仍是唯一 source，但同节点 actor peers 进入 broadcast tree 作为 relay，各自可以驱动一张 NIC；remote actor workers 不作为 sender。每个 bucket 仍只执行一次 broadcast，因此不改变 parameter semantics，也不是把 tensor 切成多份发送。
 
@@ -150,8 +150,8 @@ rank 0 仍是唯一 source，但同节点 actor peers 进入 broadcast tree 作�
 - Decision：Read
 - Reason：异步 RL 的 checkpoint 不能只保存 policy/optimizer；若 controller、ready trajectories、policy-version metadata 丢失，恢复后会改变采样语义并浪费长 rollout。
 - Status：NEW
-- 建议动作：与仓库 [Checkpointing](../../training-infra/topics/checkpointing.md) 章节对照，梳理 ready/in-flight trajectory 的 exactly-once 边界
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 建议动作：与仓库 [Checkpointing](../../02-training-infra/topics/checkpointing.md) 章节对照，梳理 ready/in-flight trajectory 的 exactly-once 边界
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 SingleController checkpoint 会保存 ready replay-buffer groups 及其 metadata，包括 start/end weight、target step、group ID 和 DataPlane field data；未完成的 in-flight rollout 被明确丢弃。恢复时校验 partition ID、group size、sample ID duplication，并在 capacity 变化时保留更新鲜的数据。
 
@@ -174,7 +174,7 @@ SingleController checkpoint 会保存 ready replay-buffer groups 及其 metadata
 - Reason：PagedAttention 解决 allocator-level fragmentation，但 token-level eviction 仍受 block-level physical layout 限制；这类粒度错配会直接限制长 horizon rollout concurrency。
 - Status：NEW
 - 建议动作：核对 async repacking cost、CUDA Graph stability、eviction policy integration 和 attention kernel indirection overhead
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 vToken 用 token-table indirection 解耦 logical token liveness 与 physical block placement，并异步 repack live tokens。它保留现有 PagedAttention kernel 与 CUDA Graph compatibility，因此更像一层可复用的 KV virtualization，而不是重写 attention backend。
 
@@ -251,6 +251,6 @@ vToken 用 token-table indirection 解耦 logical token liveness 与 physical bl
 ## 下一步动作
 
 - [x] 更新 [Scan Log](scan_log.md)。
-- [ ] 精读 TideRL；若它改变对 async RL scheduler 的判断，再更新 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 与 rollout playbook。
+- [ ] 精读 TideRL；若它改变对 async RL scheduler 的判断，再更新 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 与 rollout playbook。
 - [ ] 对 AReaL #1575 和 verl #7291 做代码级对照，区分 placement、dynamic borrowing 与 weight-sync topology 三件事。
-- [ ] 将 RoutePack 作为 MoE RL 专题候选，不根据摘要直接改写 [MoE](../../training-infra/topics/moe.md)。
+- [ ] 将 RoutePack 作为 MoE RL 专题候选，不根据摘要直接改写 [MoE](../../02-training-infra/topics/moe.md)。

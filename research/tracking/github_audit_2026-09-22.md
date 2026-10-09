@@ -169,7 +169,7 @@ Open snapshot 只做标题/状态检索，不占 Accepted，完整列表见 CSV�
 ## 落点与限制
 
 - G5 接入 DeepSeek P1；G3/G4/G7/G8/G9 接入现有状态/rollout 主线；G1/G2 是版本验收参考，保持当前 P0 和用户阅读状态。
-- 更新[Agentic RL 状态章节](../../rl-infra/topics/agentic_rl.md#rl-state-boundaries)与[实验计划](../../practice/experiments/rl_state_boundaries.md)。本次没有运行上游测试、GPU workload 或自动升级依赖。
+- 更新[Agentic RL 状态章节](../../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries)与[实验计划](../../practice/experiments/rl_state_boundaries.md)。本次没有运行上游测试、GPU workload 或自动升级依赖。
 - GitHub **已声明窗口的索引缺口关闭**；源码穷尽审计、open PR 全文阅读和测试复现并不在这一结论内。后续 GitHub 从 17:06:16 扫描；非 GitHub 从原 16:52:05 继续。NVIDIA 博客正文仍是另一来源的待办。
 
 导航：[原 9/22 全源报告](frontier_scan_2026-09-22.md) · [Scan Log](scan_log.md) · [Tracking](README.md) · [P1](../reading_queue/P1.md)。

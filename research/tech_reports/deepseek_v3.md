@@ -5,7 +5,7 @@
 - 作者：DeepSeek-AI
 - 时间：2024
 - 链接：https://arxiv.org/abs/2412.19437
-- 相关主题：[MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md), [NCCL](../../systems/topics/nccl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 相关主题：[MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md), [NCCL](../../01-systems/topics/nccl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 ---
 

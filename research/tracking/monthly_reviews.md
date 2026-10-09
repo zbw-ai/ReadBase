@@ -118,4 +118,4 @@
 
 ## 与知识库的连接
 
-月报中的判断进入 [Agentic RL](../../rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)、[状态边界实验设计](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)和[慢步排障](../../practice/playbooks/slow_step_debug.md#retrospective-observability)。它们是后续验证入口，不是已完成实验。[Master Reading List](../MASTER_READING_LIST.md)与[Knowledge Graph](../../KNOWLEDGE_GRAPH.md)均以本页作为月度导航。
+月报中的判断进入 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)、[状态边界实验设计](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)和[慢步排障](../../practice/playbooks/slow_step_debug.md#retrospective-observability)。它们是后续验证入口，不是已完成实验。[Master Reading List](../MASTER_READING_LIST.md)与[Knowledge Graph](../../KNOWLEDGE_GRAPH.md)均以本页作为月度导航。

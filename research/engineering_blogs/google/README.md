@@ -6,5 +6,5 @@
 
 - [Gemini](../../tech_reports/gemini.md)
 - [PaLM](../../papers/palm.md)
-- [Distributed Training](../../../training-infra/topics/distributed_training.md)
-- [Fault Tolerance](../../../training-infra/topics/fault_tolerance.md)
+- [Distributed Training](../../../02-training-infra/topics/distributed_training.md)
+- [Fault Tolerance](../../../02-training-infra/topics/fault_tolerance.md)

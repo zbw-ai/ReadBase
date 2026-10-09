@@ -2,7 +2,7 @@
 
 > 初稿 2026-09-22；设计更新 2026-10-08；Status: NEW。以下 A–F 均为待执行设计；尚未生成环境、运行 RL、执行故障注入或完成 grader 审核，没有实测结果。
 
-背景：[团队分享报告的四条观点](../../research/tech_reports/mimo_v26.md#6-工程判断与验证路径)、[Agentic RL 状态契约](../../rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)。原始依据：[CodeMidas §3–5](https://arxiv.org/html/2609.22068v1)、[MiMo-V2.6 §4.3、§5.3、§5.5、§6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)。
+背景：[团队分享报告的四条观点](../../research/tech_reports/mimo_v26.md#6-工程判断与验证路径)、[Agentic RL 状态契约](../../04-rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)。原始依据：[CodeMidas §3–5](https://arxiv.org/html/2609.22068v1)、[MiMo-V2.6 §4.3、§5.3、§5.5、§6.3](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/73875d00b30a89ef8cc353a0b60b0e9f9561952d/MiMo_V2_6_technical_report.pdf)。
 
 ## 假设与分阶段范围
 
@@ -143,7 +143,7 @@ Conclusion and limits:
 
 产出环境清单、独立审核记录、模拟输入和完整结果后，才将对应阶段标为 VERIFIED。模拟验证不能代表 AReaL 生产路径验证；需另行接入小模型、真实环境及 runtime 后，再记录端到端证据。
 
-回写目标：[Agentic RL](../../rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[长期 insight](../../research/insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
+回写目标：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md#mimo-v26-environment-contract)、[长期 insight](../../research/insights/001_agentic_rl_will_change_training_infra.md#mimo-v26-evidence)。
 
 <a id="reproduction-entry"></a>
 

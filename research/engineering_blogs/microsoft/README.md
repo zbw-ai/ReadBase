@@ -4,7 +4,7 @@
 
 优先关联：
 
-- [ZeRO](../../../training-infra/topics/zero.md)
-- [FSDP](../../../training-infra/topics/fsdp.md)
-- [Checkpointing](../../../training-infra/topics/checkpointing.md)
-- [MoE](../../../training-infra/topics/moe.md)
+- [ZeRO](../../../02-training-infra/topics/zero.md)
+- [FSDP](../../../02-training-infra/topics/fsdp.md)
+- [Checkpointing](../../../02-training-infra/topics/checkpointing.md)
+- [MoE](../../../02-training-infra/topics/moe.md)

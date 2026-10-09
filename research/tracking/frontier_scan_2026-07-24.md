@@ -37,7 +37,7 @@
 - Reason：这是少见的万亿参数 MoE 全参后训练系统报告，覆盖 memory、parallelism、communication orchestration、kernel 和稳定性，而不是只讨论算法或小规模 SFT。
 - Status：NEW
 - 建议动作：进入下一轮 P0 候选；优先读系统总览、parallel mapping、通信 overlap、kernel breakdown 与稳定性章节
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [FP8](../../systems/topics/fp8.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [FP8](../../01-systems/topics/fp8.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 报告以 DeepSeek-V4 family 为 workload，在 Ascend NPU SuperPOD 上给出分层优化路径，并报告 34.22% MFU、相对 open-source baseline recipe 提升 2.93x。当前最值得核对的不是后半部分 OR 领域效果，而是 full-parameter post-training 如何安排参数/状态、并行组、通信 overlap 与低层 kernel，以及这些选择在 73 页正文中是否有足够可复现细节。
 
@@ -56,7 +56,7 @@
 - Reason：它直接优化 MoE expert compute 与第二次 all-to-all 的关键路径，并把调度粒度从完整 expert/kernel 降到 tile/segment。
 - Status：NEW
 - 建议动作：精读 persistent kernel、tile-ready signaling、SM partition 与 correctness；对照 DeepEP/Grouped GEMM 的 overlap 边界
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 方案让一个 persistent per-rank compute producer 覆盖本 rank 的所有 experts，并优先计算影响远端返回的 tiles；另一个驻留在少量专用 SM 上的 communication consumer，在 tile ready 后立即发起 segment-granular transfer。作者在 4x A100 上报告最高 2.64x 端到端、2.74x MoE layer speedup。下一步要确认专用 SM 的机会成本、不同 GEMM shape 下的收益稳定性，以及通信 consumer 是否依赖特定传输原语。
 
@@ -75,7 +75,7 @@
 - Reason：它针对 MoE 稀疏、动态的 token traffic，在不动态重配光网络拓扑的前提下优化 dispatch/return routing，直接连接 expert placement 与物理网络设计。
 - Status：NEW
 - 建议动作：进入 P1 候选；核对 trace 来源、tree-packing objective、拥塞模型与训练/推理 traffic 差异
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 MoX 用 token-aware multicast tree 降低复制带宽，再用离线预计算 link weights 做受限 multicast tree-packing。作者基于真实 MoE traffic/token traces 与 ASTRA-sim，报告完整 MoE block 相对 min-hop 最高 1.8x；在 1,024-TPU Boardfly 模型上，dispatch bottleneck link load 最多降低 47%。这说明 direct-connect fabric 的价值不只由拓扑决定，也取决于是否有适配 MoE traffic 的 routing layer。
 
@@ -94,7 +94,7 @@ MoX 用 token-aware multicast tree 降低复制带宽，再用离线预计算 li
 - Reason：它揭示了“相同 token chunk 可以跨位置复用 KV”这一性能优化的隐含前提不成立：KV 同时编码生成时的上下文，因此 cache key 与隔离边界必须覆盖更多状态。
 - Status：NEW
 - 建议动作：进入 P1 候选；重点核对攻击前提，并沉淀 KV cache tenant isolation、provenance、validation 与 recomputation 策略
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 传统 prefix cache 要求 token 与 position 都匹配，position-independent reuse 试图扩大命中范围；HijackKV 表明，被命中的 benign text chunk 所对应 KV 可能携带攻击者此前上下文。作者报告单次攻击平均成功率 94%，并在低命中与频繁重算条件下仍有效。对 infra 的意义不是复述 attack，而是重新审视 cache identity、跨租户共享、状态 provenance 和安全回退路径。
 
@@ -113,7 +113,7 @@ MoX 用 token-aware multicast tree 降低复制带宽，再用离线预计算 li
 - Reason：文章把 MoE per-layer all-to-all、rack 内 NVLink scale-up、rack 间 gradient scale-out 与三套训练框架的 delivered performance 放进同一组数据，适合建立硬件拓扑到训练吞吐的完整因果链。
 - Status：NEW
 - 建议动作：精读 Figure 1/3/4/7；把硬件代际、软件版本与框架差异分开，不直接把厂商报告倍数当作独立 benchmark
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Megatron-LM](../papers/megatron_lm.md), [NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Megatron-LM](../papers/megatron_lm.md), [NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 NVIDIA 在 DeepSeek-V3 671B、256 GPUs 上报告 Megatron Core 达到 1,648 TFLOPs/GPU，并称同一 GB300 NVL72 硬件六个月内依靠软件优化从 1,088 提升到 1,648 TFLOPs/GPU。扩展到 1,024 GPUs 时，Megatron Core 保持 98.5% per-GPU performance，TorchTitan/JAX 约 97%。最重要的工程判断是：MoE all-to-all 应尽量留在高带宽 scale-up domain，rack 间主要承载可被 compute 隐藏的梯度流量；但这些数据需要结合配置、precision 与 workload 细节复核。
 
@@ -132,7 +132,7 @@ NVIDIA 在 DeepSeek-V3 671B、256 GPUs 上报告 Megatron Core 达到 1,648 TFLO
 - Reason：它把 KV eviction 的评估从平均 task accuracy 推进到逐步、可归因的 cache-induced error，并证明 deterministic top-k 无法从保留状态一致估计被删除内容造成的 attention error。
 - Status：NEW
 - 建议动作：进入 P1 候选；核对 randomized tail sampling、Hájek correction 的运行时成本，以及 certificate 如何驱动 recomputation
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 论文的关键价值不在“随机淘汰比 top-k 更准”，而在于 observability：已删除的 KV 本来不可见，deterministic eviction 又不给估计器留下可校正的采样概率，因此 runtime 无法判断一次失败是 cache compression 造成的，还是模型本身就会失败。作者报告 randomized Poisson tail 在不降低 accuracy 的条件下取得 0.97 empirical coverage；certificate 对 cache-induced 与 inherent failure 的区分 AUC 为 0.73–0.75，而 output confidence 为 0.47–0.54。它更适合做 attribution 和 recomputation scheduling，作者也明确说它不是通用 failure predictor。
 
@@ -151,7 +151,7 @@ NVIDIA 在 DeepSeek-V3 671B、256 GPUs 上报告 Megatron Core 达到 1,648 TFLO
 - Reason：这不是只增加一个 engine adapter；它把 TensorRT-LLM 接进 GRPO、async trajectory collector、weight update 与 colocated/disaggregated deployment，形成可运行 recipe 边界。
 - Status：NEW
 - 建议动作：代码级对照 generation interface、pause/refit、KV invalidation 和 weight-version handling；评估其中哪些 backend contract 可迁移到 AReaL
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 merged patch 新增 `nemo_rl/models/generation/trtllm/` backend，并提供 Qwen3-1.7B colocated/non-colocated、Qwen3-8B colocated，以及 async one-step-off recipe。最值得读的是接口而不是“TensorRT-LLM 更快”这个未经独立验证的结论：同一 RL trainer 如何切换不同 generation backend，colocated 时如何暂停/释放和恢复资源，non-colocated 时如何同步权重，in-flight weight update 后为何要重建 KV cache，以及异步 rollout 如何携带 weight version。它为 AReaL 提供的是 backend contract 与 correctness checklist，而不是可直接照抄的性能倍数。
 

@@ -50,8 +50,8 @@
 
 ## 关联 Topics
 
-- [Checkpointing](../../training-infra/topics/checkpointing.md)
-- [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- [Checkpointing](../../02-training-infra/topics/checkpointing.md)
+- [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 
 ## 关联 Papers / Reports / Blogs
 

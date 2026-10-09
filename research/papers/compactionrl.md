@@ -6,7 +6,7 @@
 - 机构：Tsinghua University
 - 时间：2026
 - 链接：https://arxiv.org/abs/2607.05378
-- 相关主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 相关主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 核验说明：标题、作者、日期和摘要已按 arXiv abstract 页元信息核验；方法细节来自论文 HTML 正文。
 
 ---

@@ -10,7 +10,7 @@ DeepSpeed-MoE 关注 MoE 的训练和推理系统优化。重点看 expert paral
 
 ## 与知识图谱的关系
 
-[Switch Transformer](switch_transformer.md) → DeepSpeed-MoE → [MoE Topic](../../training-infra/topics/moe.md)。
+[Switch Transformer](switch_transformer.md) → DeepSpeed-MoE → [MoE Topic](../../02-training-infra/topics/moe.md)。
 
 ## 待补问题
 

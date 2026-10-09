@@ -21,7 +21,7 @@
 
 ### 补选、版本纠正与未升级材料
 
-- **新增精选：OpenTinker，Observe → Read，★★★★☆，状态 NEW。** Siqi Zhu、Jiaxuan You；2026-01-12；Source ID `arxiv:2601.07376v1`。下一步只比较算法/环境 API、scheduler 和执行 runtime 的责任，目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 的服务边界判断；尚未替代现有 P0。
+- **新增精选：OpenTinker，Observe → Read，★★★★☆，状态 NEW。** Siqi Zhu、Jiaxuan You；2026-01-12；Source ID `arxiv:2601.07376v1`。下一步只比较算法/环境 API、scheduler 和执行 runtime 的责任，目标为 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 的服务边界判断；尚未替代现有 P0。
 - **StaleFlow 是改题，不是错链。** 1 月 v1 原题与旧月报吻合；2026-08-03 v2 改为 *StaleFlow: Staleness-Aware Data Management for Mitigating Data Skewness in Fully Disaggregated RL Post-Training*。本次历史阅读固定 v1，不混用两个版本的吞吐数字。
 - [MoEBlaze](https://arxiv.org/abs/2601.05296v1) 仍为 **Observe**：Jiyuan Zhang 等，2026-01-08；dispatch buffer、activation materialization 和 kernel/checkpoint 协同确有价值，但本轮已有 6 月 fusion 主线，尚未建立同配置的 peak-memory 对照，暂不新增一条同类深读。
 - HetCCL 与 DASH 保留旧 Read，排在两份核心阅读之后；异构 collective 和确定性 attention 是底座。本次没有复测其性能，也没有逐项重审旧 Accepted 的全部实验。
@@ -78,7 +78,7 @@
 - Decision：Read
 - Reason：它把 fully disaggregated RL post-training 中 rollout、reward、training 三段异步执行后的 trajectory staleness 和 length skew 作为核心系统问题。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：paper note / topic / playbook
 
 这条应该和 AReaL、ECHO-2、HybridFlow / verl 一起看。它把 “policy 版本差多少还能训练” 从经验问题变成系统参数，对异步 rollout pipeline 很关键。
@@ -95,7 +95,7 @@
 - Decision：Read
 - Reason：它指出 post-training 中 sequence length variance 打破了 DP collective 的均衡假设，并重新讨论 Parameter Server / On-Demand Communication 与 FSDP 的结合。
 - 建议动作：进入 [P1](../reading_queue/P1.md)，但优先级低于 staleness-constrained rollout
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [FSDP](../../training-infra/topics/fsdp.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [FSDP](../../02-training-infra/topics/fsdp.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：topic / insight
 
 这条的价值在于提醒我们：预训练里最优的 all-reduce/all-gather 模式，不一定适合 post-training 的长短样本混合和异步数据流。
@@ -112,7 +112,7 @@
 - Decision：Read
 - Reason：它把 trillion-parameter Transformer 的 checkpoint 视为复杂 hybrid parallelism 下的结构化 distributed state，而不是 opaque binary blob。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 - 最终应流向：paper note / topic / playbook
 
 这条可以补 checkpointing 章节的“state provider / structured checkpoint metadata”视角。真实生产里，恢复失败经常不是因为文件没写完，而是 state layout、parallelism metadata、optimizer shard 和 data progress 没有被一致表达。
@@ -129,7 +129,7 @@
 - Decision：Read
 - Reason：它讨论跨厂商 heterogeneous GPU 集群中 NCCL/RCCL 等 vendor-specific collective 的割裂，并提出 RDMA-based cross-vendor communication。
 - 建议动作：进入 [P1](../reading_queue/P1.md)
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
 - 最终应流向：topic / experiment
 
 短期你未必会直接维护异构 GPU 训练集群，但这个方向会影响成本优化、弹性训练、混部资源池和国产/非 NVIDIA 适配判断。
@@ -146,7 +146,7 @@
 - Decision：Read
 - Reason：它把 deterministic attention backward 的吞吐损失拆成 compute / gradient-reduction scheduling 问题，直接连接 FlashAttention、reproducibility 和训练 debug。
 - 建议动作：进入 [P1](../reading_queue/P1.md)，但排在 RL / checkpoint / NCCL 之后
-- 关联主题：[FlashAttention](../../systems/topics/flashattention.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[FlashAttention](../../01-systems/topics/flashattention.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：topic / experiment
 
 这条很适合放进“生产可复现性”的讨论：确定性不是免费开关，它会改变 kernel scheduling 和吞吐；debug loss spike、复现线上问题时，要知道这个代价来自哪里。
@@ -198,7 +198,7 @@
 
 ## 对仓库的影响
 
-- 需要更新的 topic：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [NCCL](../../systems/topics/nccl.md), [FlashAttention](../../systems/topics/flashattention.md)
+- 需要更新的 topic：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [NCCL](../../01-systems/topics/nccl.md), [FlashAttention](../../01-systems/topics/flashattention.md)
 - 需要更新的 insight：后续可补“post-training 打破了同步 collective 的均衡假设”
 - 需要更新的 playbook：[Rollout Latency](../../practice/playbooks/rollout_latency.md) 后续应加入 staleness budget、trajectory length skew、PS/ODC-style communication 的排查入口
 - 需要新增的 experiment：deterministic attention throughput cost；checkpoint metadata consistency checklist；heterogeneous collective microbenchmark

@@ -5,7 +5,7 @@
 - 作者：Ziheng Jiang 等
 - 时间：2024
 - 链接：https://arxiv.org/abs/2402.15627
-- 相关主题：[Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [NCCL](../../systems/topics/nccl.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 相关主题：[Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [NCCL](../../01-systems/topics/nccl.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ---
 
@@ -72,9 +72,9 @@ MegaScale 是高级训练 infra 工程师必须精读的系统报告。它说明
 - [Megatron-LM](../papers/megatron_lm.md)
 - [Megatron 2021](../papers/megatron_2021.md)
 - [Llama 3](llama3.md)
-- [NCCL](../../systems/topics/nccl.md)
-- [Fault Tolerance](../../training-infra/topics/fault_tolerance.md)
-- [Checkpointing](../../training-infra/topics/checkpointing.md)
+- [NCCL](../../01-systems/topics/nccl.md)
+- [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md)
+- [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # Interview: MoE、5D 并行与 Parallel Folding
 
-深入原理：[Megatron 5D 并行](../../training-infra/topics/distributed_training.md)、[MoE 与 Parallel Folding](../../training-infra/topics/moe.md#parallel-folding)。
+深入原理：[Megatron 5D 并行](../../02-training-infra/topics/distributed_training.md)、[MoE 与 Parallel Folding](../../02-training-infra/topics/moe.md#parallel-folding)。
 
 <a id="megatron-5d"></a>
 ## 高频题 1：Megatron 的 5D 并行分别解决什么问题
@@ -106,8 +106,8 @@
 
 ## 相关专题
 
-- [Megatron 5D 并行：完整工程章节](../../training-infra/topics/distributed_training.md)
-- [MoE 与 Parallel Folding：双网格、运行时和排障](../../training-infra/topics/moe.md#parallel-folding)
-- [NCCL 与通信算子](../../systems/topics/nccl.md)
-- [Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md)
-- [Context Parallelism](../../training-infra/topics/context_parallelism.md)
+- [Megatron 5D 并行：完整工程章节](../../02-training-infra/topics/distributed_training.md)
+- [MoE 与 Parallel Folding：双网格、运行时和排障](../../02-training-infra/topics/moe.md#parallel-folding)
+- [NCCL 与通信算子](../../01-systems/topics/nccl.md)
+- [Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md)
+- [Context Parallelism](../../02-training-infra/topics/context_parallelism.md)

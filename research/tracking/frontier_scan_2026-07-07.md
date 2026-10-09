@@ -33,7 +33,7 @@
 - Status：NEW
 - 建议动作：进入 P0
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 这条信号非常贴近当前主线：RL Infra 不是只优化 policy update，而是要把任务执行环境当成训练系统的一等组件。对代码类 agent 来说，sandbox 冷启动、环境隔离、文件系统、测试执行和轨迹采集会决定训练吞吐和成本。
 
@@ -54,9 +54,9 @@
 - Status：SUMMARIZED
 - 建议动作：已生成 [paper note](../papers/compactionrl.md)，后续沉淀到 topics / playbook / experiment
 - 预计阅读：2h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
-这条信号很关键：长上下文问题不再只是“模型能不能吃 128k/256k”，而是 long-horizon rollout 训练时如何压缩历史交互状态、如何给 summary generation 分配 credit、如何避免 trajectory 过长把训练吞吐和上下文预算拖垮。它和当前 [Long-context Training](../../training-infra/topics/long_context_training.md) 以及 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 两条主线直接交叉。
+这条信号很关键：长上下文问题不再只是“模型能不能吃 128k/256k”，而是 long-horizon rollout 训练时如何压缩历史交互状态、如何给 summary generation 分配 credit、如何避免 trajectory 过长把训练吞吐和上下文预算拖垮。它和当前 [Long-context Training](../../02-training-infra/topics/long_context_training.md) 以及 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 两条主线直接交叉。
 
 ### LLM-as-a-Verifier: A General-Purpose Verification Framework
 
@@ -75,7 +75,7 @@
 - Status：NEW
 - 建议动作：进入 P1 候选
 - 预计阅读：1h
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), verifier / reward pipeline
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), verifier / reward pipeline
 
 这条不如 CompactionRL 那么直接改变训练系统边界，但对 Agentic RL Infra 的 verifier/reward 子系统有价值。它提醒我们：未来 rollout infra 不只需要更快生成样本，还需要更稳定、可分解、可重复、可校准的 verifier 作为训练反馈源。
 
@@ -140,4 +140,4 @@
 - [x] 阅读 arxiv:2607.05378
 - [ ] 评估 LLM-as-a-Verifier 是否进入 [P1](../reading_queue/P1.md)
 - [ ] 评估 PHOENIX 是否进入 checkpointing / fault tolerance topic
-- [ ] 评估 HCMS 是否进入 [Long-context Training](../../training-infra/topics/long_context_training.md)
+- [ ] 评估 HCMS 是否进入 [Long-context Training](../../02-training-infra/topics/long_context_training.md)

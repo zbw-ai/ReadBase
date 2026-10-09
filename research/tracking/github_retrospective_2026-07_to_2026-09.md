@@ -196,4 +196,4 @@ ROLL、OpenRLHF、Transformers、PEFT、Kernels 与 tokenizers 同样完成索�
 2. “传输稀疏就代表更新便宜”需要拆成 wire、staging、apply、rebuild 和 admission；这里只验证机制边界，尚无本地端到端收益结论。
 3. “有 checkpoint 就可恢复”需要消费 frontier 和状态发布协议；“有 CP”需要 attention、recurrent state 和 loss 统计域匹配。
 
-月度阅读：[7 月](monthly_signal_2026-07.md)、[8 月](monthly_signal_2026-08.md)、[9 月阶段报告](monthly_signal_2026-09.md)；[总入口](monthly_reviews.md)。判断进入 [Agentic RL 章节](../../rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)与[实验设计](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)，并未标为 VERIFIED。
+月度阅读：[7 月](monthly_signal_2026-07.md)、[8 月](monthly_signal_2026-08.md)、[9 月阶段报告](monthly_signal_2026-09.md)；[总入口](monthly_reviews.md)。判断进入 [Agentic RL 章节](../../04-rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)与[实验设计](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)，并未标为 VERIFIED。

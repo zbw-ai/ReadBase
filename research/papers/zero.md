@@ -5,7 +5,7 @@
 - 作者：Samyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, Yuxiong He
 - 时间：2019
 - 链接：https://arxiv.org/abs/1910.02054
-- 相关主题：[ZeRO](../../training-infra/topics/zero.md), [FSDP](../../training-infra/topics/fsdp.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 相关主题：[ZeRO](../../02-training-infra/topics/zero.md), [FSDP](../../02-training-infra/topics/fsdp.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 ---
 

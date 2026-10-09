@@ -50,8 +50,8 @@ MoE 吞吐、收敛稳定性、straggler、显存峰值。
 
 ## 关联 Topics
 
-- [MoE](../../training-infra/topics/moe.md)
-- [NCCL](../../systems/topics/nccl.md)
+- [MoE](../../02-training-infra/topics/moe.md)
+- [NCCL](../../01-systems/topics/nccl.md)
 
 ## 关联 Papers / Reports / Blogs
 

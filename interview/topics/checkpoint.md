@@ -1,6 +1,6 @@
 # Interview: Checkpoint
 
-相关手册章节：[Checkpointing](../../training-infra/topics/checkpointing.md)
+相关手册章节：[Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 ## 高频面试题
 

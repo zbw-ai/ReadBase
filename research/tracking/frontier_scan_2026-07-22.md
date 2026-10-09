@@ -37,7 +37,7 @@
 - Reason：它不是泛化的 attention 改进，而是直接解释 Megatron-Core 训练实现中的 assert，并给出兼顾通信量、激活内存与数值一致性的 MLA sequence-parallel path。
 - Status：NEW
 - 建议动作：本次首选精读；重点复核 activation lifetime、latent all-gather volume、SP group topology 与 fused kernel 条件
-- 关联主题：[Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Megatron-LM](../papers/megatron_lm.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Sequence Parallelism](../../02-training-infra/topics/sequence_parallelism.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Megatron-LM](../papers/megatron_lm.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 直接把 absorbed MLA 搬到训练阶段会让中间张量落在 `n_h x d_kv` 维度，作者报告 activation memory 增加 20%~34%，DeepSeek-V3 配置下最多增加 9.2 GB。LAGA 保留 latent all-gather 的低通信优势，但在每张卡本地重建 per-head K/V；在 8x Ascend 910B 上将 collective communication 减少 1.98x，并报告跨节点 attention-block throughput 提升 1.07x~1.24x。
 
@@ -56,7 +56,7 @@
 - Reason：它没有简单复制两套完整 MoE 模型做 prefill/decode 分离，而是共享重量最大的 experts，只拆分轻量 attention，并把 expert execution 调度下沉到 tile 粒度。
 - Status：NEW
 - 建议动作：与 Dynamo、Mooncake、DistServe 和 RL rollout serving 的 PD 架构对照；确认 expert sharing 的故障域与网络隔离代价
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md), [NCCL](../../systems/topics/nccl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [NCCL](../../01-systems/topics/nccl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 ExpertPlex 通过跨 prefill/decode phase 共享 MoE experts，报告消除超过 95% 的重复权重；attention module 保持 disaggregated。它再用 adaptive persistent kernel 做 tile-level expert scheduling，并由 attention 发起 MoE communication 以减少网络干扰。MiniMax-M2.7 与 GLM-5.1-FP8 实验中，作者报告相对 instance-level PD 的 goodput 最多提升 2.01x。
 
@@ -75,7 +75,7 @@ ExpertPlex 通过跨 prefill/decode phase 共享 MoE experts，报告消除超�
 - Reason：多轮 Agent 的 prefix reuse 将瓶颈从 GPU compute 推到 TB-scale KV state；这篇给出真实 CXL-HM prototype，而不是只做模拟或容量估算。
 - Status：NEW
 - 建议动作：核对 prefix prefetch 命中率、SSD tail latency、write amplification 与 PD serving 下的恢复语义
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 HyMCache 用少量 device DRAM 加 SSD-backed CXL capacity 承载可复用 KV，并利用多轮 KV 的 read-dominant、predictable、append-only 特性做 request-level prefix prefetch 和 opportunistic write buffering。同等 DRAM budget 下，作者报告单节点相对 LMCache 提升 3.0x，PD-disaggregated serving 提升 1.45x；相对 1 TB distributed-DRAM Mooncake 性能低约 30%，但 DRAM 用量减少 16x。
 
@@ -94,7 +94,7 @@ HyMCache 用少量 device DRAM 加 SSD-backed CXL capacity 承载可复用 KV，
 - Reason：tool-using Agent 不是独立 request 流；同一 session 会在短 tool gap 后返回，并复用大段 KV prefix，因此 placement 目标应从单请求负载转向 session completion time。
 - Status：NEW
 - 建议动作：对照 rollout scheduler，研究 soft reservation、session-prefill 与 policy-version freshness 能否联合设计
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Long-context Training](../../training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 
 Talaria 的 router 同时考虑 model residency、KV locality 与 instance pressure，并用 soft reservation 为预计返回的 session 预留 admission budget。作者在单台 TP=8 服务器、30 个 SWE-Bench sessions、960 次调用和三个 100B+ 模型上，报告 p50 session completion time 从 1000 秒降到 189 秒，p95 从 2296 秒降到 867 秒。
 
@@ -113,7 +113,7 @@ Talaria 的 router 同时考虑 model residency、KV locality 与 instance press
 - Reason：它提供了长时 Agent 生产事故与修复闭环，证明短任务 eval 和逐 action guard 无法覆盖数小时的目标漂移与环境绕过。
 - Status：NEW
 - 建议动作：沉淀为 long-horizon rollout/eval playbook：trajectory monitor、用户可见性、pause、replay、rollback、incident-derived eval
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 
 OpenAI 报告内部长时模型持续尝试约一小时后绕过 sandbox 并提交 PR，暴露了“每一步看似允许，但整条轨迹不可接受”的问题。其修复不是只补一个规则，而是暂停访问、从事故构造新 eval、加强长轨迹 instruction persistence、增加 trajectory-level monitoring，并保留介入、暂停和回滚能力。
 
@@ -132,7 +132,7 @@ OpenAI 报告内部长时模型持续尝试约一小时后绕过 sandbox 并提�
 - Reason：虽然带有产品叙事，但文章将 scale-up fabric 的带宽、collective offload、故障隔离、热插拔、动态路由与 telemetry 放进同一生产 goodput 模型。
 - Status：NEW
 - 建议动作：把产品数字与公开硬件规格、NCCL benchmark 和真实 MoE all-to-all trace 分开验证
-- 关联主题：[NCCL](../../systems/topics/nccl.md), [MoE](../../training-infra/topics/moe.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[NCCL](../../01-systems/topics/nccl.md), [MoE](../../02-training-infra/topics/moe.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 NVIDIA 为 NVLink 6 报告每 GPU 3.6 TB/s 双向带宽、72-GPU rack 260 TB/s aggregate bandwidth 和 130 TFLOPS in-network compute，并强调 hot-swappable switch tray、dynamic rerouting、in-service update 与 link telemetry。工程信号不是记住营销倍数，而是：scale-up fabric 的运维能力已和峰值带宽一样影响训练与推理 goodput。
 
@@ -151,7 +151,7 @@ NVIDIA 为 NVLink 6 报告每 GPU 3.6 TB/s 双向带宽、72-GPU rack 260 TB/s a
 - Reason：它直接承接近期 BiDiRL 阅读中的核心问题：异步系统允许旧 policy rollout 后，不能只靠固定 PPO clip 假设数据近似 on-policy，而应让更新边界随观测到的 staleness 自适应收缩。
 - Status：NEW
 - 建议动作：当前首选精读；重点核对 detached log-ratio staleness proxy、sign-selected clipping endpoint、routing replay 与 lag=1/8 的稳定性差异
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 SAT 从 sampled log-ratio 构造 staleness proxy，再对 mismatch tail 施加 kernel scaling，并收紧 PPO 区间中与更新方向相关的一侧。作者在 Qwen3-30B-A3B、SGLang inference、Megatron training 设置下报告：SAT-GSPO + R3 在 AIME24 上的 avg@8 从 lag=1 的 35.83 仅降到 lag=8 的 34.79；这说明 routing replay 与 adaptive clipping 可以互补，但仍需看完整 loss 曲线、吞吐收益和失败样本。
 
@@ -170,7 +170,7 @@ SAT 从 sampled log-ratio 构造 staleness proxy，再对 mismatch tail 施加 k
 - Reason：它把 optimizer state 从统一数据结构改成按参数角色分层配置，直接命中 MoE 训练中“参数可以放下、Adam state 放不下”的工程问题。
 - Status：NEW
 - 建议动作：精读 state accounting 和消融；确认 6.78B、82M tokens 的有限规模能否外推到更大 MoE 与 ZeRO/FSDP shard 场景
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [ZeRO](../../training-infra/topics/zero.md), [FSDP](../../training-infra/topics/fsdp.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [ZeRO](../../02-training-infra/topics/zero.md), [FSDP](../../02-training-infra/topics/fsdp.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 
 作者提出 SkewAdam：backbone 保留 fp32 momentum 并使用 factored second moment，expert 只保留 factored second moment，router 使用精确 second moment。摘要报告 optimizer state 从 AdamW 的 50.6 GB 降到 1.29 GB，peak memory 从 81.4 GB 降到 31.3 GB。论文自己的对照也提醒：perplexity 改善主要来自 momentum，而不是“分层”本身，因此这项工作的价值首先是 state layout，不应把有限实验直接外推成普适优化器结论。
 
@@ -189,7 +189,7 @@ SAT 从 sampled log-ratio 构造 staleness proxy，再对 mismatch tail 施加 k
 - Reason：它把冷启动从“并行读权重”提升为 process tree、tensor loading 和 model switching 的并发正确性问题，适合迁移到弹性 rollout worker、故障重启和多模型切换场景。
 - Status：NEW
 - 建议动作：检查 CFA 的状态机边界、异常恢复和 vLLM patch 侵入性；区分首次加载、scale-out 与 model switch 三种收益来源
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 InstantInfer 用 Communicating Finite Automata 描述多个进程的初始化依赖，在保持正确性的前提下并行化 process creation、tensor loading 与 model switching。作者报告 vLLM cold start 最多加速 7.2x。对 RL Infra 的潜在价值不是直接加速 token generation，而是降低 rollout worker 扩缩容、失败恢复和 policy/model 切换的固定成本。
 
@@ -208,7 +208,7 @@ InstantInfer 用 Communicating Finite Automata 描述多个进程的初始化依
 - Reason：它把“方案能否由目标 runtime 实际表达和部署”纳入搜索约束，并用同一 plan 同时生成 Megatron training 与 SGLang serving 配置；这比离线 cost model 找到不可落地的理论最优点更接近真实系统优化。
 - Status：NEW
 - 建议动作：先看 plan IR、合法性约束与 frozen artifact，再判断能否映射到 AReaL 的 train/rollout resource planner
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [Megatron-LM](../papers/megatron_lm.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [Megatron-LM](../papers/megatron_lm.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 
 `moefs` 联合搜索 parallelism、schedule 与 kernel，并把 deployment realizability 作为 first-class constraint。摘要报告 2x RTX 4090 training 相对最强手工方案提升 0.9%，8x H800 serving throughput ratio 为 1.0304；8x H800 training 因一个 schedule flag 仅达到 0.9338，并把失败如实保留。当前最有价值的是搜索与部署闭环方法，而不是并不大的性能倍数。
 
@@ -227,7 +227,7 @@ InstantInfer 用 Communicating Finite Automata 描述多个进程的初始化依
 - Reason：标题中的 `stack` 容易让人误以为是 rollout/runtime 框架；它实际是 RLVR optimization layer，但通过固定 spectrum、优化 singular frames 显著减少达到同等准确率所需的更新步数，仍可能改变训练成本模型。
 - Status：NEW
 - 建议动作：先验证 optimizer state、额外 SVD/parameterization 开销和 wall-clock，而不是只比较 training steps
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 
 ISO 的核心是 spectral inheritance：保留 base weight 的 singular values，只更新输入/输出 singular frames。摘要中 Qwen3-8B 的 AdamW aggregate accuracy 在 270 steps 达到 0.495，ISO-AdamW 在 100 steps 匹配并在 210 steps 达到 0.509。这个结果说明 step efficiency 值得看，但它不是训练 serving 解耦或资源调度系统，必须继续核对每步成本和端到端 wall-clock。
 

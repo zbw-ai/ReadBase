@@ -84,7 +84,7 @@
 - Decision：Deep Dive
 - Reason：8 月首次形成完整证据链：harness 需要独立数据协议，原生 coding environment 需要 token/logprob 对齐，而生产 RL environment 还需要 network control、monitor、rollback、version freeze 和 re-certification。
 - 建议动作：把 environment ID/version、reward version、policy version、sandbox image、network capability、termination cause 和 monitor decision 写入 trajectory provenance
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Rollout Latency](../../practice/playbooks/rollout_latency.md)
 - 最终应流向：topic / playbook / experiment
 
 Agent Lightning v1.0 和 LEGO-RL 说明“训练任意 Agent”不是把环境包进一个 Python function：Agent 的原生 harness、tool trace、token boundary 和 reward evidence 必须能被 trainer 理解。OpenAI-Hugging Face 与 Anthropic 的报告进一步说明，sandbox 也不是安全终点；共享服务、出网能力、错误 task/reward 和生产环境配置都可能污染训练。
@@ -102,7 +102,7 @@ Anthropic 的三天训练回滚、约一个月 environment freeze 和超过 `10%
 - Decision：Deep Dive
 - Reason：本月多个框架独立暴露同类问题：状态生命周期错误不会总是 crash，而会把错误的 truncation、logprob、mask、weight version 或 communicator membership送进优化器。
 - 建议动作：建立跨 rollout/trainer/backend 的 invariant 与 fault-injection matrix，而不是继续依赖单组件单测
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Fault Tolerance](../../training-infra/topics/fault_tolerance.md), [Checkpointing](../../training-infra/topics/checkpointing.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Fault Tolerance](../../02-training-infra/topics/fault_tolerance.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md)
 - 最终应流向：topic / playbook / experiment
 
 这一主线可以压缩成四类契约：
@@ -125,7 +125,7 @@ NeMo RL #3591 最值得作为故障恢复参考：generation rank 死亡后，�
 - Decision：Deep Dive
 - Reason：这些工作共同否定“配置一个最大 CP size 就完成长上下文优化”。真正的调度单位是每个 batch/trajectory/tree 的 attention work、共享 prefix、KV state 和 ready backlog。
 - 建议动作：用真实 128K SFT/RL 长度分布比较 fixed CP、dynamic CP、token-balanced packing 与 attention-work-balanced packing；单独统计 rollout tree prefix duplication
-- 关联主题：[Long-context Training](../../training-infra/topics/long_context_training.md), [Context Parallelism](../../training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../training-infra/topics/pipeline_parallelism.md), [Agentic RL](../../rl-infra/topics/agentic_rl.md)
+- 关联主题：[Long-context Training](../../02-training-infra/topics/long_context_training.md), [Context Parallelism](../../02-training-infra/topics/context_parallelism.md), [Pipeline Parallelism](../../02-training-infra/topics/pipeline_parallelism.md), [Agentic RL](../../04-rl-infra/topics/agentic_rl.md)
 - 最终应流向：topic / experiment
 
 本月形成了从数据到 execution plan 的连续路线：Megatron/verl 将 variable-length packing 与 dynamic CP 接入训练路径；TideRL 用 ready backlog 选择运行方式；psRL/HARTS 复用 rollout tree 的共享 prefix；FlashPrefill V2 和 VPP 分别处理 sparse prefill 与 chunked-prefill pipeline bubble。
@@ -143,7 +143,7 @@ HARTS 是这一主线最值得继续读的材料，因为它不只处理 full at
 - Decision：Deep Dive
 - Reason：训练和推理之间的空洞越来越多来自“为了做一点计算先搬一整份状态”。本月多个系统都在减少 materialization、broadcast、跨节点 payload 或 destination 不需要的数据。
 - 建议动作：为 AReaL 画出 policy update 后的 weight materialization、sender、transport、receiver、layout conversion 和 engine resume 时间线；按 bytes moved 与 blocking time 分解
-- 关联主题：[Agentic RL](../../rl-infra/topics/agentic_rl.md), [Distributed Training](../../training-infra/topics/distributed_training.md), [Checkpointing](../../training-infra/topics/checkpointing.md), [Long-context Training](../../training-infra/topics/long_context_training.md)
+- 关联主题：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md), [Checkpointing](../../02-training-infra/topics/checkpointing.md), [Long-context Training](../../02-training-infra/topics/long_context_training.md)
 - 最终应流向：topic / experiment / playbook
 
 这一主线不应被缩写成“做 delta sync”：TensorCast 试图建立 tensor management layer；FlashBoot 减少 rack-scale model loading；verl node-local multi-sender、AReaL AdamW delta 和 vLLM destination-owned shard 分别优化 sender fanout、变化量和接收端真正消费的切片；NeMo RL 则把 trajectory data plane 放到 CPU RDMA。
@@ -161,7 +161,7 @@ OpenAI Jalapeño、Maia 200 和 Synchronization Tax 提供了更底层的工业/
 - Decision：Read / Deep Dive
 - Reason：MoE 的真实瓶颈已经无法由单独的 router loss、all-to-all kernel 或量化格式解释；需要同时看 rollout routing demand、expert placement、迁移时机、layer frequency 和低精度训推一致性。
 - 建议动作：建立 architecture-side、scheduler-side、communication-side、precision-side 四类优化矩阵；优先判断每种方案改变的是 FLOPs、bytes、critical path 还是数值语义
-- 关联主题：[MoE](../../training-infra/topics/moe.md), [FP8](../../systems/topics/fp8.md), [Transformer Engine](../../systems/topics/transformer_engine.md), [Distributed Training](../../training-infra/topics/distributed_training.md)
+- 关联主题：[MoE](../../02-training-infra/topics/moe.md), [FP8](../../01-systems/topics/fp8.md), [Transformer Engine](../../01-systems/topics/transformer_engine.md), [Distributed Training](../../02-training-infra/topics/distributed_training.md)
 - 最终应流向：topic / experiment
 
 RoutePack 利用 rollout 已知 routing demand 联合 attention packing 与 expert placement；FreeBalance 在 router 前预测 workload，把 expert movement 移出 critical path；CE-MoE 则更进一步，从模型层布局减少 routed layers 和 all-to-all 次数。三者分别代表 scheduler、runtime 和 architecture 三个层次。
@@ -241,8 +241,8 @@ NVIDIA Nemotron 3.5 QAD 与 slime GLM-5 训推对齐说明低精度不能作为�
 
 ## 对仓库的影响
 
-- 需要优先扩写：[Agentic RL](../../rl-infra/topics/agentic_rl.md) 增加 environment governance、trajectory provenance、probability/weight/recovery contract 四层框架。
-- 需要补入：[Long-context Training](../../training-infra/topics/long_context_training.md) 增加 rollout-tree prefix sharing、hybrid-attention state replay 与 Dynamic CP/packing 的关系。
+- 需要优先扩写：[Agentic RL](../../04-rl-infra/topics/agentic_rl.md) 增加 environment governance、trajectory provenance、probability/weight/recovery contract 四层框架。
+- 需要补入：[Long-context Training](../../02-training-infra/topics/long_context_training.md) 增加 rollout-tree prefix sharing、hybrid-attention state replay 与 Dynamic CP/packing 的关系。
 - 需要实验：真实 128K 长度分布下比较 fixed CP 与 dynamic CP；统计 `sum(length^2)`、padding、DP/PP bubble 和 step-time tail。
 - 需要 playbook：在 [Rollout Latency](../../practice/playbooks/rollout_latency.md) 之外增加 environment failure / weight-sync hang / generation-fleet recovery 的检查清单。
 - 需要阅读：HARTS、Anthropic RL environment report；完成后再决定是否创建独立 paper/blog note，避免未读先扩结构。
