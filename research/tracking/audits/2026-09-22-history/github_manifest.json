@@ -1,0 +1,127 @@
+{
+  "status": "INCOMPLETE_INDEX_REBUILD",
+  "review_batch_date": "2026-09-22",
+  "resume_date": "2026-10-08",
+  "window_timezone": "Asia/Shanghai",
+  "window_start_utc": "2024-12-31T16:00:00Z",
+  "window_end_utc": "2026-06-30T15:59:59Z",
+  "cursor_advanced": false,
+  "retained_reviewed_prs": 24,
+  "read": 21,
+  "observe": 3,
+  "index_counts": null,
+  "reason": "Prior temporary raw index cache no longer exists. Two batch-script approval reviews timed out; direct read-only API requests mostly failed with TCP/TLS timeout, EOF or connection reset. Repository metadata alone does not establish historical event coverage.",
+  "repositories": [
+    {
+      "repo": "areal-project/AReaL",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "verl-project/verl",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "THUDM/slime",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "alibaba/ROLL",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "OpenRLHF/OpenRLHF",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "huggingface/trl",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "huggingface/transformers",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "huggingface/accelerate",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "huggingface/peft",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    },
+    {
+      "repo": "huggingface/kernels",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending",
+      "metadata_observed": {
+        "default_branch": "main",
+        "created_at": "2024-11-29T15:46:13Z"
+      }
+    },
+    {
+      "repo": "huggingface/tokenizers",
+      "commits": "pending",
+      "merged_prs": "pending",
+      "releases": "pending"
+    }
+  ],
+  "foundation_release_repositories": [
+    "NVIDIA/TransformerEngine",
+    "NVIDIA/nccl",
+    "Dao-AILab/flash-attention",
+    "deepspeedai/DeepSpeed",
+    "pytorch/pytorch",
+    "deepseek-ai/DeepEP",
+    "deepseek-ai/FlashMLA",
+    "deepseek-ai/DeepGEMM"
+  ],
+  "remaining": [
+    "Pin current default-branch head, paginate and filter historical commits by committer date",
+    "Enumerate closed PRs by updated_at past lower bound; filter by merged_at and dedupe",
+    "Exhaust release endpoints for core and foundation repositories, filter published_at",
+    "Write quarter/month CSV indexes, counts, checksums and pagination completion metadata",
+    "Check current navigation coverage statements only after all indexes validate"
+  ]
+}

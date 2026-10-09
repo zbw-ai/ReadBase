@@ -57,3 +57,12 @@
 
 <a id="monthly-retrospective-invariants"></a>
 [monthly-retrospective-invariants：前往对应章节](../../rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)
+
+<a id="september-2026-monthly"></a>
+[可信经验交付：前往对应章节](../../rl-infra/topics/agentic_rl.md#september-2026-monthly)
+
+<a id="october-2026-contracts"></a>
+[RL 三个边界：前往对应章节](../../rl-infra/topics/agentic_rl.md#october-2026-contracts)
+
+<a id="history-2025-h1-2026"></a>
+[历史状态契约：前往对应章节](../../rl-infra/topics/agentic_rl.md#history-2025-h1-2026)

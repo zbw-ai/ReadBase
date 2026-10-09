@@ -1,6 +1,6 @@
 # Reading Queue
 
-过去扫描不需要逐篇补读：先走[按月复盘](../tracking/monthly_reviews.md)，每月只选择与当前工作最相关的一两份。历史重评不会自动增加当前 P0，也不把已收录视作已读。
+过去扫描不需要逐篇补读：先走[按季度 / 月度复盘](../tracking/monthly_reviews.md)，每月只选择与当前工作最相关的一两份。历史重评不会自动增加当前 P0，也不把已收录视作已读。
 
 `research/reading_queue/` 是 Systems / Training / Inference / RL / Embodied 共用的筛选层，用来把 [Tracking](../tracking/README.md) 中的信号转化为明确阅读计划，不为每个 Part 复制完整队列。独立的 `reading_inbox/` 仍是个人 intake，不因迁移而自动进入精读队列。
 
@@ -22,3 +22,5 @@
 - 导航关系改变时更新根 [Knowledge Graph](../../KNOWLEDGE_GRAPH.md) 和共享 [Master Reading List](../MASTER_READING_LIST.md)。
 
 2026-09-22 的结构与政策迁移不调整 `P0.md`、`P1.md`、`Done.md` 的阅读决策或完成状态；这里只制定后续维护规则。
+
+历史候选先读[2025 季度 / 2026 月度复盘](../tracking/monthly_reviews.md)，按当前问题选择一至两篇。本轮只更新候选与证据，不批量加入 P0/P1，也不替用户标记已读。

@@ -83,6 +83,8 @@ flowchart LR
 
 外部进展统一从[研究雷达](research/tracking/README.md)和[月度复盘](research/tracking/monthly_reviews.md)进入；当前选择见队列。知识依赖的例子：[RL 状态边界](rl-infra/topics/agentic_rl.md#rl-state-boundaries) → [故障注入计划](practice/experiments/rl_state_boundaries.md)，实验尚未执行。
 
+保留的来源—机制关系：[9 月月报](research/tracking/monthly_signal_2026-09.md) → [可信经验交付](rl-infra/topics/agentic_rl.md#september-2026-monthly)；[10/08 扫描](research/tracking/frontier_scan_2026-10-08.md) → [MoE 联合设计](training-infra/topics/moe.md#october-2026-joint-design)／[RL 三个边界](rl-infra/topics/agentic_rl.md#october-2026-contracts) → [验证候选](practice/experiments/rl_state_boundaries.md#october-2026-cases)。历史证据可查 [2025—2026 H1 补证](research/tracking/github_history_2025_to_2026_h1.md)与[7–9 月审计](research/tracking/github_retrospective_2026-07_to_2026-09.md)，不在知识图复制动态扫描列表。
+
 ## 第一轮主线
 
 这是保留的**训练基础路线**，回答第一次建立训练系统地图时应抓哪些支点，不是全库当前待办。当前具身、FSDP/I/O 学习从上方跨领域入口进入。

@@ -9,3 +9,6 @@
 
 <a id="parallel-folding"></a>
 [parallel-folding：前往对应章节](../../training-infra/topics/moe.md#parallel-folding)
+
+<a id="october-2026-joint-design"></a>
+[MoE 联合设计：前往对应章节](../../training-infra/topics/moe.md#october-2026-joint-design)

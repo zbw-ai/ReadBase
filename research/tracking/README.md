@@ -15,11 +15,13 @@
 
 每项说明 `Target question` 和 `Evidence`。公开机制、源码/测试、可复核 benchmark、厂商自报和仓库推断分层标注；无代码不能宣称已可运行/复现，未验证效果不能写成已证实收益。通用 demo、融资、产品新闻、未经核验榜单不自动升级。这里的 MLLM 指 multimodal large language model，不是 vLLM 推理引擎。
 
-## 默认阅读入口：按月复盘
+## 默认阅读入口：2025 按季度，2026 按月
 
-不必逐份补读 frontier scans。先看[2026 年月度总览](monthly_reviews.md)，再按问题选择[7 月](monthly_signal_2026-07.md)、[8 月](monthly_signal_2026-08.md)或[9 月阶段报告](monthly_signal_2026-09.md)。月报先解释技术主线和工程后果，原记录保留作证据。
+最新正式月报：[2026 年 9 月](monthly_signal_2026-09.md)，覆盖 9/1–9/30 的五条工程主线，并归回 10/08 扫描中晚发现的 9 月材料；日期归档完整，来源覆盖缺口仍显式保留。
 
-本次[GitHub 历史复盘](github_retrospective_2026-07_to_2026-09.md)覆盖 15 库、7–9 月完整事件索引，并对 20 项 PR 深入复核；[历史材料重评](monthly_reviews.md)明确区分原来 Observe 后升级与原来已 Read 的重新提要。
+先看[时间线总览](monthly_reviews.md)，不必逐份补读 frontier scans。2025 年按 [Q1](quarterly_signal_2025-Q1.md) / [Q2](quarterly_signal_2025-Q2.md) / [Q3](quarterly_signal_2025-Q3.md) / [Q4](quarterly_signal_2025-Q4.md)理解来路，2026 年按月追踪问题演进。各份先解释技术主线和工程后果，再给少量选读；原扫描保留作证据。
+
+[2025—2026 H1 GitHub 历史补证](github_history_2025_to_2026_h1.md)保留 24 项 PR 审阅、版本边界与待重建索引；[7–9 月上一轮 GitHub 复盘](github_retrospective_2026-07_to_2026-09.md)保留已完成的事件索引。两轮覆盖状态分别标注，不把重点 diff 审阅写成全量代码审计。
 
 ## 知识流转
 
@@ -38,6 +40,8 @@
 ```
 
 ## 原始扫描与专题索引
+
+最新：[2026-10-08 Frontier Scan](frontier_scan_2026-10-08.md)——13 组信号，重点为 Olmo-core 3、组就绪调度、RL 终止/恢复语义；附六个 RL 框架 169 条 merged PR 索引，外围 GitHub 与 arXiv 发现缺口保留分来源回退游标。
 
 <details>
 <summary>展开扫描、旧月报与专题文件列表</summary>

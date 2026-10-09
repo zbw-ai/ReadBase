@@ -1,0 +1,626 @@
+{
+  "type": "monthly_digest_aggregation",
+  "generated_at": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "month_window": {
+    "start": "2026-09-01T00:00:00+08:00",
+    "end": "2026-09-30T23:59:59+08:00"
+  },
+  "monthly_accepted_themes": 5,
+  "frontier_cursors_changed": false,
+  "source_index": "../2026-10-08-frontier/merged_pr_index.json",
+  "source_index_sha256": "d1679ac65955a37231a91cb614c22d195ffa26ddd0dc17d93b340ec8d7f2d870",
+  "late_month_merged_pr_window_utc": {
+    "start": "2026-09-22T09:06:16Z",
+    "end_exclusive": "2026-09-30T16:00:00Z"
+  },
+  "late_month_merged_pr_count": 82,
+  "per_repo": {
+    "areal-project/AReaL": 7,
+    "verl-project/verl": 32,
+    "THUDM/slime": 8,
+    "alibaba/ROLL": 1,
+    "OpenRLHF/OpenRLHF": 0,
+    "NVIDIA-NeMo/RL": 34
+  },
+  "late_month_prs": [
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4196,
+      "merged_at": "2026-09-22T10:06:17Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4196",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4207,
+      "merged_at": "2026-09-22T15:17:31Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4207",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4233,
+      "merged_at": "2026-09-22T17:33:02Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4233",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4143,
+      "merged_at": "2026-09-23T03:23:25Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4143",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 3408,
+      "merged_at": "2026-09-23T03:34:01Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3408",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4249,
+      "merged_at": "2026-09-23T06:05:11Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4249",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4198,
+      "merged_at": "2026-09-23T06:48:11Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4198",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4171,
+      "merged_at": "2026-09-23T13:04:11Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4171",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4254,
+      "merged_at": "2026-09-23T17:16:49Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4254",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4252,
+      "merged_at": "2026-09-23T18:23:19Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4252",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4234,
+      "merged_at": "2026-09-23T19:11:17Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4234",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4248,
+      "merged_at": "2026-09-23T22:10:04Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4248",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4052,
+      "merged_at": "2026-09-24T05:12:47Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4052",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4139,
+      "merged_at": "2026-09-24T10:38:36Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4139",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4261,
+      "merged_at": "2026-09-24T19:55:50Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4261",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4253,
+      "merged_at": "2026-09-25T04:46:36Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4253",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4129,
+      "merged_at": "2026-09-28T05:07:33Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4129",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4080,
+      "merged_at": "2026-09-28T06:27:29Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4080",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4260,
+      "merged_at": "2026-09-28T17:58:36Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4260",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4181,
+      "merged_at": "2026-09-28T22:28:32Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4181",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4204,
+      "merged_at": "2026-09-29T03:33:25Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4204",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4318,
+      "merged_at": "2026-09-29T09:37:00Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4318",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 3613,
+      "merged_at": "2026-09-29T13:44:47Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3613",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4186,
+      "merged_at": "2026-09-29T16:24:50Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4186",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4288,
+      "merged_at": "2026-09-29T17:06:50Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4288",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4284,
+      "merged_at": "2026-09-29T17:07:34Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4284",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4336,
+      "merged_at": "2026-09-29T19:20:09Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4336",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4338,
+      "merged_at": "2026-09-29T19:44:23Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4338",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4339,
+      "merged_at": "2026-09-29T19:45:55Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4339",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4342,
+      "merged_at": "2026-09-29T20:10:31Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4342",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4344,
+      "merged_at": "2026-09-29T20:49:52Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4344",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4348,
+      "merged_at": "2026-09-29T21:14:22Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4348",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4350,
+      "merged_at": "2026-09-29T21:31:56Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4350",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4191,
+      "merged_at": "2026-09-30T05:07:17Z",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4191",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2405,
+      "merged_at": "2026-09-23T03:58:35Z",
+      "url": "https://github.com/THUDM/slime/pull/2405",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2406,
+      "merged_at": "2026-09-23T07:40:43Z",
+      "url": "https://github.com/THUDM/slime/pull/2406",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2407,
+      "merged_at": "2026-09-23T09:23:18Z",
+      "url": "https://github.com/THUDM/slime/pull/2407",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2410,
+      "merged_at": "2026-09-28T04:39:48Z",
+      "url": "https://github.com/THUDM/slime/pull/2410",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2424,
+      "merged_at": "2026-09-28T04:51:13Z",
+      "url": "https://github.com/THUDM/slime/pull/2424",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2426,
+      "merged_at": "2026-09-28T09:27:20Z",
+      "url": "https://github.com/THUDM/slime/pull/2426",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2427,
+      "merged_at": "2026-09-29T09:35:01Z",
+      "url": "https://github.com/THUDM/slime/pull/2427",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2432,
+      "merged_at": "2026-09-30T11:02:16Z",
+      "url": "https://github.com/THUDM/slime/pull/2432",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "alibaba/ROLL",
+      "number": 504,
+      "merged_at": "2026-09-29T03:52:30Z",
+      "url": "https://github.com/alibaba/ROLL/pull/504",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1746,
+      "merged_at": "2026-09-22T10:02:22Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1746",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1733,
+      "merged_at": "2026-09-23T05:49:19Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1733",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1721,
+      "merged_at": "2026-09-23T08:09:13Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1721",
+      "source_review_level": "metadata_description_and_patch"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1749,
+      "merged_at": "2026-09-23T09:46:43Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1749",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1756,
+      "merged_at": "2026-09-24T09:49:09Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1756",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1750,
+      "merged_at": "2026-09-26T01:05:35Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1750",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1758,
+      "merged_at": "2026-09-27T01:49:39Z",
+      "url": "https://github.com/areal-project/AReaL/pull/1758",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7993,
+      "merged_at": "2026-09-22T13:27:08Z",
+      "url": "https://github.com/verl-project/verl/pull/7993",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7986,
+      "merged_at": "2026-09-22T14:35:02Z",
+      "url": "https://github.com/verl-project/verl/pull/7986",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7980,
+      "merged_at": "2026-09-23T01:44:32Z",
+      "url": "https://github.com/verl-project/verl/pull/7980",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7979,
+      "merged_at": "2026-09-23T02:02:40Z",
+      "url": "https://github.com/verl-project/verl/pull/7979",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7999,
+      "merged_at": "2026-09-23T03:28:46Z",
+      "url": "https://github.com/verl-project/verl/pull/7999",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7994,
+      "merged_at": "2026-09-23T07:55:52Z",
+      "url": "https://github.com/verl-project/verl/pull/7994",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7679,
+      "merged_at": "2026-09-23T09:09:38Z",
+      "url": "https://github.com/verl-project/verl/pull/7679",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7981,
+      "merged_at": "2026-09-24T01:47:16Z",
+      "url": "https://github.com/verl-project/verl/pull/7981",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8006,
+      "merged_at": "2026-09-24T01:57:54Z",
+      "url": "https://github.com/verl-project/verl/pull/8006",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7977,
+      "merged_at": "2026-09-24T01:59:03Z",
+      "url": "https://github.com/verl-project/verl/pull/7977",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7987,
+      "merged_at": "2026-09-24T05:18:38Z",
+      "url": "https://github.com/verl-project/verl/pull/7987",
+      "source_review_level": "metadata_and_description"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8013,
+      "merged_at": "2026-09-28T01:53:12Z",
+      "url": "https://github.com/verl-project/verl/pull/8013",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8038,
+      "merged_at": "2026-09-28T10:03:16Z",
+      "url": "https://github.com/verl-project/verl/pull/8038",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8039,
+      "merged_at": "2026-09-28T12:26:20Z",
+      "url": "https://github.com/verl-project/verl/pull/8039",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8041,
+      "merged_at": "2026-09-28T13:36:19Z",
+      "url": "https://github.com/verl-project/verl/pull/8041",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8040,
+      "merged_at": "2026-09-28T13:36:22Z",
+      "url": "https://github.com/verl-project/verl/pull/8040",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8043,
+      "merged_at": "2026-09-29T01:46:31Z",
+      "url": "https://github.com/verl-project/verl/pull/8043",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8037,
+      "merged_at": "2026-09-29T01:52:19Z",
+      "url": "https://github.com/verl-project/verl/pull/8037",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8035,
+      "merged_at": "2026-09-29T02:56:19Z",
+      "url": "https://github.com/verl-project/verl/pull/8035",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7902,
+      "merged_at": "2026-09-29T03:16:35Z",
+      "url": "https://github.com/verl-project/verl/pull/7902",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8033,
+      "merged_at": "2026-09-29T03:17:39Z",
+      "url": "https://github.com/verl-project/verl/pull/8033",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8048,
+      "merged_at": "2026-09-29T07:58:30Z",
+      "url": "https://github.com/verl-project/verl/pull/8048",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8049,
+      "merged_at": "2026-09-29T08:07:56Z",
+      "url": "https://github.com/verl-project/verl/pull/8049",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8051,
+      "merged_at": "2026-09-29T08:11:52Z",
+      "url": "https://github.com/verl-project/verl/pull/8051",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8058,
+      "merged_at": "2026-09-29T09:57:35Z",
+      "url": "https://github.com/verl-project/verl/pull/8058",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 7949,
+      "merged_at": "2026-09-29T10:18:52Z",
+      "url": "https://github.com/verl-project/verl/pull/7949",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8060,
+      "merged_at": "2026-09-29T10:37:08Z",
+      "url": "https://github.com/verl-project/verl/pull/8060",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8053,
+      "merged_at": "2026-09-29T11:05:45Z",
+      "url": "https://github.com/verl-project/verl/pull/8053",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8063,
+      "merged_at": "2026-09-29T13:29:20Z",
+      "url": "https://github.com/verl-project/verl/pull/8063",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8062,
+      "merged_at": "2026-09-29T13:41:45Z",
+      "url": "https://github.com/verl-project/verl/pull/8062",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8065,
+      "merged_at": "2026-09-30T04:18:58Z",
+      "url": "https://github.com/verl-project/verl/pull/8065",
+      "source_review_level": "indexed_only"
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8064,
+      "merged_at": "2026-09-30T04:22:24Z",
+      "url": "https://github.com/verl-project/verl/pull/8064",
+      "source_review_level": "metadata_and_description"
+    }
+  ],
+  "included_late_discovered_primary_signals": [
+    "arxiv:2609.39350v1",
+    "github:areal-project/AReaL#1721",
+    "github:verl-project/verl#7987",
+    "github:alibaba/ROLL@v0.4.0",
+    "github:NVIDIA-NeMo/RL#3613"
+  ],
+  "excluded_october_primary_signals": [
+    "blog:allenai/olmocore3",
+    "arxiv:2610.03286v1",
+    "arxiv:2610.07593v1",
+    "blog:microsoft/thinkingbox",
+    "blog:nvidia/aicr-v1-0",
+    "blog:nvidia/doca-gpunetio-gda-ki-unified-gpu-networking",
+    "github:huggingface/trl@v1.14.2",
+    "github:THUDM/slime#2444",
+    "github:NVIDIA-NeMo/RL#4410"
+  ],
+  "unassigned_relative_date_signal": "hf:deepseek-ai/DeepSeek-V4.1-Flash#68",
+  "limits": [
+    "Calendar month is complete; discovery and code audit are not exhaustive.",
+    "82 counts merged PR records, not unique capabilities or full-month total.",
+    "No new source discovery, benchmark execution, or user reading-state update."
+  ]
+}

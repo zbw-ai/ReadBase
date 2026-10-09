@@ -1,0 +1,964 @@
+{
+  "audit_date": "2026-09-22",
+  "scope": "2025 Q1/Q2 selected paper v1 metadata, quarter-pinned implementation snapshots and official Watch source samples; not a complete publication or GitHub code audit",
+  "sources": [
+    {
+      "source_id": "arxiv:2501.12948",
+      "verified_url": "https://arxiv.org/abs/2501.12948v1",
+      "metadata": {
+        "citation_title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+        "citation_author": [
+          "DeepSeek-AI",
+          "Guo, Daya",
+          "Yang, Dejian",
+          "Zhang, Haowei",
+          "Song, Junxiao",
+          "Zhang, Ruoyu",
+          "Xu, Runxin",
+          "Zhu, Qihao",
+          "Ma, Shirong",
+          "Wang, Peiyi",
+          "Bi, Xiao",
+          "Zhang, Xiaokang",
+          "Yu, Xingkai",
+          "Wu, Yu",
+          "Wu, Z. F.",
+          "Gou, Zhibin",
+          "Shao, Zhihong",
+          "Li, Zhuoshu",
+          "Gao, Ziyi",
+          "Liu, Aixin",
+          "Xue, Bing",
+          "Wang, Bingxuan",
+          "Wu, Bochao",
+          "Feng, Bei",
+          "Lu, Chengda",
+          "Zhao, Chenggang",
+          "Deng, Chengqi",
+          "Zhang, Chenyu",
+          "Ruan, Chong",
+          "Dai, Damai",
+          "Chen, Deli",
+          "Ji, Dongjie",
+          "Li, Erhang",
+          "Lin, Fangyun",
+          "Dai, Fucong",
+          "Luo, Fuli",
+          "Hao, Guangbo",
+          "Chen, Guanting",
+          "Li, Guowei",
+          "Zhang, H.",
+          "Bao, Han",
+          "Xu, Hanwei",
+          "Wang, Haocheng",
+          "Ding, Honghui",
+          "Xin, Huajian",
+          "Gao, Huazuo",
+          "Qu, Hui",
+          "Li, Hui",
+          "Guo, Jianzhong",
+          "Li, Jiashi",
+          "Wang, Jiawei",
+          "Chen, Jingchang",
+          "Yuan, Jingyang",
+          "Qiu, Junjie",
+          "Li, Junlong",
+          "Cai, J. L.",
+          "Ni, Jiaqi",
+          "Liang, Jian",
+          "Chen, Jin",
+          "Dong, Kai",
+          "Hu, Kai",
+          "Gao, Kaige",
+          "Guan, Kang",
+          "Huang, Kexin",
+          "Yu, Kuai",
+          "Wang, Lean",
+          "Zhang, Lecong",
+          "Zhao, Liang",
+          "Wang, Litong",
+          "Zhang, Liyue",
+          "Xu, Lei",
+          "Xia, Leyi",
+          "Zhang, Mingchuan",
+          "Zhang, Minghua",
+          "Tang, Minghui",
+          "Li, Meng",
+          "Wang, Miaojun",
+          "Li, Mingming",
+          "Tian, Ning",
+          "Huang, Panpan",
+          "Zhang, Peng",
+          "Wang, Qiancheng",
+          "Chen, Qinyu",
+          "Du, Qiushi",
+          "Ge, Ruiqi",
+          "Zhang, Ruisong",
+          "Pan, Ruizhe",
+          "Wang, Runji",
+          "Chen, R. J.",
+          "Jin, R. L.",
+          "Chen, Ruyi",
+          "Lu, Shanghao",
+          "Zhou, Shangyan",
+          "Chen, Shanhuang",
+          "Ye, Shengfeng",
+          "Wang, Shiyu",
+          "Yu, Shuiping",
+          "Zhou, Shunfeng",
+          "Pan, Shuting",
+          "Li, S. S.",
+          "Zhou, Shuang",
+          "Wu, Shaoqing",
+          "Ye, Shengfeng",
+          "Yun, Tao",
+          "Pei, Tian",
+          "Sun, Tianyu",
+          "Wang, T.",
+          "Zeng, Wangding",
+          "Zhao, Wanjia",
+          "Liu, Wen",
+          "Liang, Wenfeng",
+          "Gao, Wenjun",
+          "Yu, Wenqin",
+          "Zhang, Wentao",
+          "Xiao, W. L.",
+          "An, Wei",
+          "Liu, Xiaodong",
+          "Wang, Xiaohan",
+          "Chen, Xiaokang",
+          "Nie, Xiaotao",
+          "Cheng, Xin",
+          "Liu, Xin",
+          "Xie, Xin",
+          "Liu, Xingchao",
+          "Yang, Xinyu",
+          "Li, Xinyuan",
+          "Su, Xuecheng",
+          "Lin, Xuheng",
+          "Li, X. Q.",
+          "Jin, Xiangyue",
+          "Shen, Xiaojin",
+          "Chen, Xiaosha",
+          "Sun, Xiaowen",
+          "Wang, Xiaoxiang",
+          "Song, Xinnan",
+          "Zhou, Xinyi",
+          "Wang, Xianzu",
+          "Shan, Xinxia",
+          "Li, Y. K.",
+          "Wang, Y. Q.",
+          "Wei, Y. X.",
+          "Zhang, Yang",
+          "Xu, Yanhong",
+          "Li, Yao",
+          "Zhao, Yao",
+          "Sun, Yaofeng",
+          "Wang, Yaohui",
+          "Yu, Yi",
+          "Zhang, Yichao",
+          "Shi, Yifan",
+          "Xiong, Yiliang",
+          "He, Ying",
+          "Piao, Yishi",
+          "Wang, Yisong",
+          "Tan, Yixuan",
+          "Ma, Yiyang",
+          "Liu, Yiyuan",
+          "Guo, Yongqiang",
+          "Ou, Yuan",
+          "Wang, Yuduan",
+          "Gong, Yue",
+          "Zou, Yuheng",
+          "He, Yujia",
+          "Xiong, Yunfan",
+          "Luo, Yuxiang",
+          "You, Yuxiang",
+          "Liu, Yuxuan",
+          "Zhou, Yuyang",
+          "Zhu, Y. X.",
+          "Xu, Yanhong",
+          "Huang, Yanping",
+          "Li, Yaohui",
+          "Zheng, Yi",
+          "Zhu, Yuchen",
+          "Ma, Yunxian",
+          "Tang, Ying",
+          "Zha, Yukun",
+          "Yan, Yuting",
+          "Ren, Z. Z.",
+          "Ren, Zehui",
+          "Sha, Zhangli",
+          "Fu, Zhe",
+          "Xu, Zhean",
+          "Xie, Zhenda",
+          "Zhang, Zhengyan",
+          "Hao, Zhewen",
+          "Ma, Zhicheng",
+          "Yan, Zhigang",
+          "Wu, Zhiyu",
+          "Gu, Zihui",
+          "Zhu, Zijia",
+          "Liu, Zijun",
+          "Li, Zilin",
+          "Xie, Ziwei",
+          "Song, Ziyang",
+          "Pan, Zizheng",
+          "Huang, Zhen",
+          "Xu, Zhipeng",
+          "Zhang, Zhongyu",
+          "Zhang, Zhen"
+        ],
+        "citation_date": "2025/01/22",
+        "citation_online_date": "2025/01/22",
+        "citation_pdf_url": "https://arxiv.org/pdf/2501.12948",
+        "citation_arxiv_id": "2501.12948"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "bd5628a94f0564d8567124058d70de395f60e4a250e8638298ccd5e7b638254e",
+      "citation_abstract_sha256": "52bfbe09940b32e38b234f8260428ea3a8c71312fb3df14c8d9ca98dd6c3326e",
+      "method_url": "https://arxiv.org/html/2501.12948v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Read",
+        "method": "v1 §2: R1-Zero 从 base model 直接 RL；R1 包含 cold-start SFT、reasoning RL、rejection sampling/SFT 与后续 RL；GRPO 用组内奖励作基线，含规则奖励。",
+        "numeric_claims_used": [],
+        "caveat": "模型 API 发布为 2025-01-20；论文 citation_date 为 2025-01-22；不能把 V3 预训练成本视为 R1 全流程成本。"
+      }
+    },
+    {
+      "source_id": "arxiv:2502.11089",
+      "verified_url": "https://arxiv.org/abs/2502.11089v1",
+      "metadata": {
+        "citation_title": "Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention",
+        "citation_author": [
+          "Yuan, Jingyang",
+          "Gao, Huazuo",
+          "Dai, Damai",
+          "Luo, Junyu",
+          "Zhao, Liang",
+          "Zhang, Zhengyan",
+          "Xie, Zhenda",
+          "Wei, Y. X.",
+          "Wang, Lean",
+          "Xiao, Zhiping",
+          "Wang, Yuqing",
+          "Ruan, Chong",
+          "Zhang, Ming",
+          "Liang, Wenfeng",
+          "Zeng, Wangding"
+        ],
+        "citation_date": "2025/02/16",
+        "citation_online_date": "2025/02/16",
+        "citation_pdf_url": "https://arxiv.org/pdf/2502.11089",
+        "citation_arxiv_id": "2502.11089"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "f932014d89f02564b277abb465a90088027307da52ac3dcd155e1092e0f9890d",
+      "citation_abstract_sha256": "1298438f7a5f1426f23f2bf2831bfaa91e15ae918d98f638570aeee59089f782",
+      "method_url": "https://arxiv.org/html/2502.11089v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Read",
+        "method": "v1 §3.3–3.4: compression、selection、sliding window 分支与 gated aggregation；selection kernel 利用 GQA group 共享稀疏 KV block。",
+        "numeric_claims_used": [
+          "原文 64K sequence 实验场景；正文未摘录跨配置泛化的 speedup 数字。"
+        ]
+      }
+    },
+    {
+      "source_id": "arxiv:2503.14476",
+      "verified_url": "https://arxiv.org/abs/2503.14476v1",
+      "metadata": {
+        "citation_title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+        "citation_author": [
+          "Yu, Qiying",
+          "Zhang, Zheng",
+          "Zhu, Ruofei",
+          "Yuan, Yufeng",
+          "Zuo, Xiaochen",
+          "Yue, Yu",
+          "Fan, Tiantian",
+          "Liu, Gaohong",
+          "Liu, Lingjun",
+          "Liu, Xin",
+          "Lin, Haibin",
+          "Lin, Zhiqi",
+          "Ma, Bole",
+          "Sheng, Guangming",
+          "Tong, Yuxuan",
+          "Zhang, Chi",
+          "Zhang, Mofan",
+          "Zhang, Wang",
+          "Zhu, Hang",
+          "Zhu, Jinhua",
+          "Chen, Jiaze",
+          "Chen, Jiangjie",
+          "Wang, Chengyi",
+          "Yu, Hongli",
+          "Dai, Weinan",
+          "Song, Yuxuan",
+          "Wei, Xiangpeng",
+          "Zhou, Hao",
+          "Liu, Jingjing",
+          "Ma, Wei-Ying",
+          "Zhang, Ya-Qin",
+          "Yan, Lin",
+          "Qiao, Mu",
+          "Wu, Yonghui",
+          "Wang, Mingxuan"
+        ],
+        "citation_date": "2025/03/18",
+        "citation_online_date": "2025/03/18",
+        "citation_pdf_url": "https://arxiv.org/pdf/2503.14476",
+        "citation_arxiv_id": "2503.14476"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "9de6fe0de0e871b0cc4a45bb0e0d97721c06fc3f67235d65afaf4c94a28a74f4",
+      "citation_abstract_sha256": "c5786e140d50c5595cea60d6e21a3e99ac2f28249011242c696df04ef2744737",
+      "method_url": "https://arxiv.org/html/2503.14476v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Deep Dive",
+        "method": "v1 §3: Clip-Higher、Dynamic Sampling、Token-Level Policy Gradient Loss、Overlong Reward Shaping；基于 verl。",
+        "numeric_claims_used": [
+          "作者报告 Qwen2.5-32B、AIME 2024 为 50，DeepSeek-R1-Zero-Qwen-32B 比较项为 47；训练步数比较不能换算为等比例 GPU-hours。"
+        ],
+        "caveat": "arXiv citation_date 为 2025-03-18，正文署 March 17, 2025，均归 Q1。"
+      }
+    },
+    {
+      "source_id": "arxiv:2504.17577",
+      "verified_url": "https://arxiv.org/abs/2504.17577v1",
+      "metadata": {
+        "citation_title": "TileLang: A Composable Tiled Programming Model for AI Systems",
+        "citation_author": [
+          "Wang, Lei",
+          "Cheng, Yu",
+          "Shi, Yining",
+          "Tang, Zhengju",
+          "Mo, Zhiwen",
+          "Xie, Wenhao",
+          "Ma, Lingxiao",
+          "Xia, Yuqing",
+          "Xue, Jilong",
+          "Yang, Fan",
+          "Yang, Zhi"
+        ],
+        "citation_date": "2025/04/24",
+        "citation_online_date": "2025/04/24",
+        "citation_pdf_url": "https://arxiv.org/pdf/2504.17577",
+        "citation_arxiv_id": "2504.17577"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "45e007113a7afa21da46c2d459ec4c7cb7433fae295cd17d47d976db8f96f5d9",
+      "citation_abstract_sha256": "cee918d649ec1a11dc3fee67a3aadf0156197921e62a9f279e78a6afb38300fb",
+      "method_url": "https://arxiv.org/html/2504.17577v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Read",
+        "method": "v1 §3–4: tile dataflow 与 layout、thread binding、tensorization、pipeline 的调度描述分离。",
+        "numeric_claims_used": [],
+        "caveat": "官方 v0.1.0 release 已在 2025-02-12；论文 Q2 首发并非项目首次公开。"
+      }
+    },
+    {
+      "source_id": "arxiv:2505.24298",
+      "verified_url": "https://arxiv.org/abs/2505.24298v1",
+      "metadata": {
+        "citation_title": "AReaL: A Large-Scale Asynchronous Reinforcement Learning System for Language Reasoning",
+        "citation_author": [
+          "Fu, Wei",
+          "Gao, Jiaxuan",
+          "Shen, Xujie",
+          "Zhu, Chen",
+          "Mei, Zhiyu",
+          "He, Chuyi",
+          "Xu, Shusheng",
+          "Wei, Guo",
+          "Mei, Jun",
+          "Wang, Jiashu",
+          "Yang, Tongkai",
+          "Yuan, Binhang",
+          "Wu, Yi"
+        ],
+        "citation_date": "2025/05/30",
+        "citation_online_date": "2025/05/30",
+        "citation_pdf_url": "https://arxiv.org/pdf/2505.24298",
+        "citation_arxiv_id": "2505.24298"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "9af6a61bd60b04d9204efab6987047c7cea37440518562246bdeabe53c70bbef",
+      "citation_abstract_sha256": "43dff1e395c1a3e1f40ea149879d2ffe190488a8cbc1f862855c47499af63ee1",
+      "method_url": "https://arxiv.org/html/2505.24298v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Deep Dive",
+        "method": "v1 §4–5: rollout/train 解耦、staleness-aware admission；decoupled PPO 区分 behavior 与 proximal policy。",
+        "numeric_claims_used": [
+          "作者报告相同 GPU 数及匹配/更优最终性能下最高 2.57x training speedup。"
+        ]
+      }
+    },
+    {
+      "source_id": "arxiv:2505.24034",
+      "verified_url": "https://arxiv.org/abs/2505.24034v1",
+      "metadata": {
+        "citation_title": "LlamaRL: A Distributed Asynchronous Reinforcement Learning Framework for Efficient Large-scale LLM Trainin",
+        "citation_author": [
+          "Wu, Bo",
+          "Wang, Sid",
+          "Tang, Yunhao",
+          "Ding, Jia",
+          "Helenowski, Eryk",
+          "Tan, Liang",
+          "Xu, Tengyu",
+          "Gowda, Tushar",
+          "Chen, Zhengxing",
+          "Zhu, Chen",
+          "Tang, Xiaocheng",
+          "Qian, Yundi",
+          "Zhu, Beibei",
+          "Hou, Rui"
+        ],
+        "citation_date": "2025/05/29",
+        "citation_online_date": "2025/05/29",
+        "citation_pdf_url": "https://arxiv.org/pdf/2505.24034",
+        "citation_arxiv_id": "2505.24034"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "dbcb4d214f68f0b31689dfd8a84ba54d76bcb31a6173bca171891cba631b3f03",
+      "citation_abstract_sha256": "ce3cd42f642b997a6eba46a901811788da5c59643bc2218b1ca24f131ca557ce",
+      "method_url": "https://arxiv.org/html/2505.24034v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Read",
+        "method": "v1 §5: single-controller、executor、communication channel；DDMA 用分布式 GPU 直接内存传输同步权重。",
+        "numeric_claims_used": [
+          "作者报告 405B policy 相对 DeepSpeed-Chat-like 基线最高 10.7x，含异步、放置等联合变化，不与 AReaL 直接排名。"
+        ],
+        "caveat": "citation_title 原样以 Trainin 结尾；v1 正文标题完整为 Training。HTML 模板另显示非首发日期，首发归属采用 citation_date 与 submission history。"
+      }
+    },
+    {
+      "source_id": "arxiv:2505.11432",
+      "verified_url": "https://arxiv.org/abs/2505.11432v1",
+      "metadata": {
+        "citation_title": "MegaScale-MoE: Large-Scale Communication-Efficient Training of Mixture-of-Experts Models in Production",
+        "citation_author": [
+          "Jin, Chao",
+          "Jiang, Ziheng",
+          "Bai, Zhihao",
+          "Zhong, Zheng",
+          "Liu, Juncai",
+          "Li, Xiang",
+          "Zheng, Ningxin",
+          "Wang, Xi",
+          "Xie, Cong",
+          "Heng, Wen",
+          "Ma, Yiyuan",
+          "Bao, Wenlei",
+          "Zheng, Size",
+          "Peng, Yanghua",
+          "Lin, Haibin",
+          "Liu, Xuanzhe",
+          "Jin, Xin",
+          "Liu, Xin"
+        ],
+        "citation_date": "2025/05/16",
+        "citation_online_date": "2025/05/16",
+        "citation_pdf_url": "https://arxiv.org/pdf/2505.11432",
+        "citation_arxiv_id": "2505.11432"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "c36ede01812df8650630860a7638ac28bac4a8e2a39ee419a3a7c012c23464df",
+      "citation_abstract_sha256": "30d063522b839dff14b55671ff1d07a504940c81c964440e482984d3febd6fbc",
+      "method_url": "https://arxiv.org/html/2505.11432v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Deep Dive",
+        "method": "v1 introduction and system sections: 分别选择 attention/FFN parallelism，跨算子与算子内 tile overlap，selective activation rematerialization，低精度通信及 FP32 reduction。",
+        "numeric_claims_used": [
+          "作者报告 352B MoE、1440 NVIDIA Hopper GPUs、1.41M tokens/s、相对其 Megatron-LM 基线效率 1.88x。"
+        ],
+        "caveat": "v1 citation_author 为18位；不混入后续修订版19位作者名单。"
+      }
+    },
+    {
+      "source_id": "arxiv:2506.06122",
+      "verified_url": "https://arxiv.org/abs/2506.06122v1",
+      "metadata": {
+        "citation_title": "Reinforcement Learning Optimization for Large-Scale Learning: An Efficient and User-Friendly Scaling Library",
+        "citation_author": [
+          "Wang, Weixun",
+          "Xiong, Shaopan",
+          "Chen, Gengru",
+          "Gao, Wei",
+          "Guo, Sheng",
+          "He, Yancheng",
+          "Huang, Ju",
+          "Liu, Jiaheng",
+          "Li, Zhendong",
+          "Li, Xiaoyang",
+          "Liu, Zichen",
+          "Zhao, Haizhou",
+          "An, Dakai",
+          "Cao, Lunxi",
+          "Cao, Qiyang",
+          "Deng, Wanxi",
+          "Du, Feilei",
+          "Gu, Yiliang",
+          "Li, Jiahe",
+          "Li, Xiang",
+          "Liu, Mingjie",
+          "Luo, Yijia",
+          "Liu, Zihe",
+          "Wang, Yadao",
+          "Wang, Pei",
+          "Wu, Tianyuan",
+          "Wu, Yanan",
+          "Zhao, Yuheng",
+          "Zhao, Shuaibing",
+          "Yang, Jin",
+          "Yang, Siran",
+          "Tan, Yingshui",
+          "Yi, Huimin",
+          "Xu, Yuchi",
+          "Yuan, Yujin",
+          "Zhang, Xingyao",
+          "Qu, Lin",
+          "Su, Wenbo",
+          "Wang, Wei",
+          "Wang, Jiamang",
+          "Zheng, Bo"
+        ],
+        "citation_date": "2025/06/06",
+        "citation_online_date": "2025/06/06",
+        "citation_pdf_url": "https://arxiv.org/pdf/2506.06122",
+        "citation_arxiv_id": "2506.06122"
+      },
+      "verification": "raw primary-source HTML metadata; version v1",
+      "abstract_sha256": "9fa880285f2a5f4fb920fbfed93eb93df2e7969c5637132d535fab091d007b22",
+      "citation_abstract_sha256": "06e9b2227781e34656c8f2867aae17c938956973df85bc7f873251c9d4bf0462",
+      "method_url": "https://arxiv.org/html/2506.06122v1",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Read",
+        "method": "v1 §4: single-controller、Parallel Worker、parallel strategy、data transfer、sample-level rollout scheduler、environment/reward worker、AutoDeviceMapping。",
+        "numeric_claims_used": [
+          "作者在 v1 摘要陈述内部 MoE 总参数超过200B、千卡级、约两周连续运行；不是独立 fault recovery 验证。"
+        ]
+      }
+    },
+    {
+      "source_id": "github:deepseek-ai/DeepEP:2025-Q1-snapshot",
+      "type": "official_repository_snapshot",
+      "url": "https://github.com/deepseek-ai/DeepEP/commit/26fa72d80f2ec3de21a596b0e47ffa1c19dc6ac4",
+      "readme_url": "https://github.com/deepseek-ai/DeepEP/blob/26fa72d80f2ec3de21a596b0e47ffa1c19dc6ac4/README.md",
+      "commit_date": "2025-03-28T08:49:33Z",
+      "commit_author": "Chenggang Zhao",
+      "sha": "26fa72d80f2ec3de21a596b0e47ffa1c19dc6ac4",
+      "date_caveat": "Snapshot proves these mechanisms existed by this commit; does not establish exact first public release date.",
+      "readme_text_sha256": "70996a9a4d1e90675923415e93e7f5f2e02edd89227b78561f227fd08e992fd4",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Deep Dive",
+        "method": "固定 README：训练/prefill 的高吞吐 NVLink/RDMA forwarding、SM 数控制；decode 低延迟纯 RDMA 路径；FP8 dispatch/BF16 combine；Hopper 和 NVSHMEM 约束。",
+        "numeric_claims_used": []
+      }
+    },
+    {
+      "source_id": "github:deepseek-ai/DeepGEMM:2025-Q1-snapshot",
+      "type": "official_repository_snapshot",
+      "url": "https://github.com/deepseek-ai/DeepGEMM/commit/c57699ac933a93651c34d365797c2d8b41a4765b",
+      "readme_url": "https://github.com/deepseek-ai/DeepGEMM/blob/c57699ac933a93651c34d365797c2d8b41a4765b/README.md",
+      "commit_date": "2025-03-26T01:52:47Z",
+      "commit_author": "Liang",
+      "sha": "c57699ac933a93651c34d365797c2d8b41a4765b",
+      "date_caveat": "Snapshot proves these mechanisms existed by this commit; does not establish exact first public release date.",
+      "readme_text_sha256": "bf57f8f48d4ab5624fa840fad17f3f2be8950f610ea96c8cde199197ea1ca665",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Deep Dive",
+        "method": "固定 README：Hopper FP8 fine-grained scaling、normal/grouped GEMM、CUDA-core promotion；cast/transpose 不自动包含在库中；contiguous 与 masked layout 对应不同工作负载。",
+        "numeric_claims_used": []
+      }
+    },
+    {
+      "source_id": "github:huggingface/trl:v0.15.2",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/trl/releases/tag/v0.15.2",
+      "title": "",
+      "author": "qgallouedec",
+      "published_at": "2025-02-25T22:40:00Z",
+      "body_sha256": "8c51f322fb6ee3d25700131fbcecc6b7f8438bee28af8220a0080d27251950dc",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 核对 Liger SFT 修复、pin liger-kernel/vLLM；不宣称 GRPO 在该版本首发。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/transformers:v4.49.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/transformers/releases/tag/v4.49.0",
+      "title": "v4.49.0: Helium, Qwen2.5-VL, SuperGlue, Granite Vision, Zamba2, GOT-OCR 2.0,  DAB-DETR, Depth Pro, RT-DETRv2, GPTQModel",
+      "author": "LysandreJik",
+      "published_at": "2025-02-17T15:19:57Z",
+      "body_sha256": "86722d5c69edfabc8c4c8b92ab1ebdcd85a8bf0118e1969cd701c9d8fac9a952",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 核对模型适配、FP8 quantization；不将 inference quantization 写为端到端 FP8 training。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/accelerate:v1.5.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/accelerate/releases/tag/v1.5.0",
+      "title": "v1.5.0: HPU support",
+      "author": "muellerzr",
+      "published_at": "2025-03-12T14:18:54Z",
+      "body_sha256": "3c7ce361e924576fbee8402789b159dde65dd532e14033b56ffd483c06bd8529",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 标题与正文核对 HPU support。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/peft:v0.15.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/peft/releases/tag/v0.15.0",
+      "title": "v0.15.0",
+      "author": "githubnemo",
+      "published_at": "2025-03-19T15:05:36Z",
+      "body_sha256": "08e6a1094f0d98927c6f6a0ed3365f783e7f44316f7259b08c628e3226671d2e",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 包含 CorDA 与 Trainable Tokens；不提升本季主线。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/trl:v0.18.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/trl/releases/tag/v0.18.0",
+      "title": "v0.18.0",
+      "author": "qgallouedec",
+      "published_at": "2025-05-28T01:56:15Z",
+      "body_sha256": "94c7be59369b19a7efc9e21abb75f1401a2df4b34bcce6368ac211a89fa7923e",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "release 核对 vLLM co-location、FSDP2、two-sided clipping、generation minibatch/gradient accumulation 解耦，以及 colocate prompt/completion 对齐修复。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/accelerate:v1.8.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/accelerate/releases/tag/v1.8.0",
+      "title": "v1.8.0: FSDPv2 + FP8, Regional Compilation for DeepSpeed, Faster Distributed Training on Intel CPUs, ipex.optimize deprecation ",
+      "author": "SunMarc",
+      "published_at": "2025-06-19T15:37:06Z",
+      "body_sha256": "5dfdb916d2685fcd0018172d20009eef0765f6f69564ebc144941c40a939db0d",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 核对 FSDP2 preparation 重构+FP8 与 DeepSpeed regional compilation。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/peft:v0.16.0",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/peft/releases/tag/v0.16.0",
+      "title": "0.16.0: LoRA-FA, RandLoRA, C³A, and much more",
+      "author": "BenjaminBossan",
+      "published_at": "2025-07-03T15:35:31Z",
+      "body_sha256": "5abbb5f7cd4120e60f13779e761d2f64b8ad0126f697753b5899e3864e1e54a0",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Ignore",
+        "method": "发布时间核对；2025-07-03 属于 Q3，从 Q2 排除。"
+      }
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:v0.1.0",
+      "type": "official_release",
+      "url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.1.0",
+      "title": "Release v0.1.0",
+      "author": "terrykong",
+      "published_at": "2025-03-22T00:07:04Z",
+      "body_sha256": "9f8c9ce7651c19f2e701de7144c64f402e529122662ec0a325b367c4111f98f9",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "release 核对 Ray、FSDP、vLLM、GRPO/SFT、process isolation；Known Issues 明确 SFT checkpoint gather full model 到 GPU 可导致大模型 OOM。",
+        "caveat": "当前 repo 名称已迁移，release body 中保留 NVIDIA/reinforcer 与 NVIDIA/NeMo-RL 链接；不据当前 repo 名字推迟首发时间。"
+      }
+    },
+    {
+      "source_id": "github:tile-ai/tilelang:v0.1.0",
+      "type": "official_release",
+      "url": "https://github.com/tile-ai/tilelang/releases/tag/v0.1.0",
+      "title": "v0.1.0",
+      "author": "LeiWang1999",
+      "published_at": "2025-02-12T06:23:08Z",
+      "body_sha256": "1b30055e302310e792063b3efbc607403345ccc307896a407340fcfd7eb1836d",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "release published_at 证明 2025 Q1 已公开，Q2只计算论文首发。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/transformers:v4.52.1",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/transformers/releases/tag/v4.52.1",
+      "title": "v4.52.1: Qwen2.5-Omni, SAM-HQ, GraniteMoeHybrid, D-FINE, CSM, BitNet, LlamaGuard, TimesFM, MLCD, Janus, InternVL",
+      "author": "LysandreJik",
+      "published_at": "2025-05-20T16:32:38Z",
+      "body_sha256": "21341113a4b5ceb01dc9b0cb47f97487011e8f3b8477a6db6c10a36560fc5eab",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 release 核对模型适配与相关集成；v4.52.0 API 未取到后改用可访问 v4.52.1。"
+      }
+    },
+    {
+      "source_id": "github:huggingface/peft:v0.15.2",
+      "type": "official_release",
+      "url": "https://github.com/huggingface/peft/releases/tag/v0.15.2",
+      "title": "v0.15.2",
+      "author": "githubnemo",
+      "published_at": "2025-04-15T15:28:09Z",
+      "body_sha256": "761e9b3bcb1a4c61dc33a19346311c4328e1d79ea77b6a94e5573916812e3336",
+      "checked_at": "2026-09-22",
+      "verification_notes": {
+        "decision": "Observe",
+        "method": "官方 patch release 修复 prompt learning methods/P-tuning 无法使用，非独立系统主线。"
+      }
+    },
+    {
+      "source_id": "official:openai:o3-mini",
+      "type": "official_web_or_model_card",
+      "title": "OpenAI o3-mini",
+      "authors": [
+        "OpenAI"
+      ],
+      "original_publication_date": "2025-01-31",
+      "url": "https://openai.com/index/openai-o3-mini/",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "发布页支持 reasoning effort/workload 观察，不披露足够 training runtime。"
+    },
+    {
+      "source_id": "official:anthropic:claude-3-7",
+      "type": "official_web_or_model_card",
+      "title": "Claude 3.7 Sonnet and Claude Code",
+      "authors": [
+        "Anthropic"
+      ],
+      "original_publication_date": "2025-02-24",
+      "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "extended thinking 与 coding 工作负载，未作为训练基础设施披露。"
+    },
+    {
+      "source_id": "official:openai:o3-o4-mini",
+      "type": "official_web_or_model_card",
+      "title": "Introducing OpenAI o3 and o4-mini",
+      "authors": [
+        "OpenAI"
+      ],
+      "original_publication_date": "2025-04-16",
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "reasoning 与工具使用方向信号，未推导内部训练架构。"
+    },
+    {
+      "source_id": "official:anthropic:claude-4",
+      "type": "official_web_or_model_card",
+      "title": "Introducing Claude 4",
+      "authors": [
+        "Anthropic"
+      ],
+      "original_publication_date": "2025-05-22",
+      "url": "https://www.anthropic.com/news/claude-4",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "Agent 能力发布；不以 benchmark 反推 scheduler。"
+    },
+    {
+      "source_id": "official:hf:open-r1",
+      "type": "official_web_or_model_card",
+      "title": "Open-R1: a fully open reproduction of DeepSeek-R1",
+      "authors": [
+        "Elie Bakouch",
+        "Leandro von Werra",
+        "Lewis Tunstall"
+      ],
+      "original_publication_date": "2025-01-28",
+      "url": "https://huggingface.co/blog/open-r1",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "明确 R1 开放权重之外仍缺数据、训练代码与复现 recipe。"
+    },
+    {
+      "source_id": "official:hf:hello-kernels",
+      "type": "official_web_or_model_card",
+      "title": "Enhance Your Models in 5 Minutes with the Hugging Face Kernel Hub",
+      "authors": [
+        "David Holtz",
+        "Daniël de Kok",
+        "Nicolas Patry",
+        "Pedro Cuenca",
+        "Simon Pagezy",
+        "merve",
+        "Vaibhav Srivastav"
+      ],
+      "original_publication_date": "2025-06-12",
+      "url": "https://huggingface.co/blog/hello-hf-kernels",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "官方团队博客讨论预编译 kernel 加载、匹配环境、部署；不倒填2026仓库类型更新。"
+    },
+    {
+      "source_id": "official:openrlhf:vllm-integration",
+      "type": "official_web_or_model_card",
+      "title": "Accelerating RLHF with vLLM, Best Practice from OpenRLHF",
+      "authors": [
+        "The OpenRLHF Team"
+      ],
+      "original_publication_date": "2025-04-23",
+      "url": "https://vllm.ai/blog/2025-04-23-openrlhf-vllm",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "Ray placement groups、vLLM Ray Executor、CUDA IPC/NCCL weight sync 的示例路径。"
+    },
+    {
+      "source_id": "official:nvidia:blackwell-r1",
+      "type": "official_web_or_model_card",
+      "title": "NVIDIA Blackwell Delivers World-Record DeepSeek-R1 Inference Performance",
+      "authors": [
+        "Ashraf Eassa",
+        "Anjali Shah",
+        "Huizi Mao",
+        "Hao Lu",
+        "Erin Ho",
+        "Justin Xin",
+        "Omri Almog"
+      ],
+      "original_publication_date": "2025-03-18",
+      "url": "https://developer.nvidia.com/blog/nvidia-blackwell-delivers-world-record-deepseek-r1-inference-performance/",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "只引用正文 cuDNN/CUTLASS、硬件和低精度绑定，不采用营销吞吐数字。"
+    },
+    {
+      "source_id": "official:nvidia:long-context",
+      "type": "official_web_or_model_card",
+      "title": "Scaling to Millions of Tokens with Efficient Long-Context LLM Training",
+      "authors": [
+        "Amit Bleiweiss",
+        "Boxiang Wang",
+        "Wenwen Gao"
+      ],
+      "original_publication_date": "2025-06-02",
+      "url": "https://developer.nvidia.com/blog/scaling-to-millions-of-tokens-with-efficient-long-context-llm-training/",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "CP、activation recomputation/offload；原文对 FlashAttention O(n)计算复杂度的表述不沿用。"
+    },
+    {
+      "source_id": "official:nvidia:nemo-skills",
+      "type": "official_web_or_model_card",
+      "title": "How to Streamline Complex LLM Workflows Using NVIDIA NeMo-Skills",
+      "authors": [
+        "Igor Gitman"
+      ],
+      "original_publication_date": "2025-06-25",
+      "url": "https://developer.nvidia.com/blog/how-to-streamline-complex-llm-workflows-using-nvidia-nemo-skills/",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "生成、训练、评估与 checkpoint 转换；支持 NeMo-RL 的示例，不倒填 v0.3 能力。"
+    },
+    {
+      "source_id": "official:deepseek:r1-release",
+      "type": "official_web_or_model_card",
+      "title": "DeepSeek-R1",
+      "authors": [
+        "DeepSeek-AI"
+      ],
+      "original_publication_date": "2025-01-20",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "官方HF权重页与API changelog交叉核验，论文另以v1计。",
+      "crosscheck_url": "https://api-docs.deepseek.com/updates/"
+    },
+    {
+      "source_id": "official:deepseek:v3-0324",
+      "type": "official_web_or_model_card",
+      "title": "DeepSeek-V3-0324",
+      "authors": [
+        "DeepSeek-AI"
+      ],
+      "original_publication_date": "2025-03-24",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "官方HF权重页与API changelog交叉核验，非新训练系统论文。",
+      "crosscheck_url": "https://api-docs.deepseek.com/updates/"
+    },
+    {
+      "source_id": "official:deepseek:r1-0528",
+      "type": "official_web_or_model_card",
+      "title": "DeepSeek-R1-0528",
+      "authors": [
+        "DeepSeek-AI"
+      ],
+      "original_publication_date": "2025-05-28",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+      "checked_at": "2026-09-22",
+      "verification": "primary page title/byline/publication date and mechanism read via web; DeepSeek release dates crosschecked with official API changelog",
+      "decision": "Observe",
+      "verification_notes": "官方HF权重页与API changelog交叉核验，未凭模型改进推导新异步训练架构。",
+      "crosscheck_url": "https://api-docs.deepseek.com/updates/"
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "url": "https://api.github.com/repos/huggingface/transformers/releases/tags/v4.52.0",
+      "result": "Initial request did not return a release; v4.52.1 was subsequently verified."
+    },
+    {
+      "scope": "Q1 Kernels, Q1 AReaL/slime/ROLL public state",
+      "result": "No sufficiently verified in-quarter primary capability evidence selected; not a claim of nonexistence."
+    },
+    {
+      "scope": "Official web/model-card pages",
+      "result": "May have been edited since publication; used conservatively, quarter-specific code mechanisms use fixed commits/releases or paper v1."
+    }
+  ],
+  "notes": [
+    "citation metadata fields and complete author lists are preserved as retrieved from primary arXiv v1 pages.",
+    "Raw abstracts, README and release bodies were read, then replaced with SHA256 plus mechanism-check notes to avoid copying large amounts of source text.",
+    "All performance and operational scale statements are attributed to authors/vendors; no independent GPU replication was conducted.",
+    "GitHub full-window index is coordinated separately in github_history_2025_to_2026_h1.md."
+  ]
+}

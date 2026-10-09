@@ -41,6 +41,12 @@
 | [研究雷达](tracking/README.md) | 最新扫描和历史报告的统一入口 |
 | [当前阅读队列](reading_queue/README.md) | 当前 P0/P1 只在此维护，不在索引复制名单 |
 
+已建立的研究关联：
+
+- [2025 季度／2026 月度复盘](tracking/monthly_reviews.md) → [2025—2026 H1 GitHub 补证](tracking/github_history_2025_to_2026_h1.md)与[7–9 月既有审计](tracking/github_retrospective_2026-07_to_2026-09.md)。两轮来源范围和覆盖缺口分别保留。
+- [9 月正式月报](tracking/monthly_signal_2026-09.md) → [可信经验交付](../rl-infra/topics/agentic_rl.md#september-2026-monthly)。
+- [10/08 扫描](tracking/frontier_scan_2026-10-08.md) → [MoE 联合设计](../training-infra/topics/moe.md#october-2026-joint-design)／[RL 三个边界](../rl-infra/topics/agentic_rl.md#october-2026-contracts) → [阅读决策原记录](reading_queue/P1.md#october-2026-priority)。这是固定来源关联，不在此更新“最新”名单。
+
 ## 0.2 Research OS 工作流
 
 | 阶段 | 目录 | 作用 |

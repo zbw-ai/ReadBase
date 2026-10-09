@@ -111,3 +111,9 @@ Agentic RL 会让 training infra 和 inference infra、agent infra 汇合。谁�
 这也要求分开两种优化：mixed RL 让策略直接接受环境反馈，MOPD 整合领域监督，选择由 reward 可靠性、teacher 增量价值与状态覆盖决定；在线 serving 追求请求质量、延迟和成本，RL 则还要验收消费分布与学习收益。共同底层加速不等于共同最优配置。若相同总预算下能力收益没有改善，或者只是资源更多，不能把吞吐提升写成训练效率提升。
 
 落点：[MOPD 的路径身份与验收](../../rl-infra/topics/mopd.md#mimo-evolution-roles)、[实验 E 的独立计量](../../practice/experiments/mimo_v26_environment_and_mixer.md#evaluation-budget)。均为设计判断，未验证。
+
+## 2025—2026 上半年回看：功能出现不代表契约已经闭合
+
+[季度/月度材料](../tracking/monthly_reviews.md)和[历史 PR](../tracking/github_history_2025_to_2026_h1.md)提供了一个反例：框架可以已经支持 async rollout，却仍在后续补 generation version、输入顺序、replay 消费位置或 checkpoint 计数。我的推断是，评估框架应按“当前 workload 所需的状态能否解释和恢复”排序，而非按功能首次发布日排序。相反，如果业务允许丢弃未消费 rollout、重新采样且有明确代价预算，就不必强行引入全量持久化。
+
+这也改变了阅读优先级：先读会影响 policy 证据、梯度等价性与恢复边界的材料，再比较峰值吞吐。PR 标题、示例和论文实验分别提供不同层次证据；默认分支删除一种 backend 也只是具体项目在某版本的选择。落点见 [历史状态契约](../../rl-infra/topics/agentic_rl.md#history-2025-h1-2026)，后续[验证设计](../../practice/experiments/rl_state_boundaries.md#history-replay-parity)仍为 NEW，不能据此声称本仓库已经验证生产收益。

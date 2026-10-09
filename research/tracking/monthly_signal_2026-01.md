@@ -1,12 +1,51 @@
 # Monthly Signal Report, 2026-01
 
-## 2026-09-22 回看导读：从吞吐配置转向状态与时间
+> 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
-本月资料已经把 staleness、参数服务、数据状态和通信调度放到同一张系统图里。阅读时先区分三件事：样本由哪个权重版本产生、哪一份状态归谁持有、通信何时挤占训练。这些问题会在 7–9 月变成 rollout admission、checkpoint cut 和状态发布的具体实现。
+## 2026-09-22 历史复盘：异步化首先改变样本与状态的归属
 
-**只带走一个动作：** 把一轮训练的数据、权重、optimizer 和通信事件连起来；先能解释等待发生在哪里，再比较框架吞吐。
+> 本节为 **2026-09-22 Historical Review**，把此前简短回看导读展开为阅读判断；下方原月报、原 Accepted / Decision 与 **2026-07-23 Historical Audit** 原文保留。这里的补选发生在 9 月，不冒充当月发现，不改 frontier cursor，也不表示已经完成阅读或实验。GitHub 覆盖已由前一轮的 7–9 月，扩展到 [2025—2026 H1 历史索引](github_history_2025_to_2026_h1.md)；代码枚举的完整性与论文、博客的定向核验分开计量。元数据、版本和 Decision 变化见 [H1 来源审计](audits/2026-09-22-history/2026-h1-sources.json)。
 
-本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+### 三条发展主线
+
+1. **staleness 与长短样本不均衡需要一起控制。** [StaleFlow v1](https://arxiv.org/abs/2601.12784v1) 让 rollout、reward、training 分离后，通过 trajectory 生命周期约束陈旧度，并用轨迹与参数服务调整工作分配。对 AReaL 的可迁移问题是： admission、队列、丢弃和消费发生在哪个版本边界；这是设计推论，并不表示两者实现相同。
+2. **checkpoint 应表达状态结构，而不只是文件集合。** [DataStates-LLM](https://arxiv.org/abs/2601.16956v1) 用 State Provider 分离状态描述与数据移动，利用参数在 forward/backward 期间不变的窗口进行异步快照。读后应能指出 tensor、Python metadata、optimizer shard 在哪个时间点共同有效。
+3. **agent 接口和执行资源开始分离。** 原来 Observe 的 [OpenTinker v1](https://arxiv.org/abs/2601.07376v1) 将 agent/environment interaction 与训练、推理 runtime 分开，集中调度共享资源。重评理由是它补充了服务边界，和 StaleFlow 的样本时效问题不同；不把 7 月 v2 的多 LoRA policy 细节倒写成 1 月能力。
+
+### 本月两份可选深读
+
+| 选择 | 核验信息 | 阅读时必须回答的问题 | 当前 Decision |
+|---|---|---|---|
+| 异步 RL：StaleFlow v1 | Haoyang Li 等；首次提交 2026-01-19；原题 *Unleashing Efficient Asynchronous RL Post-Training via Staleness-Constrained Rollout Coordination* | 一个长 trajectory 被暂停、转移、恢复后，如何判断它仍可用于当前更新？ | Read → Deep Dive；高影响；先画样本/权重版本时间线 |
+| 状态恢复：DataStates-LLM | Avinash Maurya、M. Mustafa Rafique、Franck Cappello、Bogdan Nicolae；2026-01-23 | lazy snapshot 能和 optimizer 更新重叠到哪里？何时必须冻结或复制状态？ | Read → Read；高影响；对照 checkpoint 元数据与恢复路径 |
+
+### 补选、版本纠正与未升级材料
+
+- **新增精选：OpenTinker，Observe → Read，★★★★☆，状态 NEW。** Siqi Zhu、Jiaxuan You；2026-01-12；Source ID `arxiv:2601.07376v1`。下一步只比较算法/环境 API、scheduler 和执行 runtime 的责任，目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md) 的服务边界判断；尚未替代现有 P0。
+- **StaleFlow 是改题，不是错链。** 1 月 v1 原题与旧月报吻合；2026-08-03 v2 改为 *StaleFlow: Staleness-Aware Data Management for Mitigating Data Skewness in Fully Disaggregated RL Post-Training*。本次历史阅读固定 v1，不混用两个版本的吞吐数字。
+- [MoEBlaze](https://arxiv.org/abs/2601.05296v1) 仍为 **Observe**：Jiyuan Zhang 等，2026-01-08；dispatch buffer、activation materialization 和 kernel/checkpoint 协同确有价值，但本轮已有 6 月 fusion 主线，尚未建立同配置的 peak-memory 对照，暂不新增一条同类深读。
+- HetCCL 与 DASH 保留旧 Read，排在两份核心阅读之后；异构 collective 和确定性 attention 是底座。本次没有复测其性能，也没有逐项重审旧 Accepted 的全部实验。
+
+### OpenAI / Anthropic / NVIDIA / DeepSeek Watch · 历史复盘
+
+| 厂商 | 本次判断 | 覆盖与理由 |
+|---|---|---|
+| OpenAI | Observed（沿用原记录） | 旧 agent loop / 平台扩展条目未因本次服务化主线自动升级；未重抓 1 月全部正文 |
+| Anthropic | Observed | [官方 engineering 索引](https://www.anthropic.com/engineering) 可见 1 月 agent eval 材料；本轮优先核验 2 月具体环境资源实验，不把索引可见等同已读 |
+| NVIDIA | Not found / not verifiable in this scan | 旧 RSS 缺口仍在；本轮没有宣称补齐 1 月技术博客全集 |
+| DeepSeek | Not found / not verifiable in this scan | 已查 [API changelog](https://api-docs.deepseek.com/updates/) 与 [官方 HF organization](https://huggingface.co/deepseek-ai)；API 记录从 2025-12 跳到 4 月，HF 当前页不能证明 1 月无发布 |
+
+### Hugging Face Watch · 历史复盘
+
+已打开 [HF Blog](https://huggingface.co/blog) 和 [Transformers](https://github.com/huggingface/transformers/releases)、[Accelerate](https://github.com/huggingface/accelerate/releases)、[PEFT](https://github.com/huggingface/peft/releases)、[Kernels](https://github.com/huggingface/kernels/releases) 官方 release 入口；当月逐页代码覆盖以统一 GitHub 索引为准。当前页面不是历史快照，未单独确认的旧版本不据此生成新信号，社区文章也不借用官方团队身份。
+
+本月不新增 HF 精选；优先通过 3 月 TRL v1 的明确契约理解后续版本。**覆盖边界：** 定向重核两份原核心材料、OpenTinker 与 MoEBlaze，不是重跑 1 月所有 arXiv 类别。RL Framework Watch 沿用下方 Historical Audit，并由统一 GitHub 索引补充日期证据；本文未新增框架版本计数。
+
+### RL Framework Watch · 2026-09-22 代码补证
+
+[AReaL #804](https://github.com/areal-project/AReaL/pull/804) 的 trie/FlexAttention tree training 与 [OpenRLHF #1152](https://github.com/OpenRLHF/OpenRLHF/pull/1152) 的 streaming 结构，分别改变 training/data path 与 rollout 供给方式。迁移到 AReaL 的问题是 prefix 共享后的梯度语义、stream producer 的背压及消费归属；不能仅从出现 streaming 代码推定完整异步恢复。 这些是本轮 [GitHub 历史审计](github_history_2025_to_2026_h1.md) 核实的代码/版本证据；不改变下方 2026-07-23 Historical Audit 的原计数，不代表本仓库已运行回归实验。
+
+---
 
 - Window: 2026-01-01 00:00:00 ~ 2026-01-31 23:59:59
 - Timezone: Asia/Shanghai
@@ -172,4 +211,4 @@
 - heterogeneous GPU / cross-vendor collective 是否从论文走向训练平台实践。
 
 
-[返回月度阅读入口](monthly_reviews.md)
+[返回月度阅读入口](monthly_reviews.md) · [2025—2026 H1 GitHub 历史索引](github_history_2025_to_2026_h1.md)

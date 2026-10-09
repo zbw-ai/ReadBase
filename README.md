@@ -20,7 +20,7 @@
 | 2026-10-09 | 核心学习路线 | [具身六阶段](embodied-infra/roadmap.md)作为当前重点；[五条路线总览](#core-roadmaps)复用已有正文，标清缺口和掌握标准；各 Part 已独立到根目录 |
 | 2026-10-09 | MiMo 技术研究 | [V2.6 报告解读](research/tech_reports/mimo_v26.md)：核心结论、环境与奖励设计、训练系统、算法演进及复现条件；保留七张原图，区分实验结果与工程推断 |
 | 2026-09-22 | 学习结构／实验设计 | 各技术 Part 根目录并列；新增 [A100 E00–E08 课程](practice/experiments/a100_fsdp_io_lab.md)，覆盖训练、I/O、恢复、推理和 RL，尚未执行 |
-| 2026-09-22 | 研究复盘 | [月度阅读总览](research/tracking/monthly_reviews.md)：先看技术主线，再查原始扫描与历史材料 |
+| 2026-10-08 | 研究复盘 | [季度／月度总览](research/tracking/monthly_reviews.md)与[九月正式月报](research/tracking/monthly_signal_2026-09.md)：保留云端历史补证及月底增补，原始新信号见[十月扫描](research/tracking/frontier_scan_2026-10-08.md) |
 | 2026-09-22 | 实现证据 | [7–9 月 GitHub 历史复盘](research/tracking/github_retrospective_2026-07_to_2026-09.md)：保留事件索引、重点 PR 复核和证据边界 |
 
 这里只记录仓库新增或实质更新，最多 5 条；外部新文章看[研究雷达](research/tracking/README.md)，项目进展看[实践入口](practice/README.md)。

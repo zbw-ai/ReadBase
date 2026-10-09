@@ -2,6 +2,30 @@
 
 [所属 Part](../README.md) · [首页](../../README.md) · [知识地图](../../KNOWLEDGE_GRAPH.md)
 
+<a id="september-2026-monthly"></a>
+
+## 9 月月度判断：可信经验需要完整的交付条件
+
+[9 月正式月报](../../research/tracking/monthly_signal_2026-09.md)把任务供给、样本交付、数值表示和恢复放在一起：MiMo / CodeMidas 关注哪些经验值得生成，Conduit 关注何时送达 learner，DSec 关注环境现场怎样保留，月底 AReaL / ROLL / NeMo 的实现进一步细化导出、通信空闲与 refit 边界。工程推断是：有效吞吐应以满足训练条件的经验为分母，同时记录其失败、丢弃与恢复成本。
+
+这不要求所有框架采用同一协议。应先固定 group、policy version、环境状态和权重表示的所有者，再明确每个发布点需要哪些确认。月报保留上游测试与本仓库验证的差别；后续可复用[实验候选](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)，当前尚未执行。
+
+<a id="october-2026-contracts"></a>
+
+## 2026-10：可训练、已结束与可恢复是三个不同边界
+
+[10/08 扫描](../../research/tracking/frontier_scan_2026-10-08.md)把组调度、终止 token 和恢复状态连到同一问题：什么证据足以允许一个样本进入下一阶段。以下是来源形成的工程判断，尚未完成迁移或复现。
+
+| 边界 | 机制与配置判断 | 排查重点 |
+|---|---|---|
+| 可训练的组 | [VenusRL](https://arxiv.org/abs/2610.03286v1)关注完整组就绪；[AReaL #1721](https://github.com/areal-project/AReaL/pull/1721)允许 v2 offline partial group。两者策略不同，先明确算法允许的最小有效组与归一化域 | 检查真正成功导出的成员数、长样本是否更易丢弃、全组 session 是否清理；GPU 忙不能代替 trainer-ready 指标 |
+| 已结束的样本 | [TRL #7505](https://github.com/huggingface/trl/pull/7505)说明 generation config 的结束 ID 必须与 trainer mask 一致；[ThinkingBox](https://huggingface.co/blog/microsoft/thinkingbox)则检查任务最终状态 | 区分 EOS、turn-end、长度截断、环境成功和 system failure；模型停止生成不代表任务完成 |
+| 可恢复的运行状态 | [slime #2444](https://github.com/THUDM/slime/pull/2444)区分 trainer attempt、serving owner 与 durable checkpoint；[NeMo #4410](https://github.com/NVIDIA-NeMo/RL/pull/4410)的 staleness 参数约束准入而非驱逐所有迟到样本 | 检查谁拥有 replay、何时释放 pin、恢复后使用哪个 policy version；作者局部/相关版本测试不替代当前部署验证 |
+
+配置建议：先用同一条样本追踪 task ID、group ID、policy version、terminal reason、export receipt、训练消费和 checkpoint cut，再调 partial acceptance、ready-first 或恢复策略。采用 [ROLL NCCL suspend](../../research/tracking/frontier_scan_2026-10-08.md#a8) 或 [verl layout refit](../../research/tracking/frontier_scan_2026-10-08.md#a11)时，还需验证 communicator 空闲和 weight update 完成两个边界；成功收包不等于运行时权重已可服务。
+
+待做：[最小对照实验](../../practice/experiments/rl_state_boundaries.md#october-2026-cases)。阅读从 [P1](../../research/reading_queue/P1.md#october-2026-priority)进入，不把所有框架更新变成必读任务。
+
 ## Infra Agent 的实验反馈与证据边界
 
 为 rollout runtime 引入 Agent 调优时，建议将交付单元定义为“可证伪假设 + 单变量改动 + 正确性检查 + 服务级对照”，记录人工介入与实验成本。这是本仓库建议，尚未在 AReaL 验证收益。
@@ -1001,3 +1025,15 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 环境与 kernel 也采用同样原则。[Envs-FORGE](https://arxiv.org/abs/2608.14312)提示任务、fixture、oracle 和容器需要联合验收；[Lazy Pod](https://arxiv.org/abs/2608.19412)提示 Ready 之后仍存在延后读失败；[Contract-Grade Verifier](https://arxiv.org/abs/2608.12700)提示优化后的 kernel 需要与真实语义契约对齐。它们解决的对象不同，不能把“通过测试”统一解释为生产正确。
 
 下一步以[最小验证场景](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)为入口，先补证据再选择改动；本次没有实现或运行这些实验。
+
+<a id="history-2025-h1-2026"></a>
+
+## 从 2025 到 2026 上半年：先建立运行路径，再核验状态契约
+
+[季度 / 月度复盘](../../research/tracking/monthly_reviews.md)把当前问题的来路接起来：[2025 Q1](../../research/tracking/quarterly_signal_2025-Q1.md)的 R1 / DAPO 说明采样、截断与 loss reduction 会改变学习信号；[Q2](../../research/tracking/quarterly_signal_2025-Q2.md)的 AReaL / LlamaRL 将 rollout 与训练解耦、权重交付变成平台问题；[Q3](../../research/tracking/quarterly_signal_2025-Q3.md)的 batch invariance 进一步说明，同版本权重不能保证同一数值 policy；[Q4](../../research/tracking/quarterly_signal_2025-Q4.md)的 OpenEnv 与 DeepSeek-V3.2 则把环境接口、routing 与实际采样分布放入契约。这里描述的是公开证据的演进，不是断言所有系统都按这一顺序发展。
+
+到 [2026 上半年](../../research/tracking/github_history_2025_to_2026_h1.md)，值得迁移的设计细节更加具体：恢复 policy version 时也要恢复准入计数基线；replay checkpoint 应区分已生成和已消费；异步 save 要区分不可变 staging 与后台持久化；不同 TP/CP 切分下，auxiliary loss 的归约域也必须等价。配置建议是先给每个状态注明所有者、版本、生命周期与恢复规则，再决定把哪段移到异步线程或独立 GPU。
+
+生产排查时不要仅凭 PR 名称选方案。[slime #906](https://github.com/THUDM/slime/pull/906) 的标题含 true on-policy，但正文明确缺少正确 backward；[AReaL #990](https://github.com/areal-project/AReaL/pull/990) 修复的是 token 统计，不能当作训练 loss 修复；[slime #1664](https://github.com/THUDM/slime/pull/1664) 移除当时 FSDP backend，也不能推出 FSDP 在所有系统中不适用。应先定位自己实际采用的 commit 和 backend，再对照 forward、backward、恢复与统计四条路径。
+
+本节是历史材料形成的工程推断，尚未完成迁移实验。与[7–9 月不变量](#monthly-retrospective-invariants)及[候选验证场景](../../practice/experiments/rl_state_boundaries.md#history-replay-parity)互相衔接。

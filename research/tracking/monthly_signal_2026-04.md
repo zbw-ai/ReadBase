@@ -1,12 +1,52 @@
 # Monthly Signal Report, 2026-04
 
-## 2026-09-22 回看导读：并行、通信和精度需要一起设计
+> 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
-FP8、DORA、AutoSP、optimizer 与 CommFuse 这组材料适合串起来读：精度改变张量字节数和 kernel 选择，并行改变通信域，调度决定这些操作能否重叠。逐项最优的配置不一定能组成最优训练路径。
+## 2026-09-22 历史复盘：调度、数值、恢复与环境开始成为同一个问题
 
-**只带走一个动作：** 用一张时间线标出 GEMM、collective、量化与 optimizer；区分减少通信量和隐藏通信。本月原始 top-80 分类检索有截断，未因本次整理而变成完整扫描。
+> 本节为 **2026-09-22 Historical Review**，把此前简短回看导读展开为阅读判断；下方原月报、原 Accepted / Decision 与 **2026-07-23 Historical Audit** 原文保留。这里的补选发生在 9 月，不冒充当月发现，不改 frontier cursor，也不表示已经完成阅读或实验。GitHub 覆盖已由前一轮的 7–9 月，扩展到 [2025—2026 H1 历史索引](github_history_2025_to_2026_h1.md)；代码枚举的完整性与论文、博客的定向核验分开计量。元数据、版本和 Decision 变化见 [H1 来源审计](audits/2026-09-22-history/2026-h1-sources.json)。
 
-本节是已有月报的跨月综合，不新增原月 Accepted，不表示用户已经阅读。1–6 月沿用原始来源和覆盖限制；本次 GitHub 逐页历史补扫覆盖 7–9 月，不声称补齐更早月份。具体材料与原厂商 / HF / RL Watch 见下方；[月度总览](monthly_reviews.md)把这些前置知识连接到后续实现。
+### 三条发展主线
+
+1. **异步 RL 要守住样本的策略语义。** [DORA v1](https://arxiv.org/abs/2604.26256v1) 显式讨论 trajectory 内 policy 一致性、data integrity 与 bounded staleness，并采用多版本 streaming rollout；[NVIDIA FP8 RL](https://developer.nvidia.com/blog/run-high-throughput-reinforcement-learning-training-with-end-to-end-fp8-precision/) 则处理生成与训练 engine 的数值偏差。版本相同仍可能有 logprob mismatch，这是两份材料连读的原因。
+2. **长上下文会同时改写显存布局与通信顺序。** 原 AutoSP/CommFuse 之外，重评 [TSP](https://arxiv.org/abs/2604.26294v1)：同一 device axis 同时放 weight shard 与 sequence shard，通过参数轮转/广播和 KV 交换换取显存空间。多维并行的名称不是最优布局证明，必须比较额外通信与减少的 activation。
+3. **工业报告把底层优化连接到可恢复 rollout 与 sandbox。** 补入 [DeepSeek-V4 报告](https://arxiv.org/abs/2606.19348v1) 的 §3 与 §5.2：batch-invariant kernel、token WAL、metadata/per-token 数据分离以及 DSec 环境平台进入同一系统。核心启发是恢复未完成轨迹不能随便从头重采，否则可能改变长度分布；这是报告直接讨论的 correctness 问题。
+
+### 本月两份可选深读
+
+| 选择 | 核验信息 | 阅读时必须回答的问题 | 当前 Decision |
+|---|---|---|---|
+| 异步 correctness：DORA v1 | Tianhao Hu 等；2026-04-29；按 v1 作者表核验，未混用 7 月 v2 | 多版本并存时，谁负责接纳、完成、消费与清退 trajectory？ | Read → Deep Dive；高影响；与 AReaL 的 stale-budget 对照 |
+| 工业系统：DeepSeek-V4 | DeepSeek-AI 等；4 月 24 日官方公开发布，arXiv v1 标注 4 月 26 日 | token WAL、KV 恢复、确定性 kernel 与 sandbox 供给如何共同保证长轨迹可继续？ | 未收录 → Deep Dive；高影响；优先读 §3、§5.2 |
+
+### 补选、日期核验与未升级材料
+
+- **新增精选：DeepSeek-V4，Deep Dive，★★★★★，状态 NEW；Source ID `arxiv:2606.19348v1`。** [官方发布页](https://deepseek.com/en/news/v4-preview/)与[官方权重卡](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash)交叉核验；下一步把 §5.2.3 的续采、§5.2.4 的样本数据路径、§5.2.5 的环境供给对照 AReaL，目标为 [Agentic RL](../../rl-infra/topics/agentic_rl.md)、[Fault Tolerance](../../training-infra/topics/fault_tolerance.md)。公开机制可读，厂商规模与性能仍是自报证据，不表示仓库复现。
+- **DeepSeek-V4 的 `2606` ID 前缀与日期不一致，已显式保留。** raw `citation_date` / `citation_online_date` 均为 `2026/04/26`，v1 submission history 为 `2026-04-26 14:49:33 UTC`，[PDF 扉页](https://arxiv.org/pdf/2606.19348v1)同日；4 月 24 日官方发布页目前直接链接同一报告，[HF 官方团队文章](https://huggingface.co/blog/deepseekv4)也记录当天发布及相同架构。故按最早可核验官方公开事件归 4 月；不推测编号差异的原因，也不把当前 HF 文件当作 4 月字节级快照。
+- **新增精选：TSP，Observe → Read，★★★★☆，状态 NEW；Source ID `arxiv:2604.26294v1`。** Vasu Shyam、Anna Golubeva、Quentin Anthony；2026-04-29。下一步列出 attention/MLP 的数据移动顺序与 memory/communication trade-off，目标为 [Sequence Parallelism](../../training-infra/topics/sequence_parallelism.md)。升级原因是补充“同轴布局换显存”的独立判断，而非单纯再收一种并行简称。
+- NVIDIA FP8 RL 原 Read 保留：Guyue Huang 等，2026-04-20；block-wise FP8 对齐、importance sampling 与 QKV scale 同步需要一起看。本文未把厂商的未来 kernel 优化预期当作实测结果。
+- ZipCCL / TACO 仍 **Observe**：压缩字节不自动解决 critical-path 上的等待；先与 CommFuse 的 overlap 路径建立同配置对照。CacheFlow 仍 Observe：需先验证 KV 恢复语义与 rollout policy version 的对应关系。
+
+### OpenAI / Anthropic / NVIDIA / DeepSeek Watch · 历史复盘
+
+| 厂商 | 本次判断 | 覆盖与理由 |
+|---|---|---|
+| OpenAI | Observed（沿用原记录） | compute infrastructure 条目原有正文抓取限制仍保留，不把标题当机制证据 |
+| Anthropic | Observed | [Managed Agents](https://www.anthropic.com/engineering/managed-agents) 是服务解耦相邻证据；尚未核验训练状态/权重协议，不升为本月精选 |
+| NVIDIA | Accepted / Read | 4 月 20 日 FP8 RL 正文、署名和日期已核验；其余旧 NVIDIA Accepted 仍按原审计范围解读 |
+| DeepSeek | Accepted / Deep Dive | 已查 [API changelog](https://api-docs.deepseek.com/updates/) 与 [官方 HF organization](https://huggingface.co/deepseek-ai)，补 V4 report 与权重公开事件；模型榜单不作为入选理由 |
+
+### Hugging Face Watch · 历史复盘
+
+[DeepSeek-V4 官方团队文章](https://huggingface.co/blog/deepseekv4)（Ben Burtenshaw，2026-04-24）作为 **Observed / 交叉来源**，不重复计一个精选；底层机制仍以 DeepSeek primary report 为准。已打开 [HF Blog](https://huggingface.co/blog) 和 [Transformers](https://github.com/huggingface/transformers/releases)、[Accelerate](https://github.com/huggingface/accelerate/releases)、[PEFT](https://github.com/huggingface/peft/releases)、[Kernels](https://github.com/huggingface/kernels/releases) 官方 release 入口；当月逐页代码覆盖以统一 GitHub 索引为准。当前页面不是历史快照，未单独确认的旧版本不据此生成新信号，社区文章也不借用官方团队身份。
+
+**覆盖边界：** 定向补工业报告并重评 TSP；原 top-80 论文截断仍在。下方 2026-07-23 RL Framework Watch 审计保持原状；统一 GitHub 索引负责补证日期和重大 PR，本节不把 release 能力写成个人实现结果。
+
+### RL Framework Watch · 2026-09-22 代码补证
+
+[verl #6091](https://github.com/verl-project/verl/pull/6091) 对超大 tensor 分块以降低同步 buffer 峰值；[Megatron #4047](https://github.com/NVIDIA/Megatron-LM/pull/4047) 要求 async P2P send 完成后才释放 activation。它们分别约束 weight sync 与 pipeline training 的状态生命周期。[Transformer Engine v2.14.1](https://github.com/NVIDIA/TransformerEngine/releases/tag/v2.14.1) 修复 MXFP8 quantization + dbias fusion 的非确定性错误结果，进一步说明 FP8 验收不能只有吞吐。 这些是本轮 [GitHub 历史审计](github_history_2025_to_2026_h1.md) 核实的代码/版本证据；不改变下方 2026-07-23 Historical Audit 的原计数，不代表本仓库已运行回归实验。
+
+---
 
 - Window: 2026-04-01 00:00:00 ~ 2026-04-30 23:59:59
 - Timezone: Asia/Shanghai
@@ -200,4 +240,4 @@ DORA 和 AReaL / HybridFlow 应该放在一起读。它把“异步 rollout 提�
 - 通信优化是否从压缩字节数转向重排 collective、隐藏尾延迟和提高 overlap 稳定性。
 
 
-[返回月度阅读入口](monthly_reviews.md)
+[返回月度阅读入口](monthly_reviews.md) · [2025—2026 H1 GitHub 历史索引](github_history_2025_to_2026_h1.md)
