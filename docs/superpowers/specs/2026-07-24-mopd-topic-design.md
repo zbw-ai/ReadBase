@@ -2,7 +2,7 @@
 
 ## 背景
 
-ReadBase 已有 [Agentic RL Infrastructure](../../../training-infra-roadmap/topics/agentic_rl.md) 作为 RL Infra 总入口，但尚未系统解释 On-Policy Distillation（OPD）以及它如何演进为 Multi-Teacher On-Policy Distillation（MOPD）。
+ReadBase 已有 [Agentic RL Infrastructure](../../../rl-infra/topics/agentic_rl.md) 作为 RL Infra 总入口，但尚未系统解释 On-Policy Distillation（OPD）以及它如何演进为 Multi-Teacher On-Policy Distillation（MOPD）。
 
 MOPD 同时涉及 post-training 算法与训练系统：Student rollout、Teacher prefill、token-level supervision、domain routing、异步服务和多 Teacher 资源组织。如果直接从框架实现切入，容易记住配置却没有建立算法因果链。
 

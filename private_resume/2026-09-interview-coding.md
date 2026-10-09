@@ -520,7 +520,7 @@ if __name__ == "__main__":
 - 更新已有 key 时误增 size，导致错误淘汰；按 `len >= capacity` 提前删掉本来可容纳的元素。
 - 把粘贴后的 `**init**` 当成 Python 方法名；实际应为 `__init__`，方法体必须正确缩进。这是粘贴格式问题，不据此判断现场提交存在语法错误。
 
-↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [知识图谱](../training-infra-roadmap/KNOWLEDGE_GRAPH.md) · [阅读索引](../training-infra-roadmap/MASTER_READING_LIST.md)
+↑ [返回题单顶部](#coding-top) · [返回面试速查控制台](2026-08-llm-infra-interview-prep.md#interview-console) · [知识图谱](../KNOWLEDGE_GRAPH.md) · [阅读索引](../research/MASTER_READING_LIST.md)
 
 ---
 

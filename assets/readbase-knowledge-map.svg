@@ -1,6 +1,6 @@
 <svg width="1280" height="800" viewBox="0 0 1280 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">ReadBase Knowledge Map</title>
-  <desc id="desc">A clean research-style knowledge map for ReadBase, showing the path from model objects to parallel training, memory state, kernels, large-scale systems, and production debugging.</desc>
+  <title id="title">ReadBase Training Systems Map</title>
+  <desc id="desc">Training-specific reference map within ReadBase. The repository also has peer learning tracks for systems, inference, RL, embodied AI, and engineering practice.</desc>
   <defs>
     <linearGradient id="page" x1="0" y1="0" x2="1280" y2="800" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F8FAFC"/>
@@ -32,13 +32,13 @@
   <path d="M66 676H1214" class="thin"/>
 
   <text x="66" y="58" class="h1">ReadBase</text>
-  <text x="66" y="88" class="bodyStrong">AI Infra / LLM Infra 工程知识库</text>
-  <text x="300" y="88" class="body">面向系统设计、生产排障、论文消化与面试复习的长期 handbook 集合</text>
+  <text x="66" y="88" class="bodyStrong">训练系统分图</text>
+  <text x="300" y="88" class="body">训练、推理、RL、具身与硬件基础并列；本图展示训练系统内部关系</text>
 
   <g filter="url(#cardShadow)">
     <rect x="66" y="132" width="342" height="122" rx="10" fill="#FFFFFF" stroke="#D9E2EC"/>
     <rect x="66" y="132" width="342" height="7" rx="3.5" fill="#2A9D8F"/>
-    <text x="92" y="171" class="label">CURRENT HANDBOOK</text>
+    <text x="92" y="171" class="label">TRAINING SYSTEMS</text>
     <text x="92" y="203" class="h2">AI Training Infrastructure</text>
     <text x="92" y="228" class="body">从 Transformer block 出发，理解训练系统为什么</text>
     <text x="92" y="247" class="body">围绕算子、状态、通信、存储和恢复展开。</text>
@@ -47,8 +47,8 @@
   <g filter="url(#cardShadow)">
     <rect x="452" y="132" width="762" height="136" rx="10" fill="#FFFFFF" stroke="#D8E0EA"/>
     <rect x="452" y="132" width="7" height="136" rx="3.5" fill="#3B6EA8"/>
-    <text x="482" y="172" class="h2">第一轮阅读主线</text>
-    <text x="482" y="201" class="body">先建立训练 infra 的骨架，再逐步补 FSDP、MoE、NCCL、FP8 等专题。</text>
+    <text x="482" y="172" class="h2">训练基础阅读路径</text>
+    <text x="482" y="201" class="body">这是训练方向的基础路线，不作为学习推理、RL 或具身的必经顺序。</text>
     <g>
       <circle cx="506" cy="230" r="5" fill="#8FB9D9"/>
       <circle cx="640" cy="230" r="5" fill="#8FB9D9"/>

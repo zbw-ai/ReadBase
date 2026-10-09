@@ -11,6 +11,8 @@
 
 正文拟放在 `training-infra-roadmap/topics/embodied_models_primer.md`，待大纲确认后创建。
 
+2026-10-09 结构衔接：以上为原始规划路径；目录迁移后正文应归属 `embodied-infra/topics/embodied_models_primer.md`（尚未创建）。当前执行入口为[具身六阶段路线](../../../embodied-infra/roadmap.md)，复用本大纲而不把它标为已完成教程。
+
 先建立模型、算法与任务的基础认识，再解释这些选择为何带来数据、训练和推理系统问题。MLLM 与多模态交互是独立主线，不作为 VLA 的附带介绍。
 
 读完应能回答：
@@ -170,8 +172,8 @@
 ## 5. 与现有文档的关系
 
 - 本文是大纲；确认后正文仅维护一份，不按每个关键词拆出多个新文档。
-- 新正文提供“模型与算法基础”；[Agentic for Embodied](../../../training-infra-roadmap/topics/agentic_for_embodied.md)保留为后续系统工程阅读，双方建立链接。
-- 正文完成后，在 [Training Infra Handbook](../../../training-infra-roadmap/README.md)、[知识图谱](../../../training-infra-roadmap/KNOWLEDGE_GRAPH.md)、[阅读总表](../../../training-infra-roadmap/MASTER_READING_LIST.md)补入口。
+- 新正文提供“模型与算法基础”；[Agentic for Embodied](../../../embodied-infra/topics/agentic_for_embodied.md)保留为后续系统工程阅读，双方建立链接。
+- 正文完成后，在 [Training Infra Handbook](../../../README.md)、[知识图谱](../../../KNOWLEDGE_GRAPH.md)、[阅读总表](../../../research/MASTER_READING_LIST.md)补入口。
 - [面试主文档](../../../private_resume/2026-08-llm-infra-interview-prep.md)只增加基础阅读链接，不复制整篇正文、不重排题库。
 - 本次不扩展公司研究、职业规划、薪酬信息、硬件采购或新的训练平台建设。
 

@@ -5,6 +5,8 @@
 > 本轮交付：目录归属、迁移与兼容规则、内容边界和实验课程设计。先审阅书面规格，再制定迁移实施计划；不启动 GPU 作业，不宣称已完成教程、精读或性能验证。
 > 读者：已有 LLM Training 与 Agentic RL 工程经验，接下来重点学习具身模型、具身 Infra、FSDP/FSDP2 和 ZeRO 的工程师。
 
+2026-10-09 实施衔接：以下保留原设计时点的描述；目录迁移与验收见[实施记录](../plans/2026-09-22-library-domain-migration.md)，新增核心路线见[路线实施清单](../plans/2026-10-09-core-learning-roadmaps.md)。当前实际入口以[首页](../../../README.md)为准，不把旧规格里的“尚未搬迁”当成实时状态。
+
 ## 1. 已确认的目标与范围
 
 ### 1.1 用户决策
@@ -28,10 +30,10 @@
 
 ## 2. 当前问题与设计选择
 
-- [根入口](../../../README.md)及[手册入口](../../../training-infra-roadmap/README.md)仍使用 Training → Inference → Agent 的阶段式描述，不能体现实际并存的知识方向。
-- [现有具身系统章](../../../training-infra-roadmap/topics/agentic_for_embodied.md)已有较完整蓝图，但尚未真实实验验证；[模型入门设计](2026-09-18-embodied-models-primer-design.md)仍是大纲，不能当成已完成教程。
-- [FSDP 专题](../../../training-infra-roadmap/topics/fsdp.md)已有机制和选型，应在此深化，而不是新增相同原理的“具身版 FSDP”。
-- [扫描模板](../../../training-infra-roadmap/tracking/frontier_scan_template.md)把独立 inference 限定为影响 rollout，且厂商 Watch 与当前四家规则存在不一致。
+- [根入口](../../../README.md)及[手册入口](../../../README.md)仍使用 Training → Inference → Agent 的阶段式描述，不能体现实际并存的知识方向。
+- [现有具身系统章](../../../embodied-infra/topics/agentic_for_embodied.md)已有较完整蓝图，但尚未真实实验验证；[模型入门设计](2026-09-18-embodied-models-primer-design.md)仍是大纲，不能当成已完成教程。
+- [FSDP 专题](../../../training-infra/topics/fsdp.md)已有机制和选型，应在此深化，而不是新增相同原理的“具身版 FSDP”。
+- [扫描模板](../../../research/tracking/frontier_scan_template.md)把独立 inference 限定为影响 rollout，且厂商 Watch 与当前四家规则存在不一致。
 - README、Master List、Knowledge Graph 重复维护最新扫描、优先级和学习顺序，增加入口漂移。
 
 以下本地链接指向迁移前的现有证据；目标目录用代码形式表示，实施后再转换为可点击入口。
@@ -115,15 +117,15 @@ ReadBase/
 
 | 学习块 | 能回答的实际问题 | 参考入口 | 本地正文边界 |
 |---|---|---|---|
-| GPU 执行与性能口径 | 算力、HBM 带宽和容量分别限制什么？为什么标称 FLOPS 不等于模型吞吐？ | [Accelerators](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator)、[算力基准](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator/benchmarks) | 复用 [GPU 执行](../../../training-infra-roadmap/topics/transformer_engine.md#gpu-execution)和 [Roofline](../../../training-infra-roadmap/topics/transformer_engine.md#roofline)，补测量边界，不再复制 GPU 原理章 |
+| GPU 执行与性能口径 | 算力、HBM 带宽和容量分别限制什么？为什么标称 FLOPS 不等于模型吞吐？ | [Accelerators](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator)、[算力基准](https://github.com/stas00/ml-engineering/tree/master/compute/accelerator/benchmarks) | 复用 [GPU 执行](../../../systems/topics/transformer_engine.md#gpu-execution)和 [Roofline](../../../systems/topics/transformer_engine.md#roofline)，补测量边界，不再复制 GPU 原理章 |
 | CPU、内存与拓扑 | NUMA 本地／远端访问、PCIe 路径、GPU–NIC 亲和怎样影响数据供给和通信？ | [CPU](https://github.com/stas00/ml-engineering/tree/master/compute/cpu)、[主存](https://github.com/stas00/ml-engineering/tree/master/compute/cpu-memory)、[Network](https://github.com/stas00/ml-engineering/tree/master/network) | 拟新增 `systems/topics/hardware_topology.md`，统一描述硬件数据路径；不是各个术语各建一篇 |
-| 网络与分布式通信 | NVLink/NVSwitch、IB/RoCE、RDMA 和 NCCL 分别处于哪层？延迟／带宽为何随消息与拓扑变化？ | [Network](https://github.com/stas00/ml-engineering/tree/master/network)、[网络基准](https://github.com/stas00/ml-engineering/tree/master/network/benchmarks) | 硬件路径放新拓扑章；collective、algbw/busbw、overlap 继续在 [NCCL](../../../training-infra-roadmap/topics/nccl.md)，并行放置回链训练章 |
+| 网络与分布式通信 | NVLink/NVSwitch、IB/RoCE、RDMA 和 NCCL 分别处于哪层？延迟／带宽为何随消息与拓扑变化？ | [Network](https://github.com/stas00/ml-engineering/tree/master/network)、[网络基准](https://github.com/stas00/ml-engineering/tree/master/network/benchmarks) | 硬件路径放新拓扑章；collective、algbw/busbw、overlap 继续在 [NCCL](../../../systems/topics/nccl.md)，并行放置回链训练章 |
 | Host runtime 与数据 I/O | GPU 在等 worker、解码、H2D、磁盘还是系统资源？CPU 多进程、线程池与容器限制如何作用？ | [Storage](https://github.com/stas00/ml-engineering/tree/master/storage)、[训练性能](https://github.com/stas00/ml-engineering/tree/master/training/performance) | 拟新增 `systems/topics/host_runtime_and_io.md`：Linux 进程/线程、affinity/cgroup、共享内存、page cache、pinned memory、文件布局与缓存基础 |
-| 作业运行与排障 | 一个 rank 退出、另一个卡在 collective 时，怎样找到第一处异常？怎样安全复现？ | [Orchestration](https://github.com/stas00/ml-engineering/tree/master/orchestration)、[PyTorch Debug](https://github.com/stas00/ml-engineering/blob/master/debug/pytorch.md)、[Testing](https://github.com/stas00/ml-engineering/tree/master/testing) | 复用 [容错](../../../training-infra-roadmap/topics/fault_tolerance.md)和 [慢步排障](../../../training-infra-roadmap/playbooks/slow_step_debug.md)，补最小复现、rank 级证据、启动和退出链路 |
+| 作业运行与排障 | 一个 rank 退出、另一个卡在 collective 时，怎样找到第一处异常？怎样安全复现？ | [Orchestration](https://github.com/stas00/ml-engineering/tree/master/orchestration)、[PyTorch Debug](https://github.com/stas00/ml-engineering/blob/master/debug/pytorch.md)、[Testing](https://github.com/stas00/ml-engineering/tree/master/testing) | 复用 [容错](../../../training-infra/topics/fault_tolerance.md)和 [慢步排障](../../../practice/playbooks/slow_step_debug.md)，补最小复现、rank 级证据、启动和退出链路 |
 
 拓扑章说明“字节经过哪些硬件边界”；Host/I/O 章说明“软件如何供给数据并占用资源”。两者是计划中的正文，批次 A 迁移已有内容并建立导航与来源映射，不创建空教程。
 
-通用存储基础按**样本持续读取、checkpoint 突发写入、模型／环境启动读取**区分 workload，讨论吞吐、时延、IOPS、metadata、小文件与缓存；不预设一种文件系统覆盖全部场景。[Checkpointing](../../../training-infra-roadmap/topics/checkpointing.md)继续负责保存提交与恢复语义，具身数据章负责 episode/camera/timestamp 和视频随机窗口，两篇均回链通用 I/O，不复制其全文。
+通用存储基础按**样本持续读取、checkpoint 突发写入、模型／环境启动读取**区分 workload，讨论吞吐、时延、IOPS、metadata、小文件与缓存；不预设一种文件系统覆盖全部场景。[Checkpointing](../../../training-infra/topics/checkpointing.md)继续负责保存提交与恢复语义，具身数据章负责 episode/camera/timestamp 和视频随机窗口，两篇均回链通用 I/O，不复制其全文。
 
 这套底座服务所有方向：Part II 对应分片、offload 与恢复；Part III 对应 CPU launch、HBM/KV、冷启动和尾延迟；Part IV 对应环境／rollout／trainer 的资源争用、轨迹与权重传输；Part V 对应多相机数据读取、解码及 H2D；Part VI 提供验证；Part VII 只保留面试表达和回链。
 

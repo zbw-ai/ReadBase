@@ -1,0 +1,879 @@
+{
+  "recorded_at_utc": "2026-10-08T03:09:05.740782+00:00",
+  "scope": "Targeted MiMo update and late-discovered September material; not a frontier scan; no cursor advanced; no training reproduced.",
+  "previous_snapshot": "source_snapshot.json",
+  "reports": {
+    "mimo": {
+      "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "identical_to_2026_09_22": true,
+      "pages": 44
+    },
+    "codemidas": {
+      "citation_metadata": [
+        [
+          "title",
+          "CodeMidas: Scaling Agentic Coding RL Environments from Code Itself"
+        ],
+        [
+          "author",
+          "Ye, Bowen"
+        ],
+        [
+          "author",
+          "Li, Lei"
+        ],
+        [
+          "author",
+          "Li, Shicheng"
+        ],
+        [
+          "author",
+          "Yue, Zihao"
+        ],
+        [
+          "author",
+          "Zhang, Linghao"
+        ],
+        [
+          "author",
+          "Lv, Hanglong"
+        ],
+        [
+          "author",
+          "Liu, Yuanxin"
+        ],
+        [
+          "author",
+          "Ma, Wenhan"
+        ],
+        [
+          "author",
+          "Tian, Hao"
+        ],
+        [
+          "author",
+          "Li, Rang"
+        ],
+        [
+          "author",
+          "Dong, Jinhao"
+        ],
+        [
+          "author",
+          "Zhao, Yikai"
+        ],
+        [
+          "author",
+          "Deng, Xiangwei"
+        ],
+        [
+          "author",
+          "Zhang, Hailin"
+        ],
+        [
+          "author",
+          "Zhao, Liang"
+        ],
+        [
+          "author",
+          "Liu, Qi"
+        ],
+        [
+          "author",
+          "Kong, Lingpeng"
+        ],
+        [
+          "author",
+          "Yang, Tong"
+        ],
+        [
+          "author",
+          "Luo, Fuli"
+        ],
+        [
+          "date",
+          "2026/09/18"
+        ]
+      ],
+      "submission_history": "v1 only, 2026-09-18 17:55:17 UTC"
+    },
+    "gagar": {
+      "citation_metadata": [
+        [
+          "title",
+          "Groupwise Agentic Grading and Advantage Redistribution for Code Agent RL"
+        ],
+        [
+          "author",
+          "Dong, Jinhao"
+        ],
+        [
+          "author",
+          "Zhao, Liang"
+        ],
+        [
+          "author",
+          "Yue, Zihao"
+        ],
+        [
+          "author",
+          "Ma, Wenhan"
+        ],
+        [
+          "author",
+          "Zhang, Linghao"
+        ],
+        [
+          "author",
+          "Li, Lei"
+        ],
+        [
+          "author",
+          "Li, Shicheng"
+        ],
+        [
+          "author",
+          "Song, Yifan"
+        ],
+        [
+          "author",
+          "Ye, Bowen"
+        ],
+        [
+          "author",
+          "Luo, Fuli"
+        ],
+        [
+          "date",
+          "2026/09/26"
+        ]
+      ],
+      "submission_history": "v1, 2026-09-26 12:50:04 UTC",
+      "pages": 16,
+      "pdf_sha256": "47ed36653924c88ff1e555e513ab869a28b04feabe2f17d686d4f3f7417c8d2e",
+      "pdf_url": "https://arxiv.org/pdf/2609.32577v1"
+    }
+  },
+  "models": {
+    "pro_rl": {
+      "id": "XiaomiMiMo/MiMo-V2.6-Pro-RL",
+      "sha": "73875d00b30a89ef8cc353a0b60b0e9f9561952d",
+      "createdAt": "2026-09-21T15:39:33.000Z",
+      "lastModified": "2026-09-22T03:52:00.000Z",
+      "metadata_url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Pro-RL"
+    },
+    "flash_rl": {
+      "id": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+      "sha": "5711b268169967567844e1e560e8a3966da959b1",
+      "createdAt": "2026-09-21T15:39:51.000Z",
+      "lastModified": "2026-09-22T03:52:25.000Z",
+      "metadata_url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Flash-RL"
+    },
+    "pro_mopd": {
+      "id": "XiaomiMiMo/MiMo-V2.6-Pro-MOPD",
+      "sha": "adea8e2c5373181e5a973fa1ecb343cb31af214b",
+      "createdAt": "2026-09-27T03:58:00.000Z",
+      "lastModified": "2026-09-27T16:58:58.000Z",
+      "metadata_url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Pro-MOPD"
+    },
+    "flash_mopd": {
+      "id": "XiaomiMiMo/MiMo-V2.6-Flash-MOPD",
+      "sha": "2479e2d0029eca9a34cc7e7f55a121925f81908e",
+      "createdAt": "2026-09-27T04:01:00.000Z",
+      "lastModified": "2026-09-27T16:59:08.000Z",
+      "metadata_url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Flash-MOPD"
+    }
+  },
+  "dataset": {
+    "id": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+    "sha": "639865fd3374018d6cb29b9fb82dd531406fcf5f",
+    "createdAt": "2026-09-25T11:26:55.000Z",
+    "lastModified": "2026-09-26T01:40:41.000Z",
+    "sizes": {
+      "dataset": {
+        "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+        "num_bytes_original_files": 20920341,
+        "num_bytes_parquet_files": 20920341,
+        "num_bytes_memory": 49341751,
+        "num_rows": 7780,
+        "estimated_num_rows": null
+      },
+      "configs": [
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "code",
+          "num_bytes_original_files": 13314620,
+          "num_bytes_parquet_files": 13314620,
+          "num_bytes_memory": 33612207,
+          "num_rows": 2698,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "cyber",
+          "num_bytes_original_files": 227632,
+          "num_bytes_parquet_files": 227632,
+          "num_bytes_memory": 1807901,
+          "num_rows": 1000,
+          "num_columns": 5,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "general",
+          "num_bytes_original_files": 3122244,
+          "num_bytes_parquet_files": 3122244,
+          "num_bytes_memory": 5988563,
+          "num_rows": 989,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "music",
+          "num_bytes_original_files": 135467,
+          "num_bytes_parquet_files": 135467,
+          "num_bytes_memory": 611286,
+          "num_rows": 1000,
+          "num_columns": 5,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "webdev",
+          "num_bytes_original_files": 4120378,
+          "num_bytes_parquet_files": 4120378,
+          "num_bytes_memory": 7321794,
+          "num_rows": 2093,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        }
+      ],
+      "splits": [
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "code",
+          "split": "train",
+          "num_bytes_parquet_files": 13314620,
+          "num_bytes_memory": 33612207,
+          "num_rows": 2698,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "cyber",
+          "split": "train",
+          "num_bytes_parquet_files": 227632,
+          "num_bytes_memory": 1807901,
+          "num_rows": 1000,
+          "num_columns": 5,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "general",
+          "split": "train",
+          "num_bytes_parquet_files": 3122244,
+          "num_bytes_memory": 5988563,
+          "num_rows": 989,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "music",
+          "split": "train",
+          "num_bytes_parquet_files": 135467,
+          "num_bytes_memory": 611286,
+          "num_rows": 1000,
+          "num_columns": 5,
+          "estimated_num_rows": null
+        },
+        {
+          "dataset": "XiaomiMiMo/MiMo-V2.6-RL-oss",
+          "config": "webdev",
+          "split": "train",
+          "num_bytes_parquet_files": 4120378,
+          "num_bytes_memory": 7321794,
+          "num_rows": 2093,
+          "num_columns": 6,
+          "estimated_num_rows": null
+        }
+      ]
+    },
+    "count_scope": "HF size API parquet rows, not locally executed or independently deduplicated environments"
+  },
+  "code": {
+    "repository": "https://github.com/XiaomiMiMo/verl",
+    "branch": "mimo-oss",
+    "revision": "a2ad9f6160b03ff2d47e59832bfb6b289f37c917",
+    "revision_verification": "git ls-remote; GitHub API rate-limited",
+    "scope": "README, .gitmodules, selected launcher configurations and runner/AgentLoop files only; not executed"
+  },
+  "dashboard": {
+    "pro_status": {
+      "run": {
+        "key": "pro",
+        "label": "mimo-v2.6-pro",
+        "start": 1789468339.334,
+        "end": 1789927300.953,
+        "mode": "ended"
+      },
+      "step": {
+        "last": 30,
+        "last_wall": 1789926408.4091287,
+        "since": 892.5438714027405,
+        "expected": 16711.0,
+        "progress": null,
+        "phase": null,
+        "gen_frac": 0.5417027865112327,
+        "restarted_at": null
+      },
+      "totals": {
+        "tokens_step": 3431370000.0,
+        "trained_step": 25088.0,
+        "sandboxes_step": 11180.0,
+        "prompts_per_step": 1568.0,
+        "tokens_cum": 75004390000.0,
+        "trained_cum": 752640.0,
+        "sandboxes_cum": 3560844.0,
+        "restarts": 14
+      },
+      "cost": {
+        "rate_per_s": 5.71,
+        "so_far": 2620670.84448976
+      }
+    },
+    "pro_run_cost_totals_unchanged": true,
+    "flash_status": "HTTP 502 twice; retain 2026-09-22 historical status and costs without claiming fresh confirmation",
+    "benchmarks": {
+      "benchmarks": [
+        {
+          "key": "deepswe",
+          "title": "DeepSWE v1.1",
+          "note": "mini-swe-agent, avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 48.67,
+              "2": 53.1,
+              "3": 56.78,
+              "4": 54.03,
+              "5": 57.23,
+              "6": 54.57,
+              "8": 57.08,
+              "10": 60.18,
+              "11": 54.13,
+              "12": 60.77,
+              "13": 57.52,
+              "14": 59.59,
+              "15": 60.77,
+              "16": 63.86,
+              "17": 58.11,
+              "18": 64.01,
+              "19": 61.65,
+              "20": 63.72,
+              "21": 59.59,
+              "22": 64.01,
+              "23": 61.36,
+              "24": 65.78,
+              "25": 64.9,
+              "26": 66.08,
+              "27": 66.08,
+              "28": 67.86,
+              "29": 65.78,
+              "30": 65.68
+            },
+            "pro": {
+              "1": 58.41,
+              "2": 56.25,
+              "3": 58.41,
+              "4": 60.47,
+              "5": 59.59,
+              "6": 58.55,
+              "7": 57.44,
+              "8": 62.24,
+              "10": 63.72,
+              "11": 65.78,
+              "12": 65.97,
+              "13": 63.27,
+              "14": 64.6,
+              "15": 63.42,
+              "16": 65.18,
+              "17": 66.37,
+              "18": 67.46,
+              "19": 67.95,
+              "20": 68.05,
+              "21": 68.15,
+              "22": 70.92,
+              "23": 70.36,
+              "24": 69.35,
+              "25": 68.56,
+              "26": 72.57,
+              "27": 69.54,
+              "28": 68.25,
+              "29": 71.09,
+              "30": 72.57
+            }
+          }
+        },
+        {
+          "key": "inhouse-coding",
+          "title": "In-house Coding Bench",
+          "note": "avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 53.83,
+              "2": 54.69,
+              "3": 55.02,
+              "4": 55.34,
+              "5": 56.41,
+              "6": 56.5,
+              "8": 57.47,
+              "10": 58.23,
+              "11": 57.45,
+              "12": 59.22,
+              "13": 58.81,
+              "14": 59.19,
+              "15": 58.96,
+              "16": 60.34,
+              "17": 59.96,
+              "18": 60.92,
+              "19": 61.09,
+              "20": 61.28,
+              "21": 61.33,
+              "22": 61.02,
+              "23": 61.53,
+              "24": 62.28,
+              "25": 61.93,
+              "26": 62.19,
+              "27": 62.49,
+              "28": 62.91,
+              "29": 62.47,
+              "30": 62.87
+            },
+            "pro": {
+              "1": 57.54,
+              "2": 57.2,
+              "3": 57.26,
+              "4": 58.9,
+              "5": 58.74,
+              "6": 59.13,
+              "7": 59.23,
+              "8": 59.25,
+              "9": 60.73,
+              "10": 61.38,
+              "11": 61.58,
+              "12": 61.64,
+              "13": 62.54,
+              "14": 62.54,
+              "15": 62.26,
+              "16": 61.68,
+              "18": 63.67,
+              "20": 64.62,
+              "21": 64.45,
+              "22": 64.44,
+              "23": 64.73,
+              "24": 64.41,
+              "25": 65.14,
+              "26": 64.39,
+              "27": 65.1,
+              "28": 64.84,
+              "29": 65.43
+            }
+          }
+        },
+        {
+          "key": "automation",
+          "title": "AutomationBench v1.0.6",
+          "note": "avg@3",
+          "format": "num2",
+          "results": {
+            "flash": {
+              "1": 44.8,
+              "2": 44.7,
+              "3": 44.7,
+              "4": 45.4,
+              "5": 45.8,
+              "6": 45.6,
+              "7": 46.6,
+              "8": 47.4,
+              "9": 47.6,
+              "10": 47.6,
+              "11": 48.6,
+              "12": 48.6,
+              "13": 48.2,
+              "14": 48.5,
+              "15": 49.9,
+              "16": 49.4,
+              "17": 50.1,
+              "18": 50.4,
+              "19": 50.8,
+              "20": 50.2,
+              "21": 49.9,
+              "22": 50.8,
+              "23": 51.2,
+              "24": 52.3,
+              "25": 51.6,
+              "26": 52.4,
+              "27": 52.2,
+              "28": 52.3,
+              "29": 52.8,
+              "30": 52.7
+            },
+            "pro": {
+              "1": 45.2,
+              "2": 45.1,
+              "3": 45.9,
+              "4": 45.8,
+              "5": 46.2,
+              "6": 47.1,
+              "7": 46.3,
+              "8": 47.7,
+              "9": 47.2,
+              "10": 47.8,
+              "11": 50.1,
+              "12": 48.9,
+              "13": 49.1,
+              "14": 49.8,
+              "15": 50.7,
+              "16": 49.8,
+              "17": 51.4,
+              "18": 50.7,
+              "19": 50.5,
+              "20": 50.4,
+              "21": 51.4,
+              "22": 51.0,
+              "23": 52.1,
+              "24": 51.9,
+              "26": 51.3,
+              "29": 53.1
+            }
+          }
+        }
+      ]
+    },
+    "notices": {
+      "notices": [
+        {
+          "id": "n-6b9c4a",
+          "t": 1789812866.861832,
+          "text": "we filtered out tasks that are relatively easy for the current pro model.",
+          "run": null
+        },
+        {
+          "id": "n-4e29eb",
+          "t": 1789703382.8892667,
+          "text": "the pro run restarted at step 17 due to a GPU OOM issue caused by expert load imbalance. we have adjusted the training parallelism strategy.",
+          "run": null
+        },
+        {
+          "id": "n-15ac72",
+          "t": 1789647611.047444,
+          "text": "there was a network connectivity issue between the pro training cluster and the grader deployment. we have restarted the run. we also removed the cyber dataset from the upcoming pro run, since we observed some bad patterns in the rollout logs.",
+          "run": null
+        },
+        {
+          "id": "n-b60f90",
+          "t": 1789612058.9304461,
+          "text": "we restarted the flash run from step 15. reason: a type of infra error on one of datasets was not correctly detected over the past ~3 hours.",
+          "run": null
+        },
+        {
+          "id": "n-92030c",
+          "t": 1789589280.3782058,
+          "text": "the mimo-v2.6-pro run is restarting due to a vram issue on one node.",
+          "run": null
+        },
+        {
+          "id": "n-5ef2b1",
+          "t": 1789581497.4956336,
+          "text": "we have updated the latest deepswe results for flash step 12 & pro step 8. we will keep posting as the offline evaluation results come out.",
+          "run": null
+        }
+      ]
+    }
+  },
+  "blog": {
+    "title": "Diagnosing and Mitigating Tool-Call Repetition in MiMo-V2.6",
+    "author": "Xiaomi MiMo Team",
+    "published": "2026-09-27",
+    "url": "https://mimo.xiaomi.com/blog/mimo-v2-6-tool-call-repetition",
+    "api_update_effective_at": "2026-09-25T06:00:00+08:00",
+    "evidence_status": "author-reported diagnosis and evaluation; not reproduced"
+  },
+  "figures": [
+    {
+      "asset": "gagar_quality_audit.png",
+      "source": "https://arxiv.org/pdf/2609.32577v1#page=9",
+      "figure": 3,
+      "page": 9,
+      "dpi": 180,
+      "crop_pixels": {
+        "x": 165,
+        "y": 755,
+        "width": 1158,
+        "height": 435
+      },
+      "sha256": "bec06f6d52ee8821fcd9272a6ab22ea76b28b2dc58b01006213b053c82931523",
+      "scope": "Original figure only; caption supplied in note; visually inspected"
+    }
+  ],
+  "requests": [
+    {
+      "file": "blog.html",
+      "url": "https://mimo.xiaomi.com/blog/mimo-v2-6-tool-call-repetition",
+      "checked_at_utc": "2026-10-08T02:59:08.251764+00:00",
+      "status": 200,
+      "bytes": 46376,
+      "sha256": "f3fd64eee8692946c15d4fd7005d9c86f67012d1455d9103bb60ecf4f54f259d"
+    },
+    {
+      "file": "gagar_abs.html",
+      "url": "https://arxiv.org/abs/2609.32577",
+      "checked_at_utc": "2026-10-08T02:59:08.254190+00:00",
+      "status": 200,
+      "bytes": 43588,
+      "sha256": "f5d8d4d85fa884c983cce506a273865fc8775177d254fe8b2569470d22ea20b6"
+    },
+    {
+      "file": "gagar.html",
+      "url": "https://arxiv.org/html/2609.32577v1",
+      "checked_at_utc": "2026-10-08T02:59:08.254575+00:00",
+      "status": 200,
+      "bytes": 189186,
+      "sha256": "142341b9c8a60c4ae7c59d95f2f2263523518b392ca4759aa498cd441725e64a"
+    },
+    {
+      "file": "gagar.pdf",
+      "url": "https://arxiv.org/pdf/2609.32577v1",
+      "checked_at_utc": "2026-10-08T02:59:08.254821+00:00",
+      "status": 200,
+      "bytes": 507510,
+      "sha256": "47ed36653924c88ff1e555e513ab869a28b04feabe2f17d686d4f3f7417c8d2e"
+    },
+    {
+      "file": "codemidas_abs.html",
+      "url": "https://arxiv.org/abs/2609.22068",
+      "checked_at_utc": "2026-10-08T02:59:08.255141+00:00",
+      "status": 200,
+      "bytes": 44584,
+      "sha256": "15d02873b562f288a605e76af9613f69f5e14049f4cd586999f53706a1d79ad7"
+    },
+    {
+      "file": "report.pdf",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/resolve/main/MiMo_V2_6_technical_report.pdf",
+      "checked_at_utc": "2026-10-08T02:59:08.255405+00:00",
+      "status": 200,
+      "bytes": 3046687,
+      "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af"
+    },
+    {
+      "file": "pro_rl.json",
+      "url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+      "checked_at_utc": "2026-10-08T02:59:13.303057+00:00",
+      "status": 200,
+      "bytes": 17537,
+      "sha256": "eadb258f977cd509e3aae3ddd4a34ad52b1a018a9565aef9c66ef6f4073e724b"
+    },
+    {
+      "file": "flash_rl.json",
+      "url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+      "checked_at_utc": "2026-10-08T02:59:16.276637+00:00",
+      "status": 200,
+      "bytes": 14191,
+      "sha256": "dba306e9e62f71130a39c55ba24344a6bab77d596d19ba6c2eed8a631ff3f24e"
+    },
+    {
+      "file": "pro_mopd.json",
+      "url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Pro-MOPD",
+      "checked_at_utc": "2026-10-08T02:59:16.327388+00:00",
+      "status": 200,
+      "bytes": 17356,
+      "sha256": "d85f4cc7e43c95ab5d8899cb7589e929cbd107c1f854e98cd20e958f6c218e58"
+    },
+    {
+      "file": "flash_mopd.json",
+      "url": "https://huggingface.co/api/models/XiaomiMiMo/MiMo-V2.6-Flash-MOPD",
+      "checked_at_utc": "2026-10-08T02:59:16.424003+00:00",
+      "status": 200,
+      "bytes": 17309,
+      "sha256": "1199176b6bfbebcc01e0c404998821c0f8338c3f7e98667d1f1d195d37bfa849"
+    },
+    {
+      "file": "dataset.json",
+      "url": "https://huggingface.co/api/datasets/XiaomiMiMo/MiMo-V2.6-RL-oss",
+      "checked_at_utc": "2026-10-08T02:59:16.978541+00:00",
+      "status": 200,
+      "bytes": 4848055,
+      "sha256": "57f00375cc8a903840a7c0277e1a5e1de309ac51440b3d379214e642793bbe78"
+    },
+    {
+      "file": "dataset_size.json",
+      "url": "https://datasets-server.huggingface.co/size?dataset=XiaomiMiMo/MiMo-V2.6-RL-oss",
+      "checked_at_utc": "2026-10-08T02:59:17.173179+00:00",
+      "status": 200,
+      "bytes": 2301,
+      "sha256": "dbb7740501e59487709928d946407634b1319b245aa705b30359213cd608072d"
+    },
+    {
+      "file": "verl_branch.json",
+      "url": "https://api.github.com/repos/XiaomiMiMo/verl/branches/mimo-oss",
+      "checked_at_utc": "2026-10-08T02:59:17.296485+00:00",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "file": "verl_tree.json",
+      "url": "https://api.github.com/repos/XiaomiMiMo/verl/git/trees/mimo-oss?recursive=1",
+      "checked_at_utc": "2026-10-08T02:59:17.409692+00:00",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "file": "verl_readme.md",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/mimo-oss/README.md",
+      "checked_at_utc": "2026-10-08T02:59:17.971306+00:00",
+      "status": 200,
+      "bytes": 40879,
+      "sha256": "459c77419a1ed72756f64307d64aa8b0ba864f428ee497cf0ca905aa2db20edd"
+    },
+    {
+      "file": "runs.json",
+      "url": "https://mimo.xiaomi.com/rl/api/runs",
+      "checked_at_utc": "2026-10-08T02:59:18.240169+00:00",
+      "status": 200,
+      "bytes": 3566,
+      "sha256": "06784c35fb303c2323497ee757533c2498a8338c982565fb5f1517ab5c84f25e"
+    },
+    {
+      "file": "pro_status.json",
+      "url": "https://mimo.xiaomi.com/rl/api/status?run=pro",
+      "checked_at_utc": "2026-10-08T02:59:18.442634+00:00",
+      "status": 200,
+      "bytes": 3679,
+      "sha256": "5df7eea7981ede2897fd760b415f59ebf85a2c84442e14bf4803c9234bd1ce28"
+    },
+    {
+      "file": "flash_status.json",
+      "url": "https://mimo.xiaomi.com/rl/api/status?run=flash",
+      "checked_at_utc": "2026-10-08T02:59:18.621443+00:00",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "file": "benchmarks.json",
+      "url": "https://mimo.xiaomi.com/rl/api/benchmarks",
+      "checked_at_utc": "2026-10-08T02:59:18.814328+00:00",
+      "status": 200,
+      "bytes": 2103,
+      "sha256": "1397e72c853e0a71288df127da89e81d840349ec695eaa9c50ed7c5ef67f0f4c"
+    },
+    {
+      "file": "notices.json",
+      "url": "https://mimo.xiaomi.com/rl/api/notices",
+      "checked_at_utc": "2026-10-08T02:59:19.018849+00:00",
+      "status": 200,
+      "bytes": 1186,
+      "sha256": "7d245e1aac5f00c5fbd6a1475e5f5d4c1b09b54996eaae3c8d5bc910f2a75f9e"
+    },
+    {
+      "file": "flash_status_retry.json",
+      "url": "https://mimo.xiaomi.com/rl/api/status?run=flash",
+      "checked_at_utc": "2026-10-08T03:02:02.480706+00:00",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "file": "verl_pinned_readme.md",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/README.md",
+      "checked_at_utc": "2026-10-08T03:02:02.481381+00:00",
+      "status": 200,
+      "bytes": 40879,
+      "sha256": "459c77419a1ed72756f64307d64aa8b0ba864f428ee497cf0ca905aa2db20edd"
+    },
+    {
+      "file": ".gitmodules",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/.gitmodules",
+      "checked_at_utc": "2026-10-08T03:02:02.481508+00:00",
+      "status": 200,
+      "bytes": 334,
+      "sha256": "0b97750d590247710e7c86fe0a126f2a962a41ffbeb21e4476f3299df2e4bac9"
+    },
+    {
+      "file": "scripts_code_env.example",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/scripts/code/env.example",
+      "checked_at_utc": "2026-10-08T03:02:02.481596+00:00",
+      "status": 200,
+      "bytes": 2804,
+      "sha256": "89cac382cb2f92a73f8cd0f0140696a1670abfdc39cdc149b92e46b38f7a7456"
+    },
+    {
+      "file": "scripts_code_train.sh",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/scripts/code/train.sh",
+      "checked_at_utc": "2026-10-08T03:02:02.481669+00:00",
+      "status": 200,
+      "bytes": 5510,
+      "sha256": "5ecc41adaa8f5ae01b3003ee1b50a1bfbe0c1692777c735d144ce5bd8d8489a0"
+    },
+    {
+      "file": "scripts_general_general.env.example",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/scripts/general/general.env.example",
+      "checked_at_utc": "2026-10-08T03:02:02.481733+00:00",
+      "status": 200,
+      "bytes": 2643,
+      "sha256": "4fc0ad435c1f6d22bbef37651a816150281dd4a314e2fb1ac0d237bc773922d6"
+    },
+    {
+      "file": "scripts_design_webdev.env.example",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/scripts/design/webdev.env.example",
+      "checked_at_utc": "2026-10-08T03:02:06.668777+00:00",
+      "status": 200,
+      "bytes": 5478,
+      "sha256": "261996c1268b102f03023fafd251cf9ccbc1484bf3d9a7ed67d12ee4b9369be3"
+    },
+    {
+      "file": "scripts_design_music.env.example",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/scripts/design/music.env.example",
+      "checked_at_utc": "2026-10-08T03:02:06.990681+00:00",
+      "status": 200,
+      "bytes": 2771,
+      "sha256": "84ff14b84f61001729b81ffc22d9669aca3d1cd13f9120426a8e95d845dbb952"
+    },
+    {
+      "file": "recipes_code_mimoagent_runner.py",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/recipes/code/mimoagent_runner.py",
+      "checked_at_utc": "2026-10-08T03:02:07.013693+00:00",
+      "status": 200,
+      "bytes": 17667,
+      "sha256": "174873f5d1c44544400016808b930eb3d0cfc23465f1863d04678d00e7e411a6"
+    },
+    {
+      "file": "recipes_general_agent_loop.py",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/recipes/general/agent_loop.py",
+      "checked_at_utc": "2026-10-08T03:02:07.213409+00:00",
+      "status": 200,
+      "bytes": 48332,
+      "sha256": "bdadc80cdca7e2448108ab8f7e4ac9fd494f4c77b11b7836e5691b807c4053f6"
+    },
+    {
+      "file": "recipes_design_agent_loop.py",
+      "url": "https://raw.githubusercontent.com/XiaomiMiMo/verl/a2ad9f6160b03ff2d47e59832bfb6b289f37c917/recipes/design/agent_loop.py",
+      "checked_at_utc": "2026-10-08T03:02:07.641285+00:00",
+      "status": 200,
+      "bytes": 56612,
+      "sha256": "b2cb2c0e94b9efb55764bac224823ea9a8c1736ee191ef68a448864f37d13de8"
+    },
+    {
+      "file": "pro_mopd_readme.md",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-MOPD/raw/adea8e2c5373181e5a973fa1ecb343cb31af214b/README.md",
+      "checked_at_utc": "2026-10-08T03:02:07.737183+00:00",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "file": "flash_mopd_readme.md",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-MOPD/raw/2479e2d0029eca9a34cc7e7f55a121925f81908e/README.md",
+      "checked_at_utc": "2026-10-08T03:02:08.381105+00:00",
+      "error": "<urlopen error timed out>"
+    }
+  ]
+}

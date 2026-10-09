@@ -1,94 +1,13 @@
 # CLAUDE.md
 
-For shared repository rules that apply to Codex, Claude Code, and other agents, read `AGENTS.md` first. This file adds Claude Code-specific context and mirrors some core conventions for convenience.
+Claude Code 与 Codex 共用本仓库的 [AGENTS.md](AGENTS.md)。开始工作前完整阅读该文件；目录职责、内容模板、研究追踪、验证及 main 发布规则只在那里维护，避免两份规则漂移。
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Claude Code 配置
 
-## What this repo is
+- 保留 `.claude/` 中的项目配置；是否执行某个工具或命令，仍以当前任务授权为准。
+- `.claude/*.local.json` 已被 `.gitignore` 忽略，用于本机偏好与权限，不提交到公开仓库。
+- 不在本文件重复通用研究规则，也不因切换到 Codex 就删除 Claude Code 配置。
 
-ReadBase is a **Personal Research Operating System for Large-Scale AI Systems** (Chinese-language Markdown), not a software application. There is no product build, unit-test suite, lint pipeline, or dependency tooling. Most files under `training-infra-roadmap/` are hand-authored Markdown or CSV. "Working in this repo" means writing, restructuring, and cross-linking engineering notes, signals, runbooks, and research workflow artifacts; verification usually means checking Markdown links, SVG/XML validity, CSV parseability, and Git status.
+## 工作入口
 
-The stated purpose: build a production-grade understanding of Large-Scale AI Systems through a human-AI maintained Personal Research Operating System. Training Infrastructure is Phase 1.
-
-## Structure
-
-Top level is `ReadBase/` with one self-contained "专题手册" (topic handbook) subdirectory, `training-infra-roadmap/`. The README anticipates sibling handbooks later (`inference-infra-roadmap/`, `agentic-rl-roadmap/`, etc.); each future handbook is expected to carry its own `README.md`, reading list, and knowledge graph.
-
-Inside `training-infra-roadmap/`:
-
-- `papers/` — paper notes, all using the same engineering-perspective template (see below).
-- `tech_reports/` — model/system reports (Llama, DeepSeek, MegaScale...); emphasis on training-system design and operational lessons, not the model itself.
-- `engineering_blogs/` — engineering blogs, official docs, release notes, and vendor technical posts. This is a first-class source category because many training-stack details (Megatron-Core, Transformer Engine, NCCL, FP8 recipes, checkpoint APIs) may not have papers.
-- `tracking/` — research radar for frontier scans, scan logs, recent papers, engineering blogs, release notes, infra trends, agentic RL signals, monthly digests, and historical backfill. It records triage and judgment, not full notes.
-- `reading_queue/` — P0/P1/Done reading decisions.
-- `learning_log/` — monthly learning progress and open questions.
-- `insights/` — original technical judgments.
-- `experiments/` — practical verification and benchmark notes.
-- `playbooks/` — production troubleshooting runbooks.
-- `topics/` — cross-cutting engineering handbook chapters that weave multiple sources together. These are the highest-value docs and the intended "deep" reference (e.g. `tensor_parallelism.md`, `checkpointing.md` are the quality templates to imitate).
-- `interview/` — interview handbook: high-frequency questions, follow-ups (追问), production cases, wrong-answer vs. good-answer examples.
-- `roadmaps/` — `30_day_plan.md`, `90_day_plan.md`, `yearly_plan.md`; pace reading so material gets digested, not just collected.
-- `references/` — `papers.csv` and `reports.csv`, structured indexes (columns: `category,title,year,primary_link,notes,status`; status ∈ `draft`/`todo`).
-- `MASTER_READING_LIST.md`, `KNOWLEDGE_GRAPH.md` — the navigation/index layer.
-
-`assets/` holds shared images (e.g. the homepage knowledge-map SVG). Paper-specific or chapter-specific figures should live near the handbook they support, such as `training-infra-roadmap/assets/papers/`.
-
-## Document conventions (follow these when adding or editing notes)
-
-**Reading philosophy is the core constraint.** Every note answers engineering questions first: what real problem did this solve, what was the training-system bottleneck at the time, which system boundary did it move (显存 / 通信 / 调度 / kernel / 容错 / 运维), how does it shape today's Megatron/DeepSpeed/FSDP/TE/DeepSeek/Llama stack, and what breaks in production. Formulas and proofs appear only when they serve engineering judgment.
-
-**`papers/` template** (see `papers/transformer.md` as the canonical example) — sections in order, separated by `---`:
-论文信息 → 解决的问题 → 背景与瓶颈 → 核心创新 → 关键图表解读 → 工程价值 → 对训练基础设施的影响 → 今天的应用场景 → 后续演进 → 相关论文 → 相关代码 → 面试高频问题 → 生产环境思考题 → 我的总结.
-
-**`interview/` template** (see `interview/tensor_parallelism.md`): 高频面试题 → 追问问题 → 生产环境案例 → 常见错误回答 → 优秀回答示例.
-
-**`tech_reports/` template** (see `tech_reports/deepseek_v3.md`, `tech_reports/llama3.md`, and `tech_reports/megascale.md`) — sections in order:
-论文信息 → 架构概览 → 训练系统设计 → 并行策略 → 显存优化 → 通信优化 → 集群规模 → 工程经验 → 对行业的影响 → 我的收获 → 后续演进 → 面试高频问题 → 生产环境思考题.
-
-**`engineering_blogs/` template** — source information → solved problem → engineering background → core mechanism → system design details → performance/stability information → production lessons → related topics → questions to pursue → short summary. Do not preserve marketing language; extract implementation details and production judgment.
-
-**`tracking/` template** — source/type/link → impact level → Decision (`Ignore` / `Observe` / `Read` / `Deep Dive`) → Reason → related topics → one-sentence value → next step. Keep it lightweight; this is for discovery and triage before material becomes a note or topic.
-
-**`tracking/frontier_scan_YYYY-MM-DD.md` template** — previous scan → scan window → sources scanned → scan completeness → accepted frontier signals → observed/rejected candidates → reading queue updates → dedupe record → next actions. Frontier scan is the default "latest update" workflow: scan from the previous cursor in `tracking/scan_log.md` to the actual scan end timestamp, then update the log. Do not write an end-of-day timestamp such as `23:59` unless that time has actually been scanned. If the exact scan end timestamp was not recorded, the next scan should backtrack to the last confirmed timestamp and dedupe. It can have zero accepted signals.
-
-**Primary-source verification rule** — for every accepted signal and every new paper/report note, verify title, authors, publication date, and key numeric claims against the primary source page before writing them as facts. For arXiv sources, do not treat "the ID exists" as enough: match `citation_title`, `citation_author`, `citation_date`, and abstract/method details. Label inferred relationships explicitly.
-
-**`tracking/historical_backfill.md` / `tracking/backfill/YYYY-MM.md` template** — historical_backfill is the index and rules page. Concrete backfill entries live in monthly files by original publication month. Each entry records original time → backfill time → type/link → why backfill now → historical impact → current value → Decision → Reason → suggested action → related topics → final destination → lifecycle status. Do not mix historical material into frontier scans.
-
-**Weekly signal retirement rule** — weekly signal reports and weekly papers templates are retired. Keep existing weekly files only as historical audit records. For current updates, use frontier scans plus `tracking/scan_log.md`; for formal summaries, use monthly signal reports.
-
-**Monthly signal rule** — monthly reports cover the previous calendar month and are named `monthly_signal_YYYY-MM.md`. Monthly is the high-quality digest; it summarizes frontier scans, backfill, release notes, and actual reading results, and should not rediscover material from scratch.
-
-**Personal focus filter** — frontier/monthly scanning is not generic AI news. Prioritize AI Systems, Training Infra, distributed training, GPU clusters/networking, Megatron/DeepSpeed/FSDP, MoE, FlashAttention/kernel/precision, NVIDIA training stack, large-scale training reports, and Agentic RL/post-training infra. Usually reject generic model releases, application papers, domain datasets, prompt tricks, product news, and algorithm-only items with no infra consequence.
-
-**Vendor watch rule** — every frontier scan and monthly signal report must include an explicit `OpenAI / Anthropic / NVIDIA / DeepSeek Watch` section. These four vendors are first-class sources for papers, technical reports, official docs, engineering blogs, model cards, weight releases, release notes, and research posts. Treat technical reports and scale-backed production reports from core model vendors as first-class industrial evidence: read them with high priority, but distinguish disclosed mechanisms and reproducible evidence from vendor-reported numbers and repository inference. For DeepSeek, check both the official API changelog and official Hugging Face organization because important open-weight releases may not have a standalone blog. Do not auto-promote them into Accepted Signals, but do make them visible: accepted, observed, rejected, or "not found / not verifiable in this scan." If a source endpoint fails or cannot be primary-source verified, record the limitation instead of silently dropping it.
-
-**Hugging Face watch rule** — every frontier scan and monthly signal report must also include an explicit `Hugging Face Watch`. Scan the Hugging Face Blog and relevant TRL, Transformers, Accelerate, PEFT, and Kernels releases/docs for Agentic RL, rollout correctness, training-serving integration, long context, distributed training, and inference backend signals. Distinguish official-team/vendor posts from community posts; neither category is an automatic accept.
-
-**RL framework watch rule** — every new frontier scan must include an explicit `RL Framework Watch`; do not retrofit historical audit records solely to add the section. Monthly reports summarize only framework changes already triaged by that month's scans. The one-time 2026-07-23 historical audit was an explicitly requested migration; keep its additions labeled `Historical Audit` and do not change original Accepted counts, reading decisions, or cursors. Always check AReaL, verl, slime, ROLL, OpenRLHF, and NeMo RL, and add emerging frameworks when they provide real code, a runnable training path, or reproducible benchmark evidence. Track official releases plus major PRs that change architecture, performance, correctness, or operations. Ignore routine commits, docs-only changes, minor bug fixes, and promotional repositories without implementation evidence. For each retained change, state which subsystem changed (`rollout`, `training`, `scheduler`, `weight sync`, `data/trajectory path`, `checkpoint/recovery`, or `inference backend`), what evidence supports the claim, and whether AReaL can reuse the idea. A large PR is not automatically an Accepted signal.
-
-**`playbooks/` template** — symptom → impact scope → first response → investigation order → commands → log keywords → likely root causes → fixes → validation → prevention → related topics/sources/experiments → postmortem questions.
-
-**`topics/` chapters** are long-form numbered sections (`## 1.`, `## 2.` ...), typically opening with a one-sentence "如果只能记一句话" takeaway, then problem framing → mechanism → config guidance → troubleshooting → relationships to adjacent topics.
-
-## Linking discipline (the thing most likely to break)
-
-This repo lives and dies on its internal Markdown links — keep them clickable and correct.
-
-- Use **relative** links between docs. Cross-directory links from inside a subfolder go up one level: from `papers/x.md` to a topic, use a path like `../topics/tensor_parallelism.md`; same-folder links omit the path. From the repo root, use paths like `training-infra-roadmap/topics/tensor_parallelism.md`.
-- Links are **bidirectional by design**. `KNOWLEDGE_GRAPH.md` maintains a "双向索引" section and `MASTER_READING_LIST.md` maps each source to the topic notes it supports. When you add a doc or a relationship, update both the source note's "相关..." sections **and** these two index files so the graph stays consistent.
-- Diagrams in `KNOWLEDGE_GRAPH.md` and READMEs are **Mermaid** (`flowchart`/`graph`). The graph is intentionally kept "少而清楚" (sparse and clear) — do not re-bloat it into a full dependency mesh; the textual index, not the main diagram, carries fine-grained relationships.
-- For core paper/topic explanations, prefer **research-paper-style SVG figures** when a diagram carries real conceptual weight: model blocks, data flow, communication patterns, checkpoint layouts, parallel groups, kernel IO paths. Keep them light-toned, readable in GitHub, with consistent colors and explicit meaning for arrows/boundaries. Layout quality matters: avoid overlapping elements, especially overlapping text; place secondary annotations in whitespace or side callouts; keep arrow crossings rare and meaningful; size labels so they remain legible without crowding. Mermaid is acceptable for quick indexes, but not the default for polished handbook figures.
-
-## Maintenance principles (from README.md)
-
-- `topics/` must read as engineering handbook chapters, not concept excerpts.
-- `papers/`, `tech_reports/`, and `engineering_blogs/` serve system understanding; do not restrict the handbook to papers.
-- Every important material should move through a lifecycle where possible: `NEW` → `READING` → `SUMMARIZED` → `DIGESTED` → `VERIFIED` → `IMPLEMENTED`; use `OBSOLETE` when superseded.
-- A paper is not really finished if it does not change engineering judgment, experiment design, or system implementation.
-- Each handbook directory should have its own `README.md`, reading list, and knowledge graph.
-- Current build priority: deepen the ~7 seed drafts to be recitable/interview-ready/design-grade, using `tensor_parallelism.md` and `checkpointing.md` as the bar; then extend FSDP, MoE, FP8, NCCL; then fill `interview/` (NCCL, RDMA, RoCE, InfiniBand); then turn the reading list / CSVs / graph into a searchable entry point.
-
-## Language
-
-All content is written in Chinese (technical terms kept in English: TP, ZeRO, FSDP, FlashAttention, GEMM, all-reduce, etc.). Match this mixed style when authoring or editing.
+先看 [README](README.md) 确定学习方向，再从对应 Part 或 [研究入口](research/README.md)进入。这里是内容优先的 Markdown 知识库，不是有统一产品构建流水线的应用仓库；验证要求见 AGENTS。

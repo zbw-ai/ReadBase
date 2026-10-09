@@ -1,0 +1,1331 @@
+{
+  "base": "f5c7aed1f9ed3885a8f3f7b641c308527e791ecc",
+  "entries": [
+    {
+      "from": "training-infra-roadmap/KNOWLEDGE_GRAPH.md",
+      "to": "KNOWLEDGE_GRAPH.md",
+      "mode": "move",
+      "sha256": "0980128939f6d552b3ca3cfc5b7f64f760b6819f910359ae759d666a78550d80"
+    },
+    {
+      "from": "training-infra-roadmap/MASTER_READING_LIST.md",
+      "to": "research/MASTER_READING_LIST.md",
+      "mode": "move",
+      "sha256": "24cb8cd8c26a5824bafdf3d1a6d90c308744a23fa22bacd1ea052c22901d5a08"
+    },
+    {
+      "from": "training-infra-roadmap/README.md",
+      "to": "README.md",
+      "mode": "navigation-rewrite",
+      "sha256": "d6efa7f480928f8b9338096011ca630208d2c1e7ea04865d18024f8b7da90127"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/codemidas_pipeline.png",
+      "to": "assets/handbook/mimo_v26/codemidas_pipeline.png",
+      "mode": "move",
+      "sha256": "a9218c82012b8e7462f8e3cbb667073d6ea4b2e00b093f7e02c6a974e8beae18"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/codemidas_quality_scale.png",
+      "to": "assets/handbook/mimo_v26/codemidas_quality_scale.png",
+      "mode": "move",
+      "sha256": "def7c348e12f3eaa2828641b52b73994b29e8308ebbe5e4a0bbd6a143a0de953"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/groupwise_grading.png",
+      "to": "assets/handbook/mimo_v26/groupwise_grading.png",
+      "mode": "move",
+      "sha256": "aa3813af89e12ac6b87e041f8c97a367b5b45ab38ce91ea068045491fe064a1c"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/rl_architecture.png",
+      "to": "assets/handbook/mimo_v26/rl_architecture.png",
+      "mode": "move",
+      "sha256": "2ca0d11d728fb04800780843c1eec6717536759d141ba4dfa8119aa2eaaaf392"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/rl_failure_timeline.png",
+      "to": "assets/handbook/mimo_v26/rl_failure_timeline.png",
+      "mode": "move",
+      "sha256": "d169b11e3036966b03717a326b8246aea8b2215b2b0ec832730f4bc49c14cbf3"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/sample_mixer_simulation.png",
+      "to": "assets/handbook/mimo_v26/sample_mixer_simulation.png",
+      "mode": "move",
+      "sha256": "1ac9d3ae3d9aceab564c016b639994b09ff58cad38e4a7622b69c86637f6153a"
+    },
+    {
+      "from": "training-infra-roadmap/assets/mimo_v26/source_snapshot.json",
+      "to": "assets/handbook/mimo_v26/source_snapshot.json",
+      "mode": "move",
+      "sha256": "3154b45674ba6c1b986f15d4380d135fab58beb27841c82ec1f903192c2deadd"
+    },
+    {
+      "from": "training-infra-roadmap/assets/papers/transformer_figure1.png",
+      "to": "assets/handbook/papers/transformer_figure1.png",
+      "mode": "move",
+      "sha256": "1e49e504ac1dbd7c61a48625015ab403635d7e86647284202f97495fd4a367da"
+    },
+    {
+      "from": "training-infra-roadmap/assets/papers/transformer_system_view.svg",
+      "to": "assets/handbook/papers/transformer_system_view.svg",
+      "mode": "move",
+      "sha256": "32c4db8a62b3422a388821d8250527727ab01f347ff93e70b2af969bf421cea9"
+    },
+    {
+      "from": "training-infra-roadmap/assets/topics/cp-local-logits.svg",
+      "to": "assets/handbook/topics/cp-local-logits.svg",
+      "mode": "move",
+      "sha256": "5d47145880c8a4887ad025fc2b724852e74d8a79590b8240b36087adbc988ae2"
+    },
+    {
+      "from": "training-infra-roadmap/assets/topics/cuda-graph-decode.svg",
+      "to": "assets/handbook/topics/cuda-graph-decode.svg",
+      "mode": "move",
+      "sha256": "0536d0e1701bacf92002e9490156bbb6111d5e489455388c94739d321d20c0d1"
+    },
+    {
+      "from": "training-infra-roadmap/assets/topics/gateway-streaming-refill.svg",
+      "to": "assets/handbook/topics/gateway-streaming-refill.svg",
+      "mode": "move",
+      "sha256": "508469eecf4a73940350c01cde2672cd0c6c14be3e822aea6f2aea01d1b21360"
+    },
+    {
+      "from": "training-infra-roadmap/assets/topics/ulysses-video-cp.svg",
+      "to": "assets/handbook/topics/ulysses-video-cp.svg",
+      "mode": "move",
+      "sha256": "906cad0f0f5c6b90c1867c653228c54199813f15164e8da4c7fa2b472d1c747c"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/README.md",
+      "to": "research/engineering_blogs/README.md",
+      "mode": "move",
+      "sha256": "e132e256f945c3e856a1ec3faf61eb1443b68dfdda83a50c34bb1262f6aa1deb"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/anthropic/README.md",
+      "to": "research/engineering_blogs/anthropic/README.md",
+      "mode": "move",
+      "sha256": "8c8e9f5d90c83c6aba7b176dac90a62cf587535c0e63145a1544e07258440c33"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/bytedance/README.md",
+      "to": "research/engineering_blogs/bytedance/README.md",
+      "mode": "move",
+      "sha256": "51d85fcad93842a34e79d318ec669b67c801163305644edfa2375c9ef9f09f0e"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/deepseek/README.md",
+      "to": "research/engineering_blogs/deepseek/README.md",
+      "mode": "move",
+      "sha256": "da9f352c647afb3d55cf118cc30b68bf3375d8ca14414f9d7d0e91f48a32dac6"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/google/README.md",
+      "to": "research/engineering_blogs/google/README.md",
+      "mode": "move",
+      "sha256": "c51de6e4d87db869dd1c4ef78e595f616f2d3d95354b18c07348d3ef06159ea9"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/meta/README.md",
+      "to": "research/engineering_blogs/meta/README.md",
+      "mode": "move",
+      "sha256": "0f66e96257d75a16298a392e38e395fe2a0c57d51939df854c0a5a8cadc1fcdb"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/microsoft/README.md",
+      "to": "research/engineering_blogs/microsoft/README.md",
+      "mode": "move",
+      "sha256": "5071a892eebae4835307e318a1d92540504b5dae7f265749f2dc0ae6e3067210"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/nvidia/README.md",
+      "to": "research/engineering_blogs/nvidia/README.md",
+      "mode": "move",
+      "sha256": "9ca26087727508e7256bd282629d93121b7c92d60ed481670415ee59551303b0"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/openai/README.md",
+      "to": "research/engineering_blogs/openai/README.md",
+      "mode": "move",
+      "sha256": "9c75d89c774a05b0046c0089c23707f7c9ab40fdfc08a1cd7d17f07c8603116d"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/zhipu/README.md",
+      "to": "research/engineering_blogs/zhipu/README.md",
+      "mode": "move",
+      "sha256": "d862480dc9fa3b1e788d69d1037a938ce38b88c44bb5db46a57b752c728757c7"
+    },
+    {
+      "from": "training-infra-roadmap/engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md",
+      "to": "research/engineering_blogs/zhipu/glm_infra_agent_recursive_self_improvement.md",
+      "mode": "move",
+      "sha256": "0ca59be399af80c8f16abd2f234e52a0864e4f7934ea8a86148c9f921b618356"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/README.md",
+      "to": "practice/experiments/README.md",
+      "mode": "move",
+      "sha256": "7552a235d543fadc64d8b7f53643d19f322b6e650a1c0c5a38bfff3ab912ee76"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/checkpoint/async_checkpoint.md",
+      "to": "practice/experiments/checkpoint/async_checkpoint.md",
+      "mode": "move",
+      "sha256": "873f592ae6be7cf5ce6e9cec364f204ccc71c78e080e106aa8ab7e4eaf9eac43"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/flashattention/benchmark.md",
+      "to": "practice/experiments/flashattention/benchmark.md",
+      "mode": "move",
+      "sha256": "12e67524ce4ad52dcfedd51b1e493cb07a5e50c4b8cb493d8a8de0fa87728498"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/mimo_v26_environment_and_mixer.md",
+      "to": "practice/experiments/mimo_v26_environment_and_mixer.md",
+      "mode": "move",
+      "sha256": "96c7cd41ca0eb6de9b7ac8a56a7a030adaa5c67d23a272543da2894342fd868a"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/rl_state_boundaries.md",
+      "to": "practice/experiments/rl_state_boundaries.md",
+      "mode": "move",
+      "sha256": "12088db351ca64340275a8074a1dd21840c9c7df6c71dfd59fc2971acecb8c85"
+    },
+    {
+      "from": "training-infra-roadmap/experiments/tensor_parallelism/tp_vs_dp.md",
+      "to": "practice/experiments/tensor_parallelism/tp_vs_dp.md",
+      "mode": "move",
+      "sha256": "4a10c8c75dd3573806f0c8dac5ae3d1cdbe441b996b918213f7684dc0dbbb768"
+    },
+    {
+      "from": "training-infra-roadmap/insights/001_agentic_rl_will_change_training_infra.md",
+      "to": "research/insights/001_agentic_rl_will_change_training_infra.md",
+      "mode": "move",
+      "sha256": "88db569dab7d5fed1ceadeac468bede9fa4c6ccdee38291ce3b189921043d825"
+    },
+    {
+      "from": "training-infra-roadmap/insights/README.md",
+      "to": "research/insights/README.md",
+      "mode": "move",
+      "sha256": "bfb3d3fa6350f14ebd15e983f7dca1b33c2c3d5584a89242fc8c203502ac0fde"
+    },
+    {
+      "from": "training-infra-roadmap/interview/checkpoint.md",
+      "to": "interview/topics/checkpoint.md",
+      "mode": "move",
+      "sha256": "36fa1680c03964cd8668eb464179bed3548005b73c3032d35e7bb7537375472f"
+    },
+    {
+      "from": "training-infra-roadmap/interview/flashattention.md",
+      "to": "interview/topics/flashattention.md",
+      "mode": "move",
+      "sha256": "c613bd5e6b4acecc77aed026a74a43f9d8eecd611af979a2ae530cc357160d48"
+    },
+    {
+      "from": "training-infra-roadmap/interview/fsdp.md",
+      "to": "interview/topics/fsdp.md",
+      "mode": "move",
+      "sha256": "f731dc87246d8e07c735f0646747e718145e6c6c866840c228245b094cb9b6d1"
+    },
+    {
+      "from": "training-infra-roadmap/interview/moe.md",
+      "to": "interview/topics/moe.md",
+      "mode": "move",
+      "sha256": "3650aaaa0fd4dd9a446c4a053e954a2b3ab1f7b7dd0951e2f286c3e1b4bc8b0f"
+    },
+    {
+      "from": "training-infra-roadmap/interview/tensor_parallelism.md",
+      "to": "interview/topics/tensor_parallelism.md",
+      "mode": "move",
+      "sha256": "54c40e83fc085384a45bab78c54a801686c07bb248d5a5ec7e10d1b432dc423d"
+    },
+    {
+      "from": "training-infra-roadmap/learning_log/2026/2026-06.md",
+      "to": "research/learning_log/2026/2026-06.md",
+      "mode": "move",
+      "sha256": "f985da3211c892819b7c81cd6b5efe985ca73eec0140d30593a60e9c760bb70d"
+    },
+    {
+      "from": "training-infra-roadmap/learning_log/2026/2026-07.md",
+      "to": "research/learning_log/2026/2026-07.md",
+      "mode": "move",
+      "sha256": "6e67274254f5745a387d621ec3d069718c70aca640137aff1a4c278a2e8cfd05"
+    },
+    {
+      "from": "training-infra-roadmap/learning_log/2026/2026-09.md",
+      "to": "research/learning_log/2026/2026-09.md",
+      "mode": "move",
+      "sha256": "bc127805fd199331397bbfb3c44b6c6133aa9ac872e7f713e28fa828eb355bda"
+    },
+    {
+      "from": "training-infra-roadmap/learning_log/README.md",
+      "to": "research/learning_log/README.md",
+      "mode": "move",
+      "sha256": "c0d59e4b88b783b625e1e04d339c4f396c621b5d6f4d6021a9d33e788478ca5a"
+    },
+    {
+      "from": "training-infra-roadmap/papers/alpa.md",
+      "to": "research/papers/alpa.md",
+      "mode": "move",
+      "sha256": "290066c12800a731466c2ab4b43df13823abb85e3df11ce387461300e6eff2b3"
+    },
+    {
+      "from": "training-infra-roadmap/papers/bert.md",
+      "to": "research/papers/bert.md",
+      "mode": "move",
+      "sha256": "789f9903535effb8a9922fa88dd5d745fb292ba0048c6015d104a08e60fc6f1f"
+    },
+    {
+      "from": "training-infra-roadmap/papers/compactionrl.md",
+      "to": "research/papers/compactionrl.md",
+      "mode": "move",
+      "sha256": "db7f065da0445653249da6a2fa763cad0d10c4121ce21346817e263bffa05436"
+    },
+    {
+      "from": "training-infra-roadmap/papers/deepspeed_moe.md",
+      "to": "research/papers/deepspeed_moe.md",
+      "mode": "move",
+      "sha256": "92c17c6d0ef52c6858a87b9c751d362a8dfdfdd54c44944fe44361ebc16d593a"
+    },
+    {
+      "from": "training-infra-roadmap/papers/flashattention.md",
+      "to": "research/papers/flashattention.md",
+      "mode": "move",
+      "sha256": "a4369a50151ca350aa5b0d700505f63750668ccde0d604bb9bd3a63c3eb0dc41"
+    },
+    {
+      "from": "training-infra-roadmap/papers/flashattention2.md",
+      "to": "research/papers/flashattention2.md",
+      "mode": "move",
+      "sha256": "885d84e5d65f9fdc8f9eed41882decfa6757ec3594fef2da429559f558ebf362"
+    },
+    {
+      "from": "training-infra-roadmap/papers/flashattention3.md",
+      "to": "research/papers/flashattention3.md",
+      "mode": "move",
+      "sha256": "67043ad68ce7bd8b1a3640ee4423725113856318799125f1500d4b3fad422164"
+    },
+    {
+      "from": "training-infra-roadmap/papers/fsdp.md",
+      "to": "research/papers/fsdp.md",
+      "mode": "move",
+      "sha256": "00078bb6377b0b799cac02b1c641d50c3e1601c5200685e2905e2bceba751698"
+    },
+    {
+      "from": "training-infra-roadmap/papers/gpipe.md",
+      "to": "research/papers/gpipe.md",
+      "mode": "move",
+      "sha256": "77468efd90335a86b3c1a8757fc087952ce370c6a2a34e6f819db9d43750aa08"
+    },
+    {
+      "from": "training-infra-roadmap/papers/gpt3.md",
+      "to": "research/papers/gpt3.md",
+      "mode": "move",
+      "sha256": "fef4e9508dafb4b5045903954901c46e28f8acb1be4088488d05142bfe9943e1"
+    },
+    {
+      "from": "training-infra-roadmap/papers/gshard.md",
+      "to": "research/papers/gshard.md",
+      "mode": "move",
+      "sha256": "f253600499a3e40f5e5abfdf1656514210c1a918eec6ad252c4beb3fe18e8acf"
+    },
+    {
+      "from": "training-infra-roadmap/papers/megatron_2021.md",
+      "to": "research/papers/megatron_2021.md",
+      "mode": "move",
+      "sha256": "e63cee8f33b0b3e3aeef3f4228c46880d680349531fdc8d721eb165131168403"
+    },
+    {
+      "from": "training-infra-roadmap/papers/megatron_lm.md",
+      "to": "research/papers/megatron_lm.md",
+      "mode": "move",
+      "sha256": "9cdbbc7227d492ab1385a45308d127f0252925ea0069f7833b5f84288b914eda"
+    },
+    {
+      "from": "training-infra-roadmap/papers/opt_175b.md",
+      "to": "research/papers/opt_175b.md",
+      "mode": "move",
+      "sha256": "966bcd9faa0d3c32cbef0913469340081195b2628a0dfd1477a83a6fedc91a7a"
+    },
+    {
+      "from": "training-infra-roadmap/papers/palm.md",
+      "to": "research/papers/palm.md",
+      "mode": "move",
+      "sha256": "7accbcfe45886ea395d61567f37dedd7f95b58b00c65300b30685106de786d2c"
+    },
+    {
+      "from": "training-infra-roadmap/papers/pipedream.md",
+      "to": "research/papers/pipedream.md",
+      "mode": "move",
+      "sha256": "046db14f8bb75709c4ad147569a054da71ad32dca9f0abcd49b40b51fe264f5d"
+    },
+    {
+      "from": "training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第一部分：摘要 + 第1节）.pdf",
+      "to": "research/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第一部分：摘要 + 第1节）.pdf",
+      "mode": "move",
+      "sha256": "14789a79e43ea28ad07ce587b1d09772dd12b36c823b2222bdbcad3a9efa85bb"
+    },
+    {
+      "from": "training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第三部分：第4节 突破三堵墙）.pdf",
+      "to": "research/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第三部分：第4节 突破三堵墙）.pdf",
+      "mode": "move",
+      "sha256": "294f7362a5a43377202a958086aaf5e048a89a2ff86f043a1f2e4e95f9f21249"
+    },
+    {
+      "from": "training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第二部分：第2-3节 架构与并行策略）.pdf",
+      "to": "research/papers/sources/scalable-training-moe-megatron-core-2026/MoE训练论文翻译（第二部分：第2-3节 架构与并行策略）.pdf",
+      "mode": "move",
+      "sha256": "90efd9632175405143f3474ee8836c99f840e94e1bf918a31f9f95e83e28161b"
+    },
+    {
+      "from": "training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/第五部分：第7–10节——生产特性、性能评估、最佳实践与RL支持.pdf",
+      "to": "research/papers/sources/scalable-training-moe-megatron-core-2026/第五部分：第7–10节——生产特性、性能评估、最佳实践与RL支持.pdf",
+      "mode": "move",
+      "sha256": "c5b373d043cb15f60e009f9bd1a85b5894d920a43cdd9d44adaad22bf4e330da"
+    },
+    {
+      "from": "training-infra-roadmap/papers/sources/scalable-training-moe-megatron-core-2026/第四部分：第5节——FP8_FP4低精度训练 & 第6节——长上下文训练.pdf",
+      "to": "research/papers/sources/scalable-training-moe-megatron-core-2026/第四部分：第5节——FP8_FP4低精度训练 & 第6节——长上下文训练.pdf",
+      "mode": "move",
+      "sha256": "62bb9ea06faac16724245113f3f94c5dc3818223104bc743782c6a7e99c559d4"
+    },
+    {
+      "from": "training-infra-roadmap/papers/switch_transformer.md",
+      "to": "research/papers/switch_transformer.md",
+      "mode": "move",
+      "sha256": "1d50cf3bdcf9f3e84fd7938a74b27e855e2c893b6bc0b7044950befce77c0f97"
+    },
+    {
+      "from": "training-infra-roadmap/papers/transformer.md",
+      "to": "research/papers/transformer.md",
+      "mode": "move",
+      "sha256": "b42129512cbcad2e9ec0f770681944e4867f2d199509964ce848e73c896598d6"
+    },
+    {
+      "from": "training-infra-roadmap/papers/zero.md",
+      "to": "research/papers/zero.md",
+      "mode": "move",
+      "sha256": "98f1ebc2e457fcde4cef55c7cb40ca7f1781073bcb1a288b0eb14aa3280db4cf"
+    },
+    {
+      "from": "training-infra-roadmap/papers/zero_infinity.md",
+      "to": "research/papers/zero_infinity.md",
+      "mode": "move",
+      "sha256": "ba3d88cf7d54fbef441cafdd0c5ad27807a27354f1f5b9e2b97ebf6e873e8e53"
+    },
+    {
+      "from": "training-infra-roadmap/papers/zero_offload.md",
+      "to": "research/papers/zero_offload.md",
+      "mode": "move",
+      "sha256": "235fca6fb7f17823f7f4af846ef27ee0886eb9fd1a4758d46983c2ffd62229d9"
+    },
+    {
+      "from": "training-infra-roadmap/philosophy.md",
+      "to": "research/philosophy.md",
+      "mode": "move",
+      "sha256": "18fd02598e0805a0db6ee1058e5e3ff2acec75a20a14d19f6cda3039bce79775"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/README.md",
+      "to": "practice/playbooks/README.md",
+      "mode": "move",
+      "sha256": "a6592bf665b8667b1ee712553648063ec037b31ae894f66d341bbda60a56f69a"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/checkpoint_recovery.md",
+      "to": "practice/playbooks/checkpoint_recovery.md",
+      "mode": "move",
+      "sha256": "af0327ae6a6b67996f1f61317801ed2389b83db43127421933fab6ccc9deb99c"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/fsdp_oom.md",
+      "to": "practice/playbooks/fsdp_oom.md",
+      "mode": "move",
+      "sha256": "21f2f7a509f579a8ca90503ac86d51d26bf9378f4a62204c7d35ea41041691b3"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/moe_load_imbalance.md",
+      "to": "practice/playbooks/moe_load_imbalance.md",
+      "mode": "move",
+      "sha256": "5901f10461675ae09b2cf19d98ab92fde86f23aea653c117e263040cc6636f89"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/rollout_latency.md",
+      "to": "practice/playbooks/rollout_latency.md",
+      "mode": "move",
+      "sha256": "1dcb88a9e79e6d0a0b21eb5be75816cd3217626c53e4ee3f1f9c960cf4011c99"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/slow_step_debug.md",
+      "to": "practice/playbooks/slow_step_debug.md",
+      "mode": "move",
+      "sha256": "56495ec6071088ae0dd1cd27648d7f86944bea61cd2b045a04c58b16bff78736"
+    },
+    {
+      "from": "training-infra-roadmap/playbooks/tp_nccl_hang.md",
+      "to": "practice/playbooks/tp_nccl_hang.md",
+      "mode": "move",
+      "sha256": "a341269c0d7b9f6f2baa9527e81284c546a81ce25823f4af53fdb0ea83e8bfbd"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/README.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/README.md",
+      "mode": "move",
+      "sha256": "8a7f58df6d771c03b8754bc398ee9dbc2a52d13786dac3762da3e37a51310efb"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/STATUS.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/STATUS.md",
+      "mode": "move",
+      "sha256": "1fa30e06e81e463f62a311a847c9f6d37bfc5705d39e04f17bb7fa54559008bf"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/analysis/trajectory-utilization-ledger.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/analysis/trajectory-utilization-ledger.md",
+      "mode": "move",
+      "sha256": "200c0c7cbcf31607d42d5c7f3cc58778dfcf281de8723ca30b64428200ca2682"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/baselines/R8b.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/baselines/R8b.md",
+      "mode": "move",
+      "sha256": "ea6038eb931df261f9dbf6f70bffc1cd556f0b70e211ceb83aaa12b81ce34247"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/cases/bs2-eqtraj-C1b-v2.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/cases/bs2-eqtraj-C1b-v2.md",
+      "mode": "move",
+      "sha256": "ff4e299102f8b0dec6bedb965823e2a6097945132221a49b4caad29987cb4e62"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/dashboard.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/dashboard.md",
+      "mode": "move",
+      "sha256": "8f6c1620431163957572c300cd7020479e93e43188aa5a67bb0be5678f4b1991"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/experiments/2026-07-22_p0-lineage-instrumentation-validation.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/experiments/2026-07-22_p0-lineage-instrumentation-validation.md",
+      "mode": "move",
+      "sha256": "69b986953748886fcecd24d29134954ed9df229f279bd3374ca39e63f1387847"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/experiments/README.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/experiments/README.md",
+      "mode": "move",
+      "sha256": "c74792bf96c54f7fa62822b5f6966d485e6daff9676480b45b5b39b638b8e7d0"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/instrumentation/metric_contract.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/instrumentation/metric_contract.md",
+      "mode": "move",
+      "sha256": "f1a027d51f9b3b8192c22e554e5dc05f416660d9cc556037480358d87a003d18"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/metrics/R8b.json",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/metrics/R8b.json",
+      "mode": "move",
+      "sha256": "5bd0c9aea695d95b5fa9410b6bd1767643731c2176e75bd12ba6d67f48937923"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/metrics/README.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/metrics/README.md",
+      "mode": "move",
+      "sha256": "d0ebf255f05e691c995f3896e13588715c6064e6340d0588d3f59c7025ad9582"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/metrics/bs2-eqtraj-C1b-v2.json",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/metrics/bs2-eqtraj-C1b-v2.json",
+      "mode": "move",
+      "sha256": "e5493813337a6e2a440454475d23c561b1aa0da56858fae58ce43ba39fc1cba3"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/plans/2026-07-22-cohort-recovery-implementation-plan.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/plans/2026-07-22-cohort-recovery-implementation-plan.md",
+      "mode": "move",
+      "sha256": "fec1763ea93a11c6ade24296067a9fe0e8fbf79897abc1923a3d69d043fc645d"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-p0-r5-lineage-closure-design.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-p0-r5-lineage-closure-design.md",
+      "mode": "move",
+      "sha256": "74e8e534e98ec0098e573d50c4cce18a4b343250110ba5f173ee961624e050f5"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-p0-r5-lineage-closure-implementation-plan.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-p0-r5-lineage-closure-implementation-plan.md",
+      "mode": "move",
+      "sha256": "a42f2dc82d58ce4b7be1ecf5942782f4b605ae6ad67b81f7062c899cd06c7d67"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-runtime-ready-cohort-start-experiment-plan.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/plans/2026-07-23-runtime-ready-cohort-start-experiment-plan.md",
+      "mode": "move",
+      "sha256": "8436c97cbf0f7593d2f3c43b9c8f59ce7faca11bce7bb41c220709846887f731"
+    },
+    {
+      "from": "training-infra-roadmap/projects/2026-q3-long-context-agentic-rl/templates/experiment_scorecard.md",
+      "to": "practice/projects/2026-q3-long-context-agentic-rl/templates/experiment_scorecard.md",
+      "mode": "move",
+      "sha256": "7913a40fc0cd6f27881e6a94972ec0333c11713e57237c0487ea96478bebe40d"
+    },
+    {
+      "from": "training-infra-roadmap/reading_queue/Done.md",
+      "to": "research/reading_queue/Done.md",
+      "mode": "move",
+      "sha256": "39ecb13e21e52ec95dbff9476dc6017750850a7e803439a24de18373ea79bc91"
+    },
+    {
+      "from": "training-infra-roadmap/reading_queue/P0.md",
+      "to": "research/reading_queue/P0.md",
+      "mode": "move",
+      "sha256": "c2712f97892703a29473b670a6e680219c7d13fbc7eeeaf8baa767143479c788"
+    },
+    {
+      "from": "training-infra-roadmap/reading_queue/P1.md",
+      "to": "research/reading_queue/P1.md",
+      "mode": "move",
+      "sha256": "9a5d0784e90e9c00ddc3e479adc276948700f8373e12432a74cfae47a0edc2a2"
+    },
+    {
+      "from": "training-infra-roadmap/reading_queue/README.md",
+      "to": "research/reading_queue/README.md",
+      "mode": "move",
+      "sha256": "2b9eac4b3db532e2ce0453133ca3525dda1cd0433d3096e1e21cbb7f2c441377"
+    },
+    {
+      "from": "training-infra-roadmap/references/blogs.csv",
+      "to": "research/references/blogs.csv",
+      "mode": "move",
+      "sha256": "48791365d7488beb8910d6399ace991a223aae92ece8193794b0e24553b9fdb2"
+    },
+    {
+      "from": "training-infra-roadmap/references/papers.csv",
+      "to": "research/references/papers.csv",
+      "mode": "move",
+      "sha256": "c7228f93a88f97ab7b352330ddadf20f7971b7c61a22a3744ac14e462f17db27"
+    },
+    {
+      "from": "training-infra-roadmap/references/reports.csv",
+      "to": "research/references/reports.csv",
+      "mode": "move",
+      "sha256": "8cb05161a2620a920e20f78035fb328a57d1c8a34431491491b6f68889230463"
+    },
+    {
+      "from": "training-infra-roadmap/roadmaps/30_day_plan.md",
+      "to": "training-infra/roadmaps/30_day_plan.md",
+      "mode": "move",
+      "sha256": "bba064b90f3697d4147c5aa0c7747d21069369b91e6afd73a2e7eaeacb19d467"
+    },
+    {
+      "from": "training-infra-roadmap/roadmaps/90_day_plan.md",
+      "to": "training-infra/roadmaps/90_day_plan.md",
+      "mode": "move",
+      "sha256": "fa589e39a40360efbbf665be212dcfacf71f493c9aecb67779d3efd5842b486e"
+    },
+    {
+      "from": "training-infra-roadmap/roadmaps/yearly_plan.md",
+      "to": "training-infra/roadmaps/yearly_plan.md",
+      "mode": "move",
+      "sha256": "c531315dfcef63162f75e88009a9166aeb445063cd7fcd0b36978bb043ac11fc"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/deepseek_r1.md",
+      "to": "research/tech_reports/deepseek_r1.md",
+      "mode": "move",
+      "sha256": "b0fce235e293882c949d78758d764c1ef835c6d4e1120766d14421c6ede01107"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/deepseek_v3.md",
+      "to": "research/tech_reports/deepseek_v3.md",
+      "mode": "move",
+      "sha256": "f192a4098a9dd755e178b459a0b85a26cd5ed82aa379964c1cd6cfb3b7b365ff"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/gemini.md",
+      "to": "research/tech_reports/gemini.md",
+      "mode": "move",
+      "sha256": "44b8439003f7d470c83eb1dd8c6d6f1294efe2b13ad5b06667aaf29598965d3b"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/llama2.md",
+      "to": "research/tech_reports/llama2.md",
+      "mode": "move",
+      "sha256": "19bb1652bdf6d64b5d61cc7811ade692e396823be3ea3591f11066b80f52d009"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/llama3.md",
+      "to": "research/tech_reports/llama3.md",
+      "mode": "move",
+      "sha256": "7029c2365d6ce907567e7cb771033e7e04462e51d84d7e74238d14565a6bac7b"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/megascale.md",
+      "to": "research/tech_reports/megascale.md",
+      "mode": "move",
+      "sha256": "1fc777d20c0c4fdfd526186752e0f56373bd79d20aa1c9d7cdd8a1cd32029c1c"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/mimo_v26.md",
+      "to": "research/tech_reports/mimo_v26.md",
+      "mode": "move",
+      "sha256": "3ce3ec2f412e3d83c4dd8ee3a80a82e682778ddf4248478c8faf275cf79f7c9a"
+    },
+    {
+      "from": "training-infra-roadmap/tech_reports/mixtral.md",
+      "to": "research/tech_reports/mixtral.md",
+      "mode": "move",
+      "sha256": "99970f760bd17ada4426309ade646c414fcc4b329eddd5fe38b16ced304e815c"
+    },
+    {
+      "from": "training-infra-roadmap/topics/agentic_for_embodied.md",
+      "to": "embodied-infra/topics/agentic_for_embodied.md",
+      "mode": "move",
+      "sha256": "8624f38ae331e4bca5ce3bcd75c3edb770e67fbe817c8a2c5133794e80047806"
+    },
+    {
+      "from": "training-infra-roadmap/topics/agentic_rl.md",
+      "to": "rl-infra/topics/agentic_rl.md",
+      "mode": "move",
+      "sha256": "62fed9a19dbea87cd4917cdf1b704822ec446cd3eab43713300b0f85b02acfaa"
+    },
+    {
+      "from": "training-infra-roadmap/topics/checkpointing.md",
+      "to": "training-infra/topics/checkpointing.md",
+      "mode": "move",
+      "sha256": "f4d7bc11751db2b2da6e7242bf3f742b9a84afabdaf70a4c4dec30d9dcffe20f"
+    },
+    {
+      "from": "training-infra-roadmap/topics/context_parallelism.md",
+      "to": "training-infra/topics/context_parallelism.md",
+      "mode": "move",
+      "sha256": "1c6a19f12d676becea6bfb002fee85a2e1a32f8f970678c4b2145aaa1268078e"
+    },
+    {
+      "from": "training-infra-roadmap/topics/data_parallelism.md",
+      "to": "training-infra/topics/data_parallelism.md",
+      "mode": "move",
+      "sha256": "6594025167df17df700bf3db5f0d5132e544d92e59bb2ff10b0bfb49734ca13d"
+    },
+    {
+      "from": "training-infra-roadmap/topics/distributed_training.md",
+      "to": "training-infra/topics/distributed_training.md",
+      "mode": "move",
+      "sha256": "916861a769bb40f0a48b22070c01402df79156531c345e44632903d36c8acc0d"
+    },
+    {
+      "from": "training-infra-roadmap/topics/fault_tolerance.md",
+      "to": "training-infra/topics/fault_tolerance.md",
+      "mode": "move",
+      "sha256": "d633745655da356e15f1c99903f864284ffc1c79adca8f7534dacfaa358d7d95"
+    },
+    {
+      "from": "training-infra-roadmap/topics/flashattention.md",
+      "to": "systems/topics/flashattention.md",
+      "mode": "move",
+      "sha256": "ea54c2bcab2760c12e76d78329e8856bd2c71542b640e4d18e9805849e2e0334"
+    },
+    {
+      "from": "training-infra-roadmap/topics/fp8.md",
+      "to": "systems/topics/fp8.md",
+      "mode": "move",
+      "sha256": "0f230d683c5ff707d71761b54c1aec8183b2064daebbee219d760a2dcfa54ba3"
+    },
+    {
+      "from": "training-infra-roadmap/topics/fsdp.md",
+      "to": "training-infra/topics/fsdp.md",
+      "mode": "move",
+      "sha256": "5b762e5694891345a57e3dd49a5a04aff524e6cbe9ea2a8dce7cc43a5ee35f45"
+    },
+    {
+      "from": "training-infra-roadmap/topics/long_context_training.md",
+      "to": "training-infra/topics/long_context_training.md",
+      "mode": "move",
+      "sha256": "39331affa351178172b3191100055f6a105901ac7fae43e5f0bb7f5b1cafabb3"
+    },
+    {
+      "from": "training-infra-roadmap/topics/moe.md",
+      "to": "training-infra/topics/moe.md",
+      "mode": "move",
+      "sha256": "7e0055eb04dc865fa5183951feff4aa6d8dda549285e8c1b02c54581206437cb"
+    },
+    {
+      "from": "training-infra-roadmap/topics/mopd.md",
+      "to": "rl-infra/topics/mopd.md",
+      "mode": "move",
+      "sha256": "2b672c176a30cab88b59299936a08a6d55efbcab733bff431ec73c0c0edc7cb7"
+    },
+    {
+      "from": "training-infra-roadmap/topics/nccl.md",
+      "to": "systems/topics/nccl.md",
+      "mode": "move",
+      "sha256": "5f5f148fb649c7bb09a3b245f04c5853600f6dc63cf6a0885b4ceba66c40bc27"
+    },
+    {
+      "from": "training-infra-roadmap/topics/pipeline_parallelism.md",
+      "to": "training-infra/topics/pipeline_parallelism.md",
+      "mode": "move",
+      "sha256": "51cab73fb15b3e5906f960c02b3dbbe031ecea9866dc99d4ca1b52827ba9de1c"
+    },
+    {
+      "from": "training-infra-roadmap/topics/rl_framework_selection.md",
+      "to": "rl-infra/topics/rl_framework_selection.md",
+      "mode": "move",
+      "sha256": "783a246affbabec0d6ebbca7de33c744876b7bff68c1820a7fe8e57fdcc5b8ae"
+    },
+    {
+      "from": "training-infra-roadmap/topics/sequence_parallelism.md",
+      "to": "training-infra/topics/sequence_parallelism.md",
+      "mode": "move",
+      "sha256": "75302b75f6ca84c1e367f673213315a88e299f6b08b0b9d937e85683c29f2889"
+    },
+    {
+      "from": "training-infra-roadmap/topics/tensor_parallelism.md",
+      "to": "training-infra/topics/tensor_parallelism.md",
+      "mode": "move",
+      "sha256": "4935bc128a50d68238517897d59d019f2e7cd0322551515d87012353b01e86ba"
+    },
+    {
+      "from": "training-infra-roadmap/topics/transformer_engine.md",
+      "to": "systems/topics/transformer_engine.md",
+      "mode": "move",
+      "sha256": "42a8509cb58106a7fdce51cea7a3b1bf8c062bdcf65387e972fadfebbc805124"
+    },
+    {
+      "from": "training-infra-roadmap/topics/zero.md",
+      "to": "training-infra/topics/zero.md",
+      "mode": "move",
+      "sha256": "788eae3ad84888a3875e34a680b494d9df91a6106ab6bb8549595a93bc3a755d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/README.md",
+      "to": "research/tracking/README.md",
+      "mode": "move",
+      "sha256": "8132bf3b87dea9380a3a2c184ce89f5c9b610e9e872b25592d97e26d681d98f2"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/agentic_rl.md",
+      "to": "research/tracking/agentic_rl.md",
+      "mode": "move",
+      "sha256": "ae5e6ecc9e9b8af4398cb26ae5d49a9e8776b34b9c805f7e4c400af59c14de9d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/README.md",
+      "to": "research/tracking/audits/2026-09-22-github/README.md",
+      "mode": "move",
+      "sha256": "71e75ed58145bc75b3d51e5cdf2c0725112b2938cc31e2d80190d2d4ab4ac8c9"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/commits.csv",
+      "to": "research/tracking/audits/2026-09-22-github/commits.csv",
+      "mode": "move",
+      "sha256": "a5ae8a74e7deb4e1a7e9683454e059ef41f6f2337a2e4df246ddde8f9d0a1172"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/manifest.json",
+      "to": "research/tracking/audits/2026-09-22-github/manifest.json",
+      "mode": "move",
+      "sha256": "b1beabfe0f8a6733cd1befcddf3244b1bc0dde60048618c2e9211fcf557b509f"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/merged_prs.csv",
+      "to": "research/tracking/audits/2026-09-22-github/merged_prs.csv",
+      "mode": "move",
+      "sha256": "a51018117650aea7ab0908a96be18f22f6d666b8bad830ca6579ec5e0a402792"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/open_prs.csv",
+      "to": "research/tracking/audits/2026-09-22-github/open_prs.csv",
+      "mode": "move",
+      "sha256": "43035add7142b3415333e97cef75661d38f8f60430437a6c84fb445d7e30576b"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/releases.csv",
+      "to": "research/tracking/audits/2026-09-22-github/releases.csv",
+      "mode": "move",
+      "sha256": "91e2b716a19a3d7a90fb5cf6da9fcfd1f92a72782df517b5198b8cae03391d8b"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-github/reviewed_prs.csv",
+      "to": "research/tracking/audits/2026-09-22-github/reviewed_prs.csv",
+      "mode": "move",
+      "sha256": "f98a038100c11c87255787849b1c5f8de6dc5857b634413a2de59047e36da567"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/commits.csv",
+      "to": "research/tracking/audits/2026-09-22-retrospective/commits.csv",
+      "mode": "move",
+      "sha256": "b690e0edb5021e2e726cfe20dad1fdeb9ee867677c5b6259ae5f09bb1e5b6947"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/manifest.json",
+      "to": "research/tracking/audits/2026-09-22-retrospective/manifest.json",
+      "mode": "move",
+      "sha256": "d304cf37bed8ddc386782d609dd0589a1c5140e7800899700d43f77b006e3e61"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/paper_metadata.json",
+      "to": "research/tracking/audits/2026-09-22-retrospective/paper_metadata.json",
+      "mode": "move",
+      "sha256": "f087364d9ec2ff9867cce7723b14c5d7d774307f062bc226de2cf54cfd17ebfd"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/pulls.csv",
+      "to": "research/tracking/audits/2026-09-22-retrospective/pulls.csv",
+      "mode": "move",
+      "sha256": "f285059ac1433c1f81c9c43e11c797db971b4a07a02c2fe17f1373f161efdac4"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/releases.csv",
+      "to": "research/tracking/audits/2026-09-22-retrospective/releases.csv",
+      "mode": "move",
+      "sha256": "b0986cb5727eaae3404613e5e26684f61182d3662c66d3acd35dff6dd5c06937"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/audits/2026-09-22-retrospective/reviewed_prs.json",
+      "to": "research/tracking/audits/2026-09-22-retrospective/reviewed_prs.json",
+      "mode": "move",
+      "sha256": "5704b9d623d12537d13b59071b54707869469af11bb6b6caef5859a633be0b8f"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2023-01.md",
+      "to": "research/tracking/backfill/2023-01.md",
+      "mode": "move",
+      "sha256": "5236ffd7e163bace2e5accfb948b2dae5420c7cb5bd1ba0d32db9a35d5daa675"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2023-03.md",
+      "to": "research/tracking/backfill/2023-03.md",
+      "mode": "move",
+      "sha256": "6b9e6d4464bdb1d9a3432f2cb08aa4643305ddd9c9141bb0dfd486f05de7ec6c"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2023-07.md",
+      "to": "research/tracking/backfill/2023-07.md",
+      "mode": "move",
+      "sha256": "62df4f427a8742c378bc3c9bf883243b8bbdf80121720174b662fe9909225309"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2023-08.md",
+      "to": "research/tracking/backfill/2023-08.md",
+      "mode": "move",
+      "sha256": "490314748ac1b8ea460dc90ef115218320ea7462f57c44eab3e2d28ce096ff0c"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2023-10.md",
+      "to": "research/tracking/backfill/2023-10.md",
+      "mode": "move",
+      "sha256": "95a83fe3bf8a7d6fe4878a91ef1a3febffbcddaf33671d659303025b560774b7"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2024-05.md",
+      "to": "research/tracking/backfill/2024-05.md",
+      "mode": "move",
+      "sha256": "78b42b992e452feebffd3a080b529b441e8b55b91ecf0b72547756c785a149b9"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2024-06.md",
+      "to": "research/tracking/backfill/2024-06.md",
+      "mode": "move",
+      "sha256": "144d6f3975a6d6d7e33c55b426c726b384d1bf20ffdd344267688c51c3e1dd39"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2024-09.md",
+      "to": "research/tracking/backfill/2024-09.md",
+      "mode": "move",
+      "sha256": "16ad5aae51802df4e88efadf4cd39024443cf478011e9929573bf294c8988108"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2024-10.md",
+      "to": "research/tracking/backfill/2024-10.md",
+      "mode": "move",
+      "sha256": "ada51d8e378f8b0513261b74796827e82c5db59c9e57445b311fa8a9c62d3770"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2024-12.md",
+      "to": "research/tracking/backfill/2024-12.md",
+      "mode": "move",
+      "sha256": "877764f857f8d62c6f0b118aa9052c2775a6bba4b5904145b0a4ad283a38328b"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-01.md",
+      "to": "research/tracking/backfill/2025-01.md",
+      "mode": "move",
+      "sha256": "3f4dd407934426cb924a60c8fd489a5cfa371b67fb9e4122a1e13963d208fbe3"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-03.md",
+      "to": "research/tracking/backfill/2025-03.md",
+      "mode": "move",
+      "sha256": "5424e8b617290e125531a787cd2c6e4a7deee19883b177116076aa1c55f5f0be"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-04.md",
+      "to": "research/tracking/backfill/2025-04.md",
+      "mode": "move",
+      "sha256": "86946cb07bd507334fac40bd1d6c14bf9c60dbc4cb011a0f28511d41e3a6dfd1"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-05.md",
+      "to": "research/tracking/backfill/2025-05.md",
+      "mode": "move",
+      "sha256": "b4c15bccd3c4de5cdaf15ca4b95b1ed203fa7296673e879db054ca8963c9e9d1"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-06.md",
+      "to": "research/tracking/backfill/2025-06.md",
+      "mode": "move",
+      "sha256": "e71180c4d17de4a37cd7ab135d6091dc1eca5b1056fd5891821dd28f9b54fcd0"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-08.md",
+      "to": "research/tracking/backfill/2025-08.md",
+      "mode": "move",
+      "sha256": "958c2b264cd46617e56c4eb584a0f295024cfa6efa8c0a2e6e13b74cfdbd6f5b"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-09.md",
+      "to": "research/tracking/backfill/2025-09.md",
+      "mode": "move",
+      "sha256": "40cafb667f2e974c32d1a1683cce9273e65d3c0c60b91a3928dae38bb05f1b08"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2025-11.md",
+      "to": "research/tracking/backfill/2025-11.md",
+      "mode": "move",
+      "sha256": "83ac593078fd24e56cf490f846eef4fb7da031967e739e4687b1ff39d5c50da9"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-01.md",
+      "to": "research/tracking/backfill/2026-01.md",
+      "mode": "move",
+      "sha256": "c825367b395db189a8fac1e4ba0b1248934a16ceca688e13f5eb2c5f35bdf087"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-02.md",
+      "to": "research/tracking/backfill/2026-02.md",
+      "mode": "move",
+      "sha256": "a312da9d60450af7fe0cef8c30657454228c3e7ece4a1edff94cba0ef660adb9"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-05.md",
+      "to": "research/tracking/backfill/2026-05.md",
+      "mode": "move",
+      "sha256": "76d7ec18b969fc2901e92e9c6a36e2d6a9b0700831349dae5a9f08bec2f7320c"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-06.md",
+      "to": "research/tracking/backfill/2026-06.md",
+      "mode": "move",
+      "sha256": "b95f1801505433bdfebea2d9c5241f39b057b385699695baf9ee1516d245d3b5"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-07.md",
+      "to": "research/tracking/backfill/2026-07.md",
+      "mode": "move",
+      "sha256": "7b5c26b49156034b7633d0086c3a0e7d93bd8274d9fc3e93304d904e5b20d8d8"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/2026-08.md",
+      "to": "research/tracking/backfill/2026-08.md",
+      "mode": "move",
+      "sha256": "34c741627e96ea0fc110bbf4bdd14c3dd3830ab5db148dbeecb9924a5bf4021d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/backfill/README.md",
+      "to": "research/tracking/backfill/README.md",
+      "mode": "move",
+      "sha256": "b7e4f64d950d544a1bd2b3fc5c47ff9d9048d2cc1543479b7362979f0da3b8f6"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/engineering_blogs.md",
+      "to": "research/tracking/engineering_blogs.md",
+      "mode": "move",
+      "sha256": "4997eafe158f1e68846a910ca99b81329f8b4fadc35394ae71bd1e73d8d6b7a4"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-04.md",
+      "to": "research/tracking/frontier_scan_2026-07-04.md",
+      "mode": "move",
+      "sha256": "f019c6fef0d410146c5a9b32f0e8c1b959dc19e68411e5e1ce400443c842032e"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-07.md",
+      "to": "research/tracking/frontier_scan_2026-07-07.md",
+      "mode": "move",
+      "sha256": "9a185db0585f07081be6988b0e3aec5160dd6a1cf647df80a542364c1433903c"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-08.md",
+      "to": "research/tracking/frontier_scan_2026-07-08.md",
+      "mode": "move",
+      "sha256": "ba9e3117a197d727c67b88765eb34ed04a0478ec80b93a9a0ff55f55437e91fb"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-10.md",
+      "to": "research/tracking/frontier_scan_2026-07-10.md",
+      "mode": "move",
+      "sha256": "b3d862031896f3a6ae00e517085b9444ef2b41fcafafc2d400070e5d9efc0fbc"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-13.md",
+      "to": "research/tracking/frontier_scan_2026-07-13.md",
+      "mode": "move",
+      "sha256": "fcf909a0d40788abb0383e2b5077fd1e19a619a9653f6f89ace552df1d0634dd"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-20.md",
+      "to": "research/tracking/frontier_scan_2026-07-20.md",
+      "mode": "move",
+      "sha256": "c130076805ddd70b3daa5f78a97a685ace50174860e2744ea94a5e1e40fd8638"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-22.md",
+      "to": "research/tracking/frontier_scan_2026-07-22.md",
+      "mode": "move",
+      "sha256": "63fce29c16fb135841cc78f7720dbee813c321ec9194bf1599147bb271037ff9"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-24.md",
+      "to": "research/tracking/frontier_scan_2026-07-24.md",
+      "mode": "move",
+      "sha256": "fc4fb89040d015cb5ce0ca26f1af9ea31b5696c9a3f8bfebc63d7750842b4325"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-27.md",
+      "to": "research/tracking/frontier_scan_2026-07-27.md",
+      "mode": "move",
+      "sha256": "8a2267f265d97c1bc2532607e9f752308b2cca8ceec56bad14942faac998edd4"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-07-28.md",
+      "to": "research/tracking/frontier_scan_2026-07-28.md",
+      "mode": "move",
+      "sha256": "34822001e737bfceaf82f85f3634b81c41e9bfb62e25b5fe014c3d14881ab31d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-03.md",
+      "to": "research/tracking/frontier_scan_2026-08-03.md",
+      "mode": "move",
+      "sha256": "f796a9c7c3e625e32a3ab8aec89e3b2d6d9036f36e78349a138f9faf31df2817"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-09.md",
+      "to": "research/tracking/frontier_scan_2026-08-09.md",
+      "mode": "move",
+      "sha256": "7c117f1b32bd6a18a6e14889c435398bcea20889b336545819571521bd7744b2"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-12.md",
+      "to": "research/tracking/frontier_scan_2026-08-12.md",
+      "mode": "move",
+      "sha256": "44891432605532ad387b6012983a40130c31df97e87d23441413627d9385a7ed"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-14.md",
+      "to": "research/tracking/frontier_scan_2026-08-14.md",
+      "mode": "move",
+      "sha256": "3fe89a229e63c3e50cd8f1135d271e5ed8b3af14e149415bfa522f73323d88ce"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-17.md",
+      "to": "research/tracking/frontier_scan_2026-08-17.md",
+      "mode": "move",
+      "sha256": "5f2207f0aa50eebca7dc47ecb4cbece2a522961d48bd761d1e77f98f54c4d2a0"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-18.md",
+      "to": "research/tracking/frontier_scan_2026-08-18.md",
+      "mode": "move",
+      "sha256": "14a012d896411f6f6e074364624ae44df8507904d402bf0794963782043ee480"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-20.md",
+      "to": "research/tracking/frontier_scan_2026-08-20.md",
+      "mode": "move",
+      "sha256": "a5269c92540bc4bfe892d72359eadd62dd5f022424a71f478378527fbc66604f"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-24.md",
+      "to": "research/tracking/frontier_scan_2026-08-24.md",
+      "mode": "move",
+      "sha256": "fb9d12350ce6ba39fcef094a7726a0587e0555fbe4828192893360cc3bbdb1ab"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-26.md",
+      "to": "research/tracking/frontier_scan_2026-08-26.md",
+      "mode": "move",
+      "sha256": "7d7aabcec22c36a4bf1df5be02886c4aa876ce660ff842bde74ec3e34d04d3ca"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-28.md",
+      "to": "research/tracking/frontier_scan_2026-08-28.md",
+      "mode": "move",
+      "sha256": "ca03f83cc3da2cf544cfa8b166de1abfac5eaa7a763a38b9886586c7d46e4545"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-08-30.md",
+      "to": "research/tracking/frontier_scan_2026-08-30.md",
+      "mode": "move",
+      "sha256": "9451690ec734bdac063866f5b6b4235871bef9317a860ed7329b0961e488f305"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-01.md",
+      "to": "research/tracking/frontier_scan_2026-09-01.md",
+      "mode": "move",
+      "sha256": "557d6457230ee2f91ad86e8d48e80001573a7bc5e4d3f5ac0b90725dc688f45d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-05.md",
+      "to": "research/tracking/frontier_scan_2026-09-05.md",
+      "mode": "move",
+      "sha256": "414370681f451cdcc8e3b4fcc415079459e9234fb7369ed681f95f314d14d62b"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-07.md",
+      "to": "research/tracking/frontier_scan_2026-09-07.md",
+      "mode": "move",
+      "sha256": "a764aa60996fd7d4d4203747d8387c23f0fa5234a9e05f5157acd1a7cd846a9c"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-16.md",
+      "to": "research/tracking/frontier_scan_2026-09-16.md",
+      "mode": "move",
+      "sha256": "3d100717747ac3cc4a4312603c814ccc8aa231016b81abb37f16e6e6be0aeb6d"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-18.md",
+      "to": "research/tracking/frontier_scan_2026-09-18.md",
+      "mode": "move",
+      "sha256": "37a41f5bd105ea4f2124948ef8bf311e71be2c73fb1e8db54ec34898d30289ac"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-20.md",
+      "to": "research/tracking/frontier_scan_2026-09-20.md",
+      "mode": "move",
+      "sha256": "732e1c813ccb31c7f59cf0f84d03782cdfce79d1025496be27960c0a01090eab"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_2026-09-22.md",
+      "to": "research/tracking/frontier_scan_2026-09-22.md",
+      "mode": "move",
+      "sha256": "61a9db90bf059c903a28c4dc968c0608bbfe3ded8201c3e900bebe5c4555392e"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/frontier_scan_template.md",
+      "to": "research/tracking/frontier_scan_template.md",
+      "mode": "move",
+      "sha256": "4de1619a14a831b305cbc5424990a09fcdde1852ba9894cd3f1eca88ae4c4868"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/github_audit_2026-09-22.md",
+      "to": "research/tracking/github_audit_2026-09-22.md",
+      "mode": "move",
+      "sha256": "f74868c47c506695e3a08a3ef60b51d64cc8fb185bf83ad79604908d209a8866"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/github_retrospective_2026-07_to_2026-09.md",
+      "to": "research/tracking/github_retrospective_2026-07_to_2026-09.md",
+      "mode": "move",
+      "sha256": "337689ba54d2b1e70c34c616c492e6b5155f179c4cc866394595d7968c4e7216"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/historical_backfill.md",
+      "to": "research/tracking/historical_backfill.md",
+      "mode": "move",
+      "sha256": "7c07241022b0192f4a4ee77f6d3ad97ff5aacfd9b3a5c574ae6450d1e4eab1b1"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/infra_trends.md",
+      "to": "research/tracking/infra_trends.md",
+      "mode": "move",
+      "sha256": "c305dc96239ff417316e26d49073dc1823d156c3386e8c682293b11cafc64ec6"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_reviews.md",
+      "to": "research/tracking/monthly_reviews.md",
+      "mode": "move",
+      "sha256": "3b89905e33e763f79c47c76bfdb2fae7d9b86c5512a678cbc8ea13f43fe48692"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-01.md",
+      "to": "research/tracking/monthly_signal_2026-01.md",
+      "mode": "move",
+      "sha256": "44c059338d9f7b1760698d46e5d21ec81076486041eea78e7fe951eb021e6307"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-02.md",
+      "to": "research/tracking/monthly_signal_2026-02.md",
+      "mode": "move",
+      "sha256": "b368130a35b1ab047bbfcfa3c407ec41839c3a283d91e4f0f5a584f49a9d7091"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-03.md",
+      "to": "research/tracking/monthly_signal_2026-03.md",
+      "mode": "move",
+      "sha256": "c661a08db32d3d2546f0922aa048e929b8749e48620c23e296a847e2b6868874"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-04.md",
+      "to": "research/tracking/monthly_signal_2026-04.md",
+      "mode": "move",
+      "sha256": "d3fbb6dd5e01bb5cc9f5a6f92eb48a9dcbd26b888e02a3dc8cbdce841a0fb39a"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-05.md",
+      "to": "research/tracking/monthly_signal_2026-05.md",
+      "mode": "move",
+      "sha256": "63db6835e1aa1195e60b5881068417b2f264919778b4c74355ac01da9cf11930"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-06.md",
+      "to": "research/tracking/monthly_signal_2026-06.md",
+      "mode": "move",
+      "sha256": "357d9510c3054540288280836f0c982364887f31ffdfee061d72286e260bdc98"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-07.md",
+      "to": "research/tracking/monthly_signal_2026-07.md",
+      "mode": "move",
+      "sha256": "15a2ed66b6a6374401a88d123784914ad6a41d567040b7510135482f5242d3b4"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-08.md",
+      "to": "research/tracking/monthly_signal_2026-08.md",
+      "mode": "move",
+      "sha256": "e0279128f76d20cecf26eca6ea36af8fafc278d62ecb6ea1c1636dec4e976ac2"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_2026-09.md",
+      "to": "research/tracking/monthly_signal_2026-09.md",
+      "mode": "move",
+      "sha256": "bd45952ceac623780a6caf5662ce55350dc5e6a1c92dbf990e883fc42c999286"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/monthly_signal_report_template.md",
+      "to": "research/tracking/monthly_signal_report_template.md",
+      "mode": "move",
+      "sha256": "3f3bbd5c86e94c4fff3b6ef69ad1a99cd7e8777956ca278375a672bfaac31afd"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/release_notes.md",
+      "to": "research/tracking/release_notes.md",
+      "mode": "move",
+      "sha256": "c5e3a04e0e74dd3765c8a2effb406835379e0ec6b278720f7b5f1a51e3f836b3"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/scan_log.md",
+      "to": "research/tracking/scan_log.md",
+      "mode": "move",
+      "sha256": "e3a10263dd1d60a26d36a9dd387e37946e3a1d57cb121146f1d08c079897a029"
+    },
+    {
+      "from": "training-infra-roadmap/tracking/weekly_signal_2026-W26.md",
+      "to": "research/tracking/weekly_signal_2026-W26.md",
+      "mode": "move",
+      "sha256": "dc196c0f0c36bea268761f0404aeabdbeb5aa369241514b78b9d3e6a304e1f0c"
+    }
+  ]
+}

@@ -94,7 +94,7 @@
 
 > 我看了 T2 的公开架构。它把生成变成 coarse-to-fine 的 flow，系统优化的重点会从逐 token decode 转到多步网络调用、可变 vertex 数和最终解码。我比较好奇，实际最值得优化的是去噪/flow 主干、VAE 解码，还是不同 vertex budget 下的 shape 和组批？
 
-不背未经复现的速度数字。核验时[官方仓库](https://github.com/meshy-dev/meshy-t2)仍主要提供介绍/素材及待发布信息，不能声称已经运行其完整代码。公开研究路线也不等于公司所有线上模型。[历史补录与阅读边界](../training-infra-roadmap/tracking/backfill/2026-07.md#meshy-t2)
+不背未经复现的速度数字。核验时[官方仓库](https://github.com/meshy-dev/meshy-t2)仍主要提供介绍/素材及待发布信息，不能声称已经运行其完整代码。公开研究路线也不等于公司所有线上模型。[历史补录与阅读边界](../research/tracking/backfill/2026-07.md#meshy-t2)
 
 ### 2. MakerWorld / Bambu：从生成完成到资产可用
 
