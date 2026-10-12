@@ -6,6 +6,8 @@
 
 按阶段学习入口：[具身六阶段（当前重点）](05-embodied-infra/roadmap.md) · [GPU Systems](01-systems/roadmaps/gpu-systems.md) · [Distributed Systems](01-systems/roadmaps/distributed-systems.md) · [Inference](03-inference-infra/roadmap.md) · [Agentic RL](04-rl-infra/roadmap.md)。训练基础复用 [Part 02](02-training-infra/README.md)，各路线不重复维护正文。找原来的资料可直接进入[原训练手册常用入口](02-training-infra/README.md#original-library)。
 
+新增关系：[RL 状态身份](04-rl-infra/topics/agentic_rl.md#oct12-state-identity)把 FSDP snapshot ownership、GRPO 采样组和 Inference DP cache locality 连起来；来源见 [10/12 扫描](research/tracking/frontier_scan_2026-10-12.md)，均未实验验证。
+
 ## 全库关系：共享基础，按问题进入
 
 ```mermaid

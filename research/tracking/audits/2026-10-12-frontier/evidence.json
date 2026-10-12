@@ -1,0 +1,55 @@
+{
+  "checked_on": "2026-10-12",
+  "arxiv": {
+    "2610.13474": {
+      "url": "https://arxiv.org/abs/2610.13474",
+      "metadata": {
+        "citation_title": [
+          "CompileMask: Bridging the Gap Between Expressiveness and Efficiency in Attention Masking"
+        ],
+        "citation_author": [
+          "Li, Hongzheng",
+          "Wan, Jiacheng",
+          "Xing, Zhaolong",
+          "Jiang, Zhida",
+          "Yang, Yuanhang",
+          "Shu, Junhua",
+          "Wang, Jiaxing",
+          "Miao, Xupeng",
+          "Shao, Yingxia",
+          "Chen, Zhen",
+          "Zhang, Ke"
+        ],
+        "citation_date": [
+          "2026/10/09"
+        ]
+      },
+      "html_sha256": "6680c003a21f621717b360118cc2b79e5cb5fc34330713cf7fff0ac93037c208",
+      "method_checked": "MaskSpec symbolic intervals, runtime metadata preprocessing, tile-state execution; HTML sections 3–4"
+    }
+  },
+  "patch_checks": [
+    {
+      "url": "https://github.com/verl-project/verl/pull/8177",
+      "sha256": "7293161cc9b0b8d3a265d26c3040f3730654053ce0ab8779bafb1a258ee7da34",
+      "bytes": 3616
+    },
+    {
+      "url": "https://github.com/verl-project/verl/pull/8179",
+      "sha256": "fde1331d25c5a49d43d851406f577561050d2c227a5c43914d3da181bba8efab",
+      "bytes": 6549
+    },
+    {
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4620",
+      "sha256": "fdea3f263b4d43e154516617181a34dd808d92b3e312edd7338e93dcd839250b",
+      "bytes": 2578
+    }
+  ],
+  "limitations": [
+    "arXiv discovery is targeted, not complete category coverage",
+    "Peripheral GitHub PRs/direct commits and release histories remain incomplete",
+    "ROLL latest HTML returned v0.3.0 despite prior v0.4.0 evidence; REST returned 403",
+    "NVIDIA SimReady full article fetch timed out",
+    "No local GPU reproduction or upstream test execution"
+  ]
+}

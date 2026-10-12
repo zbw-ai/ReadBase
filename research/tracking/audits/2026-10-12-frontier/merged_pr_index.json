@@ -1,0 +1,699 @@
+{
+  "window_start_utc": "2026-10-08T02:43:00Z",
+  "window_end_utc": "2026-10-12T02:27:28Z",
+  "coverage": "GitHub search merged PR index; titles screened; selected bodies and three patches reviewed; not a complete diff audit",
+  "repositories": [
+    {
+      "repository": "areal-project/AReaL",
+      "total_count": 8,
+      "items": [
+        {
+          "number": 1772,
+          "title": "chore(deps): bump awex to 0.9.0",
+          "url": "https://github.com/areal-project/AReaL/pull/1772",
+          "author": "sitabulaixizawaluduo",
+          "merged_at": "2026-10-09T02:21:02Z"
+        },
+        {
+          "number": 1771,
+          "title": "fix(infra): reap detached Slurm worker descendants",
+          "url": "https://github.com/areal-project/AReaL/pull/1771",
+          "author": "dingzhiqiang",
+          "merged_at": "2026-10-09T08:31:21Z"
+        },
+        {
+          "number": 1763,
+          "title": "fix(dataset): keep Geometry3K SFT image_grid_thw two-dimensional",
+          "url": "https://github.com/areal-project/AReaL/pull/1763",
+          "author": "MohammadHijjawi97",
+          "merged_at": "2026-10-09T02:22:41Z"
+        },
+        {
+          "number": 1762,
+          "title": "fix(v2): forward frequency_penalty and stop in vLLM bridge requests",
+          "url": "https://github.com/areal-project/AReaL/pull/1762",
+          "author": "MohammadHijjawi97",
+          "merged_at": "2026-10-09T02:22:27Z"
+        },
+        {
+          "number": 1760,
+          "title": "fix(reward): score LaTeX Geometry3K answers as whole expressions",
+          "url": "https://github.com/areal-project/AReaL/pull/1760",
+          "author": "MohammadHijjawi97",
+          "merged_at": "2026-10-09T02:21:41Z"
+        },
+        {
+          "number": 1759,
+          "title": "fix(examples): preserve tau2 user simulator tool history",
+          "url": "https://github.com/areal-project/AReaL/pull/1759",
+          "author": "MaybeIcanShow",
+          "merged_at": "2026-10-09T02:22:02Z"
+        },
+        {
+          "number": 1712,
+          "title": "fix(v2): propagate configured training RPC timeout to data proxy",
+          "url": "https://github.com/areal-project/AReaL/pull/1712",
+          "author": "sitabulaixizawaluduo",
+          "merged_at": "2026-10-08T08:15:35Z"
+        },
+        {
+          "number": 1693,
+          "title": "feat: add training throughput, FLOPs and MoE balance metrics",
+          "url": "https://github.com/areal-project/AReaL/pull/1693",
+          "author": "yulangz",
+          "merged_at": "2026-10-08T02:50:00Z"
+        }
+      ]
+    },
+    {
+      "repository": "verl-project/verl",
+      "total_count": 33,
+      "items": [
+        {
+          "number": 8200,
+          "title": "[ci] feat: Add Ascend Quay repository description",
+          "url": "https://github.com/verl-project/verl/pull/8200",
+          "author": "lxb007981",
+          "merged_at": "2026-10-12T02:03:45Z"
+        },
+        {
+          "number": 8195,
+          "title": "[megatron] fix: backward through chunked vocab-parallel entropy",
+          "url": "https://github.com/verl-project/verl/pull/8195",
+          "author": "aoshen02",
+          "merged_at": "2026-10-12T01:48:04Z"
+        },
+        {
+          "number": 8185,
+          "title": "[ckpt] feat: add veomni model merger",
+          "url": "https://github.com/verl-project/verl/pull/8185",
+          "author": "wuxibin89",
+          "merged_at": "2026-10-10T08:22:49Z"
+        },
+        {
+          "number": 8181,
+          "title": "[data] fix: Update TQ version and align config yaml",
+          "url": "https://github.com/verl-project/verl/pull/8181",
+          "author": "0oshowero0",
+          "merged_at": "2026-10-10T05:39:06Z"
+        },
+        {
+          "number": 8180,
+          "title": "[fsdp] fix: support save merged lora hf_model",
+          "url": "https://github.com/verl-project/verl/pull/8180",
+          "author": "wuxibin89",
+          "merged_at": "2026-10-10T03:18:26Z"
+        },
+        {
+          "number": 8179,
+          "title": "[rollout, vllm] feat: pin each multi-turn session to one vLLM DP rank",
+          "url": "https://github.com/verl-project/verl/pull/8179",
+          "author": "aoshen02",
+          "merged_at": "2026-10-10T03:39:25Z"
+        },
+        {
+          "number": 8177,
+          "title": "[fsdp] fix: copy offloaded shards in fsdp2_sharded_save_to_cpu",
+          "url": "https://github.com/verl-project/verl/pull/8177",
+          "author": "ZhiliangWu",
+          "merged_at": "2026-10-10T02:45:27Z"
+        },
+        {
+          "number": 8173,
+          "title": "[perf, training_utils] fix: don't annotate unit strides as tl.int64 in fused kernels",
+          "url": "https://github.com/verl-project/verl/pull/8173",
+          "author": "he-weiwen",
+          "merged_at": "2026-10-10T02:57:33Z"
+        },
+        {
+          "number": 8172,
+          "title": "[4/N][BREAKING][megatron] refactor: remove deprecated mcore APIs",
+          "url": "https://github.com/verl-project/verl/pull/8172",
+          "author": "ji-huazhong",
+          "merged_at": "2026-10-10T02:34:32Z"
+        },
+        {
+          "number": 8171,
+          "title": "[fsdp, veomni, ckpt] feat: use get_per_tensor_param to save hf format checkpoint",
+          "url": "https://github.com/verl-project/verl/pull/8171",
+          "author": "wuxibin89",
+          "merged_at": "2026-10-10T02:06:46Z"
+        },
+        {
+          "number": 8167,
+          "title": "[rollout, vllm, trainer] fix: restore default vLLM compile caching",
+          "url": "https://github.com/verl-project/verl/pull/8167",
+          "author": "tongyx361",
+          "merged_at": "2026-10-09T11:44:39Z"
+        },
+        {
+          "number": 8166,
+          "title": "[megatron] feat: support TP and ETP in Bridge checkpoint conversion",
+          "url": "https://github.com/verl-project/verl/pull/8166",
+          "author": "ji-huazhong",
+          "merged_at": "2026-10-09T10:03:57Z"
+        },
+        {
+          "number": 8165,
+          "title": "[ci] fix: set explicit model paths for Qwen3-30B nightly jobs",
+          "url": "https://github.com/verl-project/verl/pull/8165",
+          "author": "lxb007981",
+          "merged_at": "2026-10-09T12:32:59Z"
+        },
+        {
+          "number": 8164,
+          "title": "[doc, ci] feat: add Ascend tutorial doc translation pipeline",
+          "url": "https://github.com/verl-project/verl/pull/8164",
+          "author": "Geofeng12138",
+          "merged_at": "2026-10-10T07:57:22Z"
+        },
+        {
+          "number": 8163,
+          "title": "[ci] chore: test api accessibility",
+          "url": "https://github.com/verl-project/verl/pull/8163",
+          "author": "lxb007981",
+          "merged_at": "2026-10-09T07:31:00Z"
+        },
+        {
+          "number": 8162,
+          "title": "[ci] fix: fix ascend ci",
+          "url": "https://github.com/verl-project/verl/pull/8162",
+          "author": "wucong25",
+          "merged_at": "2026-10-10T04:57:25Z"
+        },
+        {
+          "number": 8161,
+          "title": "[ci] chore: use a3-8 runner for nightly ppo qwen3-8b fsdp vllm test",
+          "url": "https://github.com/verl-project/verl/pull/8161",
+          "author": "lxb007981",
+          "merged_at": "2026-10-09T12:57:14Z"
+        },
+        {
+          "number": 8157,
+          "title": "[ci] fix: set explicit model path for Ascend nightly jobs",
+          "url": "https://github.com/verl-project/verl/pull/8157",
+          "author": "lxb007981",
+          "merged_at": "2026-10-09T08:20:28Z"
+        },
+        {
+          "number": 8151,
+          "title": "[hardware, profile] fix: improve existing pytorch profiling to support other pytorch supported device",
+          "url": "https://github.com/verl-project/verl/pull/8151",
+          "author": "kahlun",
+          "merged_at": "2026-10-09T03:59:53Z"
+        },
+        {
+          "number": 8150,
+          "title": "[trainer] feat: add pad_to_length support for torchtitan backend",
+          "url": "https://github.com/verl-project/verl/pull/8150",
+          "author": "wuxibin89",
+          "merged_at": "2026-10-08T13:31:57Z"
+        },
+        {
+          "number": 8149,
+          "title": "[ci] chore: use cluster PyPI cache for Ascend SFT and VeOmni PPO",
+          "url": "https://github.com/verl-project/verl/pull/8149",
+          "author": "lxb007981",
+          "merged_at": "2026-10-08T13:07:19Z"
+        },
+        {
+          "number": 8148,
+          "title": "[ci] fix: move nightly PPO CI back to Ascend A2",
+          "url": "https://github.com/verl-project/verl/pull/8148",
+          "author": "lxb007981",
+          "merged_at": "2026-10-08T13:06:22Z"
+        },
+        {
+          "number": 8146,
+          "title": "[hardware, recipe] feat: DeepSeek-V4-Flash GRPO on ROCm (MI355X) with QAT, FP8 or BF16 training",
+          "url": "https://github.com/verl-project/verl/pull/8146",
+          "author": "PeterYang12",
+          "merged_at": "2026-10-09T03:43:27Z"
+        },
+        {
+          "number": 8144,
+          "title": "[vllm, hardware] fix: vLLM-Ascend 0.23 sched_yield on ARM hosts and FIA causal mask for genuine decode",
+          "url": "https://github.com/verl-project/verl/pull/8144",
+          "author": "fangweii1",
+          "merged_at": "2026-10-08T11:40:13Z"
+        },
+        {
+          "number": 8142,
+          "title": "[ci] chore: reduce redundant Ascend workflow runs",
+          "url": "https://github.com/verl-project/verl/pull/8142",
+          "author": "lxb007981",
+          "merged_at": "2026-10-09T01:52:36Z"
+        },
+        {
+          "number": 8139,
+          "title": "[doc] fix: Fix Ascend install doc",
+          "url": "https://github.com/verl-project/verl/pull/8139",
+          "author": "jackon-creator",
+          "merged_at": "2026-10-08T06:29:34Z"
+        },
+        {
+          "number": 8098,
+          "title": "[doc, hardware, worker, trainer] feat: add SFT support for TPU using TorchTitan engine",
+          "url": "https://github.com/verl-project/verl/pull/8098",
+          "author": "askhat-g",
+          "merged_at": "2026-10-09T09:25:46Z"
+        },
+        {
+          "number": 8094,
+          "title": "[3/N][BREAKING][megatron] refactor: migrate checkpoint conversion to Megatron-Bridge",
+          "url": "https://github.com/verl-project/verl/pull/8094",
+          "author": "ji-huazhong",
+          "merged_at": "2026-10-09T06:52:27Z"
+        },
+        {
+          "number": 8086,
+          "title": "[data] fix: correct enable_thinking_default YAML value and loss mask mismatch",
+          "url": "https://github.com/verl-project/verl/pull/8086",
+          "author": "ZhiliangWu",
+          "merged_at": "2026-10-09T09:59:24Z"
+        },
+        {
+          "number": 8082,
+          "title": "[rollout, vllm] feat: add request hooks to vLLMHttpServer.generate",
+          "url": "https://github.com/verl-project/verl/pull/8082",
+          "author": "eteluna",
+          "merged_at": "2026-10-09T05:31:12Z"
+        },
+        {
+          "number": 8036,
+          "title": "[rollout] fix: accept resolved media in Continuous Token merges",
+          "url": "https://github.com/verl-project/verl/pull/8036",
+          "author": "zackcxb",
+          "merged_at": "2026-10-08T07:41:59Z"
+        },
+        {
+          "number": 7917,
+          "title": "[hardware, perf, training_utils] feat: add a profiler_markers() platform hook and share the attention padding helpers",
+          "url": "https://github.com/verl-project/verl/pull/7917",
+          "author": "kahlun",
+          "merged_at": "2026-10-08T10:00:45Z"
+        },
+        {
+          "number": 7631,
+          "title": "[megatron,worker] fix: offload actor parameters after disaggregated weight sync",
+          "url": "https://github.com/verl-project/verl/pull/7631",
+          "author": "msz12345",
+          "merged_at": "2026-10-09T10:59:45Z"
+        }
+      ]
+    },
+    {
+      "repository": "THUDM/slime",
+      "total_count": 8,
+      "items": [
+        {
+          "number": 2458,
+          "title": "test: register Megatron bindings regression in CPU CI",
+          "url": "https://github.com/THUDM/slime/pull/2458",
+          "author": "GoldArowana",
+          "merged_at": "2026-10-10T09:26:42Z"
+        },
+        {
+          "number": 2457,
+          "title": "Add sunabako agent E2E and align top-p score centering",
+          "url": "https://github.com/THUDM/slime/pull/2457",
+          "author": "zhuzilin",
+          "merged_at": "2026-10-10T14:32:09Z"
+        },
+        {
+          "number": 2456,
+          "title": "[docs] add more figures to index page",
+          "url": "https://github.com/THUDM/slime/pull/2456",
+          "author": "zhuzilin",
+          "merged_at": "2026-10-09T14:02:42Z"
+        },
+        {
+          "number": 2455,
+          "title": "[docs] Fix docs",
+          "url": "https://github.com/THUDM/slime/pull/2455",
+          "author": "zhuzilin",
+          "merged_at": "2026-10-09T11:49:01Z"
+        },
+        {
+          "number": 2454,
+          "title": "[docs] A full rebrand of the slime site",
+          "url": "https://github.com/THUDM/slime/pull/2454",
+          "author": "zhuzilin",
+          "merged_at": "2026-10-09T11:12:28Z"
+        },
+        {
+          "number": 2453,
+          "title": "fix(dist): rebind Megatron's import-time torch.distributed collectives after monkey_patch_torch_dist",
+          "url": "https://github.com/THUDM/slime/pull/2453",
+          "author": "ruizhang0101",
+          "merged_at": "2026-10-10T07:54:02Z"
+        },
+        {
+          "number": 2450,
+          "title": "fix: put the critic value head on a VLM's language_model",
+          "url": "https://github.com/THUDM/slime/pull/2450",
+          "author": "annika-modal",
+          "merged_at": "2026-10-10T08:01:31Z"
+        },
+        {
+          "number": 2448,
+          "title": "[release] bump to v0.4.0",
+          "url": "https://github.com/THUDM/slime/pull/2448",
+          "author": "zhuzilin",
+          "merged_at": "2026-10-09T00:32:44Z"
+        }
+      ]
+    },
+    {
+      "repository": "alibaba/ROLL",
+      "total_count": 0,
+      "items": []
+    },
+    {
+      "repository": "OpenRLHF/OpenRLHF",
+      "total_count": 0,
+      "items": []
+    },
+    {
+      "repository": "NVIDIA-NeMo/RL",
+      "total_count": 45,
+      "items": [
+        {
+          "number": 4193,
+          "title": "fix(data): render evaluation chat prompts as complete conversations",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4193",
+          "author": "yuchenwang3",
+          "merged_at": "2026-10-11T13:48:31Z"
+        },
+        {
+          "number": 4656,
+          "title": "ci: scope TRT-LLM caches and Lfast image to release branches",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4656",
+          "author": "kajalj22",
+          "merged_at": "2026-10-11T09:56:56Z"
+        },
+        {
+          "number": 4465,
+          "title": "perf(data_plane): faster mooncake CPU-RDMA checkpoints at scale",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4465",
+          "author": "ZhiyuLi-Nvidia",
+          "merged_at": "2026-10-11T08:06:10Z"
+        },
+        {
+          "number": 4652,
+          "title": "cp: `fix(checkpoint): use synchronous saves for DeepSeek V3 32-node recipe 4432`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4652",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-11T04:26:09Z"
+        },
+        {
+          "number": 4263,
+          "title": "fix(data-plane): preserve tensor layouts and avoid int16 widening",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4263",
+          "author": "Alvorecer721",
+          "merged_at": "2026-10-10T22:38:16Z"
+        },
+        {
+          "number": 4432,
+          "title": "fix(checkpoint): use synchronous saves for DeepSeek V3 32-node recipe",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4432",
+          "author": "humairafirdowse18",
+          "merged_at": "2026-10-10T16:23:36Z"
+        },
+        {
+          "number": 4650,
+          "title": "cp: `fix: correct QARL nightly quantization and HybridEP topology 4548`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4650",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-10T16:00:03Z"
+        },
+        {
+          "number": 4649,
+          "title": "cp: `fix: restore Transformers 5 compatibility for DeepSeek-V3 4408`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4649",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-10T15:59:44Z"
+        },
+        {
+          "number": 4548,
+          "title": "fix: correct QARL nightly quantization and HybridEP topology",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4548",
+          "author": "mxinO",
+          "merged_at": "2026-10-10T09:19:42Z"
+        },
+        {
+          "number": 4408,
+          "title": "fix: restore Transformers 5 compatibility for DeepSeek-V3",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4408",
+          "author": "humairafirdowse18",
+          "merged_at": "2026-10-10T09:05:30Z"
+        },
+        {
+          "number": 4119,
+          "title": "feat(ppo): add Qwen 7B DAPO Math PPO single-controller async recipe",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4119",
+          "author": "snowmanwwg",
+          "merged_at": "2026-10-10T08:58:50Z"
+        },
+        {
+          "number": 4631,
+          "title": "cp: `fix(megatron): forward the FlashInfer MXFP8 decode token capacity 4570`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4631",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-10T08:49:07Z"
+        },
+        {
+          "number": 4238,
+          "title": "fix: Multimodal and MInf batch fixes.",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4238",
+          "author": "cspades",
+          "merged_at": "2026-10-10T08:44:53Z"
+        },
+        {
+          "number": 4644,
+          "title": "docs: announce Qwen3.8-Flash-Next RL support",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4644",
+          "author": "sharonyu-115",
+          "merged_at": "2026-10-10T03:56:16Z"
+        },
+        {
+          "number": 4616,
+          "title": "ci: scope TRT-LLM caches and Lfast image to release branches",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4616",
+          "author": "kajalj22",
+          "merged_at": "2026-10-10T03:54:49Z"
+        },
+        {
+          "number": 4617,
+          "title": "docs: announce DeepSeek V4.1 Flash RL support",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4617",
+          "author": "zpqiu",
+          "merged_at": "2026-10-10T02:50:12Z"
+        },
+        {
+          "number": 4552,
+          "title": "feat(opd): reuse captured multimodal inputs in TQ teacher scoring",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4552",
+          "author": "aroshanghias-nvd",
+          "merged_at": "2026-10-09T18:55:56Z"
+        },
+        {
+          "number": 4555,
+          "title": "feat(logger): keep every step's rows in W&B tables (data-plane step breakdown)",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4555",
+          "author": "ZhiyuLi-Nvidia",
+          "merged_at": "2026-10-09T18:32:39Z"
+        },
+        {
+          "number": 4570,
+          "title": "fix(megatron): forward the FlashInfer MXFP8 decode token capacity",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4570",
+          "author": "wdykas",
+          "merged_at": "2026-10-09T18:01:50Z"
+        },
+        {
+          "number": 4630,
+          "title": "cp: `fix(recipes): increase DeepSeek V3 MXFP8 rollout memory budget 4424`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4630",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-09T15:54:38Z"
+        },
+        {
+          "number": 4618,
+          "title": "cp: `perf(data-plane): cut sync TQ overhead (4580)` into `main`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4618",
+          "author": "ZhiyuLi-Nvidia",
+          "merged_at": "2026-10-09T15:16:06Z"
+        },
+        {
+          "number": 4424,
+          "title": "fix(recipes): increase DeepSeek V3 MXFP8 rollout memory budget",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4424",
+          "author": "humairafirdowse18",
+          "merged_at": "2026-10-09T13:02:44Z"
+        },
+        {
+          "number": 4625,
+          "title": "cp: `fix: cap Nemotron-3 Super KV cache (4409)` into `main`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4625",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-09T10:18:31Z"
+        },
+        {
+          "number": 4624,
+          "title": "cp: `ci(recipes): extend SGLang Megatron nightly wall time (4582)` into `main`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4624",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-09T10:16:11Z"
+        },
+        {
+          "number": 4620,
+          "title": "fix(grpo): group env-reward baseline by prompt group ids",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4620",
+          "author": "ZhiyuLi-Nvidia",
+          "merged_at": "2026-10-09T08:43:08Z"
+        },
+        {
+          "number": 4409,
+          "title": "fix: cap Nemotron-3 Super KV cache",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4409",
+          "author": "humairafirdowse18",
+          "merged_at": "2026-10-09T08:09:53Z"
+        },
+        {
+          "number": 4582,
+          "title": "ci(recipes): extend SGLang Megatron nightly wall time",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4582",
+          "author": "Kh4L",
+          "merged_at": "2026-10-09T07:19:55Z"
+        },
+        {
+          "number": 4099,
+          "title": "feat(capture): support reward penalties and effort shaping",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4099",
+          "author": "pthombre",
+          "merged_at": "2026-10-09T06:56:07Z"
+        },
+        {
+          "number": 4553,
+          "title": "feat(grpo): per-prompt-group length penalties for NeMo-Gym GRPO rollouts",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4553",
+          "author": "arendu",
+          "merged_at": "2026-10-09T03:24:08Z"
+        },
+        {
+          "number": 4580,
+          "title": "perf(data-plane): cut sync TQ overhead and count the rollout actor metrics",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4580",
+          "author": "ZhiyuLi-Nvidia",
+          "merged_at": "2026-10-09T03:20:42Z"
+        },
+        {
+          "number": 3882,
+          "title": "fix(grpo): group advantages by rollout identity",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/3882",
+          "author": "aroshanghias-nvd",
+          "merged_at": "2026-10-09T01:45:48Z"
+        },
+        {
+          "number": 4598,
+          "title": "cp: `fix(nightly): remove flaky step-20 logprob check 4592`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4598",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-09T00:05:12Z"
+        },
+        {
+          "number": 4575,
+          "title": "ci: AUT-2497 consume shared nightly failure notification action",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4575",
+          "author": "svcnemo-autobot",
+          "merged_at": "2026-10-08T21:41:36Z"
+        },
+        {
+          "number": 4601,
+          "title": "ci: bump FW-CI-templates cherry-pick to v1.13.0 to ping author and merger",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4601",
+          "author": "kajalj22",
+          "merged_at": "2026-10-08T20:29:10Z"
+        },
+        {
+          "number": 4592,
+          "title": "fix(nightly): remove flaky step-20 logprob check on r0.8.0",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4592",
+          "author": "fujial-code",
+          "merged_at": "2026-10-08T16:40:42Z"
+        },
+        {
+          "number": 4584,
+          "title": "cp: `refactor(automodel): rename the DTensor v2 workers to Automodel 4282`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4584",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-08T15:37:53Z"
+        },
+        {
+          "number": 4358,
+          "title": "build: bump TensorRT-LLM to feat/rl_rc (1.3.0rc28)",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4358",
+          "author": "shuyixiong",
+          "merged_at": "2026-10-08T09:59:22Z"
+        },
+        {
+          "number": 4571,
+          "title": "cp: `refactor: rename the dtensor_cfg config block to automodel_cfg (4283)`",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4571",
+          "author": "svcnvidia-nemo-ci",
+          "merged_at": "2026-10-08T08:52:52Z"
+        },
+        {
+          "number": 4587,
+          "title": "fix(recipes): enable save_data_plane for GRPO token-capture SC nightly",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4587",
+          "author": "yuki-97",
+          "merged_at": "2026-10-08T06:47:48Z"
+        },
+        {
+          "number": 4586,
+          "title": "cp: cherry-pick #4372 - fix(token-capture): size the nightly rollout buffer...",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4586",
+          "author": "yuki-97",
+          "merged_at": "2026-10-08T06:48:01Z"
+        },
+        {
+          "number": 4438,
+          "title": "feat(slurm): optionally mount host enroot into job containers",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4438",
+          "author": "alexandery-nvidia",
+          "merged_at": "2026-10-08T06:29:52Z"
+        },
+        {
+          "number": 4379,
+          "title": "fix(gym): per-agent_ref truncation/token metrics (#3970, #4030)",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4379",
+          "author": "pjin-nvidia",
+          "merged_at": "2026-10-08T04:15:59Z"
+        },
+        {
+          "number": 4361,
+          "title": "fix(grpo): propagate async generation setup failures",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4361",
+          "author": "wdykas",
+          "merged_at": "2026-10-08T04:01:42Z"
+        },
+        {
+          "number": 3380,
+          "title": "perf(sft): add a direct path for Megatron-LM prepacked inputs",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/3380",
+          "author": "seonjinn",
+          "merged_at": "2026-10-08T03:30:44Z"
+        },
+        {
+          "number": 4282,
+          "title": "refactor(automodel): rename the DTensor v2 workers to Automodel",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4282",
+          "author": "yuki-97",
+          "merged_at": "2026-10-08T02:50:10Z"
+        }
+      ]
+    }
+  ]
+}

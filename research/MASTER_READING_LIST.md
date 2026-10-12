@@ -1,5 +1,7 @@
 # Master Reading List
 
+新增来源入口：[10/12 扫描](tracking/frontier_scan_2026-10-12.md)（8 组系统信号，NEW）、[十月晚发现候选](tracking/backfill/2026-10.md)；优先读 [TRL / group identity / snapshot](reading_queue/P1.md#oct12-priority)。
+
 [首页](../README.md) · [最近更新](../README.md#recent-updates) · [研究入口](README.md) · [知识地图](../KNOWLEDGE_GRAPH.md)
 
 这里是全库的来源材料索引，不是另一份当前学习计划。现有积累以训练与 Agentic RL 为主；保留其历史演进关系，再按当前问题扩展硬件、推理与具身材料。缺少完整笔记的方向明确标出，不用目录数量代表掌握程度。

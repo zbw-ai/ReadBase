@@ -1049,3 +1049,17 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 - **概率语义**：保存实际行为 logprob；在 replay 路径上对齐 expert 选择与采样候选集合。即使权重未更新，full-vocabulary 概率与 top-k/top-p 重归一化后的概率也不能直接相除解释为策略变化。
 
 这些是从公开机制推导的设计要求，不等于已证明所有 backend 都逐位一致。框架迁移时应先对固定 token、prefix、policy version 和采样配置做概率审计，再讨论异步与吞吐收益；生产设计与公开代码的覆盖差异见[对应关系表](../../research/tech_reports/mimo_v26.md#36-开放材料与生产系统的对应关系)。
+
+
+<a id="oct12-state-identity"></a>
+## 2026-10：采样、权重和缓存的身份不能混用
+
+[10/12 扫描](../../research/tracking/frontier_scan_2026-10-12.md)带来的工程判断是：一份内容看起来相同，不代表它属于同一个训练状态。以下是基于上游代码/机制的推断，尚未本地实验验证。
+
+| 状态 | 容易误用的等价条件 | 应明确的契约 | 排查方法 |
+|---|---|---|---|
+| GRPO 采样组 | prompt tokens 相等 | 同一次 draw 的显式 group identity；独立环境/图像不能误并 | 构造同 token 不同状态，检查过滤、重试、拼接后 group ID 与 baseline；[NeMo #3882](https://github.com/NVIDIA-NeMo/RL/pull/3882)。 |
+| CPU policy snapshot | tensor 已在 CPU 且 detach | snapshot 必须独立拥有 storage，才能表示某一步的不可变权重 | 修改 live tensor 后保存值仍不变；检查 DTensor shard 与普通参数两路；[verl #8177](https://github.com/verl-project/verl/pull/8177)。 |
+| 多轮缓存 | 请求落在同一 replica | prefix cache 的实际拥有者是 replica 内 DP engine | 检查 session ID 到 DP rank 的映射，联合观察命中率与热点排队；[verl #8179](https://github.com/verl-project/verl/pull/8179)。 |
+
+生产上不要单凭 PPO ratio=1 判定 snapshot 故障，也不要单凭 cache hit 上升宣布整体吞吐提升。前者需要追踪每次更新的权重版本，后者需要排除 hash 亲和带来的负载不均。三种契约分别关系到统计正确性、恢复正确性与推理性能；不能用一个 request ID 代替所有身份。
