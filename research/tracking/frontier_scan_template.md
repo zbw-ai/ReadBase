@@ -201,3 +201,14 @@ Hugging Face Blog 与核心框架 release 必须显式出现，但不自动进�
 - [ ] 需要更新的 topic：
 - [ ] 需要新增的 engineering blog / paper / report note：
 - [ ] 需要做实验验证的方向：
+
+## 具身优先核查补充（2026-10-13 起）
+
+在本模板的 Embodied Models & Infra Watch 中填写两栏，不重复计数同一 Source ID：
+
+| 子方向 | 实际检查来源／版本／窗口 | 判断与证据 | 当前问题／覆盖缺口 |
+|---|---|---|---|
+| Models / Learning | 待填写：动作表示、训练目标、数据配方、泛化与评估 | Accepted / Observed / Rejected / Not found / not verifiable | 不能用“无 Infra 收益”替代模型学习价值判断 |
+| Infra | 待填写：episode / IO、训练、仿真、实时执行、部署 | 同上；区分代码、测试、作者报告与推断 | 未查、访问失败、已查无新增分别说明 |
+
+具身为下一阶段重点，但不设置接受数量，不省略其他 Watch。历史遗漏进入 [backfill](backfill/README.md)，不推进旧窗口覆盖声明；[本轮历史复盘](embodied_retrospective_2026-10-13.md)中的 GitHub 缺口仍待补。

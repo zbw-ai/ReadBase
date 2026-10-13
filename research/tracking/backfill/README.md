@@ -1,5 +1,7 @@
 # Historical Backfill By Month
 
+2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
+
 阅读主入口是[2025 按季度、2026 按月的复盘](../monthly_reviews.md)；本页及按原始月份保存的 backfill 仅作为轻量来源账本。2026-09-22 复盘批次于 2026-10-08 继续补登记，不把补登记时间冒充材料首发时间。
 
 `backfill/` 按材料的原始发布时间月份倒序补录历史精华材料。它不按主题拆分，避免把历史补课切得太碎。
@@ -44,10 +46,12 @@
 - [2024-10](2024-10.md)：π0 / flow-based VLA runtime
 - [2024-09](2024-09.md)
 - [2024-06](2024-06.md)：OpenVLA
+- [2024-03](2024-03.md)：DROID 真实环境数据与评估切分
 - [2024-05](2024-05.md)
 - [2023-10](2023-10.md)：Open X-Embodiment
 - [2023-08](2023-08.md)
 - [2023-07](2023-07.md)：RT-2 / VLA
+- [2023-04](2023-04.md)：ACT 动作分块与 temporal ensembling
 - [2023-03](2023-03.md)：Diffusion Policy
 - [2023-01](2023-01.md)：DreamerV3 / learned world-model rollout
 

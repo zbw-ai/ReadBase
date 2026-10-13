@@ -1,5 +1,7 @@
 # Historical Backfill
 
+2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
+
 阅读主入口是[2025 按季度、2026 按月的复盘](monthly_reviews.md)；本页及按原始月份保存的 backfill 仅作为轻量来源账本。2026-09-22 复盘批次于 2026-10-08 继续补登记，不把补登记时间冒充材料首发时间。
 
 `historical_backfill.md` 是历史补录总入口。它不直接承载越来越长的材料清单；具体条目按材料原始发布时间月份放入 [backfill/](backfill/README.md)。

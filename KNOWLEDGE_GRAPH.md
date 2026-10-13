@@ -1,5 +1,7 @@
 # Knowledge Graph
 
+2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](research/tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
+
 [首页](README.md) · [最近更新](README.md#recent-updates) · [材料索引](research/MASTER_READING_LIST.md) · [研究流程](research/README.md)
 
 这里维护知识依赖，不再维护第二份最新扫描列表或全局 P0 排名。当前方向看首页，实际阅读决策看[统一队列](research/reading_queue/README.md)。

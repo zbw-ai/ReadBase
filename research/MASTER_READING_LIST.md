@@ -1,5 +1,7 @@
 # Master Reading List
 
+2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
+
 新增来源入口：[10/12 扫描](tracking/frontier_scan_2026-10-12.md)（8 组系统信号，NEW）、[十月晚发现候选](tracking/backfill/2026-10.md)；优先读 [TRL / group identity / snapshot](reading_queue/P1.md#oct12-priority)。
 
 [首页](../README.md) · [最近更新](../README.md#recent-updates) · [研究入口](README.md) · [知识地图](../KNOWLEDGE_GRAPH.md)

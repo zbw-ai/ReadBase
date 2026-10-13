@@ -1,5 +1,7 @@
 # 具身 Models & Infra 核心路线
 
+2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../research/tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
+
 [所属 Part](README.md) · [首页](../README.md) · [知识地图](../KNOWLEDGE_GRAPH.md) · [实验课程](../practice/experiments/a100_fsdp_io_lab.md)
 
 当前重点不是先搭一个“大平台”，而是沿一条可解释的链路学习：**观察与任务 → 训练样本 → batch → 模型更新 → 闭环评估 → 动作执行**。以“把桌上的杯子递给我”为贯穿例子；这是学习场景，不代表仓库已有真机实现。

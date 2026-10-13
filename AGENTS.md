@@ -169,3 +169,11 @@ git commit -m "Improve Transformer figures with research-style system view"
 ```
 
 If GitHub rejects a direct push because branch rules require a pull request, create or suggest a branch-and-PR flow instead of weakening repository protection rules.
+
+## 2026-10-13 起：具身模型与 Infra 为下一阶段重点
+
+未来扫描优先为具身模型／学习机制和具身 Infra 分配来源核查与判断篇幅，不能只因没有 Infra 提速就忽略模型机制。每轮 `Embodied Models & Infra Watch` 分成 `Models / Learning` 与 `Infra` 两栏：前者检查输入输出、动作表示、目标、数据配方、泛化与评估；后者检查 episode / IO、分布式训练、仿真、实时执行、部署与恢复。两栏各自记录实际来源、证据、Decision 和缺口；检查后无重要新增与未检查／访问失败必须区分，不设 Accepted 配额。
+
+优先候选包括 Physical Intelligence / openpi、OpenVLA / OFT、GR00T / Isaac Lab、Hugging Face LeRobot / SmolVLA 和 TorchCodec。发现范围包括相关 cs.RO / cs.LG / cs.CV；World Model 要区分视频生成质量与 action-conditioned dynamics、规划或控制评估价值。候选名单不是自动接受名单。保留原有 Systems / Training / Inference / RL 及所有必需 Watch。
+
+本次优先级调整不推进游标。历史缺口按原始月份补录；月报只汇总已有核验记录。阅读优先通过共享 P1 的具身阶段任务实施，保留原 P0 在读状态；收录不等于已读，模型披露不等于可复现，代码公开不等于实验成功。

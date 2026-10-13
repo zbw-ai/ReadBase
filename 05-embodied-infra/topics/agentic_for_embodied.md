@@ -867,3 +867,26 @@ Agentic for Embodied 的核心竞争力短期内不只是更大的 VLA，而是�
 对已有 AReaL 团队而言，最值得复用的是异步 workflow、角色解耦、policy version、scheduler 和 tracing；最不该强行复用的是 token trajectory、autoregressive inference backend 和“失败后直接重试”的软件服务语义。
 
 下一项最值得做的工程产物是 `experiments/embodied/trajectory_contract.md`：用 LeRobotDataset v3 构造一个双臂、多相机、带故障注入的小型 dataset，验证 timestamp skew、camera reorder、normalization mismatch 和半写 episode 能否被 data gate 稳定拒绝。它比直接训练一个 VLA 更能验证平台地基。
+
+<a id="embodied-model-contracts"></a>
+
+## 具身模型与执行契约：2026-10-13 历史复评
+
+模型输出进入控制回路之前，要先明确“预测的动作是什么、以什么目标学习、何时被执行”。以下是来源核验后的机制对照和工程推断，不是全文笔记，也不是实机验证。
+
+| 模型／来源 | 输入、动作与目标 | 配置／生产风险与排查 |
+|---|---|---|
+| [ACT](https://arxiv.org/abs/2304.13705v1) | 视觉与本体信息条件下，以 CVAE 学习动作段；temporal ensembling 汇合同一时刻的不同预测 | 区分 chunk horizon 与执行前缀；反馈迟钝时检查 open-loop 长度，不能把相邻时刻动作直接当同一时刻平均 |
+| [Diffusion Policy](https://arxiv.org/abs/2303.04137v1) | 以 observation 条件去噪生成连续动作序列，receding horizon 控制 | 采样迭代、预测长度与执行长度共同影响延迟；先量完整 observation→action 延迟，再调生成步数 |
+| [OpenVLA](https://arxiv.org/abs/2406.09246v1) / [OFT](https://arxiv.org/abs/2502.19645v1) | 前者将视觉语言表示接到离散动作；后者采用并行 action chunk 和连续 L1 回归等改动 | 检查 head 与 checkpoint、相机／proprio 输入、动作反归一化；吞吐数字不能代替控制频率与闭环成功率 |
+| [π0](https://arxiv.org/abs/2410.24164v1) / [π0.5](https://arxiv.org/abs/2504.16054v1) | 视觉语言条件与 flow 动作生成；π0.5 进一步引入异构数据和高层语义监督 | 明确训练配方、动作空间和高层监督消融；新场景成功不能外推到未评估任务和硬件 |
+| [GR00T N1](https://arxiv.org/abs/2503.14734v1) | 视觉语言模块与动作 diffusion transformer 联合训练，结合异构数据 | 先画监督流再设计部署边界；不能仅凭双模块命名推断可独立扩缩容 |
+| [SmolVLA](https://arxiv.org/abs/2506.01844v1) / [RTC](https://arxiv.org/abs/2506.07339v1) | 前者关注小模型与异步执行；后者用已提交动作前缀约束下一段生成 | 排查 observation age、已提交／可修改动作与队列延迟；异步能力不等于闭环正确性自动成立 |
+
+**数据与训练约束（工程推断）**：[OXE](https://arxiv.org/abs/2310.08864v1) 与 [DROID](https://arxiv.org/abs/2403.12945v1) 提醒我们，规模和统一 schema 不能替代坐标系、单位、控制模式及场景划分。训练前把这些字段与 checkpoint、normalization stats 绑定；效果异常先排数据语义与验证集泄漏，再归因模型结构。
+
+**存储与推理的关系**：[LeRobotDataset v3](https://huggingface.co/blog/lerobot-datasets-v3) 用共享文件和元数据描述多个 episode；读取更快仍须检查 episode 边界和视频时间对齐。动作训练样本的时间错位可能表现为“模型能拟合却不能控制”，应回放取样窗口而非只看 loss。
+
+**评估边界**：[Isaac Lab](https://arxiv.org/abs/2511.04831v1) 提供 GPU 仿真学习工作流，但仿真吞吐不是 sim-to-real 成功证据。比较策略时固定 physics、sensor、reset、随机化、任务和成功标准，分别报告训练集外场景、失败恢复与端到端延迟。上述诊断与配置建议尚未通过仓库实验验证。
+
+[原始月份记录与覆盖边界](../../research/tracking/embodied_retrospective_2026-10-13.md) · [阶段阅读](../../research/reading_queue/P1.md#embodied-20261013) · [六阶段路线](../roadmap.md)
