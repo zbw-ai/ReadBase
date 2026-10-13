@@ -1,0 +1,194 @@
+{
+  "papers": [
+    {
+      "id": "2606.04463",
+      "checked_at": "2026-10-13",
+      "checked_version": "v1",
+      "abs": {
+        "url": "https://arxiv.org/abs/2606.04463v1",
+        "file": "2606.04463v1-late-abs.html",
+        "sha256": "9b6eb268ebdf9bc6cd412dd600e4b0e2038679ca9dc98a269ae2badba38e8eeb"
+      },
+      "metadata": {
+        "citation_title": [
+          "OSCAR: Omni-Embodiment Skeleton-Conditioned World Action Model for Robotics"
+        ],
+        "citation_author": [
+          "Wu, Zhuoyuan",
+          "Gao, Jun"
+        ],
+        "citation_date": [
+          "2026/06/03"
+        ],
+        "citation_online_date": [
+          "2026/06/03"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2606.04463"
+        ],
+        "citation_arxiv_id": [
+          "2606.04463"
+        ]
+      },
+      "submission_history": "Submission history From: Zhuoyuan Wu [ view email ] [v1] Wed, 3 Jun 2026 05:16:41 UTC (16,051 KB) [v2] Thu, 4 Jun 2026 13:11:48 UTC (16,050 KB)",
+      "html": {
+        "url": "https://arxiv.org/html/2606.04463v1",
+        "file": "2606.04463v1-late-html.html",
+        "sha256": "ff43083e0e5ada8131b733aa09f7a01d57e24d1f7d6b168fd540a946df584f51"
+      },
+      "disposition": "Accepted",
+      "decision": "Read",
+      "method_sections_checked": "§3.1–3.2, §4, §5.4, A.10",
+      "evidence_boundary": "Recorded-action video evaluation; calibration-selected sessions; imperfect VLM judge; not online closed-loop replacement.",
+      "metadata_verified": true,
+      "abstract_sha256": "c75c4b809841798b33f0702612d9e9962aeb436aedbaaa69787cdf716007bacf"
+    },
+    {
+      "id": "2607.29235",
+      "checked_at": "2026-10-13",
+      "checked_version": "v1",
+      "abs": {
+        "url": "https://arxiv.org/abs/2607.29235v1",
+        "file": "2607.29235v1-late-abs.html",
+        "sha256": "6209e9c3713e8f8131009be1891a9b8629035f2395bfa3ade145de5140a05d38"
+      },
+      "metadata": {
+        "citation_title": [
+          "FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution"
+        ],
+        "citation_author": [
+          "Li, Peize",
+          "Zhang, Ruimeng",
+          "Zhang, Ru",
+          "Huang, Cong",
+          "Chen, Kai",
+          "Zhang, Shanghang"
+        ],
+        "citation_date": [
+          "2026/07/31"
+        ],
+        "citation_online_date": [
+          "2026/07/31"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2607.29235"
+        ],
+        "citation_arxiv_id": [
+          "2607.29235"
+        ]
+      },
+      "submission_history": "Submission history From: Peize Li [ view email ] [v1] Fri, 31 Jul 2026 10:11:09 UTC (2,983 KB)",
+      "html": {
+        "url": "https://arxiv.org/html/2607.29235v1",
+        "file": "2607.29235v1-late-html.html",
+        "sha256": "5e859865399d7c564b7f208c58d4f7274fc94549b0fb162492b69d15341fc382"
+      },
+      "disposition": "Observed",
+      "decision": "Observe",
+      "method_sections_checked": "§3.1–3.5, §4.2–4.3, §5.3, §7, Appendix E",
+      "evidence_boundary": "Pseudo-asynchronous clock decoupled from wall-clock; JVP overhead; limited heterogeneous aggregate effects; real-world prediction diagnostic not policy control.",
+      "metadata_verified": true,
+      "abstract_sha256": "f39d3390c65a076a801e5385bef99dd10919a48b05bde64271b6fe434c0b6454"
+    },
+    {
+      "id": "2609.21022",
+      "checked_at": "2026-10-13",
+      "checked_version": "v1",
+      "abs": {
+        "url": "https://arxiv.org/abs/2609.21022v1",
+        "file": "2609.21022v1-late-abs.html",
+        "sha256": "a371678569f51c0295aa5a88d54c3e02ce5d69b7eca1c2539d408ace0cdaf5df"
+      },
+      "metadata": {
+        "citation_title": [
+          "Catch Me If You Can: Real-Time Feedback Denoising for Responsive VLAs"
+        ],
+        "citation_author": [
+          "Ji, Yiheng",
+          "Zhou, Xingru",
+          "Sentis, Luis",
+          "Seo, Mingyo"
+        ],
+        "citation_date": [
+          "2026/09/17"
+        ],
+        "citation_online_date": [
+          "2026/09/17"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2609.21022"
+        ],
+        "citation_arxiv_id": [
+          "2609.21022"
+        ]
+      },
+      "submission_history": "Submission history From: Yiheng Ji [ view email ] [v1] Thu, 17 Sep 2026 19:20:15 UTC (18,464 KB)",
+      "html": {
+        "url": "https://arxiv.org/html/2609.21022v1",
+        "file": "2609.21022v1-late-html.html",
+        "sha256": "ff080047a5512c716ae1ac91411f134c2a5005d87416bd8c44017eef6e1bb359"
+      },
+      "disposition": "Accepted",
+      "decision": "Read",
+      "method_sections_checked": "§3.1–3.3, §4.1–4.4, §5, A.2–A.3",
+      "evidence_boundary": "Trained feedback module; hardware end-to-end 71.01 ms vs inference 1.95 ms; 10 Hz control; limited Franka task set.",
+      "metadata_verified": true,
+      "abstract_sha256": "25c84e3ec91ad3d272cdd25bbc0d5e23470ef168611cdf46da1ffc8cdd271680"
+    }
+  ],
+  "coverage": [
+    {
+      "source": "pi-index",
+      "url": "https://www.pi.website/blog",
+      "error": "HTTP Error 429: Too Many Requests",
+      "checked_at": "2026-10-13",
+      "coverage_limit": "Direct access failed 429; search index latest visible April 2026; no claim of no June–October release."
+    },
+    {
+      "source": "nvidia-gear-publications",
+      "url": "https://research.nvidia.com/labs/gear/publications/",
+      "file": "nvidia-gear-publications-late.html",
+      "sha256": "600456c2faa33cf6a816c62a0e4686b488853da437a4dcf68eb55a49b33954bc",
+      "bytes": 6900,
+      "checked_at": "2026-10-13",
+      "coverage_limit": "Client-rendered page shell only; full publications list not verified."
+    },
+    {
+      "source": "nvidia-gr00t-index",
+      "url": "https://developer.nvidia.com/blog/tag/gr00t/",
+      "file": "nvidia-gr00t-index-late.html",
+      "sha256": "768ea425759a8be4923ec5b71edd19b1a4b415c938b95c93389823f34978e6b0",
+      "bytes": 192135,
+      "checked_at": "2026-10-13",
+      "coverage_limit": "Current tag page latest visible entry 2026-07-07; not full NVIDIA coverage."
+    },
+    {
+      "source": "hf-blog-index",
+      "url": "https://huggingface.co/blog",
+      "file": "hf-blog-index-late.html",
+      "sha256": "dece2dd1a3fec08226dcd75b5d740745f97a6453b4a8dd914ab25b9b939f7097",
+      "bytes": 303876,
+      "checked_at": "2026-10-13",
+      "coverage_limit": "Homepage only; visible promoted posts span 2026-09-22 to 2026-10-09; not all pagination."
+    },
+    {
+      "source": "hf-lerobot-v060",
+      "url": "https://huggingface.co/blog/lerobot-release-v060",
+      "file": "hf-lerobot-v060-late.html",
+      "sha256": "c98f24653f5e88ba6460ce31d183fe7f41f12050fa29a42767c81a3034558879",
+      "bytes": 238764,
+      "checked_at": "2026-10-13",
+      "disposition": "Observed / implementation entry"
+    },
+    {
+      "source": "nvidia-gr00t-july",
+      "url": "https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/",
+      "file": "nvidia-gr00t-july-late.html",
+      "sha256": "76c3f41b19e88999b234f40fd1bbc84616c19fe083a853a0e796a13b47fd723f",
+      "bytes": 272491,
+      "checked_at": "2026-10-13",
+      "disposition": "Observed / implementation entry"
+    }
+  ],
+  "scope": "Bounded historical check 2026-06 through 2026-10-13; not full frontier scan; does not advance cursor."
+}

@@ -20,7 +20,7 @@
 
 下一阶段优先投入具身模型与具身 Infra；[13 项历史补扫](research/tracking/embodied_retrospective_2026-10-13.md)将动作模型、数据契约、闭环执行串为三个阅读阶段。已有的 LLM Training 与 Agentic RL 积累继续保留：
 
-1. [具身六阶段路线](05-embodied-infra/roadmap.md)：模型与动作 → episode 契约 → 数据 I/O → 训练 → 评估 → 部署；先建立模型印象，再复用已有 Infra 正文。
+1. [具身 Infra 核心 topic](05-embodied-infra/topics/embodied_infra.md) → [具身六阶段路线](05-embodied-infra/roadmap.md)：模型与动作 → episode 契约 → 数据 I/O → 训练 → 评估 → 部署；先建立模型印象，再复用已有 Infra 正文。
 2. [FSDP／FSDP2／ZeRO](02-training-infra/topics/fsdp.md)：从状态账本、通信和参数生命周期入手，继续深化源码与性能取舍。
 3. [A100 学习实验](practice/experiments/a100_fsdp_io_lab.md)：先环境画像，再状态分片、通信与多模态 I/O；E00–E08 均未执行。
 
@@ -31,7 +31,7 @@
 
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
-| 2026-10-13 | 具身优先／历史补扫 | [13 项模型与 Infra 复盘](research/tracking/embodied_retrospective_2026-10-13.md)：动作表示、跨机器人数据与闭环执行；6 项新增、7 项复评，按原始月份留证 |
+| 2026-10-13 | 具身核心专题与补扫 | [具身 Infra 核心入口](05-embodied-infra/topics/embodied_infra.md)：整体地图、模型入门、数据 I/O 与讨论路径；[模型／GitHub 补扫](research/tracking/embodied_followup_2026-10-13.md)补版本与验证边界 |
 | 2026-10-12 | 研究扫描 | [8 组重点信号](research/tracking/frontier_scan_2026-10-12.md)：TRL 显存、GRPO 分组、CPU snapshot、会话缓存与持久 rollout；附 94 条 PR 索引及覆盖缺口 |
 | 2026-10-09 | 导航与学习路线 | [原训练手册入口](02-training-infra/README.md#original-library)统一收编旧入口；五个技术 Part 采用两层编号；[具身六阶段](05-embodied-infra/roadmap.md)仍为当前重点 |
 | 2026-10-09 | MiMo 技术研究 | [V2.6 系统设计](research/tech_reports/mimo_v26.md#3-强化学习基础设施)：统一轨迹、多框架并发、控制与数据面分离、训推概率一致性；区分生产机制与开源交付；提供[飞书 Word 导入版](assets/handbook/mimo_v26/mimo_v26_feishu.docx)，未复现训练 |

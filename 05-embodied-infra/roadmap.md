@@ -1,5 +1,7 @@
 # 具身 Models & Infra 核心路线
 
+整体概念与讨论先从[具身 Infra 核心 topic](topics/embodied_infra.md)进入；本页只维护学习顺序与掌握标准。
+
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../research/tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
 
 [所属 Part](README.md) · [首页](../README.md) · [知识地图](../KNOWLEDGE_GRAPH.md) · [实验课程](../practice/experiments/a100_fsdp_io_lab.md)
@@ -22,9 +24,9 @@ flowchart LR
 
 | 阶段 | 学完能回答什么 | 正文入口与真实覆盖 | 最小产出 |
 |---|---|---|---|
-| [① 模型与动作](#stage-1) | 模型输入、输出、目标分别是什么？ | [模型入门大纲](../docs/superpowers/specs/2026-09-18-embodied-models-primer-design.md)，基础正文待展开 | 一页输入／输出／目标对照 |
-| [② Episode 契约](#stage-2) | 图像、状态与未来动作按什么时间契约对齐？ | [具身系统正文](topics/agentic_for_embodied.md)，已有设计，未验证 | 一个 episode 的字段和时间线 |
-| [③ 存储与 I/O](#stage-3) | 从文件到 GPU batch 在哪里等待？ | 系统正文＋[E04](../practice/experiments/a100_fsdp_io_lab.md#e04)，独立数据专题待补 | 样本身份校验与流水线分解 |
+| [① 模型与动作](#stage-1) | 模型输入、输出、目标分别是什么？ | [模型入门正文](topics/embodied_models_primer.md)，从任务到动作与学习 | 一页输入／输出／目标对照 |
+| [② Episode 契约](#stage-2) | 图像、状态与未来动作按什么时间契约对齐？ | [数据契约基础](topics/embodied_data_io.md#sample-contract) → [平台 schema](topics/agentic_for_embodied.md)，未验证 | 一个 episode 的字段和时间线 |
+| [③ 存储与 I/O](#stage-3) | 从文件到 GPU batch 在哪里等待？ | [数据与 I/O](topics/embodied_data_io.md)＋[E04](../practice/experiments/a100_fsdp_io_lab.md#e04)，实验待执行 | 样本身份校验与流水线分解 |
 | [④ 训练与分片](#stage-4) | DDP 放得下吗？FSDP 省什么，又增加什么？ | [FSDP/FSDP2/ZeRO](../02-training-infra/topics/fsdp.md)，已有机制正文 | 显存账本、参数生命周期图 |
 | [⑤ 闭环评估](#stage-5) | loss 降低是否意味着任务更可靠？ | 系统正文中的评估设计，尚无本仓库实测 | 离线与闭环分开的评估协议 |
 | [⑥ 部署与反馈](#stage-6) | 正确动作晚到了，该如何处理？ | 系统正文中的运行时设计，未完成真机验证 | observation→action 的时延与版本契约 |
@@ -39,7 +41,7 @@ flowchart LR
 - **World model**：预测观察或潜在状态的演化；是否以动作作为条件、是否用于规划，取决于模型。不能把所有视频生成模型当成可用的机器人动力学模型。
 - **学习方式与输出方式分开**：BC 从示范学习；RL 从奖励与交互学习。Action chunk 是一次预测多个时间步；Diffusion / Flow Matching 是可用于连续动作生成的方法，不是 RL 的同义词。
 
-阅读顺序：[入门大纲第一至四章](../docs/superpowers/specs/2026-09-18-embodied-models-primer-design.md) → 第五至六章 → [系统正文最小机器人背景](topics/agentic_for_embodied.md)。VLT 未给出具体出处时保留歧义，不强行定义。
+阅读顺序：[模型入门](topics/embodied_models_primer.md) → [数据正文](topics/embodied_data_io.md) → [系统正文最小机器人背景](topics/agentic_for_embodied.md)。VLT 未给出具体出处时保留歧义，不强行定义。
 
 **过关标准**：对一个选定的公开策略，写清 observation shape、action shape、预测长度、实际执行长度、loss 和可训练模块；说明“看懂杯子”与“夹爪动作可执行”的区别。先对比 action chunk、动作生成与视觉语言条件这三个机制，再按需要选 ACT、Diffusion Policy、OpenVLA / openpi 的代表材料，不把模型名单全部升为必读。
 
@@ -48,7 +50,7 @@ flowchart LR
 
 从一条 episode 画出 camera / state / action 的时间线，核对：episode ID、时间戳、相机标定、坐标系、单位、动作空间、归一化统计、终止原因和 padding mask。采样历史观察与未来动作时，不越过 episode 边界；训练／验证按任务和采集分组设计，避免相邻窗口泄漏。
 
-复用[具身数据与平台正文](topics/agentic_for_embodied.md)。[LeRobotDataset v3 官方文档](https://huggingface.co/docs/lerobot/en/lerobot-dataset-v3)可作为具体格式样本：低维信号、视频与索引元数据是不同层；逻辑 episode 不必等于一个物理文件。
+先读[数据契约基础](topics/embodied_data_io.md#sample-contract)，再深入[平台 schema](topics/agentic_for_embodied.md)。[LeRobotDataset v3 官方文档](https://huggingface.co/docs/lerobot/en/lerobot-dataset-v3)可作为具体格式样本：低维信号、视频与索引元数据是不同层；逻辑 episode 不必等于一个物理文件。
 
 **过关标准**：抽一个样本，能追溯回原始 episode 和相机帧，解释边界处的 mask、状态与动作的时间差；先做只读可视核验，不控制机器人。
 
@@ -59,7 +61,7 @@ flowchart LR
 
 按 [E04](../practice/experiments/a100_fsdp_io_lab.md#e04)设计对照：固定 episode／窗口／数据增强语义，分别记录读文件、decode、collate、H2D、GPU 等待；区分冷／热缓存，不清理共享缓存。比较单进程与多 worker、按需解码与复用、无预取与有界预取，最后再测跨 rank 采样重复、遗漏及长尾。
 
-**过关标准**：解释 GPU 空洞的来源，并能证明优化前后的样本身份、时序和 mask 没变。独立 I/O 正文仍待补，本阶段不预设 MP4、逐帧图片或某个新存储格式一定最快。
+**过关标准**：解释 GPU 空洞的来源，并能证明优化前后的样本身份、时序和 mask 没变。[独立 I/O 正文](topics/embodied_data_io.md)已建立，本阶段不预设 MP4、逐帧图片或某个新存储格式一定最快。
 
 <a id="stage-4"></a>
 ## ④ 训练：先有 DDP 基线，再决定是否分片
@@ -96,4 +98,4 @@ flowchart LR
 
 [GPU Systems](../01-systems/roadmaps/gpu-systems.md)解释执行与数据搬运；[Distributed Systems](../01-systems/roadmaps/distributed-systems.md)解释失败、状态与恢复；[Inference](../03-inference-infra/roadmap.md)提供调度与性能方法，但不替代物理动作时限；[Agentic RL](../04-rl-infra/roadmap.md)在确有交互学习需求时复用，不作为 BC 的强制前置。
 
-本页只组织学习和验证，不新建一套研究队列。正式选读仍进入[共享阅读队列](../research/reading_queue/README.md)，研究变化在[统一雷达](../research/tracking/README.md)跟踪；模型、I/O 基础正文与实验结果分别补齐，不能以“已建立路线”代替“已掌握”。
+本页只组织学习和验证，不新建一套研究队列。正式选读仍进入[共享阅读队列](../research/reading_queue/README.md)，研究变化在[统一雷达](../research/tracking/README.md)跟踪；模型、I/O 基础正文已建立，后续阅读掌握与实验结果分别记录，不能以“已建立路线”代替“已掌握”。

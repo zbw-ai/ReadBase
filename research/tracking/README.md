@@ -1,5 +1,7 @@
 # Tracking
 
+新增[具身模型与 GitHub 补扫](embodied_followup_2026-10-13.md)：16 项接受信号、6 库有界核查；由[核心 topic](../../05-embodied-infra/topics/embodied_infra.md)进入基础到进阶学习。
+
 ## 2026-10-13 起：具身模型与 Infra 为下一阶段重点
 
 未来扫描优先为具身模型／学习机制和具身 Infra 分配来源核查与判断篇幅，不能只因没有 Infra 提速就忽略模型机制。每轮 `Embodied Models & Infra Watch` 分成 `Models / Learning` 与 `Infra` 两栏：前者检查输入输出、动作表示、目标、数据配方、泛化与评估；后者检查 episode / IO、分布式训练、仿真、实时执行、部署与恢复。两栏各自记录实际来源、证据、Decision 和缺口；检查后无重要新增与未检查／访问失败必须区分，不设 Accepted 配额。

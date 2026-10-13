@@ -1,5 +1,7 @@
 # Agentic for Embodied：从系统地图到生产平台
 
+基础阅读先看[具身 Infra 核心入口](embodied_infra.md)、[模型入门](embodied_models_primer.md)与[数据 I/O](embodied_data_io.md)。本篇保留为平台接口、资源池、状态机与 fleet 的进阶设计。
+
 [所属 Part](../README.md) · [首页](../../README.md) · [知识地图](../../KNOWLEDGE_GRAPH.md)
 
 > 定位：面向 AI / RL Infra 工程师的工程手册章节。机器人学只讲到能够理解 workload 和系统边界；主线从 Approach A 的系统地图出发，最终落到 Approach C 的可实施平台设计。
@@ -57,7 +59,7 @@ Hardware             执行动作并产生新的 observation
 
 ## 3. Approach A：workload 到平台决策的系统地图
 
-算法或模型只有在改变接口、资源池、SLO、故障模式或验证策略时，才值得进入 Infra 主线。
+本章按接口、资源池、SLO、故障模式或验证策略选择平台材料；这一筛选只约束本篇进阶设计。[模型入门](embodied_models_primer.md)与研究雷达也接受能解释动作表示、学习目标或泛化边界的模型机制，无须先证明 Infra 提速。
 
 | Workload property | Infra consequence | Platform decision | 代表证据 |
 |---|---|---|---|
@@ -866,7 +868,7 @@ Agentic for Embodied 的核心竞争力短期内不只是更大的 VLA，而是�
 
 对已有 AReaL 团队而言，最值得复用的是异步 workflow、角色解耦、policy version、scheduler 和 tracing；最不该强行复用的是 token trajectory、autoregressive inference backend 和“失败后直接重试”的软件服务语义。
 
-下一项最值得做的工程产物是 `experiments/embodied/trajectory_contract.md`：用 LeRobotDataset v3 构造一个双臂、多相机、带故障注入的小型 dataset，验证 timestamp skew、camera reorder、normalization mismatch 和半写 episode 能否被 data gate 稳定拒绝。它比直接训练一个 VLA 更能验证平台地基。
+基础验证从[具身契约练习](../../practice/experiments/embodied_contract_lab.md)开始（未执行）；后续可以扩展为：用 LeRobotDataset v3 构造一个双臂、多相机、带故障注入的小型 dataset，验证 timestamp skew、camera reorder、normalization mismatch 和半写 episode 能否被 data gate 稳定拒绝。它比直接训练一个 VLA 更能验证平台地基。
 
 <a id="embodied-model-contracts"></a>
 

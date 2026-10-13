@@ -2,17 +2,19 @@
 
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../research/tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
 
-这一部分先补模型、任务与动作闭环的基础，再理解数据采集、仿真、训练、部署和安全边界。当前模型入门正文尚未创建；已有的 Agentic for Embodied 是进阶系统地图与平台设计，不能替代模型 primer，也未经过真实机器人或仿真实验验证。
+这一部分先补模型、任务与动作闭环的基础，再理解数据采集、仿真、训练、部署和安全边界。基础正文已展开为模型入门与数据 I/O；Agentic for Embodied 保留为进阶平台设计。正文整理、读者掌握与实验结果分开记录，目前未执行仿真或真机验证。
 
 ## 从哪里开始
+
+**核心 topic：[具身 Infra：从一个动作到完整学习系统](topics/embodied_infra.md)**。先看整体地图，再从问题进入基础正文；[讨论起点](topics/embodied_infra.md#discussion)串起后续学习。
 
 **当前主线：[具身 Models & Infra 六阶段路线](roadmap.md)**。按“模型与动作 → episode → 存储/I/O → 训练 → 评估 → 部署”推进；每阶段都有问题、正文入口、最小产出与证据边界。
 
 | 编号 | 阶段入口 | 正文入口与真实覆盖 |
 |---|---|---|
-| 5.1 | [模型与动作](roadmap.md#stage-1) | [具身模型入门大纲](../docs/superpowers/specs/2026-09-18-embodied-models-primer-design.md)：厘清 MLLM、VLA、policy、world model；基础正文待展开 |
-| 5.2 | [Episode 数据契约](roadmap.md#stage-2) | [Agentic for Embodied](topics/agentic_for_embodied.md)：observation、action、trajectory 与时间契约；已有设计，未验证 |
-| 5.3 | [存储与多模态 I/O](roadmap.md#stage-3) | 复用具身系统正文与 [E04](../practice/experiments/a100_fsdp_io_lab.md#e04)；独立数据专题待补，实验未执行 |
+| 5.1 | [模型与动作](roadmap.md#stage-1) | [具身模型入门](topics/embodied_models_primer.md)：任务、MLLM、VLA、world model 与训练目标 |
+| 5.2 | [Episode 数据契约](roadmap.md#stage-2) | [数据契约基础](topics/embodied_data_io.md#sample-contract) → [平台 schema](topics/agentic_for_embodied.md)；未验证 |
+| 5.3 | [存储与多模态 I/O](roadmap.md#stage-3) | [数据与 I/O 正文](topics/embodied_data_io.md) → [E04](../practice/experiments/a100_fsdp_io_lab.md#e04)；实验未执行 |
 | 5.4 | [训练与状态分片](roadmap.md#stage-4) | 复用 [FSDP / FSDP2 / ZeRO](../02-training-infra/topics/fsdp.md)；先 DDP 基线与显存账本，实验未执行 |
 | 5.5 | [闭环评估](roadmap.md#stage-5) | 复用具身系统正文的评估设计；离线 loss 不替代闭环任务成功，尚无本仓库实测 |
 | 5.6 | [部署与反馈](roadmap.md#stage-6) | 复用具身系统正文的运行时设计；明确动作时限、版本与安全边界，未完成真机验证 |
@@ -23,10 +25,10 @@
 
 | 工程问题 | 正文 / 大纲入口 | 实验 / 排障入口 | 当前状态 |
 |---|---|---|---|
-| 模型理解指令，为什么不等于任务完成？ | [模型入门大纲](../docs/superpowers/specs/2026-09-18-embodied-models-primer-design.md) | 暂无 | 大纲草案；基础正文待写 |
-| trajectory、时间戳与动作时限怎样进入系统设计？ | [Agentic for Embodied](topics/agentic_for_embodied.md) | 暂无具身专属实验 / runbook | `NEW`；已有系统地图，未验证 |
+| 模型理解指令，为什么不等于任务完成？ | [模型入门](topics/embodied_models_primer.md) | [纸面契约练习](../practice/experiments/embodied_contract_lab.md) | 正文已整理；讨论与验证待开展 |
+| trajectory、时间戳与动作时限怎样进入系统设计？ | [数据契约](topics/embodied_data_io.md#sample-contract) | [契约练习](../practice/experiments/embodied_contract_lab.md)尚未执行；runbook 待补 | `NEW`；已有系统地图，未验证 |
 | 模型不大，是否还需要状态分片？ | [阶段④](roadmap.md#stage-4) · [FSDP/FSDP2/ZeRO](../02-training-infra/topics/fsdp.md) | [E01／E02](../practice/experiments/a100_fsdp_io_lab.md#e01) | 先 DDP 基线与显存账本；未执行 |
-| 视频与低维信号怎样形成正确且高效的 batch？ | [阶段②](roadmap.md#stage-2) → [阶段③](roadmap.md#stage-3) | [E04 多模态 I/O](../practice/experiments/a100_fsdp_io_lab.md#e04) | 独立数据正文待补；计划未执行 |
+| 视频与低维信号怎样形成正确且高效的 batch？ | [阶段②](roadmap.md#stage-2) → [阶段③](roadmap.md#stage-3) | [E04 多模态 I/O](../practice/experiments/a100_fsdp_io_lab.md#e04) | [数据正文](topics/embodied_data_io.md)已建立；计划未执行 |
 | RL Infra 的状态管理能复用到哪里？ | [进阶平台设计](topics/agentic_for_embodied.md) · [RL 状态边界](../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) | [RL 故障注入计划](../practice/experiments/rl_state_boundaries.md)仅作方法参考 | RL 计划也未执行，不构成具身验证 |
 
 ## 继续深入

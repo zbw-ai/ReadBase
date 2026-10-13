@@ -1,5 +1,7 @@
 # Master Reading List
 
+具身新增来源：[2026 模型与 GitHub 演进补扫](tracking/embodied_followup_2026-10-13.md)，包含来源日期、版本和验证边界；从[核心 topic](../05-embodied-infra/topics/embodied_infra.md)进入学习。
+
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
 
 新增来源入口：[10/12 扫描](tracking/frontier_scan_2026-10-12.md)（8 组系统信号，NEW）、[十月晚发现候选](tracking/backfill/2026-10.md)；优先读 [TRL / group identity / snapshot](reading_queue/P1.md#oct12-priority)。
@@ -18,7 +20,7 @@
 | 训练 | 下方模型／并行／状态／精度材料；[训练导航](../02-training-infra/README.md) | FSDP/ZeRO 与多模态 workload 是近期深化方向 |
 | 推理 | [推理导航](../03-inference-infra/README.md)、[工程博客](engineering_blogs/README.md) | 现有内容局部覆盖，独立 serving 章节待建设 |
 | RL／Agent | [框架与机制](../04-rl-infra/README.md)、[历史来源](tracking/historical_backfill.md) | 以已有来源笔记和代码分析为基线，不自动视作实验验证 |
-| 具身 | [模型入门大纲](../docs/superpowers/specs/2026-09-18-embodied-models-primer-design.md)、[具身路径](../05-embodied-infra/README.md) | 模型 primer 与 episode 数据正文待建设；新材料进入统一雷达 |
+| 具身 | [核心 topic](../05-embodied-infra/topics/embodied_infra.md)、[模型入门](../05-embodied-infra/topics/embodied_models_primer.md)、[数据 I/O](../05-embodied-infra/topics/embodied_data_io.md) | 基础正文已建立；读者掌握与实验验证待记录 |
 
 ## 0. 使用方式
 
@@ -274,7 +276,7 @@
 
 ## 9. Agentic for Embodied / Physical Agent Infra
 
-先读系统地图：[Agentic for Embodied](../05-embodied-infra/topics/agentic_for_embodied.md)。这条路线不要求先掌握机器人控制理论，而是先理解数据、仿真、实时 runtime、安全和 fleet feedback 怎样改变 Agentic RL 的工程边界。
+先读[核心入口](../05-embodied-infra/topics/embodied_infra.md)与模型基础，再读系统地图：[Agentic for Embodied](../05-embodied-infra/topics/agentic_for_embodied.md)。这条路线不要求先掌握机器人控制理论，而是先理解数据、仿真、实时 runtime、安全和 fleet feedback 怎样改变 Agentic RL 的工程边界。
 
 | 顺序 | 材料 | 关注点 |
 |---|---|---|

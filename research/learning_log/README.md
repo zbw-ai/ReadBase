@@ -1,5 +1,7 @@
 # Learning Log
 
+[2026-10：具身模型与 Infra 讨论记录](2026-10.md#embodied-discussion)，目前为待讨论问题，不推断读者已掌握。
+
 `learning_log/` 记录每月真实学习进展。
 
 它不是日记，而是成长轨迹：

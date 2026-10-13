@@ -1,0 +1,363 @@
+[
+  {
+    "id": "2511.14759",
+    "url": "https://arxiv.org/abs/2511.14759v1",
+    "sha256": "126e074370bbb88899bb3c1b41d0e80c8db8052f55f895c96e0685a52108ebf7",
+    "metadata": {
+      "citation_title": [
+        "$\\pi^{*}_{0.6}$: a VLA That Learns From Experience"
+      ],
+      "citation_author": [
+        "Amin, Ali",
+        "Aniceto, Raichelle",
+        "Balakrishna, Ashwin",
+        "Black, Kevin",
+        "Conley, Ken",
+        "Connors, Grace",
+        "Darpinian, James",
+        "Dhabalia, Karan",
+        "DiCarlo, Jared",
+        "Driess, Danny",
+        "Equi, Michael",
+        "Esmail, Adnan",
+        "Fang, Yunhao",
+        "Finn, Chelsea",
+        "Glossop, Catherine",
+        "Godden, Thomas",
+        "Goryachev, Ivan",
+        "Groom, Lachy",
+        "Hancock, Hunter",
+        "Hausman, Karol",
+        "Hussein, Gashon",
+        "Ichter, Brian",
+        "Jakubczak, Szymon",
+        "Jen, Rowan",
+        "Jones, Tim",
+        "Katz, Ben",
+        "Ke, Liyiming",
+        "Kuchi, Chandra",
+        "Lamb, Marinda",
+        "LeBlanc, Devin",
+        "Levine, Sergey",
+        "Li-Bell, Adrian",
+        "Lu, Yao",
+        "Mano, Vishnu",
+        "Mothukuri, Mohith",
+        "Nair, Suraj",
+        "Pertsch, Karl",
+        "Ren, Allen Z.",
+        "Sharma, Charvi",
+        "Shi, Lucy Xiaoyang",
+        "Smith, Laura",
+        "Springenberg, Jost Tobias",
+        "Stachowicz, Kyle",
+        "Stoeckle, Will",
+        "Swerdlow, Alex",
+        "Tanner, James",
+        "Torne, Marcel",
+        "Vuong, Quan",
+        "Walling, Anna",
+        "Wang, Haohuan",
+        "Williams, Blake",
+        "Yoo, Sukwon",
+        "Yu, Lili",
+        "Zhilinsky, Ury",
+        "Zhou, Zhiyuan"
+      ],
+      "citation_date": [
+        "2025/11/18"
+      ],
+      "citation_online_date": [
+        "2025/11/18"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2511.14759"
+      ],
+      "citation_arxiv_id": [
+        "2511.14759"
+      ]
+    },
+    "submission_history": "Submission history From: Brian Ichter [ view email ] [v1] Tue, 18 Nov 2025 18:58:55 UTC (22,750 KB) [v2] Wed, 19 Nov 2025 04:34:49 UTC (22,750 KB)",
+    "checked_version": "v1",
+    "checked_at": "2026-10-13",
+    "method_url": "https://arxiv.org/html/2511.14759v1",
+    "metadata_verified": true,
+    "method_sections_checked": "IV-A–C, V; Eq. 3 and Algorithm 1",
+    "abstract_sha256": "a6d2539551c3c671046f29243cb490eee70940d9bdcdb41ffa53a7c138ad79b9"
+  },
+  {
+    "id": "2602.15922",
+    "url": "https://arxiv.org/abs/2602.15922v1",
+    "sha256": "730713616a04d7aa890d11c90f16a6f467f2c72ef9575f597f3e6d45805b490c",
+    "metadata": {
+      "citation_title": [
+        "World Action Models are Zero-shot Policies"
+      ],
+      "citation_author": [
+        "Ye, Seonghyeon",
+        "Ge, Yunhao",
+        "Zheng, Kaiyuan",
+        "Gao, Shenyuan",
+        "Yu, Sihyun",
+        "Kurian, George",
+        "Indupuru, Suneel",
+        "Tan, You Liang",
+        "Zhu, Chuning",
+        "Xiang, Jiannan",
+        "Malik, Ayaan",
+        "Lee, Kyungmin",
+        "Liang, William",
+        "Ranawaka, Nadun",
+        "Gu, Jiasheng",
+        "Xu, Yinzhen",
+        "Wang, Guanzhi",
+        "Hu, Fengyuan",
+        "Narayan, Avnish",
+        "Bjorck, Johan",
+        "Wang, Jing",
+        "Kim, Gwanghyun",
+        "Niu, Dantong",
+        "Zheng, Ruijie",
+        "Xie, Yuqi",
+        "Wu, Jimmy",
+        "Wang, Qi",
+        "Julian, Ryan",
+        "Xu, Danfei",
+        "Du, Yilun",
+        "Chebotar, Yevgen",
+        "Reed, Scott",
+        "Kautz, Jan",
+        "Zhu, Yuke",
+        "Fan, Linxi \"Jim\"",
+        "Jang, Joel"
+      ],
+      "citation_date": [
+        "2026/02/17"
+      ],
+      "citation_online_date": [
+        "2026/02/17"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2602.15922"
+      ],
+      "citation_arxiv_id": [
+        "2602.15922"
+      ]
+    },
+    "submission_history": "Submission history From: Seonghyeon Ye [ view email ] [v1] Tue, 17 Feb 2026 15:04:02 UTC (11,817 KB)",
+    "checked_version": "v1",
+    "checked_at": "2026-10-13",
+    "method_url": "https://arxiv.org/html/2602.15922v1",
+    "metadata_verified": true,
+    "method_sections_checked": "3.1, 3.2; Eq. 1/3; real-time execution table",
+    "abstract_sha256": "c61ab59c63d94535b267e44c351a0706249852f5f67d841cb319ea0070a04c92"
+  },
+  {
+    "id": "2603.03596",
+    "url": "https://arxiv.org/abs/2603.03596v1",
+    "sha256": "44ab9e4db7b7fb48fd39992561cc1447347c16865c019b7ab15df84dea13d32d",
+    "metadata": {
+      "citation_title": [
+        "MEM: Multi-Scale Embodied Memory for Vision Language Action Models"
+      ],
+      "citation_author": [
+        "Torne, Marcel",
+        "Pertsch, Karl",
+        "Walke, Homer",
+        "Vedder, Kyle",
+        "Nair, Suraj",
+        "Ichter, Brian",
+        "Ren, Allen Z.",
+        "Wang, Haohuan",
+        "Tang, Jiaming",
+        "Stachowicz, Kyle",
+        "Dhabalia, Karan",
+        "Equi, Michael",
+        "Vuong, Quan",
+        "Springenberg, Jost Tobias",
+        "Levine, Sergey",
+        "Finn, Chelsea",
+        "Driess, Danny"
+      ],
+      "citation_date": [
+        "2026/03/04"
+      ],
+      "citation_online_date": [
+        "2026/03/04"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2603.03596"
+      ],
+      "citation_arxiv_id": [
+        "2603.03596"
+      ]
+    },
+    "submission_history": "Submission history From: Karl Pertsch [ view email ] [v1] Wed, 4 Mar 2026 00:03:02 UTC (8,502 KB) [v2] Sun, 8 Mar 2026 00:17:42 UTC (8,508 KB)",
+    "checked_version": "v1",
+    "checked_at": "2026-10-13",
+    "method_url": "https://arxiv.org/html/2603.03596v1",
+    "metadata_verified": true,
+    "method_sections_checked": "III-A–D; memory factorization",
+    "abstract_sha256": "fdc73e1af2c99938abcf66d6091fd26920795388793c72f1c4ac33f5546b29f0"
+  },
+  {
+    "id": "2604.15483",
+    "url": "https://arxiv.org/abs/2604.15483v1",
+    "sha256": "63ca0c05354d91d5874d4e9cdf5966917567bd613d326e181423428845b8216f",
+    "metadata": {
+      "citation_title": [
+        "${\\pi}_{0.7}$: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities"
+      ],
+      "citation_author": [
+        "Intelligence, Physical",
+        "Ai, Bo",
+        "Amin, Ali",
+        "Aniceto, Raichelle",
+        "Balakrishna, Ashwin",
+        "Balke, Greg",
+        "Black, Kevin",
+        "Bokinsky, George",
+        "Cao, Shihao",
+        "Charbonnier, Thomas",
+        "Choudhary, Vedant",
+        "Collins, Foster",
+        "Conley, Ken",
+        "Connors, Grace",
+        "Darpinian, James",
+        "Dhabalia, Karan",
+        "Dhaka, Maitrayee",
+        "DiCarlo, Jared",
+        "Driess, Danny",
+        "Equi, Michael",
+        "Esmail, Adnan",
+        "Fang, Yunhao",
+        "Finn, Chelsea",
+        "Glossop, Catherine",
+        "Godden, Thomas",
+        "Goryachev, Ivan",
+        "Groom, Lachlan",
+        "Habeeb, Haroun",
+        "Hancock, Hunter",
+        "Hausman, Karol",
+        "Hussein, Gashon",
+        "Hwang, Victor",
+        "Ichter, Brian",
+        "Jacobsen, Connor",
+        "Jakubczak, Szymon",
+        "Jen, Rowan",
+        "Jones, Tim",
+        "Kammerer, Gregg",
+        "Katz, Ben",
+        "Ke, Liyiming",
+        "Khadikov, Mairbek",
+        "Kuchi, Chandra",
+        "Lamb, Marinda",
+        "LeBlanc, Devin",
+        "LeCount, Brendon",
+        "Levine, Sergey",
+        "Li, Xinyu",
+        "Li-Bell, Adrian",
+        "Lialin, Vladislav",
+        "Liang, Zhonglin",
+        "Lim, Wallace",
+        "Lu, Yao",
+        "Luo, Enyu",
+        "Mano, Vishnu",
+        "Marwaha, Nandan",
+        "Mongush, Aikys",
+        "Murphy, Liam",
+        "Nair, Suraj",
+        "Patterson, Tyler",
+        "Pertsch, Karl",
+        "Ren, Allen Z.",
+        "Schelske, Gavin",
+        "Sharma, Charvi",
+        "Shi, Baifeng",
+        "Shi, Lucy Xiaoyang",
+        "Smith, Laura",
+        "Springenberg, Jost Tobias",
+        "Stachowicz, Kyle",
+        "Stoeckle, Will",
+        "Tang, Jiaming",
+        "Tanner, Jimmy",
+        "Tekeste, Shalom",
+        "Torne, Marcel",
+        "Vedder, Kyle",
+        "Vuong, Quan",
+        "Walling, Anna",
+        "Wang, Haohuan",
+        "Wang, Jason",
+        "Wang, XuDong",
+        "Whalen, Chris",
+        "Whitmore, Samuel",
+        "Williams, Blake",
+        "Xu, Charles",
+        "Yoo, Sukwon",
+        "Yu, Lili",
+        "Zhang, Wuming",
+        "Zhang, Zhuoyang",
+        "Zhilinsky, Ury"
+      ],
+      "citation_date": [
+        "2026/04/16"
+      ],
+      "citation_online_date": [
+        "2026/04/16"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2604.15483"
+      ],
+      "citation_arxiv_id": [
+        "2604.15483"
+      ]
+    },
+    "submission_history": "Submission history From: Karl Pertsch [ view email ] [v1] Thu, 16 Apr 2026 19:18:07 UTC (13,189 KB) [v2] Fri, 24 Apr 2026 23:18:28 UTC (13,189 KB)",
+    "checked_version": "v1",
+    "checked_at": "2026-10-13",
+    "method_url": "https://arxiv.org/html/2604.15483v1",
+    "metadata_verified": true,
+    "method_sections_checked": "V-A–E, VI-A–C, VII, IX-A; context, data, action expert and RTC",
+    "abstract_sha256": "55fba08abb7c85541f6d0f726067a48e9c02671e55436eaf9d5b8a8dbb86262e"
+  },
+  {
+    "id": "2605.29360",
+    "url": "https://arxiv.org/abs/2605.29360v1",
+    "sha256": "5c863bd9950dfac6a6708e98e958dd13586fe164fb659ed00063e9d2ae3039da",
+    "metadata": {
+      "citation_title": [
+        "MiraBench: Evaluating Action-Conditioned Reliability in Robotic World Models"
+      ],
+      "citation_author": [
+        "Yang, Tianzhuo",
+        "Shen, Zihan",
+        "Mi, Zirui",
+        "Zhang, Zhaoyi",
+        "Zhou, Jiayi",
+        "Ji, Jiaming",
+        "Dai, Juntao",
+        "Chen, Jiawei",
+        "Chen, Boyuan",
+        "Yang, Yaodong"
+      ],
+      "citation_date": [
+        "2026/05/28"
+      ],
+      "citation_online_date": [
+        "2026/05/28"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2605.29360"
+      ],
+      "citation_arxiv_id": [
+        "2605.29360"
+      ]
+    },
+    "submission_history": "Submission history From: Tianzhuo Yang [ view email ] [v1] Thu, 28 May 2026 04:58:15 UTC (16,539 KB)",
+    "checked_version": "v1",
+    "checked_at": "2026-10-13",
+    "method_url": "https://arxiv.org/html/2605.29360v1",
+    "metadata_verified": true,
+    "method_sections_checked": "3–6; reliability definition, perturbation protocol, conditioning-type evaluation split",
+    "abstract_sha256": "3cf9a19e87fcfcd9f4504c7d732e293f18d12e3c3c2a9538f157f63d3aa80a63"
+  }
+]

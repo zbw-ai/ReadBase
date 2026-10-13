@@ -1,0 +1,386 @@
+{
+  "audit_type": "Bounded historical GitHub backfill; no frontier cursor advance",
+  "audit_date": "2026-10-13",
+  "evidence_collected_by_utc": "2026-10-13T08:35:14.652018+00:00",
+  "local_tests_run": false,
+  "summary": "六库官方release/tag及有界PR历史核查；8项建议接受，其中API/代码/测试存在与本地复现严格区分。OFT可见最新实现commit停在2025-09，其他仓库已实际核到2026，不强迫统一新鲜度。",
+  "access_notes": [
+    "初次匿名API触发403 rate limit；改用现有gh认证只读API成功。",
+    "未下载或执行仓库脚本；所有源码仅作为数据阅读。",
+    "closed PR列表按updated排序不是按merge时间，不代表时间窗口穷尽覆盖。"
+  ],
+  "coverage": [
+    {
+      "repo": "Physical-Intelligence/openpi",
+      "release_count": 0,
+      "tag_page_count": 0,
+      "closed_pr_page_count": 100,
+      "merged_count_in_closed_page": 35,
+      "closed_pr_updated_min": "2025-07-09T05:04:40Z",
+      "closed_pr_updated_max": "2026-10-08T18:11:00Z",
+      "latest_release": null,
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/Physical-Intelligence/openpi/releases?per_page=30"
+    },
+    {
+      "repo": "moojink/openvla-oft",
+      "release_count": 0,
+      "tag_page_count": 0,
+      "closed_pr_page_count": 2,
+      "merged_count_in_closed_page": 0,
+      "closed_pr_updated_min": "2025-09-08T15:49:08Z",
+      "closed_pr_updated_max": "2026-07-21T12:18:42Z",
+      "latest_release": null,
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/moojink/openvla-oft/releases?per_page=30"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "release_count": 11,
+      "tag_page_count": 11,
+      "closed_pr_page_count": 100,
+      "merged_count_in_closed_page": 40,
+      "closed_pr_updated_min": "2026-09-28T09:06:02Z",
+      "closed_pr_updated_max": "2026-10-12T14:46:49Z",
+      "latest_release": "2026-08-03T14:19:42Z",
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/huggingface/lerobot/releases?per_page=30"
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "release_count": 24,
+      "tag_page_count": 30,
+      "closed_pr_page_count": 100,
+      "merged_count_in_closed_page": 76,
+      "closed_pr_updated_min": "2026-10-10T19:44:49Z",
+      "closed_pr_updated_max": "2026-10-13T08:25:30Z",
+      "latest_release": "2026-09-16T22:34:03Z",
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/isaac-sim/IsaacLab/releases?per_page=30"
+    },
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "release_count": 5,
+      "tag_page_count": 5,
+      "closed_pr_page_count": 100,
+      "merged_count_in_closed_page": 48,
+      "closed_pr_updated_min": "2025-09-26T17:38:11Z",
+      "closed_pr_updated_max": "2026-10-07T22:35:39Z",
+      "latest_release": "2026-04-23T23:51:24Z",
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/NVIDIA/Isaac-GR00T/releases?per_page=30"
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "release_count": 24,
+      "tag_page_count": 30,
+      "closed_pr_page_count": 100,
+      "merged_count_in_closed_page": 88,
+      "closed_pr_updated_min": "2026-08-18T18:11:13Z",
+      "closed_pr_updated_max": "2026-10-08T11:35:51Z",
+      "latest_release": "2026-09-30T13:32:47Z",
+      "scope": "releases per_page=30; tags per_page=30; closed PRs sort=updated desc per_page=100; not exhaustive PR history",
+      "official_api": "https://api.github.com/repos/meta-pytorch/torchcodec/releases?per_page=30"
+    }
+  ],
+  "events": [
+    {
+      "source_id": "github:Physical-Intelligence/openpi:pr:821",
+      "repo": "Physical-Intelligence/openpi",
+      "title": "Multi-RLDS Datasets (Cotraining) + PolaRiS DROID jointpos policy configs",
+      "author": "arhanjain",
+      "original_time": "2025-12-18T00:38:04Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/Physical-Intelligence/openpi/pull/821",
+      "commit": "bd70b8f4011e85b3f3b0f039f12113f78718e7bf",
+      "head_sha": "ff3fc65e42ea466d38e883f268eeca57abab97cd",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "Medium",
+      "decision": "Read",
+      "subsystem": "data/trajectory path; training",
+      "target_question": "多数据集 cotraining 的混采权重、动作 chunk 与过滤顺序怎样共同定义训练分布？",
+      "mechanism": "RLDSDataset 显式携带 name/version/weight/filter_dict_path；各来源单独 repeat、轨迹重组、action chunk、flatten 和过滤后按权重混采。样例保留 joint-position action 与末尾重复 padding，RLDS 路径由 TensorFlow 内部并行而 PyTorch num_workers=0。",
+      "evidence": [
+        "已读4个文件完整diff；DroidRldsDataset 使用 sample_from_datasets + weights，并断言权重和为1。",
+        "PR head 的 Run Tests 与 pre-commit 均为 success；该PR没有新增专门的混采/过滤回归测试。"
+      ],
+      "code": [
+        "https://github.com/Physical-Intelligence/openpi/blob/bd70b8f4011e85b3f3b0f039f12113f78718e7bf/src/openpi/training/droid_rlds_dataset.py",
+        "https://github.com/Physical-Intelligence/openpi/blob/bd70b8f4011e85b3f3b0f039f12113f78718e7bf/src/openpi/training/misc/polaris_config.py"
+      ],
+      "limitations": "只证明提供实现与配置，不证明混采比例改善成功率或数据覆盖；仍依赖DROID式字段/schema；未本地运行。",
+      "next_step": "设计两个人工RLDS来源，核验加权采样、过滤和episode末尾chunk；区分配置分布与实际抽样分布。"
+    },
+    {
+      "source_id": "github:moojink/openvla-oft:commit:94d345fe8ede223821f8cd8ddd6b3f5997ef8b65",
+      "repo": "moojink/openvla-oft",
+      "title": "Fix bug: diffusion inference with fewer steps at test time than train time",
+      "author": "Moo Jin Kim",
+      "original_time": "2025-04-28T02:42:10Z",
+      "date_kind": "commit committer.date",
+      "url": "https://github.com/moojink/openvla-oft/commit/94d345fe8ede223821f8cd8ddd6b3f5997ef8b65",
+      "commit": "94d345fe8ede223821f8cd8ddd6b3f5997ef8b65",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied",
+        "Inference"
+      ],
+      "signal_type": "system",
+      "impact": "Medium",
+      "decision": "Read",
+      "subsystem": "inference backend; action decoding",
+      "target_question": "减少 diffusion action head 推理步数时，怎样保持训练时的噪声调度契约？",
+      "mechanism": "拆分 num_diffusion_steps_train 和 num_diffusion_steps_inference：DDIMScheduler 用训练 timestep 数初始化，加载 action head 后才 set_timesteps(推理步数)，并移除每次预测中覆盖该设置的旧逻辑。",
+      "evidence": [
+        "已读6个代码文件diff，覆盖 action head、LIBERO eval、deploy 和finetune入口。",
+        "该commit未新增测试；无release/tag；最近100个commit中最后一次commit为2025-09-09，未找到2026新实现。"
+      ],
+      "code": [
+        "https://github.com/moojink/openvla-oft/blob/94d345fe8ede223821f8cd8ddd6b3f5997ef8b65/experiments/robot/openvla_utils.py",
+        "https://github.com/moojink/openvla-oft/blob/94d345fe8ede223821f8cd8ddd6b3f5997ef8b65/prismatic/models/action_heads.py",
+        "https://github.com/moojink/openvla-oft/blob/94d345fe8ede223821f8cd8ddd6b3f5997ef8b65/prismatic/extern/hf/modeling_prismatic.py"
+      ],
+      "limitations": "只影响可选 diffusion 变体与train/inference步数不同的评估；默认L1 regression head不受影响。无本地复现，不据此声称更快或成功率不变。",
+      "next_step": "用固定noise与checkpoint比较等步数和减步数路径，核验scheduler timesteps及action误差，再测闭环任务。"
+    },
+    {
+      "source_id": "github:huggingface/lerobot:pr:3917",
+      "repo": "huggingface/lerobot",
+      "title": "feat(datasets): disk-less episode-pool video streaming",
+      "author": "pkooij",
+      "original_time": "2026-10-07T11:26:45Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/huggingface/lerobot/pull/3917",
+      "commit": "ca69a2068462a37f7cdcb74180927a2f863d2bf7",
+      "head_sha": "b54f654068825665b6f86ea6ae5f444509edaa7d",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "High",
+      "decision": "Deep Dive",
+      "subsystem": "data/trajectory path; checkpoint/recovery",
+      "target_question": "远程具身视频训练如何限制主存，又保持跨rank覆盖、时间窗口与恢复顺序？",
+      "mechanism": "以完整episode做rank分片和有界驻留池，MP4 sidecar定位远端压缩byte ranges，Parquet投影/行组裁剪；并行fetch/decode与顺序交付解耦，对压缩字节、decoder和prepared samples分别设限。",
+      "evidence": [
+        "已读test_exact_coverage_pool、test_streaming_byte_budget、test_streaming_production的实现断言；包含exact-once coverage、rank不相交、并行decode顺序、视频map-style parity、epoch/offset resume和超预算拒绝。",
+        "公开PR head的GPU Tests、Full Tests、Fast Pytest Tests均success；PR中的长时吞吐/内存数字属于作者自报，本次未复现。"
+      ],
+      "code": [
+        "https://github.com/huggingface/lerobot/blob/ca69a2068462a37f7cdcb74180927a2f863d2bf7/src/lerobot/streaming/episode_pool.py",
+        "https://github.com/huggingface/lerobot/blob/ca69a2068462a37f7cdcb74180927a2f863d2bf7/tests/datasets/test_streaming_production.py",
+        "https://github.com/huggingface/lerobot/blob/ca69a2068462a37f7cdcb74180927a2f863d2bf7/tests/datasets/test_streaming_byte_budget.py"
+      ],
+      "limitations": "池内混合不是全局uniform shuffle；bounded compressed pool不等于总PSS有严格上界或多日无泄漏。该固定commit限制每rank至多1个DataLoader worker；2026-10-12后续#4874已有多worker支持，故不能把旧限制当成当前main结论。",
+      "next_step": "以sample ID、episode/frame timestamp、rank覆盖及checkpoint后下一anchor为验收指标；分别测远端IO、decoder、预取和policy算力。"
+    },
+    {
+      "source_id": "github:huggingface/lerobot:pr:4075",
+      "repo": "huggingface/lerobot",
+      "title": "feat(flow-matching): explicit flow convention for the shared Euler solver (groot, evo1, wall_x)",
+      "author": "nepyope",
+      "original_time": "2026-10-06T16:16:44Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/huggingface/lerobot/pull/4075",
+      "commit": "1407688454de92dd03666408c822a183f4043e65",
+      "head_sha": "ceb795bb31ee0268dd2f1c039787d4ca02055329",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "High",
+      "decision": "Read",
+      "subsystem": "inference backend; action decoding",
+      "target_question": "不同VLA的flow方向、干净prefix和RTC引导如何共享solver而不改变动作语义？",
+      "mechanism": "FlowConvention显式区分noise在t=1和t=0；正向模型接入RTC时转换1-t并双向翻转velocity符号。hard prefix按对应clean端时间钳制；time_grid留在device，step_aware直接传整数步号，避免每个Euler step取回GPU标量。",
+      "evidence": [
+        "已读公共solver和三模型迁移diff；测试用时间相关velocity、torch.equal的旧loop parity、两种flow方向RTC、prefix与step index约束语义。",
+        "test_time_grid_is_not_read_back_to_the_host用禁止__float__/item的Tensor子类在CPU CI捕捉host同步；公开head的GPU/Full/Fast Tests均success。"
+      ],
+      "code": [
+        "https://github.com/huggingface/lerobot/blob/1407688454de92dd03666408c822a183f4043e65/src/lerobot/policies/common/flow_matching.py",
+        "https://github.com/huggingface/lerobot/blob/1407688454de92dd03666408c822a183f4043e65/tests/policies/common/test_flow_matching.py"
+      ],
+      "limitations": "迁移保持已有loop，不是新策略质量提升；RTC开启时Python-float接口仍可能host读取；部分checkpoint/GPU parity测试有环境门槛。",
+      "next_step": "把flow方向、scheduler时间网格和prefix clean-time加入VLA部署contract与最小数值parity实验。"
+    },
+    {
+      "source_id": "github:NVIDIA/Isaac-GR00T:pr:727",
+      "repo": "NVIDIA/Isaac-GR00T",
+      "title": "Remove PIL and tensor round-trips from the inference image path",
+      "author": "maxwbuckley",
+      "original_time": "2026-07-29T23:11:09Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/pull/727",
+      "commit": "742fbd2221181090538eb4f48102c841c9400727",
+      "head_sha": "2198bf934ced629a27ed914945a7f0327477342d",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "Medium",
+      "decision": "Read",
+      "subsystem": "inference backend; observation preprocessing",
+      "target_question": "多相机VLA推理的CPU前处理能否去掉格式转换而保持模型输入逐位一致？",
+      "mechanism": "N1.7前处理直接把CHW uint8 tensor交给真实Qwen/Cosmos processor，移除CHW→PIL及stacked tensor→NumPy往返。",
+      "evidence": [
+        "已读processing_gr00t_n1d7.py与新增test_vlm_image_input_parity.py：三种尺寸、2/6帧，把旧PIL路径作oracle，逐输出torch.equal。",
+        "测试fixture在Cosmos-Reason2-2B gated processor不可访问时skip；PR自报7 passed和性能数字，未本地复现。",
+        "本次公开head check-runs只有Python 3.10 - Lint=failure；不能写全部CI通过。"
+      ],
+      "code": [
+        "https://github.com/NVIDIA/Isaac-GR00T/blob/742fbd2221181090538eb4f48102c841c9400727/gr00t/model/gr00t_n1d7/processing_gr00t_n1d7.py",
+        "https://github.com/NVIDIA/Isaac-GR00T/blob/742fbd2221181090538eb4f48102c841c9400727/tests/gr00t/model/test_vlm_image_input_parity.py"
+      ],
+      "limitations": "parity证明覆盖processor输入路径，不等于任意相机格式或所有模型输出都等价；作者时延数字依赖其processor与机器。",
+      "next_step": "在实际机器人分辨率与相机数上运行旧/新processor parity，再分解CPU前处理与GPU推理耗时。"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:release:v3.0.0-EA",
+      "repo": "isaac-sim/IsaacLab",
+      "title": "v3.0.0-EA",
+      "author": "kellyguo11",
+      "original_time": "2026-09-16T22:34:03Z",
+      "date_kind": "GitHub release published_at; architecture introduced earlier in beta",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA",
+      "commit": "ae37b028ea415c91ea2bc32609efcd759ed2b974",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Systems",
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "High",
+      "decision": "Deep Dive",
+      "subsystem": "simulation data; tensor interop; deployment correctness",
+      "target_question": "仿真状态从Torch tensor迁为Warp原生view时，零拷贝、可变性与姿态表示的契约怎样变化？",
+      "mechanism": "3.0 EA资产/传感器数据以ProxyArray暴露.warp与缓存的.torch零拷贝view；底层通过wp.to_torch共享存储，修改view会改仿真数组。同时四元数从WXYZ变XYZW，不能仅按Tensor API机械迁移。",
+      "evidence": [
+        "release/tag解析到固定sha；实读ProxyArray实现与552行测试文件。",
+        "test_torch_is_cached检查对象身份，test_torch_shares_memory写Torch后从Warp读取；quatf访问告警测试核验旧/新顺序提示。"
+      ],
+      "code": [
+        "https://github.com/isaac-sim/IsaacLab/blob/ae37b028ea415c91ea2bc32609efcd759ed2b974/source/isaaclab/isaaclab/utils/warp/proxy_array.py",
+        "https://github.com/isaac-sim/IsaacLab/blob/ae37b028ea415c91ea2bc32609efcd759ed2b974/source/isaaclab/test/utils/warp/test_proxy_array.py"
+      ],
+      "limitations": "EA并非GA；多后端支持组合仍因task而异；本次没跑IsaacSim/多GPU，也不把release中性能概述当benchmark结果。这里的日期是EA发布，不声称这些机制首次引入于9月。",
+      "next_step": "迁移测试优先检查aliasing、reset后view生命周期、硬编码quaternion与controller/observation接口。"
+    },
+    {
+      "source_id": "github:meta-pytorch/torchcodec:release:v0.17.0",
+      "repo": "meta-pytorch/torchcodec",
+      "title": "TorchCodec 0.17 - Low-level decoding APIs",
+      "author": "NicolasHug",
+      "original_time": "2026-09-30T13:32:47Z",
+      "date_kind": "GitHub release published_at",
+      "url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+      "commit": "d9dc54238e173000bc3969eb3959777026ff9ae8",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Systems",
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "High",
+      "decision": "Deep Dive",
+      "subsystem": "video IO; CUDA stream lifetime",
+      "target_question": "解复用、解码、颜色转换分线程后，如何同时保证采样正确性与CUDA内存生命周期？",
+      "mechanism": "新增Demuxer→VideoPacketDecoder→ColorConverter接口，可拆阶段并行、读取原生YUV或跟随多stream；跨CUDA stream消费者必须自己等待producer完成，并延长RawFrame CUDA storage寿命。可显式sync-back或对storage_cuda调用record_stream。",
+      "evidence": [
+        "实读固定tag的CUDA streams示例：分开处理event/wait和allocator reuse两种依赖，明确planes.record_stream无效。",
+        "实读smoke_test中low-level video seek/reset/drain与multi-stream路径；并核查#1749将同步责任交回用户、#1752新增smoke tests的diff。"
+      ],
+      "code": [
+        "https://github.com/meta-pytorch/torchcodec/blob/d9dc54238e173000bc3969eb3959777026ff9ae8/examples/low_level/cuda_streams.py",
+        "https://github.com/meta-pytorch/torchcodec/blob/d9dc54238e173000bc3969eb3959777026ff9ae8/test/smoke_test.py",
+        "https://github.com/meta-pytorch/torchcodec/pull/1749"
+      ],
+      "limitations": "low-level API处于Beta；多线程/零拷贝机会不等于本机吞吐收益。record_stream可能增加不可预测峰值显存；本次未执行GPU解码。",
+      "next_step": "建立CPU reference、pts/像素对齐和跨stream压力测试，再测stage overlap；显式记录在途帧数和显存。"
+    },
+    {
+      "source_id": "github:meta-pytorch/torchcodec:pr:1758",
+      "repo": "meta-pytorch/torchcodec",
+      "title": "Increase number of NVDEC decode surface to avoid overwriting",
+      "author": "NicolasHug",
+      "original_time": "2026-10-06T09:56:32Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/meta-pytorch/torchcodec/pull/1758",
+      "commit": "335b4a68c003da5407e1c10f9803fb28dbf94913",
+      "head_sha": "68bb96a886e41e81b9e26a0f1d75665e4d33a3f4",
+      "status": "NEW",
+      "backfill_date": "2026-10-13",
+      "learning_track": [
+        "Embodied"
+      ],
+      "signal_type": "system",
+      "impact": "High",
+      "decision": "Read",
+      "subsystem": "video IO; decoder correctness",
+      "target_question": "训练样本时间戳正确却读到未来帧，如何用像素oracle定位NVDEC surface复用？",
+      "mechanism": "同一次NVCUVID parse回调可能在旧帧尚未map时复用decode surface，覆盖内容。实现申请min+4、最多32个surface，并对仍排队的picture index复用记日志；新增特定视频CPU/CUDA逐帧比较。",
+      "evidence": [
+        "实读BetaCudaDeviceInterface.cpp/h及test_nvdec_surface_reuse：assert不走CPU fallback，再将CUDA帧与CPU参考比较。",
+        "PR作者明确根因/触发条件仍不完全清楚、更多surface是缓解；公开head check-runs共90项，本次第一页面30项有success和failure混合，未宣称全绿。"
+      ],
+      "code": [
+        "https://github.com/meta-pytorch/torchcodec/blob/335b4a68c003da5407e1c10f9803fb28dbf94913/src/torchcodec/_core/BetaCudaDeviceInterface.cpp",
+        "https://github.com/meta-pytorch/torchcodec/blob/335b4a68c003da5407e1c10f9803fb28dbf94913/test/test_decoders.py",
+        "https://github.com/meta-pytorch/torchcodec/blob/335b4a68c003da5407e1c10f9803fb28dbf94913/test/resources/nvdec_surface_reuse.mp4"
+      ],
+      "limitations": "这是合并到仓库的缓解，不是所有NVDEC时序问题彻底修复的证据；晚于v0.17.0，不可声称v0.17已包含它；测试样本覆盖窄。",
+      "next_step": "加入真实episode编码格式的CPU/CUDA像素对齐回归，关注日志中的未返回surface覆盖，单独验证目标wheel包含此commit。"
+    }
+  ],
+  "observed_or_excluded": [
+    {
+      "repo": "moojink/openvla-oft",
+      "decision": "Observe",
+      "url": "https://github.com/moojink/openvla-oft/commit/40d6c8906ec6ee224b48ebdf8feb4a733ae9f91f",
+      "date": "2025-03-01",
+      "reason": "主进程修改model/config文件后barrier，修复多GPU竞态；代码已核查，无新增测试，作训练contract旁证，不再单列accepted。"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "decision": "Observe",
+      "url": "https://github.com/huggingface/lerobot/pull/3614",
+      "date": "2026-05-19",
+      "reason": "实读LRU decoder cache与FD关闭测试；将无界cache改为默认100项。与本轮远程streaming内存contract相邻，可作为后续runbook材料，非无关小修。"
+    },
+    {
+      "repo": "Physical-Intelligence/openpi",
+      "decision": "Observe",
+      "url": "https://github.com/Physical-Intelligence/openpi/pull/634",
+      "date": "2025-09-08",
+      "reason": "Pi05+PyTorch支持43文件，已核日期/完整文件清单，未逐文件完成模型数值parity审计；不据标题声称JAX/PyTorch等价。"
+    },
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "decision": "Observe",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/pull/714",
+      "date": "2026-06-30",
+      "reason": "N1.6 letterbox opt-in，按当前图像重算padding，含variable-size测试；已核PR与files，作为前处理分布变化线索。"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "decision": "Ignore",
+      "url": "https://github.com/huggingface/lerobot/pull/4936",
+      "date": "2026-10-12",
+      "reason": "#4836 remote inference合并后约两分钟由#4936撤回；不作为当前已交付功能接受。"
+    }
+  ]
+}

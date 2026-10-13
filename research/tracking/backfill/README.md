@@ -1,5 +1,7 @@
 # Historical Backfill By Month
 
+[具身后续补扫](../embodied_followup_2026-10-13.md)涵盖 2025 历史遗漏与 2026 模型／代码演进，进入[核心 topic](../../../05-embodied-infra/topics/embodied_infra.md)理解机制。
+
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
 
 阅读主入口是[2025 按季度、2026 按月的复盘](../monthly_reviews.md)；本页及按原始月份保存的 backfill 仅作为轻量来源账本。2026-09-22 复盘批次于 2026-10-08 继续补登记，不把补登记时间冒充材料首发时间。
@@ -19,6 +21,8 @@
 ## 月份索引
 
 已开始整理：
+
+- [2026-10](2026-10.md)：具身数据 streaming、flow convention 与解码正确性
 
 - [2026-09](2026-09.md)：MiMo GAGAR 论文、工具调用重复修复与开源 RL 环境的后续证据
 

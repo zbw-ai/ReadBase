@@ -1,0 +1,50 @@
+[
+  {
+    "file": "2511.14759v1-method.html",
+    "url": "https://arxiv.org/html/2511.14759v1",
+    "sha256": "a17e3c8fe92aba57b04125cfe393814f261003d7fc81b7e63b356c7df5aef6d2",
+    "bytes": 400927
+  },
+  {
+    "file": "2602.15922v1-method.html",
+    "url": "https://arxiv.org/html/2602.15922v1",
+    "sha256": "317b803df421b7a69032848e7337e81b070719289a13afeef05065718b9d9198",
+    "bytes": 492395
+  },
+  {
+    "file": "2603.03596v1-method.html",
+    "url": "https://arxiv.org/html/2603.03596v1",
+    "sha256": "cf641b45fc2b7551a7b17da8ad43610f340f9a01b6614f2cbc825343d314588d",
+    "bytes": 209942
+  },
+  {
+    "file": "2604.15483v1-method.html",
+    "url": "https://arxiv.org/html/2604.15483v1",
+    "sha256": "0467e28c44e5136e3f4da3e7c2f2bd86d4a391fc772df7e5ca314772c67dbe94",
+    "bytes": 338443
+  },
+  {
+    "file": "2605.29360v1-method.html",
+    "url": "https://arxiv.org/html/2605.29360v1",
+    "sha256": "31c392fb84f8846f41eae6b4d2a6102264e22b10d69303f74569bcc9e71a13cd",
+    "bytes": 949986
+  },
+  {
+    "file": "groot-n17-model.html",
+    "url": "https://huggingface.co/nvidia/GR00T-N1.7-3B",
+    "sha256": "d8708b66d435875e3fd99b0068b93754248e1a3b1081e85da8415ebd49f8b51a",
+    "bytes": 184412
+  },
+  {
+    "file": "groot-n17-release.html",
+    "url": "https://huggingface.co/blog/nvidia/gr00t-n1-7",
+    "sha256": "aadba350d98a6cf0f52bc8adf53c6f359928d85242c1a54647a22f56b784f6de",
+    "bytes": 137347
+  },
+  {
+    "file": "groot-n16-official.html",
+    "url": "https://research.nvidia.com/labs/gear/gr00t-n1_6/",
+    "sha256": "9f39adc69328d1f9317f62f83277ea18018ec89a15ad05dcb698abebddacae28",
+    "bytes": 21230
+  }
+]

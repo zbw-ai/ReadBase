@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="490" viewBox="0 0 1160 490" role="img" aria-labelledby="title desc">
+<title id="title">Embodied execution and learning loops</title><desc id="desc">Observations flow through a policy to actions and environment feedback. Episodes support data validation, training, evaluation and deployment. Inference changes the environment; training changes model parameters.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#687a8d"/></marker></defs>
+<rect width="1160" height="490" fill="#fcfcfa"/>
+<g font-family="Arial, sans-serif" fill="#263647"><text x="40" y="39" font-size="24" font-weight="bold">One task, two connected loops</text><text x="40" y="67" font-size="15">Execution changes the world. Learning changes the policy.</text></g>
+<g font-family="Arial, sans-serif" text-anchor="middle" font-size="17" fill="#263647" stroke-width="1.5">
+<rect x="40" y="110" width="220" height="80" rx="10" fill="#e9f2fa" stroke="#9bb5cb"/><text x="150" y="143">Observation + goal</text><text x="150" y="169" font-size="13">images / state / instruction</text>
+<rect x="320" y="110" width="220" height="80" rx="10" fill="#eef2e7" stroke="#acb99a"/><text x="430" y="143">Policy inference</text><text x="430" y="169" font-size="13">predict an action chunk</text>
+<rect x="600" y="110" width="220" height="80" rx="10" fill="#fff1df" stroke="#cbb18b"/><text x="710" y="143">Action + controller</text><text x="710" y="169" font-size="13">commit / execute / feedback</text>
+<rect x="880" y="110" width="240" height="80" rx="10" fill="#f0edf7" stroke="#b4a8c7"/><text x="1000" y="143">Environment</text><text x="1000" y="169" font-size="13">objects / robot / sensors</text>
+<rect x="40" y="318" width="220" height="80" rx="10" fill="#e9f2fa" stroke="#9bb5cb"/><text x="150" y="351">Episode + dataset</text><text x="150" y="377" font-size="13">identity / time / action meaning</text>
+<rect x="320" y="318" width="220" height="80" rx="10" fill="#eef2e7" stroke="#acb99a"/><text x="430" y="351">Training</text><text x="430" y="377" font-size="13">batch / objective / update</text>
+<rect x="600" y="318" width="220" height="80" rx="10" fill="#fff1df" stroke="#cbb18b"/><text x="710" y="351">Closed-loop evaluation</text><text x="710" y="377" font-size="13">success / failure / intervention</text>
+<rect x="880" y="318" width="240" height="80" rx="10" fill="#f0edf7" stroke="#b4a8c7"/><text x="1000" y="351">Versioned policy artifact</text><text x="1000" y="377" font-size="13">weights + transforms + adapters</text>
+</g>
+<g fill="none" stroke="#687a8d" stroke-width="2" marker-end="url(#arrow)"><path d="M260 150 H309"/><path d="M540 150 H589"/><path d="M820 150 H869"/><path d="M1000 190 V224 H150 V201"/><path d="M150 235 V307"/><path d="M260 358 H309"/><path d="M540 358 H589"/><path d="M820 358 H869"/><path d="M1000 318 V277 H430 V201" stroke-dasharray="5 5"/></g>
+<g font-family="Arial, sans-serif" font-size="14" fill="#526173"><text x="480" y="215">new observations and task results</text><text x="174" y="267">record</text><text x="623" y="267">deploy a verified configuration</text><text x="40" y="442">Read each boundary: timestamp · coordinate / unit · model version · owner · failure handling</text><text x="40" y="467">Conceptual map — not a measured deployment or a requirement for separate services.</text></g></svg>
