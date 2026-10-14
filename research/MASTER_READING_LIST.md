@@ -1,5 +1,7 @@
 # Master Reading List
 
+具身最新：[10/14 扫描与选读](tracking/frontier_scan_2026-10-14.md) → [持续经验、质量与执行契约](../05-embodied-infra/topics/embodied_infra.md#oct14-learning)，材料仍为 NEW，代码/真机未复现。
+
 具身新增来源：[2026 模型与 GitHub 演进补扫](tracking/embodied_followup_2026-10-13.md)，包含来源日期、版本和验证边界；从[核心 topic](../05-embodied-infra/topics/embodied_infra.md)进入学习。
 
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。

@@ -1,0 +1,547 @@
+{
+  "scope": "Official vendor pages + HF model API/history; releases latest 30 entries per repo, no exhaustive docs/commit audit",
+  "query_cutoff_utc": "2026-10-14T06:20:25Z",
+  "pages": [
+    {
+      "name": "deepseek-updates",
+      "url": "https://api-docs.deepseek.com/updates",
+      "fetched_at": "2026-10-14T06:27:47.783142+00:00",
+      "sha256": "2922113bc4e0e970fa6d3c4065c3cff3ec661a4db03d671cc2310545c5b5bb71",
+      "meta": [],
+      "datePublished": [],
+      "metadata_verified": true
+    },
+    {
+      "name": "deepseek-models",
+      "url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=10",
+      "fetched_at": "2026-10-14T06:27:48.377517+00:00",
+      "sha256": "b936302ca61df5f93bf0ad02b7ea73ad44c907aecbe9306f6d2e4ecaf89a8a50",
+      "meta": [],
+      "datePublished": [],
+      "metadata_verified": true
+    },
+    {
+      "name": "deepseek-commits",
+      "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash/commits/main",
+      "fetched_at": "2026-10-14T06:27:47.771362+00:00",
+      "sha256": "c7fc8487e0a1f268a7a149247ab1a7fc594da2a0a20346bf2436793c6eba02eb",
+      "meta": [],
+      "datePublished": [],
+      "metadata_verified": true
+    },
+    {
+      "name": "replayssm-abs",
+      "url": "https://arxiv.org/abs/2610.13778v1",
+      "fetched_at": "2026-10-14T06:27:48.068403+00:00",
+      "sha256": "f7cbfc957ad6efd34115a018de993d8f5857c63d040f14c1fbf64be8bfdb47a2",
+      "meta": [
+        "<meta name=\"citation_title\" content=\"ReplaySSM: Cache SSM Inputs, Not State\" />",
+        "<meta name=\"citation_author\" content=\"Liou, Ze-Wei\" />",
+        "<meta name=\"citation_author\" content=\"Nover, Harris\" />",
+        "<meta name=\"citation_author\" content=\"Naik, Amey\" />",
+        "<meta name=\"citation_author\" content=\"Skliar, Andrii\" />",
+        "<meta name=\"citation_author\" content=\"Shovkun, Igor\" />",
+        "<meta name=\"citation_author\" content=\"Shahaf, Ido\" />",
+        "<meta name=\"citation_author\" content=\"Dao, Tri\" />",
+        "<meta name=\"citation_date\" content=\"2026/10/09\" />",
+        "<meta name=\"citation_online_date\" content=\"2026/10/09\" />",
+        "<meta name=\"citation_pdf_url\" content=\"https://arxiv.org/pdf/2610.13778\" />",
+        "<meta name=\"citation_arxiv_id\" content=\"2610.13778\" />"
+      ],
+      "datePublished": [],
+      "metadata_verified": true,
+      "classification": "late-discovered paper; original 2026-10-09, blog new 2026-10-12"
+    },
+    {
+      "name": "replayssm-blog",
+      "url": "https://developer.nvidia.com/blog/replayssm-rethinking-state-storage-for-faster-hybrid-model-decoding/",
+      "fetched_at": "2026-10-14T06:27:50.412633+00:00",
+      "sha256": "434f740be116f657c2025b62efb8aaa6c3ee543dfa57bd09faa2c2c85d61b899",
+      "meta": [
+        "<meta property=\"article:published_time\" content=\"2026-10-12T16:00:54+00:00\" />",
+        "<meta property=\"article:modified_time\" content=\"2026-10-12T16:20:48+00:00\" />"
+      ],
+      "datePublished": [
+        "2026-10-12T16:00:54+00:00",
+        "2026-10-12T16:00:54+00:00"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "name": "runai-blog",
+      "url": "https://developer.nvidia.com/blog/nvidia-runai-is-now-open-source-as-part-of-nvidia-dsx-ai-factory-platform/",
+      "fetched_at": "2026-10-14T06:27:50.026814+00:00",
+      "sha256": "72586e53e7c5a530cfd5dc0679f95a5bbd356fb2d23212bbae769b6c8e1cc155",
+      "meta": [
+        "<meta property=\"article:published_time\" content=\"2026-10-13T14:19:40+00:00\" />",
+        "<meta property=\"article:modified_time\" content=\"2026-10-13T21:46:33+00:00\" />"
+      ],
+      "datePublished": [
+        "2026-10-13T14:19:40+00:00",
+        "2026-10-13T14:19:40+00:00"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "name": "anthropic-selfrep",
+      "url": "https://www.anthropic.com/research/self-replicating-ai",
+      "fetched_at": "2026-10-14T06:27:49.742324+00:00",
+      "sha256": "a3fe13aa60fddb57da6a92f01c48f0673c14f4598fe2c2ed27d054327cabfd7a",
+      "meta": [
+        "<meta property=\"article:published_time\" content=\"2026-10-12T19:30:00.000Z\"/>",
+        "<meta property=\"article:modified_time\" content=\"2026-10-13T00:44:16.000Z\"/>"
+      ],
+      "datePublished": [
+        "2026-10-12T19:30:00.000Z"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "name": "anthropic-distill",
+      "url": "https://www.anthropic.com/research/distillation-defenses",
+      "fetched_at": "2026-10-14T06:27:50.390573+00:00",
+      "sha256": "debc39a66efc8946348c4d5deab440e1a7967d5070259f7d9bac09c8cd1d5501",
+      "meta": [
+        "<meta property=\"article:published_time\" content=\"2026-10-12T09:30:00.000Z\"/>",
+        "<meta property=\"article:modified_time\" content=\"2026-10-13T14:34:43.000Z\"/>"
+      ],
+      "datePublished": [
+        "2026-10-12T09:30:00.000Z"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "name": "anthropic-scion",
+      "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+      "fetched_at": "2026-10-14T06:27:50.883321+00:00",
+      "sha256": "c22192e403ef04978c264f846d8c6cf5b6441ec231900dbd1ffc67ea414d1fe3",
+      "meta": [
+        "<meta property=\"article:published_time\" content=\"2026-10-13T00:00:00.000Z\"/>",
+        "<meta property=\"article:modified_time\" content=\"2026-10-13T16:27:06.000Z\"/>"
+      ],
+      "datePublished": [
+        "2026-10-13T00:00:00.000Z"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "name": "lfm",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+      "fetched_at": "2026-10-14T06:27:51.503611+00:00",
+      "sha256": "f99d287d113aacb59d419be09168946ef595dc358117ed37ff59fe2819bd8100",
+      "meta": [],
+      "datePublished": [
+        "2026-10-13T17:05:48.636Z"
+      ],
+      "metadata_verified": true
+    },
+    {
+      "url": "https://openai.com/news/research/",
+      "raw_fetch_error": "HTTP Error 403: Forbidden",
+      "fallback": "web tool official index read earlier this scan",
+      "meta": []
+    },
+    {
+      "url": "https://openai.com/news/engineering/",
+      "raw_fetch_error": "HTTP Error 403: Forbidden",
+      "fallback": "web tool official index read earlier this scan",
+      "meta": []
+    },
+    {
+      "url": "https://www.anthropic.com/research",
+      "fetched_at": "2026-10-14T06:32:03.761905+00:00",
+      "sha256": "47448c64bad3854ee28dafb7cc85c77e686a2d51177ac95312b3aa804aa0152d",
+      "scope": "visible official directory; no exhaustive historical pagination",
+      "meta": []
+    },
+    {
+      "url": "https://www.anthropic.com/engineering",
+      "fetched_at": "2026-10-14T06:32:04.334471+00:00",
+      "sha256": "f00e574443123dac79937da4af43b94c2e5c94002cbdca3fe3d446a58f8bde8d",
+      "scope": "visible official directory; no exhaustive historical pagination",
+      "meta": []
+    },
+    {
+      "url": "https://huggingface.co/blog",
+      "fetched_at": "2026-10-14T06:32:05.317179+00:00",
+      "sha256": "8d14eebfdcc4dcfab16cef6f7d99de3d1602bf539a0defcaf26f1865b5227430",
+      "scope": "visible official directory; no exhaustive historical pagination",
+      "meta": []
+    },
+    {
+      "url": "https://developer.nvidia.com/blog/",
+      "fetched_at": "2026-10-14T06:32:08.026369+00:00",
+      "sha256": "d1bf2250c6cc9db6669b016f45473424cf680ae8e42c10d09fc1de620f40e2e5",
+      "scope": "visible official directory; no exhaustive historical pagination",
+      "meta": []
+    }
+  ],
+  "additional_pages": [
+    {
+      "name": "ds-restore",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/commit/8b3cec70c307624fb098c3a04bdbfc118e7abda9",
+      "sha256": "73b2065aca7f0c2490add4bdf7d041fd4e32127da9c71e4925fa640ad7d4ad3c"
+    },
+    {
+      "name": "ds-update",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/commit/4dd75a8b448d95ae8e284d5c5a1e4b8808bd583b",
+      "sha256": "ad1fbc4f39f0c1065ce27445ea3ad07b3577dd47f36825e20721d9d8d8e681ec"
+    },
+    {
+      "name": "runai-readme",
+      "url": "https://raw.githubusercontent.com/dsx-ai-factory/run-ai/main/README.md",
+      "sha256": "53719be1e65926b6e800b5452cf21b287c73eae97c8816f17e4d3f41e0a8b85e"
+    },
+    {
+      "name": "workloadmap-readme",
+      "url": "https://raw.githubusercontent.com/dsx-ai-factory/workload-map/main/README.md",
+      "sha256": "2aa52295b695b1866d719378368c6b90a2d43db0a9af38227e3f65b2c3e21d32"
+    },
+    {
+      "name": "kai-readme",
+      "url": "https://raw.githubusercontent.com/NVIDIA/KAI-Scheduler/main/README.md",
+      "sha256": "7e6bd4da907bc157ac3b689537771dbf5f4020bd448bf3bc954a3a96a54ac0f4"
+    }
+  ],
+  "releases": [
+    {
+      "repo": "huggingface/trl",
+      "url": "https://api.github.com/repos/huggingface/trl/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v1.15.0",
+          "published_at": "2026-10-08T19:26:48Z",
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.15.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v1.14.2",
+          "published_at": "2026-10-06T20:30:35Z",
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.2",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v1.14.1",
+          "published_at": "2026-09-29T13:41:37Z",
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.1",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/transformers",
+      "url": "https://api.github.com/repos/huggingface/transformers/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v5.19.0",
+          "published_at": "2026-10-06T16:39:23Z",
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.19.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v5.18.0",
+          "published_at": "2026-09-30T16:46:27Z",
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.18.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v5.17.0",
+          "published_at": "2026-09-09T15:42:45Z",
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.17.0",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/accelerate",
+      "url": "https://api.github.com/repos/huggingface/accelerate/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v1.15.0",
+          "published_at": "2026-09-09T13:30:33Z",
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.15.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v1.14.0",
+          "published_at": "2026-06-11T13:58:31Z",
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.14.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v1.13.0",
+          "published_at": "2026-03-04T20:15:55Z",
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.13.0",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/peft",
+      "url": "https://api.github.com/repos/huggingface/peft/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v0.21.2",
+          "published_at": "2026-10-01T10:29:50Z",
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.2",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.21.1",
+          "published_at": "2026-09-29T09:28:26Z",
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.1",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.21.0",
+          "published_at": "2026-09-15T15:31:52Z",
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.0",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/kernels",
+      "url": "https://api.github.com/repos/huggingface/kernels/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v0.17.2",
+          "published_at": "2026-10-02T13:35:03Z",
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.17.2",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.17.1",
+          "published_at": "2026-09-16T18:21:14Z",
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.17.1",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.16.2",
+          "published_at": "2026-09-15T09:01:58Z",
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.16.2",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "url": "https://api.github.com/repos/NVIDIA/Megatron-LM/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "26.09-lambda.rc1",
+          "published_at": "2026-10-13T11:34:47Z",
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-lambda.rc1",
+          "prerelease": false
+        },
+        {
+          "tag_name": "26.09-alpha.rc3",
+          "published_at": "2026-10-13T08:10:56Z",
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc3",
+          "prerelease": false
+        },
+        {
+          "tag_name": "26.09-alpha.rc2",
+          "published_at": "2026-10-08T17:51:58Z",
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc2",
+          "prerelease": false
+        }
+      ],
+      "in_window": [
+        {
+          "tag_name": "26.09-lambda.rc1",
+          "published_at": "2026-10-13T11:34:47Z",
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-lambda.rc1",
+          "author": "mmarcinkiewicz"
+        },
+        {
+          "tag_name": "26.09-alpha.rc3",
+          "published_at": "2026-10-13T08:10:56Z",
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc3",
+          "author": "mmarcinkiewicz"
+        }
+      ]
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "url": "https://api.github.com/repos/deepspeedai/DeepSpeed/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v0.19.7",
+          "published_at": "2026-09-16T22:00:09Z",
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.7",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.19.6",
+          "published_at": "2026-08-27T19:08:33Z",
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.6",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.19.5",
+          "published_at": "2026-08-10T19:00:51Z",
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.5",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "pytorch/pytorch",
+      "url": "https://api.github.com/repos/pytorch/pytorch/releases?per_page=30",
+      "count": 30,
+      "latest": [
+        {
+          "tag_name": "v2.14.1",
+          "published_at": "2026-09-30T19:14:48Z",
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.14.1",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v2.14.0",
+          "published_at": "2026-09-02T17:40:10Z",
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.14.0",
+          "prerelease": false
+        },
+        {
+          "tag_name": "v2.13.0",
+          "published_at": "2026-07-08T17:39:58Z",
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.13.0",
+          "prerelease": false
+        }
+      ],
+      "in_window": []
+    }
+  ],
+  "deepseek_recent_models": [
+    {
+      "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "lastModified": "2026-10-12T09:45:54.000Z",
+      "createdAt": "2026-09-10T02:17:58.000Z"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+      "lastModified": "2026-09-01T09:22:10.000Z",
+      "createdAt": "2026-08-31T06:16:18.000Z"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro-0813",
+      "lastModified": "2026-08-13T16:28:28.000Z",
+      "createdAt": "2026-08-13T03:05:06.000Z"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "lastModified": "2026-08-01T03:07:41.000Z",
+      "createdAt": "2026-07-31T07:30:24.000Z"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-DSpark",
+      "lastModified": "2026-07-04T03:15:12.000Z",
+      "createdAt": "2026-06-27T02:27:36.000Z"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro-DSpark",
+      "lastModified": "2026-07-04T03:14:46.000Z",
+      "createdAt": "2026-06-27T03:02:56.000Z"
+    },
+    {
+      "id": "deepseek-ai/eagle3_gemma4_12b_ttt7",
+      "lastModified": "2026-06-28T12:38:12.000Z",
+      "createdAt": "2026-06-28T12:37:17.000Z"
+    },
+    {
+      "id": "deepseek-ai/eagle3_qwen3_14b_ttt7",
+      "lastModified": "2026-06-28T12:37:15.000Z",
+      "createdAt": "2026-06-28T12:36:20.000Z"
+    },
+    {
+      "id": "deepseek-ai/eagle3_qwen3_8b_ttt7",
+      "lastModified": "2026-06-28T12:36:18.000Z",
+      "createdAt": "2026-06-28T12:35:29.000Z"
+    },
+    {
+      "id": "deepseek-ai/eagle3_qwen3_4b_ttt7",
+      "lastModified": "2026-06-28T12:35:27.000Z",
+      "createdAt": "2026-06-28T12:34:59.000Z"
+    }
+  ],
+  "deepseek_window_commits": [
+    {
+      "id": "5254448103b6254fc646dacbca1cbbf20e9216c1",
+      "title": "gitignore",
+      "date": "2026-10-12T09:45:54.000Z",
+      "authors": [
+        "GeeeekExplorer"
+      ]
+    },
+    {
+      "id": "12b5c3a462cdaf73dfced279a50adc7c2bb4a9c1",
+      "title": "Delete files inference/__pycache__/ with huggingface_hub",
+      "date": "2026-10-12T09:44:54.000Z",
+      "authors": [
+        "GeeeekExplorer"
+      ]
+    },
+    {
+      "id": "4dd75a8b448d95ae8e284d5c5a1e4b8808bd583b",
+      "title": "update",
+      "date": "2026-10-12T09:38:09.000Z",
+      "authors": [
+        "GeeeekExplorer"
+      ]
+    },
+    {
+      "id": "8b3cec70c307624fb098c3a04bdbfc118e7abda9",
+      "title": "Restore each indexer's K cache on incomplete compression steps (#12)",
+      "date": "2026-10-12T08:37:23.000Z",
+      "authors": [
+        "GeeeekExplorer",
+        "ZenAlexa"
+      ]
+    }
+  ],
+  "decisions": {
+    "accepted": [
+      "nvidia:replayssm-blog:2026-10-12",
+      "nvidia:runai-open-source:2026-10-13",
+      "hf:deepseek-ai/DeepSeek-V4.1-Flash:commit:8b3cec7"
+    ],
+    "observed": [
+      "Anthropic Scion",
+      "Anthropic self-replicating-ai",
+      "LiquidAI LFM2.5-24B-A2B",
+      "Megatron 26.09-alpha.rc3 + 26.09-lambda.rc1",
+      "DeepSeek 4dd75a8 follow-up"
+    ],
+    "rejected": [
+      "Anthropic distillation-defenses: outside current priority, no reproducible infrastructure claim"
+    ]
+  },
+  "deepseek_fix_review": {
+    "file": "inference/model.py",
+    "commit": "8b3cec70c307624fb098c3a04bdbfc118e7abda9",
+    "sha256": "d70d25b369bed39e1077ff465224af54b7a01349383d9b65008f10e7637d1812",
+    "lines": "Indexer 488-579; restored shared_attn.index_k for every owns_k step while new append still conditional on latent",
+    "tests_run": false
+  },
+  "limitations": [
+    "No upstream benchmark or GPU tests executed",
+    "RunAI code inspection limited to entry README and architecture descriptions",
+    "ReplaySSM integration PRs author-linked but not individually audited",
+    "Raw API DeepSeek changelog succeeded after web-tool timeout; newest dated entry 2026-09-10",
+    "OpenAI visible research and engineering indexes checked; no full docs history scan"
+  ]
+}

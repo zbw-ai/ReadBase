@@ -56,6 +56,17 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 
 另一个反例是 [TorchCodec #1758](https://github.com/meta-pytorch/torchcodec/pull/1758)：时间戳可能没错，底层 decode surface 却被复用而导致像素错误。新增 surface 和 CPU/CUDA 像素对照提供缓解与回归证据，不能据此声称所有编码场景已彻底修复；该 PR 晚于 v0.17，使用时要查目标 wheel 是否包含它。以上代码与测试均未在本仓库运行。
 
+<a id="oct14-io"></a>
+### 2026-10-14：并行读取的三个独立验收条件
+
+[本轮源码信号](../../research/tracking/frontier_scan_2026-10-14.md)使“更快且等价”可以拆成具体断言：
+
+- [LeRobot #4874](https://github.com/huggingface/lerobot/pull/4874)：每 rank 再分给多个 worker，并按 DataLoader 轮转恢复。exact anchor order 要求同 dataset/seed/sampler/pool/worker/分布式拓扑；不保证随机增强完全回放。除 samples/s，还要看 RAM、batch 内 episode 多样性与训练端是否真的在等数据。
+- [LeRobot #4804](https://github.com/huggingface/lerobot/pull/4804)：同视频窗口汇总 unique frame indices 解码，再 scatter 回原顺序和重复；64 MiB 是单次多样本解码估算，不是整个 worker RSS 上限。对照相邻窗与随机窗，并比较 timestamp、像素、dtype 和峰值。
+- [Isaac Lab #8546](https://github.com/isaac-sim/IsaacLab/pull/8546)：交错 world prototype 时把 env ID、frame/pose 与 renderer destination 一起重排，否则张量 shape 正确也可能配错环境。作者有定向回归，公开 CI 仍有一项失败，不能直接当生产稳定性结论。
+
+顺序、样本覆盖和观测身份必须分别验证；上述上游代码/测试未在本仓库运行。
+
 ## 5. 生产陷阱：训练端与执行端必须用同一种动作语言
 
 归一化可以改变尺度，却不会自动对齐机器人动作语义。例如两个 7 维向量可能分别是绝对末端目标与相对位姿增量；拼接前必须有明确 adapter，不能由统一维数判断兼容。

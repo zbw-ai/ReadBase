@@ -32,6 +32,7 @@ flowchart TB
 | 硬件路径 → Host/I/O → GPU 执行 | [系统基础选读](01-systems/README.md) ↔ [GPU / Roofline](01-systems/topics/transformer_engine.md#gpu-execution) | [E00／E04](practice/experiments/a100_fsdp_io_lab.md)，新硬件/I/O 全文待建设 |
 | 推理执行 → 服务吞吐／尾延迟 → rollout 供给 | [推理入口](03-inference-infra/README.md) ↔ [RL 调度](04-rl-infra/topics/agentic_rl.md#gateway-streaming-refill) | E07／E08；不能把 decode 局部加速等同端到端收益 |
 | 具身模型 → episode → batch → 执行反馈 | [核心 topic](05-embodied-infra/topics/embodied_infra.md) ↔ [模型入门](05-embodied-infra/topics/embodied_models_primer.md) ↔ [数据 I/O](05-embodied-infra/topics/embodied_data_io.md) | [契约练习](practice/experiments/embodied_contract_lab.md)，正文已建立，实验未执行 |
+| 持续经验 / 质量标签 → 执行身份 | [10/14 来源](research/tracking/frontier_scan_2026-10-14.md) ↔ [学习机制](05-embodied-infra/topics/embodied_infra.md#oct14-learning) ↔ [I/O 验收](05-embodied-infra/topics/embodied_data_io.md#oct14-io) | 方法/源码核查，实验未执行 |
 | 外部证据 → 工程判断 → 可证伪实验 | [研究流程](research/README.md) ↔ [实验与项目](practice/README.md) | 学习状态与实测结果分别记录 |
 
 下面保留训练基础图、已建立的双向索引与研究关联，供按需深入；它们不取代以上跨领域视图。

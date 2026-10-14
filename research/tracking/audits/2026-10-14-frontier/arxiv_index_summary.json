@@ -1,0 +1,98 @@
+[
+  {
+    "page": "cs.AR_new.html",
+    "rows": 32,
+    "headings": [
+      "Hardware Architecture",
+      "Showing new listings for Wednesday, 14 October 2026",
+      "New submissions (showing 18 of 18 entries)",
+      "Cross submissions (showing 5 of 5 entries)",
+      "Replacement submissions (showing 9 of 9 entries)"
+    ]
+  },
+  {
+    "page": "cs.AR_recent.html",
+    "rows": 76,
+    "headings": [
+      "Hardware Architecture",
+      "Authors and titles for recent submissions",
+      "Wed, 14 Oct 2026 (showing 23 of 23 entries )",
+      "Mon, 12 Oct 2026 (showing 10 of 10 entries )",
+      "Fri, 9 Oct 2026 (showing 9 of 9 entries )",
+      "Thu, 8 Oct 2026 (showing 8 of 8 entries )",
+      "Wed, 7 Oct 2026 (showing 26 of 26 entries )"
+    ]
+  },
+  {
+    "page": "cs.CL_new.html",
+    "rows": 642,
+    "headings": [
+      "Computation and Language",
+      "Showing new listings for Wednesday, 14 October 2026",
+      "New submissions (showing 244 of 244 entries)",
+      "Cross submissions (showing 141 of 141 entries)",
+      "Replacement submissions (showing 257 of 257 entries)"
+    ]
+  },
+  {
+    "page": "cs.CL_recent.html",
+    "rows": 910,
+    "headings": [
+      "Computation and Language",
+      "Authors and titles for recent submissions",
+      "Wed, 14 Oct 2026 (showing 385 of 385 entries )",
+      "Mon, 12 Oct 2026 (showing 116 of 116 entries )",
+      "Fri, 9 Oct 2026 (showing 144 of 144 entries )",
+      "Thu, 8 Oct 2026 (showing 118 of 118 entries )",
+      "Wed, 7 Oct 2026 (showing 147 of 147 entries )"
+    ]
+  },
+  {
+    "page": "cs.DC_new.html",
+    "rows": 95,
+    "headings": [
+      "Distributed, Parallel, and Cluster Computing",
+      "Showing new listings for Wednesday, 14 October 2026",
+      "New submissions (showing 42 of 42 entries)",
+      "Cross submissions (showing 34 of 34 entries)",
+      "Replacement submissions (showing 19 of 19 entries)"
+    ]
+  },
+  {
+    "page": "cs.DC_recent.html",
+    "rows": 160,
+    "headings": [
+      "Distributed, Parallel, and Cluster Computing",
+      "Authors and titles for recent submissions",
+      "Wed, 14 Oct 2026 (showing 76 of 76 entries )",
+      "Mon, 12 Oct 2026 (showing 19 of 19 entries )",
+      "Fri, 9 Oct 2026 (showing 12 of 12 entries )",
+      "Thu, 8 Oct 2026 (showing 22 of 22 entries )",
+      "Wed, 7 Oct 2026 (showing 31 of 31 entries )"
+    ]
+  },
+  {
+    "page": "cs.LG_new.html",
+    "rows": 1344,
+    "headings": [
+      "Machine Learning",
+      "Showing new listings for Wednesday, 14 October 2026",
+      "New submissions (showing 502 of 502 entries)",
+      "Cross submissions (showing 360 of 360 entries)",
+      "Replacement submissions (showing 482 of 482 entries)"
+    ]
+  },
+  {
+    "page": "cs.LG_recent.html",
+    "rows": 2000,
+    "headings": [
+      "Machine Learning",
+      "Authors and titles for recent submissions",
+      "Wed, 14 Oct 2026 (showing 862 of 862 entries )",
+      "Mon, 12 Oct 2026 (showing 262 of 262 entries )",
+      "Fri, 9 Oct 2026 (showing 324 of 324 entries )",
+      "Thu, 8 Oct 2026 (showing 353 of 353 entries )",
+      "Wed, 7 Oct 2026 (showing first 199 of 355 entries )"
+    ]
+  }
+]

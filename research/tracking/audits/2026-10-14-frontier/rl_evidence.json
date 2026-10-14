@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-14T06:30:47.375383+00:00",
+  "window": {
+    "start_utc": "2026-10-12T02:27:28Z",
+    "end_utc": "2026-10-14T06:20:25Z",
+    "start_shanghai": "2026-10-12 10:27:28",
+    "end_shanghai": "2026-10-14 14:20:25",
+    "query_bounds": "inclusive; prior-record Source ID dedup applied",
+    "timezone": "Asia/Shanghai"
+  },
+  "first_seen": "2026-10-14",
+  "source_kind": "Official GitHub REST API via authenticated gh api",
+  "scan_result": "54 merged PR titles screened, 6 selected PR diffs representing 4 recommended groups inspected; 8 pull/file inventories obtained",
+  "tests_executed": false,
+  "dedup_previous_report": "research/tracking/frontier_scan_2026-10-12.md",
+  "candidate_sources": [
+    {
+      "source_id": "github:areal-project/AReaL:pr:1546",
+      "group": "R1",
+      "title": "feat(ppo): make loss aggregation configurable",
+      "author_login": "EazyReal",
+      "created_at": "2026-07-18T09:53:29Z",
+      "merged_at": "2026-10-12T09:40:16Z",
+      "base_branch": "main",
+      "head_sha": "1c0d18294a6a2eb9bc0f575a36f1b1059b3d63e2",
+      "merge_commit_sha": "aedc21ec66ff03f329dcd4139945da8087e0d0e7",
+      "url": "https://github.com/areal-project/AReaL/pull/1546",
+      "fixed_commit_url": "https://github.com/areal-project/AReaL/commit/aedc21ec66ff03f329dcd4139945da8087e0d0e7",
+      "files_count": 23,
+      "files_returned": 23,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "areal/trainer/ppo/loss_reduction.py",
+        "areal/utils/functional/loss_aggregation.py",
+        "tests/test_prompt_mean_actor.py"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "loss aggregation changes objective weighting and distributed normalization contract; code plus frozen-objective tests inspected",
+      "fixed_file_links": [
+        "https://github.com/areal-project/AReaL/blob/aedc21ec66ff03f329dcd4139945da8087e0d0e7/areal/trainer/ppo/loss_reduction.py",
+        "https://github.com/areal-project/AReaL/blob/aedc21ec66ff03f329dcd4139945da8087e0d0e7/areal/utils/functional/loss_aggregation.py",
+        "https://github.com/areal-project/AReaL/blob/aedc21ec66ff03f329dcd4139945da8087e0d0e7/tests/test_prompt_mean_actor.py"
+      ]
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:3208",
+      "group": "R2",
+      "title": "feat(megatron): zero train-gen mismatch with non-colocated Megatron inference",
+      "author_login": "YigongQin",
+      "created_at": "2026-07-15T05:25:37Z",
+      "merged_at": "2026-10-12T04:58:15Z",
+      "base_branch": "main",
+      "head_sha": "de3330e27c33cf36f7e663f72bcb619a8b89ba4e",
+      "merge_commit_sha": "18eb86d51b08790248779a939aad952b035f215d",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3208",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/18eb86d51b08790248779a939aad952b035f215d",
+      "files_count": 26,
+      "files_returned": 26,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "nemo_rl/models/megatron/batch_invariant.py",
+        "nemo_rl/models/megatron/zero_train_gen_mismatch.py (selected validator sections)",
+        "tests/test_suites/llm/grpo-qwen3-30ba3b-2n4g-megatron_generation-noncolocated-zero-kl.sh"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "configuration-gated batch-invariant train/gen stack and exact metric gate; narrowly scoped upstream run",
+      "fixed_file_links": [
+        "https://github.com/NVIDIA-NeMo/RL/blob/18eb86d51b08790248779a939aad952b035f215d/nemo_rl/models/megatron/batch_invariant.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/18eb86d51b08790248779a939aad952b035f215d/nemo_rl/models/megatron/zero_train_gen_mismatch.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/18eb86d51b08790248779a939aad952b035f215d/tests/test_suites/llm/grpo-qwen3-30ba3b-2n4g-megatron_generation-noncolocated-zero-kl.sh"
+      ]
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:4367",
+      "group": "R3",
+      "title": "fix(loss): exclude invalid policy support from actor ratios",
+      "author_login": "wdykas",
+      "created_at": "2026-09-30T17:08:35Z",
+      "merged_at": "2026-10-12T16:41:52Z",
+      "base_branch": "main",
+      "head_sha": "4334212463e7581f5d9a2861834a1489eb3b3836",
+      "merge_commit_sha": "557c117dce37ba72e520ec9eab841d3033232c0e",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4367",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/557c117dce37ba72e520ec9eab841d3033232c0e",
+      "files_count": 35,
+      "files_returned": 35,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "nemo_rl/algorithms/loss/loss_functions.py",
+        "nemo_rl/algorithms/loss/loss_input.py",
+        "tests/unit/algorithms/test_filtered_token_loss_mask.py (representative tests and complete test-name list)"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "invalid support incorrectly enters token/sequence ratios; patch preserves support and separate reference KL; gradients tested upstream",
+      "fixed_file_links": [
+        "https://github.com/NVIDIA-NeMo/RL/blob/557c117dce37ba72e520ec9eab841d3033232c0e/nemo_rl/algorithms/loss/loss_functions.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/557c117dce37ba72e520ec9eab841d3033232c0e/nemo_rl/algorithms/loss/loss_input.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/557c117dce37ba72e520ec9eab841d3033232c0e/tests/unit/algorithms/test_filtered_token_loss_mask.py"
+      ]
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:4526",
+      "group": "R4",
+      "title": "fix(data-plane): broadcast route fragments instead of the dense routes table",
+      "author_login": "ZhiyuLi-Nvidia",
+      "created_at": "2026-10-06T04:13:13Z",
+      "merged_at": "2026-10-12T15:03:36Z",
+      "base_branch": "main",
+      "head_sha": "37d1f60ea0a0cf61811e5ea5bbb5ccfe18addd36",
+      "merge_commit_sha": "a5fba40266a2d696d4fb63c8b6e1278104840f90",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4526",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/a5fba40266a2d696d4fb63c8b6e1278104840f90",
+      "files_count": 6,
+      "files_returned": 6,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "nemo_rl/data_plane/worker_mixin.py",
+        "tests/unit/data_plane/test_leader_broadcast.py"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "two independent route-data submechanisms grouped for triage: wire layout removes padding/peak memory; multi-turn boundary replay restores the prior final token route and bumps schema to 3",
+      "fixed_file_links": [
+        "https://github.com/NVIDIA-NeMo/RL/blob/a5fba40266a2d696d4fb63c8b6e1278104840f90/nemo_rl/data_plane/worker_mixin.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/a5fba40266a2d696d4fb63c8b6e1278104840f90/tests/unit/data_plane/test_leader_broadcast.py"
+      ]
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:4530",
+      "group": "R4",
+      "title": "perf(data-plane): broadcast unpadded rows and pad on each rank",
+      "author_login": "ZhiyuLi-Nvidia",
+      "created_at": "2026-10-06T08:05:01Z",
+      "merged_at": "2026-10-12T20:10:15Z",
+      "base_branch": "main",
+      "head_sha": "17f9ac852ac9c388050f27cf57840a12b24f5952",
+      "merge_commit_sha": "3df254d30675093603cd48c61d812b590ff415ec",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4530",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/3df254d30675093603cd48c61d812b590ff415ec",
+      "files_count": 13,
+      "files_returned": 13,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "nemo_rl/data_plane/worker_mixin.py",
+        "nemo_rl/models/megatron/data.py",
+        "tests/unit/models/megatron/test_routed_experts_padding.py"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "two independent route-data submechanisms grouped for triage: wire layout removes padding/peak memory; multi-turn boundary replay restores the prior final token route and bumps schema to 3",
+      "fixed_file_links": [
+        "https://github.com/NVIDIA-NeMo/RL/blob/3df254d30675093603cd48c61d812b590ff415ec/nemo_rl/data_plane/worker_mixin.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/3df254d30675093603cd48c61d812b590ff415ec/nemo_rl/models/megatron/data.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/3df254d30675093603cd48c61d812b590ff415ec/tests/unit/models/megatron/test_routed_experts_padding.py"
+      ]
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:4610",
+      "group": "R4",
+      "title": "fix(sc): Fix router replay with token capture for multi-turn rollouts",
+      "author_login": "mk-0",
+      "created_at": "2026-10-08T21:56:15Z",
+      "merged_at": "2026-10-13T06:00:51Z",
+      "base_branch": "main",
+      "head_sha": "8df2f08423430ad64381b41732212ac37731bd74",
+      "merge_commit_sha": "fe1d97ce2b82c2c443a44634b44a894dcf98f568",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4610",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/fe1d97ce2b82c2c443a44634b44a894dcf98f568",
+      "files_count": 10,
+      "files_returned": 10,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [
+        "nemo_rl/models/generation/vllm/vllm_worker_async.py",
+        "nemo_rl/experience/rollout_reassembler.py",
+        "nemo_rl/experience/route_assembly.py",
+        "nemo_rl/experience/route_plan.py",
+        "nemo_rl/models/generation/vllm/utils.py",
+        "tests/unit/experience/test_route_assembly.py"
+      ],
+      "evidence_level": "selected production patch and representative upstream tests inspected",
+      "reason": "two independent route-data submechanisms grouped for triage: wire layout removes padding/peak memory; multi-turn boundary replay restores the prior final token route and bumps schema to 3",
+      "fixed_file_links": [
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/nemo_rl/models/generation/vllm/vllm_worker_async.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/nemo_rl/experience/rollout_reassembler.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/nemo_rl/experience/route_assembly.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/nemo_rl/experience/route_plan.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/nemo_rl/models/generation/vllm/utils.py",
+        "https://github.com/NVIDIA-NeMo/RL/blob/fe1d97ce2b82c2c443a44634b44a894dcf98f568/tests/unit/experience/test_route_assembly.py"
+      ]
+    },
+    {
+      "source_id": "github:areal-project/AReaL:pr:1774",
+      "group": "O1",
+      "title": "fix: stabilize Qwen Flash Next multimodal RL",
+      "author_login": "dingzhiqiang",
+      "created_at": "2026-10-09T10:24:58Z",
+      "merged_at": "2026-10-13T10:19:00Z",
+      "base_branch": "main",
+      "head_sha": "a32e20ece0d2175b7969ed3ad60ccbe0d0c00ce7",
+      "merge_commit_sha": "448de5235341482465362e8b831097685d8e305d",
+      "url": "https://github.com/areal-project/AReaL/pull/1774",
+      "fixed_commit_url": "https://github.com/areal-project/AReaL/commit/448de5235341482465362e8b831097685d8e305d",
+      "files_count": 63,
+      "files_returned": 63,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [],
+      "evidence_level": "PR body and file inventory only",
+      "reason": "material multimodal state-preservation bundle; 63-file patch not fully audited and fresh GPU/multinode run absent",
+      "fixed_file_links": []
+    },
+    {
+      "source_id": "github:NVIDIA-NeMo/RL:pr:4341",
+      "group": "O4",
+      "title": "feat(ppo): add ppo streaming",
+      "author_login": "youngeunkwon0405",
+      "created_at": "2026-09-29T20:10:02Z",
+      "merged_at": "2026-10-12T05:27:24Z",
+      "base_branch": "main",
+      "head_sha": "2d1192e650b8470f534fcb36f52d661415453ac4",
+      "merge_commit_sha": "9c8778b1404e84c64bc73f671427234ba304e41c",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4341",
+      "fixed_commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/9c8778b1404e84c64bc73f671427234ba304e41c",
+      "files_count": 27,
+      "files_returned": 27,
+      "files_pagination_complete": true,
+      "reviewed_patch_paths": [],
+      "evidence_level": "PR body and file inventory only",
+      "reason": "streaming execution architecture is relevant but upstream acknowledges unresolved numerical agreement, single-run historical timing confounds",
+      "fixed_file_links": []
+    }
+  ],
+  "releases": [
+    {
+      "repository": "areal-project/AReaL",
+      "endpoint": "https://api.github.com/repos/areal-project/AReaL/releases",
+      "pages_fetched": 1,
+      "returned_count": 26,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v2.1.0",
+        "title": "v2.1.0",
+        "author_login": "sitabulaixizawaluduo",
+        "published_at": "2026-08-25T10:23:59Z",
+        "url": "https://github.com/areal-project/AReaL/releases/tag/v2.1.0"
+      },
+      "historical_note": ""
+    },
+    {
+      "repository": "verl-project/verl",
+      "endpoint": "https://api.github.com/repos/verl-project/verl/releases",
+      "pages_fetched": 1,
+      "returned_count": 16,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v0.9.1",
+        "title": "v0.9.1",
+        "author_login": "wuxibin89",
+        "published_at": "2026-09-20T07:24:43Z",
+        "url": "https://github.com/verl-project/verl/releases/tag/v0.9.1"
+      },
+      "historical_note": ""
+    },
+    {
+      "repository": "THUDM/slime",
+      "endpoint": "https://api.github.com/repos/THUDM/slime/releases",
+      "pages_fetched": 1,
+      "returned_count": 11,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v0.4.0",
+        "title": "v0.4.0: A First Step Toward Greater Scale",
+        "author_login": "zhuzilin",
+        "published_at": "2026-10-09T03:04:12Z",
+        "url": "https://github.com/THUDM/slime/releases/tag/v0.4.0"
+      },
+      "historical_note": ""
+    },
+    {
+      "repository": "alibaba/ROLL",
+      "endpoint": "https://api.github.com/repos/alibaba/ROLL/releases",
+      "pages_fetched": 1,
+      "returned_count": 5,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v0.4.0",
+        "title": "v0.4.0",
+        "author_login": "gaow0007",
+        "published_at": "2026-09-29T04:09:29Z",
+        "url": "https://github.com/alibaba/ROLL/releases/tag/v0.4.0"
+      },
+      "historical_note": "ROLL REST verifies v0.4.0 published 2026-09-29 and resolves previous cached HTML conflict."
+    },
+    {
+      "repository": "OpenRLHF/OpenRLHF",
+      "endpoint": "https://api.github.com/repos/OpenRLHF/OpenRLHF/releases",
+      "pages_fetched": 2,
+      "returned_count": 110,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v0.11.2",
+        "title": "Release v0.11.2",
+        "author_login": "hijkzzz",
+        "published_at": "2026-09-14T01:51:43Z",
+        "url": "https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.2"
+      },
+      "historical_note": "OpenRLHF v0.11.1/v0.11.2 are September historical/backfill metadata corrections, not current-window releases."
+    },
+    {
+      "repository": "NVIDIA-NeMo/RL",
+      "endpoint": "https://api.github.com/repos/NVIDIA-NeMo/RL/releases",
+      "pages_fetched": 1,
+      "returned_count": 10,
+      "pagination_complete": true,
+      "new_release_count_in_window": 0,
+      "new_releases": [],
+      "latest_verified": {
+        "tag": "v0.7.0",
+        "title": "Release v0.7.0",
+        "author_login": "nemo-automation-bot[bot]",
+        "published_at": "2026-07-29T04:31:13Z",
+        "url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.7.0"
+      },
+      "historical_note": ""
+    }
+  ],
+  "access_limitations": [
+    "Initial six search attempts failed intermittently (TCP/TLS timeout or EOF); all six succeeded on retry.",
+    "web GitHub filtered pull-list fallback returned cache miss; conclusions use official gh REST responses.",
+    "No direct-commit branch inventory; no upstream test execution or GPU reproduction.",
+    "API bodies can be edited after merge; source snapshot stored in raw JSON and fixed merge commits linked; publication boundary uses merged_at, not body update time."
+  ]
+}

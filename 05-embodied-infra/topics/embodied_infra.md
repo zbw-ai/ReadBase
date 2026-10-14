@@ -56,6 +56,17 @@
 
 历史来路看[第一批 13 项复盘](../../research/tracking/embodied_retrospective_2026-10-13.md)，后续演进与源码证据看[模型和 GitHub 补扫](../../research/tracking/embodied_followup_2026-10-13.md)。它们是来源账本，正文负责形成可迁移的判断。新材料即使不提升 Infra 性能，只要澄清模型学习问题，也值得评估。
 
+<a id="oct14-learning"></a>
+### 2026-10-14：从“更多经验”追问到“经验还能不能正确使用”
+
+[最新扫描](../../research/tracking/frontier_scan_2026-10-14.md)提供三个更具体的学习问题，下面是基于公开方法/代码的工程理解，实验均未执行：
+
+1. **旧经验依赖哪个模型版本？** [ACCRUE](https://arxiv.org/abs/2610.18596v1)固定 replay 的外部视觉表示，分别处理当前 critic 学习与旧 actor 行为保持；base policy 在阶段之间微调、阶段内 RL 固定。启发是 checkpoint 应覆盖 actor、critic、base 与 replay 的联合语义，不只保存权重文件。
+2. **“好数据”由哪个目标定义？** [AXIS-Bench](https://arxiv.org/abs/2610.18869v1)对照 filtering、weighting、conditioning 和 chunk/episode 标签；增益还依赖微调/推理是否带质量条件。其真机主要提升来自普通模拟预训练，不能把全部改善归功于质量标签，还需防止进展标签低估准备与恢复动作。
+3. **远程预测能否重新授权旧动作？** [LeRobot #4937](https://github.com/huggingface/lerobot/pull/4937)将 observation、request、execution generation 与 committed cursor 绑定，动作队列和 motor 权限留在本地。状态失效、动作耗尽和超时都要有明确恢复条件。软件回归存在不等于真机验收完成；自动重连、多 active client 和依赖历史状态的策略仍不在该实现范围。
+
+前两篇代码当前均 Coming soon。适合先画机制与反例，再等待实现；具体阅读接到现有 [P1 具身阶段](../../research/reading_queue/P1.md#embodied-20261013)，不用重开一套队列。
+
 <a id="execution"></a>
 ## 4. 核心系统机制：三种时间与一个提交边界
 

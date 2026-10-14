@@ -1,0 +1,1389 @@
+{
+  "task": "ReadBase frontier systems subtask",
+  "window": {
+    "start": "2026-10-12T02:34:41Z",
+    "end": "2026-10-14T06:20:25Z"
+  },
+  "report_written_at": "2026-10-14T06:35:18.521206+00:00",
+  "accepted_count": 3,
+  "accepted_paper_ids": [
+    "2610.17901",
+    "2610.18451"
+  ],
+  "accepted_prs": [
+    "vllm-project/vllm#59625"
+  ],
+  "papers": [
+    {
+      "id": "2610.17901",
+      "checked_at": "2026-10-14T06:26:41.651040+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.17901v1",
+          "status": 200,
+          "bytes": 45154,
+          "sha256": "c15eac423ba80d545c8a0119ebb57f7bcc0edf19a7ffe31b421ba59cc5858798"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.17901v1",
+          "status": 200,
+          "bytes": 603333,
+          "sha256": "7a64146c86d2475bb3e923c1b22a7f0dfbe1b98646beed9a21b4de29c081deff"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "FlashMask-3: Efficient and Expressive Mask-Aware Distributed Attention"
+        ],
+        "citation_author": [
+          "Wang, Guoxia",
+          "He, Qianyue",
+          "Wu, Siming",
+          "Xie, Haoyang",
+          "Bao, Qiwen",
+          "Zeng, Jinle",
+          "Yang, Jiabin",
+          "Wu, Tian",
+          "Yu, Dianhai"
+        ],
+        "citation_date": [
+          "2026/10/13"
+        ],
+        "citation_online_date": [
+          "2026/10/13"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.17901"
+        ],
+        "citation_arxiv_id": [
+          "2610.17901"
+        ]
+      },
+      "history": " \n       Submission history  From: Qianyue He [ view email ]            [v1] \n        Tue, 13 Oct 2026 07:55:51 UTC (616 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled FlashMask-3: Efficient and Expressive Mask-Aware Distributed Attention, by Guoxia Wang and 8 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        view license  \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.LG \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n     recent \n      |  <a class=\"abs-button abs-button-grey abs-button-small context-id\" ",
+      "triage": "Accepted",
+      "decision": "Read",
+      "method_sections_read": [
+        "3.1",
+        "3.2",
+        "3.3 (partial)",
+        "3.4",
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "Appendix A"
+      ],
+      "claim_boundary": "Zero-communication applies to mask localization, not KV exchange. 7.3–11.0% full-training speedup is against its own FlashMask-3 Dual Chunk+all-gather baseline, not full Megatron training. H100, 128 GPUs, 118B-A14B, 128K context; three sparsities; author-reported.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    },
+    {
+      "id": "2610.18451",
+      "checked_at": "2026-10-14T06:26:41.652163+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.18451v1",
+          "status": 200,
+          "bytes": 42493,
+          "sha256": "701640b3b591f8476f4cd1d980355e8278e3a52a3fa8ddf4b2ad8cb1dfbb753c"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.18451v1",
+          "status": 200,
+          "bytes": 241406,
+          "sha256": "ebb04e775975c51855b95d9d60d49357952676debbbd155f41b756aa801f1ccc"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "FastEEP: Fast Intra-Instance Elastic Scaling for Expert-Parallel MoE Serving"
+        ],
+        "citation_author": [
+          "Feng, Yunfei",
+          "He, Jingkai",
+          "Liu, Shiqi",
+          "Zhang, Cheng",
+          "Du, Dong",
+          "Feng, Erhu"
+        ],
+        "citation_date": [
+          "2026/10/13"
+        ],
+        "citation_online_date": [
+          "2026/10/13"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.18451"
+        ],
+        "citation_arxiv_id": [
+          "2610.18451"
+        ]
+      },
+      "history": " \n       Submission history  From: Erhu Feng [ view email ]            [v1] \n        Tue, 13 Oct 2026 14:22:00 UTC (637 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled FastEEP: Fast Intra-Instance Elastic Scaling for Expert-Parallel MoE Serving, by Yunfei Feng and 5 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        view license  \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.DC \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n     recent \n      |  <a class=\"abs-button abs-button-grey abs-button-small context",
+      "triage": "Accepted",
+      "decision": "Read",
+      "method_sections_read": [
+        "4",
+        "5",
+        "6"
+      ],
+      "claim_boundary": "4.5–11.7x is resizing latency speedup vs available vLLM Elastic EP comparisons, not inference throughput. 16 H20-3e GPUs / two nodes; preinitialized maximum topology; seconds of zero-output interruption remain. Code availability is author-reported, no code/PR linkage verified.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    },
+    {
+      "id": "2610.18009",
+      "checked_at": "2026-10-14T06:26:41.651939+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.18009v1",
+          "status": 200,
+          "bytes": 41567,
+          "sha256": "bd3b2fc6fe72add2263f6374a1071f3865ece64cc112c3d3b59f4d1172dc9f62"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.18009v1",
+          "status": 200,
+          "bytes": 217176,
+          "sha256": "01bc6d7039a37df4de73d69b650c36a99b9a32aa2a478065bd62eebc55cf8494"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "A Distributed View from a Single GPU: RankLens for Distributed Training"
+        ],
+        "citation_author": [
+          "Wang, Yufan",
+          "Zhang, Yihao",
+          "Liu, Yi"
+        ],
+        "citation_date": [
+          "2026/10/13"
+        ],
+        "citation_online_date": [
+          "2026/10/13"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.18009"
+        ],
+        "citation_arxiv_id": [
+          "2610.18009"
+        ]
+      },
+      "history": " \n       Submission history  From: Yufan Wang [ view email ]            [v1] \n        Tue, 13 Oct 2026 09:06:21 UTC (768 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled A Distributed View from a Single GPU: RankLens for Distributed Training, by Yufan Wang and 2 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        view license  \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.DC \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n     recent \n      |  <a class=\"abs-button abs-button-grey abs-button-small context-id\" ",
+      "triage": "Observed",
+      "decision": "Observe",
+      "method_sections_read": [
+        "II-C Scope and Requirements",
+        "Table I"
+      ],
+      "claim_boundary": "Requires correspondence to target communication/control flow and recorded or estimated boundary data. Does not reproduce arbitrary all-rank failures. No evidence of general replacement for multi-GPU validation.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    },
+    {
+      "id": "2610.14448",
+      "checked_at": "2026-10-14T06:26:41.652027+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.14448v1",
+          "status": 200,
+          "bytes": 42883,
+          "sha256": "42560ca0d68ae468ea0ceb158f8e725b29290dc3925eca8fe1e145fc9c1cae9e"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.14448v1",
+          "status": 200,
+          "bytes": 536538,
+          "sha256": "7f21c1abcf33dc0bf202c23180524ab708017281fd371126b393cab00924b66c"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "KV4-RL: Unlocking Faster Asynchronous Rollouts for RLVR with INT4 KV Cache Quantization"
+        ],
+        "citation_author": [
+          "Park, Sihwan",
+          "Kim, Sung-Yub",
+          "Jang, Doohyuk",
+          "Yang, Eunho"
+        ],
+        "citation_date": [
+          "2026/10/10"
+        ],
+        "citation_online_date": [
+          "2026/10/10"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.14448"
+        ],
+        "citation_arxiv_id": [
+          "2610.14448"
+        ]
+      },
+      "history": " \n       Submission history  From: Sihwan Park [ view email ]            [v1] \n        Sat, 10 Oct 2026 01:24:03 UTC (866 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled KV4-RL: Unlocking Faster Asynchronous Rollouts for RLVR with INT4 KV Cache Quantization, by Sihwan Park and 3 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        \n           \n           view license \n          \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.LG \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n    <a class=\"abs-button abs-button-grey abs-button-small context-re",
+      "triage": "Backfill candidate",
+      "decision": "Read",
+      "method_sections_read": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "7.2"
+      ],
+      "claim_boundary": "v1 predates window despite appearing in October 14 new listings; dense Qwen3 4B/8B math GRPO, colocated async; no demonstrated generality to MoE/hybrid/disaggregated/agentic RL.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    },
+    {
+      "id": "2610.15246",
+      "checked_at": "2026-10-14T06:26:41.652095+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.15246v1",
+          "status": 200,
+          "bytes": 42593,
+          "sha256": "94b7947bb6ca3f2bb2e401ab626c592aa8537758a272360b7e34e53077c4a437"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.15246v1",
+          "status": 200,
+          "bytes": 316554,
+          "sha256": "b4ad1ce048f500a47be065ddaedb99e5f050ba95ca965169b8805605d295a530"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "ObsSpec: Accelerating Agentic Reinforcement Learning with Observation Speculation"
+        ],
+        "citation_author": [
+          "Montgomery, Kyle",
+          "Zhang, Wang",
+          "Wang, Chenguang"
+        ],
+        "citation_date": [
+          "2026/10/11"
+        ],
+        "citation_online_date": [
+          "2026/10/11"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.15246"
+        ],
+        "citation_arxiv_id": [
+          "2610.15246"
+        ]
+      },
+      "history": " \n       Submission history  From: Kyle Montgomery [ view email ]            [v1] \n        Sun, 11 Oct 2026 00:40:33 UTC (467 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled ObsSpec: Accelerating Agentic Reinforcement Learning with Observation Speculation, by Kyle Montgomery and 2 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        \n           \n           view license \n          \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.LG \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n    <a class=\"abs-button abs-button-grey abs-button-small context-",
+      "triage": "Backfill candidate",
+      "decision": "Read",
+      "method_sections_read": [
+        "2.2",
+        "2.3",
+        "3.8"
+      ],
+      "claim_boundary": "Exact observation match required; speculative actions are not executed before validation. TIR workload shows no speedup. v1 predates window.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    },
+    {
+      "id": "2610.14798",
+      "checked_at": "2026-10-14T06:26:46.022472+00:00",
+      "fetches": [
+        {
+          "url": "https://arxiv.org/abs/2610.14798v1",
+          "status": 200,
+          "bytes": 42690,
+          "sha256": "0c53c2a5c8c0bc778ae6584958d2a10deba7dae07b31ec7cbbb5cd1fc055467d"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.14798v1",
+          "status": 200,
+          "bytes": 346874,
+          "sha256": "d0c3a69511a0ecd5daf8004bca16fa175be8d7531680779c3c29bb614b594df7"
+        }
+      ],
+      "citation": {
+        "citation_title": [
+          "Accelerating MoE Training through Expert Placement and Replica Coordination"
+        ],
+        "citation_author": [
+          "Tan, Zhiqiang",
+          "Wang, Maoxin",
+          "Lin, Wenxiang",
+          "Wang, Sijie",
+          "Wang, Qiang",
+          "Shi, Shaohuai",
+          "Li, Bo"
+        ],
+        "citation_date": [
+          "2026/10/10"
+        ],
+        "citation_online_date": [
+          "2026/10/10"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.14798"
+        ],
+        "citation_arxiv_id": [
+          "2610.14798"
+        ]
+      },
+      "history": " \n       Submission history  From: Sijie Wang [ view email ]            [v1] \n        Sat, 10 Oct 2026 10:43:05 UTC (749 KB) \n \n   \n   \n      \n        \n       Full-text links: \n       Access Paper: \n       \n   \nView a PDF of the paper titled Accelerating MoE Training through Expert Placement and Replica Coordination, by Zhiqiang Tan and 6 other authors   View PDF    HTML (experimental)    TeX Source\n    \n        view license  \n     \n          \n       Additional Features \n       \n          Audio Summary  \n       \n     \n     \n     Current browse context: \n   cs.DC \n\n   \n \n       < prev \n     \n       |        \n       next > \n      \n    \n     new \n      |  \n     recent \n      |  <a class=\"abs-button abs-button-grey abs-button-small contex",
+      "triage": "Backfill candidate",
+      "decision": "Observe",
+      "method_sections_read": [],
+      "claim_boundary": "Metadata and abstract verified; method headings inspected, method and numeric benchmark not deeply checked. v1 predates window; do not promote abstract maxima.",
+      "first_seen": "2026-10-14",
+      "dedupe_hits": []
+    }
+  ],
+  "prs": [
+    {
+      "repo": "vllm-project/vllm",
+      "number": 61000,
+      "url": "https://github.com/vllm-project/vllm/pull/61000",
+      "title": "[Bugfix][Distributed] Own SHM out-of-band buffers before releasing read slots",
+      "author": "hubert-marek",
+      "created_at": "2026-10-10T13:23:04Z",
+      "merged_at": "2026-10-12T05:44:13Z",
+      "checked_at": "2026-10-14T06:26:46.290159+00:00",
+      "head_sha": "976a45ced62b3c1aef711ee36aad28c44b30a1f6",
+      "merge_commit_sha": "74f4404f58c0fb16821b34c16343486eeaf164a5",
+      "files_count": 2,
+      "changed_files": 2,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Actual production ownership patch checked; deterministic one-slot retained-array regression present. PR hardware results are author-reported.",
+      "raw_evidence": "vllm-project__vllm_pr61000.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "number": 19857,
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/19857",
+      "title": "[https://nvbugs/6865617][fix] Poll the disagg gen-init KV receive fence instead of blocking the overlap scheduler",
+      "author": "trtllm-agent",
+      "created_at": "2026-10-05T08:12:33Z",
+      "merged_at": "2026-10-12T10:24:58Z",
+      "checked_at": "2026-10-14T06:26:50.336728+00:00",
+      "head_sha": "2fb9b3664ee7e617c19e7fe8d6454f35b5a147c4",
+      "merge_commit_sha": "a8d7911bed9bcfa75bc01bd6413411bd702f528c",
+      "files_count": 6,
+      "changed_files": 6,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Description and executor configuration gate patch checked; only V2+overlap+PP1+no connector; reported gain recovers a particular regression.",
+      "raw_evidence": "NVIDIA__TensorRT-LLM_pr19857.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "number": 59625,
+      "url": "https://github.com/vllm-project/vllm/pull/59625",
+      "title": "[KV Connector] Support sleep mode with MooncakeConnector over RDMA",
+      "author": "aoshen02",
+      "created_at": "2026-10-01T15:07:59Z",
+      "merged_at": "2026-10-14T04:18:48Z",
+      "checked_at": "2026-10-14T06:26:46.272044+00:00",
+      "head_sha": "4d45158a3fca8fe081ae961ea615965f1e5434cb",
+      "merge_commit_sha": "3ccc0a90b67321bee83a17c9d50f881452057995",
+      "files_count": 14,
+      "changed_files": 14,
+      "files_complete": true,
+      "triage": "Accepted",
+      "decision": "Read",
+      "boundary": "Actual merged diff limited to unregister/restore KV memory registrations and sleep support gates. PR body discusses a broader old lifecycle patch not fully present in current 14-file diff.",
+      "raw_evidence": "vllm-project__vllm_pr59625.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "number": 57139,
+      "url": "https://github.com/vllm-project/vllm/pull/57139",
+      "title": "[KVConnector][P2P] Register peers off the scheduler thread",
+      "author": "liranschour",
+      "created_at": "2026-09-16T08:55:31Z",
+      "merged_at": "2026-10-14T05:21:58Z",
+      "checked_at": "2026-10-14T06:26:46.029253+00:00",
+      "head_sha": "37861e109a67895e17384ec48165dd9c55e17076",
+      "merge_commit_sha": "a2fb4827324bf023075799ef3d70d347834b8137",
+      "files_count": 6,
+      "changed_files": 6,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Description/files checked, full patch not reviewed; performance validation explicitly outstanding in body.",
+      "raw_evidence": "vllm-project__vllm_pr57139.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "number": 43936,
+      "url": "https://github.com/sgl-project/sglang/pull/43936",
+      "title": "[PD] Recompute retracted DeepSeek-V4 requests on prefill instead of crashing decode",
+      "author": "hnyls2002",
+      "created_at": "2026-10-12T23:38:16Z",
+      "merged_at": "2026-10-13T02:32:04Z",
+      "checked_at": "2026-10-14T06:26:48.593406+00:00",
+      "head_sha": "484d179413aa1dd0a1ba009116ee015b222530df",
+      "merge_commit_sha": "43e4e84731119e7ebf5a614826c873cae64e8e51",
+      "files_count": 6,
+      "changed_files": 6,
+      "files_complete": true,
+      "triage": "Indexed candidate",
+      "decision": "Observe",
+      "boundary": "Detail fetched but not deeply read; not a verified engineering conclusion.",
+      "raw_evidence": "sgl-project__sglang_pr43936.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "number": 20095,
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/20095",
+      "title": "[None][feat] KV cache manager V2 for hybrid RL rollouts: batched core API, aligned snapshot offsets, refit with open caches",
+      "author": "zongfeijing",
+      "created_at": "2026-10-11T03:07:10Z",
+      "merged_at": "2026-10-12T06:16:09Z",
+      "checked_at": "2026-10-14T06:26:49.703992+00:00",
+      "head_sha": "66cd14772227833980b42707ecf8a04b52522920",
+      "merge_commit_sha": "b1a1daa9afb567b7b617a80896e51dd0b96ceab5",
+      "files_count": 12,
+      "changed_files": 12,
+      "files_complete": true,
+      "triage": "Indexed candidate",
+      "decision": "Observe",
+      "boundary": "Detail fetched but not deeply read; no independent conclusion.",
+      "raw_evidence": "NVIDIA__TensorRT-LLM_pr20095.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "number": 17495,
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/17495",
+      "title": "[None][feat] BREAKING: Default to KV cache manager V2 and Python transceiver",
+      "author": "yizhang-nv",
+      "created_at": "2026-08-11T09:05:08Z",
+      "merged_at": "2026-10-12T07:03:41Z",
+      "checked_at": "2026-10-14T06:26:49.362954+00:00",
+      "head_sha": "5fe59f05c14642dd77e23e12c8363b52ec618fd3",
+      "merge_commit_sha": "afc1fa27447464405e971b39ff3c7df63cc85e71",
+      "files_count": 84,
+      "changed_files": 84,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Breaking default selects KV cache manager V2 and PYTHON transceiver; explicit auto differs. No full current-head runtime validation verified.",
+      "raw_evidence": "NVIDIA__TensorRT-LLM_pr17495.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "number": 44164,
+      "url": "https://github.com/sgl-project/sglang/pull/44164",
+      "title": "Report prompt KV weight versions in generation metadata",
+      "author": "fzyzcjy",
+      "created_at": "2026-10-14T02:29:02Z",
+      "merged_at": "2026-10-14T03:02:32Z",
+      "checked_at": "2026-10-14T06:26:49.128357+00:00",
+      "head_sha": "99d65b886cdbe7675705082d5007c6d900e08cf2",
+      "merge_commit_sha": "f31278164939dd0746037abbb7566de4164e6767",
+      "files_count": 33,
+      "changed_files": 33,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Detail/file list checked; metadata spans implementation, latest body CI statuses fail; no full patch or CI investigation.",
+      "raw_evidence": "sgl-project__sglang_pr44164.json",
+      "local_tests_run": false
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "number": 40223,
+      "url": "https://github.com/sgl-project/sglang/pull/40223",
+      "title": "[HiCache] Preserve all MTP KV and recurrent state",
+      "author": "paulzhang-tm",
+      "created_at": "2026-09-18T18:45:45Z",
+      "merged_at": "2026-10-12T07:38:00Z",
+      "checked_at": "2026-10-14T06:26:46.292187+00:00",
+      "head_sha": "0286377ad448b121b3b7221117437c96e4201e5e",
+      "merge_commit_sha": "5ca0695aa69f891bf98a57e7dd83cf75f1bc24c6",
+      "files_count": 16,
+      "changed_files": 16,
+      "files_complete": true,
+      "triage": "Observed",
+      "decision": "Observe",
+      "boundary": "Description and file list checked; synthetic-weight restoration evidence and no throughput claim, complete patch not reviewed.",
+      "raw_evidence": "sgl-project__sglang_pr40223.json",
+      "local_tests_run": false
+    }
+  ],
+  "repos": [
+    {
+      "repo": "vllm-project/vllm",
+      "checked_at": "2026-10-14T06:24:46.049263+00:00",
+      "merged_pr_count": 166,
+      "search_total_count": 166,
+      "incomplete_results": false,
+      "release_count": 30,
+      "releases_in_window": [],
+      "release_top5": [
+        {
+          "tag": "v0.31.0",
+          "published_at": "2026-10-05T06:44:55Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.30.0",
+          "published_at": "2026-09-22T05:20:54Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.30.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.29.0",
+          "published_at": "2026-09-09T08:54:49Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.29.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.28.0",
+          "published_at": "2026-08-26T09:46:30Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.27.1",
+          "published_at": "2026-08-11T10:47:49Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.27.1",
+          "prerelease": false
+        }
+      ],
+      "all_release_metadata": [
+        {
+          "tag": "v0.31.0",
+          "published_at": "2026-10-05T06:44:55Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.30.0",
+          "published_at": "2026-09-22T05:20:54Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.30.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.29.0",
+          "published_at": "2026-09-09T08:54:49Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.29.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.28.0",
+          "published_at": "2026-08-26T09:46:30Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.27.1",
+          "published_at": "2026-08-11T10:47:49Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.27.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.27.0",
+          "published_at": "2026-08-10T21:18:11Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.27.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.26.0",
+          "published_at": "2026-07-27T01:06:58Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.25.1",
+          "published_at": "2026-07-14T08:51:20Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.25.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.25.0",
+          "published_at": "2026-07-11T20:06:44Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.25.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.24.0",
+          "published_at": "2026-06-29T19:41:59Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.24.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.23.0",
+          "published_at": "2026-06-15T05:27:20Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.23.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.22.1",
+          "published_at": "2026-06-05T10:10:00Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.22.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.22.0",
+          "published_at": "2026-05-29T10:28:13Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.22.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.21.0",
+          "published_at": "2026-05-15T08:44:26Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.21.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.20.2",
+          "published_at": "2026-05-10T07:37:57Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.2",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.20.1",
+          "published_at": "2026-05-04T10:36:26Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.20.0",
+          "published_at": "2026-04-27T21:20:28Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.19.1",
+          "published_at": "2026-04-18T05:44:42Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.19.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.19.0",
+          "published_at": "2026-04-03T02:19:12Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.19.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.18.1",
+          "published_at": "2026-03-31T00:53:26Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.18.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.18.0",
+          "published_at": "2026-03-20T21:31:36Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.18.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.17.1",
+          "published_at": "2026-03-11T10:24:34Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.17.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.17.0",
+          "published_at": "2026-03-07T00:46:41Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.17.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.16.0",
+          "published_at": "2026-02-25T19:58:49Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.16.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.15.1",
+          "published_at": "2026-02-04T20:48:08Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.15.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.15.0",
+          "published_at": "2026-01-29T10:21:01Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.15.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.14.1",
+          "published_at": "2026-01-24T20:29:27Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.14.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.14.0",
+          "published_at": "2026-01-20T09:20:31Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.14.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.13.0",
+          "published_at": "2025-12-19T03:02:22Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.13.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.12.0",
+          "published_at": "2025-12-03T09:36:17Z",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.12.0",
+          "prerelease": false
+        }
+      ],
+      "sources": [
+        "repos/vllm-project/vllm/releases?per_page=30",
+        "search/issues?q=repo%3Avllm-project%2Fvllm+is%3Apr+is%3Amerged+merged%3A2026-10-12T02%3A34%3A41Z..2026-10-14T06%3A20%3A25Z&per_page=100&page=1&sort=updated&order=desc",
+        "search/issues?q=repo%3Avllm-project%2Fvllm+is%3Apr+is%3Amerged+merged%3A2026-10-12T02%3A34%3A41Z..2026-10-14T06%3A20%3A25Z&per_page=100&page=2&sort=updated&order=desc"
+      ],
+      "coverage": "All returned 427 merged-PR titles screened. Only selected descriptions/files and four targeted patches reviewed. No direct commits or historical PR gap backfill."
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "checked_at": "2026-10-14T06:24:46.050164+00:00",
+      "merged_pr_count": 170,
+      "search_total_count": 170,
+      "incomplete_results": false,
+      "release_count": 30,
+      "releases_in_window": [],
+      "release_top5": [
+        {
+          "tag": "v0.5.21",
+          "published_at": "2026-10-02T01:09:04Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.21",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.20",
+          "published_at": "2026-09-18T22:41:33Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.20",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.19",
+          "published_at": "2026-09-05T02:27:42Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.19",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.18",
+          "published_at": "2026-08-22T00:09:15Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.18",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.17",
+          "published_at": "2026-08-08T00:19:16Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.17",
+          "prerelease": false
+        }
+      ],
+      "all_release_metadata": [
+        {
+          "tag": "v0.5.21",
+          "published_at": "2026-10-02T01:09:04Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.21",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.20",
+          "published_at": "2026-09-18T22:41:33Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.20",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.19",
+          "published_at": "2026-09-05T02:27:42Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.19",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.18",
+          "published_at": "2026-08-22T00:09:15Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.18",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.17",
+          "published_at": "2026-08-08T00:19:16Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.17",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.16",
+          "published_at": "2026-07-25T00:13:18Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.16",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.15.post1",
+          "published_at": "2026-07-14T08:43:33Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.15.post1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.15",
+          "published_at": "2026-07-10T22:58:33Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.15",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.14",
+          "published_at": "2026-06-26T22:57:30Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.14",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.13",
+          "published_at": "2026-06-13T00:17:49Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.13",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.12.post1",
+          "published_at": "2026-05-26T23:58:17Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.12.post1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.12",
+          "published_at": "2026-05-16T18:23:23Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.12",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.11",
+          "published_at": "2026-05-05T21:28:56Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.11",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.10.post1",
+          "published_at": "2026-04-09T03:21:07Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.10.post1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.10",
+          "published_at": "2026-04-06T04:42:12Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.10",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.10rc0",
+          "published_at": "2026-03-28T05:58:32Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.10rc0",
+          "prerelease": true
+        },
+        {
+          "tag": "v0.5.9",
+          "published_at": "2026-02-24T01:14:21Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.9",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.8",
+          "published_at": "2026-01-23T22:09:28Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.8",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.3.1",
+          "published_at": "2026-01-09T06:18:26Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.3.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.7",
+          "published_at": "2026-01-01T10:01:57Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.7",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.3.0",
+          "published_at": "2025-12-24T22:00:56Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.3.0",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.2.4",
+          "published_at": "2025-12-10T01:09:08Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.2.4",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.6",
+          "published_at": "2025-12-03T05:11:51Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.6",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.2.3",
+          "published_at": "2025-11-17T11:23:30Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.2.3",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.5",
+          "published_at": "2025-11-06T17:54:32Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.5",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.2.2",
+          "published_at": "2025-11-17T11:19:03Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.2.2",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.4",
+          "published_at": "2025-10-26T02:37:45Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.4",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.2.1",
+          "published_at": "2025-11-17T11:13:12Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.2.1",
+          "prerelease": false
+        },
+        {
+          "tag": "gateway-v0.2.0",
+          "published_at": "2025-11-17T11:03:01Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/gateway-v0.2.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v0.5.3",
+          "published_at": "2025-10-06T18:45:52Z",
+          "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.3",
+          "prerelease": false
+        }
+      ],
+      "sources": [
+        "repos/sgl-project/sglang/releases?per_page=30",
+        "search/issues?q=repo%3Asgl-project%2Fsglang+is%3Apr+is%3Amerged+merged%3A2026-10-12T02%3A34%3A41Z..2026-10-14T06%3A20%3A25Z&per_page=100&page=1&sort=updated&order=desc",
+        "search/issues?q=repo%3Asgl-project%2Fsglang+is%3Apr+is%3Amerged+merged%3A2026-10-12T02%3A34%3A41Z..2026-10-14T06%3A20%3A25Z&per_page=100&page=2&sort=updated&order=desc"
+      ],
+      "coverage": "All returned 427 merged-PR titles screened. Only selected descriptions/files and four targeted patches reviewed. No direct commits or historical PR gap backfill."
+    },
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "checked_at": "2026-10-14T06:24:46.051085+00:00",
+      "merged_pr_count": 91,
+      "search_total_count": 91,
+      "incomplete_results": false,
+      "release_count": 30,
+      "releases_in_window": [],
+      "release_top5": [
+        {
+          "tag": "v1.3.0rc29",
+          "published_at": "2026-09-29T10:56:19Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc29",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc28",
+          "published_at": "2026-09-23T06:34:35Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc28",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc27",
+          "published_at": "2026-09-18T03:14:53Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc27",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc26",
+          "published_at": "2026-09-09T09:37:50Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc26",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc25",
+          "published_at": "2026-08-31T03:24:43Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc25",
+          "prerelease": true
+        }
+      ],
+      "all_release_metadata": [
+        {
+          "tag": "v1.3.0rc29",
+          "published_at": "2026-09-29T10:56:19Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc29",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc28",
+          "published_at": "2026-09-23T06:34:35Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc28",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc27",
+          "published_at": "2026-09-18T03:14:53Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc27",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc26",
+          "published_at": "2026-09-09T09:37:50Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc26",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc25",
+          "published_at": "2026-08-31T03:24:43Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc25",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc24",
+          "published_at": "2026-08-12T07:07:24Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc24",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc23",
+          "published_at": "2026-07-31T18:55:20Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc23",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc22",
+          "published_at": "2026-07-22T22:41:15Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc22",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc21",
+          "published_at": "2026-07-15T22:46:20Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc21",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc20",
+          "published_at": "2026-06-30T01:11:27Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc20",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc19",
+          "published_at": "2026-06-23T16:49:25Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc19",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc18",
+          "published_at": "2026-06-10T00:10:37Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc18",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc17",
+          "published_at": "2026-06-02T18:50:51Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc17",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc16",
+          "published_at": "2026-05-26T08:08:12Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc16",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc15",
+          "published_at": "2026-05-21T14:27:58Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc15",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc14",
+          "published_at": "2026-05-07T05:55:19Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc14",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc13",
+          "published_at": "2026-04-29T05:47:54Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc13",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc12",
+          "published_at": "2026-04-17T15:49:42Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc12",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.2.1",
+          "published_at": "2026-04-20T11:51:33Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.2.1",
+          "prerelease": false
+        },
+        {
+          "tag": "v1.3.0rc11",
+          "published_at": "2026-04-09T12:57:17Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc11",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc10",
+          "published_at": "2026-03-31T10:02:15Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc10",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc9",
+          "published_at": "2026-03-24T17:08:27Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc9",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc8",
+          "published_at": "2026-03-17T19:43:50Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc8",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.2.0",
+          "published_at": "2026-03-12T19:43:07Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.2.0",
+          "prerelease": false
+        },
+        {
+          "tag": "v1.3.0rc7",
+          "published_at": "2026-03-10T20:30:16Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc7",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc5.post1",
+          "published_at": "2026-03-06T19:07:16Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc5.post1",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc6",
+          "published_at": "2026-03-03T19:08:21Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc6",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc5",
+          "published_at": "2026-02-24T19:35:43Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc5",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc4",
+          "published_at": "2026-02-17T21:04:58Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc4",
+          "prerelease": true
+        },
+        {
+          "tag": "v1.3.0rc3",
+          "published_at": "2026-02-12T19:48:29Z",
+          "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc3",
+          "prerelease": true
+        }
+      ],
+      "sources": [
+        "repos/NVIDIA/TensorRT-LLM/releases?per_page=30",
+        "search/issues?q=repo%3ANVIDIA%2FTensorRT-LLM+is%3Apr+is%3Amerged+merged%3A2026-10-12T02%3A34%3A41Z..2026-10-14T06%3A20%3A25Z&per_page=100&page=1&sort=updated&order=desc"
+      ],
+      "coverage": "All returned 427 merged-PR titles screened. Only selected descriptions/files and four targeted patches reviewed. No direct commits or historical PR gap backfill."
+    }
+  ],
+  "arxiv_fetches": [
+    {
+      "source": "https://arxiv.org/list/cs.CL/new?show=2000",
+      "checked_at": "2026-10-14T06:24:46.053471+00:00",
+      "status": 200,
+      "bytes": 2053690,
+      "sha256": "17f46a3258e28e0b40a1a3a9cdb6ed7f7cdfb72db7ff5e4c278b049c0a2b56c6"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.DC/recent?show=2000",
+      "checked_at": "2026-10-14T06:28:23.535431+00:00",
+      "status": 200,
+      "bytes": 271514,
+      "sha256": "72fcac142035ae86f64df772e477ddc5a8f4f5b983bb8c9d26e20383bfd242f3"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.DC/new?show=2000",
+      "checked_at": "2026-10-14T06:24:46.053555+00:00",
+      "status": 200,
+      "bytes": 306232,
+      "sha256": "9d3f680e7c8ea306eac531afb4cdb06e84a2b323ced2c5f905148f82dbdc1a85"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.CL/recent?show=2000",
+      "checked_at": "2026-10-14T06:28:23.535348+00:00",
+      "status": 200,
+      "bytes": 1524431,
+      "sha256": "e7f5fa2ae553023d08f7d311d7922683d7ff7f3f995cb669cdabb84942ed9cf5"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.AR/new?show=2000",
+      "checked_at": "2026-10-14T06:24:51.486017+00:00",
+      "status": 200,
+      "bytes": 108425,
+      "sha256": "9b77b4d76c09854ed28d922065acd11c1a4bd0bdb0a8c38ae1b2830702fbfb3a"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.LG/recent?show=2000",
+      "checked_at": "2026-10-14T06:28:23.534485+00:00",
+      "status": 200,
+      "bytes": 3158798,
+      "sha256": "26219636425d776ed7867b6833c82c905f840df8c150eb490069a47674746e37"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.LG/new?show=2000",
+      "checked_at": "2026-10-14T06:24:46.052853+00:00",
+      "status": 200,
+      "bytes": 4151624,
+      "sha256": "1cc0870105e3c2584dd16abe5e78ec87e96397dbd6cebea0162749e16975fb9b"
+    },
+    {
+      "source": "https://arxiv.org/list/cs.AR/recent?show=2000",
+      "checked_at": "2026-10-14T06:28:23.535505+00:00",
+      "status": 200,
+      "bytes": 133942,
+      "sha256": "6a41ce3f7526c01bca4f82868b78831dace94d9a4b9417af713b915990be9e73"
+    }
+  ],
+  "arxiv_index_summary": [
+    {
+      "page": "cs.AR_new.html",
+      "rows": 32,
+      "headings": [
+        "Hardware Architecture",
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 18 of 18 entries)",
+        "Cross submissions (showing 5 of 5 entries)",
+        "Replacement submissions (showing 9 of 9 entries)"
+      ]
+    },
+    {
+      "page": "cs.AR_recent.html",
+      "rows": 76,
+      "headings": [
+        "Hardware Architecture",
+        "Authors and titles for recent submissions",
+        "Wed, 14 Oct 2026 (showing 23 of 23 entries )",
+        "Mon, 12 Oct 2026 (showing 10 of 10 entries )",
+        "Fri, 9 Oct 2026 (showing 9 of 9 entries )",
+        "Thu, 8 Oct 2026 (showing 8 of 8 entries )",
+        "Wed, 7 Oct 2026 (showing 26 of 26 entries )"
+      ]
+    },
+    {
+      "page": "cs.CL_new.html",
+      "rows": 642,
+      "headings": [
+        "Computation and Language",
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 244 of 244 entries)",
+        "Cross submissions (showing 141 of 141 entries)",
+        "Replacement submissions (showing 257 of 257 entries)"
+      ]
+    },
+    {
+      "page": "cs.CL_recent.html",
+      "rows": 910,
+      "headings": [
+        "Computation and Language",
+        "Authors and titles for recent submissions",
+        "Wed, 14 Oct 2026 (showing 385 of 385 entries )",
+        "Mon, 12 Oct 2026 (showing 116 of 116 entries )",
+        "Fri, 9 Oct 2026 (showing 144 of 144 entries )",
+        "Thu, 8 Oct 2026 (showing 118 of 118 entries )",
+        "Wed, 7 Oct 2026 (showing 147 of 147 entries )"
+      ]
+    },
+    {
+      "page": "cs.DC_new.html",
+      "rows": 95,
+      "headings": [
+        "Distributed, Parallel, and Cluster Computing",
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 42 of 42 entries)",
+        "Cross submissions (showing 34 of 34 entries)",
+        "Replacement submissions (showing 19 of 19 entries)"
+      ]
+    },
+    {
+      "page": "cs.DC_recent.html",
+      "rows": 160,
+      "headings": [
+        "Distributed, Parallel, and Cluster Computing",
+        "Authors and titles for recent submissions",
+        "Wed, 14 Oct 2026 (showing 76 of 76 entries )",
+        "Mon, 12 Oct 2026 (showing 19 of 19 entries )",
+        "Fri, 9 Oct 2026 (showing 12 of 12 entries )",
+        "Thu, 8 Oct 2026 (showing 22 of 22 entries )",
+        "Wed, 7 Oct 2026 (showing 31 of 31 entries )"
+      ]
+    },
+    {
+      "page": "cs.LG_new.html",
+      "rows": 1344,
+      "headings": [
+        "Machine Learning",
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 502 of 502 entries)",
+        "Cross submissions (showing 360 of 360 entries)",
+        "Replacement submissions (showing 482 of 482 entries)"
+      ]
+    },
+    {
+      "page": "cs.LG_recent.html",
+      "rows": 2000,
+      "headings": [
+        "Machine Learning",
+        "Authors and titles for recent submissions",
+        "Wed, 14 Oct 2026 (showing 862 of 862 entries )",
+        "Mon, 12 Oct 2026 (showing 262 of 262 entries )",
+        "Fri, 9 Oct 2026 (showing 324 of 324 entries )",
+        "Thu, 8 Oct 2026 (showing 353 of 353 entries )",
+        "Wed, 7 Oct 2026 (showing first 199 of 355 entries )"
+      ]
+    }
+  ],
+  "arxiv_unique_ids_indexed": 3480,
+  "discovery_method": "Official new/recent pages indexed; topic-keyword title filtering then candidate abstract/manual triage. Not 3480 full papers read; new and replacement entries kept distinct. cs.LG recent capped at 2000, truncates October 7; October 14 and October 12 groups complete on fetched page. Old discovery gap from 2026-09-22T08:52:05Z remains open.",
+  "access_failures": [
+    {
+      "source": "Python urllib in sandbox",
+      "error": "DNS resolution restricted",
+      "resolution": "Approved escalated read-only requests succeeded."
+    },
+    {
+      "source": "web search engine 2610 inference queries",
+      "result": "Empty results"
+    },
+    {
+      "source": "web arXiv recent cache",
+      "result": "Web opening showed October 12 newest; direct retrieval showed October 14, so direct primary snapshots used."
+    }
+  ],
+  "limitations": [
+    "No GPU execution or upstream code run.",
+    "Direct commits, pre-window merged PRs and deeper release history gaps since 2026-09-22T09:06:16Z remain open.",
+    "PR description may reflect older revisions; accepted scope constrained to fetched head diff.",
+    "OpenAI/Anthropic/NVIDIA blog/DeepSeek and RL framework/HF/Embodied Watch belong to other agents. ReplaySSM delegated to parent."
+  ]
+}

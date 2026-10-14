@@ -1,0 +1,3014 @@
+{
+  "window": {
+    "start_utc": "2026-10-12T02:34:41Z",
+    "source_cutoff_utc": "2026-10-14T06:20:25Z",
+    "next_cursor_candidate_utc": "2026-10-14T06:20:25Z",
+    "actual_verification_end_utc": "2026-10-14T06:34:41.999311+00:00",
+    "note": "Read-only verification completed after cutoff. Events after cutoff excluded; this file does not advance repository cursor."
+  },
+  "counts": {
+    "accepted": 6,
+    "accepted_models_learning": 2,
+    "accepted_infra": 4,
+    "observed_formally_triaged": 8,
+    "rejected_formally_triaged": 3,
+    "count_scope": "Only the enumerated formal triage, not every fetched PR or arXiv entry. Historical/deduplicated materials excluded."
+  },
+  "accepted": [
+    {
+      "local_id": "E-M1",
+      "source_id": "arxiv:2610.18596v1",
+      "url": "https://arxiv.org/abs/2610.18596v1",
+      "triage": "Accepted",
+      "decision": "Read",
+      "impact": "High",
+      "learning_track": [
+        "Embodied",
+        "RL",
+        "Training"
+      ],
+      "signal_type": "algorithm",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-14",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "固定 replay 的视觉表示，并分开当前任务 critic 学习与旧任务 actor 蒸馏，让有限经验支持跨任务 off-policy RL。",
+      "entry_markdown": "### E-M1 — ACCRUE：让 actor–critic 经验跨任务累积\n\n- Source ID：`arxiv:2610.18596v1`；类型：paper / algorithm；来源：[abs](https://arxiv.org/abs/2610.18596v1)、[方法正文](https://arxiv.org/html/2610.18596v1)。\n- 标题：*ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models*；作者：Changyeon Kim、Kimin Lee、Yashraj Narang、Yijie Guo。`citation_title` / 全部 `citation_author` / `citation_date=2026/10/13` 已由原始 HTML 核验；v1 提交 `2026-10-13 15:53:26 UTC`。\n- First seen：本次核查 `2026-10-14`；scan window：上述窗口；Impact：High；Decision：**Read**；Learning track：Embodied / RL / Training；Status：NEW。\n- Target question：任务逐个到达、旧轨迹只能保留少量时，如何复用 value/behavior 而不让新任务 critic 破坏旧技能？\n- Evidence：方法 §4 将轻量 actor/critic 从上一阶段继承；critic 只用当前任务 transition 更新，旧任务 actor 向缓存的前阶段输出蒸馏。外部视觉 encoder 始终冻结，使 replay 的视觉表示在基础模型阶段性微调之后仍一致；reference action chunk 提供任务条件。每阶段 base policy 先用累计 demonstrations 微调，再在该阶段 RL 期间固定。\n- 模型/学习价值：保留旧技能不必依赖已经被新任务改写的 critic；把“新任务 value 学习”和“旧行为保存”拆开是可迁移设计。\n- 系统影响（推断）：replay 需要保存稳定 encoder 特征、reference/action 条件与旧 actor target 的对应版本；actor/critic/base model 的 checkpoint 不能独立任意恢复。\n- 评估与边界：§5.3 的真实 DROID 实验使用 π0.5 + FastTD3，6D end-effector delta action、稀疏人工成功标签、异步 actor/learner；比较对象是同框架每任务重启 actor–critic。论文报告后续阶段 robot RL interaction time 降低 31.0%–68.5%，停止条件为最近 20 次 19 次成功；这是作者报告的特定接触装配结果，不是总训练 wall-clock 或通用机器人提升。§6 明确最多五阶段，replay 按任务有界、总内存仍随任务增长；不同 embodiment/action space 和更不相关任务留待验证。未本地复现；项目页经直接 HTTP 访问可核验，并标注 Code (coming soon)，因此未声称代码已公开。\n- Reason：直接填补持续学习、replay 兼容与任务切换的现有学习缺口，方法和有边界的真机实验都已披露。\n- Related topics：具身策略学习、RL post-training、checkpoint/recovery、trajectory/replay；Next：进入共享 P1 的具身阶段候选，先画出三类模型状态与 replay 字段，再设计“更新 base 后旧 replay 是否兼容”的小实验；不要改变既有 P0。\n- 一句话：固定 replay 的视觉表示，并把当前 critic 学习与旧 actor 行为蒸馏分开，让有限经验支持跨任务的 off-policy RL。",
+      "target_question": "任务逐个到达、旧轨迹只能保留少量时，如何复用 value/behavior 而不让新任务 critic 破坏旧技能？",
+      "reason": "直接填补持续学习、replay 兼容与任务切换的现有学习缺口，方法和有边界的真机实验都已披露。",
+      "next_step": "进入共享 P1 的具身阶段候选，先画出三类模型状态与 replay 字段，再设计“更新 base 后旧 replay 是否兼容”的小实验；不要改变既有 P0。",
+      "primary_verification": {
+        "source_id": "arxiv:2610.18596",
+        "checked_utc": "2026-10-14T06:26:37.736543+00:00",
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.18596",
+          "sha256": "7e1c16207e36a7d70e60f63f7e696363a69110e002c59a359a74661314b3e46f",
+          "bytes": 41943
+        },
+        "metadata": {
+          "citation_title": [
+            "ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models"
+          ],
+          "citation_author": [
+            "Kim, Changyeon",
+            "Lee, Kimin",
+            "Narang, Yashraj",
+            "Guo, Yijie"
+          ],
+          "citation_date": [
+            "2026/10/13"
+          ]
+        },
+        "abstract": "Abstract: Reinforcement learning (RL) post-training improves robot foundation models (RFMs) beyond their demonstrations, but real-world deployment demands more: learning new tasks efficiently while retaining previously acquired behaviors. Existing continual RL methods on top of VLAs mitigate forgetting but rely on on-policy updates with limited forward transfer, whereas off-policy methods improve single-task sample efficiency without addressing learner persistence across tasks. We propose ACCRUE, a continual off-policy RL framework that carries lightweight actor and critic networks across tasks, allowing each stage to reuse behavioral and value knowledge acquired through prior RL. The inherited critic adapts only on current-task transitions and guides current-task actor learning, while prior behavior is preserved by distilling the actor toward cached targets on a small number of retained episodes. Fixed visual features keep the inherited learner and its replay compatible with base-policy updates. Across contact-rich assembly sequences in simulation and on real-robot hardware, ACCRUE accelerates subsequent-task learning with near-zero forgetting and significantly reduces real-robot training time by 31.0\\% to 68.5\\%.",
+        "submission_history": "Submission history From: Changyeon Kim [ view email ] [v1] Tue, 13 Oct 2026 15:53:26 UTC (4,284 KB)",
+        "html": {
+          "url": "https://arxiv.org/html/2610.18596v1",
+          "sha256": "1cebc7bb48d3b3af63a85fe2ee81797fa57d2e7c8d4e3a451704a2dbdb39a3eb",
+          "bytes": 327215
+        }
+      },
+      "authored_method_notes": "### E-M1 — ACCRUE：让 actor–critic 经验跨任务累积\n\n- Source ID：`arxiv:2610.18596v1`；类型：paper / algorithm；来源：[abs](https://arxiv.org/abs/2610.18596v1)、[方法正文](https://arxiv.org/html/2610.18596v1)。\n- 标题：*ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models*；作者：Changyeon Kim、Kimin Lee、Yashraj Narang、Yijie Guo。`citation_title` / 全部 `citation_author` / `citation_date=2026/10/13` 已由原始 HTML 核验；v1 提交 `2026-10-13 15:53:26 UTC`。\n- First seen：本次核查 `2026-10-14`；scan window：上述窗口；Impact：High；Decision：**Read**；Learning track：Embodied / RL / Training；Status：NEW。\n- Target question：任务逐个到达、旧轨迹只能保留少量时，如何复用 value/behavior 而不让新任务 critic 破坏旧技能？\n- Evidence：方法 §4 将轻量 actor/critic 从上一阶段继承；critic 只用当前任务 transition 更新，旧任务 actor 向缓存的前阶段输出蒸馏。外部视觉 encoder 始终冻结，使 replay 的视觉表示在基础模型阶段性微调之后仍一致；reference action chunk 提供任务条件。每阶段 base policy 先用累计 demonstrations 微调，再在该阶段 RL 期间固定。\n- 模型/学习价值：保留旧技能不必依赖已经被新任务改写的 critic；把“新任务 value 学习”和“旧行为保存”拆开是可迁移设计。\n- 系统影响（推断）：replay 需要保存稳定 encoder 特征、reference/action 条件与旧 actor target 的对应版本；actor/critic/base model 的 checkpoint 不能独立任意恢复。\n- 评估与边界：§5.3 的真实 DROID 实验使用 π0.5 + FastTD3，6D end-effector delta action、稀疏人工成功标签、异步 actor/learner；比较对象是同框架每任务重启 actor–critic。论文报告后续阶段 robot RL interaction time 降低 31.0%–68.5%，停止条件为最近 20 次 19 次成功；这是作者报告的特定接触装配结果，不是总训练 wall-clock 或通用机器人提升。§6 明确最多五阶段，replay 按任务有界、总内存仍随任务增长；不同 embodiment/action space 和更不相关任务留待验证。未本地复现；项目页经直接 HTTP 访问可核验，并标注 Code (coming soon)，因此未声称代码已公开。\n- Reason：直接填补持续学习、replay 兼容与任务切换的现有学习缺口，方法和有边界的真机实验都已披露。\n- Related topics：具身策略学习、RL post-training、checkpoint/recovery、trajectory/replay；Next：进入共享 P1 的具身阶段候选，先画出三类模型状态与 replay 字段，再设计“更新 base 后旧 replay 是否兼容”的小实验；不要改变既有 P0。\n- 一句话：固定 replay 的视觉表示，并把当前 critic 学习与旧 actor 行为蒸馏分开，让有限经验支持跨任务的 off-policy RL。",
+      "code_available": false,
+      "code_status": "Project page says coming soon; no local reproduction"
+    },
+    {
+      "local_id": "E-M2",
+      "source_id": "arxiv:2610.18869v1",
+      "url": "https://arxiv.org/abs/2610.18869v1",
+      "triage": "Accepted",
+      "decision": "Read",
+      "impact": "High",
+      "learning_track": [
+        "Embodied",
+        "Training"
+      ],
+      "signal_type": "model",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-14",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "演示质量需要结合标签粒度、训练使用方式和微调条件格式一起比较，不能把普通模拟预训练收益误写成质量 conditioning 的收益。",
+      "entry_markdown": "### E-M2 — AXIS-Bench：质量定义、标签粒度与微调方式需要一起比较\n\n- Source ID：`arxiv:2610.18869v1`；类型：paper / model-learning evaluation；来源：[abs](https://arxiv.org/abs/2610.18869v1)、[方法正文](https://arxiv.org/html/2610.18869v1)、[项目](https://axis-bench.github.io/)。\n- 标题：*What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study*；作者：Mingxuan Yan、Litian Gong、Dihong Huang、Zhixu Li、Tianyu Zhang、Wenqian Zhang、Hefeifei Jiang、Peihao Li、Jian Zhang、Mengfei Zhao、Yikai Tang、Hai Zhai、Zehao Wang、Ruijian Liang、Yanjia Huang、Lin Shao、Changliu Liu、Kaiyu Hang、Zhiwen Fan、Masayoshi Tomizuka、Jianfei Yang、Jiachen Li。原始 HTML 三类 citation metadata 完整核验；`citation_date=2026/10/13`；v1 `2026-10-13 17:59:52 UTC`。\n- First seen：2026-10-14；scan window：上述窗口；Impact：High；Decision：**Read**；Learning track：Embodied / Training；Signal type：model；Status：NEW。\n- Target question：同样的次优示范，是过滤、加权还是条件学习更合适？episode/chunk 质量标签如何与目标任务微调协议相互作用？\n- Evidence：§3–5 基于可 replay 的模拟 demonstrations，保留物体和 contact state 以重算质量标签；§4 以接近物体与接触后进展构造 approach-aware reward，再生成 chunk/episode 标签，对比 weighting/filtering/conditioning；每个 VLA 内对齐数据和训练预算。§5.1 比较 π0.5、SmolVLA、X-VLA，但各自初始化与可训练模块不同。§5.4 固定质量 tag 的微调也要测试带/不带 tag 的推理，tag 本身不是通用增益开关。\n- 模型/学习价值：数据“质量”不是一个脱离目标的分数；质量定义、粒度、训练使用方式及微调输入契约共同决定收益。conditioning 平均偏向 episode、filtering 平均偏向 chunk，论文同时报告反例。\n- 系统影响（推断）：可 replay 数据需保留 state/contact 与相机配置；质量标签生成与动作监督窗口要版本化，避免离线打分与在线样本不同步。\n- 关键数字防误读：论文的真实任务 `9.6% → 31.7%` 是**普通 BC 模拟预训练相对无预训练**的收益，不是质量 conditioning 的收益；conditioning 为 `32.5%`，仅比 plain BC 高 `0.83 percentage points`，十项任务中五升四降一平（§6.2）。这些是作者数据，不是本地复现。\n- 边界：共享 tabletop simulation；真实评估仅一种 VLA、一个参考 workspace。进展标签可能低估准备/恢复动作；跨模型比较不能分离初始化原因。项目页明确 **Code (Coming Soon)、Dataset (Coming Soon)**，不能宣称已可复现。\n- Reason：方法控制和反例能改变“过滤低分轨迹就一定更好”的工程判断；无代码不抹掉已披露学习机制。\n- Related topics：具身数据配方、动作 chunk、训练分布与评估；Next：与已读质量/混采框架对照，先定义自己的 label/selection/FT/inference 对照矩阵；共享 P1 候选，保持 NEW。\n- 一句话：次优示范的价值取决于质量标签怎么定义、在何种粒度进入训练，以及微调是否保留条件格式，不能只按一个质量分数删数据。",
+      "target_question": "同样的次优示范，是过滤、加权还是条件学习更合适？episode/chunk 质量标签如何与目标任务微调协议相互作用？",
+      "reason": "方法控制和反例能改变“过滤低分轨迹就一定更好”的工程判断；无代码不抹掉已披露学习机制。",
+      "next_step": "与已读质量/混采框架对照，先定义自己的 label/selection/FT/inference 对照矩阵；共享 P1 候选，保持 NEW。",
+      "primary_verification": {
+        "source_id": "arxiv:2610.18869",
+        "checked_utc": "2026-10-14T06:26:37.737363+00:00",
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.18869",
+          "sha256": "ed91b2b174dec5688d4d88eb26f741cb17ec2cbe3720f53f04df0dcd9e617bc4",
+          "bytes": 45183
+        },
+        "metadata": {
+          "citation_title": [
+            "What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study"
+          ],
+          "citation_author": [
+            "Yan, Mingxuan",
+            "Gong, Litian",
+            "Huang, Dihong",
+            "Li, Zhixu",
+            "Zhang, Tianyu",
+            "Zhang, Wenqian",
+            "Jiang, Hefeifei",
+            "Li, Peihao",
+            "Zhang, Jian",
+            "Zhao, Mengfei",
+            "Tang, Yikai",
+            "Zhai, Hai",
+            "Wang, Zehao",
+            "Liang, Ruijian",
+            "Huang, Yanjia",
+            "Shao, Lin",
+            "Liu, Changliu",
+            "Hang, Kaiyu",
+            "Fan, Zhiwen",
+            "Tomizuka, Masayoshi",
+            "Yang, Jianfei",
+            "Li, Jiachen"
+          ],
+          "citation_date": [
+            "2026/10/13"
+          ]
+        },
+        "abstract": "Abstract: How should demonstration quality be used during vision-language-action (VLA) pretraining to improve performance after target-task fine-tuning? We compare weighting, filtering, and conditioning across reward definitions and label granularities using 5,000 naturally suboptimal human demonstrations and 24 target tasks. Within each VLA, we match demonstrations and training budgets. Additional comparisons examine pretraining data size and the roles of quality tags during fine-tuning and inference. Across three VLAs, we find that approach-aware episode conditioning improves mean success over plain behavioral cloning; conditioning and filtering favor episode and chunk labels, respectively, on average, with model-dependent reversals; and constant-tag fine-tuning improves mean success after conditioned pretraining with either tagged or untagged inference. We introduce AXIS-Bench to support these controlled comparisons. Built on crowdsourced simulation demonstrations, it provides recorded object and contact states for recomputing quality labels on shared trajectories. Replayable trajectories support workspace-aligned rendering and user-defined real-world target tasks. In our real-world experiment, simulation pretraining raises success from 9.6\\% to 31.7\\%. Project page: this https URL .",
+        "submission_history": "Submission history From: Jiachen Li [ view email ] [v1] Tue, 13 Oct 2026 17:59:52 UTC (2,796 KB)",
+        "html": {
+          "url": "https://arxiv.org/html/2610.18869v1",
+          "sha256": "ac042f05026e48454b696afe735345bed374a60558e698d6a72340398b311597",
+          "bytes": 151381
+        }
+      },
+      "authored_method_notes": "### E-M2 — AXIS-Bench：质量定义、标签粒度与微调方式需要一起比较\n\n- Source ID：`arxiv:2610.18869v1`；类型：paper / model-learning evaluation；来源：[abs](https://arxiv.org/abs/2610.18869v1)、[方法正文](https://arxiv.org/html/2610.18869v1)、[项目](https://axis-bench.github.io/)。\n- 标题：*What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study*；作者：Mingxuan Yan、Litian Gong、Dihong Huang、Zhixu Li、Tianyu Zhang、Wenqian Zhang、Hefeifei Jiang、Peihao Li、Jian Zhang、Mengfei Zhao、Yikai Tang、Hai Zhai、Zehao Wang、Ruijian Liang、Yanjia Huang、Lin Shao、Changliu Liu、Kaiyu Hang、Zhiwen Fan、Masayoshi Tomizuka、Jianfei Yang、Jiachen Li。原始 HTML 三类 citation metadata 完整核验；`citation_date=2026/10/13`；v1 `2026-10-13 17:59:52 UTC`。\n- First seen：2026-10-14；scan window：上述窗口；Impact：High；Decision：**Read**；Learning track：Embodied / Training；Signal type：model；Status：NEW。\n- Target question：同样的次优示范，是过滤、加权还是条件学习更合适？episode/chunk 质量标签如何与目标任务微调协议相互作用？\n- Evidence：§3–5 基于可 replay 的模拟 demonstrations，保留物体和 contact state 以重算质量标签；§4 以接近物体与接触后进展构造 approach-aware reward，再生成 chunk/episode 标签，对比 weighting/filtering/conditioning；每个 VLA 内对齐数据和训练预算。§5.1 比较 π0.5、SmolVLA、X-VLA，但各自初始化与可训练模块不同。§5.4 固定质量 tag 的微调也要测试带/不带 tag 的推理，tag 本身不是通用增益开关。\n- 模型/学习价值：数据“质量”不是一个脱离目标的分数；质量定义、粒度、训练使用方式及微调输入契约共同决定收益。conditioning 平均偏向 episode、filtering 平均偏向 chunk，论文同时报告反例。\n- 系统影响（推断）：可 replay 数据需保留 state/contact 与相机配置；质量标签生成与动作监督窗口要版本化，避免离线打分与在线样本不同步。\n- 关键数字防误读：论文的真实任务 `9.6% → 31.7%` 是**普通 BC 模拟预训练相对无预训练**的收益，不是质量 conditioning 的收益；conditioning 为 `32.5%`，仅比 plain BC 高 `0.83 percentage points`，十项任务中五升四降一平（§6.2）。这些是作者数据，不是本地复现。\n- 边界：共享 tabletop simulation；真实评估仅一种 VLA、一个参考 workspace。进展标签可能低估准备/恢复动作；跨模型比较不能分离初始化原因。项目页明确 **Code (Coming Soon)、Dataset (Coming Soon)**，不能宣称已可复现。\n- Reason：方法控制和反例能改变“过滤低分轨迹就一定更好”的工程判断；无代码不抹掉已披露学习机制。\n- Related topics：具身数据配方、动作 chunk、训练分布与评估；Next：与已读质量/混采框架对照，先定义自己的 label/selection/FT/inference 对照矩阵；共享 P1 候选，保持 NEW。\n- 一句话：次优示范的价值取决于质量标签怎么定义、在何种粒度进入训练，以及微调是否保留条件格式，不能只按一个质量分数删数据。",
+      "code_available": false,
+      "code_status": "Project page says coming soon; no local reproduction"
+    },
+    {
+      "local_id": "E-I1",
+      "source_id": "github:huggingface/lerobot:pull:4937",
+      "url": "https://github.com/huggingface/lerobot/pull/4937",
+      "triage": "Accepted",
+      "decision": "Deep Dive",
+      "impact": "High",
+      "learning_track": [
+        "Embodied",
+        "Inference"
+      ],
+      "signal_type": "system",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-14",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "远程动作 chunk 绑定观测、执行代际与已提交游标，迟到结果、暂停和队列耗尽不能让失效动作重新生效。",
+      "entry_markdown": "### E-I1 — LeRobot #4937：远程推理需要本地动作执行契约\n\n- Source ID：`github:huggingface/lerobot:pull:4937`；[官方 PR](https://github.com/huggingface/lerobot/pull/4937)；标题 *feat(rollout): add remote inference engine*；作者/merged_at/SHA 见 evidence.json；合并 `2026-10-13 14:07:49 UTC`，固定 merge SHA `ae2b57f12223c8c5184fcd814eb63cd9ce7de203`。\n- First seen：2026-10-14；窗口如上；Impact：High；Decision：**Deep Dive**；Learning track：Embodied / Inference；Signal type：system；Status：NEW。\n- Target question：网络推理期间动作已被执行、指令被切换或队列耗尽，如何防止旧结果恢复已经失效的机器人动作？\n- Evidence：PR 完整 146 文件列表已取两页；重点读 `inference/execution.py`、`remote_inference/client.py`、`engine.py`、`chunk_contract.py` 及相关回归差异。prediction/执行分离，robot 端持有队列与 motor 权限；observation age、request identity、execution generation、committed cursor 绑定 chunk，迟到结果不能重新授权旧动作。耗尽后要求本地 hold acknowledgment 和 fresh capture 才恢复，deadline 不因反复检查续期。\n- 测试证据：存在 `test_reset_and_timeout_make_late_results_ineligible`、`test_replace_future_requires_current_cursor_and_generation`、`test_starvation_requires_hold_ack_and_fresh_capture_before_recovery`、remote/local parity、session ownership 和 shutdown 测试。作者报告 540 passed / 4 skipped；本次 head SHA 的公开 Full Tests / GPU Tests 等为 success（保存 check-runs），没有本地运行。\n- Reason：改变真实部署执行语义，且可以沿代码和回归核验，不是只添加远程 API。\n- 边界：一 server/checkpoint、一 active client；自动重连、并发多 client、history-dependent policies 不在实现范围；远端 hosted GPU、routed 硬件与 trained RTC 真机验收仍为作者待办。驱动必须声明 position-hold 支持。旧 async 命令被替换，Unitree G1/SONIC 暂无支持的 remote replacement。\n- 历史区别：#4836 于 10-12 合并后被 #4936 撤回，昨天已记录；**#4937 是 10-13 的重新引入事件**。不可继续写成“当前无 remote inference”，也不可重复算 #4836。\n- Related topics：实时 action chunk、observation age、部署/恢复；Next：对照现有动作提交边界建立故障表：迟到、切换、断流、hold 失败；不要将 software tests 视为真机安全证明。\n- 一句话：把远端返回的 chunk 绑定到观测与本地执行代际，使延迟、暂停和队列耗尽都不能让失效动作重新生效。",
+      "target_question": "网络推理期间动作已被执行、指令被切换或队列耗尽，如何防止旧结果恢复已经失效的机器人动作？",
+      "reason": "改变真实部署执行语义，且可以沿代码和回归核验，不是只添加远程 API。",
+      "next_step": "对照现有动作提交边界建立故障表：迟到、切换、断流、hold 失败；不要将 software tests 视为真机安全证明。",
+      "primary_verification": {
+        "title": "feat(rollout): add remote inference engine",
+        "created_at": "2026-10-12T11:59:27Z",
+        "updated_at": "2026-10-13T14:07:53Z",
+        "merged_at": "2026-10-13T14:07:49Z",
+        "merge_commit_sha": "ae2b57f12223c8c5184fcd814eb63cd9ce7de203",
+        "changed_files": 146,
+        "html_url": "https://github.com/huggingface/lerobot/pull/4937",
+        "author": "imstevenpmwork",
+        "head_sha": "bc2d29c3b19b99d8a3f7eb4016e353ae06973d20"
+      },
+      "published_at": "2026-10-13T14:07:49Z",
+      "changed_files": [
+        ".pre-commit-config.yaml",
+        "docs/source/_toctree.yml",
+        "docs/source/async.mdx",
+        "docs/source/hil_data_collection.mdx",
+        "docs/source/inference.mdx",
+        "docs/source/integrate_hardware.mdx",
+        "docs/source/remote_inference.mdx",
+        "docs/source/rtc.mdx",
+        "docs/source/unitree_g1.mdx",
+        "examples/lekiwi/rollout.py",
+        "examples/phone_to_so100/rollout.py",
+        "examples/remote_inference/server.yaml",
+        "examples/remote_inference/zenoh/robot.json5",
+        "examples/remote_inference/zenoh/router.json5",
+        "examples/remote_inference/zenoh/server.json5",
+        "examples/so100_to_so100_EE/rollout.py",
+        "examples/tutorial/async-inf/policy_server.py",
+        "examples/tutorial/async-inf/robot_client.py",
+        "pyproject.toml",
+        "src/lerobot/async_inference/configs.py",
+        "src/lerobot/async_inference/constants.py",
+        "src/lerobot/async_inference/helpers.py",
+        "src/lerobot/async_inference/policy_server.py",
+        "src/lerobot/async_inference/robot_client.py",
+        "src/lerobot/inference/__init__.py",
+        "src/lerobot/inference/base.py",
+        "src/lerobot/inference/chunk_settings.py",
+        "src/lerobot/inference/contracts.py",
+        "src/lerobot/inference/dispatch.py",
+        "src/lerobot/inference/execution.py",
+        "src/lerobot/inference/factory.py",
+        "src/lerobot/inference/policy_runner.py",
+        "src/lerobot/inference/prediction.py",
+        "src/lerobot/inference/rtc.py",
+        "src/lerobot/inference/sync.py",
+        "src/lerobot/policies/__init__.py",
+        "src/lerobot/policies/chunk.py",
+        "src/lerobot/policies/groot/modeling_groot.py",
+        "src/lerobot/policies/lawam/modeling_lawam.py",
+        "src/lerobot/policies/molmoact2/modeling_molmoact2.py",
+        "src/lerobot/policies/pretrained.py",
+        "src/lerobot/policies/rtc/__init__.py",
+        "src/lerobot/policies/rtc/action_queue.py",
+        "src/lerobot/policies/rtc/configuration_rtc.py",
+        "src/lerobot/policies/rtc/modeling_rtc.py",
+        "src/lerobot/policies/smolvla/modeling_smolvla.py",
+        "src/lerobot/policies/vla_jepa/modeling_vla_jepa.py",
+        "src/lerobot/policies/xvla/modeling_xvla.py",
+        "src/lerobot/remote_inference/README.md",
+        "src/lerobot/remote_inference/__init__.py",
+        "src/lerobot/remote_inference/chunk_contract.py",
+        "src/lerobot/remote_inference/client.py",
+        "src/lerobot/remote_inference/codec.py",
+        "src/lerobot/remote_inference/configs.py",
+        "src/lerobot/remote_inference/deployment.py",
+        "src/lerobot/remote_inference/engine.py",
+        "src/lerobot/remote_inference/protocol.py",
+        "src/lerobot/remote_inference/server.py",
+        "src/lerobot/robots/bi_openarm_follower/bi_openarm_follower.py",
+        "src/lerobot/robots/bi_rebot_b601_follower/bi_rebot_b601_follower.py",
+        "src/lerobot/robots/bi_so_follower/bi_so_follower.py",
+        "src/lerobot/robots/hope_jr/hope_jr_arm.py",
+        "src/lerobot/robots/hope_jr/hope_jr_hand.py",
+        "src/lerobot/robots/koch_follower/koch_follower.py",
+        "src/lerobot/robots/omx_follower/omx_follower.py",
+        "src/lerobot/robots/openarm_follower/openarm_follower.py",
+        "src/lerobot/robots/reachy2/robot_reachy2.py",
+        "src/lerobot/robots/rebot_b601_follower/rebot_b601_follower.py",
+        "src/lerobot/robots/robot.py",
+        "src/lerobot/robots/so_follower/so_follower.py",
+        "src/lerobot/rollout/__init__.py",
+        "src/lerobot/rollout/configs.py",
+        "src/lerobot/rollout/context.py",
+        "src/lerobot/rollout/controller.py",
+        "src/lerobot/rollout/inference/__init__.py",
+        "src/lerobot/rollout/inference/factory.py",
+        "src/lerobot/rollout/inference/rtc.py",
+        "src/lerobot/rollout/interactive.py",
+        "src/lerobot/rollout/robot_wrapper.py",
+        "src/lerobot/rollout/strategies/core.py",
+        "src/lerobot/rollout/strategies/dagger.py",
+        "src/lerobot/rollout/strategies/episodic.py",
+        "src/lerobot/rollout/strategies/highlight.py",
+        "src/lerobot/rollout/strategies/sentry.py",
+        "src/lerobot/scripts/lerobot_policy_server.py",
+        "src/lerobot/scripts/lerobot_rollout.py",
+        "src/lerobot/transport/__init__.py",
+        "src/lerobot/transport/services.proto",
+        "src/lerobot/transport/services_pb2.py",
+        "src/lerobot/transport/services_pb2_grpc.py",
+        "src/lerobot/transport/utils.py",
+        "src/lerobot/transport/zenoh.py",
+        "src/lerobot/utils/__init__.py",
+        "src/lerobot/utils/import_utils.py",
+        "tests/async_inference/test_e2e.py",
+        "tests/async_inference/test_helpers.py",
+        "tests/async_inference/test_policy_server.py",
+        "tests/async_inference/test_robot_client.py",
+        "tests/inference/execution_helpers.py",
+        "tests/inference/policy_helpers.py",
+        "tests/inference/rtc_helpers.py",
+        "tests/inference/test_aligned_execution.py",
+        "tests/inference/test_dispatch_helpers.py",
+        "tests/inference/test_execution.py",
+        "tests/inference/test_local_rtc_regressions.py",
+        "tests/inference/test_policy_contracts.py",
+        "tests/inference/test_policy_runner.py",
+        "tests/inference/test_prediction_parity.py",
+        "tests/inference/test_starvation.py",
+        "tests/inference/test_starvation_engines.py",
+        "tests/inference/test_trained_rtc_validation.py",
+        "tests/interactive_helpers.py",
+        "tests/policies/dm05/test_dm05_integration.py",
+        "tests/policies/pi0_pi05/test_pi0_embed_suffix.py",
+        "tests/policies/rtc/test_modeling_rtc.py",
+        "tests/policies/test_policy_dtype.py",
+        "tests/remote_inference/__init__.py",
+        "tests/remote_inference/conftest.py",
+        "tests/remote_inference/helpers.py",
+        "tests/remote_inference/network_helpers.py",
+        "tests/remote_inference/test_admission.py",
+        "tests/remote_inference/test_aligned_process.py",
+        "tests/remote_inference/test_chunk_contract.py",
+        "tests/remote_inference/test_codec.py",
+        "tests/remote_inference/test_deployment.py",
+        "tests/remote_inference/test_engine.py",
+        "tests/remote_inference/test_engine_lifecycle.py",
+        "tests/remote_inference/test_library_client.py",
+        "tests/remote_inference/test_model_space_protocol.py",
+        "tests/remote_inference/test_remote_path.py",
+        "tests/remote_inference/test_server_startup.py",
+        "tests/remote_inference/test_session.py",
+        "tests/remote_inference/test_task_context.py",
+        "tests/remote_inference/test_text_input.py",
+        "tests/remote_inference/test_transport_cancellation.py",
+        "tests/remote_inference/test_transport_errors.py",
+        "tests/remote_inference/test_transport_lifecycle.py",
+        "tests/remote_inference/test_zenoh.py",
+        "tests/test_available.py",
+        "tests/test_interactive_rollout.py",
+        "tests/test_recording_inference_pause.py",
+        "tests/test_remote_rollout.py",
+        "tests/test_rollout.py",
+        "tests/test_rollout_action_ordering.py",
+        "tests/utils.py",
+        "uv.lock"
+      ],
+      "public_checks": {
+        "endpoint": "https://api.github.com/repos/huggingface/lerobot/commits/bc2d29c3b19b99d8a3f7eb4016e353ae06973d20/check-runs?per_page=100",
+        "checked_utc": "2026-10-14T06:27:10.820138+00:00",
+        "runs": [
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38410524164/job/115361815389",
+            "started_at": "2026-10-13T14:47:27Z",
+            "completed_at": "2026-10-13T14:47:35Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38410524164/job/115345444756",
+            "started_at": "2026-10-13T14:17:38Z",
+            "completed_at": "2026-10-13T14:47:22Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38410524164/job/115341337294",
+            "started_at": "2026-10-13T14:06:41Z",
+            "completed_at": "2026-10-13T14:14:52Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38410524164/job/115341337075",
+            "started_at": "2026-10-13T14:06:38Z",
+            "completed_at": "2026-10-13T14:20:43Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38410522324/job/115341332366",
+            "started_at": "2026-10-13T14:06:33Z",
+            "completed_at": "2026-10-13T14:06:33Z"
+          },
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403644817/job/115340138180",
+            "started_at": "2026-10-13T14:04:07Z",
+            "completed_at": "2026-10-13T14:04:11Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403644817/job/115321393413",
+            "started_at": "2026-10-13T13:34:30Z",
+            "completed_at": "2026-10-13T14:04:02Z"
+          },
+          {
+            "name": "RoboCasa365 — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984784",
+            "started_at": "2026-10-13T13:23:58Z",
+            "completed_at": "2026-10-13T13:46:24Z"
+          },
+          {
+            "name": "MetaWorld — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984416",
+            "started_at": "2026-10-13T13:18:03Z",
+            "completed_at": "2026-10-13T13:23:20Z"
+          },
+          {
+            "name": "VLABench — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984380",
+            "started_at": "2026-10-13T13:18:29Z",
+            "completed_at": "2026-10-13T13:43:18Z"
+          },
+          {
+            "name": "RoboTwin 2.0 — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984335",
+            "started_at": "2026-10-13T13:21:10Z",
+            "completed_at": "2026-10-13T13:36:27Z"
+          },
+          {
+            "name": "RoboMME — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984144",
+            "started_at": "2026-10-13T13:18:00Z",
+            "completed_at": "2026-10-13T13:25:17Z"
+          },
+          {
+            "name": "Libero — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317984033",
+            "started_at": "2026-10-13T13:18:00Z",
+            "completed_at": "2026-10-13T13:37:40Z"
+          },
+          {
+            "name": "LIBERO-plus — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317983938",
+            "started_at": "2026-10-13T13:17:48Z",
+            "completed_at": "2026-10-13T13:52:18Z"
+          },
+          {
+            "name": "RoboCerebra — build image + 1-episode eval",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626756/job/115317983923",
+            "started_at": "2026-10-13T13:18:00Z",
+            "completed_at": "2026-10-13T13:33:53Z"
+          },
+          {
+            "name": "CodeQL",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/runs/115317644940",
+            "started_at": "2026-10-13T13:17:00Z",
+            "completed_at": "2026-10-13T13:17:03Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403644817/job/115317440848",
+            "started_at": "2026-10-13T13:16:41Z",
+            "completed_at": "2026-10-13T13:25:03Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403644817/job/115317440373",
+            "started_at": "2026-10-13T13:16:38Z",
+            "completed_at": "2026-10-13T13:33:41Z"
+          },
+          {
+            "name": "Build Main Docs",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403628649/job/115317377618",
+            "started_at": "2026-10-13T13:16:24Z",
+            "completed_at": "2026-10-13T13:16:24Z"
+          },
+          {
+            "name": "Build PR Docs / build_pr_documentation",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403628649/job/115317375775",
+            "started_at": "2026-10-13T13:16:29Z",
+            "completed_at": "2026-10-13T13:18:41Z"
+          },
+          {
+            "name": "Secret Leaks Scan",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626672/job/115317368429",
+            "started_at": "2026-10-13T13:16:29Z",
+            "completed_at": "2026-10-13T13:16:54Z"
+          },
+          {
+            "name": "Run Documentation Checks (Doctests)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626262/job/115317366782",
+            "started_at": "2026-10-13T13:16:27Z",
+            "completed_at": "2026-10-13T13:17:31Z"
+          },
+          {
+            "name": "Fast Pytest Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626359/job/115317366678",
+            "started_at": "2026-10-13T13:16:28Z",
+            "completed_at": "2026-10-13T13:30:03Z"
+          },
+          {
+            "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403626262/job/115317366375",
+            "started_at": "2026-10-13T13:16:27Z",
+            "completed_at": "2026-10-13T13:17:14Z"
+          },
+          {
+            "name": "Label PR",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403622730/job/115317357409",
+            "started_at": "2026-10-13T13:16:27Z",
+            "completed_at": "2026-10-13T13:16:35Z"
+          },
+          {
+            "name": "Analyze (actions)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403619410/job/115317351724",
+            "started_at": "2026-10-13T13:16:26Z",
+            "completed_at": "2026-10-13T13:17:11Z"
+          },
+          {
+            "name": "Analyze (python)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38403619410/job/115317348950",
+            "started_at": "2026-10-13T13:16:25Z",
+            "completed_at": "2026-10-13T13:17:35Z"
+          }
+        ]
+      },
+      "local_reproduction": false
+    },
+    {
+      "local_id": "E-I2",
+      "source_id": "github:huggingface/lerobot:pull:4874",
+      "url": "https://github.com/huggingface/lerobot/pull/4874",
+      "triage": "Accepted",
+      "decision": "Read",
+      "impact": "High",
+      "learning_track": [
+        "Embodied",
+        "Training"
+      ],
+      "signal_type": "system",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-13 (date-only, previously mentioned as follow-up)",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "streaming 多 worker 提高 CPU 并行供给，同时把 worker 拓扑、batch 轮转、内存和 episode 多样性纳入恢复与配置契约。",
+      "entry_markdown": "### E-I2 — LeRobot #4874：streaming 多 worker 的吞吐来自更多 CPU，恢复仍需相同拓扑\n\n- Source ID：`github:huggingface/lerobot:pull:4874`；[官方 PR](https://github.com/huggingface/lerobot/pull/4874)；标题 *feat(streaming): use --num_workers with streaming datasets, up to 2.5x faster data loading*；作者 Hadrien-Cornier；合并 `2026-10-12 09:22:07 UTC`；SHA `75cd2ba0ce9ff47686bb2bd7b7f65840606c02ee`。\n- First seen：**2026-10-13（已有后续线索）**；本轮完整 triage 2026-10-14；窗口如上；Impact：High；Decision：**Read**；Learning track：Embodied / Training；Signal type：system；Status：NEW。\n- Target question：如何让 rank 内多个 DataLoader worker 不重复/遗漏样本，并从训练 step 恢复原 batch 顺序？\n- Evidence：`streaming_dataset.py` 的 `_worker_share` 再划分 frame-balanced episode shard；`_batches_per_worker` 模拟 in-order DataLoader turn，恢复时旋转 worker 角色；byte budget/cache 按 rank 划分，显式 episode pool 改成每 worker。代码注明 exact anchor order 需要相同 dataset/seed/sampler/pool/分布式拓扑/worker 数，随机图像变换不属于该恢复保证。\n- 回归：`test_workers_yield_every_frame_once`、rank shard、epoch 内/跨 epoch resume、seed、budget 划分、whole batch offset、worker turn 对照。公开 Full Tests/Fast Tests success，GPU Tests skipped；未本地复现。\n- 性能边界：作者两组 AV1 数据 CPU loader 报告约 2.1–2.5×，伴随 RAM 上升和单 batch episode diversity 下降；更多 worker 并非降低每样本 CPU 工作。作者明确 A10G/H200 上 ACT 的 GPU-bound 训练无端到端收益。无需把数字当所有训练任务的提速。\n- Reason：接续昨天 #3917 的数据契约，新增的并行与恢复条件会改变真实配置判断。\n- Related topics：episode IO、DDP rank、checkpoint/recovery；Next：在自己的数据上同时量 samples/s、RSS、batch episode diversity 与恢复顺序；保留昨天 #3917 历史限制的时间边界。\n- 一句话：多 worker 通过 CPU 并行提高数据供给，同时把 worker 拓扑、batch 轮转和 episode 多样性变成恢复与配置条件。",
+      "target_question": "如何让 rank 内多个 DataLoader worker 不重复/遗漏样本，并从训练 step 恢复原 batch 顺序？",
+      "reason": "接续昨天 #3917 的数据契约，新增的并行与恢复条件会改变真实配置判断。",
+      "next_step": "在自己的数据上同时量 samples/s、RSS、batch episode diversity 与恢复顺序；保留昨天 #3917 历史限制的时间边界。",
+      "primary_verification": {
+        "title": "feat(streaming): use --num_workers with streaming datasets, up to 2.5x faster data loading",
+        "created_at": "2026-10-08T05:44:16Z",
+        "updated_at": "2026-10-12T09:22:08Z",
+        "merged_at": "2026-10-12T09:22:07Z",
+        "merge_commit_sha": "75cd2ba0ce9ff47686bb2bd7b7f65840606c02ee",
+        "changed_files": 7,
+        "html_url": "https://github.com/huggingface/lerobot/pull/4874",
+        "author": "Hadrien-Cornier",
+        "head_sha": "10ee2b3adb333389d280fc66229991d55f299af3"
+      },
+      "published_at": "2026-10-12T09:22:07Z",
+      "changed_files": [
+        "docs/source/training_dataset_streaming.mdx",
+        "src/lerobot/configs/default.py",
+        "src/lerobot/datasets/streaming_dataset.py",
+        "src/lerobot/scripts/lerobot_train.py",
+        "tests/datasets/test_streaming_production.py",
+        "tests/datasets/test_streaming_workers.py",
+        "tests/utils/test_train_utils.py"
+      ],
+      "public_checks": {
+        "endpoint": "https://api.github.com/repos/huggingface/lerobot/commits/10ee2b3adb333389d280fc66229991d55f299af3/check-runs?per_page=100",
+        "checked_utc": "2026-10-14T06:27:11.502616+00:00",
+        "runs": [
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38226959231/job/114736727162",
+            "started_at": "2026-10-12T08:59:11Z",
+            "completed_at": "2026-10-12T08:59:10Z"
+          },
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38226959282/job/114736726557",
+            "started_at": "2026-10-12T08:59:11Z",
+            "completed_at": "2026-10-12T08:59:10Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38226959282/job/114736726321",
+            "started_at": "2026-10-12T08:59:11Z",
+            "completed_at": "2026-10-12T08:59:10Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38226959282/job/114736726212",
+            "started_at": "2026-10-12T08:59:11Z",
+            "completed_at": "2026-10-12T08:59:10Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38226959282/job/114736724241",
+            "started_at": "2026-10-12T08:59:15Z",
+            "completed_at": "2026-10-12T09:13:05Z"
+          },
+          {
+            "name": "Build Main Docs",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225125244/job/114730634896",
+            "started_at": "2026-10-12T08:41:34Z",
+            "completed_at": "2026-10-12T08:41:34Z"
+          },
+          {
+            "name": "Build PR Docs / build_pr_documentation",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225125244/job/114730633697",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:43:36Z"
+          },
+          {
+            "name": "Label PR",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225124760/job/114730632555",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:41:44Z"
+          },
+          {
+            "name": "Fast Pytest Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225124849/job/114730632515",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:54:29Z"
+          },
+          {
+            "name": "Run Documentation Checks (Doctests)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225124766/job/114730631770",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:42:45Z"
+          },
+          {
+            "name": "Secret Leaks Scan",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225124672/job/114730631654",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:42:08Z"
+          },
+          {
+            "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38225124766/job/114730631290",
+            "started_at": "2026-10-12T08:41:39Z",
+            "completed_at": "2026-10-12T08:42:22Z"
+          }
+        ]
+      },
+      "local_reproduction": false
+    },
+    {
+      "local_id": "E-I3",
+      "source_id": "github:huggingface/lerobot:pull:4804",
+      "url": "https://github.com/huggingface/lerobot/pull/4804",
+      "triage": "Accepted",
+      "decision": "Read",
+      "impact": "Medium",
+      "learning_track": [
+        "Embodied",
+        "Training"
+      ],
+      "signal_type": "system",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-14",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "同视频重叠帧先去重再有限批量解码，最后恢复原始顺序、重复和时戳检查，避免吞吐优化改变训练输入。",
+      "entry_markdown": "### E-I3 — LeRobot #4804：重叠时间窗可以去重解码，但不能丢掉原始帧语义\n\n- Source ID：`github:huggingface/lerobot:pull:4804`；[官方 PR](https://github.com/huggingface/lerobot/pull/4804)；标题 *perf(datasets): optimize Lance RGB batch decoding*；作者 yanghua；合并 `2026-10-12 14:46:49 UTC`；SHA `24f15b92b556cb861ca65e989462e23505a701bd`。\n- First seen：2026-10-14；窗口如上；Impact：Medium；Decision：**Read**；Learning track：Embodied / Training；Signal type：system；Status：NEW。\n- Target question：相邻样本时间窗大量重叠时，怎样减少重复解码并控制峰值解码内存，仍保留重复帧、顺序和 timestamp tolerance？\n- Evidence：`lance_backend.py` 对同文件 RGB 请求汇总 sorted unique frame indices，解码后 scatter 到原样本顺序；单请求保留直通路径。multi-sample call 上限 64 unique frames 和估计 64 MiB 解码数据，测试覆盖 duplicates/order、PTS 检查、float32 byte limit、单请求不复制。公开 Full Tests/Fast Tests success，GPU Tests skipped；未本地复现。\n- 边界：64 MiB 是单次活跃多样本文件解码的估算，不是 worker RSS 上限；最终输出、decoder cache 和并行文件都不包括，metadata shape 不正确会影响估计。PyAV depth path 不变。作者 benchmark 在 V100/PyTorch 2.9.1/TorchCodec 0.8.1/LanceDB 0.37.1；相邻窗收益显著高于随机窗，不能外推任意随机训练数据。\n- Reason：直接改变多模态 IO 重复工作，并有值、顺序和时戳回归，适合与已收录 TorchCodec surface/lifetime 正确性连读。\n- Related topics：视频 IO、action history/window、数据正确性；Next：用相邻/随机 window 两类负载测试吞吐、RSS 与逐帧 parity。\n- 一句话：同视频的重叠帧先去重再有限批量解码，最后恢复样本原顺序与重复，避免吞吐优化静默改变训练输入。",
+      "target_question": "相邻样本时间窗大量重叠时，怎样减少重复解码并控制峰值解码内存，仍保留重复帧、顺序和 timestamp tolerance？",
+      "reason": "直接改变多模态 IO 重复工作，并有值、顺序和时戳回归，适合与已收录 TorchCodec surface/lifetime 正确性连读。",
+      "next_step": "用相邻/随机 window 两类负载测试吞吐、RSS 与逐帧 parity。",
+      "primary_verification": {
+        "title": "perf(datasets): optimize Lance RGB batch decoding",
+        "created_at": "2026-09-29T13:08:40Z",
+        "updated_at": "2026-10-12T14:46:49Z",
+        "merged_at": "2026-10-12T14:46:49Z",
+        "merge_commit_sha": "24f15b92b556cb861ca65e989462e23505a701bd",
+        "changed_files": 2,
+        "html_url": "https://github.com/huggingface/lerobot/pull/4804",
+        "author": "yanghua",
+        "head_sha": "f79a5f698fc8fb1330469299d824306bdbe64c24"
+      },
+      "published_at": "2026-10-12T14:46:49Z",
+      "changed_files": [
+        "src/lerobot/datasets/lance_backend.py",
+        "tests/datasets/test_lance_backend.py"
+      ],
+      "public_checks": {
+        "endpoint": "https://api.github.com/repos/huggingface/lerobot/commits/f79a5f698fc8fb1330469299d824306bdbe64c24/check-runs?per_page=100",
+        "checked_utc": "2026-10-14T06:27:12.286762+00:00",
+        "runs": [
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38256022298/job/114834201415",
+            "started_at": "2026-10-12T13:29:19Z",
+            "completed_at": "2026-10-12T13:29:19Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38256022298/job/114834201238",
+            "started_at": "2026-10-12T13:29:19Z",
+            "completed_at": "2026-10-12T13:29:19Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38256022298/job/114834200980",
+            "started_at": "2026-10-12T13:29:19Z",
+            "completed_at": "2026-10-12T13:29:19Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38256022232/job/114834199315",
+            "started_at": "2026-10-12T13:29:19Z",
+            "completed_at": "2026-10-12T13:29:18Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38256022298/job/114834198783",
+            "started_at": "2026-10-12T13:29:23Z",
+            "completed_at": "2026-10-12T13:47:08Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255774462/job/114833397309",
+            "started_at": "2026-10-12T13:27:13Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255774462/job/114833390144",
+            "started_at": "2026-10-12T13:27:12Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255775048/job/114833337319",
+            "started_at": "2026-10-12T13:27:04Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255774462/job/114833335544",
+            "started_at": "2026-10-12T13:27:03Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255774462/job/114833334343",
+            "started_at": "2026-10-12T13:27:03Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38255774824/job/114833334257",
+            "started_at": "2026-10-12T13:27:03Z",
+            "completed_at": "2026-10-12T13:27:03Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402164/job/114164687153",
+            "started_at": "2026-10-10T07:43:32Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402553/job/114164673620",
+            "started_at": "2026-10-10T07:43:27Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402181/job/114164673421",
+            "started_at": "2026-10-10T07:43:27Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402181/job/114164673319",
+            "started_at": "2026-10-10T07:43:27Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402181/job/114164672900",
+            "started_at": "2026-10-10T07:43:27Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035402181/job/114164672599",
+            "started_at": "2026-10-10T07:43:27Z",
+            "completed_at": "2026-10-10T07:43:27Z"
+          },
+          {
+            "name": "Build and Push Docker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368291/job/114164602728",
+            "started_at": "2026-10-10T07:43:03Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368795/job/114164579030",
+            "started_at": "2026-10-10T07:42:54Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368660/job/114164578593",
+            "started_at": "2026-10-10T07:42:54Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368713/job/114164578567",
+            "started_at": "2026-10-10T07:42:54Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "Delete PR Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368291/job/114164578052",
+            "started_at": "2026-10-10T07:42:53Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "GPU Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368291/job/114164577598",
+            "started_at": "2026-10-10T07:42:53Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "Full Tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368291/job/114164577233",
+            "started_at": "2026-10-10T07:42:53Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "claude",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035368280/job/114164576969",
+            "started_at": "2026-10-10T07:42:53Z",
+            "completed_at": "2026-10-10T07:42:53Z"
+          },
+          {
+            "name": "Build Main Docs",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035352070/job/114164526878",
+            "started_at": "2026-10-10T07:42:34Z",
+            "completed_at": "2026-10-10T07:42:34Z"
+          },
+          {
+            "name": "Build PR Docs / build_pr_documentation",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035352070/job/114164526301",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:44:33Z"
+          },
+          {
+            "name": "Label PR",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035351658/job/114164525842",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:42:44Z"
+          },
+          {
+            "name": "Run Documentation Checks (Doctests)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035351740/job/114164525266",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:43:40Z"
+          },
+          {
+            "name": "Fast Pytest Tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035351764/job/114164525217",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:52:56Z"
+          },
+          {
+            "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035351740/job/114164525133",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:43:32Z"
+          },
+          {
+            "name": "Secret Leaks Scan",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/huggingface/lerobot/actions/runs/38035351681/job/114164524887",
+            "started_at": "2026-10-10T07:42:39Z",
+            "completed_at": "2026-10-10T07:43:03Z"
+          }
+        ]
+      },
+      "local_reproduction": false
+    },
+    {
+      "local_id": "E-I4",
+      "source_id": "github:isaac-sim/IsaacLab:pull:8546",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8546",
+      "triage": "Accepted",
+      "decision": "Read",
+      "impact": "High",
+      "learning_track": [
+        "Embodied",
+        "Systems"
+      ],
+      "signal_type": "system",
+      "lifecycle": "NEW",
+      "first_seen": "2026-10-14",
+      "first_full_triage": "2026-10-14",
+      "one_sentence_takeaway": "Newton frame 在创建 GPU buffers 前按环境编号重排并保持 renderer 目标配对，修复交错 prototype 下的静默跨环境 pose 错配。",
+      "entry_markdown": "### E-I4 — Isaac Lab #8546：不同 world prototype 不能改变环境与相机槽位配对\n\n- Source ID：`github:isaac-sim/IsaacLab:pull:8546`；[官方 PR](https://github.com/isaac-sim/IsaacLab/pull/8546)；标题 *Preserve environment ordering in Newton frame views*；作者/固定 SHA 见 evidence.json；合并 `2026-10-14 02:08:17 UTC`。\n- First seen：2026-10-14；窗口如上；Impact：High；Decision：**Read**；Learning track：Embodied / Systems；Signal type：system；Status：NEW。\n- Target question：vectorized simulation 混合 prototype 后，相机/pose 是否仍属于同一个 env，还是发生静默跨环境错配？\n- Evidence：`newton_site_frame_view.py` 对来源 expression index 与显式 env ID 做 stable order；在 GPU buffers 创建前一起重排 body indices、local transforms、scale 与 renderer destination，保留每 env 内源 frame 顺序。新增 CUDA regression `test_interleaved_clone_prototypes_preserve_frame_order` 构造交错 prototype、多个 frame 与自定义 namespace，同时断言 world pose 和 renderer path。\n- 测试边界：作者报告 focused regression 在修复前失败、45 个本地 frame-view tests 通过，并报告 24 environments × 360 steps 的 FoviDex camera replay。公开 head check-runs 的 `isaaclab_newton` 与 rendering checks success，但 **`isaaclab (core) [2/3]` failure**，因此不能写“CI 全绿”。learning recovery 与 contact solver correctness 作者仍标未验证；未本地复现。\n- Reason：这是 observation identity / label correctness 问题；比一条普通兼容性修复更影响训练有效性。\n- Related topics：vectorized simulation、camera/pose ownership、数据正确性；Next：把 env ID、frame slot 和 renderer destination 作为异构仿真回归的成组断言。\n- 一句话：在 GPU buffer 建立前按环境编号稳定重排 frame 与 renderer 目标，防止交错 prototype 把另一环境的 pose 喂给当前相机。",
+      "target_question": "vectorized simulation 混合 prototype 后，相机/pose 是否仍属于同一个 env，还是发生静默跨环境错配？",
+      "reason": "这是 observation identity / label correctness 问题；比一条普通兼容性修复更影响训练有效性。",
+      "next_step": "把 env ID、frame slot 和 renderer destination 作为异构仿真回归的成组断言。",
+      "primary_verification": {
+        "title": "Preserve environment ordering in Newton frame views",
+        "created_at": "2026-10-14T00:40:52Z",
+        "updated_at": "2026-10-14T02:08:41Z",
+        "merged_at": "2026-10-14T02:08:17Z",
+        "merge_commit_sha": "76215316eba829b3453f5d20e4e1d537982a774a",
+        "changed_files": 3,
+        "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8546",
+        "author": "nblauch",
+        "head_sha": "9adcd43dc4aeab271ff632ac89cfc7468dc07cbc"
+      },
+      "published_at": "2026-10-14T02:08:17Z",
+      "changed_files": [
+        "source/isaaclab_newton/changelog.d/fix-newton-frame-environment-order.fixed.rst",
+        "source/isaaclab_newton/isaaclab_newton/sim/views/newton_site_frame_view.py",
+        "source/isaaclab_newton/test/sim/test_views_xform_prim_newton.py"
+      ],
+      "public_checks": {
+        "endpoint": "https://api.github.com/repos/isaac-sim/IsaacLab/commits/9adcd43dc4aeab271ff632ac89cfc7468dc07cbc/check-runs?per_page=100",
+        "checked_utc": "2026-10-14T06:27:13.041147+00:00",
+        "runs": [
+          {
+            "name": "Backport PR #8546",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38499454466/job/115642686119",
+            "started_at": "2026-10-14T02:08:23Z",
+            "completed_at": "2026-10-14T02:08:44Z"
+          },
+          {
+            "name": "performance-smoke",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115639393903",
+            "started_at": "2026-10-14T01:56:50Z",
+            "completed_at": "2026-10-14T01:57:08Z"
+          },
+          {
+            "name": "ovrtx-cache-warm",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636086345",
+            "started_at": "2026-10-14T01:44:48Z",
+            "completed_at": "2026-10-14T01:44:48Z"
+          },
+          {
+            "name": "warp-cache-warm",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636085785",
+            "started_at": "2026-10-14T01:44:48Z",
+            "completed_at": "2026-10-14T01:44:48Z"
+          },
+          {
+            "name": "rendering-correctness-kitless (ovstage)",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636085427",
+            "started_at": "2026-10-14T01:44:48Z",
+            "completed_at": "2026-10-14T01:44:48Z"
+          },
+          {
+            "name": "isaaclab_newton",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084741",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:50:43Z"
+          },
+          {
+            "name": "isaaclab_teleop",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084693",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:52:49Z"
+          },
+          {
+            "name": "isaaclab (core) [2/3]",
+            "status": "completed",
+            "conclusion": "failure",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084675",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:52:15Z"
+          },
+          {
+            "name": "standalone demos (headless, Kit)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084640",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:56:56Z"
+          },
+          {
+            "name": "isaaclab_ov",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084637",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:51:16Z"
+          },
+          {
+            "name": "isaaclab_tasks [3/3]",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084636",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:52:20Z"
+          },
+          {
+            "name": "performance-smoke-benchmarks",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084635",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:56:47Z"
+          },
+          {
+            "name": "isaaclab_assets",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084584",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:51:54Z"
+          },
+          {
+            "name": "isaaclab_contrib",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084549",
+            "started_at": "2026-10-14T01:44:58Z",
+            "completed_at": "2026-10-14T01:51:56Z"
+          },
+          {
+            "name": "isaaclab_experimental",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084520",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:45:48Z"
+          },
+          {
+            "name": "isaaclab_tasks [1/3]",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084499",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:50:29Z"
+          },
+          {
+            "name": "rendering-correctness-kitless (legacy)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084484",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:56:36Z"
+          },
+          {
+            "name": "record-video",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084479",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:50:02Z"
+          },
+          {
+            "name": "standalone demos (headless, non-Kit)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084474",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:53:07Z"
+          },
+          {
+            "name": "isaaclab_rl",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084461",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T02:03:22Z"
+          },
+          {
+            "name": "isaaclab_mimic",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084459",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:50:09Z"
+          },
+          {
+            "name": "isaaclab (core) [3/3]",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084441",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:56:03Z"
+          },
+          {
+            "name": "isaaclab_visualizers",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084425",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T02:02:08Z"
+          },
+          {
+            "name": "isaaclab_physx",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084398",
+            "started_at": "2026-10-14T01:44:50Z",
+            "completed_at": "2026-10-14T01:55:35Z"
+          },
+          {
+            "name": "rendering-correctness",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084371",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:58:26Z"
+          },
+          {
+            "name": "isaaclab_tasks [2/3]",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084181",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:55:46Z"
+          },
+          {
+            "name": "isaaclab (core) [1/3]",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636084104",
+            "started_at": "2026-10-14T01:44:51Z",
+            "completed_at": "2026-10-14T01:51:36Z"
+          },
+          {
+            "name": "Multi-GPU training smoke (kit-less)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115636070920",
+            "started_at": "2026-10-14T01:45:31Z",
+            "completed_at": "2026-10-14T01:52:25Z"
+          },
+          {
+            "name": "test-contrib-environments",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636070189",
+            "started_at": "2026-10-14T01:44:48Z",
+            "completed_at": "2026-10-14T01:59:31Z"
+          },
+          {
+            "name": "test-curobo",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115636070099",
+            "started_at": "2026-10-14T01:44:47Z",
+            "completed_at": "2026-10-14T01:55:37Z"
+          },
+          {
+            "name": "Multi-GPU unit tests",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115636069461",
+            "started_at": "2026-10-14T01:44:47Z",
+            "completed_at": "2026-10-14T01:52:31Z"
+          },
+          {
+            "name": "Multi-GPU training smoke (Kit)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115636069447",
+            "started_at": "2026-10-14T01:44:47Z",
+            "completed_at": "2026-10-14T01:56:45Z"
+          },
+          {
+            "name": "Build & Test",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837458/job/115636006227",
+            "started_at": "2026-10-14T01:44:33Z",
+            "completed_at": "2026-10-14T01:54:40Z"
+          },
+          {
+            "name": "Build Kit-less Docker Image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837496/job/115635997860",
+            "started_at": "2026-10-14T01:44:30Z",
+            "completed_at": "2026-10-14T01:44:29Z"
+          },
+          {
+            "name": "Build Multi-Version Docs",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837455/job/115635989187",
+            "started_at": "2026-10-14T01:44:28Z",
+            "completed_at": "2026-10-14T01:44:27Z"
+          },
+          {
+            "name": "Deploy Docs",
+            "status": "completed",
+            "conclusion": "skipped",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837455/job/115635988995",
+            "started_at": "2026-10-14T01:44:28Z",
+            "completed_at": "2026-10-14T01:44:27Z"
+          },
+          {
+            "name": "Build Latest Docs",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837455/job/115635987393",
+            "started_at": "2026-10-14T01:44:30Z",
+            "completed_at": "2026-10-14T01:50:48Z"
+          },
+          {
+            "name": "Build / cache kit-less image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115635984959",
+            "started_at": "2026-10-14T01:44:29Z",
+            "completed_at": "2026-10-14T01:44:45Z"
+          },
+          {
+            "name": "Build / cache image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115635984938",
+            "started_at": "2026-10-14T01:44:29Z",
+            "completed_at": "2026-10-14T01:44:45Z"
+          },
+          {
+            "name": "Build cuRobo Docker Image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115635981072",
+            "started_at": "2026-10-14T01:44:28Z",
+            "completed_at": "2026-10-14T01:44:45Z"
+          },
+          {
+            "name": "Build Base Docker Image",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115635981036",
+            "started_at": "2026-10-14T01:44:28Z",
+            "completed_at": "2026-10-14T01:44:48Z"
+          },
+          {
+            "name": "Load Config",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837458/job/115635976605",
+            "started_at": "2026-10-14T01:44:27Z",
+            "completed_at": "2026-10-14T01:44:31Z"
+          },
+          {
+            "name": "Installation Tests (x86)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837481/job/115635965805",
+            "started_at": "2026-10-14T01:44:25Z",
+            "completed_at": "2026-10-14T01:57:39Z"
+          },
+          {
+            "name": "Installation Tests (ARM)",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837481/job/115635965678",
+            "started_at": "2026-10-14T01:44:25Z",
+            "completed_at": "2026-10-14T01:48:17Z"
+          },
+          {
+            "name": "Detect Changes",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115635937244",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:26Z"
+          },
+          {
+            "name": "dockerfile-contract",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115635937080",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:34Z"
+          },
+          {
+            "name": "Load Config",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38497309270/job/115635936929",
+            "started_at": "2026-10-14T01:44:20Z",
+            "completed_at": "2026-10-14T01:44:26Z"
+          },
+          {
+            "name": "Detect Changes",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837481/job/115635936622",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:22Z"
+          },
+          {
+            "name": "Docker Dependency Licenses Check",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837492/job/115635936549",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:56:37Z"
+          },
+          {
+            "name": "license-check",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837492/job/115635936099",
+            "started_at": "2026-10-14T01:44:20Z",
+            "completed_at": "2026-10-14T01:51:55Z"
+          },
+          {
+            "name": "Detect Changes",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115635935978",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:26Z"
+          },
+          {
+            "name": "Load Config",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837480/job/115635935665",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:23Z"
+          },
+          {
+            "name": "Detect Changes",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837496/job/115635934369",
+            "started_at": "2026-10-14T01:44:19Z",
+            "completed_at": "2026-10-14T01:44:29Z"
+          },
+          {
+            "name": "pre-commit",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837468/job/115635933327",
+            "started_at": "2026-10-14T01:44:18Z",
+            "completed_at": "2026-10-14T01:45:03Z"
+          },
+          {
+            "name": "Build Wheel",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837479/job/115635933177",
+            "started_at": "2026-10-14T01:44:18Z",
+            "completed_at": "2026-10-14T01:44:51Z"
+          },
+          {
+            "name": "Detect Changes",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837458/job/115635931611",
+            "started_at": "2026-10-14T01:44:18Z",
+            "completed_at": "2026-10-14T01:44:25Z"
+          },
+          {
+            "name": "Detect Doc Build Type",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837455/job/115635931247",
+            "started_at": "2026-10-14T01:44:23Z",
+            "completed_at": "2026-10-14T01:44:27Z"
+          },
+          {
+            "name": "Check for Broken Links",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837462/job/115635931113",
+            "started_at": "2026-10-14T01:44:18Z",
+            "completed_at": "2026-10-14T01:44:31Z"
+          },
+          {
+            "name": "Check changelog fragments",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837429/job/115635928109",
+            "started_at": "2026-10-14T01:44:18Z",
+            "completed_at": "2026-10-14T01:44:32Z"
+          },
+          {
+            "name": "labeler",
+            "status": "completed",
+            "conclusion": "success",
+            "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/38496837453/job/115634431835",
+            "started_at": "2026-10-14T01:38:46Z",
+            "completed_at": "2026-10-14T01:38:51Z"
+          }
+        ]
+      },
+      "local_reproduction": false
+    }
+  ],
+  "observed": [
+    {
+      "source_id": "pi:blog:api-beta:2026-10-13",
+      "title": "Frontier Models for Every Robot: Announcing our API beta",
+      "url": "https://www.pi.website/blog/api-beta",
+      "author": "Physical Intelligence (organizational; no individual byline visible)",
+      "published_at": "2026-10-13 (date-only)",
+      "reason": "披露上传数据、托管微调与 hosted inference，承认 connectivity 问题，但未披露模型机制/可复现评估或网络deadline/fallback契约。",
+      "next_step": "等待技术docs/model card与部署时限/失败恢复说明。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "arxiv:2610.16517v1",
+      "title": "Trust-Calibrated VLA Policy Post-Training with Evolving Imagination",
+      "url": "https://arxiv.org/abs/2610.16517v1",
+      "primary_verification": {
+        "source_id": "arxiv:2610.16517",
+        "checked_utc": "2026-10-14T06:26:41.992320+00:00",
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.16517",
+          "sha256": "e6f41d98a442b49e83df6104fb14ad07572b57f2e573dd2daabd815fe1934daa",
+          "bytes": 41917
+        },
+        "metadata": {
+          "citation_title": [
+            "Trust-Calibrated VLA Policy Post-Training with Evolving Imagination"
+          ],
+          "citation_author": [
+            "Li, Wenzhan",
+            "Qin, Yiran",
+            "Zhou, Heng",
+            "Wang, Huirui",
+            "Guo, Yulan",
+            "Zhang, Ruimao"
+          ],
+          "citation_date": [
+            "2026/10/12"
+          ]
+        },
+        "abstract": "Abstract: Vision-Language-Action (VLA) models are often pretrained via imitation learning, making reinforcement learning (RL) post-training important when deployment moves beyond demonstration coverage. Existing refinement paradigms expose a reliability--efficiency tension: model-free refinement avoids simulator bias but is interaction-intensive, whereas model-based refinement can exploit unreliable imagination even as its simulator adapts. We propose Model-Evolving Reinforcement Learning (MERL), a trust-calibrated framework that couples policy optimization with an online-updated simulator comprising a world model and a reward proxy head. Across stages, simulator reliability controls the imagined-data ratio and rollout horizon; within rollouts, chunk-level trust controls replay selection and optimization weight. For recursive imagination without exact grounded continuations, a residual predictor estimates trust without querying future ground truth. On perturbed LIBERO-PRO tasks, MERL reaches 79.7% average success, improves high-threshold learning speed by 10.9% over the matched model-free control, and outperforms same-protocol external baselines across three training seeds. Fixed-data adaptation from 50 demonstrations per task achieves 80.0% average success on two physical-robot tasks.",
+        "submission_history": "Submission history From: Wenzhan Li [ view email ] [v1] Mon, 12 Oct 2026 10:08:28 UTC (14,182 KB)",
+        "html": {
+          "url": "https://arxiv.org/html/2610.16517v1",
+          "sha256": "1f76f63ec8bec3a37931994c357a8701551549323c509fcb7bfb5f2ab20b8775",
+          "bytes": 576535
+        }
+      },
+      "reason": "metadata和方法全文已获取；reliability控制imagination比例/horizon、chunk trust控制replay/weight有潜在价值，尚未完成全部实验协议复核。",
+      "next_step": "核查真实fixed-data adaptation与在线RL的区别、world-model错误度量。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "arxiv:2610.17252v1",
+      "title": "Value-Preserving Action Quantization",
+      "url": "https://arxiv.org/abs/2610.17252v1",
+      "primary_verification": {
+        "source_id": "arxiv:2610.17252",
+        "checked_utc": "2026-10-14T06:26:42.102845+00:00",
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.17252",
+          "sha256": "d4b3d3cff6b4266692f46cb423cbbc03e4aec9616d6778ef262ec12ba6aa1d14",
+          "bytes": 42484
+        },
+        "metadata": {
+          "citation_title": [
+            "Value-Preserving Action Quantization"
+          ],
+          "citation_author": [
+            "Sun, Max Muchen",
+            "Kwon, Jueun",
+            "Riviere, Benjamin",
+            "Murphey, Todd"
+          ],
+          "citation_date": [
+            "2026/10/12"
+          ]
+        },
+        "abstract": "Abstract: Search-based policy learning, such as Monte Carlo tree search (MCTS), offers the flexibility to trade runtime computation for data efficiency and adaptation to novel environments. For robot learning, however, applying search requires discretizing the continuous action space and associated dynamics, typically through action quantization. While reconstruction-based quantization is sufficient for representing the continuous action space alone, policy learning additionally requires the quantized actions to preserve their effects on future states and values. We show that such requirement is not necessarily captured by action reconstruction error. Instead, we prove that the error in the value function resulting from action quantization is tightly bounded by the reconstruction error of state reachability under the quantized actions. Based on these results, we propose value-preserving action quantization (VAQ), which quantizes actions by preserving state reachability. We further combine VAQ with MCTS (VAQ-MCTS) as a value-preserving, search-based policy learning framework for behavioral cloning. Using a wide range of object pushing tasks as a controlled benchmark, we evaluate VAQ-MCTS against state-of-the-art behavioral cloning methods. VAQ-MCTS matches or exceeds their performance under standard settings, while substantially improving data efficiency and robustness to heterogeneous demonstrations, while enabling zero-shot adaptation to novel environments. Hardware experiments further demonstrate the effectiveness of VAQ-MCTS, completing all 30 real-world object pushing trials with only 10 minutes of demonstration data.",
+        "submission_history": "Submission history From: Max Muchen Sun [ view email ] [v1] Mon, 12 Oct 2026 18:13:32 UTC (1,898 KB)",
+        "html": {
+          "url": "https://arxiv.org/html/2610.17252v1",
+          "sha256": "683906045ef47c10b8aa5b7fe64879d7811a2f321723873c7df0a496ff9edf0c",
+          "bytes": 285873
+        }
+      },
+      "reason": "metadata和全文已获取；reachability/value与动作重构误差区分值得读，尚未核proof假设和search成本。",
+      "next_step": "后续action representation专题，核成本/任务范围，不外推pushing到generalist VLA。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:pull:8539",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8539",
+      "title": "Reserve CUDA graph memory when the simulation context is created",
+      "author": "egolubev-nvda",
+      "published_at": "2026-10-14T00:39:01Z",
+      "merge_commit_sha": "c647410de088139054199f41bb71b451602a5fe7",
+      "reason": "预留CUDA graph虚拟地址改善Windows renderer启动后capture stall，作者未测试Linux/L40/长训。",
+      "next_step": "遇到同类Windows stall再定向验证，保持平台边界。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:pull:8465",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8465",
+      "title": "[RL] Fix training continuation and task configuration overrides",
+      "author": "StafaH",
+      "published_at": "2026-10-12T19:22:38Z",
+      "merge_commit_sha": "43100989af845462ac7036a256c01bcc8b84fe4a",
+      "reason": "训练resume optimizer选择、task发现与override修复，属于已有训练配置契约的后续实现。",
+      "next_step": "与checkpoint恢复专题连读，不据修复数量自动晋级。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:pull:8464",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8464",
+      "title": "[PhysX/OVPhysX] Preserve compliant contacts during randomization and cloning",
+      "author": "StafaH",
+      "published_at": "2026-10-12T19:06:31Z",
+      "merge_commit_sha": "171b0ebe03b728997a09c016b37eb49ab074e81a",
+      "reason": "材料随机化/clone保留compliant contact；native PhysX test尚有作者未验边界。",
+      "next_step": "后续contact fidelity排障时再核CPU/GPU与真实材料参数。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:pull:8425",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8425",
+      "title": "Keep recording targets fixed and preserve replay success checks",
+      "author": "maxkra15",
+      "published_at": "2026-10-12T17:25:31Z",
+      "merge_commit_sha": "8b90556234bce0af75cdc4e3f2dd964b2bbd49c5",
+      "reason": "record目标固定与replay success callback有用；replay仍未恢复原始command state。",
+      "next_step": "后续演示replay协议专题核查目标/成功条件恢复。",
+      "triage": "Observed",
+      "decision": "Observe"
+    },
+    {
+      "source_id": "github:meta-pytorch/torchcodec:pull:1764",
+      "url": "https://github.com/meta-pytorch/torchcodec/pull/1764",
+      "title": "Fix heap buffer overflow (read) in GIF decoder",
+      "author": "apach301",
+      "published_at": "2026-10-13T10:46:37Z",
+      "reason": "本页已核合并与说明，窄GIF decoder heap buffer read修复；未建立机器人视频主路径新的系统判断，本轮不升格。",
+      "next_step": "使用GIF输入时定向核修复与release包含关系。",
+      "triage": "Observed",
+      "decision": "Observe"
+    }
+  ],
+  "rejected": [
+    {
+      "source_id": "github:isaac-sim/IsaacLab:release:browser-demos-v3",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v3",
+      "title": "Browser demos v3",
+      "published_at": "2026-10-13T23:02:34Z",
+      "triage": "Rejected",
+      "decision": "Ignore",
+      "reason": "交互展示与静态部署assets，不当作训练框架新主版本、政策性能或模型证据。"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:release:browser-demos-v2",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v2",
+      "title": "Browser demos v2",
+      "published_at": "2026-10-13T22:43:44Z",
+      "triage": "Rejected",
+      "decision": "Ignore",
+      "reason": "交互展示与静态部署assets，不当作训练框架新主版本、政策性能或模型证据。"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:release:browser-demos-v1",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v1",
+      "title": "Browser demos v1",
+      "published_at": "2026-10-13T14:29:13Z",
+      "triage": "Rejected",
+      "decision": "Ignore",
+      "reason": "交互展示与静态部署assets，不当作训练框架新主版本、政策性能或模型证据。"
+    }
+  ],
+  "dedupe_and_old_exclusions": [
+    {
+      "source_id": "github:huggingface/lerobot:pull:4874",
+      "status": "First mentioned 2026-10-13; first complete triage this scan; accepted only once."
+    },
+    {
+      "source_id": "github:huggingface/lerobot:pull:4836",
+      "status": "Reverted by #4936; prior report already logged; #4937 is separate reintroduction."
+    },
+    {
+      "source_id": "arxiv:2610.13929v1",
+      "original_date_utc": "2026-10-09T17:55:20Z",
+      "status": "Outside window; no new acceptance."
+    },
+    {
+      "source_id": "arxiv:2610.14406v1",
+      "original_date": "2026-10-09",
+      "status": "Outside window; no new acceptance."
+    },
+    {
+      "source_id": "arxiv:2610.05062",
+      "status": "Peer-supplied replacement lead only; not metadata/method verified by this subtask, excluded."
+    }
+  ],
+  "arxiv_index_coverage": [
+    {
+      "category": "cs.RO",
+      "url": "https://arxiv.org/list/cs.RO/new",
+      "checked_utc": "2026-10-14T06:25:23.467766+00:00",
+      "headings": [
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 255 of 255 entries)",
+        "Cross submissions (showing 49 of 49 entries)",
+        "Replacement submissions (showing 175 of 175 entries)"
+      ],
+      "fetched_html_sha256": "3e26dc78f34bbe5da262f0c850f5d4f8a3240251da078a92c190f0ec60cc826a",
+      "keyword_matched_entries": 479,
+      "coverage_claim": "Index fetched and parsed; targeted candidate/full-method triage only, not exhaustive reading of every paper."
+    },
+    {
+      "category": "cs.CV",
+      "url": "https://arxiv.org/list/cs.CV/new",
+      "checked_utc": "2026-10-14T06:25:23.468420+00:00",
+      "headings": [
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 381 of 381 entries)",
+        "Cross submissions (showing 98 of 98 entries)",
+        "Replacement submissions (showing 263 of 263 entries)"
+      ],
+      "fetched_html_sha256": "0402a108d6fae5ccff80bca8a9add2631b7661be39cb0920041183d76b026673",
+      "keyword_matched_entries": 132,
+      "coverage_claim": "Index fetched and parsed; targeted candidate/full-method triage only, not exhaustive reading of every paper."
+    },
+    {
+      "category": "cs.LG",
+      "url": "https://arxiv.org/list/cs.LG/new",
+      "checked_utc": "2026-10-14T06:25:31.047535+00:00",
+      "headings": [
+        "Showing new listings for Wednesday, 14 October 2026",
+        "New submissions (showing 502 of 502 entries)",
+        "Cross submissions (showing 360 of 360 entries)",
+        "Replacement submissions (showing 482 of 482 entries)"
+      ],
+      "fetched_html_sha256": "1cc0870105e3c2584dd16abe5e78ec87e96397dbd6cebea0162749e16975fb9b",
+      "keyword_matched_entries": 91,
+      "coverage_claim": "Index fetched and parsed; targeted candidate/full-method triage only, not exhaustive reading of every paper."
+    }
+  ],
+  "github_inventory": [
+    {
+      "repo": "Physical-Intelligence/openpi",
+      "checked_at_utc": "2026-10-14T06:23:20.352327+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [
+        {
+          "endpoint": "repos/Physical-Intelligence/openpi/releases?per_page=30",
+          "error": "Get \"https://api.github.com/repos/Physical-Intelligence/openpi/releases?per_page=30\": EOF\n"
+        }
+      ],
+      "pulls_count": 100,
+      "pulls_endpoint": "https://api.github.com/repos/Physical-Intelligence/openpi/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2025-07-09T05:04:40Z",
+        "2026-10-08T18:11:00Z"
+      ],
+      "merged_in_window": [],
+      "checked_end_utc": "2026-10-14T06:23:41.137914+00:00",
+      "release_retry": {
+        "endpoint": "https://api.github.com/repos/Physical-Intelligence/openpi/releases?per_page=30",
+        "checked_utc": "2026-10-14T06:27:08.501338+00:00",
+        "count": 0,
+        "error": null
+      },
+      "releases_count": 0,
+      "releases_recent": [],
+      "latest_release": null,
+      "errors_resolved": true
+    },
+    {
+      "repo": "openvla/openvla",
+      "checked_at_utc": "2026-10-14T06:23:20.353526+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [
+        {
+          "endpoint": "repos/openvla/openvla/releases?per_page=30",
+          "error": "Get \"https://api.github.com/repos/openvla/openvla/releases?per_page=30\": EOF\n"
+        }
+      ],
+      "pulls_count": 20,
+      "pulls_endpoint": "https://api.github.com/repos/openvla/openvla/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2024-06-13T21:49:59Z",
+        "2026-06-16T09:15:06Z"
+      ],
+      "merged_in_window": [],
+      "checked_end_utc": "2026-10-14T06:23:38.088460+00:00",
+      "release_retry": {
+        "endpoint": "https://api.github.com/repos/openvla/openvla/releases?per_page=30",
+        "checked_utc": "2026-10-14T06:27:08.089400+00:00",
+        "count": 0,
+        "error": null
+      },
+      "releases_count": 0,
+      "releases_recent": [],
+      "latest_release": null,
+      "errors_resolved": true
+    },
+    {
+      "repo": "moojink/openvla-oft",
+      "checked_at_utc": "2026-10-14T06:23:20.357185+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [
+        {
+          "endpoint": "repos/moojink/openvla-oft/releases?per_page=30",
+          "error": "Get \"https://api.github.com/repos/moojink/openvla-oft/releases?per_page=30\": read tcp [local address]->20.205.243.168:443: read: connection reset by peer\n"
+        }
+      ],
+      "pulls_count": 2,
+      "pulls_endpoint": "https://api.github.com/repos/moojink/openvla-oft/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2025-09-08T15:49:08Z",
+        "2026-07-21T12:18:42Z"
+      ],
+      "merged_in_window": [],
+      "checked_end_utc": "2026-10-14T06:23:37.175783+00:00",
+      "release_retry": {
+        "endpoint": "https://api.github.com/repos/moojink/openvla-oft/releases?per_page=30",
+        "checked_utc": "2026-10-14T06:27:09.492107+00:00",
+        "count": 0,
+        "error": null
+      },
+      "releases_count": 0,
+      "releases_recent": [],
+      "latest_release": null,
+      "errors_resolved": true
+    },
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "checked_at_utc": "2026-10-14T06:23:20.359179+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [
+        {
+          "endpoint": "repos/NVIDIA/Isaac-GR00T/releases?per_page=30",
+          "error": "Get \"https://api.github.com/repos/NVIDIA/Isaac-GR00T/releases?per_page=30\": EOF\n"
+        }
+      ],
+      "pulls_count": 100,
+      "pulls_endpoint": "https://api.github.com/repos/NVIDIA/Isaac-GR00T/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2025-09-26T17:38:11Z",
+        "2026-10-07T22:35:39Z"
+      ],
+      "merged_in_window": [],
+      "checked_end_utc": "2026-10-14T06:23:41.116419+00:00",
+      "release_retry": {
+        "endpoint": "https://api.github.com/repos/NVIDIA/Isaac-GR00T/releases?per_page=30",
+        "checked_utc": "2026-10-14T06:27:09.662625+00:00",
+        "count": 5,
+        "error": null
+      },
+      "releases_count": 5,
+      "releases_recent": [],
+      "latest_release": {
+        "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.6.1-release",
+        "tag_name": "n1.6.1-release",
+        "published_at": "2026-04-23T23:51:24Z"
+      },
+      "errors_resolved": true
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "checked_at_utc": "2026-10-14T06:23:37.175920+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [],
+      "releases_count": 27,
+      "releases_endpoint": "https://api.github.com/repos/isaac-sim/IsaacLab/releases?per_page=30",
+      "releases_recent": [
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v3",
+          "tag_name": "browser-demos-v3",
+          "name": "Browser demos v3",
+          "published_at": "2026-10-13T23:02:34Z",
+          "created_at": "2026-10-13T18:44:08Z",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v2",
+          "tag_name": "browser-demos-v2",
+          "name": "Browser demos v2",
+          "published_at": "2026-10-13T22:43:44Z",
+          "created_at": "2026-10-13T18:44:08Z",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v1",
+          "tag_name": "browser-demos-v1",
+          "name": "Browser demos v1",
+          "published_at": "2026-10-13T14:29:13Z",
+          "created_at": "2026-10-13T09:22:07Z",
+          "author": "maxkra15"
+        }
+      ],
+      "latest_release": {
+        "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/browser-demos-v3",
+        "tag_name": "browser-demos-v3",
+        "published_at": "2026-10-13T23:02:34Z"
+      },
+      "pulls_count": 100,
+      "pulls_endpoint": "https://api.github.com/repos/isaac-sim/IsaacLab/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2026-10-12T01:56:48Z",
+        "2026-10-14T05:16:24Z"
+      ],
+      "merged_in_window": [
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8549",
+          "number": 8549,
+          "title": "[Docker] Fix windowed Newton viewers and X11 forwarding in the container",
+          "created_at": "2026-10-14T01:22:55Z",
+          "updated_at": "2026-10-14T05:16:24Z",
+          "merged_at": "2026-10-14T04:04:33Z",
+          "merge_commit_sha": "09c81f23f81598dc826690242df64f0e46a569c3",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8555",
+          "number": 8555,
+          "title": "[Backport] PR #8549 to release/3.0.0",
+          "created_at": "2026-10-14T04:05:48Z",
+          "updated_at": "2026-10-14T04:56:32Z",
+          "merged_at": "2026-10-14T04:56:29Z",
+          "merge_commit_sha": "6f012db93ee79ce07668a3b8c67b31eb61064b0d",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8551",
+          "number": 8551,
+          "title": "[Backport release/3.0.0] Keep PyTorch metadata PyPI-compatible",
+          "created_at": "2026-10-14T01:48:54Z",
+          "updated_at": "2026-10-14T03:36:26Z",
+          "merged_at": "2026-10-14T03:36:26Z",
+          "merge_commit_sha": "403fca22f556059b4be62e650793c6177d4a7009",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8554",
+          "number": 8554,
+          "title": "[Backport] PR #8552 to release/3.0.0",
+          "created_at": "2026-10-14T03:22:16Z",
+          "updated_at": "2026-10-14T03:35:13Z",
+          "merged_at": "2026-10-14T03:35:13Z",
+          "merge_commit_sha": "4afb0aa147c39c97099ebe29ea0ceb5400e47fd0",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8552",
+          "number": 8552,
+          "title": "Move imitation learning docs to experimental features",
+          "created_at": "2026-10-14T02:09:02Z",
+          "updated_at": "2026-10-14T03:16:44Z",
+          "merged_at": "2026-10-14T03:16:44Z",
+          "merge_commit_sha": "aac9d8caea2a42dac3b3648daf171c9d4c9b1c45",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8532",
+          "number": 8532,
+          "title": "[Backport release/3.0.0] Add MPM study tutorials and packaged G1 coupling example",
+          "created_at": "2026-10-13T18:51:39Z",
+          "updated_at": "2026-10-14T02:59:07Z",
+          "merged_at": "2026-10-14T02:59:07Z",
+          "merge_commit_sha": "8e4f42619e05ba8366fd0833065944be3ca949f5",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8533",
+          "number": 8533,
+          "title": "[Wheel] Keep PyTorch metadata PyPI-compatible",
+          "created_at": "2026-10-13T18:53:41Z",
+          "updated_at": "2026-10-14T02:29:48Z",
+          "merged_at": "2026-10-14T02:29:47Z",
+          "merge_commit_sha": "dde9e6459514f39ce6b36ea63ae86d81ce881081",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8550",
+          "number": 8550,
+          "title": "[RL] Expose std_range on RSL-RL GaussianDistributionCfg",
+          "created_at": "2026-10-14T01:29:21Z",
+          "updated_at": "2026-10-14T02:28:59Z",
+          "merged_at": "2026-10-14T02:28:36Z",
+          "merge_commit_sha": "fc3de4f261bdab4a8365e178aeeebed2a5490387",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8546",
+          "number": 8546,
+          "title": "Preserve environment ordering in Newton frame views",
+          "created_at": "2026-10-14T00:40:52Z",
+          "updated_at": "2026-10-14T02:08:41Z",
+          "merged_at": "2026-10-14T02:08:17Z",
+          "merge_commit_sha": "76215316eba829b3453f5d20e4e1d537982a774a",
+          "author": "nblauch"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8548",
+          "number": 8548,
+          "title": "[Backport] PR #8527 to release/3.0.0",
+          "created_at": "2026-10-14T00:51:12Z",
+          "updated_at": "2026-10-14T01:48:21Z",
+          "merged_at": "2026-10-14T01:45:00Z",
+          "merge_commit_sha": "682cd27658b7c20c3912a61c3ae26de594c56358",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8544",
+          "number": 8544,
+          "title": "Fix frame count mismatch in mp4_to_hdf5 causing DataLoader collate error",
+          "created_at": "2026-10-13T23:09:24Z",
+          "updated_at": "2026-10-14T01:46:52Z",
+          "merged_at": "2026-10-14T01:46:29Z",
+          "merge_commit_sha": "6ce5cd8b812a52fc031bb5a35f26b852ffdc81a9",
+          "author": "shauryadNv"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8547",
+          "number": 8547,
+          "title": "[Backport] PR #8539 to release/3.0.0",
+          "created_at": "2026-10-14T00:41:08Z",
+          "updated_at": "2026-10-14T01:35:22Z",
+          "merged_at": "2026-10-14T01:35:19Z",
+          "merge_commit_sha": "286c0396dc77e9d893db56ed2528d16e6349cefb",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8527",
+          "number": 8527,
+          "title": "Improve Quickstart framing and H.264 video generation",
+          "created_at": "2026-10-13T17:34:49Z",
+          "updated_at": "2026-10-14T00:50:01Z",
+          "merged_at": "2026-10-14T00:50:01Z",
+          "merge_commit_sha": "f9b44085d34ba6ae1920623beb94c9f18e2e416c",
+          "author": "mataylor-nvidia"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8539",
+          "number": 8539,
+          "title": "Reserve CUDA graph memory when the simulation context is created",
+          "created_at": "2026-10-13T22:12:02Z",
+          "updated_at": "2026-10-14T00:39:02Z",
+          "merged_at": "2026-10-14T00:39:01Z",
+          "merge_commit_sha": "c647410de088139054199f41bb71b451602a5fe7",
+          "author": "egolubev-nvda"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8438",
+          "number": 8438,
+          "title": "docs: Document RTX camera buffer limitation",
+          "created_at": "2026-10-09T21:02:35Z",
+          "updated_at": "2026-10-14T00:38:49Z",
+          "merged_at": "2026-10-14T00:38:22Z",
+          "merge_commit_sha": "ca8101ba3e0fcbf8ace7c29f2ff3b1627cfa8637",
+          "author": "nvsekkin"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8536",
+          "number": 8536,
+          "title": "[Backport release/3.0.0] Fix Isaac Sim source-build runtime bootstrap",
+          "created_at": "2026-10-13T19:43:13Z",
+          "updated_at": "2026-10-13T22:51:29Z",
+          "merged_at": "2026-10-13T22:51:29Z",
+          "merge_commit_sha": "65afb0684a9a383856bb09bf0f3fda4f4bedf826",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8477",
+          "number": 8477,
+          "title": "Add an interactive demo gallery linked to GitLab Pages",
+          "created_at": "2026-10-12T10:21:54Z",
+          "updated_at": "2026-10-13T21:08:15Z",
+          "merged_at": "2026-10-13T09:22:08Z",
+          "merge_commit_sha": "2224495df6d66cfe46c35fda6ed8926417f7f3e4",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8535",
+          "number": 8535,
+          "title": "[Backport release/3.0.0] Add interactive browser demos",
+          "created_at": "2026-10-13T19:38:43Z",
+          "updated_at": "2026-10-13T20:16:00Z",
+          "merged_at": "2026-10-13T20:16:00Z",
+          "merge_commit_sha": "8e003cad321bd24b1f186c25c6c4a04668b57fcb",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8531",
+          "number": 8531,
+          "title": "[Backport] PR #8240 to release/3.0.0",
+          "created_at": "2026-10-13T18:45:28Z",
+          "updated_at": "2026-10-13T19:44:48Z",
+          "merged_at": "2026-10-13T19:44:45Z",
+          "merge_commit_sha": "b88f56aeee07bdeeacfef5a286265715f9681171",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8240",
+          "number": 8240,
+          "title": "Fix TorchRL stepping across simulation and output devices",
+          "created_at": "2026-10-01T13:51:06Z",
+          "updated_at": "2026-10-13T18:44:09Z",
+          "merged_at": "2026-10-13T18:44:09Z",
+          "merge_commit_sha": "bbcbab6b64d5538c1e6800646d57b462389c1410",
+          "author": "cyanseek"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8523",
+          "number": 8523,
+          "title": "[Backport] Allow cold MJWarp zoo startup on release/3.0.0",
+          "created_at": "2026-10-13T13:42:27Z",
+          "updated_at": "2026-10-13T18:26:52Z",
+          "merged_at": "2026-10-13T18:26:52Z",
+          "merge_commit_sha": "84e10dbfef3c449be2b1d21eb30f8b0fd1795962",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8130",
+          "number": 8130,
+          "title": "Add MPM study tutorials and packaged G1 coupling example",
+          "created_at": "2026-09-29T07:26:56Z",
+          "updated_at": "2026-10-13T18:25:57Z",
+          "merged_at": "2026-10-13T18:25:57Z",
+          "merge_commit_sha": "64cbce57d744cd8a7b83a7e4b181d5c84a107262",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8525",
+          "number": 8525,
+          "title": "docs: Clarify PPISP camera example options",
+          "created_at": "2026-10-13T16:58:25Z",
+          "updated_at": "2026-10-13T18:24:09Z",
+          "merged_at": "2026-10-13T18:24:09Z",
+          "merge_commit_sha": "91726ffaa3ae0cd5e923ef2b5f17d8dff00807c0",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8526",
+          "number": 8526,
+          "title": "Fix fragment redirects in historical docs",
+          "created_at": "2026-10-13T17:00:58Z",
+          "updated_at": "2026-10-13T18:23:59Z",
+          "merged_at": "2026-10-13T18:23:34Z",
+          "merge_commit_sha": "29c558aa22659d908cd6b728a596497e6abdb0c9",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8361",
+          "number": 8361,
+          "title": "[Tasks] Enable continuous Shadow Hand handovers",
+          "created_at": "2026-10-07T09:59:20Z",
+          "updated_at": "2026-10-13T18:09:18Z",
+          "merged_at": "2026-10-13T18:08:48Z",
+          "merge_commit_sha": "229ecb570ee6978fc3c35de7cb37c274f59d30f8",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8519",
+          "number": 8519,
+          "title": "docs: Clarify PPISP camera example options",
+          "created_at": "2026-10-13T11:32:16Z",
+          "updated_at": "2026-10-13T17:11:22Z",
+          "merged_at": "2026-10-13T17:11:21Z",
+          "merge_commit_sha": "505dadac655f285aa0b34f62711f6dd83dc79f19",
+          "author": "moennen"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8515",
+          "number": 8515,
+          "title": "[CI] Bump Isaac Sim image to 4564904cd470",
+          "created_at": "2026-10-13T08:19:50Z",
+          "updated_at": "2026-10-13T16:54:28Z",
+          "merged_at": "2026-10-13T16:52:23Z",
+          "merge_commit_sha": "830c8151c4fdea3b6d228d25cea16456fda6d25d",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8522",
+          "number": 8522,
+          "title": "Host browser demos with Isaac Lab documentation",
+          "created_at": "2026-10-13T13:24:01Z",
+          "updated_at": "2026-10-13T16:39:27Z",
+          "merged_at": "2026-10-13T16:39:27Z",
+          "merge_commit_sha": "76625dba954440829fd6915cc9abc29fdfdac37b",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/7185",
+          "number": 7185,
+          "title": "[Newton] Add GPU H2 tablecloth speed-comparison example",
+          "created_at": "2026-08-19T20:18:19Z",
+          "updated_at": "2026-10-13T16:29:14Z",
+          "merged_at": "2026-10-13T16:29:14Z",
+          "merge_commit_sha": "9fb7d0583d9f3ed8ae75cbed1dc477068642158b",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8481",
+          "number": 8481,
+          "title": "Skip tendon controller creation for passive-only Newton 1.5 models",
+          "created_at": "2026-10-12T12:21:24Z",
+          "updated_at": "2026-10-13T09:20:20Z",
+          "merged_at": "2026-10-13T09:20:19Z",
+          "merge_commit_sha": "b1837ab4388ea9e18c40443816db5b0be3c1f9a4",
+          "author": "lgulich"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8383",
+          "number": 8383,
+          "title": "Add a dual-Franka shoelace untying RL task",
+          "created_at": "2026-10-08T11:14:26Z",
+          "updated_at": "2026-10-13T08:11:53Z",
+          "merged_at": "2026-10-12T21:48:33Z",
+          "merge_commit_sha": "4d4eb449186ab0f7b3e59d2eef9604486339b62b",
+          "author": "rebeccazhang0707"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8475",
+          "number": 8475,
+          "title": "[6Bii] Load G1 SDG configuration before runtime launch",
+          "created_at": "2026-10-12T06:46:33Z",
+          "updated_at": "2026-10-13T07:13:47Z",
+          "merged_at": "2026-10-13T07:13:47Z",
+          "merge_commit_sha": "33078a1705bf450725e1d947cbec9779bf03d4b5",
+          "author": "ooctipus"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8514",
+          "number": 8514,
+          "title": "[Release 3.0.0] Restore credential-compatible Isaac Sim mirror",
+          "created_at": "2026-10-13T06:50:05Z",
+          "updated_at": "2026-10-13T06:58:17Z",
+          "merged_at": "2026-10-13T06:58:17Z",
+          "merge_commit_sha": "44fb7501a6e5d37dc6a89fe37bbcac818e374b11",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8513",
+          "number": 8513,
+          "title": "[Backport] PR #8510 to release/3.0.0",
+          "created_at": "2026-10-13T05:40:31Z",
+          "updated_at": "2026-10-13T06:43:22Z",
+          "merged_at": "2026-10-13T06:43:22Z",
+          "merge_commit_sha": "e47b32c5154b1196dd68d75466c5314d1d3028e6",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8501",
+          "number": 8501,
+          "title": "[Docs] Update benchmark data for release 3.0",
+          "created_at": "2026-10-12T20:56:31Z",
+          "updated_at": "2026-10-13T06:16:18Z",
+          "merged_at": "2026-10-13T06:15:52Z",
+          "merge_commit_sha": "fae3fce38bbdca78e3eda9b9c9910c0e6ac95712",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8163",
+          "number": 8163,
+          "title": "Fix lazy conversion loading a stale MJCF or URDF conversion",
+          "created_at": "2026-09-29T16:27:04Z",
+          "updated_at": "2026-10-13T05:54:31Z",
+          "merged_at": "2026-10-13T05:54:05Z",
+          "merge_commit_sha": "c31fe1536d382d5fcca78a97e8b9401ce309ca96",
+          "author": "NeoZng"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8476",
+          "number": 8476,
+          "title": "[6Bi] Simplify task preset traversal and CLI help",
+          "created_at": "2026-10-12T06:49:56Z",
+          "updated_at": "2026-10-13T05:40:47Z",
+          "merged_at": "2026-10-13T05:14:38Z",
+          "merge_commit_sha": "4c8228f97feb0505d8bcb1bbe6d0a0ac42f0f644",
+          "author": "ooctipus"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8512",
+          "number": 8512,
+          "title": "[CI] Use Isaac Sim 6.3 release image",
+          "created_at": "2026-10-13T04:29:47Z",
+          "updated_at": "2026-10-13T05:35:40Z",
+          "merged_at": "2026-10-13T05:35:37Z",
+          "merge_commit_sha": "880b026b41e952df6ea21a77c3191c5968b03138",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8510",
+          "number": 8510,
+          "title": "Update Isaac Sim to 6.2 and refresh dependencies",
+          "created_at": "2026-10-13T03:34:18Z",
+          "updated_at": "2026-10-13T05:33:17Z",
+          "merged_at": "2026-10-13T05:33:16Z",
+          "merge_commit_sha": "ff4cfa919c6e560167179ad57c532845cdc2f74b",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8511",
+          "number": 8511,
+          "title": "[Backport] PR #8508 to release/3.0.0",
+          "created_at": "2026-10-13T03:46:41Z",
+          "updated_at": "2026-10-13T04:30:24Z",
+          "merged_at": "2026-10-13T04:30:21Z",
+          "merge_commit_sha": "f9d30ba2b54d57df22dadad0a13534a5f269cc60",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8474",
+          "number": 8474,
+          "title": "[Fix] Frame the hand and goal cube in reorientation task play videos",
+          "created_at": "2026-10-12T06:15:48Z",
+          "updated_at": "2026-10-13T04:08:03Z",
+          "merged_at": "2026-10-13T04:07:41Z",
+          "merge_commit_sha": "4f718b8fed4a24ac5fe53dfde35ff70dd70058f7",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8506",
+          "number": 8506,
+          "title": "[CI] Use published Isaac Sim 6.2 container",
+          "created_at": "2026-10-13T01:22:00Z",
+          "updated_at": "2026-10-13T04:06:42Z",
+          "merged_at": "2026-10-13T04:06:15Z",
+          "merge_commit_sha": "778da2a59d558108917f919da88c695183b70aa6",
+          "author": "sheikh-nv"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8508",
+          "number": 8508,
+          "title": "[Isaac Sim PhysX] Report aggregate friction and total contact forces",
+          "created_at": "2026-10-13T02:42:46Z",
+          "updated_at": "2026-10-13T03:44:55Z",
+          "merged_at": "2026-10-13T03:44:55Z",
+          "merge_commit_sha": "35f44f194c9e48ed30c14734a346c9bbc9d845c9",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8507",
+          "number": 8507,
+          "title": "[Backport] PR #8467 to release/3.0.0",
+          "created_at": "2026-10-13T02:07:19Z",
+          "updated_at": "2026-10-13T03:40:32Z",
+          "merged_at": "2026-10-13T03:40:29Z",
+          "merge_commit_sha": "253980e7f1b2ee488888f1a081d4a0bb85e15bd9",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8233",
+          "number": 8233,
+          "title": "[CI] Run ARM CI through the x86 test action and re-enable ARM tests",
+          "created_at": "2026-10-01T06:11:51Z",
+          "updated_at": "2026-10-13T02:46:44Z",
+          "merged_at": "2026-10-13T02:46:44Z",
+          "merge_commit_sha": "8519738d0c984a2a5bfddc161f60f59606c3b394",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8467",
+          "number": 8467,
+          "title": "Stabilize DR Legs training on Newton and PhysX",
+          "created_at": "2026-10-12T03:26:24Z",
+          "updated_at": "2026-10-13T02:06:07Z",
+          "merged_at": "2026-10-13T02:06:07Z",
+          "merge_commit_sha": "224e5f14105cdde45d8e5f212acfb10758081e70",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8495",
+          "number": 8495,
+          "title": "[Backport 3.0] Complete simulation and training fixes from #8463–#8465",
+          "created_at": "2026-10-12T20:01:39Z",
+          "updated_at": "2026-10-12T23:14:42Z",
+          "merged_at": "2026-10-12T23:14:42Z",
+          "merge_commit_sha": "8ce1df03bf5256f0d8fc2e76d021c2d186e36a02",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8442",
+          "number": 8442,
+          "title": "[CI] Request Docker CI on inference-resolved backport PRs",
+          "created_at": "2026-10-09T22:40:15Z",
+          "updated_at": "2026-10-12T22:16:02Z",
+          "merged_at": "2026-10-12T22:16:02Z",
+          "merge_commit_sha": "32fea6be38e3dafd3a157883780198e0bb3fc1a3",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8499",
+          "number": 8499,
+          "title": "[Backport release/3.0.0] Preserve Newton visualizer sky by default",
+          "created_at": "2026-10-12T20:20:33Z",
+          "updated_at": "2026-10-12T21:42:24Z",
+          "merged_at": "2026-10-12T21:42:24Z",
+          "merge_commit_sha": "dd86fb26dba1f7102a38b4863fa6f5fb0f95c874",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8500",
+          "number": 8500,
+          "title": "[Backport release/3.0.0] Fix visualizer controls and Rerun stalls",
+          "created_at": "2026-10-12T20:33:02Z",
+          "updated_at": "2026-10-12T21:42:10Z",
+          "merged_at": "2026-10-12T21:42:10Z",
+          "merge_commit_sha": "d60bd6fffceb080143bdfdb65872ca09b739fc3c",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8498",
+          "number": 8498,
+          "title": "[Backport release/3.0.0] Make stack teleop dependency optional",
+          "created_at": "2026-10-12T20:14:29Z",
+          "updated_at": "2026-10-12T21:23:56Z",
+          "merged_at": "2026-10-12T21:23:56Z",
+          "merge_commit_sha": "a31b19182d6ada08c481b780c7a4a0092a0236c4",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8435",
+          "number": 8435,
+          "title": "Fix Newton keyboard controls and Rerun streaming stalls",
+          "created_at": "2026-10-09T20:45:52Z",
+          "updated_at": "2026-10-12T20:44:55Z",
+          "merged_at": "2026-10-12T20:10:17Z",
+          "merge_commit_sha": "ae4268ec0308a352288417e7de8ec56d5e9afe2a",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8360",
+          "number": 8360,
+          "title": "Fix Newton VBD articulation state and cloth bending integration",
+          "created_at": "2026-10-07T09:36:59Z",
+          "updated_at": "2026-10-12T20:32:30Z",
+          "merged_at": "2026-10-12T20:32:30Z",
+          "merge_commit_sha": "3c02cf76064e618e39bdcbb2ec9dcc2a06c6eee4",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8386",
+          "number": 8386,
+          "title": "[Docs] DOC-012: Move native physics access docs into per-backend pages",
+          "created_at": "2026-10-08T14:01:44Z",
+          "updated_at": "2026-10-12T20:25:34Z",
+          "merged_at": "2026-10-12T20:25:34Z",
+          "merge_commit_sha": "b66a0675eabdd6bf8409655626f161624224c39c",
+          "author": "AntoineRichard"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8489",
+          "number": 8489,
+          "title": "[Backport release/3.0.0] Restructure physics backend documentation",
+          "created_at": "2026-10-12T18:16:50Z",
+          "updated_at": "2026-10-12T19:54:05Z",
+          "merged_at": "2026-10-12T19:54:05Z",
+          "merge_commit_sha": "6ea915c1354c8ba1254d56ecae8e59ada6479ea6",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8388",
+          "number": 8388,
+          "title": "[Docs] DOC-009: Restructure physics backends section",
+          "created_at": "2026-10-08T14:09:45Z",
+          "updated_at": "2026-10-12T19:53:39Z",
+          "merged_at": "2026-10-12T19:53:39Z",
+          "merge_commit_sha": "b2833b32f72648da657bb036bc6710384b6fb3d7",
+          "author": "AntoineRichard"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8459",
+          "number": 8459,
+          "title": "Synchronize Kit timeline controls and harden SIGINT teardown",
+          "created_at": "2026-10-11T06:23:43Z",
+          "updated_at": "2026-10-12T19:51:30Z",
+          "merged_at": "2026-10-12T19:51:30Z",
+          "merge_commit_sha": "78b5d66fa8f01bbc9c0575f022198c2491fa38a7",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8463",
+          "number": 8463,
+          "title": "[Newton] Fix camera HDR backgrounds and distortion warnings",
+          "created_at": "2026-10-12T01:56:01Z",
+          "updated_at": "2026-10-12T19:45:59Z",
+          "merged_at": "2026-10-12T19:45:26Z",
+          "merge_commit_sha": "d6f9f8c00cfd94ffbf4de7f083a962b0a8231fa2",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8465",
+          "number": 8465,
+          "title": "[RL] Fix training continuation and task configuration overrides",
+          "created_at": "2026-10-12T01:56:30Z",
+          "updated_at": "2026-10-12T19:22:38Z",
+          "merged_at": "2026-10-12T19:22:38Z",
+          "merge_commit_sha": "43100989af845462ac7036a256c01bcc8b84fe4a",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8464",
+          "number": 8464,
+          "title": "[PhysX/OVPhysX] Preserve compliant contacts during randomization and cloning",
+          "created_at": "2026-10-12T01:56:02Z",
+          "updated_at": "2026-10-12T19:08:21Z",
+          "merged_at": "2026-10-12T19:06:31Z",
+          "merge_commit_sha": "171b0ebe03b728997a09c016b37eb49ab074e81a",
+          "author": "StafaH"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8484",
+          "number": 8484,
+          "title": "[Dependencies] Add skrl-jax extra for JAX workflows",
+          "created_at": "2026-10-12T14:53:15Z",
+          "updated_at": "2026-10-12T19:06:32Z",
+          "merged_at": "2026-10-12T19:06:02Z",
+          "merge_commit_sha": "b21142e216f994966f0d5aff461d89c6f5deaa0a",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8487",
+          "number": 8487,
+          "title": "[Backport] PR #8473 to release/3.0.0",
+          "created_at": "2026-10-12T17:17:40Z",
+          "updated_at": "2026-10-12T18:26:53Z",
+          "merged_at": "2026-10-12T18:26:50Z",
+          "merge_commit_sha": "93383ef44fcbf61d29e41f8e6a407220f6b23b10",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8391",
+          "number": 8391,
+          "title": "Improve Franka Reach learning and add holding profiles",
+          "created_at": "2026-10-08T16:07:49Z",
+          "updated_at": "2026-10-12T17:32:57Z",
+          "merged_at": "2026-10-12T17:32:31Z",
+          "merge_commit_sha": "a48bd07c1f14a638f3d54ac7f255d6664362004d",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8425",
+          "number": 8425,
+          "title": "Keep recording targets fixed and preserve replay success checks",
+          "created_at": "2026-10-09T10:14:22Z",
+          "updated_at": "2026-10-12T17:25:55Z",
+          "merged_at": "2026-10-12T17:25:31Z",
+          "merge_commit_sha": "8b90556234bce0af75cdc4e3f2dd964b2bbd49c5",
+          "author": "maxkra15"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8473",
+          "number": 8473,
+          "title": "Skip empty PhysX rigid-body view creation",
+          "created_at": "2026-10-12T05:27:48Z",
+          "updated_at": "2026-10-12T17:15:24Z",
+          "merged_at": "2026-10-12T17:15:24Z",
+          "merge_commit_sha": "4e1f1f717d49f212ac77f7e659e445d3e258f0b9",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8409",
+          "number": 8409,
+          "title": "Batch Cosmos camera views and follow the Sim-Transfer recipe in the service",
+          "created_at": "2026-10-09T03:07:24Z",
+          "updated_at": "2026-10-12T16:57:40Z",
+          "merged_at": "2026-10-12T16:57:39Z",
+          "merge_commit_sha": "37f055475a8774cc69f3c268120443bbef8769b7",
+          "author": "temiroff"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8471",
+          "number": 8471,
+          "title": "[Backport] PR #8460 to release/3.0.0",
+          "created_at": "2026-10-12T05:08:55Z",
+          "updated_at": "2026-10-12T06:21:58Z",
+          "merged_at": "2026-10-12T06:21:58Z",
+          "merge_commit_sha": "6cd92084392eb65f455470453d5fb812e93c8a1e",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8460",
+          "number": 8460,
+          "title": "[Docs] Label How-to guides by physics backend and fix Controllers and Docker guidance",
+          "created_at": "2026-10-11T11:33:18Z",
+          "updated_at": "2026-10-12T06:06:13Z",
+          "merged_at": "2026-10-12T06:06:13Z",
+          "merge_commit_sha": "dd2f470fcad5873980e9bc4acffb043238aca41c",
+          "author": "hujc7"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8469",
+          "number": 8469,
+          "title": "[Backport] PR #8374 to release/3.0.0",
+          "created_at": "2026-10-12T04:21:34Z",
+          "updated_at": "2026-10-12T05:47:37Z",
+          "merged_at": "2026-10-12T05:47:34Z",
+          "merge_commit_sha": "7787e604a5989af16cf873f3107cbec9c6a3137b",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8403",
+          "number": 8403,
+          "title": "Fix GR00T N1.5 dependency isolation and rollout integration",
+          "created_at": "2026-10-09T00:33:50Z",
+          "updated_at": "2026-10-12T05:33:43Z",
+          "merged_at": "2026-10-12T05:33:20Z",
+          "merge_commit_sha": "7b0d3ab655688a0228ead0c0792c6466a17dd76e",
+          "author": "jaybdub"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8470",
+          "number": 8470,
+          "title": "Refresh ANYmal-D Kit tiled golden after warmup fix",
+          "created_at": "2026-10-12T04:38:21Z",
+          "updated_at": "2026-10-12T05:07:03Z",
+          "merged_at": "2026-10-12T05:07:03Z",
+          "merge_commit_sha": "a6326911c34bf66693122fd3a3e040622575f9ee",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8374",
+          "number": 8374,
+          "title": "Restructure visualization, video recording, and agent skills docs",
+          "created_at": "2026-10-07T22:16:47Z",
+          "updated_at": "2026-10-12T05:04:09Z",
+          "merged_at": "2026-10-12T05:04:08Z",
+          "merge_commit_sha": "e1bd4374da83ddfd8e127b6a8a6eae6a768fcb08",
+          "author": "matthewtrepte"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8466",
+          "number": 8466,
+          "title": "Fix Anymal-C rough terrain material path",
+          "created_at": "2026-10-12T03:25:08Z",
+          "updated_at": "2026-10-12T04:40:20Z",
+          "merged_at": "2026-10-12T04:39:56Z",
+          "merge_commit_sha": "fdade380bca0e007fa88961c35a9b6adfcddbb98",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8468",
+          "number": 8468,
+          "title": "[Backport] Load Newton assets over HTTPS",
+          "created_at": "2026-10-12T03:42:45Z",
+          "updated_at": "2026-10-12T04:12:26Z",
+          "merged_at": "2026-10-12T04:12:25Z",
+          "merge_commit_sha": "b9fa65c51c093c592d35f2c55094a3e9f55c7fdd",
+          "author": "kellyguo11"
+        },
+        {
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8457",
+          "number": 8457,
+          "title": "[6Av] Share image views with recording and simplify launch selection",
+          "created_at": "2026-10-11T00:21:54Z",
+          "updated_at": "2026-10-12T03:08:05Z",
+          "merged_at": "2026-10-12T03:07:49Z",
+          "merge_commit_sha": "e21e25151592acb7fdb795f75d15af2c4f60f586",
+          "author": "ooctipus"
+        }
+      ],
+      "checked_end_utc": "2026-10-14T06:23:44.053915+00:00"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "checked_at_utc": "2026-10-14T06:23:38.088712+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [],
+      "releases_count": 11,
+      "releases_endpoint": "https://api.github.com/repos/huggingface/lerobot/releases?per_page=30",
+      "releases_recent": [],
+      "latest_release": {
+        "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.1",
+        "tag_name": "v0.6.1",
+        "published_at": "2026-08-03T14:19:42Z"
+      },
+      "pulls_count": 100,
+      "pulls_endpoint": "https://api.github.com/repos/huggingface/lerobot/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2026-09-28T09:52:11Z",
+        "2026-10-13T19:35:24Z"
+      ],
+      "merged_in_window": [
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4937",
+          "number": 4937,
+          "title": "feat(rollout): add remote inference engine",
+          "created_at": "2026-10-12T11:59:27Z",
+          "updated_at": "2026-10-13T14:07:53Z",
+          "merged_at": "2026-10-13T14:07:49Z",
+          "merge_commit_sha": "ae2b57f12223c8c5184fcd814eb63cd9ce7de203",
+          "author": "imstevenpmwork"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4952",
+          "number": 4952,
+          "title": "fix(hub): mark PEFT policies as adapters of their base model in the model card",
+          "created_at": "2026-10-13T11:33:30Z",
+          "updated_at": "2026-10-13T13:16:16Z",
+          "merged_at": "2026-10-13T13:16:14Z",
+          "merge_commit_sha": "1fdc1ae17001c9abfaaebf0b211cce1247d21fb1",
+          "author": "Maximellerbach"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4953",
+          "number": 4953,
+          "title": "fix(ci): harden GitHub Actions workflows (#4888)",
+          "created_at": "2026-10-13T13:00:54Z",
+          "updated_at": "2026-10-13T13:02:21Z",
+          "merged_at": "2026-10-13T13:02:18Z",
+          "merge_commit_sha": "4ee33e6fa4079d4b2275cefa29ccee16b843a82b",
+          "author": "hf-security-analysis[bot]"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4950",
+          "number": 4950,
+          "title": "chore(dependencies): updating lower bounds on gym-pusht and gym-aloha dependencies",
+          "created_at": "2026-10-13T08:52:24Z",
+          "updated_at": "2026-10-13T12:04:16Z",
+          "merged_at": "2026-10-13T12:04:13Z",
+          "merge_commit_sha": "81c6c0ae99b09097ce9ffbd5da1f04b15c93ba8e",
+          "author": "CarolinePascal"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4940",
+          "number": 4940,
+          "title": "fix(motors): keep Feetech half-turn homing offsets representable",
+          "created_at": "2026-10-12T12:52:48Z",
+          "updated_at": "2026-10-13T08:45:36Z",
+          "merged_at": "2026-10-13T08:45:36Z",
+          "merge_commit_sha": "11c2480d5c79734b768da860b2eb2651941efb3c",
+          "author": "cetiennec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4804",
+          "number": 4804,
+          "title": "perf(datasets): optimize Lance RGB batch decoding",
+          "created_at": "2026-09-29T13:08:40Z",
+          "updated_at": "2026-10-12T14:46:49Z",
+          "merged_at": "2026-10-12T14:46:49Z",
+          "merge_commit_sha": "24f15b92b556cb861ca65e989462e23505a701bd",
+          "author": "yanghua"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4926",
+          "number": 4926,
+          "title": "fix(motors): remove trailing space from Feetech Acceleration_Multiplier name",
+          "created_at": "2026-10-11T17:49:12Z",
+          "updated_at": "2026-10-12T13:12:35Z",
+          "merged_at": "2026-10-12T13:12:35Z",
+          "merge_commit_sha": "d0bb6ba102bcd294a08f7bd94111378873e1edc9",
+          "author": "Hadrien-Cornier"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4751",
+          "number": 4751,
+          "title": "fix(pi05): drop dead state_proj from PEFT default targets",
+          "created_at": "2026-09-24T08:34:37Z",
+          "updated_at": "2026-10-12T12:59:13Z",
+          "merged_at": "2026-10-12T12:59:13Z",
+          "merge_commit_sha": "d5866cfdb995e44dee83754613bdba6f0a762bde",
+          "author": "ravediamond"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4936",
+          "number": 4936,
+          "title": "Revert \"feat(rollout): add remote inference engine\"",
+          "created_at": "2026-10-12T11:56:10Z",
+          "updated_at": "2026-10-12T11:58:48Z",
+          "merged_at": "2026-10-12T11:56:21Z",
+          "merge_commit_sha": "7e60cd26f7f8a38bb8df8fc5e2966a93f1364f47",
+          "author": "imstevenpmwork"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4836",
+          "number": 4836,
+          "title": "feat(rollout): add remote inference engine",
+          "created_at": "2026-10-02T12:55:04Z",
+          "updated_at": "2026-10-12T11:54:20Z",
+          "merged_at": "2026-10-12T11:54:16Z",
+          "merge_commit_sha": "75d187889a8eb72960f3ce0aecec810860d646a2",
+          "author": "imstevenpmwork"
+        },
+        {
+          "html_url": "https://github.com/huggingface/lerobot/pull/4874",
+          "number": 4874,
+          "title": "feat(streaming): use --num_workers with streaming datasets, up to 2.5x faster data loading",
+          "created_at": "2026-10-08T05:44:16Z",
+          "updated_at": "2026-10-12T09:22:08Z",
+          "merged_at": "2026-10-12T09:22:07Z",
+          "merge_commit_sha": "75cd2ba0ce9ff47686bb2bd7b7f65840606c02ee",
+          "author": "Hadrien-Cornier"
+        }
+      ],
+      "checked_end_utc": "2026-10-14T06:23:50.955225+00:00"
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "checked_at_utc": "2026-10-14T06:23:41.118767+00:00",
+      "start": "2026-10-12T02:34:41Z",
+      "cutoff": "2026-10-14T06:20:25Z",
+      "errors": [],
+      "releases_count": 24,
+      "releases_endpoint": "https://api.github.com/repos/meta-pytorch/torchcodec/releases?per_page=30",
+      "releases_recent": [],
+      "latest_release": {
+        "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+        "tag_name": "v0.17.0",
+        "published_at": "2026-09-30T13:32:47Z"
+      },
+      "pulls_count": 100,
+      "pulls_endpoint": "https://api.github.com/repos/meta-pytorch/torchcodec/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+      "pull_updated_range": [
+        "2026-08-18T20:16:42Z",
+        "2026-10-13T11:01:45Z"
+      ],
+      "merged_in_window": [
+        {
+          "html_url": "https://github.com/meta-pytorch/torchcodec/pull/1764",
+          "number": 1764,
+          "title": "Fix heap buffer overflow (read) in GIF decoder",
+          "created_at": "2026-10-08T16:17:54Z",
+          "updated_at": "2026-10-13T11:01:45Z",
+          "merged_at": "2026-10-13T10:46:37Z",
+          "merge_commit_sha": "365b599bf61e635f1dfba666f2c99f2859889d3d",
+          "author": "apach301"
+        }
+      ],
+      "checked_end_utc": "2026-10-14T06:23:49.989914+00:00"
+    }
+  ],
+  "watch_sources": [
+    {
+      "name": "PI",
+      "urls": [
+        "https://www.pi.website/blog",
+        "https://www.pi.website/research",
+        "https://www.pi.website/blog/api-beta"
+      ],
+      "status": "Checked; new API beta Observed; initial old-domain blockage no longer applies."
+    },
+    {
+      "name": "OpenVLA / OFT",
+      "urls": [
+        "https://github.com/openvla/openvla",
+        "https://github.com/moojink/openvla-oft"
+      ],
+      "status": "Checked releases and closed PR page, no window events."
+    },
+    {
+      "name": "GR00T",
+      "urls": [
+        "https://github.com/NVIDIA/Isaac-GR00T",
+        "https://developer.nvidia.com/blog/tag/gr00t/"
+      ],
+      "status": "Checked; no new window release or merged PR; tag page latest visible July 7."
+    },
+    {
+      "name": "LeRobot / SmolVLA",
+      "urls": [
+        "https://github.com/huggingface/lerobot",
+        "https://huggingface.co/lerobot/smolvla_base",
+        "https://huggingface.co/blog"
+      ],
+      "status": "Checked; 3 accepted infra events, no verified new SmolVLA model."
+    },
+    {
+      "name": "Isaac Lab",
+      "urls": [
+        "https://github.com/isaac-sim/IsaacLab"
+      ],
+      "status": "Checked releases and closed PR page crossing window start; 1 accepted and 4 observed targeted changes."
+    },
+    {
+      "name": "TorchCodec",
+      "urls": [
+        "https://github.com/meta-pytorch/torchcodec"
+      ],
+      "status": "Checked; GIF fix observed; latest release still v0.17.0."
+    }
+  ],
+  "remaining_gaps": [
+    "Other new embodied papers (StreamingWAM, Delta-flow, P-BFM, tactile/dexterous/mobile manipulation, etc.) were indexed but not all full-method triaged.",
+    "No external project code executed; no local reproduction.",
+    "GitHub coverage is release first 30 and updated-sorted closed PR first 100; open PRs and direct commits not exhaustively reviewed."
+  ],
+  "project_code_checks": {
+    "ACCRUE": {
+      "url": "https://accrue-rl.github.io/",
+      "checked_utc": "2026-10-14T06:29:24.207557+00:00",
+      "text": "ACCRUE | Continual Robot Learning Skip to content ACCRUE Paper (coming soon) Code (coming soon) Contents Project Real-world learning Prior-task retention Video overview Method Simulation BibTeX ACCRUE Continual Off-Policy Reinforcement Learning for Robot Foundation Models ACCRUE enables robot foundation models to learn new tasks faster through off-policy RL while retaining previously learned skills. Real-world experiments 3-minute overview 31.0–68.5 % less robot interaction AutoMate · new tasks vs. single-task RL 38.7–42.9 % less robot interaction NIST · new tasks vs. single-task RL 98.3 % mean final prior-task success 118 / 120 trials · 6 prior tasks Real-world learning ACCRUE vs. single-task RL AutoMate 5 tasks NIST 3 tasks π0.5 + FastTD3 · real robot Interactive learning curves Task learning curve Single-task RL ACCRUE Measured success against online robot interaction time Select a task to compare single-task RL and ACCRUE. ▶ Replay learning Robot time — min Recorded robot time 68.5 % less robot interaction Single-task RL — ACCRUE — Both runs use the same 95% stopping rule. Watch AutoMate experiments Metric definitions Success rate uses a rolling window of 20 valid online RL episodes and the existing EMA display smoothing (0.8 new + 0.2 previous). Dashed segments use the available episodes before the first complete window. Robot time includes online warmup, but not demonstration collection or wall-clock training. Shading marks the difference in total recorded robot interaction time. Stage 1 is shared, so it has no separate ACCRUE run. Smoothed endpoints can be below the unsmoothed 95% stopping criterion. Download the plotted values (JSON) Prior-task retention Earlier tasks evaluated over 20 trials per checkpoint. AutoMate NIST Evaluate after Pause motion Ⅱ Final-policy rollouts Qualitative examples; success rates come from separate evaluations. Final-policy footage for the selected earlier tasks, not recordings from each checkpoint. Earlier tasks evaluated after stage 5. 20 trials per task View every retention checkpoint The task just learned is not counted as a prior task. Blank cells indicate that a task was not yet eligible for retention evaluation. Video overview Supplementary video 03:00 · English narration · CC Transcript Download video 00:06 Problem formulation 00:18 Method 00:55 Simulation 01:49 AutoMate 02:31 NIST Method Actor–critic inheritance Reuse parameters from the preceding task. Current-task RL Update the policy through robot interaction. Prior-task distillation Preserve actor outputs on retained replay. Actor–critic inheritance Update the RFM with accumulated demonstrations and inherit the actor–critic. Expand diagram Read the method (coming soon) Simulation experiments FORGE with GR00T + FastSAC, evaluated separately from the real-world setup. New-task learning FORGE / FWT ↑ RL: 4 task orders × 4 seeds. Metric and comparison scope FWT averages current-task success rates over a uniform evaluation grid, then across tasks. Higher is better; it is not a success-rate difference from single-task RL. The demonstration-only RFM is a static reference from 12 task evaluations; RL uses four task orders × four seeds. This focused comparison does not claim the highest FWT among all continual methods: ER has FWT 0.833. These point estimates have no displayed uncertainty; see the paper for full results. Qualitative prior-task rollouts after learning NutThread. ACCRUE Continual Off-Policy Reinforcement Learning for Robot Foundation Models Read PDF (coming soon) BibTeX Copy BibTeX @article{accrue,\n  title = {{ACCRUE}: Continual Off-Policy Reinforcement Learning for Robot Foundation Models}\n} arXiv details will be added after publication. ACCRUE Website design inspired by ENPIRE Back to top Close × The overview video works without JavaScript. Watch result videos directly: AutoMate · NIST · FORGE . Enable JavaScript for interactive plots, or download the measured data .",
+      "links": [
+        {
+          "text": "Skip to content",
+          "url": "#main"
+        },
+        {
+          "text": "ACCRUE",
+          "url": "#top"
+        },
+        {
+          "text": "Project",
+          "url": "#top"
+        },
+        {
+          "text": "Real-world learning",
+          "url": "#results"
+        },
+        {
+          "text": "Prior-task retention",
+          "url": "#retention"
+        },
+        {
+          "text": "Video overview",
+          "url": "#overview"
+        },
+        {
+          "text": "Method",
+          "url": "#method"
+        },
+        {
+          "text": "Simulation",
+          "url": "#simulation"
+        },
+        {
+          "text": "BibTeX",
+          "url": "#citation"
+        },
+        {
+          "text": "Real-world experiments",
+          "url": "#results"
+        },
+        {
+          "text": "3-minute overview",
+          "url": "#overview"
+        },
+        {
+          "text": "Download the plotted values (JSON)",
+          "url": "data.json"
+        },
+        {
+          "text": "Transcript",
+          "url": "assets/transcript.txt"
+        },
+        {
+          "text": "Download video",
+          "url": "assets/overview.mp4"
+        },
+        {
+          "text": "ACCRUE",
+          "url": "#top"
+        },
+        {
+          "text": "ENPIRE",
+          "url": "https://research.nvidia.com/labs/gear/enpire/"
+        },
+        {
+          "text": "Back to top",
+          "url": "#top"
+        },
+        {
+          "text": "AutoMate",
+          "url": "assets/results-automate.mp4"
+        },
+        {
+          "text": "NIST",
+          "url": "assets/results-nist.mp4"
+        },
+        {
+          "text": "FORGE",
+          "url": "assets/results-forge.mp4"
+        },
+        {
+          "text": "download the measured data",
+          "url": "data.json"
+        }
+      ]
+    },
+    "AXIS_Bench": {
+      "url": "https://axis-bench.github.io/",
+      "evidence": "Project page says Code (Coming Soon) and Dataset (Coming Soon)."
+    }
+  }
+}

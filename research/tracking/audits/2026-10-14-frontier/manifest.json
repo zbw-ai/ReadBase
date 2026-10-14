@@ -1,0 +1,162 @@
+{
+  "event_window_end_utc": "2026-10-14T06:20:25Z",
+  "accepted_groups": 16,
+  "observed_groups": 27,
+  "accepted_group_mapping": {
+    "A1": "E-M1",
+    "A2": "E-M2",
+    "A3": "E-I1",
+    "A4": "E-I2",
+    "A5": "E-I3",
+    "A6": "E-I4",
+    "A7": "R1",
+    "A8": "R2",
+    "A9": "R3",
+    "A10": "R4",
+    "A11": "S1",
+    "A12": "S2",
+    "A13": "S3",
+    "A14": "ROOT1",
+    "A15": "ROOT2",
+    "A16": "ROOT3"
+  },
+  "observed": [
+    {
+      "id": "O1",
+      "title": "Anthropic Scion",
+      "url": "https://www.anthropic.com/engineering/redesigning-source-control"
+    },
+    {
+      "id": "O2",
+      "title": "Anthropic self-replicating AI",
+      "url": "https://www.anthropic.com/research/self-replicating-ai"
+    },
+    {
+      "id": "O3",
+      "title": "LiquidAI LFM2.5-24B-A2B",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b"
+    },
+    {
+      "id": "O4",
+      "title": "Megatron 26.09 alpha/lambda RC",
+      "url": "https://github.com/NVIDIA/Megatron-LM/releases"
+    },
+    {
+      "id": "O5",
+      "title": "DeepSeek 4dd75a8 后续数值路径",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/commit/4dd75a8b448d95ae8e284d5c5a1e4b8808bd583b"
+    },
+    {
+      "id": "O6",
+      "title": "AReaL #1774",
+      "url": "https://github.com/areal-project/AReaL/pull/1774"
+    },
+    {
+      "id": "O7",
+      "title": "verl TPU GRPO #8155/#8225/#8226",
+      "url": "https://github.com/verl-project/verl/pull/8155"
+    },
+    {
+      "id": "O8",
+      "title": "verl MTP #8052/#8059",
+      "url": "https://github.com/verl-project/verl/pull/8052"
+    },
+    {
+      "id": "O9",
+      "title": "NeMo streaming PPO #4341",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4341"
+    },
+    {
+      "id": "O10",
+      "title": "NeMo NumPy staging #4654",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4654"
+    },
+    {
+      "id": "O11",
+      "title": "NeMo refit/Reshard #3984/#3865",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3984"
+    },
+    {
+      "id": "O12",
+      "title": "NeMo DSpark #3711",
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3711"
+    },
+    {
+      "id": "O13",
+      "title": "Frontier Models for Every Robot: Announcing our API beta",
+      "url": "https://www.pi.website/blog/api-beta"
+    },
+    {
+      "id": "O14",
+      "title": "Trust-Calibrated VLA Policy Post-Training with Evolving Imagination",
+      "url": "https://arxiv.org/abs/2610.16517v1"
+    },
+    {
+      "id": "O15",
+      "title": "Value-Preserving Action Quantization",
+      "url": "https://arxiv.org/abs/2610.17252v1"
+    },
+    {
+      "id": "O16",
+      "title": "Reserve CUDA graph memory when the simulation context is created",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8539"
+    },
+    {
+      "id": "O17",
+      "title": "[RL] Fix training continuation and task configuration overrides",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8465"
+    },
+    {
+      "id": "O18",
+      "title": "[PhysX/OVPhysX] Preserve compliant contacts during randomization and cloning",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8464"
+    },
+    {
+      "id": "O19",
+      "title": "Keep recording targets fixed and preserve replay success checks",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8425"
+    },
+    {
+      "id": "O20",
+      "title": "Fix heap buffer overflow (read) in GIF decoder",
+      "url": "https://github.com/meta-pytorch/torchcodec/pull/1764"
+    },
+    {
+      "id": "O21",
+      "title": "RankLens",
+      "url": "https://arxiv.org/abs/2610.18009v1"
+    },
+    {
+      "id": "O22",
+      "title": "vLLM SHM ownership #61000",
+      "url": "https://github.com/vllm-project/vllm/pull/61000"
+    },
+    {
+      "id": "O23",
+      "title": "vLLM peer registration #57139",
+      "url": "https://github.com/vllm-project/vllm/pull/57139"
+    },
+    {
+      "id": "O24",
+      "title": "SGLang hybrid HiCache #40223",
+      "url": "https://github.com/sgl-project/sglang/pull/40223"
+    },
+    {
+      "id": "O25",
+      "title": "SGLang weight spans #44164",
+      "url": "https://github.com/sgl-project/sglang/pull/44164"
+    },
+    {
+      "id": "O26",
+      "title": "TensorRT-LLM 默认迁移 #17495",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/17495"
+    },
+    {
+      "id": "O27",
+      "title": "TensorRT-LLM readiness fence #19857",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/19857"
+    }
+  ],
+  "count_scope": "triage groups, not all indexed records; route group holds three PR source IDs; Watch repeats excluded",
+  "tests_executed": false
+}

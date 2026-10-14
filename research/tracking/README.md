@@ -53,7 +53,7 @@
 
 ## 原始扫描与专题索引
 
-最新：[2026-10-12 Frontier Scan](frontier_scan_2026-10-12.md)——8 组 Accepted，重点为 fused LM head、GRPO group identity、CPU snapshot 与会话缓存亲和；六框架 94 条 merged PR 索引，来源缺口按独立游标保留。上轮见 [10/08](frontier_scan_2026-10-08.md)。
+最新：[2026-10-14 Frontier Scan](frontier_scan_2026-10-14.md)——16 组 Accepted，其中具身 6 组；持续技能、质量条件、远程执行与数据/状态正确性；附 481 条 RL/推理 merged PR 索引。上轮见 [10/12](frontier_scan_2026-10-12.md)。
 
 <details>
 <summary>展开扫描、旧月报与专题文件列表</summary>

@@ -1063,3 +1063,14 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 | 多轮缓存 | 请求落在同一 replica | prefix cache 的实际拥有者是 replica 内 DP engine | 检查 session ID 到 DP rank 的映射，联合观察命中率与热点排队；[verl #8179](https://github.com/verl-project/verl/pull/8179)。 |
 
 生产上不要单凭 PPO ratio=1 判定 snapshot 故障，也不要单凭 cache hit 上升宣布整体吞吐提升。前者需要追踪每次更新的权重版本，后者需要排除 hash 亲和带来的负载不均。三种契约分别关系到统计正确性、恢复正确性与推理性能；不能用一个 request ID 代替所有身份。
+
+<a id="oct14-objective-contract"></a>
+## 2026-10-14：把优化目标与传输表示分开验收
+
+[本轮扫描](../../research/tracking/frontier_scan_2026-10-14.md)补充三个容易藏在“吞吐优化”下面的问题，均来自公开实现与上游测试，本仓库未运行实验：
+
+- **目标的分母不能随物理拆批改变。** [AReaL #1546](https://github.com/areal-project/AReaL/pull/1546)将 token / sequence / prompt aggregation 明确化。先定义希望优化哪个平均量，再决定过滤、group 跨 step、全 mask response 和 transport dummy 的系数。固定参数下 loss/gradient 对齐，不证明多次 optimizer step 与一次整批更新轨迹相同。
+- **数值一致性与采样支持集是两层契约。** [NeMo #3208](https://github.com/NVIDIA-NeMo/RL/pull/3208)只在严格 gate 的 BF16 / Blackwell / TP1 / CP1 等条件下验证同权重 train/gen 对齐；[支持集修复 #4367](https://github.com/NVIDIA-NeMo/RL/pull/4367)则处理 top-k/top-p 后的不可能 token。不能先将其 `-inf` 清零再算 ratio，也不能顺手删掉本应保留的 reference KL；二者都不消除异步 policy lag。
+- **紧凑传输不能改变 token 身份。** [route fragments #4526](https://github.com/NVIDIA-NeMo/RL/pull/4526)与[jagged broadcast #4530](https://github.com/NVIDIA-NeMo/RL/pull/4530)降低 padding 的搬运与暂存；[多轮边界 #4610](https://github.com/NVIDIA-NeMo/RL/pull/4610)补回下一轮 prefill 才获得的上一轮末 token route。前者应测 bytes/有效 token 与峰值显存，后者应测拼接前后 route equality；schema 升级时另查在途数据与恢复兼容。
+
+排查顺序：先固定权重、token、mask、分母与 route，确认目标正确；再改变 batching、precision、传输表示与并发，分别测资源和端到端训练。只见 KL 异常时，先分辨数值偏差、支持集差异和真实旧策略差异，不用一个“训推不一致”标签代替诊断。
