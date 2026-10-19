@@ -31,11 +31,11 @@
 
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
+| 2026-10-19 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-19.md)：REKI、T2-z、GR00T部署与Nemotron；[具身新问题](05-embodied-infra/topics/embodied_infra.md#oct19-learning)和[推理状态章](03-inference-infra/topics/inference_state.md)，附958条PR索引 |
 | 2026-10-14 | 研究扫描与具身学习 | [16 组最新信号](research/tracking/frontier_scan_2026-10-14.md)：ACCRUE、质量感知预训练、远程动作与状态正确性；[具身机制回写](05-embodied-infra/topics/embodied_infra.md#oct14-learning)，附 481 条 PR 索引 |
 | 2026-10-13 | 具身核心专题与补扫 | [具身 Infra 核心入口](05-embodied-infra/topics/embodied_infra.md)：整体地图、模型入门、数据 I/O 与讨论路径；[模型／GitHub 补扫](research/tracking/embodied_followup_2026-10-13.md)补版本与验证边界 |
 | 2026-10-12 | 研究扫描 | [8 组重点信号](research/tracking/frontier_scan_2026-10-12.md)：TRL 显存、GRPO 分组、CPU snapshot、会话缓存与持久 rollout；附 94 条 PR 索引及覆盖缺口 |
 | 2026-10-09 | 导航与学习路线 | [原训练手册入口](02-training-infra/README.md#original-library)统一收编旧入口；五个技术 Part 采用两层编号；[具身六阶段](05-embodied-infra/roadmap.md)仍为当前重点 |
-| 2026-10-09 | MiMo 技术研究 | [V2.6 系统设计](research/tech_reports/mimo_v26.md#3-强化学习基础设施)：统一轨迹、多框架并发、控制与数据面分离、训推概率一致性；区分生产机制与开源交付；提供[飞书 Word 导入版](assets/handbook/mimo_v26/mimo_v26_feishu.docx)，未复现训练 |
 
 这里只记录仓库新增或实质更新，最多 5 条；外部新文章看[研究雷达](research/tracking/README.md)，项目进展看[实践入口](practice/README.md)。
 

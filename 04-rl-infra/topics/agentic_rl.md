@@ -1074,3 +1074,15 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 - **紧凑传输不能改变 token 身份。** [route fragments #4526](https://github.com/NVIDIA-NeMo/RL/pull/4526)与[jagged broadcast #4530](https://github.com/NVIDIA-NeMo/RL/pull/4530)降低 padding 的搬运与暂存；[多轮边界 #4610](https://github.com/NVIDIA-NeMo/RL/pull/4610)补回下一轮 prefill 才获得的上一轮末 token route。前者应测 bytes/有效 token 与峰值显存，后者应测拼接前后 route equality；schema 升级时另查在途数据与恢复兼容。
 
 排查顺序：先固定权重、token、mask、分母与 route，确认目标正确；再改变 batching、precision、传输表示与并发，分别测资源和端到端训练。只见 KL 异常时，先分辨数值偏差、支持集差异和真实旧策略差异，不用一个“训推不一致”标签代替诊断。
+
+
+<a id="oct19-state-lifecycle"></a>
+## 2026-10-19：目标、状态与搬运需要各自的完成条件
+
+[本轮 RL 扫描](../../research/tracking/frontier_scan_2026-10-19.md)把三个常混在一起的判断拆开，以下是代码/方法核查后的阶段性理解，未做训练实验：
+
+- **状态在 CPU，不代表 CPU 已可读。** [AReaL CPU-staged AdamW](https://github.com/areal-project/AReaL/pull/1613)需要 slot/event/drain 与 checkpoint 协调；[verl FSDP2 offload 修复](https://github.com/verl-project/verl/pull/8187)则发现 host consumer 在 `model.to` 内部就开始 repadding，末尾同步太迟。排查必须找到真正的第一次读，而非只看 API 返回。
+- **assistant role，不代表本轮生成。** [NeMo #4487](https://github.com/NVIDIA-NeMo/RL/pull/4487)在 logprobs 补齐前区分 prompt history 与 generated tokens，使长度 reward 和 loss mask 使用同一 provenance；输入编码也需[保持 tool order 与回合身份](../../03-inference-infra/topics/inference_state.md)。
+- **吞吐计数包含复用，不代表新经验来得更快。** [ReFlow](https://arxiv.org/abs/2610.21640v1)分别控制 replay 比例、loss 权重与 policy lag；作者 trainer processed tokens/s 包含 replay。评估应同时看 fresh trajectories、reuse、staleness 与目标一致性，不能只报 GPU utilization。
+
+R3 route replay 重放的是 expert IDs，[AReaL](https://github.com/areal-project/AReaL/pull/1496)与 [NeMo](https://github.com/NVIDIA-NeMo/RL/pull/4458)的 backend/CP/packing 限制不同；它与 ReFlow 的经验复用不是一个 replay。配置前先核 route 的 token/layer layout、missing-vs-corrupt 分支、backward recompute 生命周期，再谈 logprob 对齐。

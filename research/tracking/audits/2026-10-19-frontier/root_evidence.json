@@ -1,0 +1,2716 @@
+{
+  "scope": "Vendor/HF primary indexes, selected articles and HF API; 8 release feeds latest30; not exhaustive docs/direct commits",
+  "query_cutoff_utc": "2026-10-19T01:40:52Z",
+  "window_start_utc": "2026-10-14T06:20:25Z",
+  "pages": [
+    {
+      "name": "openai-research",
+      "url": "https://openai.com/news/research/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:32.577504+00:00",
+      "sha256": "6d0afdf92cb6721bf77d923881558280006d3db888209a40c5f4dfae34415a2b",
+      "title": "OpenAI Newsroom | Research | OpenAI",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "openai-engineering",
+      "url": "https://openai.com/news/engineering/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:32.660224+00:00",
+      "sha256": "bf2f55e574949c344b8835fe3c635cd6015929f7004593297e75443e6a630710",
+      "title": "OpenAI Newsroom | Engineering | OpenAI",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-research",
+      "url": "https://www.anthropic.com/research",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:32.656678+00:00",
+      "sha256": "8a62e3e434cb1823e08220e8361d77ed70471c6c38f2c48b4fbb97e3394d16d2",
+      "title": "Research \\ Anthropic",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-engineering",
+      "url": "https://www.anthropic.com/engineering",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:32.562254+00:00",
+      "sha256": "c0e511099cb1752e1b80599ff806fdc166f63e2e512cc96299946eac5bd2ff4b",
+      "title": "Engineering \\ Anthropic",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-quantum",
+      "url": "https://www.anthropic.com/research/designing-efficient-quantum-circuits",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:34.213625+00:00",
+      "sha256": "ef376571956523e07683b535843b2d7ee2251521382de1ed3a1fb124a7d1420b",
+      "title": "Designing more efficient quantum circuits with Claude \\ Anthropic",
+      "metadata": [
+        {
+          "property": "article:published_time",
+          "content": "2026-10-16T17:29:00.000Z"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2026-10-17T14:17:25.000Z"
+        }
+      ],
+      "datePublished": [
+        "2026-10-16T17:29:00.000Z"
+      ]
+    },
+    {
+      "name": "anthropic-ecdsa",
+      "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:32.773566+00:00",
+      "sha256": "9603959b792c320a61266a820d0722fd0ec7a053889805f8de9a62b467ca94c2",
+      "title": "Claude reveals ECDSA curve origins \\ Anthropic",
+      "metadata": [
+        {
+          "property": "article:published_time",
+          "content": "2026-10-16T17:02:00.000Z"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2026-10-17T14:19:47.000Z"
+        }
+      ],
+      "datePublished": [
+        "2026-10-16T17:02:00.000Z"
+      ]
+    },
+    {
+      "name": "nvidia-index",
+      "url": "https://developer.nvidia.com/blog/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.092730+00:00",
+      "sha256": "42496da8fbc2dafef9788b15fdc573aaff117e2cad85f9e6fde06890f17a146e",
+      "title": "NVIDIA Technical Blog",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "hf-blog",
+      "url": "https://huggingface.co/blog",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.140634+00:00",
+      "sha256": "60cf19b57589bf3c80b6a33f09717f48f9117b393896f393d3426e0aba0d3247",
+      "title": "Hugging Face – Blog",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "nemotron",
+      "url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.202254+00:00",
+      "sha256": "5689b4324c0e6695ca0a6f7ffa66474af2bf9384758211c8190a6963fd52253c",
+      "title": "NVIDIA Nemotron 3.5 Super VL Powers Specialized Agents with Multimodal Reasoning | NVIDIA Technical Blog",
+      "metadata": [
+        {
+          "name": "robots",
+          "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+        },
+        {
+          "name": "description",
+          "content": "Always-on agents are taking on longer, more complex enterprise workflows. A single request can involve reading a document, checking information across sources…"
+        },
+        {
+          "property": "og:type",
+          "content": "article"
+        },
+        {
+          "property": "og:locale",
+          "content": "en_US"
+        },
+        {
+          "property": "og:site_name",
+          "content": "NVIDIA Technical Blog"
+        },
+        {
+          "property": "article:published_time",
+          "content": "2026-10-15T18:01:00+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2026-10-16T18:43:33+00:00"
+        }
+      ],
+      "datePublished": [
+        "2026-10-15T18:01:00+00:00"
+      ]
+    },
+    {
+      "name": "nemo-chip",
+      "url": "https://developer.nvidia.com/blog/optimizing-agent-reliability-and-tool-calling-efficiency-for-chip-design-using-nvidia-nemo-gym/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:34.331739+00:00",
+      "sha256": "ec80461e03013cbb37fb43452897972e790dcaf8d49fe5cf82df2e47153a7292",
+      "title": "Optimizing Agent Reliability and Tool Calling Efficiency for Chip Design Using NVIDIA NeMo Gym | NVIDIA Technical Blog",
+      "metadata": [
+        {
+          "name": "robots",
+          "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+        },
+        {
+          "name": "description",
+          "content": "AI agents offer remarkable productivity gains in complex chip design workflows, but their tendency to generate plausible yet incorrect artifacts makes…"
+        },
+        {
+          "property": "og:type",
+          "content": "article"
+        },
+        {
+          "property": "og:locale",
+          "content": "en_US"
+        },
+        {
+          "property": "og:site_name",
+          "content": "NVIDIA Technical Blog"
+        },
+        {
+          "property": "article:published_time",
+          "content": "2026-10-14T16:10:45+00:00"
+        },
+        {
+          "property": "article:modified_time",
+          "content": "2026-10-15T18:13:14+00:00"
+        }
+      ],
+      "datePublished": [
+        "2026-10-14T16:10:45+00:00"
+      ]
+    },
+    {
+      "name": "beam",
+      "url": "https://huggingface.co/blog/reflection-beam",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.178575+00:00",
+      "sha256": "5f00056bddd4638f5710dd556c691f2f6fb0a5ee60a0717f16cbbe62042dae53",
+      "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
+      "metadata": [],
+      "datePublished": [
+        "2026-10-16T00:00:00.754Z"
+      ]
+    },
+    {
+      "name": "muse",
+      "url": "https://huggingface.co/blog/meta-muse-spark-open",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.275787+00:00",
+      "sha256": "c30761d5477d7e7a26f9a85dde87c0e7dd4ac7f1647d97a153ff2de208758a38",
+      "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+      "metadata": [],
+      "datePublished": [
+        "2026-10-15T00:00:00.753Z"
+      ]
+    },
+    {
+      "name": "indic",
+      "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.808902+00:00",
+      "sha256": "862a7dea2347f4bd343f7954582e90d7049fd0ae1feb5c18385c95dd9348ae6a",
+      "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+      "metadata": [],
+      "datePublished": [
+        "2026-10-16T01:44:47.830Z"
+      ]
+    },
+    {
+      "name": "granite",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:34.247152+00:00",
+      "sha256": "68da2d4045a65d18bc7780402e2ef39b482ed830dc404ab2bff5f2cbe5511bb9",
+      "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
+      "metadata": [],
+      "datePublished": [
+        "2026-10-15T20:34:01.579Z"
+      ]
+    },
+    {
+      "name": "tokenmax",
+      "url": "https://huggingface.co/blog/huggingface/tokenmaxxing-bert",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:34.002334+00:00",
+      "sha256": "7307d75911b5a9ddcfaae7710bceca8ac0e05964d0a9a56ca42ad6e8f3c7ea56",
+      "title": "Tokenmaxxing BERT: 50x faster tokenization",
+      "metadata": [],
+      "datePublished": [
+        "2026-10-15T08:05:40.843Z"
+      ]
+    },
+    {
+      "name": "deepseek-updates",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.320935+00:00",
+      "sha256": "44aa1245d5d65d5fc54c8f47a9a3d3235e1ab064a8fc64d6a6e57f570ec8c99c",
+      "title": "Change Log | DeepSeek API Docs",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-models",
+      "url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=10",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.699523+00:00",
+      "sha256": "10a41706aa9d93f6d218d276c76f8ab9d68f7bdc1f661d7f22dd797cb586fee1",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-1017",
+      "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.804918+00:00",
+      "sha256": "8dc04d2bece6573e83ed9dc2dc753db2174be64298546bf0583b3508299e6b0a",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-1017-commits",
+      "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash-1017/commits/main",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:34.002359+00:00",
+      "sha256": "503fbfea67d49750fa16727f232cd144db928d3c406bec080709be52107ab79b",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-original-commits",
+      "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash/commits/main",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:45:33.828853+00:00",
+      "sha256": "15ec4b10d960cc4e328559762b8c602abbb30543cf06a9a574e9df033d4c96f2",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "ds-commit",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/commit/314113f8a7dadb388215396ba5fbee2c610a04d6",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.626255+00:00",
+      "sha256": "18bb04835b6a667c60546916acd7e0077a22f43d1c13faaf5da0d40e06689537",
+      "title": "fix(encoding): preserve tool image order and current-turn thinking · deepseek-ai/DeepSeek-V4.1-Flash at 314113f",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "ds-new-encoding",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/314113f8a7dadb388215396ba5fbee2c610a04d6/encoding/encoding.py",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.626236+00:00",
+      "sha256": "13231c592e958fb39e2af6001dae69d90e7a36b265702b9b390236fb387599e2",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "ds-old-encoding",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/5254448103b6254fc646dacbca1cbbf20e9216c1/encoding/encoding.py",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.319427+00:00",
+      "sha256": "502bdaec8a3fd88ebc24c4721a7038fbe42f2063c664638127056107920035c1",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "ds-new-config",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017/resolve/1bae0e1088993b9b82de08f59de5be5a34e42170/config.json",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.268317+00:00",
+      "sha256": "8be45ce0476004a3f529fd896115a4a2e800a129ad2d3ec05b16050f52e21879",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "ds-old-config",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/314113f8a7dadb388215396ba5fbee2c610a04d6/config.json",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.266841+00:00",
+      "sha256": "8be45ce0476004a3f529fd896115a4a2e800a129ad2d3ec05b16050f52e21879",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "beam-model",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/README.md",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.805976+00:00",
+      "sha256": "cd8158d2564574def5920058feeed17a310465896f6b8f761530ed7b33f4cc05",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "beam-config",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/resolve/main/config.json",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.804879+00:00",
+      "sha256": "c5dcc35e5f0135faaf50f91cedde15f66a50859663b4f669b077b3bc75bb65fd",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "beam-commits",
+      "url": "https://huggingface.co/api/models/reflection/Beam-1.0-501B-A23B/commits/main",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.805837+00:00",
+      "sha256": "6623f67f4d3c159b28155e9ffceac4e4064a4041a302b5544dd4eb3a18c97d70",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "muse-model",
+      "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/raw/main/README.md",
+      "status": 401,
+      "fetched_at": "2026-10-19T01:46:39.686954+00:00",
+      "sha256": "800010b14b589561b7e25364cd9b7c38684aeff1871649ad804874e2593e8997",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "muse-config",
+      "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/resolve/main/config.json",
+      "status": 401,
+      "fetched_at": "2026-10-19T01:46:39.650927+00:00",
+      "sha256": "800010b14b589561b7e25364cd9b7c38684aeff1871649ad804874e2593e8997",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "muse-commits",
+      "url": "https://huggingface.co/api/models/meta-models/Muse-Spark-Open-816B-A42B/commits/main",
+      "status": 401,
+      "fetched_at": "2026-10-19T01:46:39.674132+00:00",
+      "sha256": "0f87c0c85cb507a6ecb61c017e79e7a53e04fc0e2988a723132722592d538dc5",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "beam-code",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/v5.20.1/src/transformers/models/beam/modeling_beam.py",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:40.294295+00:00",
+      "sha256": "f4f199665af53d6e39942f9672ea9e0d607fcbbd852ae7788b93eee551ed30a0",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "muse-processor",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/v5.20.1/src/transformers/models/muse_spark/processing_muse_spark.py",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:39.943466+00:00",
+      "sha256": "880a4f2328605018ccfbee7a7aef564d32781c308c34df0d145f8ce939e80d78",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "nemotron-report",
+      "url": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf",
+      "status": 200,
+      "fetched_at": "2026-10-19T01:46:43.565306+00:00",
+      "sha256": "c302042d92694e3e96c7e6acfc7536147d6d6b095eab23bedc22c5167e361340",
+      "title": null,
+      "metadata": [],
+      "datePublished": []
+    }
+  ],
+  "release_feeds": [
+    {
+      "repo": "huggingface/trl",
+      "fetched_at": "2026-10-19T01:45:38.461623+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v1.16.0",
+          "name": "v1.16.0",
+          "published_at": "2026-10-15T18:00:33Z",
+          "created_at": "2026-10-15T17:56:13Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.16.0"
+        },
+        {
+          "tag_name": "v1.15.0",
+          "name": "v1.15.0",
+          "published_at": "2026-10-08T19:26:48Z",
+          "created_at": "2026-10-08T19:13:24Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.15.0"
+        },
+        {
+          "tag_name": "v1.14.2",
+          "name": "v1.14.2",
+          "published_at": "2026-10-06T20:30:35Z",
+          "created_at": "2026-10-06T20:29:20Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.2"
+        },
+        {
+          "tag_name": "v1.14.1",
+          "name": "v1.14.1",
+          "published_at": "2026-09-29T13:41:37Z",
+          "created_at": "2026-09-29T13:27:24Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.1"
+        },
+        {
+          "tag_name": "v1.14.0",
+          "name": "v1.14.0",
+          "published_at": "2026-09-25T06:40:07Z",
+          "created_at": "2026-09-25T05:57:07Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.0"
+        },
+        {
+          "tag_name": "v1.13.0",
+          "name": "v1.13.0",
+          "published_at": "2026-09-10T00:50:26Z",
+          "created_at": "2026-09-10T00:40:15Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.13.0"
+        },
+        {
+          "tag_name": "v1.12.0",
+          "name": "v1.12.0",
+          "published_at": "2026-08-26T20:05:50Z",
+          "created_at": "2026-08-26T20:03:21Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.12.0"
+        },
+        {
+          "tag_name": "v1.11.0",
+          "name": "v1.11.0",
+          "published_at": "2026-08-26T20:02:08Z",
+          "created_at": "2026-08-26T19:44:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.11.0"
+        },
+        {
+          "tag_name": "v1.10.0",
+          "name": "v1.10.0",
+          "published_at": "2026-08-13T01:36:04Z",
+          "created_at": "2026-08-13T01:26:22Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.10.0"
+        },
+        {
+          "tag_name": "v1.9.2",
+          "name": "v1.9.2",
+          "published_at": "2026-07-28T10:39:01Z",
+          "created_at": "2026-07-28T10:31:30Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.9.2"
+        },
+        {
+          "tag_name": "v1.9.1",
+          "name": "v1.9.1",
+          "published_at": "2026-07-26T16:49:29Z",
+          "created_at": "2026-07-26T16:46:45Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.9.1"
+        },
+        {
+          "tag_name": "v1.9.0",
+          "name": "v1.9.0",
+          "published_at": "2026-07-21T20:36:12Z",
+          "created_at": "2026-07-21T20:26:48Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.9.0"
+        },
+        {
+          "tag_name": "v1.8.0",
+          "name": "v1.8.0",
+          "published_at": "2026-07-09T18:41:28Z",
+          "created_at": "2026-07-09T18:32:00Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.8.0"
+        },
+        {
+          "tag_name": "v1.7.1",
+          "name": "v1.7.1",
+          "published_at": "2026-07-04T04:05:54Z",
+          "created_at": "2026-07-04T04:02:49Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.7.1"
+        },
+        {
+          "tag_name": "v1.7.0",
+          "name": "v1.7.0",
+          "published_at": "2026-06-25T22:52:18Z",
+          "created_at": "2026-06-25T22:47:57Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.7.0"
+        },
+        {
+          "tag_name": "v1.6.0",
+          "name": "v1.6.0",
+          "published_at": "2026-06-11T22:00:15Z",
+          "created_at": "2026-06-11T21:45:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.6.0"
+        },
+        {
+          "tag_name": "v1.5.1",
+          "name": "v1.5.1",
+          "published_at": "2026-05-27T15:26:53Z",
+          "created_at": "2026-05-27T15:25:34Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.5.1"
+        },
+        {
+          "tag_name": "v1.5.0",
+          "name": "v1.5.0",
+          "published_at": "2026-05-25T15:33:19Z",
+          "created_at": "2026-05-25T15:18:56Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.5.0"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "name": "v1.4.0",
+          "published_at": "2026-05-09T00:01:36Z",
+          "created_at": "2026-05-08T23:23:53Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.4.0"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "name": "v1.3.0",
+          "published_at": "2026-04-26T15:40:07Z",
+          "created_at": "2026-04-26T15:28:16Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "name": "v1.2.0",
+          "published_at": "2026-04-17T01:13:05Z",
+          "created_at": "2026-04-17T01:04:06Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "name": "v1.1.0",
+          "published_at": "2026-04-12T02:15:56Z",
+          "created_at": "2026-04-12T02:11:02Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "name": "v1.0.0",
+          "published_at": "2026-03-31T14:15:06Z",
+          "created_at": "2026-03-30T21:18:37Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v1.0.0rc1",
+          "name": "v1.0.0rc1",
+          "published_at": "2026-03-20T23:55:04Z",
+          "created_at": "2026-03-20T22:25:11Z",
+          "target_commitish": "main",
+          "prerelease": true,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.0.0rc1"
+        },
+        {
+          "tag_name": "v0.29.1",
+          "name": "v0.29.1",
+          "published_at": "2026-03-20T03:57:13Z",
+          "created_at": "2026-03-20T03:43:10Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.29.1"
+        },
+        {
+          "tag_name": "v0.29.0",
+          "name": "v0.29.0",
+          "published_at": "2026-02-25T22:38:09Z",
+          "created_at": "2026-02-25T21:56:51Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.29.0"
+        },
+        {
+          "tag_name": "v0.28.0",
+          "name": " v0.28.0",
+          "published_at": "2026-02-10T13:28:21Z",
+          "created_at": "2026-02-10T13:23:32Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.28.0"
+        },
+        {
+          "tag_name": "v0.27.2",
+          "name": "v0.27.2",
+          "published_at": "2026-02-03T18:10:01Z",
+          "created_at": "2026-02-03T18:06:32Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.27.2"
+        },
+        {
+          "tag_name": "v0.27.1",
+          "name": "v0.27.1",
+          "published_at": "2026-01-24T03:42:17Z",
+          "created_at": "2026-01-24T03:33:42Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.27.1"
+        },
+        {
+          "tag_name": "v0.27.0",
+          "name": "v0.27.0",
+          "published_at": "2026-01-16T02:34:32Z",
+          "created_at": "2026-01-16T02:13:52Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v0.27.0"
+        }
+      ],
+      "in_window": [
+        "v1.16.0"
+      ]
+    },
+    {
+      "repo": "huggingface/transformers",
+      "fetched_at": "2026-10-19T01:45:44.092132+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v5.20.1",
+          "name": "Release v5.20.1",
+          "published_at": "2026-10-16T13:02:29Z",
+          "created_at": "2026-10-16T12:45:10Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.20.1"
+        },
+        {
+          "tag_name": "v5.20.0",
+          "name": "Release v5.20.0",
+          "published_at": "2026-10-15T18:05:36Z",
+          "created_at": "2026-10-15T17:55:40Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.20.0"
+        },
+        {
+          "tag_name": "v5.19.0",
+          "name": "Release v5.19.0",
+          "published_at": "2026-10-06T16:39:23Z",
+          "created_at": "2026-10-06T16:22:30Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.19.0"
+        },
+        {
+          "tag_name": "v5.18.0",
+          "name": "Release 5.18.0",
+          "published_at": "2026-09-30T16:46:27Z",
+          "created_at": "2026-09-30T16:39:56Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.18.0"
+        },
+        {
+          "tag_name": "v5.17.0",
+          "name": "Release 5.17.0",
+          "published_at": "2026-09-09T15:42:45Z",
+          "created_at": "2026-09-09T15:01:33Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.17.0"
+        },
+        {
+          "tag_name": "v5.16.1",
+          "name": "Release v5.16.1",
+          "published_at": "2026-08-26T14:50:01Z",
+          "created_at": "2026-08-26T14:31:32Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.16.1"
+        },
+        {
+          "tag_name": "v5.16.0",
+          "name": "Release: v5.16.0",
+          "published_at": "2026-08-26T12:35:15Z",
+          "created_at": "2026-08-26T12:08:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.16.0"
+        },
+        {
+          "tag_name": "v5.15.1",
+          "name": "Patch release: v5.15.1",
+          "published_at": "2026-08-19T10:50:47Z",
+          "created_at": "2026-08-19T10:45:30Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.15.1"
+        },
+        {
+          "tag_name": "v5.15.0",
+          "name": "Release: v5.15.0",
+          "published_at": "2026-08-10T10:28:13Z",
+          "created_at": "2026-08-10T10:23:02Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.15.0"
+        },
+        {
+          "tag_name": "v5.14.1",
+          "name": "Patch release: v5.14.1",
+          "published_at": "2026-07-16T09:41:36Z",
+          "created_at": "2026-07-16T09:33:37Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.14.1"
+        },
+        {
+          "tag_name": "v5.14.0",
+          "name": "Release v5.14.0",
+          "published_at": "2026-07-15T19:02:19Z",
+          "created_at": "2026-07-15T18:57:45Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.14.0"
+        },
+        {
+          "tag_name": "v5.13.1",
+          "name": "Patch release v5.13.1",
+          "published_at": "2026-07-11T09:15:36Z",
+          "created_at": "2026-07-11T08:27:29Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.13.1"
+        },
+        {
+          "tag_name": "v5.13.0",
+          "name": "Release v5.13.0",
+          "published_at": "2026-07-03T16:06:27Z",
+          "created_at": "2026-07-03T15:57:12Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.13.0"
+        },
+        {
+          "tag_name": "v5.12.1",
+          "name": "Patch release v5.12.1",
+          "published_at": "2026-06-15T17:29:59Z",
+          "created_at": "2026-06-15T16:30:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.12.1"
+        },
+        {
+          "tag_name": "v5.10.3",
+          "name": "Patch release v5.10.4",
+          "published_at": "2026-06-15T17:29:39Z",
+          "created_at": "2026-06-15T16:40:22Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.10.3"
+        },
+        {
+          "tag_name": "v5.12.0",
+          "name": "Release v5.12.0",
+          "published_at": "2026-06-12T14:39:40Z",
+          "created_at": "2026-06-12T14:33:34Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.12.0"
+        },
+        {
+          "tag_name": "v5.11.0",
+          "name": "Release v5.11.0",
+          "published_at": "2026-06-10T16:32:44Z",
+          "created_at": "2026-06-10T16:22:17Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.11.0"
+        },
+        {
+          "tag_name": "v5.10.2",
+          "name": "Patch release v5.10.2",
+          "published_at": "2026-06-04T18:43:06Z",
+          "created_at": "2026-06-04T16:53:34Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.10.2"
+        },
+        {
+          "tag_name": "v5.10.1",
+          "name": "Release v5.10.1",
+          "published_at": "2026-06-03T15:37:41Z",
+          "created_at": "2026-06-03T15:23:14Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.10.1"
+        },
+        {
+          "tag_name": "v5.9.0",
+          "name": "Release v5.9.0",
+          "published_at": "2026-05-20T14:12:54Z",
+          "created_at": "2026-05-20T13:42:38Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.9.0"
+        },
+        {
+          "tag_name": "v5.8.1",
+          "name": "Patch release v5.8.1",
+          "published_at": "2026-05-13T03:21:23Z",
+          "created_at": "2026-05-13T03:10:24Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.8.1"
+        },
+        {
+          "tag_name": "v5.8.0",
+          "name": "Release 5.8.0",
+          "published_at": "2026-05-05T16:52:21Z",
+          "created_at": "2026-05-05T16:45:31Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.8.0"
+        },
+        {
+          "tag_name": "v5.7.0",
+          "name": "Release v5.7.0",
+          "published_at": "2026-04-28T18:32:50Z",
+          "created_at": "2026-04-28T17:40:24Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.7.0"
+        },
+        {
+          "tag_name": "v5.6.2",
+          "name": "Patch release v5.6.2",
+          "published_at": "2026-04-23T18:36:03Z",
+          "created_at": "2026-04-23T18:26:59Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.6.2"
+        },
+        {
+          "tag_name": "v5.6.1",
+          "name": "Patch release v5.6.1",
+          "published_at": "2026-04-23T08:20:03Z",
+          "created_at": "2026-04-23T07:57:39Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.6.1"
+        },
+        {
+          "tag_name": "v5.6.0",
+          "name": "Release v5.6.0",
+          "published_at": "2026-04-22T15:52:30Z",
+          "created_at": "2026-04-22T15:30:42Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.6.0"
+        },
+        {
+          "tag_name": "v5.5.4",
+          "name": "Patch release v5.5.4",
+          "published_at": "2026-04-13T16:58:06Z",
+          "created_at": "2026-04-13T16:40:35Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.5.4"
+        },
+        {
+          "tag_name": "v5.5.3",
+          "name": "Patch release: v5.5.3",
+          "published_at": "2026-04-09T15:53:11Z",
+          "created_at": "2026-04-09T15:48:02Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.5.3"
+        },
+        {
+          "tag_name": "v5.5.2",
+          "name": "Patch release: v5.5.2",
+          "published_at": "2026-04-09T14:05:16Z",
+          "created_at": "2026-04-09T13:47:53Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.5.2"
+        },
+        {
+          "tag_name": "v5.5.1",
+          "name": "Patch release v5.5.1",
+          "published_at": "2026-04-09T05:53:03Z",
+          "created_at": "2026-04-09T05:31:50Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/transformers/releases/tag/v5.5.1"
+        }
+      ],
+      "in_window": [
+        "v5.20.1",
+        "v5.20.0"
+      ]
+    },
+    {
+      "repo": "huggingface/accelerate",
+      "fetched_at": "2026-10-19T01:45:36.274473+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v1.15.0",
+          "name": "v1.15.0: FSDP2 activation memory, dtensor improvements",
+          "published_at": "2026-09-09T13:30:33Z",
+          "created_at": "2026-09-09T12:57:29Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.15.0"
+        },
+        {
+          "tag_name": "v1.14.0",
+          "name": "v1.14.0: AMD ROCm support, FSDP2 hardening",
+          "published_at": "2026-06-11T13:58:31Z",
+          "created_at": "2026-06-11T13:37:23Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.14.0"
+        },
+        {
+          "tag_name": "v1.13.0",
+          "name": "v1.13.0: Neuron support, IPEX removal, and distributed training fixes",
+          "published_at": "2026-03-04T20:15:55Z",
+          "created_at": "2026-03-04T19:22:16Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.13.0"
+        },
+        {
+          "tag_name": "v1.12.0",
+          "name": "v1.12.0: Deepspeed Ulysses/ALST",
+          "published_at": "2025-11-21T12:47:55Z",
+          "created_at": "2025-11-21T11:17:38Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.12.0"
+        },
+        {
+          "tag_name": "v1.11.0",
+          "name": "v1.11.0: TE MXFP8, FP16/BF16 with MPS, Python 3.10 ",
+          "published_at": "2025-10-20T16:08:58Z",
+          "created_at": "2025-10-20T14:34:31Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.11.0"
+        },
+        {
+          "tag_name": "v1.10.1",
+          "name": "v1.10.1: Patchfix",
+          "published_at": "2025-08-25T13:57:15Z",
+          "created_at": "2025-08-25T13:41:14Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.10.1"
+        },
+        {
+          "tag_name": "v1.10.0",
+          "name": "v1.10.0: N-D Parallelism",
+          "published_at": "2025-08-07T13:39:44Z",
+          "created_at": "2025-08-07T10:50:58Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.10.0"
+        },
+        {
+          "tag_name": "v1.9.0",
+          "name": "v1.9.0: Trackio support, Model loading speedup, Minor distributed improvements",
+          "published_at": "2025-07-16T16:35:54Z",
+          "created_at": "2025-07-16T15:37:11Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.9.0"
+        },
+        {
+          "tag_name": "v1.8.1",
+          "name": "v1.8.1: Patchfix",
+          "published_at": "2025-06-20T15:43:33Z",
+          "created_at": "2025-06-20T15:03:53Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.8.1"
+        },
+        {
+          "tag_name": "v1.8.0",
+          "name": "v1.8.0: FSDPv2 + FP8, Regional Compilation for DeepSpeed, Faster Distributed Training on Intel CPUs, ipex.optimize deprecation ",
+          "published_at": "2025-06-19T15:37:06Z",
+          "created_at": "2025-06-19T12:52:35Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.8.0"
+        },
+        {
+          "tag_name": "v1.7.0",
+          "name": "v1.7.0 : Regional compilation, Layerwise casting hook, FSDPv2 + QLoRA",
+          "published_at": "2025-05-15T12:33:48Z",
+          "created_at": "2025-05-15T09:56:17Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.7.0"
+        },
+        {
+          "tag_name": "v1.6.0",
+          "name": "v1.6.0: FSDPv2, DeepSpeed TP and XCCL backend support",
+          "published_at": "2025-04-01T13:48:21Z",
+          "created_at": "2025-04-01T11:43:19Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.6.0"
+        },
+        {
+          "tag_name": "v1.5.2",
+          "name": "Patch: v1.5.2",
+          "published_at": "2025-03-14T14:16:16Z",
+          "created_at": "2025-03-14T14:13:39Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.5.2"
+        },
+        {
+          "tag_name": "v1.5.0",
+          "name": "v1.5.0: HPU support",
+          "published_at": "2025-03-12T14:18:54Z",
+          "created_at": "2025-03-12T14:17:47Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.5.0"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "name": "v1.4.0: `torchao` FP8, TP & dataLoader support, fix memory leak",
+          "published_at": "2025-02-17T17:18:10Z",
+          "created_at": "2025-02-17T17:06:06Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.4.0"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "name": "v1.3.0 Bug fixes + Require torch 2.0",
+          "published_at": "2025-01-17T15:56:18Z",
+          "created_at": "2025-01-17T15:34:22Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.2.1",
+          "name": "v1.2.1: Patchfix",
+          "published_at": "2024-12-13T18:56:09Z",
+          "created_at": "2024-12-13T18:50:49Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.2.1"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "name": "v1.2.0: Bug Squashing & Fixes across the board",
+          "published_at": "2024-12-13T18:47:06Z",
+          "created_at": "2024-12-06T16:05:50Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "name": "v1.1.0: Python 3.9 minimum, torch dynamo deepspeed support, and bug fixes",
+          "published_at": "2024-11-01T15:30:17Z",
+          "created_at": "2024-11-01T15:22:20Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.1",
+          "name": "v1.0.1: Bugfix",
+          "published_at": "2024-10-12T03:01:13Z",
+          "created_at": "2024-10-12T02:57:56Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.0.1"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "name": "Accelerate 1.0.0 is here!",
+          "published_at": "2024-10-07T15:42:18Z",
+          "created_at": "2024-10-07T15:26:27Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.34.1",
+          "name": "v0.34.1 Patchfix",
+          "published_at": "2024-09-05T15:36:16Z",
+          "created_at": "2024-09-05T15:31:55Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.34.1"
+        },
+        {
+          "tag_name": "v0.34.0",
+          "name": "v0.34.0: StatefulDataLoader Support, FP8 Improvements, and PyTorch Updates!",
+          "published_at": "2024-09-03T14:58:46Z",
+          "created_at": "2024-09-02T22:15:33Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.34.0"
+        },
+        {
+          "tag_name": "v0.33.0",
+          "name": "v0.33.0: MUSA backend support and bugfixes",
+          "published_at": "2024-08-08T12:57:41Z",
+          "created_at": "2024-07-23T13:12:25Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.33.0"
+        },
+        {
+          "tag_name": "v0.32.0",
+          "name": "v0.32.0: Profilers, new hooks, speedups, and more!",
+          "published_at": "2024-07-03T17:44:45Z",
+          "created_at": "2024-07-03T17:22:33Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.32.0"
+        },
+        {
+          "tag_name": "v0.31.0",
+          "name": "v0.31.0: Better support for sharded state dict with FSDP and Bugfixes",
+          "published_at": "2024-06-07T15:27:22Z",
+          "created_at": "2024-06-07T13:59:55Z",
+          "target_commitish": "v0.31.0-release",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.31.0"
+        },
+        {
+          "tag_name": "v0.30.1",
+          "name": "v0.30.1: Bugfixes",
+          "published_at": "2024-05-10T17:47:54Z",
+          "created_at": "2024-05-10T17:37:55Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.30.1"
+        },
+        {
+          "tag_name": "v0.30.0",
+          "name": "v0.30.0: Advanced optimizer support, MoE DeepSpeed support, add upcasting for FSDP, and more",
+          "published_at": "2024-05-03T15:29:05Z",
+          "created_at": "2024-05-03T14:22:27Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.30.0"
+        },
+        {
+          "tag_name": "v0.29.3",
+          "name": "v0.29.3: Patchfix",
+          "published_at": "2024-04-17T15:46:08Z",
+          "created_at": "2024-04-17T15:40:07Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.29.3"
+        },
+        {
+          "tag_name": "v0.29.2",
+          "name": "v0.29.2: Patchfix",
+          "published_at": "2024-04-09T12:04:49Z",
+          "created_at": "2024-04-09T11:51:13Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/accelerate/releases/tag/v0.29.2"
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/peft",
+      "fetched_at": "2026-10-19T01:45:40.134923+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v0.21.2",
+          "name": "v0.21.2",
+          "published_at": "2026-10-01T10:29:50Z",
+          "created_at": "2026-10-01T10:20:12Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.2"
+        },
+        {
+          "tag_name": "v0.21.1",
+          "name": "v0.21.1",
+          "published_at": "2026-09-29T09:28:26Z",
+          "created_at": "2026-09-29T09:14:04Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.1"
+        },
+        {
+          "tag_name": "v0.21.0",
+          "name": "v0.21.0",
+          "published_at": "2026-09-15T15:31:52Z",
+          "created_at": "2026-09-15T12:29:21Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.21.0"
+        },
+        {
+          "tag_name": "v0.20.0",
+          "name": "v0.20.0",
+          "published_at": "2026-07-28T13:49:42Z",
+          "created_at": "2026-07-28T13:34:58Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.20.0"
+        },
+        {
+          "tag_name": "v0.19.1",
+          "name": "v0.19.1",
+          "published_at": "2026-04-16T15:50:38Z",
+          "created_at": "2026-04-16T15:43:36Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.19.1"
+        },
+        {
+          "tag_name": "v0.19.0",
+          "name": "v0.19.0",
+          "published_at": "2026-04-14T14:05:11Z",
+          "created_at": "2026-04-14T13:56:30Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.19.0"
+        },
+        {
+          "tag_name": "v0.18.1",
+          "name": "0.18.1",
+          "published_at": "2026-01-09T13:17:22Z",
+          "created_at": "2026-01-09T12:51:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.18.1"
+        },
+        {
+          "tag_name": "v0.18.0",
+          "name": "0.18.0: RoAd, ALoRA, Arrow, WaveFT, DeLoRA, OSF, and more",
+          "published_at": "2025-11-13T11:14:55Z",
+          "created_at": "2025-11-13T11:04:38Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.18.0"
+        },
+        {
+          "tag_name": "v0.17.1",
+          "name": "0.17.1",
+          "published_at": "2025-08-21T10:04:35Z",
+          "created_at": "2025-08-21T09:06:08Z",
+          "target_commitish": "release/0.17.1",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.17.1"
+        },
+        {
+          "tag_name": "v0.17.0",
+          "name": "0.17.0: SHiRA, MiSS, LoRA for MoE, and more",
+          "published_at": "2025-08-01T17:08:45Z",
+          "created_at": "2025-08-01T16:45:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.17.0"
+        },
+        {
+          "tag_name": "v0.16.0",
+          "name": "0.16.0: LoRA-FA, RandLoRA, C³A, and much more",
+          "published_at": "2025-07-03T15:35:31Z",
+          "created_at": "2025-07-03T15:26:09Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.16.0"
+        },
+        {
+          "tag_name": "v0.15.2",
+          "name": "v0.15.2",
+          "published_at": "2025-04-15T15:28:09Z",
+          "created_at": "2025-04-15T15:02:29Z",
+          "target_commitish": "patch-release-0.15.2",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.15.2"
+        },
+        {
+          "tag_name": "v0.15.1",
+          "name": "v0.15.1",
+          "published_at": "2025-03-27T15:46:35Z",
+          "created_at": "2025-03-27T15:34:01Z",
+          "target_commitish": "patch-release-0.15.1",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.15.1"
+        },
+        {
+          "tag_name": "v0.15.0",
+          "name": "v0.15.0",
+          "published_at": "2025-03-19T15:05:36Z",
+          "created_at": "2025-03-19T14:32:56Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.15.0"
+        },
+        {
+          "tag_name": "v0.14.0",
+          "name": "Version 0.14.0: EVA, Context-aware Prompt Tuning, Bone, and more",
+          "published_at": "2024-12-06T11:42:15Z",
+          "created_at": "2024-12-06T11:25:41Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.14.0"
+        },
+        {
+          "tag_name": "v0.13.2",
+          "name": "v0.13.2: Small patch release",
+          "published_at": "2024-10-11T11:45:40Z",
+          "created_at": "2024-10-11T11:37:22Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.13.2"
+        },
+        {
+          "tag_name": "v0.13.1",
+          "name": "v0.13.1: Small patch release",
+          "published_at": "2024-10-08T12:29:45Z",
+          "created_at": "2024-10-08T12:18:54Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.13.1"
+        },
+        {
+          "tag_name": "v0.13.0",
+          "name": "v0.13.0: LoRA+, VB-LoRA, and more",
+          "published_at": "2024-09-25T12:11:01Z",
+          "created_at": "2024-09-25T11:46:15Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.13.0"
+        },
+        {
+          "tag_name": "v0.12.0",
+          "name": "v0.12.0: New methods OLoRA, X-LoRA, FourierFT, HRA, and much more",
+          "published_at": "2024-07-24T11:55:42Z",
+          "created_at": "2024-07-24T11:41:23Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.12.0"
+        },
+        {
+          "tag_name": "v0.11.1",
+          "name": "v0.11.1",
+          "published_at": "2024-05-17T12:55:59Z",
+          "created_at": "2024-05-17T10:49:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.11.1"
+        },
+        {
+          "tag_name": "v0.11.0",
+          "name": "v0.11.0: New PEFT methods BOFT, VeRA, PiSSA, quantization with HQQ and EETQ, and more",
+          "published_at": "2024-05-16T09:53:26Z",
+          "created_at": "2024-05-16T09:42:40Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.11.0"
+        },
+        {
+          "tag_name": "v0.10.0",
+          "name": "v0.10.0: Fine-tune larger QLoRA models with DeepSpeed and FSDP, layer replication, enhance DoRA",
+          "published_at": "2024-03-21T10:20:50Z",
+          "created_at": "2024-03-21T10:08:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.10.0"
+        },
+        {
+          "tag_name": "v0.9.0",
+          "name": "v0.9.0: Merging LoRA weights, new quantization options, DoRA support, and more",
+          "published_at": "2024-02-28T10:37:16Z",
+          "created_at": "2024-02-28T10:21:11Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.9.0"
+        },
+        {
+          "tag_name": "v0.8.2",
+          "name": "Release v0.8.2",
+          "published_at": "2024-02-01T14:16:04Z",
+          "created_at": "2024-02-01T14:13:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.8.2"
+        },
+        {
+          "tag_name": "v0.8.1",
+          "name": "Patch Release v0.8.1",
+          "published_at": "2024-01-30T10:48:56Z",
+          "created_at": "2024-01-30T10:42:50Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.8.1"
+        },
+        {
+          "tag_name": "v0.8.0",
+          "name": "v0.8.0: Poly PEFT method, LoRA improvements, Documentation improvements and more",
+          "published_at": "2024-01-30T06:59:06Z",
+          "created_at": "2024-01-30T05:49:08Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.8.0"
+        },
+        {
+          "tag_name": "v0.7.1",
+          "name": "v0.7.1 patch release",
+          "published_at": "2023-12-12T17:22:36Z",
+          "created_at": "2023-12-12T16:55:05Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.7.1"
+        },
+        {
+          "tag_name": "v0.7.0",
+          "name": "v0.7.0: Orthogonal Fine-Tuning, Megatron support, better initialization, safetensors, and more",
+          "published_at": "2023-12-06T16:13:13Z",
+          "created_at": "2023-12-06T14:55:17Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.7.0"
+        },
+        {
+          "tag_name": "v0.6.2",
+          "name": "v0.6.2 Patch Release: Refactor of adapter deletion API and fixes to `ModulesToSaveWrapper` when using Low-level API",
+          "published_at": "2023-11-14T05:55:50Z",
+          "created_at": "2023-11-14T05:44:43Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.6.2"
+        },
+        {
+          "tag_name": "v0.6.1",
+          "name": "0.6.1 Patch Release: compatibility of Adaptation Prompt with transformers 4.35.0",
+          "published_at": "2023-11-09T14:49:59Z",
+          "created_at": "2023-11-09T14:05:17Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/peft/releases/tag/v0.6.1"
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "huggingface/kernels",
+      "fetched_at": "2026-10-19T01:45:45.549337+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v0.17.2",
+          "name": "v0.17.2",
+          "published_at": "2026-10-02T13:35:03Z",
+          "created_at": "2026-10-02T13:04:45Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.17.2"
+        },
+        {
+          "tag_name": "v0.17.1",
+          "name": "v0.17.1",
+          "published_at": "2026-09-16T18:21:14Z",
+          "created_at": "2026-09-16T18:13:09Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.17.1"
+        },
+        {
+          "tag_name": "v0.16.2",
+          "name": "",
+          "published_at": "2026-09-15T09:01:58Z",
+          "created_at": "2026-09-15T08:49:57Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.16.2"
+        },
+        {
+          "tag_name": "v0.17.0",
+          "name": "v0.17.0",
+          "published_at": "2026-09-14T09:20:23Z",
+          "created_at": "2026-09-14T09:00:31Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.17.0"
+        },
+        {
+          "tag_name": "v0.16.1",
+          "name": null,
+          "published_at": "2026-08-24T06:53:24Z",
+          "created_at": "2026-08-24T06:30:54Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.16.1"
+        },
+        {
+          "tag_name": "v0.16.0",
+          "name": "v0.16.0",
+          "published_at": "2026-06-26T07:28:07Z",
+          "created_at": "2026-06-26T06:59:35Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.16.0"
+        },
+        {
+          "tag_name": "v0.15.2",
+          "name": "v0.15.2",
+          "published_at": "2026-06-03T08:56:13Z",
+          "created_at": "2026-06-03T07:59:08Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.15.2"
+        },
+        {
+          "tag_name": "v0.15.1",
+          "name": "v0.15.1",
+          "published_at": "2026-05-29T08:04:32Z",
+          "created_at": "2026-05-29T07:54:12Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.15.1"
+        },
+        {
+          "tag_name": "v0.14.1",
+          "name": "v0.14.1",
+          "published_at": "2026-05-14T06:42:58Z",
+          "created_at": "2026-05-14T06:27:34Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.14.1"
+        },
+        {
+          "tag_name": "v0.14.0",
+          "name": "v0.14.0",
+          "published_at": "2026-05-06T08:22:55Z",
+          "created_at": "2026-05-06T07:57:57Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.14.0"
+        },
+        {
+          "tag_name": "v0.14.0.dev1",
+          "name": null,
+          "published_at": "2026-04-22T14:42:35Z",
+          "created_at": "2026-04-21T19:15:53Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.14.0.dev1"
+        },
+        {
+          "tag_name": "v0.14.0.dev0",
+          "name": null,
+          "published_at": "2026-04-20T09:20:27Z",
+          "created_at": "2026-04-20T08:36:20Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.14.0.dev0"
+        },
+        {
+          "tag_name": "v0.13.0",
+          "name": "",
+          "published_at": "2026-04-10T14:31:08Z",
+          "created_at": "2026-04-10T14:00:36Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.13.0"
+        },
+        {
+          "tag_name": "v0.12.3",
+          "name": "v0.12.3",
+          "published_at": "2026-03-20T10:21:08Z",
+          "created_at": "2026-03-20T09:30:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.12.3"
+        },
+        {
+          "tag_name": "v0.12.2",
+          "name": "v0.12.2",
+          "published_at": "2026-03-04T10:03:24Z",
+          "created_at": "2026-03-04T09:35:59Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.12.2"
+        },
+        {
+          "tag_name": "v0.12.1",
+          "name": "v0.12.1",
+          "published_at": "2026-01-26T16:16:20Z",
+          "created_at": "2026-01-26T16:09:59Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.12.1"
+        },
+        {
+          "tag_name": "v0.12.0",
+          "name": "v0.12.0",
+          "published_at": "2026-01-24T12:23:21Z",
+          "created_at": "2026-01-24T12:09:04Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.12.0"
+        },
+        {
+          "tag_name": "v0.11.7",
+          "name": "v0.11.7",
+          "published_at": "2026-01-08T15:42:22Z",
+          "created_at": "2026-01-08T14:43:17Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.7"
+        },
+        {
+          "tag_name": "v0.11.6",
+          "name": "v0.11.6",
+          "published_at": "2026-01-08T09:18:48Z",
+          "created_at": "2026-01-08T09:04:41Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.6"
+        },
+        {
+          "tag_name": "v0.11.5",
+          "name": "v0.11.5",
+          "published_at": "2025-12-17T15:03:05Z",
+          "created_at": "2025-12-17T14:36:43Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.5"
+        },
+        {
+          "tag_name": "v0.11.4",
+          "name": "v0.11.4",
+          "published_at": "2025-12-16T14:33:59Z",
+          "created_at": "2025-12-16T14:25:46Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.4"
+        },
+        {
+          "tag_name": "v0.11.3",
+          "name": "v0.11.3",
+          "published_at": "2025-12-05T15:09:07Z",
+          "created_at": "2025-12-05T14:39:33Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.3"
+        },
+        {
+          "tag_name": "v0.11.2",
+          "name": "v0.11.2",
+          "published_at": "2025-12-04T09:10:26Z",
+          "created_at": "2025-12-04T08:43:14Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.11.2"
+        },
+        {
+          "tag_name": "v0.10.5",
+          "name": "",
+          "published_at": "2025-12-04T09:14:52Z",
+          "created_at": "2025-12-04T09:10:57Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.10.5"
+        },
+        {
+          "tag_name": "v0.9.1",
+          "name": "",
+          "published_at": "2025-12-04T09:30:00Z",
+          "created_at": "2025-12-04T09:09:21Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.9.1"
+        },
+        {
+          "tag_name": "v0.8.2",
+          "name": "",
+          "published_at": "2025-12-04T09:35:55Z",
+          "created_at": "2025-12-04T09:31:21Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.8.2"
+        },
+        {
+          "tag_name": "v0.7.1",
+          "name": "",
+          "published_at": "2025-12-04T09:36:16Z",
+          "created_at": "2025-12-04T09:34:15Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.7.1"
+        },
+        {
+          "tag_name": "v0.6.3",
+          "name": "",
+          "published_at": "2025-12-04T10:04:38Z",
+          "created_at": "2025-12-04T10:02:26Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.6.3"
+        },
+        {
+          "tag_name": "v0.5.1",
+          "name": "",
+          "published_at": "2025-12-04T10:23:08Z",
+          "created_at": "2025-12-04T10:16:31Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.5.1"
+        },
+        {
+          "tag_name": "v0.4.5",
+          "name": "",
+          "published_at": "2025-12-04T10:27:16Z",
+          "created_at": "2025-12-04T10:21:36Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/huggingface/kernels/releases/tag/v0.4.5"
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "fetched_at": "2026-10-19T01:45:41.478691+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "26.09-lambda.rc1",
+          "name": "26.09-lambda.rc1",
+          "published_at": "2026-10-13T11:34:47Z",
+          "created_at": "2026-10-13T11:32:17Z",
+          "target_commitish": "26.09-lambda",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-lambda.rc1"
+        },
+        {
+          "tag_name": "26.09-alpha.rc3",
+          "name": "26.09-alpha.rc3",
+          "published_at": "2026-10-13T08:10:56Z",
+          "created_at": "2026-10-13T07:44:04Z",
+          "target_commitish": "26.09-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc3"
+        },
+        {
+          "tag_name": "26.09-alpha.rc2",
+          "name": "26.09-alpha.rc2",
+          "published_at": "2026-10-08T17:51:58Z",
+          "created_at": "2026-10-10T08:05:03Z",
+          "target_commitish": "26.09-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc2"
+        },
+        {
+          "tag_name": "26.09-alpha.rc1",
+          "name": "26.09-alpha.rc1",
+          "published_at": "2026-10-06T09:08:45Z",
+          "created_at": "2026-10-06T09:05:35Z",
+          "target_commitish": "26.09-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc1"
+        },
+        {
+          "tag_name": "26.09-beta.rc1",
+          "name": "26.09-beta.rc1",
+          "published_at": "2026-10-06T09:24:14Z",
+          "created_at": "2026-10-05T14:10:27Z",
+          "target_commitish": "26.09-beta",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-beta.rc1"
+        },
+        {
+          "tag_name": "core_v0.19.2",
+          "name": "NVIDIA Megatron Core 0.19.2",
+          "published_at": "2026-09-18T19:40:26Z",
+          "created_at": "2026-09-18T19:18:15Z",
+          "target_commitish": "4b4acac9a1d28ea6829c8d4f566d75698a21249d",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.19.2"
+        },
+        {
+          "tag_name": "core_v0.19.0",
+          "name": "NVIDIA Megatron Core 0.19.0",
+          "published_at": "2026-08-19T19:02:15Z",
+          "created_at": "2026-08-19T18:51:14Z",
+          "target_commitish": "core_r0.19.0",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.19.0"
+        },
+        {
+          "tag_name": "core_v0.18.2",
+          "name": "NVIDIA Megatron Core 0.18.2",
+          "published_at": "2026-07-21T10:57:10Z",
+          "created_at": "2026-07-20T12:53:41Z",
+          "target_commitish": "571370c829ca768fe37244f4e2e7f28d8accc4ab",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.18.2"
+        },
+        {
+          "tag_name": "core_v0.18.0",
+          "name": "NVIDIA Megatron Core 0.18.0",
+          "published_at": "2026-06-23T00:16:28Z",
+          "created_at": "2026-06-23T00:08:13Z",
+          "target_commitish": "ba7b5ebce12af60627a80985792a1449ce45f46c",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.18.0"
+        },
+        {
+          "tag_name": "core_v0.17.1",
+          "name": "NVIDIA Megatron Core 0.17.1",
+          "published_at": "2026-05-28T20:31:44Z",
+          "created_at": "2026-05-25T12:28:21Z",
+          "target_commitish": "266f1c97dca477ca8b92c16087506da2000b0b84",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.17.1"
+        },
+        {
+          "tag_name": "26.04-alpha.rc2",
+          "name": "26.04-alpha.rc2",
+          "published_at": "2026-05-07T07:07:42Z",
+          "created_at": "2026-05-06T20:28:51Z",
+          "target_commitish": "26.04-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.04-alpha.rc2"
+        },
+        {
+          "tag_name": "26.04-alpha.rc1",
+          "name": "26.04-alpha.rc1",
+          "published_at": "2026-04-23T08:22:11Z",
+          "created_at": "2026-04-22T10:52:37Z",
+          "target_commitish": "26.04-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.04-alpha.rc1"
+        },
+        {
+          "tag_name": "core_v0.17.0",
+          "name": "NVIDIA Megatron Core 0.17.0",
+          "published_at": "2026-04-16T19:59:42Z",
+          "created_at": "2026-04-14T14:29:33Z",
+          "target_commitish": "9539a12e1b04a68423f57b3eb41d6125161dca24",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.17.0"
+        },
+        {
+          "tag_name": "core_v0.16.1",
+          "name": "NVIDIA Megatron Core 0.16.1",
+          "published_at": "2026-03-20T21:24:09Z",
+          "created_at": "2026-03-16T09:59:46Z",
+          "target_commitish": "55ac7082517c3878ae653c07c09c534b8aed49f6",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.16.1"
+        },
+        {
+          "tag_name": "core_v0.16.0",
+          "name": "NVIDIA Megatron Core 0.16.0",
+          "published_at": "2026-02-26T04:17:50Z",
+          "created_at": "2026-02-26T03:05:39Z",
+          "target_commitish": "3bec9aa97dda898d16ff5a89bac0ed2b6682b172",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.16.0"
+        },
+        {
+          "tag_name": "core_v0.15.3",
+          "name": "NVIDIA Megatron Core 0.15.3",
+          "published_at": "2026-02-06T16:30:51Z",
+          "created_at": "2026-02-06T16:22:05Z",
+          "target_commitish": "309ffca6a40553362d44fd17efc56b772fa1aa44",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.15.3"
+        },
+        {
+          "tag_name": "core_v0.15.2",
+          "name": "NVIDIA Megatron Core 0.15.2",
+          "published_at": "2026-01-08T15:42:04Z",
+          "created_at": "2026-01-08T15:41:02Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.15.2"
+        },
+        {
+          "tag_name": "core_v0.15.1",
+          "name": "NVIDIA Megatron Core 0.15.1",
+          "published_at": "2026-01-07T18:23:32Z",
+          "created_at": "2026-01-07T18:22:21Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.15.1"
+        },
+        {
+          "tag_name": "core_v0.15.0",
+          "name": "NVIDIA Megatron Core 0.15.0",
+          "published_at": "2025-12-17T23:08:29Z",
+          "created_at": "2025-12-17T23:05:54Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.15.0"
+        },
+        {
+          "tag_name": "core_v0.14.0",
+          "name": "NVIDIA Megatron Core 0.14.0",
+          "published_at": "2025-10-08T15:04:19Z",
+          "created_at": "2025-10-08T13:27:50Z",
+          "target_commitish": "23e00ed0963c35382dfe8a5a94fb3cda4d21e133",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.14.0"
+        },
+        {
+          "tag_name": "25.09-alpha.rc1",
+          "name": "25.09-alpha.rc1",
+          "published_at": "2025-10-03T14:41:56Z",
+          "created_at": "2025-10-01T10:31:46Z",
+          "target_commitish": "25.09-alpha",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/25.09-alpha.rc1"
+        },
+        {
+          "tag_name": "core_v0.13.1",
+          "name": "NVIDIA Megatron Core 0.13.1",
+          "published_at": "2025-08-12T18:33:56Z",
+          "created_at": "2025-08-11T19:30:29Z",
+          "target_commitish": "ea651a3b78b9b0c1dfd83975ff28853e38e5abaa",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.13.1"
+        },
+        {
+          "tag_name": "core_v0.14.0rc5",
+          "name": "NVIDIA Megatron Core 0.14.0rc5",
+          "published_at": "2025-08-11T04:12:15Z",
+          "created_at": "2025-08-10T03:03:21Z",
+          "target_commitish": "d338252b864bf3f24fea0e2f087b73f4f8de7b16",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.14.0rc5"
+        },
+        {
+          "tag_name": "core_v0.12.3",
+          "name": "NVIDIA Megatron Core 0.12.3",
+          "published_at": "2025-08-12T18:12:28Z",
+          "created_at": "2025-08-09T06:04:47Z",
+          "target_commitish": "3ea68ad6042cc1204386ae9364358f7c4de1bc37",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.12.3"
+        },
+        {
+          "tag_name": "core_v0.14.0rc4",
+          "name": "NVIDIA Megatron Core 0.14.0rc4",
+          "published_at": "2025-08-04T04:12:52Z",
+          "created_at": "2025-08-02T23:09:15Z",
+          "target_commitish": "7f7439f543288f50f134e44832069192a3e1d98e",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.14.0rc4"
+        },
+        {
+          "tag_name": "core_v0.14.0rc3",
+          "name": "NVIDIA Megatron Core 0.14.0rc3",
+          "published_at": "2025-07-28T04:13:52Z",
+          "created_at": "2025-07-26T22:56:44Z",
+          "target_commitish": "adbab64f8d9025b2659887c4f8640e5b7e0d37df",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.14.0rc3"
+        },
+        {
+          "tag_name": "core_v0.13.0",
+          "name": "NVIDIA Megatron Core 0.13.0",
+          "published_at": "2025-07-25T18:04:10Z",
+          "created_at": "2025-07-25T15:58:06Z",
+          "target_commitish": "c550cf6c41c31cd3ec72e05c25ea0c979f2b6631",
+          "prerelease": false,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.13.0"
+        },
+        {
+          "tag_name": "core_v0.14.0rc2",
+          "name": "NVIDIA Megatron Core 0.14.0rc2",
+          "published_at": "2025-07-21T04:12:06Z",
+          "created_at": "2025-07-20T13:51:34Z",
+          "target_commitish": "db41707430bff743f986b5779712c74242b99caa",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.14.0rc2"
+        },
+        {
+          "tag_name": "core_v0.13.0rc4",
+          "name": "NVIDIA Megatron Core 0.13.0rc4",
+          "published_at": "2025-07-22T08:03:14Z",
+          "created_at": "2025-07-20T14:37:53Z",
+          "target_commitish": "ac198fc0d60a8c748597e01ca4c6887d3a7bcf3d",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.13.0rc4"
+        },
+        {
+          "tag_name": "core_v0.13.0rc3",
+          "name": "NVIDIA Megatron Core 0.13.0rc3",
+          "published_at": "2025-07-17T15:04:37Z",
+          "created_at": "2025-07-17T14:40:40Z",
+          "target_commitish": "9b9ea83efb004de4672bffd5daf51bb0b1c661fc",
+          "prerelease": true,
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.13.0rc3"
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "fetched_at": "2026-10-19T01:45:49.327093+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v0.19.7",
+          "name": "v0.19.7 Patch Release",
+          "published_at": "2026-09-16T22:00:09Z",
+          "created_at": "2026-09-16T18:13:39Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.7"
+        },
+        {
+          "tag_name": "v0.19.6",
+          "name": "v0.19.6 Patch Release",
+          "published_at": "2026-08-27T19:08:33Z",
+          "created_at": "2026-08-27T17:12:18Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.6"
+        },
+        {
+          "tag_name": "v0.19.5",
+          "name": "v0.19.5 Patch Release",
+          "published_at": "2026-08-10T19:00:51Z",
+          "created_at": "2026-08-09T18:28:04Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.5"
+        },
+        {
+          "tag_name": "v0.19.4",
+          "name": "v0.19.4 Patch Release",
+          "published_at": "2026-08-06T02:10:42Z",
+          "created_at": "2026-08-06T00:48:13Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.4"
+        },
+        {
+          "tag_name": "v0.19.3",
+          "name": "v0.19.3 Patch Release",
+          "published_at": "2026-07-23T01:08:19Z",
+          "created_at": "2026-07-22T23:51:39Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.3"
+        },
+        {
+          "tag_name": "v0.19.2",
+          "name": "v0.19.2 Patch Release",
+          "published_at": "2026-06-16T20:52:17Z",
+          "created_at": "2026-06-16T19:39:29Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.2"
+        },
+        {
+          "tag_name": "v0.19.1",
+          "name": "v0.19.1",
+          "published_at": "2026-05-27T13:19:47Z",
+          "created_at": "2026-05-25T16:24:53Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.1"
+        },
+        {
+          "tag_name": "v0.19.0",
+          "name": "v0.19.0",
+          "published_at": "2026-05-06T21:47:04Z",
+          "created_at": "2026-05-06T21:42:41Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.0"
+        },
+        {
+          "tag_name": "v0.18.9",
+          "name": "v0.18.9 Patch Release",
+          "published_at": "2026-03-30T16:42:21Z",
+          "created_at": "2026-03-30T16:40:52Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.9"
+        },
+        {
+          "tag_name": "v0.18.8",
+          "name": "v0.18.8 Patch Release",
+          "published_at": "2026-03-13T18:48:54Z",
+          "created_at": "2026-03-13T18:48:17Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.8"
+        },
+        {
+          "tag_name": "v0.18.7",
+          "name": "v0.18.7 Patch Release",
+          "published_at": "2026-03-05T20:43:52Z",
+          "created_at": "2026-03-05T17:11:02Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.7"
+        },
+        {
+          "tag_name": "v0.18.6",
+          "name": "v0.18.6 Patch Release",
+          "published_at": "2026-02-12T23:21:28Z",
+          "created_at": "2026-02-12T19:40:47Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.6"
+        },
+        {
+          "tag_name": "v0.18.5",
+          "name": "v0.18.5 Patch Release",
+          "published_at": "2026-01-30T18:21:49Z",
+          "created_at": "2026-01-29T21:24:45Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.5"
+        },
+        {
+          "tag_name": "v0.18.4",
+          "name": "v0.18.4 Patch Release",
+          "published_at": "2026-01-07T22:58:26Z",
+          "created_at": "2026-01-07T08:32:17Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.4"
+        },
+        {
+          "tag_name": "v0.18.3",
+          "name": "v0.18.3 Patch Release",
+          "published_at": "2025-12-09T14:48:00Z",
+          "created_at": "2025-12-09T07:18:13Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.3"
+        },
+        {
+          "tag_name": "v0.18.2",
+          "name": "v0.18.2 Patch Release",
+          "published_at": "2025-11-05T19:21:44Z",
+          "created_at": "2025-11-04T23:10:22Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.2"
+        },
+        {
+          "tag_name": "v0.18.1",
+          "name": "v0.18.1 Patch Release",
+          "published_at": "2025-10-23T16:39:43Z",
+          "created_at": "2025-10-23T16:38:07Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.1"
+        },
+        {
+          "tag_name": "v0.18.0",
+          "name": "v0.18.0",
+          "published_at": "2025-10-07T23:27:49Z",
+          "created_at": "2025-10-07T17:15:49Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.18.0"
+        },
+        {
+          "tag_name": "v0.17.6",
+          "name": "v0.17.6 Patch Release",
+          "published_at": "2025-09-19T19:56:44Z",
+          "created_at": "2025-09-19T07:24:33Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.6"
+        },
+        {
+          "tag_name": "v0.17.5",
+          "name": "v0.17.5 Patch Release",
+          "published_at": "2025-08-20T20:28:17Z",
+          "created_at": "2025-08-19T00:30:56Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.5"
+        },
+        {
+          "tag_name": "v0.17.4",
+          "name": "v0.17.4 Patch Release",
+          "published_at": "2025-07-31T20:47:40Z",
+          "created_at": "2025-07-31T15:59:09Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.4"
+        },
+        {
+          "tag_name": "v0.17.3",
+          "name": "v0.17.3 Patch Release",
+          "published_at": "2025-07-28T18:20:05Z",
+          "created_at": "2025-07-26T21:27:33Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.3"
+        },
+        {
+          "tag_name": "v0.17.2",
+          "name": "v0.17.2 Patch Release",
+          "published_at": "2025-07-07T18:13:16Z",
+          "created_at": "2025-07-07T02:24:53Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.2"
+        },
+        {
+          "tag_name": "v0.17.1",
+          "name": "v0.17.1 Patch Release",
+          "published_at": "2025-06-09T22:52:18Z",
+          "created_at": "2025-06-09T22:42:55Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.1"
+        },
+        {
+          "tag_name": "v0.17.0",
+          "name": "DeepSpeed v0.17.0",
+          "published_at": "2025-06-02T23:02:51Z",
+          "created_at": "2025-06-02T23:01:44Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.17.0"
+        },
+        {
+          "tag_name": "v0.16.9",
+          "name": "v0.16.9 Patch Release",
+          "published_at": "2025-05-22T21:56:47Z",
+          "created_at": "2025-05-22T16:31:26Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.16.9"
+        },
+        {
+          "tag_name": "v0.16.8",
+          "name": "v0.16.8 Patch Release",
+          "published_at": "2025-05-19T16:16:03Z",
+          "created_at": "2025-05-19T04:54:16Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.16.8"
+        },
+        {
+          "tag_name": "v0.16.7",
+          "name": "v0.16.7 Patch Release",
+          "published_at": "2025-04-18T15:36:24Z",
+          "created_at": "2025-04-18T06:49:51Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.16.7"
+        },
+        {
+          "tag_name": "v0.16.6",
+          "name": "v0.16.6 Patch Release",
+          "published_at": "2025-04-17T00:44:03Z",
+          "created_at": "2025-04-16T04:33:53Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.16.6"
+        },
+        {
+          "tag_name": "v0.16.5",
+          "name": "v0.16.5 Patch Release",
+          "published_at": "2025-03-27T21:47:06Z",
+          "created_at": "2025-03-27T14:51:13Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.16.5"
+        }
+      ],
+      "in_window": []
+    },
+    {
+      "repo": "pytorch/pytorch",
+      "fetched_at": "2026-10-19T01:45:49.307317+00:00",
+      "scope": "latest 30 releases, not exhaustive history",
+      "count": 30,
+      "releases": [
+        {
+          "tag_name": "v2.14.1",
+          "name": "PyTorch 2.14.1 Release",
+          "published_at": "2026-09-30T19:14:48Z",
+          "created_at": "2026-09-30T01:47:31Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.14.1"
+        },
+        {
+          "tag_name": "v2.14.0",
+          "name": "PyTorch 2.14.0 Release",
+          "published_at": "2026-09-02T17:40:10Z",
+          "created_at": "2026-08-27T02:23:46Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.14.0"
+        },
+        {
+          "tag_name": "v2.13.0",
+          "name": "PyTorch 2.13.0 Release",
+          "published_at": "2026-07-08T17:39:58Z",
+          "created_at": "2026-07-03T20:27:09Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.13.0"
+        },
+        {
+          "tag_name": "v2.12.1",
+          "name": "PyTorch 2.12.1 Release, bug fix release",
+          "published_at": "2026-06-18T00:41:17Z",
+          "created_at": "2026-06-09T19:27:18Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.12.1"
+        },
+        {
+          "tag_name": "v2.12.0",
+          "name": "PyTorch 2.12.0 Release",
+          "published_at": "2026-05-13T17:38:06Z",
+          "created_at": "2026-05-11T21:33:43Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.12.0"
+        },
+        {
+          "tag_name": "v2.11.0",
+          "name": "PyTorch 2.11.0 Release",
+          "published_at": "2026-03-23T18:38:28Z",
+          "created_at": "2026-03-21T03:11:45Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.11.0"
+        },
+        {
+          "tag_name": "v2.10.0",
+          "name": "PyTorch 2.10.0 Release",
+          "published_at": "2026-01-21T17:05:16Z",
+          "created_at": "2026-01-16T00:29:35Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.10.0"
+        },
+        {
+          "tag_name": "v2.9.1",
+          "name": "PyTorch 2.9.1 Release, bug fix release",
+          "published_at": "2025-11-12T19:27:19Z",
+          "created_at": "2025-11-11T01:02:50Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.9.1"
+        },
+        {
+          "tag_name": "v2.9.0",
+          "name": "2.9 Release Notes",
+          "published_at": "2025-10-15T17:12:27Z",
+          "created_at": "2025-10-09T01:09:57Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.9.0"
+        },
+        {
+          "tag_name": "v2.8.0",
+          "name": "PyTorch 2.8.0 Release",
+          "published_at": "2025-08-06T17:06:10Z",
+          "created_at": "2025-08-04T16:51:07Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.8.0"
+        },
+        {
+          "tag_name": "v2.7.1",
+          "name": "PyTorch 2.7.1 Release, bug fix release",
+          "published_at": "2025-06-04T18:13:15Z",
+          "created_at": "2025-05-29T01:18:53Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.7.1"
+        },
+        {
+          "tag_name": "v2.7.0",
+          "name": "PyTorch 2.7.0 Release",
+          "published_at": "2025-04-23T16:16:06Z",
+          "created_at": "2025-04-15T22:56:51Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"
+        },
+        {
+          "tag_name": "v2.6.0",
+          "name": "PyTorch 2.6.0 Release",
+          "published_at": "2025-01-29T17:18:54Z",
+          "created_at": "2025-01-29T00:09:34Z",
+          "target_commitish": "release/2.6",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.6.0"
+        },
+        {
+          "tag_name": "v2.5.1",
+          "name": "PyTorch 2.5.1: bug fix release",
+          "published_at": "2024-10-29T17:58:24Z",
+          "created_at": "2024-10-23T01:14:52Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.5.1"
+        },
+        {
+          "tag_name": "v2.5.0",
+          "name": "PyTorch 2.5.0 Release, SDPA CuDNN backend, Flex Attention",
+          "published_at": "2024-10-17T16:26:53Z",
+          "created_at": "2024-10-14T17:48:44Z",
+          "target_commitish": "list_recurse",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.5.0"
+        },
+        {
+          "tag_name": "v2.4.1",
+          "name": "PyTorch 2.4.1 Release, bug fix release",
+          "published_at": "2024-09-04T19:59:29Z",
+          "created_at": "2024-08-29T00:25:42Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.4.1"
+        },
+        {
+          "tag_name": "v2.4.0",
+          "name": "PyTorch 2.4: Python 3.12, AOTInductor freezing, libuv backend for TCPStore",
+          "published_at": "2024-07-24T18:39:28Z",
+          "created_at": "2024-07-09T18:17:43Z",
+          "target_commitish": "release/2.4",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.4.0"
+        },
+        {
+          "tag_name": "v2.3.1",
+          "name": "PyTorch 2.3.1 Release, bug fix release",
+          "published_at": "2024-06-05T19:16:07Z",
+          "created_at": "2024-05-29T15:15:01Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.3.1"
+        },
+        {
+          "tag_name": "v2.3.0",
+          "name": "PyTorch 2.3: User-Defined Triton Kernels in torch.compile, Tensor Parallelism in Distributed",
+          "published_at": "2024-04-24T16:12:17Z",
+          "created_at": "2024-04-08T20:27:33Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.3.0"
+        },
+        {
+          "tag_name": "v2.2.2",
+          "name": "PyTorch 2.2.2 Release, bug fix release",
+          "published_at": "2024-03-27T22:27:02Z",
+          "created_at": "2024-03-25T21:33:04Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.2.2"
+        },
+        {
+          "tag_name": "v2.2.1",
+          "name": "PyTorch 2.2.1 Release, bug fix release",
+          "published_at": "2024-02-22T21:15:00Z",
+          "created_at": "2024-02-15T18:19:00Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.2.1"
+        },
+        {
+          "tag_name": "v2.2.0",
+          "name": "PyTorch 2.2: FlashAttention-v2, AOTInductor",
+          "published_at": "2024-01-30T17:58:51Z",
+          "created_at": "2024-01-10T22:17:29Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.2.0"
+        },
+        {
+          "tag_name": "v2.1.2",
+          "name": "PyTorch 2.1.2 Release, bug fix release",
+          "published_at": "2023-12-15T01:59:57Z",
+          "created_at": "2023-12-12T16:41:07Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.1.2"
+        },
+        {
+          "tag_name": "v2.1.1",
+          "name": "PyTorch 2.1.1 Release, bug fix release",
+          "published_at": "2023-11-15T22:59:33Z",
+          "created_at": "2023-11-08T12:49:29Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.1.1"
+        },
+        {
+          "tag_name": "v2.1.0",
+          "name": "PyTorch 2.1: automatic dynamic shape compilation, distributed checkpointing",
+          "published_at": "2023-10-04T17:32:12Z",
+          "created_at": "2023-10-04T17:31:14Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.1.0"
+        },
+        {
+          "tag_name": "v2.0.1",
+          "name": "PyTorch 2.0.1 Release, bug fix release",
+          "published_at": "2023-05-08T19:55:19Z",
+          "created_at": "2023-04-24T13:27:27Z",
+          "target_commitish": "main",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.0.1"
+        },
+        {
+          "tag_name": "v2.0.0",
+          "name": "PyTorch 2.0: Our next generation release that is faster, more Pythonic and Dynamic as ever",
+          "published_at": "2023-03-15T19:38:58Z",
+          "created_at": "2023-03-09T22:42:00Z",
+          "target_commitish": "release/2.0",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v2.0.0"
+        },
+        {
+          "tag_name": "v1.13.1",
+          "name": "PyTorch 1.13.1 Release, small bug fix release",
+          "published_at": "2022-12-16T00:17:16Z",
+          "created_at": "2022-12-08T18:13:26Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v1.13.1"
+        },
+        {
+          "tag_name": "v1.13.0",
+          "name": "PyTorch 1.13: beta versions of functorch and improved support for Apple’s new M1 chips are now available",
+          "published_at": "2022-10-28T16:54:00Z",
+          "created_at": "2022-10-24T20:00:35Z",
+          "target_commitish": "release/1.7",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v1.13.0"
+        },
+        {
+          "tag_name": "v1.12.1",
+          "name": "PyTorch 1.12.1 Release, small bug fix release",
+          "published_at": "2022-08-05T19:35:19Z",
+          "created_at": "2022-08-02T23:50:01Z",
+          "target_commitish": "master",
+          "prerelease": false,
+          "html_url": "https://github.com/pytorch/pytorch/releases/tag/v1.12.1"
+        }
+      ],
+      "in_window": []
+    }
+  ],
+  "reviews": [
+    {
+      "source_id": "nvidia-blog:nemotron-3-5-super-vl:2026-10-15",
+      "decision": "Deep Dive",
+      "reviewed": "Technical report title/date and selected sections2.1/3.6/3.7/5.3; not full79-page deep reading",
+      "summary": "Super-only domain-teacher MOPD; student snapshot ratio corrects action probabilities but not context shift. MTP boosting uses frozen backbone teacher, not specialist fleets. Prefix reuse needs missing hidden state and appropriately placed Mamba checkpoint. Report dated10/14 hour unknown; event is10/15 blog announcement."
+    },
+    {
+      "source_id": "hf-blog:reflection-beam:2026-10-16",
+      "decision": "Read",
+      "reviewed": "HF official-team article,Reflection modelcard/config at observed78f8f654d40a40919b8e9954b40dd879ecb9a692, Transformers v5.20.1 modeling_beam.py",
+      "summary": "43 sliding512 layers and9 full layers; full NoPE with query scaling; depth-scaled residual; complete expert weights stay part of memory budget. Technical report coming; no runtime experiments."
+    },
+    {
+      "source_id": "hf:deepseek-ai/DeepSeek-V4.1-Flash:commit:314113f8a7dadb388215396ba5fbee2c610a04d6",
+      "decision": "Read",
+      "reviewed": "Fixed commit metadata + encoding.py vs parent5254448 + 3-file diff including test cases",
+      "summary": "Sort tool results before media extraction; tool-only blocks do not reset user turn; input format validation beforemerge. Tests exist but not run. Separate from1017 weight release."
+    },
+    {
+      "source_id": "hf:deepseek-ai/DeepSeek-V4.1-Flash-1017:1bae0e1088993b9b82de08f59de5be5a34e42170",
+      "decision": "Observe",
+      "summary": "Release2026-10-17T05:46:55Z. Config JSON matches original314113f, which does not mean equal weights. Performance/training mechanism not independently verified."
+    },
+    {
+      "source_id": "hf-blog:meta-muse-spark-open:2026-10-15",
+      "decision": "Observe",
+      "summary": "HF article and Transformers5.20.1 public processor reviewed; raw vendor modelcard/config/history HTTP401. Multi-input text-output MLLM, not robot VLA; no training report verified."
+    }
+  ],
+  "limitations": [
+    "No exhaustive official docs/direct-commit audit",
+    "DeepSeek Search guide web extraction failed; changelog and link only",
+    "Releasefeeds latest30 each, not full history",
+    "No model/GPU/robot execution"
+  ]
+}

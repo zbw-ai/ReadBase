@@ -1,0 +1,60 @@
+{
+  "window_utc": {
+    "start": "2026-10-14T06:20:25Z",
+    "end": "2026-10-19T01:40:52Z"
+  },
+  "accepted_groups": 19,
+  "observed_groups": 45,
+  "merged_pr_counts": {
+    "rl": 97,
+    "inference": 750,
+    "embodied": 111,
+    "total": 958
+  },
+  "mapping": {
+    "E1": "A1",
+    "E2": "A2",
+    "E3": "A3",
+    "E4": "A4",
+    "E5": "A5",
+    "E6": "A6",
+    "RL1": "A7",
+    "RL2": "A8",
+    "RL3": "A9",
+    "RL4": "A10",
+    "RLP": "A11",
+    "RL5": "A12",
+    "S1": "A13",
+    "S2": "A14",
+    "S3": "A15",
+    "S4": "A16",
+    "ROOT1": "A17",
+    "ROOT2": "A18",
+    "ROOT3": "A19"
+  },
+  "upstream_experiments_executed": false,
+  "evidence_files": {
+    "embodied_arxiv_index_summary.json": "f9cc37bc36af98acefe660b2f66ca07a7d5542f211d16c07b3bd88268f3ea976",
+    "systems_evidence.json": "0d708ba246cc5f3742ec3aab699574fd18a044de2598a072de06e055913a97e4",
+    "root_evidence.json": "7ac4697cc8db429d07e29fd6871e59edcb195da42d6cf67c05b5836bb8a86e35",
+    "systems_arxiv_coverage.json": "49102b48adf0a8b21377455e96669b0c78f7580f77fed42986d4838bda066bbd",
+    "rl_evidence.json": "8d4fda4c8ce90693da4621232761c623a7c6c9f2d009064ca0b936bc52c18ff6",
+    "rl_merged_pr_index.json": "0cf3767d8389654bf1bf97251626082b47d24f86837be4d608a9f7653f9b6110",
+    "systems_merged_pr_index.json": "bad69f399615a98ad629f22b8f807771f39d99bf63b6b00fbd3169a42c22c9e5",
+    "embodied_evidence.json": "23b6f22e99b08e06ca02f3ea0204e6b35d1cbf5e00fa0d22e83b253a9d90978a",
+    "embodied_merged_pr_release_index.json": "1c6d86c00628a59213054218a0256f238d9138bf62afbebdb89417a54916fc29"
+  },
+  "verification_completed_at_utc": "2026-10-19T01:58:24Z",
+  "verification": {
+    "local_markdown_links_and_images": 1011,
+    "json_files": 10,
+    "changed_markdown_files": 13,
+    "changed_files": 23,
+    "broken_links_or_json_errors": 0,
+    "git_diff_check": "passed",
+    "merged_pr_counts_cross_checked": 958,
+    "independent_content_review": "completed; corrected student weighting/teacher distinction, throughput numerator wording, enum renumbering and evidence filename references",
+    "upstream_tests": "not run"
+  },
+  "report_sha256": "038d7967ac8258975ad9da125be0f6743edd2235e296154419431930b81a5b6e"
+}

@@ -1,0 +1,136 @@
+{
+  "pages": [
+    {
+      "url": "https://arxiv.org/list/cs.AR/new?show=2000",
+      "returned": 19,
+      "declared_total": [
+        "19"
+      ],
+      "groups": [
+        "Showing new listings for Friday, 16 October 2026",
+        "New submissions (showing 6 of 6 entries)",
+        "Cross submissions (showing 6 of 6 entries)",
+        "Replacement submissions (showing 7 of 7 entries)"
+      ],
+      "sha256": "e6cd6a75ad4905d67bc41f2da0d9c786804703a5b46791e6c94178cede635972"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.AR/recent?show=2000",
+      "returned": 64,
+      "declared_total": [
+        "64"
+      ],
+      "groups": [
+        "Fri, 16 Oct 2026 (showing 12 of 12 entries )",
+        "Thu, 15 Oct 2026 (showing 10 of 10 entries )",
+        "Wed, 14 Oct 2026 (showing 23 of 23 entries )",
+        "Mon, 12 Oct 2026 (showing 10 of 10 entries )",
+        "Fri, 9 Oct 2026 (showing 9 of 9 entries )"
+      ],
+      "sha256": "a0f69c97f97b7b8583bd0a96ea4593f4cdf4932143d943cdaa370182ae5bb7a3"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.CL/new?show=2000",
+      "returned": 267,
+      "declared_total": [
+        "267"
+      ],
+      "groups": [
+        "Showing new listings for Friday, 16 October 2026",
+        "New submissions (showing 105 of 105 entries)",
+        "Cross submissions (showing 72 of 72 entries)",
+        "Replacement submissions (showing 90 of 90 entries)"
+      ],
+      "sha256": "d2c631d55c1f3efeb641724cbd34f3432f64e93a9874f37198fa5ea4ec21b8d3"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.CL/recent?show=2000",
+      "returned": 1004,
+      "declared_total": [
+        "1004"
+      ],
+      "groups": [
+        "Fri, 16 Oct 2026 (showing 177 of 177 entries )",
+        "Thu, 15 Oct 2026 (showing 182 of 182 entries )",
+        "Wed, 14 Oct 2026 (showing 385 of 385 entries )",
+        "Mon, 12 Oct 2026 (showing 116 of 116 entries )",
+        "Fri, 9 Oct 2026 (showing 144 of 144 entries )"
+      ],
+      "sha256": "e4ed10f596c02051622c44075779b34d222c0c31102774c9d983a27f27794844"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.DC/new?show=2000",
+      "returned": 28,
+      "declared_total": [
+        "28"
+      ],
+      "groups": [
+        "Showing new listings for Friday, 16 October 2026",
+        "New submissions (showing 9 of 9 entries)",
+        "Cross submissions (showing 7 of 7 entries)",
+        "Replacement submissions (showing 12 of 12 entries)"
+      ],
+      "sha256": "88a08987fe36af4ed2532904b6418457a35cd189c411ecf8a6f4be13296aea8d"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.DC/recent?show=2000",
+      "returned": 138,
+      "declared_total": [
+        "138"
+      ],
+      "groups": [
+        "Fri, 16 Oct 2026 (showing 16 of 16 entries )",
+        "Thu, 15 Oct 2026 (showing 15 of 15 entries )",
+        "Wed, 14 Oct 2026 (showing 76 of 76 entries )",
+        "Mon, 12 Oct 2026 (showing 19 of 19 entries )",
+        "Fri, 9 Oct 2026 (showing 12 of 12 entries )"
+      ],
+      "sha256": "db47adec68aedd4be58579b7ecf07020725e9b642309f7ca50f7fa58fada2b6c"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.LG/new?show=2000",
+      "returned": 467,
+      "declared_total": [
+        "467"
+      ],
+      "groups": [
+        "Showing new listings for Friday, 16 October 2026",
+        "New submissions (showing 166 of 166 entries)",
+        "Cross submissions (showing 140 of 140 entries)",
+        "Replacement submissions (showing 161 of 161 entries)"
+      ],
+      "sha256": "4aff85627a8ea782e3ee9394a245bc4926aab1f5de66ffa94bd1a62e616d9f8c"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.LG/recent?show=2000",
+      "returned": 2000,
+      "declared_total": [
+        "2059"
+      ],
+      "groups": [
+        "Fri, 16 Oct 2026 (showing 306 of 306 entries )",
+        "Thu, 15 Oct 2026 (showing 305 of 305 entries )",
+        "Wed, 14 Oct 2026 (showing 862 of 862 entries )",
+        "Mon, 12 Oct 2026 (showing 262 of 262 entries )",
+        "Fri, 9 Oct 2026 (showing first 265 of 324 entries )"
+      ],
+      "sha256": "bdf84e6a76536e1c693d133cf54f21debe0912e57a72b711cbcffcfb85aabd39"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.LG/recent?skip=2000&show=2000",
+      "returned": 59,
+      "declared_total": [
+        "2059"
+      ],
+      "groups": [
+        "Fri, 9 Oct 2026 (continued, showing last 59 of 324 entries )"
+      ],
+      "sha256": "777e5fb95e80e0ae15e7f0f9eea1e7b8f124aa19db7edc43228f8fa82aa8aa74"
+    }
+  ],
+  "deduplicated_ids": 3109,
+  "latest_announcement": "2026-10-16",
+  "title_keyword_candidates_screened": 212,
+  "title_screening_filter": "systems/training/inference keywords on new IDs>=2610.18000 plus directcs.DC/ARscreen; notallfulltext",
+  "scope_note": "new includes replacements. recent groups containOct9,12,14,15,16; group omissionOct13doesnotchangev1submissiondates. Tail59entriesareOct9,notnewwindow. HistoricalSeptember22discoverygapremains."
+}

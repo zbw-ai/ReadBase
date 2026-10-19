@@ -1,0 +1,1502 @@
+{
+  "window": {
+    "start_utc": "2026-10-14T06:20:25Z",
+    "end_utc": "2026-10-19T01:40:52Z",
+    "first_seen": "2026-10-19",
+    "events_after_cutoff_excluded": true
+  },
+  "scope": "seven embodied official repositories; exact merged search; not direct commit coverage",
+  "repositories": [
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "query": "repo:NVIDIA/Isaac-GR00T is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Isaac-GR00T%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:21.144592+00:00",
+      "total_count": 1,
+      "incomplete_results": false,
+      "returned": 1,
+      "pages": 1,
+      "items": [
+        {
+          "number": 790,
+          "title": "Update GR00T N1.7",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/pull/790",
+          "created_at": "2026-10-15T19:26:06Z",
+          "updated_at": "2026-10-15T21:46:25Z"
+        }
+      ],
+      "releases_returned": 5,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "n1.6.1-release",
+          "name": "n1.6.1-release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.6.1-release",
+          "published_at": "2026-04-23T23:51:24Z",
+          "prerelease": false,
+          "target_commitish": "1d6_release"
+        },
+        {
+          "tag_name": "n1.7-release",
+          "name": "n1.7 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.7-release",
+          "published_at": "2026-04-18T14:45:14Z",
+          "prerelease": false,
+          "target_commitish": "23ace64f17aa5015259b8609d371eb61a357c776"
+        },
+        {
+          "tag_name": "n1.6-release",
+          "name": "n1.6 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.6-release",
+          "published_at": "2026-04-15T20:46:06Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "n1.5-release",
+          "name": "n1.5 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.5-release",
+          "published_at": "2025-12-15T15:54:30Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "n1-release",
+          "name": "n1-release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1-release",
+          "published_at": "2025-06-11T12:29:00Z",
+          "prerelease": false,
+          "target_commitish": "n1-release"
+        }
+      ]
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "query": "repo:isaac-sim/IsaacLab is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Aisaac-sim/IsaacLab%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:28.282794+00:00",
+      "total_count": 88,
+      "incomplete_results": false,
+      "returned": 88,
+      "pages": 1,
+      "items": [
+        {
+          "number": 8711,
+          "title": "[Newton] Redesign Newton Manager [1/N]",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8711",
+          "created_at": "2026-10-18T02:36:11Z",
+          "updated_at": "2026-10-19T01:28:19Z"
+        },
+        {
+          "number": 8702,
+          "title": "Remove replicate_physics switch and unused Fabric flag",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8702",
+          "created_at": "2026-10-17T02:46:53Z",
+          "updated_at": "2026-10-17T07:23:55Z"
+        },
+        {
+          "number": 8700,
+          "title": "[Docs] Bring the documentation refresh to develop",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8700",
+          "created_at": "2026-10-17T01:16:29Z",
+          "updated_at": "2026-10-18T07:48:53Z"
+        },
+        {
+          "number": 8697,
+          "title": "[Backport release/3.0.0] Update release references for Isaac Lab 3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8697",
+          "created_at": "2026-10-17T00:24:39Z",
+          "updated_at": "2026-10-18T02:01:14Z"
+        },
+        {
+          "number": 8696,
+          "title": "[Backport release/3.0.0] Fix nightly changelog compilation",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8696",
+          "created_at": "2026-10-17T00:19:12Z",
+          "updated_at": "2026-10-17T03:58:04Z"
+        },
+        {
+          "number": 8695,
+          "title": "[CI] Fix nightly changelog compilation",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8695",
+          "created_at": "2026-10-17T00:14:41Z",
+          "updated_at": "2026-10-17T03:57:54Z"
+        },
+        {
+          "number": 8694,
+          "title": "[Docs] Finalize docs for 3.0 release",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8694",
+          "created_at": "2026-10-16T23:41:54Z",
+          "updated_at": "2026-10-17T03:45:10Z"
+        },
+        {
+          "number": 8692,
+          "title": "Speed up LEAPP export tests",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8692",
+          "created_at": "2026-10-16T22:50:09Z",
+          "updated_at": "2026-10-17T02:18:11Z"
+        },
+        {
+          "number": 8686,
+          "title": "keep environment roots for asset-level cloning",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8686",
+          "created_at": "2026-10-16T19:17:32Z",
+          "updated_at": "2026-10-16T20:06:55Z"
+        },
+        {
+          "number": 8685,
+          "title": "[Backport] PR #8684 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8685",
+          "created_at": "2026-10-16T15:44:37Z",
+          "updated_at": "2026-10-16T18:28:17Z"
+        },
+        {
+          "number": 8684,
+          "title": "Refresh rendering references for the published 6.2 checkerboard",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8684",
+          "created_at": "2026-10-16T15:35:40Z",
+          "updated_at": "2026-10-16T18:28:08Z"
+        },
+        {
+          "number": 8683,
+          "title": "Bump omniverseclient to 2.75.1 to match OVRTX 0.6 and OVStage 0.3",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8683",
+          "created_at": "2026-10-16T15:23:16Z",
+          "updated_at": "2026-10-16T16:35:57Z"
+        },
+        {
+          "number": 8661,
+          "title": "Fix G1 coupling policy loading on release 3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8661",
+          "created_at": "2026-10-16T08:26:23Z",
+          "updated_at": "2026-10-16T14:28:51Z"
+        },
+        {
+          "number": 8660,
+          "title": "Fix Newton dominoes initialization",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8660",
+          "created_at": "2026-10-16T08:25:58Z",
+          "updated_at": "2026-10-16T14:36:24Z"
+        },
+        {
+          "number": 8659,
+          "title": "[CI] Bump Isaac Sim image to 8e05c35699f5",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8659",
+          "created_at": "2026-10-16T08:13:54Z",
+          "updated_at": "2026-10-16T16:45:45Z"
+        },
+        {
+          "number": 8647,
+          "title": "Fix Haply scene configuration lifecycle",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8647",
+          "created_at": "2026-10-16T05:52:35Z",
+          "updated_at": "2026-10-16T06:29:47Z"
+        },
+        {
+          "number": 8646,
+          "title": "[Backport] PR #8540 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8646",
+          "created_at": "2026-10-16T05:43:56Z",
+          "updated_at": "2026-10-16T14:38:14Z"
+        },
+        {
+          "number": 8635,
+          "title": "Remove invalid LEAPP export physics selector",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8635",
+          "created_at": "2026-10-16T03:39:39Z",
+          "updated_at": "2026-10-16T04:01:02Z"
+        },
+        {
+          "number": 8633,
+          "title": "[Backport release/3.0.0] Remove personal workstation path",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8633",
+          "created_at": "2026-10-16T01:09:04Z",
+          "updated_at": "2026-10-16T01:56:04Z"
+        },
+        {
+          "number": 8632,
+          "title": "Remove personal workstation path",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8632",
+          "created_at": "2026-10-16T01:09:01Z",
+          "updated_at": "2026-10-16T01:55:44Z"
+        },
+        {
+          "number": 8631,
+          "title": "[Backport release/3.0.0] Remove internal hosts from documentation assets",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8631",
+          "created_at": "2026-10-15T22:56:52Z",
+          "updated_at": "2026-10-16T00:44:31Z"
+        },
+        {
+          "number": 8630,
+          "title": "Remove internal hosts from documentation assets",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8630",
+          "created_at": "2026-10-15T22:56:15Z",
+          "updated_at": "2026-10-16T00:44:25Z"
+        },
+        {
+          "number": 8628,
+          "title": "[Backport] PR #8624 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8628",
+          "created_at": "2026-10-15T22:45:37Z",
+          "updated_at": "2026-10-16T01:54:35Z"
+        },
+        {
+          "number": 8625,
+          "title": "Refine coffee demo and fix inherited robot asset overrides",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8625",
+          "created_at": "2026-10-15T22:31:09Z",
+          "updated_at": "2026-10-16T00:41:14Z"
+        },
+        {
+          "number": 8624,
+          "title": "Refresh documentation previews for the lighter default ground",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8624",
+          "created_at": "2026-10-15T22:30:05Z",
+          "updated_at": "2026-10-16T01:53:21Z"
+        },
+        {
+          "number": 8623,
+          "title": "Improve Sharpa RJ45 example lighting",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8623",
+          "created_at": "2026-10-15T22:28:37Z",
+          "updated_at": "2026-10-16T00:40:48Z"
+        },
+        {
+          "number": 8619,
+          "title": "Make G1 terrain visualization and recording selectable",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8619",
+          "created_at": "2026-10-15T20:44:01Z",
+          "updated_at": "2026-10-16T19:15:17Z"
+        },
+        {
+          "number": 8618,
+          "title": "[Backport] PR #8610 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8618",
+          "created_at": "2026-10-15T20:04:45Z",
+          "updated_at": "2026-10-15T22:32:52Z"
+        },
+        {
+          "number": 8617,
+          "title": "[Backport] PR #8559 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8617",
+          "created_at": "2026-10-15T19:32:56Z",
+          "updated_at": "2026-10-15T20:19:41Z"
+        },
+        {
+          "number": 8610,
+          "title": "clearer error message for physics selector error.",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8610",
+          "created_at": "2026-10-15T16:37:17Z",
+          "updated_at": "2026-10-15T22:53:45Z"
+        },
+        {
+          "number": 8608,
+          "title": "Fix stale OVPhysX and PhysX contact sensor data after reset",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8608",
+          "created_at": "2026-10-15T16:23:41Z",
+          "updated_at": "2026-10-17T08:05:06Z"
+        },
+        {
+          "number": 8605,
+          "title": "Remove Spot Kamino preset",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8605",
+          "created_at": "2026-10-15T15:38:39Z",
+          "updated_at": "2026-10-15T16:48:12Z"
+        },
+        {
+          "number": 8604,
+          "title": "Remove Spot Kamino preset",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8604",
+          "created_at": "2026-10-15T15:15:18Z",
+          "updated_at": "2026-10-15T16:48:17Z"
+        },
+        {
+          "number": 8602,
+          "title": "Fix pick-and-place demo camera framing",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8602",
+          "created_at": "2026-10-15T15:04:02Z",
+          "updated_at": "2026-10-15T15:37:09Z"
+        },
+        {
+          "number": 8601,
+          "title": "[Backport release/3.0.0] Make contributed teleop dependencies optional",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8601",
+          "created_at": "2026-10-15T15:01:52Z",
+          "updated_at": "2026-10-15T19:42:58Z"
+        },
+        {
+          "number": 8600,
+          "title": "Make contributed teleop dependencies optional",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8600",
+          "created_at": "2026-10-15T15:01:41Z",
+          "updated_at": "2026-10-15T19:42:48Z"
+        },
+        {
+          "number": 8599,
+          "title": "[Backport] PR #8480 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8599",
+          "created_at": "2026-10-15T14:37:09Z",
+          "updated_at": "2026-10-15T15:50:34Z"
+        },
+        {
+          "number": 8598,
+          "title": "add ovphysx 0.7.0 compat layer",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8598",
+          "created_at": "2026-10-15T14:08:21Z",
+          "updated_at": "2026-10-15T21:55:19Z"
+        },
+        {
+          "number": 8597,
+          "title": "Improve teapot water flow, asset setup, and Kit visualization",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8597",
+          "created_at": "2026-10-15T14:00:23Z",
+          "updated_at": "2026-10-15T23:18:13Z"
+        },
+        {
+          "number": 8595,
+          "title": "Keep Newton GL mesh updates and teardown in the owning context",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8595",
+          "created_at": "2026-10-15T10:41:11Z",
+          "updated_at": "2026-10-16T00:41:41Z"
+        },
+        {
+          "number": 8594,
+          "title": "[CI] Bump Isaac Sim image to 4b5b85284df1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8594",
+          "created_at": "2026-10-15T08:14:25Z",
+          "updated_at": "2026-10-16T00:59:21Z"
+        },
+        {
+          "number": 8593,
+          "title": "Load shoelace task assets from the official asset root",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8593",
+          "created_at": "2026-10-15T06:27:22Z",
+          "updated_at": "2026-10-15T15:51:10Z"
+        },
+        {
+          "number": 8592,
+          "title": "[Backport] PR #8584 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8592",
+          "created_at": "2026-10-15T01:24:23Z",
+          "updated_at": "2026-10-15T02:13:17Z"
+        },
+        {
+          "number": 8591,
+          "title": "[Docs] Refresh PhysX-to-Newton demo GIFs",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8591",
+          "created_at": "2026-10-15T01:16:53Z",
+          "updated_at": "2026-10-15T02:09:48Z"
+        },
+        {
+          "number": 8585,
+          "title": "Render RTX visualizers through the simulation's OVRTX renderer",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8585",
+          "created_at": "2026-10-14T22:25:17Z",
+          "updated_at": "2026-10-16T21:13:16Z"
+        },
+        {
+          "number": 8584,
+          "title": "Update PyJWT and virtualenv dependencies",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8584",
+          "created_at": "2026-10-14T22:24:06Z",
+          "updated_at": "2026-10-15T01:46:56Z"
+        },
+        {
+          "number": 8581,
+          "title": "[Backport] PR #8577 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8581",
+          "created_at": "2026-10-14T21:08:44Z",
+          "updated_at": "2026-10-14T22:16:17Z"
+        },
+        {
+          "number": 8578,
+          "title": "[Backport] PR #8574 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8578",
+          "created_at": "2026-10-14T21:01:21Z",
+          "updated_at": "2026-10-14T22:16:32Z"
+        },
+        {
+          "number": 8577,
+          "title": "Restore the Partial Visualization section in the visualization docs",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8577",
+          "created_at": "2026-10-14T20:34:23Z",
+          "updated_at": "2026-10-14T21:06:42Z"
+        },
+        {
+          "number": 8576,
+          "title": "Document serial port access for SO-101 leader-arm calibration",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8576",
+          "created_at": "2026-10-14T19:45:52Z",
+          "updated_at": "2026-10-14T20:11:47Z"
+        },
+        {
+          "number": 8574,
+          "title": "[Fix] Reset all partitioned SO-101 keyboard roots",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8574",
+          "created_at": "2026-10-14T19:32:33Z",
+          "updated_at": "2026-10-14T20:58:51Z"
+        },
+        {
+          "number": 8573,
+          "title": "[Backport] PR #8561 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8573",
+          "created_at": "2026-10-14T19:16:36Z",
+          "updated_at": "2026-10-14T20:10:36Z"
+        },
+        {
+          "number": 8570,
+          "title": "[Backport 3.0] Add launchable task runs to the environment browser (#7046, #8520)",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8570",
+          "created_at": "2026-10-14T18:35:57Z",
+          "updated_at": "2026-10-14T19:37:38Z"
+        },
+        {
+          "number": 8569,
+          "title": "Clarify ppisp-camera scene-specific camera path",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8569",
+          "created_at": "2026-10-14T18:03:35Z",
+          "updated_at": "2026-10-14T18:25:19Z"
+        },
+        {
+          "number": 8567,
+          "title": "Fix random-agent playback for direct multi-agent tasks",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8567",
+          "created_at": "2026-10-14T17:44:26Z",
+          "updated_at": "2026-10-14T19:43:48Z"
+        },
+        {
+          "number": 8566,
+          "title": "[Docs] Refresh quickstart media and remove cabinet material overrides",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8566",
+          "created_at": "2026-10-14T17:33:11Z",
+          "updated_at": "2026-10-14T20:10:52Z"
+        },
+        {
+          "number": 8565,
+          "title": "Clarify ppisp-camera scene-specific camera path",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8565",
+          "created_at": "2026-10-14T17:16:07Z",
+          "updated_at": "2026-10-14T18:21:48Z"
+        },
+        {
+          "number": 8564,
+          "title": "[3.0] Avoid runtime launches from viewer defaults",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8564",
+          "created_at": "2026-10-14T17:15:57Z",
+          "updated_at": "2026-10-14T19:14:26Z"
+        },
+        {
+          "number": 8563,
+          "title": "Add cantina backdrop support to the H2 tablecloth example",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8563",
+          "created_at": "2026-10-14T17:07:11Z",
+          "updated_at": "2026-10-17T02:10:04Z"
+        },
+        {
+          "number": 8562,
+          "title": "[Backport] PR #8387 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8562",
+          "created_at": "2026-10-14T16:53:54Z",
+          "updated_at": "2026-10-14T18:22:59Z"
+        },
+        {
+          "number": 8561,
+          "title": "[Docs] Document one build command for every Docker image profile",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8561",
+          "created_at": "2026-10-14T16:37:40Z",
+          "updated_at": "2026-10-14T19:15:19Z"
+        },
+        {
+          "number": 8560,
+          "title": "[Docs] Fix release SO-101 tutorial task resolution",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8560",
+          "created_at": "2026-10-14T16:37:01Z",
+          "updated_at": "2026-10-14T16:58:02Z"
+        },
+        {
+          "number": 8559,
+          "title": "Update interactive demos and simplify publishing",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8559",
+          "created_at": "2026-10-14T11:39:10Z",
+          "updated_at": "2026-10-15T19:04:06Z"
+        },
+        {
+          "number": 8558,
+          "title": "[CI] Bump Isaac Sim image to 10daef98ca84",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8558",
+          "created_at": "2026-10-14T08:14:54Z",
+          "updated_at": "2026-10-14T16:11:59Z"
+        },
+        {
+          "number": 8553,
+          "title": "[Docs] Update SO-101 tutorial for the consolidated tutorial layout",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8553",
+          "created_at": "2026-10-14T02:22:27Z",
+          "updated_at": "2026-10-14T06:39:36Z"
+        },
+        {
+          "number": 8543,
+          "title": "Add MicroDuck to the interactive docs gallery",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8543",
+          "created_at": "2026-10-13T22:45:57Z",
+          "updated_at": "2026-10-14T11:35:30Z"
+        },
+        {
+          "number": 8541,
+          "title": "docs: Compare renderers side by side and recommend OVRTX",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8541",
+          "created_at": "2026-10-13T22:31:10Z",
+          "updated_at": "2026-10-14T18:25:07Z"
+        },
+        {
+          "number": 8540,
+          "title": "Add missing dependency and asset license texts",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8540",
+          "created_at": "2026-10-13T22:25:03Z",
+          "updated_at": "2026-10-16T06:14:59Z"
+        },
+        {
+          "number": 8524,
+          "title": "Update Newton and preserve native VBD defaults",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8524",
+          "created_at": "2026-10-13T14:38:52Z",
+          "updated_at": "2026-10-14T16:43:09Z"
+        },
+        {
+          "number": 8521,
+          "title": "[Newton] Add a scripted Sharpa RJ45 cable cycle example",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8521",
+          "created_at": "2026-10-13T12:16:55Z",
+          "updated_at": "2026-10-14T23:25:44Z"
+        },
+        {
+          "number": 8520,
+          "title": "Disable environment browser options that cannot launch",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8520",
+          "created_at": "2026-10-13T11:46:06Z",
+          "updated_at": "2026-10-14T19:37:23Z"
+        },
+        {
+          "number": 8509,
+          "title": "[Backport] PR #8233 to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8509",
+          "created_at": "2026-10-13T02:48:25Z",
+          "updated_at": "2026-10-15T19:37:15Z"
+        },
+        {
+          "number": 8496,
+          "title": "Add MicroDuck Warehouse rendering demo",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8496",
+          "created_at": "2026-10-12T20:12:04Z",
+          "updated_at": "2026-10-17T00:06:34Z"
+        },
+        {
+          "number": 8483,
+          "title": "Add pretrained G1 terrain demos for PhysX and Newton",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8483",
+          "created_at": "2026-10-12T14:50:29Z",
+          "updated_at": "2026-10-14T22:52:56Z"
+        },
+        {
+          "number": 8480,
+          "title": "[Core] Make \"physx\" mean the OVPhysX order on every backend",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8480",
+          "created_at": "2026-10-12T11:45:19Z",
+          "updated_at": "2026-10-15T14:48:39Z"
+        },
+        {
+          "number": 8479,
+          "title": "Add a Rizon–Sharpa coffee scooping IK demo",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8479",
+          "created_at": "2026-10-12T11:22:55Z",
+          "updated_at": "2026-10-14T22:38:54Z"
+        },
+        {
+          "number": 8451,
+          "title": "Fix height-field length conversions that drop a pixel or step in floating point",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8451",
+          "created_at": "2026-10-10T03:10:43Z",
+          "updated_at": "2026-10-14T16:35:36Z"
+        },
+        {
+          "number": 8431,
+          "title": "Add a physical Rizon Sharpa teapot example",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8431",
+          "created_at": "2026-10-09T18:48:51Z",
+          "updated_at": "2026-10-15T10:41:41Z"
+        },
+        {
+          "number": 8421,
+          "title": "[Demo] Add standalone NIST assembly playback",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8421",
+          "created_at": "2026-10-09T07:17:54Z",
+          "updated_at": "2026-10-14T17:22:30Z"
+        },
+        {
+          "number": 8387,
+          "title": "[Docs] DOC-008: Consolidate backends and presets with backend architecture",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8387",
+          "created_at": "2026-10-08T14:03:21Z",
+          "updated_at": "2026-10-14T16:57:52Z"
+        },
+        {
+          "number": 8375,
+          "title": "[Core] Fix image normals data type resolution",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8375",
+          "created_at": "2026-10-08T00:41:02Z",
+          "updated_at": "2026-10-14T10:03:49Z"
+        },
+        {
+          "number": 8300,
+          "title": "[Contrib] Add Frank Gaussians Berries Picking task (GTC Berlin Demo)",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8300",
+          "created_at": "2026-10-05T14:23:22Z",
+          "updated_at": "2026-10-15T17:47:02Z"
+        },
+        {
+          "number": 8279,
+          "title": "Add opt-in shared OVStage physics and rendering",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8279",
+          "created_at": "2026-10-02T20:42:17Z",
+          "updated_at": "2026-10-17T05:42:50Z"
+        },
+        {
+          "number": 8270,
+          "title": "[Newton] Add BAM servo actuator and MicroDuck walking tasks",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8270",
+          "created_at": "2026-10-02T14:02:19Z",
+          "updated_at": "2026-10-15T00:42:02Z"
+        },
+        {
+          "number": 8248,
+          "title": "Restore Franka Reach teleop device sensitivity lost in #3327",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8248",
+          "created_at": "2026-10-01T20:10:13Z",
+          "updated_at": "2026-10-15T20:12:45Z"
+        },
+        {
+          "number": 8232,
+          "title": "Refactor and simplify OV cloning and stage ownership",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8232",
+          "created_at": "2026-10-01T04:12:46Z",
+          "updated_at": "2026-10-16T23:53:14Z"
+        },
+        {
+          "number": 8126,
+          "title": "[6Biii] Select visualizer consumers before launching runtimes",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8126",
+          "created_at": "2026-09-29T04:43:58Z",
+          "updated_at": "2026-10-18T20:57:57Z"
+        },
+        {
+          "number": 7046,
+          "title": "Add a task run resolver and list launchable presets in `isaaclab list_envs`",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/7046",
+          "created_at": "2026-08-12T12:33:48Z",
+          "updated_at": "2026-10-14T18:20:08Z"
+        }
+      ],
+      "releases_returned": 25,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "interactive-demos",
+          "name": "Interactive browser demos",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/interactive-demos",
+          "published_at": "2026-10-15T16:47:05Z",
+          "prerelease": true,
+          "target_commitish": "develop"
+        },
+        {
+          "tag_name": "v3.0.0-EA",
+          "name": "v3.0.0-EA",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA",
+          "published_at": "2026-09-16T22:34:03Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0"
+        },
+        {
+          "tag_name": "v3.0.0-beta2.patch1",
+          "name": "v3.0.0-beta2.patch1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2.patch1",
+          "published_at": "2026-07-02T04:21:18Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0-beta2"
+        },
+        {
+          "tag_name": "v3.0.0-beta2",
+          "name": "v3.0.0-beta2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2",
+          "published_at": "2026-06-17T02:16:55Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0-beta2"
+        },
+        {
+          "tag_name": "v3.0.0-beta",
+          "name": "v3.0.0-beta",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta",
+          "published_at": "2026-03-17T06:38:37Z",
+          "prerelease": false,
+          "target_commitish": "develop"
+        },
+        {
+          "tag_name": "v2.3.2",
+          "name": "v2.3.2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.2",
+          "published_at": "2026-02-02T18:54:35Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.3.1",
+          "name": "v2.3.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.1",
+          "published_at": "2025-12-04T22:26:35Z",
+          "prerelease": false,
+          "target_commitish": "release/2.3.0"
+        },
+        {
+          "tag_name": "v2.3.0",
+          "name": "v2.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.0",
+          "published_at": "2025-10-28T21:38:54Z",
+          "prerelease": false,
+          "target_commitish": "release/2.3.0"
+        },
+        {
+          "tag_name": "v2.2.1",
+          "name": "v2.2.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.2.1",
+          "published_at": "2025-08-29T17:58:55Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.2.0",
+          "name": "v2.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.2.0",
+          "published_at": "2025-08-07T19:42:33Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.1.1",
+          "name": "v2.1.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.1.1",
+          "published_at": "2025-07-30T12:59:44Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.1.0",
+          "name": "v2.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.1.0",
+          "published_at": "2025-04-24T15:13:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.2",
+          "name": "v2.0.2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.2",
+          "published_at": "2025-03-05T23:37:20Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.1",
+          "name": "v2.0.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.1",
+          "published_at": "2025-02-26T01:27:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.0",
+          "name": "v2.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.0",
+          "published_at": "2025-01-30T22:56:47Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.4.1",
+          "name": "v1.4.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.4.1",
+          "published_at": "2025-01-30T20:59:05Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "name": "v1.4.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.4.0",
+          "published_at": "2024-12-20T16:10:07Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "name": "v1.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.3.0",
+          "published_at": "2024-11-21T23:01:07Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "name": "v1.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.2.0",
+          "published_at": "2024-09-20T17:44:31Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "name": "v1.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.1.0",
+          "published_at": "2024-07-26T21:06:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "name": "v1.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.0.0",
+          "published_at": "2024-06-26T08:37:57Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.1",
+          "name": "v0.3.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.3.1",
+          "published_at": "2024-05-31T13:05:15Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "name": "v0.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.3.0",
+          "published_at": "2024-04-17T20:01:45Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "name": "Release 0.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.2.0",
+          "published_at": "2024-02-10T12:22:32Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.1.0",
+          "name": "Release 0.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.1.0",
+          "published_at": "2023-01-18T09:21:20Z",
+          "prerelease": true,
+          "target_commitish": "main"
+        }
+      ]
+    },
+    {
+      "repo": "openvla/openvla",
+      "query": "repo:openvla/openvla is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Aopenvla/openvla%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:18.339313+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": []
+    },
+    {
+      "repo": "Physical-Intelligence/openpi",
+      "query": "repo:Physical-Intelligence/openpi is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3APhysical-Intelligence/openpi%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:19.120918+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": []
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "query": "repo:meta-pytorch/torchcodec is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Ameta-pytorch/torchcodec%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:20.571465+00:00",
+      "total_count": 1,
+      "incomplete_results": false,
+      "returned": 1,
+      "pages": 1,
+      "items": [
+        {
+          "number": 1769,
+          "title": " revert the tolerance increase for rocjpeg",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/pull/1769",
+          "created_at": "2026-10-15T01:42:44Z",
+          "updated_at": "2026-10-15T02:50:13Z"
+        }
+      ],
+      "releases_returned": 24,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "v0.17.0",
+          "name": "TorchCodec 0.17 - Low-level decoding APIs",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+          "published_at": "2026-09-30T13:32:47Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.16.0",
+          "name": "TorchCodec 0.16 - Image decoding and encoding",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.16.0",
+          "published_at": "2026-08-13T12:27:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.15.0",
+          "name": "TorchCodec 0.15",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.15.0",
+          "published_at": "2026-07-15T10:32:13Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.14.0",
+          "name": "TorchCodec 0.14: HDR Video Decoding for CPU & CUDA, and Fast Wav Decoder",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.14.0",
+          "published_at": "2026-06-03T13:02:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.13.0",
+          "name": "TorchCodec 0.13",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.13.0",
+          "published_at": "2026-05-21T11:58:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.12.0",
+          "name": "TorchCodec 0.12",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.12.0",
+          "published_at": "2026-05-14T20:05:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.11.1",
+          "name": "TorchCodec 0.11.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.11.1",
+          "published_at": "2026-04-14T18:53:02Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.11.0",
+          "name": "TorchCodec 0.11",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.11.0",
+          "published_at": "2026-03-24T16:39:48Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.10.0",
+          "name": "TorchCodec 0.10",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.10.0",
+          "published_at": "2026-01-22T15:56:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.9.1",
+          "name": "TorchCodec 0.9.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.9.1",
+          "published_at": "2025-12-10T16:41:10Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.9.0",
+          "name": "TorchCodec 0.9",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.9.0",
+          "published_at": "2025-12-04T19:57:54Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.8.1",
+          "name": "TorchCodec 0.8.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.8.1",
+          "published_at": "2025-10-28T10:13:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.8.0",
+          "name": "TorchCodec 0.8",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.8.0",
+          "published_at": "2025-10-16T15:22:26Z",
+          "prerelease": false,
+          "target_commitish": "release/0.8"
+        },
+        {
+          "tag_name": "v0.7.0",
+          "name": "TorchCodec 0.7",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.7.0",
+          "published_at": "2025-09-08T14:43:52Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.6.0",
+          "name": "TorchCodec 0.6.0",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.6.0",
+          "published_at": "2025-08-07T09:03:55Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.0",
+          "name": "TorchCodec 0.5 ",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.5.0",
+          "published_at": "2025-07-23T19:29:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "name": "TorchCodec 0.4",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.4.0",
+          "published_at": "2025-05-16T09:27:02Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "name": "TorchCodec 0.3",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.3.0",
+          "published_at": "2025-04-24T09:29:56Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.1",
+          "name": "TorchCodec 0.2.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.2.1",
+          "published_at": "2025-03-12T13:55:00Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "name": "TorchCodec 0.2.0",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.2.0",
+          "published_at": "2025-02-05T17:49:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.1.1",
+          "name": "TorchCodec 0.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.1.1",
+          "published_at": "2024-12-12T15:54:19Z",
+          "prerelease": false,
+          "target_commitish": "release/0.1.0"
+        },
+        {
+          "tag_name": "v0.0.3",
+          "name": "TorchCodec 0.0.3 ",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.3",
+          "published_at": "2024-08-15T17:05:10Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.0.2",
+          "name": "TorchCodec 0.0.2",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.2",
+          "published_at": "2024-08-08T13:21:54Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.0.1",
+          "name": "TorchCodec 0.0.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.1",
+          "published_at": "2024-08-08T13:23:32Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        }
+      ]
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "query": "repo:huggingface/lerobot is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/lerobot%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:23.196810+00:00",
+      "total_count": 21,
+      "incomplete_results": false,
+      "returned": 21,
+      "pages": 1,
+      "items": [
+        {
+          "number": 4986,
+          "title": "Fix annotation publication and worker admission in FineRobotics",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4986",
+          "created_at": "2026-10-15T16:03:33Z",
+          "updated_at": "2026-10-15T16:15:31Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T16:15:30Z",
+          "merge_commit_sha": "7c2e9dfdf6e48ba592afeafb91bc1bc6905fb5f8",
+          "author": "pkooij"
+        },
+        {
+          "number": 4984,
+          "title": "Fix annotation runtime retries, resume, durability and publication safety",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4984",
+          "created_at": "2026-10-15T14:54:21Z",
+          "updated_at": "2026-10-15T15:18:29Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T15:17:27Z",
+          "merge_commit_sha": "877d01e08552ce1b03039828b90881915d76cb3d",
+          "author": "pkooij"
+        },
+        {
+          "number": 4981,
+          "title": "Fix native fingerprint layout stability and defer direct frame imports",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4981",
+          "created_at": "2026-10-15T13:42:15Z",
+          "updated_at": "2026-10-15T13:55:45Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T13:55:03Z",
+          "merge_commit_sha": "09bb876dd2ba447ca6d557402fbea55845353fc1",
+          "author": "pkooij"
+        },
+        {
+          "number": 4980,
+          "title": "fix(annotations): make cached resume stable across metadata writes",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4980",
+          "created_at": "2026-10-15T12:23:05Z",
+          "updated_at": "2026-10-15T13:08:15Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T13:07:38Z",
+          "merge_commit_sha": "03b86208d6ce1b38d1dfcccace948cb620332864",
+          "author": "pkooij"
+        },
+        {
+          "number": 4979,
+          "title": "fix(annotations): preserve incremental reuse and bound storage overhead",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4979",
+          "created_at": "2026-10-15T10:49:19Z",
+          "updated_at": "2026-10-15T11:01:00Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T11:00:35Z",
+          "merge_commit_sha": "afd8c23e263ba8d80fa9a5562edfb74d7f5a2442",
+          "author": "pkooij"
+        },
+        {
+          "number": 4978,
+          "title": "Fix annotation-runtime review feedback on the FineRobotics integration branch",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4978",
+          "created_at": "2026-10-15T08:35:01Z",
+          "updated_at": "2026-10-15T08:49:14Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-15T08:47:51Z",
+          "merge_commit_sha": "a5fcadf9e0eee526049edf537cb9f510a0a733ac",
+          "author": "pkooij"
+        },
+        {
+          "number": 4971,
+          "title": "Fix malformed checkpoint resume and sync integration with current main",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4971",
+          "created_at": "2026-10-14T13:08:57Z",
+          "updated_at": "2026-10-14T13:23:05Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T13:21:05Z",
+          "merge_commit_sha": "ba3bd2602975c99302e1ec3849ba2f9996951290",
+          "author": "pkooij"
+        },
+        {
+          "number": 4970,
+          "title": "Simplify annotation runtime bookkeeping without changing APIs",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4970",
+          "created_at": "2026-10-14T12:42:20Z",
+          "updated_at": "2026-10-14T12:43:01Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T12:43:01Z",
+          "merge_commit_sha": "7c57ef435ea7c5a2b55d93ebbd12bda02b8a98cd",
+          "author": "pkooij"
+        },
+        {
+          "number": 4969,
+          "title": "Consolidate annotation tests and strengthen output coverage",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4969",
+          "created_at": "2026-10-14T12:14:56Z",
+          "updated_at": "2026-10-14T12:16:01Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T12:16:00Z",
+          "merge_commit_sha": "9b01acf670eba15c7eeb78469d1d2a3b95a967df",
+          "author": "pkooij"
+        },
+        {
+          "number": 4968,
+          "title": "Keep annotation runtime and storage under annotations",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4968",
+          "created_at": "2026-10-14T11:09:36Z",
+          "updated_at": "2026-10-14T11:10:27Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T11:10:27Z",
+          "merge_commit_sha": "613ffc4796eede528b3dff20cf465a970537410e",
+          "author": "pkooij"
+        },
+        {
+          "number": 4967,
+          "title": "Keep one annotation guide and remove extra CI workflow",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4967",
+          "created_at": "2026-10-14T10:20:02Z",
+          "updated_at": "2026-10-14T10:23:48Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T10:23:48Z",
+          "merge_commit_sha": "b46d449128990a4cd7d0b5a478dba534428d50bb",
+          "author": "pkooij"
+        },
+        {
+          "number": 4966,
+          "title": "Narrow annotation runtime to the framework and existing workflows",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4966",
+          "created_at": "2026-10-14T09:51:59Z",
+          "updated_at": "2026-10-14T09:57:25Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T09:56:01Z",
+          "merge_commit_sha": "7ae91005cd7ac13d15fa1c173143dd9c8c124cee",
+          "author": "pkooij"
+        },
+        {
+          "number": 4965,
+          "title": "docs(rollout): improve remote inference docs",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4965",
+          "created_at": "2026-10-14T08:38:03Z",
+          "updated_at": "2026-10-14T09:04:43Z",
+          "base": "main",
+          "merged_at": "2026-10-14T09:04:40Z",
+          "merge_commit_sha": "61373ee1c848f4e857b324de80872620d6bb7bb9",
+          "author": "imstevenpmwork"
+        },
+        {
+          "number": 4963,
+          "title": "Fix HF processing checkpoint discovery and recovery",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4963",
+          "created_at": "2026-10-14T07:57:15Z",
+          "updated_at": "2026-10-14T08:31:11Z",
+          "base": "codex/finerobotics",
+          "merged_at": "2026-10-14T08:10:28Z",
+          "merge_commit_sha": "b833e344d65cdb040a1852498e5629cb6cd8c138",
+          "author": "pkooij"
+        },
+        {
+          "number": 4955,
+          "title": "feat(g1): support SONIC remote inference",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4955",
+          "created_at": "2026-10-13T14:32:52Z",
+          "updated_at": "2026-10-14T09:21:37Z",
+          "base": "main",
+          "merged_at": "2026-10-14T09:21:34Z",
+          "merge_commit_sha": "8ce006c20e644612b2468e93bb6ab29c7f60eb68",
+          "author": "imstevenpmwork"
+        },
+        {
+          "number": 4903,
+          "title": "fix(streaming): release HTTP response bodies without waiting for cyclic GC",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4903",
+          "created_at": "2026-10-10T00:46:43Z",
+          "updated_at": "2026-10-15T10:19:31Z",
+          "base": "main",
+          "merged_at": "2026-10-15T10:19:31Z",
+          "merge_commit_sha": "8975047fbb76e7fef3f482988ceccc17e2102a90",
+          "author": "pkooij"
+        },
+        {
+          "number": 4865,
+          "title": "refactor(streaming): follow the import conventions in the streaming modules",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4865",
+          "created_at": "2026-10-07T12:43:16Z",
+          "updated_at": "2026-10-14T10:40:43Z",
+          "base": "main",
+          "merged_at": "2026-10-14T10:40:41Z",
+          "merge_commit_sha": "53feaef37b67e8f4c23b6953e880ff535e39d6fe",
+          "author": "pkooij"
+        },
+        {
+          "number": 4675,
+          "title": "feat(rollout): steerable external vlm wiring",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4675",
+          "created_at": "2026-09-18T17:17:08Z",
+          "updated_at": "2026-10-15T12:55:15Z",
+          "base": "main",
+          "merged_at": "2026-10-15T12:54:05Z",
+          "merge_commit_sha": "297774fca4e3ad0aa34e7425fbf937111637e77b",
+          "author": "molbap"
+        },
+        {
+          "number": 4672,
+          "title": "refactor(motors): one rustypot-backed SerialMotorsBus for Feetech and Dynamixel",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4672",
+          "created_at": "2026-09-18T13:23:57Z",
+          "updated_at": "2026-10-16T11:56:01Z",
+          "base": "main",
+          "merged_at": "2026-10-16T11:55:58Z",
+          "merge_commit_sha": "146d8474932c8b566717eb2738ba459337ab71c4",
+          "author": "nicolas-rabault"
+        },
+        {
+          "number": 4621,
+          "title": "perf(multi_task_dit): compile the vision encoder and DiT, dedup task strings in the processor",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4621",
+          "created_at": "2026-09-13T00:49:15Z",
+          "updated_at": "2026-10-15T12:26:11Z",
+          "base": "main",
+          "merged_at": "2026-10-15T12:26:11Z",
+          "merge_commit_sha": "190a08649a4546e28a19d6177a77d0b2ae56e4be",
+          "author": "brysonjones"
+        },
+        {
+          "number": 4606,
+          "title": "docs: add lerobot_camera_paxini to third-party sensors",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4606",
+          "created_at": "2026-09-10T16:30:25Z",
+          "updated_at": "2026-10-14T09:24:03Z",
+          "base": "main",
+          "merged_at": "2026-10-14T09:24:02Z",
+          "merge_commit_sha": "b09c459a031fb9e42d583ee9601fc74e59038580",
+          "author": "Jingyi-Z"
+        }
+      ],
+      "releases_returned": 11,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "v0.6.1",
+          "name": "Release v0.6.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.1",
+          "published_at": "2026-08-03T14:19:42Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.6.0",
+          "name": "Release v0.6.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.0",
+          "published_at": "2026-07-06T10:41:53Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.1",
+          "name": "Release v0.5.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.1",
+          "published_at": "2026-04-07T14:57:52Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.0",
+          "name": "Release v0.5.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.0",
+          "published_at": "2026-03-09T11:19:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.4",
+          "name": "Release v0.4.4",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.4",
+          "published_at": "2026-02-27T18:07:31Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.3",
+          "name": "Release v0.4.3",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.3",
+          "published_at": "2026-01-22T10:59:37Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "name": "Release v0.4.2",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.2",
+          "published_at": "2025-11-27T21:42:42Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "name": "Release v0.4.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.1",
+          "published_at": "2025-11-10T11:31:17Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "name": "Release v0.4.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.0",
+          "published_at": "2025-10-23T18:38:16Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.3",
+          "name": "Release v0.3.3",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.3.3",
+          "published_at": "2025-08-06T18:41:21Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.2",
+          "name": "Release v0.3.2",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.3.2",
+          "published_at": "2025-08-01T19:18:28Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        }
+      ]
+    },
+    {
+      "repo": "moojink/openvla-oft",
+      "query": "repo:moojink/openvla-oft is:pr is:merged merged:2026-10-14T06:20:25Z..2026-10-19T01:40:52Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Amoojink/openvla-oft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-14T06%3A20%3A25Z..2026-10-19T01%3A40%3A52Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-19T01:42:30.160689+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": []
+    }
+  ],
+  "merged_total": 111,
+  "release_total": 65,
+  "all_query_counts_complete": true,
+  "release_lists_exhausted": true
+}

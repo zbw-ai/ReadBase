@@ -1,0 +1,2027 @@
+{
+  "window_utc": {
+    "start": "2026-10-14T06:20:25Z",
+    "end": "2026-10-19T01:40:52Z"
+  },
+  "first_seen_date": "2026-10-19",
+  "fetched_at_utc": "2026-10-19T01:48:37.060813+00:00",
+  "local_execution": "No upstream tests/GPU/model experiments run",
+  "papers": [
+    {
+      "source_id": "arxiv:2610.21500v1",
+      "citation_metadata": {
+        "citation_title": [
+          "When the KV Cache Is Slower Than the GPU: Scaling Remote KV Tiers for Context-Parallel Prefill"
+        ],
+        "citation_author": [
+          "Ibrahim, Muhammad"
+        ],
+        "citation_date": [
+          "2026/10/15"
+        ],
+        "citation_online_date": [
+          "2026/10/15"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.21500"
+        ],
+        "citation_arxiv_id": [
+          "2610.21500"
+        ]
+      },
+      "citation_abstract_sha256": "a67c7f82900d786932f1886354814c07ddc1e9cdbc43f9e17431efa3c6ae228a",
+      "submission_v1": "Thu, 15 Oct 2026 08:37:22 UTC",
+      "primary_pages": {
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.21500",
+          "sha256": "9ac47876af319df532e152e2462cd72299653990bc4405293ba4095830810cad",
+          "bytes": 43601
+        },
+        "html": {
+          "url": "https://arxiv.org/html/2610.21500v1",
+          "sha256": "83f8a26d25e581c610875305aaa6cb33bd50af7a1f1e8b7a5259e82466748f9e",
+          "bytes": 232358
+        }
+      },
+      "review": {
+        "status": "Accepted",
+        "decision": "Read",
+        "reviewed": "citation metadata, submission history, methods §§3–5, Tables 1–3, correctness §6.5, limitations §8",
+        "summary": "Remote KV must beat recompute including fixed hit cost. Chunk ownership c mod W and rank-agreed prefix retain collective ordering under lookup/load failures. Single-engine prefill replay uses GLM-5.3 FP8, PCP8/EP8, 8 B300; 450-request warm hit-heavy subset gives p99 83.32s to0.67s, but median0.40s remains slower than recompute0.31s. Each condition run once; shared multi-engine contention and general numerical equivalence are unproven."
+      }
+    },
+    {
+      "source_id": "arxiv:2610.21162v1",
+      "citation_metadata": {
+        "citation_title": [
+          "Coordination-Free Workload Regularization for Variable-Cost Distributed Training"
+        ],
+        "citation_author": [
+          "Huang, Tao",
+          "Zhu, Chen",
+          "Alonso, Antonio",
+          "Li, Daming",
+          "Goura, Adarsh",
+          "Ray, Jaideep",
+          "Zhou, Yitong"
+        ],
+        "citation_date": [
+          "2026/10/15"
+        ],
+        "citation_online_date": [
+          "2026/10/15"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.21162"
+        ],
+        "citation_arxiv_id": [
+          "2610.21162"
+        ]
+      },
+      "citation_abstract_sha256": "48c229313923bdc5d75e94dfddafd99abee535eb37376f2379e46d84c6e8c9e3",
+      "submission_v1": "Thu, 15 Oct 2026 03:22:50 UTC",
+      "primary_pages": {
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.21162",
+          "sha256": "a48f64ab5c4eacc81555a11faa8ef672a1729981cc75618e5e98100b5ebb9578",
+          "bytes": 42357
+        },
+        "html": {
+          "url": "https://arxiv.org/html/2610.21162v1",
+          "sha256": "9ddc3180a20bd3473d4938fa76cf76de086253dd4b20c39184edb3cd9a66ba26",
+          "bytes": 248672
+        }
+      },
+      "review": {
+        "status": "Accepted",
+        "decision": "Read",
+        "reviewed": "citation metadata, submission history, fixed-cardinality algorithm and invariants §§2–4, NeMo setup and controls §6/Table5, internal-data boundary §7",
+        "summary": "Rank-local K-batch lookahead uses cost-based LPT and bounded swaps while emitting each record exactly once and B records per pack. Same-path BCL vs K1 separates scheduling from input-path effects. Llama3.2-1B, NeMo-RL0.7/FSDP2/bf16/FA3,8H200,three300-step repeats,20warmup: same-path11corpora mean speedups0.4–30.5%;13corpora5.0–16.7% vs pooledMFFD includes path/campaign differences. Caps shared across arms; no claim of convergence parity or solving an infeasible record."
+      }
+    },
+    {
+      "source_id": "arxiv:2610.22230v1",
+      "citation_metadata": {
+        "citation_title": [
+          "Architecting for Hardware Diversity: Meta's End-to-End Co-Design for High-Performance AI Training on AMD GPUs"
+        ],
+        "citation_author": [
+          "Zhang, Haoyu",
+          "Rahman, Arshad",
+          "Aziz, Adnan",
+          "Prabhudev, Ajith",
+          "Farmahini, Amin",
+          "Rhoads, Ben",
+          "Ma, Benson",
+          "Shi, Brian",
+          "Zhao, Cen",
+          "Luk, CK",
+          "Wu, Dingming",
+          "El-Haraty, Emad",
+          "Chen, Eric",
+          "Li, Frank",
+          "Huang, Gary",
+          "Zuo, Gefei",
+          "Zhang, Haoran",
+          "Kassa, Hiwot",
+          "Zeng, Hongyi",
+          "Taylor, Jack",
+          "Hadidjojo, Jeremy",
+          "Donati, John",
+          "Sheffield, Jonathan",
+          "Silva, Julio Machado",
+          "Ganesan, Karthik",
+          "Russell, Kent",
+          "Kishore, KR",
+          "Tian, Lei",
+          "Ke, Liu",
+          "Osama, Muhammad",
+          "Chen, Peng",
+          "Hemnani, Rakesh",
+          "Swann, Ryan",
+          "Kudchadker, Saleel",
+          "Yanamandram, Shankar",
+          "Kanaujia, Shobhit",
+          "Xiao, Shucai",
+          "Bayareddy, Srinath",
+          "Vaidyanathan, Srinivas",
+          "Subramanian, Sudharssun",
+          "Puangpontip, Supadchaya",
+          "Robie, Taylor",
+          "Huang, Tianhao",
+          "Hart, Tyler",
+          "Sankaran, Viswesh",
+          "Jiang, Weijun",
+          "Du, Wenkai",
+          "Wang, Xiaodong",
+          "Guo, Xiaohu",
+          "Rong, Yao",
+          "Ma, Yinbin",
+          "Dong, Yue",
+          "Huang, Yuzhen",
+          "Liu, Yvonne",
+          "Shu, Zhan",
+          "Rabinovitsj, Dan",
+          "Mathews, Ajit",
+          "Tang, Chunqiang"
+        ],
+        "citation_date": [
+          "2026/10/15"
+        ],
+        "citation_online_date": [
+          "2026/10/15"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.22230"
+        ],
+        "citation_arxiv_id": [
+          "2610.22230"
+        ]
+      },
+      "citation_abstract_sha256": "71df4398ab06c92af7e425f756655e73a02191b36238ae843df0c6816fb13ef8",
+      "submission_v1": "Thu, 15 Oct 2026 17:09:08 UTC",
+      "primary_pages": {
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.22230",
+          "sha256": "1c66c3a493f2d224ed44773da60c515d6df3cdfa24413d0e4dec00aec31941ae",
+          "bytes": 52256
+        },
+        "html": {
+          "url": "https://arxiv.org/html/2610.22230v1",
+          "sha256": "f27f84874715bf40d0b2a49e42813f1ff0e3092b677a9576d9abfeaca13e6f37",
+          "bytes": 430718
+        }
+      },
+      "review": {
+        "status": "Accepted",
+        "decision": "Read",
+        "reviewed": "citation metadata, submission history, hardware/power TableI, software/kernel mechanisms §§III–V, production TableIII and reliability §VI",
+        "summary": "Meta DLRM training port combines hardware-model co-design, analytical kernel selection, microarchitecture-aware kernels and fleet checks rather than CUDA-to-HIP syntax only. Ten production models8–128GPUs at equal count/batch yield MI350X/B200 geometric-mean throughput101.2%, with deployed1000W vs750W respectively. Not a general LLM or equal-power ranking. Checksums/replay, GPU disagreement voting and quarantine are disclosed; fleet numerical/failure metrics are industrial author reports, not reproduced."
+      }
+    },
+    {
+      "source_id": "arxiv:2610.20981v1",
+      "citation_metadata": {
+        "citation_title": [
+          "Cyclotron: A Recurrence Language for Expressing Interprocessor Communication"
+        ],
+        "citation_author": [
+          "Sundram, Shiv",
+          "Balasingam, Akhilesh",
+          "Zhang, Nathan",
+          "Olukotun, Kunle",
+          "Kjolstad, Fredrik"
+        ],
+        "citation_date": [
+          "2026/10/14"
+        ],
+        "citation_online_date": [
+          "2026/10/14"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.20981"
+        ],
+        "citation_arxiv_id": [
+          "2610.20981"
+        ]
+      },
+      "citation_abstract_sha256": "ef3b7280eab058926d8f69d6eacd82294ff1e2c35d734b3d6cc6feaca258896e",
+      "submission_v1": "Wed, 14 Oct 2026 21:49:40 UTC",
+      "primary_pages": {
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.20981",
+          "sha256": "7ae44ee176d57d44a7cd287dc1f8acfe05bff8045d1fefddfd0871e68b7cebbd",
+          "bytes": 43281
+        },
+        "html": {
+          "url": "https://arxiv.org/html/2610.20981v1",
+          "sha256": "f8d8bdcd1d18717e316398e5137cec6f8b3d86a3d25c4f708377750e00959ad0",
+          "bytes": 355534
+        }
+      },
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "reviewed": "citation metadata, submission history, abstract, method outline",
+        "summary": "Recurrence equations separate communication dependencies from processor/time mapping. Useful communication compiler question; no full experiment/production applicability review this round. Do not propagate headline speedup as measured locally."
+      }
+    },
+    {
+      "source_id": "arxiv:2610.22035v1",
+      "citation_metadata": {
+        "citation_title": [
+          "ETH: Data-Balanced Heterogeneous Pipeline Parallelism for Training Large Models"
+        ],
+        "citation_author": [
+          "Yu, Mianjie",
+          "Zhao, Zhongmin",
+          "Mo, Zizhao",
+          "Liao, Jianxiong",
+          "Li, Wenxuan",
+          "Qiao, Yulin",
+          "Xu, Huanle",
+          "Yang, Wenquan",
+          "Yang, Yongqiang",
+          "Li, Zeren",
+          "Tang, Ruifeng",
+          "Xu, Chengzhong"
+        ],
+        "citation_date": [
+          "2026/10/15"
+        ],
+        "citation_online_date": [
+          "2026/10/15"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.22035"
+        ],
+        "citation_arxiv_id": [
+          "2610.22035"
+        ]
+      },
+      "citation_abstract_sha256": "832dfcb82bfb43999c21ef1f23ea32a635e5c9708646d63d87b32e8b83665432",
+      "submission_v1": "Thu, 15 Oct 2026 15:10:27 UTC",
+      "primary_pages": {
+        "abs": {
+          "url": "https://arxiv.org/abs/2610.22035",
+          "sha256": "50b10a6f779003ad90d1eb5a3c0464b28b71971d4605075286623b7f841067e9",
+          "bytes": 43340
+        },
+        "html": {
+          "url": "https://arxiv.org/html/2610.22035v1",
+          "sha256": "cc2ee353e0377d44add9c01f9bf07060f26d7cc19a7b84a55216c14f85be99b2",
+          "bytes": 315812
+        }
+      },
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "reviewed": "citation metadata, submission history, abstract, method outline",
+        "summary": "Heterogeneous pipeline data balancing plus blockwise gradient aggregation; needs gradient weighting/optimizer semantics and hardware baseline review before promotion. Code availability stated by author; not run."
+      }
+    }
+  ],
+  "pull_requests": [
+    {
+      "source_id": "github:vllm-project/vllm#59790",
+      "url": "https://github.com/vllm-project/vllm/pull/59790",
+      "title": "[Bugfix][KV Offload][P2P] Keep store pins and AbortAck until NIXL transfers stop",
+      "author": "apex-mochen",
+      "created_at": "2026-10-02T15:01:59Z",
+      "merged_at": "2026-10-14T15:31:32Z",
+      "merge_commit_sha": "e2aabc8b1521aad382b439e6be4e740d8e8211eb",
+      "base_sha": "3723a1ea96df967f7cef21ef6ea5b4af6c529807",
+      "head_sha": "ac58437605f00fcaf3913752c9e79c63543b2e75",
+      "body_sha256": "d16cf27f7123c4cde0ac6de0650be1db4fa5e989210a5efefe9e5cb31d9ffb2d",
+      "body_characters": 6527,
+      "changed_files": 6,
+      "files_returned": 6,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "tests/v1/kv_offload/tiering/p2p/test_data_transport.py",
+          "status": "modified",
+          "additions": 87,
+          "deletions": 2,
+          "changes": 89,
+          "sha": "7219d691fdfef6512a8fa3b8d8d7d41be18449d9",
+          "patch_present": true,
+          "patch_sha256": "e6c4d226e279feff5d1dfa4da02ac1425dfe59981c9ba5090f319ab3c03a9b26"
+        },
+        {
+          "filename": "tests/v1/kv_offload/tiering/p2p/test_sessions.py",
+          "status": "modified",
+          "additions": 369,
+          "deletions": 37,
+          "changes": 406,
+          "sha": "156cf0f1de8c743672534a0cca7078eb4921acda",
+          "patch_present": true,
+          "patch_sha256": "2c210be899fa61201a8eb994a09d7567b828d7dfc07a8de909e36838c270985b"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/data/base.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "sha": "544ca8ebc1e426a471cd88e4cfa2c210806748e6",
+          "patch_present": true,
+          "patch_sha256": "79ade3940821682cf335aa7fa91576cd8f2b4d61069947dbe5b1b21730d9f87e"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/data/nixl.py",
+          "status": "modified",
+          "additions": 48,
+          "deletions": 5,
+          "changes": 53,
+          "sha": "4e7951f3202ebabcbfe443b61c6e3ba2b91e9442",
+          "patch_present": true,
+          "patch_sha256": "26513d15f1f6c647e99f0b0ed1cbd3d9163accf55d31292aabc6b8f7102fd8fc"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/manager.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 4,
+          "changes": 9,
+          "sha": "a4b203548e393fc3593feee3a183a271e8071ac3",
+          "patch_present": true,
+          "patch_sha256": "6e249c5725ce5f9b0d29f23aaf2490f365a2f42faf142e1315e3726be26fba05"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/session/server.py",
+          "status": "modified",
+          "additions": 179,
+          "deletions": 53,
+          "changes": 232,
+          "sha": "a8de3ba4e8d038c7a5894c74db42905d24e3e0ef",
+          "patch_present": true,
+          "patch_sha256": "6e10db6f2647db0559f81aa26096afdbdf8a4ffd720b81c584bd2fd484b0580c"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "key production and regression patches read",
+        "summary": "cancel(wait) checks transfer PROC/PEND/DONE/ERR before release. Producer pins and AbortAck are retained until transfer terminal. Mock terminal-state tests and author UCX/TCP CPU-memory probes support lifecycle claim. Consumer timeout/slot release remains a separate open issue in PR description; no claim of complete P2P safety or RDMA/GPU validation."
+      }
+    },
+    {
+      "source_id": "github:vllm-project/vllm#56836",
+      "url": "https://github.com/vllm-project/vllm/pull/56836",
+      "title": "[Bugfix][KV Offload] Bound unanswered P2P lookup waits",
+      "author": "jacklin78911-collab",
+      "created_at": "2026-09-14T13:13:50Z",
+      "merged_at": "2026-10-15T05:23:35Z",
+      "merge_commit_sha": "3f1bcfd82bb2e93fcd364fc7a5491718453a77e2",
+      "base_sha": "f46021a7faa62015016f2862d02f2a64c24bb960",
+      "head_sha": "74bece9615781007204d088442ba62cb6088d513",
+      "body_sha256": "025adc009c42551bbf7806236ac1733ac74c28986ff24983d4b1ade8b11340a6",
+      "body_characters": 9118,
+      "changed_files": 6,
+      "files_returned": 6,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "tests/v1/kv_offload/tiering/p2p/conftest.py",
+          "status": "added",
+          "additions": 15,
+          "deletions": 0,
+          "changes": 15,
+          "sha": "e5b27f8cf75dd7c2cd868a3214c391ddaaac15d3",
+          "patch_present": true,
+          "patch_sha256": "366f00eabb0ed60f5ed410b89ae9d5cd2509fac2f4326094044e4a3a85e0f50b"
+        },
+        {
+          "filename": "tests/v1/kv_offload/tiering/p2p/test_manager.py",
+          "status": "modified",
+          "additions": 103,
+          "deletions": 0,
+          "changes": 103,
+          "sha": "2282171fdbb6c4ef813d64bd6cfa38032c337f81",
+          "patch_present": true,
+          "patch_sha256": "b946dd5f45a0a7d385faec1c1c93213c64cf1112525aec9509905e8c7a78cdaf"
+        },
+        {
+          "filename": "tests/v1/kv_offload/tiering/p2p/test_sessions.py",
+          "status": "modified",
+          "additions": 216,
+          "deletions": 7,
+          "changes": 223,
+          "sha": "89f3ac0cd603afdd15138207516967808ef700f1",
+          "patch_present": true,
+          "patch_sha256": "4d6d95e5bd159a6c7ce1a5a8731ba2401394c1f15566c69bdf5515a4d9a235a8"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/session/client.py",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 10,
+          "changes": 40,
+          "sha": "4af2047a7b2778de67608734792320cfcc22cfec",
+          "patch_present": true,
+          "patch_sha256": "ac114efe1f7a7b7375af4dda10ce8debfe74ed9dbeefdc8f3951ff8c1feb57ad"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/session/server.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 4,
+          "changes": 9,
+          "sha": "6ac7af5ef0c7e6521f37a1416a1d9f06319d345b",
+          "patch_present": true,
+          "patch_sha256": "bd93ecf14be7434bdcad2579582a3810e4c68175acc9020cf5d0a615eb18db11"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/session/session.py",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 3,
+          "changes": 20,
+          "sha": "bfb26719d423f47d7e77f8501624d73b47bc7ec8",
+          "patch_present": true,
+          "patch_sha256": "b0b4aca64093e9e0c8b8e131f3d741f34f1bf1c877008e9acff335bca7a573f2"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "client progress deadline patch and test index read",
+        "summary": "30s request progress deadline starts on sent probes, rearms only newly resolved probes; repeated polls/new keys/duplicates do not extend. Expires entire peer session. Current revision author validation CPU-only; earlier GPU smoke explicitly older revision."
+      }
+    },
+    {
+      "source_id": "github:vllm-project/vllm#58168",
+      "url": "https://github.com/vllm-project/vllm/pull/58168",
+      "title": "[KV Offload] Expose OffloadingManager.lock()/unlock() and service the tiering control plane off the scheduler thread",
+      "author": "liranschour",
+      "created_at": "2026-09-22T15:09:52Z",
+      "merged_at": "2026-10-15T05:50:56Z",
+      "merge_commit_sha": "c5f8adc0b1944b9142a31d85cfbc6a61973d0b3a",
+      "base_sha": "f46021a7faa62015016f2862d02f2a64c24bb960",
+      "head_sha": "d54a11b5ee05ed835b5faae49c7faf01767c44f8",
+      "body_sha256": "5d0e4791d6674229655bdaa610eb919b18d5affa100b9d47d08f6695b7dfce5f",
+      "body_characters": 16753,
+      "changed_files": 15,
+      "files_returned": 15,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "docs/features/kv_offloading_usage.md",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "sha": "e3575af63dd803beee7a59c891284a59cb21cd56",
+          "patch_present": true,
+          "patch_sha256": "2841902150da18a12759c20ff0ccfdd9e99709f78454af1290fb5c1c2dfcf344"
+        },
+        {
+          "filename": "tests/v1/kv_connector/unit/offloading_connector/test_scheduler.py",
+          "status": "modified",
+          "additions": 123,
+          "deletions": 0,
+          "changes": 123,
+          "sha": "48b6982d76fd595e5d9c74a9833e7cee332d0b49",
+          "patch_present": true,
+          "patch_sha256": "5defdbdbe17366a00252e4826493192fc8011f33b17554a545494a8362e4c8a2"
+        },
+        {
+          "filename": "tests/v1/kv_offload/tiering/test_tier_poll_thread.py",
+          "status": "added",
+          "additions": 490,
+          "deletions": 0,
+          "changes": 490,
+          "sha": "128622c1ce0c9c32660019bfc5b4c707da0dc37c",
+          "patch_present": true,
+          "patch_sha256": "6eebc0bf4e4b67af0831a8a4fd5e2df99f24bd729b4c2fcdc190e74e97d62412"
+        },
+        {
+          "filename": "vllm/distributed/kv_transfer/kv_connector/v1/offloading/scheduler.py",
+          "status": "modified",
+          "additions": 131,
+          "deletions": 8,
+          "changes": 139,
+          "sha": "a28090c8f34890049fc89e8426f8a3419adb3de1",
+          "patch_present": true,
+          "patch_sha256": "957227e7dc4ab0bb9401eebc6bc0158dfc0e767c40aa601555537a42a962404f"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/base.py",
+          "status": "modified",
+          "additions": 41,
+          "deletions": 1,
+          "changes": 42,
+          "sha": "2168d00dc53665f88e751c3ceb7a110c7ead555e",
+          "patch_present": true,
+          "patch_sha256": "6408bfa084c3c64cc10d9c4149e1c639b5f444088180fae4359c813c917529e2"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/async_lookup.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 2,
+          "changes": 8,
+          "sha": "4cb06e2a3f5f6d87d9ba87dac92ef6db304dcb09",
+          "patch_present": true,
+          "patch_sha256": "61fd0957d4387e78d136439a117ffd8e70e9d415ba34f18fe5afee468b396405"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/base.py",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 3,
+          "changes": 33,
+          "sha": "0be006d6593fd6f68bcc4f699662005057b97684",
+          "patch_present": true,
+          "patch_sha256": "625de39847718c2116b55f8c6e596e5713bc443c7513959f4e36de5cdc338f7d"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/kvcr/manager.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 1,
+          "changes": 8,
+          "sha": "997793b8d1df01a1709d0ed1aeb9f6d7c895bff6",
+          "patch_present": true,
+          "patch_sha256": "de26773cbc1eecca7379d8f7b69acd8141560c4a9330824b9d67d6faa3002369"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/manager.py",
+          "status": "modified",
+          "additions": 235,
+          "deletions": 9,
+          "changes": 244,
+          "sha": "89a126d8b10661906fc68243b4f97a9456ae5a61",
+          "patch_present": true,
+          "patch_sha256": "dc13e0655cf5cd98523944cb9a637c04e7d4affe0b4d6378ecdb066f3bf227e1"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/control/base.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 2,
+          "changes": 7,
+          "sha": "890bc16b244129504744e71aab13968e821155cb",
+          "patch_present": true,
+          "patch_sha256": "8effab4267011af56c9a56917a6e8b98e10f1f6ca4280a1301f3ea82cc1fa090"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/data/base.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 1,
+          "changes": 6,
+          "sha": "054fc5f69c45ffbb7c325de95e7d4db6e9dcadd6",
+          "patch_present": true,
+          "patch_sha256": "b2cebe4f07c5101843b29ce840d6b1874a8d51222d00514b496db2f5b284d1d7"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/data/nixl.py",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 1,
+          "changes": 33,
+          "sha": "8f32ef859aed238fbf297d301fb82ecb27feb532",
+          "patch_present": true,
+          "patch_sha256": "127bdda1828154e7ca3aa4d921862df68558eec6cad8489aabacb7c83bf8fb6c"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/manager.py",
+          "status": "modified",
+          "additions": 13,
+          "deletions": 6,
+          "changes": 19,
+          "sha": "cc6f43e3dcc0892878bf08d47d6ed83b2316a6ae",
+          "patch_present": true,
+          "patch_sha256": "55be3d5f75478c1bd112d5573cce22980594732ffae9822e3583c888b91d4276"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/p2p/session/server.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 4,
+          "changes": 11,
+          "sha": "d08b37973846b76e8dce8890a1e9e88fc66fea1e",
+          "patch_present": true,
+          "patch_sha256": "e57e97a3f70acc461ed2f7200539fe9e2d63249452e7971af4cd0a62647cb8d6"
+        },
+        {
+          "filename": "vllm/v1/kv_offload/tiering/spec.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "sha": "cd8e375777c5b00a4a558174c7ee72b3698615ee",
+          "patch_present": true,
+          "patch_sha256": "9de9fd089123417b18b87752880cc7a46b89a74400e0c03afeb3f67d12187afc"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "description, file index, key scheduler/thread structure inspected; not full15-file audit",
+        "summary": "Moves tier control servicing off scheduler with manager serialization and moves on_schedule_end to true end. Requires thread affinity, shutdown join and short idle-path region correctness. Author twoH200 Llama1B lookup matrix is scoped; not full serving-throughput validation."
+      }
+    },
+    {
+      "source_id": "github:vllm-project/vllm#43202",
+      "url": "https://github.com/vllm-project/vllm/pull/43202",
+      "title": "[Feature] Add External LB Mode Support for Elastic EP Scaling",
+      "author": "fangyuchu",
+      "created_at": "2026-05-20T09:49:41Z",
+      "merged_at": "2026-10-16T01:29:02Z",
+      "merge_commit_sha": "dd9e07a25febb05f1a44f2ef9e6c56803ee1a9b6",
+      "base_sha": "4d9a8d6a417afad932b368471e498ca75a03b942",
+      "head_sha": "07b6fd86acc351e315f3d64d4db0936c8e9b1045",
+      "body_sha256": "75cc5de253cb0e173c28e1db471abc1c8b9d82af1afc65269c0ef7590972a863",
+      "body_characters": 8579,
+      "changed_files": 18,
+      "files_returned": 18,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "tests/distributed/test_elastic_ep.py",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 13,
+          "changes": 35,
+          "sha": "d99aaeff7d89342c22b0e99d4c237624da0c47d9",
+          "patch_present": true,
+          "patch_sha256": "f1cf5a076a814f68337938a4aacc31b09254601b1f1d01ca6576210504258c82"
+        },
+        {
+          "filename": "tests/v1/distributed/test_external_lb_dp.py",
+          "status": "modified",
+          "additions": 270,
+          "deletions": 46,
+          "changes": 316,
+          "sha": "1afb134ef5a03317540648db50904a6a3b6a48ee",
+          "patch_present": true,
+          "patch_sha256": "bd5a2dae1304f96d4fc1befaf9af06eeae2b4740b56fe1d78472a05e0976b433"
+        },
+        {
+          "filename": "tests/v1/engine/test_core_engine_actor_manager.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 3,
+          "changes": 7,
+          "sha": "f8e2373d4c5805829a70c24b9a5d13093d78dc7d",
+          "patch_present": true,
+          "patch_sha256": "929dfeadf5ad089737d74a24b36ca27261c1ee21b6938d1bc3adf5e1bc608108"
+        },
+        {
+          "filename": "tests/v1/engine/test_engine_core_client.py",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 1,
+          "changes": 16,
+          "sha": "b58aed8547db47a33e79d17768ed7d0674680bf5",
+          "patch_present": true,
+          "patch_sha256": "ee2b0ef6f085dd3c96badecb630d08270d954e07030878dbd514673ef7bdf127"
+        },
+        {
+          "filename": "tests/v1/engine/test_startup_watch_processes.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "bf325a6108c7fe9dc19ba5080f67e666b7a482c9",
+          "patch_present": true,
+          "patch_sha256": "8ff66407fbd9eb573470eb25b5e0c86df4de16b0791b7daf8afbe770f3e7d47b"
+        },
+        {
+          "filename": "vllm/config/parallel.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "sha": "805ec1437263e0bc427a1f80acd55ed5f87e466f",
+          "patch_present": true,
+          "patch_sha256": "42652e77b8a685cb6bc3dee5a498431845378b0a30b8ff547fd82271f2b7f1a8"
+        },
+        {
+          "filename": "vllm/distributed/elastic_ep/elastic_state.py",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 2,
+          "changes": 23,
+          "sha": "f9869b4da42988b1726bcf41b1be0cc5ef279863",
+          "patch_present": true,
+          "patch_sha256": "a6c70bbb8e6e1d40d1f7ac25831601c98d077d823f48532634bd58a4bdc5f08b"
+        },
+        {
+          "filename": "vllm/distributed/elastic_ep/external_elastic_ep.py",
+          "status": "added",
+          "additions": 897,
+          "deletions": 0,
+          "changes": 897,
+          "sha": "6db6e5f4b1c1e3615abb2ec88a9d588a928c0df3",
+          "patch_present": true,
+          "patch_sha256": "efd6661d18ea9dfd7136209c5230b35e6efebef65ea75e2812a19133fd137020"
+        },
+        {
+          "filename": "vllm/engine/protocol.py",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "sha": "492f8a2ce15e3807efae51c29810096ffd1598ce",
+          "patch_present": true,
+          "patch_sha256": "60631f380e4d59102189c98b8820f04d4a35288b58e1220eded8946001870ea1"
+        },
+        {
+          "filename": "vllm/entrypoints/launchers/launcher.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "sha": "1db294cfc6fce3320471b6f7dce707e7a7096906",
+          "patch_present": true,
+          "patch_sha256": "080e5f15f2a0edd15ab916e0d31bfe82efcedbc72809eff20cbdb039d36b229e"
+        },
+        {
+          "filename": "vllm/entrypoints/serve/elastic_ep/api_router.py",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 1,
+          "changes": 31,
+          "sha": "5a839948cd9324df404cf25ac08f485a6f96eda5",
+          "patch_present": true,
+          "patch_sha256": "5316d018bb2c5da869c9c8ff0011a7ba9aefc5375edf217893e10c4b27d8ff28"
+        },
+        {
+          "filename": "vllm/entrypoints/serve/elastic_ep/middleware.py",
+          "status": "modified",
+          "additions": 28,
+          "deletions": 11,
+          "changes": 39,
+          "sha": "d7f81fd7ef8e557714bfdf09514d64dbe5754d1f",
+          "patch_present": true,
+          "patch_sha256": "edaed3857215928b2b2a7525da160f031806b5d27da2b70e2c0c9d373617f244"
+        },
+        {
+          "filename": "vllm/v1/engine/__init__.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "sha": "38aee4472015e2d4ff1b7441a527dcd1caa1476b",
+          "patch_present": true,
+          "patch_sha256": "07d0cd8658d2a86b6995dc266bac333ad31af0e6ba11d1421e67999b32fadeae"
+        },
+        {
+          "filename": "vllm/v1/engine/async_llm.py",
+          "status": "modified",
+          "additions": 56,
+          "deletions": 7,
+          "changes": 63,
+          "sha": "8b7f913b43caf53ea85b9b53d2cbc2046245c8be",
+          "patch_present": true,
+          "patch_sha256": "32e3d4846fc0389d1e14c4915f4da8e921d863890224e2ef5c999136fd98385d"
+        },
+        {
+          "filename": "vllm/v1/engine/coordinator.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "28a4c7af6d3bd51fdd7322fa6306de24ee9e5ad5",
+          "patch_present": true,
+          "patch_sha256": "0c79679b66ae7d89fd703cb24d6c519f8be3ad49feb886ef1f5975e2a389c622"
+        },
+        {
+          "filename": "vllm/v1/engine/core.py",
+          "status": "modified",
+          "additions": 50,
+          "deletions": 9,
+          "changes": 59,
+          "sha": "c9843dce96d9815053480c12613aadd5e55c095c",
+          "patch_present": true,
+          "patch_sha256": "80124ea4d56da829005a326a97f47505e23539022ed203871b3ddb5ba52680b5"
+        },
+        {
+          "filename": "vllm/v1/engine/core_client.py",
+          "status": "modified",
+          "additions": 146,
+          "deletions": 54,
+          "changes": 200,
+          "sha": "cfe8976668e71437e1a94fe20a63135cf3ecb99c",
+          "patch_present": true,
+          "patch_sha256": "39bc8c468161794231bc29fb656daf0458468f86d6ed85e2218239736f99eab1"
+        },
+        {
+          "filename": "vllm/v1/engine/utils.py",
+          "status": "modified",
+          "additions": 75,
+          "deletions": 14,
+          "changes": 89,
+          "sha": "96df5f14eb4a4d58636bed8c00b4612fa79a213f",
+          "patch_present": true,
+          "patch_sha256": "0d8d51a59fa1e3a1ccfe39144f26c69e711b7b23404736655473237dbeb024a3"
+        }
+      ],
+      "review": {
+        "status": "Observed candidate",
+        "decision": "Observe",
+        "review_level": "description and18-file index only",
+        "summary": "External-LB elasticEP orchestration and temporary per-scaling coordinator. Failure/recovery and full patch not reviewed; do not assert arbitrary online scaling supported."
+      }
+    },
+    {
+      "source_id": "github:sgl-project/sglang#44800",
+      "url": "https://github.com/sgl-project/sglang/pull/44800",
+      "title": "[Fix] hicache: Order write-back host copies after the forward that produced the KV",
+      "author": "metamergebot",
+      "created_at": "2026-10-16T21:52:24Z",
+      "merged_at": "2026-10-17T08:31:41Z",
+      "merge_commit_sha": "f75232cb42a80a267f56e5547ace5c35a648e39c",
+      "base_sha": "9590dc80cc43a50c84032bf3b8eaca15c9b27b65",
+      "head_sha": "3a845c1339303d645f51035348aab2db2eb4e013",
+      "body_sha256": "c4231bf3980a5f8134273879be57daec1736556192b682229945676bb383ca3c",
+      "body_characters": 4790,
+      "changed_files": 11,
+      "files_returned": 11,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "python/sglang/srt/managers/cache_controller.py",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 1,
+          "changes": 9,
+          "sha": "9abb9d72375fb2504e256aa256d22cadf38c5a5d",
+          "patch_present": true,
+          "patch_sha256": "cadcae5dc36aa2186341ae320e14c040012f4840148dee696b813539fd5d926c"
+        },
+        {
+          "filename": "python/sglang/srt/managers/scheduler.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "sha": "c5824e0e6885035f291df40435d95c1013b12c94",
+          "patch_present": true,
+          "patch_sha256": "bc4db5272c4d1da2bae7d80d1ccf3571768eec026a80b7c45b269a4eb1a7b2c9"
+        },
+        {
+          "filename": "python/sglang/srt/mem_cache/unified_cache/unified_tree_core.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 5,
+          "changes": 8,
+          "sha": "0714b191ae5da204c8a1720764d8321228fce6f7",
+          "patch_present": true,
+          "patch_sha256": "cc84a2c14bd168656d15e78b618518946ea3e6aacf4d1f8ec4bd60d549cf0680"
+        },
+        {
+          "filename": "python/sglang/srt/mem_cache/unified_radix_cache.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "sha": "d43d5445c8ee3e36e696c1f361bec1af0acc1679",
+          "patch_present": true,
+          "patch_sha256": "05464048b423af2208c4a8572a30b7041d3763f3a2df0bf11709b1348788de3e"
+        },
+        {
+          "filename": "rust/sglang-radix-tree/src/tests/components/swa.rs",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 1,
+          "changes": 11,
+          "sha": "eac6384bc8cc7b0d11f1b92e59b0fac9e3b319ac",
+          "patch_present": true,
+          "patch_sha256": "5fcd8c4206f5cbd842b0d819da1aacd3e0da5ec5c5806341ba9619991389e1f8"
+        },
+        {
+          "filename": "rust/sglang-radix-tree/src/tests/unified_tree_core.rs",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 31,
+          "changes": 39,
+          "sha": "1f0489cd36db1c8598dd6c6c4c195c6852d5d4b7",
+          "patch_present": true,
+          "patch_sha256": "26eeaea7a0d798e9da348ca07a65bedbce0d2e8b19200fdec5b443b64cee54a6"
+        },
+        {
+          "filename": "rust/sglang-radix-tree/src/unified_tree_core.rs",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "sha": "6f6fd1ea4cf1279ce0a065ead4f6dff454605cf2",
+          "patch_present": true,
+          "patch_sha256": "71d0b3811e17d6ee5eb8008913fc9fe9cd536d8b0a37206c6e398589f0b8ca17"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_hicache_write_back_ordering.py",
+          "status": "added",
+          "additions": 116,
+          "deletions": 0,
+          "changes": 116,
+          "sha": "e902cdefd152c0799fa95b9956ba20bea511c758",
+          "patch_present": true,
+          "patch_sha256": "2db7aa0993b0721029961d83a9c7908267191780f1a597a330d29084a32550ae"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_rust_tree_core_integration.py",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 328,
+          "changes": 328,
+          "sha": "a31d5bbe602bd08d43a16516f580776597388f48",
+          "patch_present": true,
+          "patch_sha256": "923c202216442663cadbafa0375ba9afc148b4f33e64d131cc644fc0f831c82b"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_unified_hicache_regressions.py",
+          "status": "modified",
+          "additions": 62,
+          "deletions": 0,
+          "changes": 62,
+          "sha": "54a8f2c780084ef663bb142a4007c87ddd097ae6",
+          "patch_present": true,
+          "patch_sha256": "b63f1c2b5cb538f83d9c558039030e8726cdb992fb5f64f220b5b842b2653de1"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_unified_radix_cache_unittest.py",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 13,
+          "changes": 24,
+          "sha": "f4eaf35d9c103ce45ba26f1000f34728c6149902",
+          "patch_present": true,
+          "patch_sha256": "0a93d199bcb181cb9c8b8ddcb5da3aa291529cf8adb8bd378c675ceda52ba00f"
+        }
+      ],
+      "review": {
+        "status": "Accepted",
+        "decision": "Read",
+        "review_level": "all5 production-file patches and primary116-lineCUDA regression read; supporting regression index inspected",
+        "summary": "Write-back insert no longer publishes early SWA backup in Python/Rust tree. Blocking write-back drain sets wait_for_forward and D2H stream waits on model forward stream. CUDA test delays producer, overwrites-1 with42 then evicts an older SWA window and checks host snapshot42. Author reports singleCUDA and931Rust tests, but PR-linked extra CI has failure; no local tests or broad hardware/performance verification."
+      }
+    },
+    {
+      "source_id": "github:sgl-project/sglang#43108",
+      "url": "https://github.com/sgl-project/sglang/pull/43108",
+      "title": "[Fix] hicache: Defer query beliefs until the rank-synchronized hit drain",
+      "author": "alphabetc1",
+      "created_at": "2026-10-08T15:36:08Z",
+      "merged_at": "2026-10-15T00:25:09Z",
+      "merge_commit_sha": "3c28614f129b4a3b98308d8ba63d02c0b64b2ad1",
+      "base_sha": "bab9c81fea62c2d20b646736c918c88fea54b7a2",
+      "head_sha": "9f749ceeaa29bf27a0e75b24dc259f7864ffccd7",
+      "body_sha256": "f3df5d5e4f3ece0e2a5b24a210f32502ed5a593185bbb2080e63178870e25262",
+      "body_characters": 1991,
+      "changed_files": 3,
+      "files_returned": 3,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "python/sglang/srt/mem_cache/unified_radix_cache.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 5,
+          "changes": 9,
+          "sha": "3109e8abcfff0982610bd9b225669a25283658ed",
+          "patch_present": true,
+          "patch_sha256": "4e10d573241251c97f5e033e5f2a783c7071fd191c5efd85def63343db2b1209"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_buffer_mode_sidecar.py",
+          "status": "modified",
+          "additions": 42,
+          "deletions": 0,
+          "changes": 42,
+          "sha": "2fcabda254d6539ba6985b8fd9b339cf1d56e58e",
+          "patch_present": true,
+          "patch_sha256": "60cc517f1367f6e0b2661aeead038666b507f7197b23d6501a16f73495932634"
+        },
+        {
+          "filename": "test/registered/unit/mem_cache/test_storage_prefetch_lifecycle.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "b2429c7ffd862774cd9ec364cd67682cc414e42e",
+          "patch_present": true,
+          "patch_sha256": "da3adb97bea82a46664fd6356552a5762f2174d75ad42d66628e3cf476e88520"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "all3-file diff read",
+        "summary": "Update storage-existence beliefs only from rank-synchronized hit queue; missing KV verdict leaves belief unchanged while explicit0invalidates. Regression uses realquery/sync methods with simulatedMIN and distinguishes skipped-1frommiss0. Not actual distributed run."
+      }
+    },
+    {
+      "source_id": "github:sgl-project/sglang#33728",
+      "url": "https://github.com/sgl-project/sglang/pull/33728",
+      "title": "[4/N] elastic-ep: Scale at DP-attention replica granularity",
+      "author": "zackyoray",
+      "created_at": "2026-08-05T15:56:53Z",
+      "merged_at": "2026-10-14T17:17:02Z",
+      "merge_commit_sha": "87ed1b95266c4ccff9a9e5b0e2fb6143f6ecb7f8",
+      "base_sha": "ad8b1e1f851a6445e1211f7f0cf2130028ecae0c",
+      "head_sha": "89ce7688c3b7b6ba4df6549e91f33ba7308489be",
+      "body_sha256": "da5f64f3e1320cff8213e91d51876d7f2df9e27368bdafaafea94b3e7ad68dcf",
+      "body_characters": 3524,
+      "changed_files": 18,
+      "files_returned": 18,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "python/sglang/srt/arg_groups/parallel_hook.py",
+          "status": "modified",
+          "additions": 44,
+          "deletions": 6,
+          "changes": 50,
+          "sha": "cba0dcc291d7939ef7caf7046f865d29c496f7a1",
+          "patch_present": true,
+          "patch_sha256": "5c48af5e6a99970f9c15278f83185d39cfb463f1db9dffe27d57377b3504ea2e"
+        },
+        {
+          "filename": "python/sglang/srt/elastic_ep/elastic_ep.py",
+          "status": "modified",
+          "additions": 38,
+          "deletions": 0,
+          "changes": 38,
+          "sha": "40780b113aa8115ee3012f262dfbee28785f0a47",
+          "patch_present": true,
+          "patch_sha256": "c0db954916dd83cc100b06e15fc281c643ac9cd82b65bbb471e52d281bf57904"
+        },
+        {
+          "filename": "python/sglang/srt/elastic_ep/topology.py",
+          "status": "added",
+          "additions": 59,
+          "deletions": 0,
+          "changes": 59,
+          "sha": "9dd50ab35bc6d57fe10f6a0688ae1950b4a9e3b5",
+          "patch_present": true,
+          "patch_sha256": "9fa95038d45a9f477c1be6f1150f9302787d1d94eb6164601e018018c176bfa2"
+        },
+        {
+          "filename": "python/sglang/srt/layers/dcp/comm.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 3,
+          "changes": 8,
+          "sha": "a6b921e6ef347f7cf33c89555448f9c901f6ee5b",
+          "patch_present": true,
+          "patch_sha256": "83bc5b4fb3a23bef04a495f8abfe74f1575be4b42708872457a96b4927c8b28c"
+        },
+        {
+          "filename": "python/sglang/srt/layers/dp_attention.py",
+          "status": "modified",
+          "additions": 13,
+          "deletions": 5,
+          "changes": 18,
+          "sha": "2f67a250431ccf4b661bb969604fd5406d26d391",
+          "patch_present": true,
+          "patch_sha256": "817b25c6db3273e2c1e3281c9b099792b5203791396dc54139f4603dc12e8f99"
+        },
+        {
+          "filename": "python/sglang/srt/layers/vocab_parallel_embedding.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 1,
+          "changes": 8,
+          "sha": "e176d89164e0300b19285e95bf92c00177664a35",
+          "patch_present": true,
+          "patch_sha256": "3aad2b2d93e11d254718a574c09f33ae9ad8b4e79cf6d0da5e59b9e67cf2c740"
+        },
+        {
+          "filename": "python/sglang/srt/managers/data_parallel_controller.py",
+          "status": "modified",
+          "additions": 80,
+          "deletions": 28,
+          "changes": 108,
+          "sha": "1192cf93199ef01a78caab33e4329900181ad416",
+          "patch_present": true,
+          "patch_sha256": "033f56826dd174427e6576ac16b27edc745c212beda6cf61be1f7a1dcf54d1fd"
+        },
+        {
+          "filename": "python/sglang/srt/managers/io_struct.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 1,
+          "changes": 4,
+          "sha": "ad13a4f172152cd08d1c3b552938858e4f127126",
+          "patch_present": true,
+          "patch_sha256": "8f7b60f2a392a71390a7d3d1d1f8b85d371b0add7dd94895ce5bb1ad61bcfa3d"
+        },
+        {
+          "filename": "python/sglang/srt/managers/scheduler.py",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 3,
+          "changes": 25,
+          "sha": "2d9841fc1bbd1c5d6020e26c9146e62a66ba1480",
+          "patch_present": true,
+          "patch_sha256": "d61ab676c9f67e2490a7ecde59f72a4b8cbf7951ae9214e3223010ed143b62db"
+        },
+        {
+          "filename": "python/sglang/srt/managers/scheduler_components/dp_attn.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 4,
+          "changes": 13,
+          "sha": "765ad679b6f85396af6b5000cb40407469ac8203",
+          "patch_present": true,
+          "patch_sha256": "e20d390e5c49c937eebaab94c246a59f3a755fa15dce290f229b75f4e4334e75"
+        },
+        {
+          "filename": "python/sglang/srt/managers/tokenizer_manager.py",
+          "status": "modified",
+          "additions": 13,
+          "deletions": 5,
+          "changes": 18,
+          "sha": "63fa83a06e6e6238a2f0a480bf7c0220563af798",
+          "patch_present": true,
+          "patch_sha256": "9bf96f8f4e66091547be331cde01d11df502347d1ebb2b3b5e4672982ba67745"
+        },
+        {
+          "filename": "python/sglang/srt/model_executor/model_runner.py",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 16,
+          "changes": 46,
+          "sha": "aba6c61463856441097e400ae567f4f1aaca7ba2",
+          "patch_present": true,
+          "patch_sha256": "7629ab49afb6d94b200e5cc935896972ae960a261ce01e7a5011b13bc6037e54"
+        },
+        {
+          "filename": "test/manual/ep/test_elastic_scale.py",
+          "status": "modified",
+          "additions": 88,
+          "deletions": 7,
+          "changes": 95,
+          "sha": "62b575e601a9f9897745852e78ba3f7a7c512412",
+          "patch_present": true,
+          "patch_sha256": "a2111a8e11d581e212947de77182ae8981e7e550f2e5488f3ba238f5a25fab0e"
+        },
+        {
+          "filename": "test/registered/kernels/ops/embeddings/test_vocab_parallel_embedding.py",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 0,
+          "changes": 32,
+          "sha": "0eef101ec726bdd346b6a25a17b1b402a11e2056",
+          "patch_present": true,
+          "patch_sha256": "81b842e5207e604975b321786af882669e485cf76c36c3b83249a7e889c1ad55"
+        },
+        {
+          "filename": "test/registered/unit/elastic_ep/test_topology.py",
+          "status": "added",
+          "additions": 147,
+          "deletions": 0,
+          "changes": 147,
+          "sha": "d9709136f32dd5e4a2d7f7e70d212d28c8a28a2f",
+          "patch_present": true,
+          "patch_sha256": "8048872ae212a475679d7549fab09eacfde70dd447487cb2a0ef1581c03bf2fe"
+        },
+        {
+          "filename": "test/registered/unit/layers/test_dp_attention.py",
+          "status": "modified",
+          "additions": 28,
+          "deletions": 3,
+          "changes": 31,
+          "sha": "0c00bb77e0c7adb21b7c11757a1f8f459c8088a5",
+          "patch_present": true,
+          "patch_sha256": "f16f6ee78761459497ab8e8d42ff54993f1b97f560db7e3bae9fb3d7c553b049"
+        },
+        {
+          "filename": "test/registered/unit/managers/test_data_parallel_controller.py",
+          "status": "modified",
+          "additions": 71,
+          "deletions": 0,
+          "changes": 71,
+          "sha": "758710c685c0625222146f04eefeea28ad3efc2f",
+          "patch_present": true,
+          "patch_sha256": "fb7bacf810466a6eea387bde99b55e173302f9d55c88b97f0c06d6be83bd510b"
+        },
+        {
+          "filename": "test/registered/unit/test_runtime_context.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 5,
+          "changes": 11,
+          "sha": "3e111a8ab006f2a09767c04b60945f405873e4b5",
+          "patch_present": true,
+          "patch_sha256": "053686d9789d0857511848be4c276b51301a4b7ec16f4e9baeb1105290564476"
+        }
+      ],
+      "review": {
+        "status": "Observed candidate",
+        "decision": "Observe",
+        "review_level": "description and18-file index only",
+        "summary": "ElasticEP scale-up units become complete attention replicas with fixedattnTP/CP/DCP; physicalEP and logicalDP separate. Existing recovery limits unchanged. Full patch and actual8GPU matrix not independently verified."
+      }
+    },
+    {
+      "source_id": "github:NVIDIA/TensorRT-LLM#19940",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/19940",
+      "title": "[None][perf] Do not block the executor on KV bounce recv-region backp…",
+      "author": "roborluo",
+      "created_at": "2026-10-07T19:33:02Z",
+      "merged_at": "2026-10-15T05:36:07Z",
+      "merge_commit_sha": "097d2adf4aad3997cb83199b6fa377e49f6de422",
+      "base_sha": "9fd891783959eed960a6c58144241db38f9b1580",
+      "head_sha": "b5da2e8177a1bf3fb2ba830cbd097ce22b84dec2",
+      "body_sha256": "6fb7dce276da79e8aafb53e926982812bbb125342f239988a038935c8462719c",
+      "body_characters": 4524,
+      "changed_files": 2,
+      "files_returned": 2,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "tensorrt_llm/_torch/disaggregation/native/bounce/impl.py",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 3,
+          "changes": 13,
+          "sha": "b6bf6e81addc5a6c1b560c947526cb95d523b179",
+          "patch_present": true,
+          "patch_sha256": "6f92c61f9b8fa6d716b4b3e036a3da28853162d650c7ed82bc0d1594235218e2"
+        },
+        {
+          "filename": "tests/unittest/disaggregated/test_bounce.py",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "sha": "5e7af40dd76072854259082bace7370c478302ee",
+          "patch_present": true,
+          "patch_sha256": "86eb12c961d8bf3e1ecdedbaa0c13d0954fdd09a9d561d3f829dee0af7cce587"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "complete2-file diff read",
+        "summary": "Recv bounce reserve defaults0s and falls back immediately to per-fragment transfers when full; send wait remains0.2s on worker thread. Tests assert noCondition.wait and timeout0. Author576-concurrent-userGLM5.2NVFP4 comparison is workload-specific; GPU benchmark not rerun."
+      }
+    },
+    {
+      "source_id": "github:NVIDIA/TensorRT-LLM#19722",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/19722",
+      "title": "[TRTLLM-16186][feat] Add KV cache lending API for transfer backends",
+      "author": "Shixiaowei02",
+      "created_at": "2026-09-30T09:32:17Z",
+      "merged_at": "2026-10-14T14:37:20Z",
+      "merge_commit_sha": "5f2e6cdc8b6e53ca3de57e3d9047af9afe1c961b",
+      "base_sha": "2442169f07a1313d1316c2e0ac4db8817689ac41",
+      "head_sha": "a0a6b07b8e45a5461137d9a71abcafeee076ff45",
+      "body_sha256": "e9349800fed090cf4bcf5995c6c3d3f73bf51d0d395d1970d4dcdcbacb09abe6",
+      "body_characters": 8098,
+      "changed_files": 29,
+      "files_returned": 29,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/kv_cache_manager_v2.py",
+          "status": "modified",
+          "additions": 79,
+          "deletions": 29,
+          "changes": 108,
+          "sha": "5f3d0eb64f1c51fcc1a3157addea57acec48bc86",
+          "patch_present": true,
+          "patch_sha256": "71879cc09d6a1e31e84beb33eb9dd150b7fe6118ff824afe2a87057f0063f99e"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/__init__.py",
+          "status": "added",
+          "additions": 191,
+          "deletions": 0,
+          "changes": 191,
+          "sha": "0a10fed3261a164b357dd19acb15eb700d5f6e84",
+          "patch_present": true,
+          "patch_sha256": "b752a1266e8f2c6a46de1e2cf560f911331a45805d03b70b65c0dd647c1f11d4"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_fetch_ledger.py",
+          "status": "added",
+          "additions": 395,
+          "deletions": 0,
+          "changes": 395,
+          "sha": "ec41ad58d56eb629ec2485017780d4b725aa6fb3",
+          "patch_present": true,
+          "patch_sha256": "b769bb9cb8cf695828157483e9ad050059c6ed187b92ec8f820fe4e3c7d31409"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_identity.py",
+          "status": "added",
+          "additions": 97,
+          "deletions": 0,
+          "changes": 97,
+          "sha": "f89dd95718402478cf6917c6791edab90d3952ff",
+          "patch_present": true,
+          "patch_sha256": "d12a3b5ed306b9b8356baba433ce2a880235d2d51a6283cf5986ff7bf3ff53c4"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_layout.py",
+          "status": "added",
+          "additions": 576,
+          "deletions": 0,
+          "changes": 576,
+          "sha": "26d98f8a6f68b7480b2182d3fa7d3337749d5595",
+          "patch_present": true,
+          "patch_sha256": "93a5ce1978afa3a5b8c267138234375e8b0eb091247efe9f95754920d283701b"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_lender.py",
+          "status": "added",
+          "additions": 1582,
+          "deletions": 0,
+          "changes": 1582,
+          "sha": "afeb89f5b4c44c4339c237c8b02167995b928902",
+          "patch_present": true,
+          "patch_sha256": "d6020fe314993fcfd927491bd9488c0852d9de980f9d810e15277f4b31514f9c"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_manager.py",
+          "status": "added",
+          "additions": 416,
+          "deletions": 0,
+          "changes": 416,
+          "sha": "aa1f46cd28137c139a241cb5ec35bbea4847923d",
+          "patch_present": true,
+          "patch_sha256": "e551dc0f197a395b29274f8f202ac95f87d81d8e398c28040cd075cbc0cc6bbc"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_ranges.py",
+          "status": "added",
+          "additions": 86,
+          "deletions": 0,
+          "changes": 86,
+          "sha": "82cf26e031688f8280835dc1432967a0fecca749",
+          "patch_present": true,
+          "patch_sha256": "f5023718128220ab9d2728b3d38ac3b26206e107c8afbe4906cb78d68f73af57"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_slots.py",
+          "status": "added",
+          "additions": 229,
+          "deletions": 0,
+          "changes": 229,
+          "sha": "02bac5be3341a45bf149c5bb9eb6f651869b6158",
+          "patch_present": true,
+          "patch_sha256": "64c9abb8d41158429312705c6eca941983a0d6756748ee9f92ab708c0864b6d0"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/kv_cache/sharing/_types.py",
+          "status": "added",
+          "additions": 522,
+          "deletions": 0,
+          "changes": 522,
+          "sha": "2526e37d0b26b2818bbfe904c2771dfddf826dd2",
+          "patch_present": true,
+          "patch_sha256": "1c785aa814b53486ff6951e24bd74a10fe63031ee5f263966b3db845b44a996d"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/llm_request.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 3,
+          "changes": 8,
+          "sha": "d3b49b81c09b5d89393c32f8b0b9a9a3ad655715",
+          "patch_present": true,
+          "patch_sha256": "885aa6f7ae3417c23808bcd66f25604478d4253041577447df83e5c75763335a"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/scheduler/scheduler_v2.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "sha": "3b7e55c8fe336a1837f8a0f5353bd1a3d90d8e94",
+          "patch_present": true,
+          "patch_sha256": "959bd6d91529fad80101263a3b85bf76a8feb9d4b0ce324da0a725b41824f6a6"
+        },
+        {
+          "filename": "tests/integration/test_lists/test-db/l0_a10.yml",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "674ad6a726947ccda29405fada8f85d4d4910d06",
+          "patch_present": true,
+          "patch_sha256": "c5545a7691e0169bca26b456206108bbeb89199d1011c79ab8075a7b9cdcf4d6"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/conftest.py",
+          "status": "added",
+          "additions": 978,
+          "deletions": 0,
+          "changes": 978,
+          "sha": "d58a98dbfc27232791c86a93792e76d60d730ade",
+          "patch_present": true,
+          "patch_sha256": "cdec77bf17228979f28b8f0a086aaa95ea4950f7195f7fd53536e40671754371"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_host_tier.py",
+          "status": "added",
+          "additions": 938,
+          "deletions": 0,
+          "changes": 938,
+          "sha": "429c7e5c957170ecc7f7f765a28310d16413ac31",
+          "patch_present": true,
+          "patch_sha256": "eb1f86990a5740ef99b8fd314ac49daa78f99a338aeb47e6189c70d0b1c40b8e"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_layout_identity.py",
+          "status": "added",
+          "additions": 1197,
+          "deletions": 0,
+          "changes": 1197,
+          "sha": "972fb1ee126fd5f2014c10425614db0ef6b3fd2e",
+          "patch_present": true,
+          "patch_sha256": "b7df6fc926d4b3df41888775e49b406b94dbeeb4fe2df9f587483870ef539b43"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_layout_matches_native_page_table.py",
+          "status": "added",
+          "additions": 227,
+          "deletions": 0,
+          "changes": 227,
+          "sha": "e5f47987b30dae3101631c21e1007afe34f4d99a",
+          "patch_present": true,
+          "patch_sha256": "fecd8e2e6c67e2b13341b63d9ed7a81f6675ea72ac3777e7d956c5c512d00cd6"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_names.py",
+          "status": "added",
+          "additions": 178,
+          "deletions": 0,
+          "changes": 178,
+          "sha": "5373a69c9cca5dfd2a4e2335c741291bb4857d12",
+          "patch_present": true,
+          "patch_sha256": "662eaf907c76cb69243d0f1ea50d1252b698ba4831500c6a5a9d5512dd3776fc"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_public_surface.py",
+          "status": "added",
+          "additions": 895,
+          "deletions": 0,
+          "changes": 895,
+          "sha": "d08fa1ea6cd552e9e191c5188afa810da9392587",
+          "patch_present": true,
+          "patch_sha256": "2791971b0fa61645e46590402dfd7678c886817a5c1474a5c5f815234a1594ab"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_slots.py",
+          "status": "added",
+          "additions": 1453,
+          "deletions": 0,
+          "changes": 1453,
+          "sha": "b13004823378551537a33379fcc2b603e97f2787",
+          "patch_present": true,
+          "patch_sha256": "ccb4bd812cdbd21c12692352d9580a723fc212067bb28898d7a9f48b7a583b5a"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/sharing/test_staging_lender.py",
+          "status": "added",
+          "additions": 5156,
+          "deletions": 0,
+          "changes": 5156,
+          "sha": "82d5bb7fe711fb31f4f6f0433e28c74b9bafbc1e",
+          "patch_present": false,
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/test_kv_cache_manager_v2_helix_superblock.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "sha": "21f146d1cf8844981fb5090778bdf59095d28530",
+          "patch_present": true,
+          "patch_sha256": "0191b96945937f7b4d298873fa03a139fb95dede7df053a05263c9f92807d6d7"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/test_kv_cache_v2_scheduler.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "sha": "59b54805eaa34cbc49d7d8e68ca63c06e6baccc7",
+          "patch_present": true,
+          "patch_sha256": "dec58970f9b1f55fbcb5e0e9961ef976d919b343bc5bfdecd05f8917c7c7ebba"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/test_kvcm2_integration.py",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 4,
+          "changes": 36,
+          "sha": "75e32a232825cf9448b2f232ccb2bfcb6c19c825",
+          "patch_present": true,
+          "patch_sha256": "0a34cb8116da37bbd3f3e91e66544eb9703e5faa854570994c51e8fa2b453d20"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/kv_cache/test_spec_recompute_tail.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "e8f2ecbf1f6271daa400d04d2b63bd849a33ec8f",
+          "patch_present": true,
+          "patch_sha256": "c1c8675167140656cd49554a8ed417805b0e195e5d2fcb99d3dfff4ede0c9f63"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/test_disagg_receive_ordering.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "e9c83dd2385c809af54409c5df1869fa4f3c619f",
+          "patch_present": true,
+          "patch_sha256": "b34e577d2da95c850329556e224b5f8f359099127d3be9442b6983d3601fc67d"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/test_kv_connector_v2_prefix.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 9,
+          "changes": 18,
+          "sha": "fb1214565139b9c2966a05b654e524c0ca19d095",
+          "patch_present": true,
+          "patch_sha256": "f02ac7f68ea95167e88fcd5f7f96ce2252a61085d345cc90b7161ea16a981a6d"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/test_kv_connector_v2_prefix_real_manager.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "sha": "78ed3910f0c9fc528390b46746d495696d317a0e",
+          "patch_present": true,
+          "patch_sha256": "cc1a57f68f9fa4ad3b8f627fa5e21124d26ba5c62c1a75b871b5912774159776"
+        },
+        {
+          "filename": "tests/unittest/kv_cache_manager_v2_tests/test_kv_cache_stats_behavior.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "sha": "3d8bb0ceebb81492ebc522a866a55c1e4c303715",
+          "patch_present": true,
+          "patch_sha256": "5d6461541c55358e19da8d3a73392ff5926c134015a05f8507fbd302c188fd27"
+        }
+      ],
+      "review": {
+        "status": "Observed",
+        "decision": "Observe",
+        "review_level": "description and29-file index only",
+        "summary": "KVCacheManagerV2 host-staging lending API splits leases/readiness from transport. No production backend caller. RejectsCP/PP,recurrent/sparse/existingconnector and unsupporteddrafts. Uncertaincopies quarantine slots; reset disables lending until manager recreated. Largepatch not fullyaudited."
+      }
+    },
+    {
+      "source_id": "github:NVIDIA/TensorRT-LLM#19016",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/pull/19016",
+      "title": "[TRTLLM-16316][feat] Generalize Runtime Sleep/Wakeup for LLM and `trtllm-serve`",
+      "author": "Funatiq",
+      "created_at": "2026-09-10T12:57:49Z",
+      "merged_at": "2026-10-14T06:37:50Z",
+      "merge_commit_sha": "8d09d171348330aebc7e50c83120863b71d1d011",
+      "base_sha": "ca3a6c4c62e7a4886e40613f838244bbac5f6872",
+      "head_sha": "df782fd16b250b75df987c2b8074d7886c855c14",
+      "body_sha256": "6d769782906ae7890af28f9e0865ce42c867f447670924b9dd8b58ae0dad089f",
+      "body_characters": 8084,
+      "changed_files": 31,
+      "files_returned": 31,
+      "files_pages": 1,
+      "files": [
+        {
+          "filename": "docs/source/features/sleep-wakeup.md",
+          "status": "added",
+          "additions": 362,
+          "deletions": 0,
+          "changes": 362,
+          "sha": "89d18330a4a25cce2aff8f61b67225f72063bf80",
+          "patch_present": true,
+          "patch_sha256": "c3426f7a2159b20d16fe7cf81537a06d6964298f173bc8294c2b4024be1c3ec8"
+        },
+        {
+          "filename": "docs/source/index.rst",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "3d9c607c8a7fac1efc472eeafc41eac82cb22b3f",
+          "patch_present": true,
+          "patch_sha256": "322bb66737ffac7efb09b98194e3dff298bf2564dd9188e9b090f9f099f325be"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/async_llm.py",
+          "status": "modified",
+          "additions": 53,
+          "deletions": 11,
+          "changes": 64,
+          "sha": "0c336f08258123bb417b8a15b2a42e85fa25da01",
+          "patch_present": true,
+          "patch_sha256": "8c4adcb74f753f284c8905503810f89e8f33528267c315484e8ab274167ac1e3"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/executor_request_queue.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "sha": "fa79c1f16108b0889459d8f36d7673530f528616",
+          "patch_present": true,
+          "patch_sha256": "ee408a5dbb6996bde9f2cf021ff8bf80518a8f7d5d1cbfcd16ce0b3c80ac78bc"
+        },
+        {
+          "filename": "tensorrt_llm/_torch/pyexecutor/py_executor.py",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 0,
+          "changes": 29,
+          "sha": "4426b29ef4a3cc82ac917716117db52b681a142b",
+          "patch_present": true,
+          "patch_sha256": "7117685db7b032a9f4fb5b270ecc31aee35b8243de2d5e961cb86a6381d2f86f"
+        },
+        {
+          "filename": "tensorrt_llm/commands/serve.py",
+          "status": "modified",
+          "additions": 44,
+          "deletions": 5,
+          "changes": 49,
+          "sha": "ef873a9ec9b7551f296e81be5cef5d087de4ea86",
+          "patch_present": true,
+          "patch_sha256": "85e4ee3cf0ddcee04b107337966ff490f5c0a5062ad6b9c0d2928b3c5d4bd077"
+        },
+        {
+          "filename": "tensorrt_llm/executor/base_worker.py",
+          "status": "modified",
+          "additions": 70,
+          "deletions": 0,
+          "changes": 70,
+          "sha": "3a3e636cdb9f850450973193d489eb43f0624283",
+          "patch_present": true,
+          "patch_sha256": "5586a90a8b793ab03327e2eb72de05157b739bf4ed9195c34c404c72804ae8bd"
+        },
+        {
+          "filename": "tensorrt_llm/executor/proxy.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 1,
+          "changes": 3,
+          "sha": "1d3bc6c2e05eaf47e9a73d00986118004aa92aff",
+          "patch_present": true,
+          "patch_sha256": "1f5269ebe7ac0f941142acfa3803c17959b5e3f03311602f29b33ab970e9cde5"
+        },
+        {
+          "filename": "tensorrt_llm/executor/ray/gpu_worker.py",
+          "status": "modified",
+          "additions": 49,
+          "deletions": 17,
+          "changes": 66,
+          "sha": "1079b6d454b28f22d8ee3e70c49d8d900941f750",
+          "patch_present": true,
+          "patch_sha256": "9c1ba7fa7ffc3d51b4da0b8225377cf2a6c35d4baa06ac8030d3f83bc5d33f16"
+        },
+        {
+          "filename": "tensorrt_llm/executor/worker.py",
+          "status": "modified",
+          "additions": 42,
+          "deletions": 0,
+          "changes": 42,
+          "sha": "e0c738f7f102fb8e87d4b5555d6ee42364c2890a",
+          "patch_present": true,
+          "patch_sha256": "9a1fd3435d69f83dfa5281c3987443f7eecd7516f021737b0bece768a6dd5417"
+        },
+        {
+          "filename": "tensorrt_llm/llmapi/__init__.py",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 5,
+          "changes": 15,
+          "sha": "8d1dfd2458526302d78fd12603df557b876e42f6",
+          "patch_present": true,
+          "patch_sha256": "138927c2096386215e6b5b83c34df0838b935a9913f37c5cc4d44fbce35678ad"
+        },
+        {
+          "filename": "tensorrt_llm/llmapi/llm.py",
+          "status": "modified",
+          "additions": 114,
+          "deletions": 1,
+          "changes": 115,
+          "sha": "4feac6f96978dca3f1107da9509816654264fb5f",
+          "patch_present": true,
+          "patch_sha256": "d777dbd4ee18c17fe77114bf4ffdb6226fb1a61c83044e2f163b3196eed42c4c"
+        },
+        {
+          "filename": "tensorrt_llm/llmapi/llm_args.py",
+          "status": "modified",
+          "additions": 16,
+          "deletions": 0,
+          "changes": 16,
+          "sha": "70ce259c6e297a8e5b3252b5c16fbe0997c8280a",
+          "patch_present": true,
+          "patch_sha256": "9aa78f11a1914700bfcad785676b393132d7f315537cfcf9d9639cdab4f2fadc"
+        },
+        {
+          "filename": "tensorrt_llm/serve/openai_protocol.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "sha": "7c2ab0812bf24cad7eb81281071b5d89d7123cb4",
+          "patch_present": true,
+          "patch_sha256": "ec60bf2f89665e180828972e9c7c900d46120e2691f5b002b77c100a52f60a2f"
+        },
+        {
+          "filename": "tensorrt_llm/serve/openai_server.py",
+          "status": "modified",
+          "additions": 140,
+          "deletions": 3,
+          "changes": 143,
+          "sha": "b2b83e4a54e43c687ea8f9fec3908ef4f6b4ffa6",
+          "patch_present": true,
+          "patch_sha256": "62ec79712a6daa67193a1359f66a7c87eaf7b861c41404f103568acb029edb3d"
+        },
+        {
+          "filename": "tensorrt_llm/serve/runtime_control_auth.py",
+          "status": "added",
+          "additions": 191,
+          "deletions": 0,
+          "changes": 191,
+          "sha": "b7d1eabe29a70005fc55062b89b141fa7e96fd5b",
+          "patch_present": true,
+          "patch_sha256": "d32d86d1de8ceddc64ccc09701b6866df8a4069088ec9c17d39b283a5c472d5e"
+        },
+        {
+          "filename": "tests/integration/test_lists/test-db/l0_cpu.yml",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "sha": "3d4b52c51a4ed087aab377d2e0abcb3e767f123d",
+          "patch_present": true,
+          "patch_sha256": "5a9f3036c0b0abdf63f62ff686e9b247d33c11ea1577011ae8dbb580b28095cc"
+        },
+        {
+          "filename": "tests/integration/test_lists/test-db/l0_h100.yml",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "sha": "ecb3fcf37cef1219b79b86505841e7979739d1db",
+          "patch_present": true,
+          "patch_sha256": "e2c21de52940a19185667815ad8fd23816ab76c85abc4baea8c59cf6469323dc"
+        },
+        {
+          "filename": "tests/unittest/_torch/executor/test_executor_request_queue.py",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "sha": "ae7807ffa2b80d69ea5c54446574fb4bc981ae3f",
+          "patch_present": true,
+          "patch_sha256": "b79ce55e9efd1973432c55f6a1339a4fab61b20037c334eb58c89b93d2e23288"
+        },
+        {
+          "filename": "tests/unittest/_torch/moe/test_moe_comm.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "sha": "ee7ffeabcbf801f83b43f4363322830a67faa2e8",
+          "patch_present": true,
+          "patch_sha256": "c1b3280b6c187800b955eda90488d3cd9711c3dde8aab798fc3845c8d8f11e7a"
+        },
+        {
+          "filename": "tests/unittest/_torch/multi_gpu/test_mpi_sleep_wakeup.py",
+          "status": "modified",
+          "additions": 18,
+          "deletions": 5,
+          "changes": 23,
+          "sha": "2fdd40158a3d2f50dfa844350d3204fb4346c887",
+          "patch_present": true,
+          "patch_sha256": "6f7b463dee6e3905af22ef5d0cfbaab2d666eaf8e09934711f22d6b6142c9315"
+        },
+        {
+          "filename": "tests/unittest/_torch/ray_orchestrator/single_gpu/test_llm_sleep.py",
+          "status": "modified",
+          "additions": 38,
+          "deletions": 0,
+          "changes": 38,
+          "sha": "e85f64c583d34fe8495a208958c33f427e55771e",
+          "patch_present": true,
+          "patch_sha256": "8319d3d499fad5543de8a412f743d770eb550999f82343e65373c3b9c73e87e8"
+        },
+        {
+          "filename": "tests/unittest/api_stability/references/llm.yaml",
+          "status": "modified",
+          "additions": 18,
+          "deletions": 0,
+          "changes": 18,
+          "sha": "7f3bc45a261578c45a90ad2931df6ba8d839c9da",
+          "patch_present": true,
+          "patch_sha256": "fd8a1417d881e75b6785fe1e153ae899e6566a1534763c0704c4fa270cc3db49"
+        },
+        {
+          "filename": "tests/unittest/api_stability/references/trtllm_serve_cli.yaml",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "sha": "b414b412c00c47aac768bf33fb90a062e87e1224",
+          "patch_present": true,
+          "patch_sha256": "dc2be213f563b6308b5b89afef78d6505b9bce5dd6ec5fa81fcf556e603f16d4"
+        },
+        {
+          "filename": "tests/unittest/executor/test_ray_sleep_state.py",
+          "status": "added",
+          "additions": 211,
+          "deletions": 0,
+          "changes": 211,
+          "sha": "2cf3a8a435e5818c617ef59a4e8aca5c98c8a97a",
+          "patch_present": true,
+          "patch_sha256": "a184b8ecddb8c941d4589311fdf1fe626cbed09df228985d3f2f72664ef29fc8"
+        },
+        {
+          "filename": "tests/unittest/executor/test_sleep_collective_rpc_guards.py",
+          "status": "modified",
+          "additions": 265,
+          "deletions": 7,
+          "changes": 272,
+          "sha": "725c3edac59303e2389517c6a5bc941923c78455",
+          "patch_present": true,
+          "patch_sha256": "afc67d3f88b0c09a3402d042cef9734f9662cb91f97186a60f41fecf22685b3f"
+        },
+        {
+          "filename": "tests/unittest/llmapi/apps/test_anthropic_routes.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 2,
+          "changes": 6,
+          "sha": "d3e1326889563968f7ae826467cd46b412997d3b",
+          "patch_present": true,
+          "patch_sha256": "17acc58cbe7a30769a3553c1a98bb1307a2a856dc3548454e0acca989f92d0c2"
+        },
+        {
+          "filename": "tests/unittest/llmapi/test_async_llm.py",
+          "status": "modified",
+          "additions": 24,
+          "deletions": 1,
+          "changes": 25,
+          "sha": "819538b2f034532e51481476b4d18271ceb6c81d",
+          "patch_present": true,
+          "patch_sha256": "050fcf0fc3222fbb6dc8411a403807f388dffa798a13b8ee53908f5f2acf51c2"
+        },
+        {
+          "filename": "tests/unittest/llmapi/test_runtime_control.py",
+          "status": "added",
+          "additions": 482,
+          "deletions": 0,
+          "changes": 482,
+          "sha": "567303ee6408e5612696d3bdc72715eba40c90db",
+          "patch_present": true,
+          "patch_sha256": "04964addc757ce124bdcfb34ef5c84b628662425e5dc9c9e310f9a0f0efc81f6"
+        },
+        {
+          "filename": "tests/unittest/llmapi/test_runtime_memory_api.py",
+          "status": "added",
+          "additions": 330,
+          "deletions": 0,
+          "changes": 330,
+          "sha": "486493c413519a49fb7220a20edc5254030e6a25",
+          "patch_present": true,
+          "patch_sha256": "5dee6fd2285d5148590cd43e091340264d17efb2b5a76bda9f4f9f57ca4fc40a"
+        },
+        {
+          "filename": "tests/unittest/llmapi/test_serve_sleep_mode.py",
+          "status": "added",
+          "additions": 154,
+          "deletions": 0,
+          "changes": 154,
+          "sha": "be2f61fad6429419d3b68e2169134009cdc77caf",
+          "patch_present": true,
+          "patch_sha256": "85b8bdb5b744e9391f8f00bc039458bb12eedaadc422336367d7d3c686adf0b9"
+        }
+      ],
+      "review": {
+        "status": "Observed candidate",
+        "decision": "Observe",
+        "review_level": "31-file index andnewdocs surfaced; autogeneratedbody not adopted as independent evidence",
+        "summary": "Generalruntime sleep/wakeup API candidate. Not deepreviewed; no newaccept and no inferredfullbackendcoverage from autogeneratedPRsummary."
+      }
+    }
+  ],
+  "releases": [
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "query": "https://api.github.com/repos/NVIDIA/TensorRT-LLM/releases?per_page=100&page=1",
+      "pages": 1,
+      "returned": 93,
+      "last_returned_published_at": "2023-10-19T13:14:44Z",
+      "window_releases": [
+        {
+          "tag_name": "v1.4.0rc0",
+          "name": "v1.4.0rc0",
+          "html_url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.4.0rc0",
+          "published_at": "2026-10-14T16:35:44Z",
+          "created_at": "2026-10-08T22:16:15Z",
+          "prerelease": true,
+          "draft": false,
+          "body_sha256": "55049fde70e385d04086fb7939c1aba7b4022ae7554b0b2501e7169871c89b36",
+          "body_length": 32796
+        }
+      ],
+      "full_history_claim": false,
+      "latest": {
+        "tag_name": "v1.4.0rc0",
+        "name": "v1.4.0rc0",
+        "html_url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.4.0rc0",
+        "published_at": "2026-10-14T16:35:44Z",
+        "created_at": "2026-10-08T22:16:15Z",
+        "prerelease": true,
+        "draft": false,
+        "body_sha256": "55049fde70e385d04086fb7939c1aba7b4022ae7554b0b2501e7169871c89b36",
+        "body_length": 32796
+      }
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "query": "https://api.github.com/repos/sgl-project/sglang/releases?per_page=100&page=1",
+      "pages": 1,
+      "returned": 62,
+      "last_returned_published_at": "2024-01-18T02:40:44Z",
+      "window_releases": [],
+      "full_history_claim": false,
+      "latest": {
+        "tag_name": "v0.5.21",
+        "name": "v0.5.21",
+        "html_url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.21",
+        "published_at": "2026-10-02T01:09:04Z",
+        "created_at": "2026-10-01T06:22:41Z",
+        "prerelease": false,
+        "draft": false,
+        "body_sha256": "6e59ea1449805b3556309065f2a35277900fae82c1ca07ded2460908bc070e27",
+        "body_length": 82122
+      }
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "query": "https://api.github.com/repos/vllm-project/vllm/releases?per_page=100&page=1",
+      "pages": 1,
+      "returned": 100,
+      "last_returned_published_at": "2023-09-28T22:31:44Z",
+      "window_releases": [
+        {
+          "tag_name": "v0.32.0",
+          "name": "v0.32.0",
+          "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.32.0",
+          "published_at": "2026-10-18T06:50:48Z",
+          "created_at": "2026-10-17T18:57:10Z",
+          "prerelease": false,
+          "draft": false,
+          "body_sha256": "2e5e7c52c606f366ac96af0da49614f3bf0f017146474882354d8e924c0e7dc0",
+          "body_length": 39727
+        }
+      ],
+      "full_history_claim": false,
+      "latest": {
+        "tag_name": "v0.32.0",
+        "name": "v0.32.0",
+        "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.32.0",
+        "published_at": "2026-10-18T06:50:48Z",
+        "created_at": "2026-10-17T18:57:10Z",
+        "prerelease": false,
+        "draft": false,
+        "body_sha256": "2e5e7c52c606f366ac96af0da49614f3bf0f017146474882354d8e924c0e7dc0",
+        "body_length": 39727
+      }
+    }
+  ],
+  "gaps": [
+    "Historical arXiv discovery gap remains since2026-09-22T08:52:05Z.",
+    "GitHub direct commits, historical peripheralPRs and not-fully-paginated releasehistory remain scoped gaps since2026-09-22T09:06:16Z.",
+    "750windowmergedPR titles screened; only selecteddiffsreviewed."
+  ]
+}

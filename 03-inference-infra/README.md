@@ -1,6 +1,6 @@
 # Part 03｜推理基础设施
 
-这一部分关注请求如何转成 GPU 工作，以及延迟、吞吐、显存和调度如何互相约束。目前尚无独立推理 topic，入口复用系统基础和 RL rollout 章节中的相关内容；这些是局部覆盖，不等于完整的 serving 手册。
+这一部分关注请求如何转成 GPU 工作，以及延迟、吞吐、显存和调度如何互相约束。已有首个独立 topic：[推理状态的成本与正确性](topics/inference_state.md)。其余入口继续复用系统基础和 RL rollout 中的局部内容，完整 serving 手册仍待建设。
 
 ## 从哪里开始
 
@@ -9,7 +9,7 @@
 | 编号 | 主题入口 | 学习问题与覆盖 |
 |---|---|---|
 | 3.1 | Prefill / decode：[Roofline 与性能测量](../01-systems/topics/transformer_engine.md#roofline) · [decode 工作流](../04-rl-infra/topics/agentic_rl.md#cuda-graph-decode) | 区分计算、搬运与提交成本；独立请求成本模型待补 |
-| 3.2 | KV 与前缀复用：[动态 KV 场景](../04-rl-infra/topics/agentic_rl.md#cuda-graph-decode) · [vLLM / SGLang 后端选型](../04-rl-infra/topics/rl_framework_selection.md#vllm-sglang-selection) | 现有内容只覆盖局部机制与 RL 集成；paged KV / prefix cache 正文待补 |
+| 3.2 | KV 与前缀复用：[状态成本与正确性](topics/inference_state.md) · [动态 KV 场景](../04-rl-infra/topics/agentic_rl.md#cuda-graph-decode) · [vLLM / SGLang 后端选型](../04-rl-infra/topics/rl_framework_selection.md#vllm-sglang-selection) | 已有状态预算、load-vs-recompute、producer 顺序；paged KV 的完整实现与策略仍待补 |
 | 3.3 | Batching 与调度：[供给与执行容量](../04-rl-infra/topics/agentic_rl.md#gateway-streaming-refill) | 现有内容仅覆盖 rollout；continuous batching / chunked prefill 正文待补 |
 | 3.4 | Kernel、Graph 与量化：[compile / CUDA Graph](../01-systems/topics/transformer_engine.md#torch-compile) · [FP8 验证边界](../01-systems/topics/fp8.md#precision-validation) | 区分 kernel 优化、提交开销与数值约束；推理量化专项待补 |
 | 3.5 | SLO 与分布式服务：[NCCL](../01-systems/topics/nccl.md) · [版本准入](../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) | 现有内容提供底层机制；SLO、容量规划与分布式 serving 正文待补 |
@@ -24,6 +24,6 @@
 
 ## 待补边界与继续深入
 
-Prefill / decode 的独立性能模型、KV cache 管理、continuous batching、prefix caching、服务 SLO 与容量规划仍需系统成章。本次只建立导航，不复制现有正文，也不把计划写成已完成章节；后续来源与阅读决策统一进入[研究入口](../research/README.md)。
+Prefill / decode 的独立性能模型、KV cache 管理、continuous batching、prefix caching、服务 SLO 与容量规划仍需系统成章。[状态 topic](topics/inference_state.md)仅覆盖其中的成本/正确性问题，其余不以计划冒充已完成章节；后续来源与阅读决策统一进入[研究入口](../research/README.md)。
 
 [返回总入口](../README.md) · [最近更新](../README.md#recent-updates) · [知识图谱](../KNOWLEDGE_GRAPH.md) · [上一部分：训练基础设施](../02-training-infra/README.md) · [下一部分：RL 基础设施](../04-rl-infra/README.md)

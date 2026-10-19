@@ -1,0 +1,3682 @@
+{
+  "scan_window": {
+    "start": "2026-10-14T06:20:25Z",
+    "end": "2026-10-19T01:40:52Z"
+  },
+  "first_seen": "2026-10-19",
+  "verified_at": "2026-10-19T01:51:18.412060+00:00",
+  "accepted_framework_groups": [
+    {
+      "id": "RL1",
+      "title": "CPU-staged AdamW：CPU authoritative state 需要可等待的 staging 与恢复边界",
+      "sources": [
+        {
+          "source_id": "github:areal-project/AReaL:pr:1613",
+          "title": "feat(engine): add CPU-staged Megatron AdamW",
+          "author": "yulangz",
+          "merged_at": "2026-10-16T02:15:52Z",
+          "fixed_sha": "89400da9aa7606b7b5fbc8fd46f576f689e3dc06",
+          "base_branch": "main",
+          "url": "https://github.com/areal-project/AReaL/pull/1613",
+          "commit_url": "https://github.com/areal-project/AReaL/commit/89400da9aa7606b7b5fbc8fd46f576f689e3dc06",
+          "first_seen": "2026-09-22 (open proposal)",
+          "window": {
+            "start": "2026-10-14T06:20:25Z",
+            "end": "2026-10-19T01:40:52Z"
+          },
+          "changed_files": 46,
+          "merged_event_first_verified": "2026-10-19"
+        }
+      ],
+      "type": "official merged PR",
+      "impact": "high",
+      "decision": "Read",
+      "learning_track": [
+        "RL",
+        "Training"
+      ],
+      "signal_type": "system",
+      "subsystem": [
+        "training",
+        "weight sync",
+        "checkpoint/recovery"
+      ],
+      "engineering_dimension": [
+        "correctness",
+        "state",
+        "memory"
+      ],
+      "target_question": "optimizer state 留在 CPU 后，如何保证 CUDA slot 重用、checkpoint 和 model-only reload 都读到最新一致状态？",
+      "reason": "将显存优化落实到状态所有权和 checkpoint 失败语义，直接影响 colocated RL 的可用容量。",
+      "one_sentence_takeaway": "FP32 master/moments 常驻 pinned CPU，以有限 CUDA slots 执行 H2D→AdamW→D2H；slot 重用、保存和恢复必须遵守同一状态生命周期。",
+      "evidence": [
+        "实际读取 gpu_staged_optimizer.py 的 CPU slabs、三 stream/event 链与 checkpoint state_dict；staged_optimizer_runtime.py 的 FREE/D2H_PENDING 状态和 drain/release。",
+        "实际读取 checkpointer.py 的 begin/complete load、model-only reset、load_failed fail-stop；AWEX writer 保留 IPC export 到 reader ACK。",
+        "检查 tests/test_gpu_staged_optimizer.py 的 delayed-gradient stream、slot memory bound、save drain、resume parity、failed-load 和 model-only reset；另有 DP2/MCore 与 AWEX 相关测试文件。"
+      ],
+      "limitations": [
+        "本轮未执行上游测试；46-file PR 仅深核上述关键路径，不声称逐行全审。",
+        "PR 作者的早期 actor memory 降幅来自拆分前 snapshot；不能作为当前合并版本的整卡峰值收益。",
+        "作者近期八卡/三次更新 smoke 仅单节点短测；v2 residency、长跑收敛和最新 merge 的多节点尚无独立验证。",
+        "09/22 open PR snapshot 已观察该提案；本次接受的是 10/16 merged 事件，非重新发现旧提案。"
+      ],
+      "areal_transfer": "AReaL 原生能力；先做 checkpoint freshness、HF reload 后 master/moments 重建与 ACK 超时的故障注入，并分别量 actor allocated、全阶段整卡峰值和吞吐。",
+      "next_step": "AReaL 原生能力；先做 checkpoint freshness、HF reload 后 master/moments 重建与 ACK 超时的故障注入，并分别量 actor allocated、全阶段整卡峰值和吞吐。",
+      "related_topics": [
+        "04-rl-infra/topics/rl_framework_selection.md",
+        "04-rl-infra/topics/agentic_rl.md"
+      ],
+      "lifecycle": "NEW"
+    },
+    {
+      "id": "RL2",
+      "title": "R3：route replay 的单位是 token/layer 布局和 forward/backward 生命周期",
+      "sources": [
+        {
+          "source_id": "github:areal-project/AReaL:pr:1496",
+          "title": "feat(engine): add native R3 router replay",
+          "author": "yulangz",
+          "merged_at": "2026-10-15T09:01:24Z",
+          "fixed_sha": "6cad8710bb5740a5480f8fba3a5970dd08638d01",
+          "base_branch": "main",
+          "url": "https://github.com/areal-project/AReaL/pull/1496",
+          "commit_url": "https://github.com/areal-project/AReaL/commit/6cad8710bb5740a5480f8fba3a5970dd08638d01",
+          "first_seen": "2026-10-19",
+          "window": {
+            "start": "2026-10-14T06:20:25Z",
+            "end": "2026-10-19T01:40:52Z"
+          },
+          "changed_files": 71
+        },
+        {
+          "source_id": "github:NVIDIA-NeMo/RL:pr:4458",
+          "title": "feat(automodel): support rollout routing replay (R3) on the Automodel policy",
+          "author": "joyang-nv",
+          "merged_at": "2026-10-17T11:32:00Z",
+          "fixed_sha": "c7aca812b741321d7d735e0c3175012f16064a87",
+          "base_branch": "main",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4458",
+          "commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/c7aca812b741321d7d735e0c3175012f16064a87",
+          "first_seen": "2026-10-19",
+          "window": {
+            "start": "2026-10-14T06:20:25Z",
+            "end": "2026-10-19T01:40:52Z"
+          },
+          "changed_files": 18
+        }
+      ],
+      "type": "official merged PR",
+      "impact": "high",
+      "decision": "Read",
+      "learning_track": [
+        "RL",
+        "Training"
+      ],
+      "signal_type": "system",
+      "subsystem": [
+        "rollout",
+        "training",
+        "data/trajectory path"
+      ],
+      "engineering_dimension": [
+        "correctness",
+        "state",
+        "memory"
+      ],
+      "target_question": "同权重下 MoE expert selection 漂移时，如何保证 rollout、重算 logprob 与 activation-checkpoint backward 使用对齐 routes？",
+      "reason": "两个后端新增落地揭示可迁移 correctness contract，不能把开启 replay 当成全模型数值等价。",
+      "one_sentence_takeaway": "R3 重放离散 expert IDs，同时保留实时 router weights 的学习；route 缺失、padding、layer mapping 和 backward recompute 都必须显式处理。",
+      "evidence": [
+        "AReaL 实际读取 r3/config.py、preprocess.py、orchestration.py 及 megatron_engine.py 关键路径：连续 MoE 后缀限制、input-token 对齐、无效 microbatch 的 live/record fallback、REPLAY_FORWARD/REPLAY_BACKWARD 与 finally 清理。",
+        "NeMo 实际读取 automodel/router_replay.py、train.py、data.py：decoder-layer/MoE-layer 两种 mapping、all -1 缺失行 live fallback、损坏行拒绝、gate 未消费 replay handle 报错、训练与 backward 位于 replay context。",
+        "测试文件覆盖 native FIFO/forward-backward replay、真实 Automodel Gate 的 gradient、activation checkpoint recompute、无效 routes、padding 与未消费 gate。"
+      ],
+      "limitations": [
+        "AReaL 仅选读71-file PR关键路径；SGLang+Megatron，限制 sparse/interleaved/trailing dense MoE、padded等不支持布局，不能推断 vLLM 已支持。",
+        "NeMo Automodel 要求 vLLM，拒绝 CP>1、sequence packing、sequence parallel 与 HF fallback；这些限制不同于 AReaL。",
+        "作者 canary/20-step 数值为上游自报；PR 更新段落仍留 current-head smoke 与 step-time 对比待补，不能把早期跑分或降低logprob差异写成收敛提升。",
+        "本轮未运行 GPU/多节点测试；R3 与 experience replay 是不同概念。"
+      ],
+      "areal_transfer": "迁移 route schema、missing-vs-corrupt 分支、packing/CP/SP 映射以及异常后 replay 队列清空检查；为 AReaL 比较逐 token mismatch 的 tail 指标。",
+      "next_step": "迁移 route schema、missing-vs-corrupt 分支、packing/CP/SP 映射以及异常后 replay 队列清空检查；为 AReaL 比较逐 token mismatch 的 tail 指标。",
+      "related_topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "04-rl-infra/topics/rl_framework_selection.md"
+      ],
+      "lifecycle": "NEW"
+    },
+    {
+      "id": "RL3",
+      "title": "FSDP2 CPU offload：host 读取发生在 model.to 内，末尾同步已太迟",
+      "sources": [
+        {
+          "source_id": "github:verl-project/verl:pr:8187",
+          "title": "[fsdp] fix: prevent parameter corruption during FSDP2 CPU offload",
+          "author": "SelfDLer",
+          "merged_at": "2026-10-16T03:18:32Z",
+          "fixed_sha": "edd2c63b6a77b551c20cdded1c802d82a9cc751d",
+          "base_branch": "main",
+          "url": "https://github.com/verl-project/verl/pull/8187",
+          "commit_url": "https://github.com/verl-project/verl/commit/edd2c63b6a77b551c20cdded1c802d82a9cc751d",
+          "first_seen": "2026-10-19",
+          "window": {
+            "start": "2026-10-14T06:20:25Z",
+            "end": "2026-10-19T01:40:52Z"
+          },
+          "changed_files": 6
+        }
+      ],
+      "type": "official merged PR",
+      "impact": "high",
+      "decision": "Read",
+      "learning_track": [
+        "RL",
+        "Training"
+      ],
+      "signal_type": "system",
+      "subsystem": [
+        "training",
+        "weight sync"
+      ],
+      "engineering_dimension": [
+        "correctness",
+        "state",
+        "memory"
+      ],
+      "target_question": "为何没有 optimizer update 的 offload/onload 也能改变参数，而一次末尾 synchronize 仍无法修复？",
+      "reason": "uneven sharding 的 CPU repadding 会提前消费异步 D2H destination，造成持久参数损坏；是通用 offload correctness 问题。",
+      "one_sentence_takeaway": "把 FSDP2 runtime 与初始化 offload 都改为 blocking D2H，确保 FSDP 内部 CPU repadding 读到完成的传输。",
+      "evidence": [
+        "实际 diff：offload_fsdp2_model_to_cpu 使用 model.to(cpu, non_blocking=False)，fsdp2_load_full_state_dict 复用该 helper(empty_cache=False)。",
+        "分布式 regression 涵盖 nested FSDP2、even/uneven shards、conversion stream 上预排计算、default/non-default streams，以及 CPU/恢复后逐元素精确对照。",
+        "CUDA/NPU CI入口与 CPU transfer-policy mock 检查均在 actual diff；本轮只核代码/测试设计，没有执行。"
+      ],
+      "limitations": [
+        "H2D helper 保留 non_blocking=True 不代表 overlap 性能无损；blocking D2H可能改变 host 等待及 pinned storage。",
+        "作者的 CUDA/NPU reproducer 与 NPU 两卡回归为上游自报；无本轮独立复现或受控吞吐对比。"
+      ],
+      "areal_transfer": "在 AReaL 的 FSDP/offload 路径加入“无 forward/backward/step 的参数 round-trip”验收，并审计库内部 host consumers；不要以 empty_cache 或末尾同步代替依赖边界。",
+      "next_step": "在 AReaL 的 FSDP/offload 路径加入“无 forward/backward/step 的参数 round-trip”验收，并审计库内部 host consumers；不要以 empty_cache 或末尾同步代替依赖边界。",
+      "related_topics": [
+        "04-rl-infra/topics/rl_framework_selection.md",
+        "02-training-infra/README.md"
+      ],
+      "lifecycle": "NEW"
+    },
+    {
+      "id": "RL4",
+      "title": "多轮 RL：原始 prompt 的 assistant 历史不属于本轮生成",
+      "sources": [
+        {
+          "source_id": "github:NVIDIA-NeMo/RL:pr:4487",
+          "title": "fix(training): exclude prompt history from reward lengths and loss masks",
+          "author": "linj-glitch",
+          "merged_at": "2026-10-18T23:27:53Z",
+          "fixed_sha": "e12d18ba8e115fdcb957329740dae1f12864cb53",
+          "base_branch": "main",
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4487",
+          "commit_url": "https://github.com/NVIDIA-NeMo/RL/commit/e12d18ba8e115fdcb957329740dae1f12864cb53",
+          "first_seen": "2026-10-19",
+          "window": {
+            "start": "2026-10-14T06:20:25Z",
+            "end": "2026-10-19T01:40:52Z"
+          },
+          "changed_files": 14
+        }
+      ],
+      "type": "official merged PR",
+      "impact": "high",
+      "decision": "Read",
+      "learning_track": [
+        "RL",
+        "Training"
+      ],
+      "signal_type": "system",
+      "subsystem": [
+        "training",
+        "data/trajectory path"
+      ],
+      "engineering_dimension": [
+        "correctness",
+        "data/trajectory semantics"
+      ],
+      "target_question": "history 中已有 assistant turns 时，长度奖励和 loss mask 如何避免惩罚/训练旧文本并漏计后续生成 turn？",
+      "reason": "role==assistant 不是 generated-token 的充分条件；错误 provenance 会同时改变 reward shaping 和训练目标。",
+      "one_sentence_takeaway": "先以 generation_logprobs 标记区分本轮生成，再累加所有生成 assistant turns；必须在 flatten 补齐缺失 logprobs 之前做统计。",
+      "evidence": [
+        "实际 diff：reward_functions.py 从首个 assistant 长度改为所有带 generation_logprobs 的 assistant 长度之和；decompose_message_log 使用同一规则。",
+        "sync_rollout_actor.py 将 decomposition 移至 flatten 之前；sync/async PPO与distillation loss-mask 分支都要求 generation marker。",
+        "回归涵盖100个history tokens+15个新tokens、空history placeholder、多turn sum、actor操作顺序以及PPO/distillation训练循环mask。"
+      ],
+      "limitations": [
+        "本轮未执行上游测试；作者说明 full training 与 CI 未跑。",
+        "该marker是当前schema约定，不能泛化为所有外部message log都自带可靠provenance；必须在字段补全前消费。"
+      ],
+      "areal_transfer": "为 AReaL 的多轮工具轨迹建立 prompt/generated/tool 三类 token provenance，并让 reward长度、advantage/loss mask、数据面序列化共享契约。",
+      "next_step": "为 AReaL 的多轮工具轨迹建立 prompt/generated/tool 三类 token provenance，并让 reward长度、advantage/loss mask、数据面序列化共享契约。",
+      "related_topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "04-rl-infra/topics/mopd.md"
+      ],
+      "lifecycle": "NEW"
+    }
+  ],
+  "accepted_paper": {
+    "id": "RLP1",
+    "source_id": "arxiv:2610.21640v1",
+    "title": "ReFlow: Replay-Driven Decoupling for Efficient RL Post-Training",
+    "authors": [
+      "Yukun Tian",
+      "Junwei Su",
+      "Haofeng Xu",
+      "Lansong Diao",
+      "Zhengping Qian",
+      "Weibo Zhao",
+      "Wenchao Zhou",
+      "Ruiting Zhou",
+      "Chuan Wu"
+    ],
+    "submitted_at": "2026-10-15T10:21:41Z",
+    "announcement_date": "2026-10-16",
+    "first_seen": "2026-10-19",
+    "window": {
+      "start": "2026-10-14T06:20:25Z",
+      "end": "2026-10-19T01:40:52Z"
+    },
+    "type": "systems paper",
+    "impact": "high",
+    "decision": "Read",
+    "learning_track": [
+      "RL",
+      "Training",
+      "Systems"
+    ],
+    "signal_type": "system",
+    "url": "https://arxiv.org/abs/2610.21640v1",
+    "method_url": "https://arxiv.org/html/2610.21640v1",
+    "target_question": "如何通过有界trajectory replay减少新rollout需求，同时保持fresh-data供给、policy lag和弹性状态转移可控？",
+    "one_sentence_takeaway": "把replay比例上限、replay loss权重和policy lag分开控制，再按完整replica组调整预热worker角色，避免用更高staleness单独换吞吐。",
+    "evidence": [
+      "citation_title/author/date原始meta与abs正文、方法4–6节及评估7节相符。",
+      "σ限制batch replay比例，τ调低其loss贡献并用有效token质量归一化，δ限制版本age；预热hybrid worker按replica粒度切角色，新增trainer从已有replica做shard-local broadcast。",
+      "KV压力和preemption的EWMA/AIMD指导admission；生产/消费率以idle修正，资源配置使用cooldown。"
+    ],
+    "numeric_boundaries": [
+      "作者128 H800上限和最高2.06x来自指定reasoning/coding/tool workloads；throughput定义是trainer处理tokens/step time，含replay，不能写成新轨迹生成率。",
+      "reasoning均值仅5 warmup+5 measured steps、coding10+10；评估σ=τ=0.5、δ=1。",
+      "理论variance判断依赖局部unbiased/uncorrelated/equal-mass假设；不构成任意任务收敛保证。"
+    ],
+    "limitations": [
+      "原文未核到可用公开实现链接；作者描述verl/vLLM/FSDP2实现和benchmark，本轮未复现。"
+    ],
+    "subsystem": [
+      "rollout",
+      "scheduler",
+      "data/trajectory path",
+      "weight sync"
+    ],
+    "areal_transfer": "先用已有version ledger模拟σ/τ/δ与fresh supply，再验证切角色后optimizer shard、in-flight trajectory和collective成员；不直接复制benchmark参数。",
+    "related_topics": [
+      "04-rl-infra/topics/agentic_rl.md",
+      "04-rl-infra/topics/rl_framework_selection.md"
+    ],
+    "next_step": "作为P1候选精读replay目标与fresh-token吞吐口径；不自动改P0。",
+    "lifecycle": "NEW",
+    "citation_metadata": [
+      [
+        "citation_title",
+        "ReFlow: Replay-Driven Decoupling for Efficient RL Post-Training"
+      ],
+      [
+        "citation_author",
+        "Tian, Yukun"
+      ],
+      [
+        "citation_author",
+        "Su, Junwei"
+      ],
+      [
+        "citation_author",
+        "Xu, Haofeng"
+      ],
+      [
+        "citation_author",
+        "Diao, Lansong"
+      ],
+      [
+        "citation_author",
+        "Qian, Zhengping"
+      ],
+      [
+        "citation_author",
+        "Zhao, Weibo"
+      ],
+      [
+        "citation_author",
+        "Zhou, Wenchao"
+      ],
+      [
+        "citation_author",
+        "Zhou, Ruiting"
+      ],
+      [
+        "citation_author",
+        "Wu, Chuan"
+      ],
+      [
+        "citation_date",
+        "2026/10/15"
+      ],
+      [
+        "citation_online_date",
+        "2026/10/15"
+      ],
+      [
+        "citation_pdf_url",
+        "https://arxiv.org/pdf/2610.21640"
+      ],
+      [
+        "citation_arxiv_id",
+        "2610.21640"
+      ]
+    ]
+  },
+  "observed_groups": [
+    {
+      "id": "RO1",
+      "title": "AReaL independent loss terms / composable advantage",
+      "sources": [
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1782,
+          "url": "https://github.com/areal-project/AReaL/pull/1782"
+        },
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1784,
+          "url": "https://github.com/areal-project/AReaL/pull/1784"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "目标项 numerator/mass 各自归一化和插件化 advantage 有价值，但应与10/14已收录loss aggregation区分；后者配置扩展不能自动视为新效率收益。",
+      "evidence_depth": "metadata、文件清单与测试范围",
+      "next_step": "追DP/CP/PP分母、transport-only rank与默认算法parity。"
+    },
+    {
+      "id": "RO2",
+      "title": "AReaL Ascend normalization / vLLM topology",
+      "sources": [
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1788,
+          "url": "https://github.com/areal-project/AReaL/pull/1788"
+        },
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1790,
+          "url": "https://github.com/areal-project/AReaL/pull/1790"
+        },
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1794,
+          "url": "https://github.com/areal-project/AReaL/pull/1794"
+        },
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1795,
+          "url": "https://github.com/areal-project/AReaL/pull/1795"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "四项合入 ascend，不是 main；前两项是loss normalization/scaler适配，后两项是internal-DP rank与multi-node launch，不合并成同一修复。",
+      "evidence_depth": "metadata明确base=ascend；关键diff抽查",
+      "next_step": "主线/Ascend差异与CPU parser测试后补真实多节点布局验收。"
+    },
+    {
+      "id": "RO3",
+      "title": "AReaL v2 serving-version pin follow-up",
+      "sources": [
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1791,
+          "url": "https://github.com/areal-project/AReaL/pull/1791"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "8月已接受v1 #1569的机制被应用到v2；request发出前捕获version，每次abort-resubmit重新捕获，不重复接受。",
+      "evidence_depth": "完整4-line生产diff与两backend×中断/不中断测试",
+      "next_step": "补mixed-version loss与staleness统计检查。"
+    },
+    {
+      "id": "RO4",
+      "title": "AReaL recipe data engineering",
+      "sources": [
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1780,
+          "url": "https://github.com/areal-project/AReaL/pull/1780"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "内容验证snapshot/校准/选择契约具备系统价值；正文称foreground、无并行/恢复，但文件列表出现parallel-stage tests，需核最终实现后定范围。",
+      "evidence_depth": "metadata/file inventory；未完整审查 patch",
+      "next_step": "核runner实际并行与恢复边界、真实校准数据provenance。"
+    },
+    {
+      "id": "RO5",
+      "title": "verl sampler-support score centering",
+      "sources": [
+        {
+          "repo": "verl-project/verl",
+          "number": 8196,
+          "url": "https://github.com/verl-project/verl/pull/8196"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "用provider completeness receipt选择support-normalized路径，否则保留trainer-tail近似；近单位head mass不等于完整support。",
+      "evidence_depth": "metadata、26-file清单及测试范围，未完整深核",
+      "next_step": "核actual sampled token不在recorded head、top-p cutoff ties、receipt验证；不能宣称所有backend分布已完全对齐。"
+    },
+    {
+      "id": "RO6",
+      "title": "verl Liger TP fused cross entropy",
+      "sources": [
+        {
+          "repo": "verl-project/verl",
+          "number": 7945,
+          "url": "https://github.com/verl-project/verl/pull/7945"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "opt-in public Liger API与native/fallback选择；当前描述明确旧CuTe直调、历史campaign已被替代，旧数字不能用作当前wheel结果。",
+      "evidence_depth": "metadata/file inventory；未完整审查 patch",
+      "next_step": "验证released wheel、actor/reference共同容量reservation与硬件fallback。"
+    },
+    {
+      "id": "RO7",
+      "title": "slime fully async coding-agent sessions",
+      "sources": [
+        {
+          "repo": "THUDM/slime",
+          "number": 2474,
+          "url": "https://github.com/THUDM/slime/pull/2474"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "75-file改动涵盖128k配方、weight update保留session、retry保留siblings、compaction与top-p stream copy；仅CPU验证不足以支持长上下文生产结论。",
+      "evidence_depth": "metadata/file inventory；未完整审查 patch",
+      "next_step": "优先核session/weight-version/compaction及失败sandbox reward契约。"
+    },
+    {
+      "id": "RO8",
+      "title": "slime GLM-5.3 Flash backend",
+      "sources": [
+        {
+          "repo": "THUDM/slime",
+          "number": 2478,
+          "url": "https://github.com/THUDM/slime/pull/2478"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "公开模型训练路径包含KDA/稀疏MLA/mHC、checkpoint mapping与CP；需要把模型支持和FP32 optimizer恢复修复分开验收。",
+      "evidence_depth": "metadata/file inventory；未完整审查 patch",
+      "next_step": "补checkpoint round-trip、CP梯度/多模态对照，作者三步300B smoke不视为长期稳定。"
+    },
+    {
+      "id": "RO9",
+      "title": "NeMo TRT-LLM PD rollout",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4095,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4095"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "多prefill/decode engines+frontend带来新backend布局；非colocated且在途decode遇weight update保留旧KV，状态边界值得后续深读。",
+      "evidence_depth": "metadata、设计/测试文件清单，29-file patch未完整核查",
+      "next_step": "核refit/sleep/wake/reset-prefix-cache跨所有role与请求中断协议。"
+    },
+    {
+      "id": "RO10",
+      "title": "NeMo TransferQueue SSD offload",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4662,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4662"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "node-local temporary SSD扩容host数据面；checkpoint resume要求offload仍开启，CPU-less head放置与pin接口变更有运行风险。",
+      "evidence_depth": "metadata/file inventory；未完整审查 patch",
+      "next_step": "核SSD容量/清理、恢复语义与plain-memory nightly覆盖减少。"
+    },
+    {
+      "id": "RO11",
+      "title": "NeMo async lifecycle race / cancellation",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4364,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4364"
+        },
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4486,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4486"
+        },
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4757,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4757"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "三个独立机制：锁内拒绝已consumed target重复补生成；disconnect取消并清capture；最后step避免无用rollout且先关HTTP。#4757仅合入llmb-super-v3。",
+      "evidence_depth": "4364生产diff与真实buffer操作回归已读；其他metadata及局部diff",
+      "next_step": "分别测collector interleaving、socket cancellation与KV释放、shutdown；不声称duplicate training被修复。"
+    },
+    {
+      "id": "RO12",
+      "title": "NeMo async checkpoint freshness follow-up",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4329,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4329"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "实际只有tests；修复来自此前#4363升级的NVRx0.7.0，不把旧PR描述中的runtime修复重复收录。",
+      "evidence_depth": "actual文件列表与freshness checker/test diff",
+      "next_step": "跨offload连续保存，检查optimizer moments/master/模型非全量重复；避免小lr BF16个别权重未变误报。"
+    },
+    {
+      "id": "RO13",
+      "title": "NeMo oversized IPC memory",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4643,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4643"
+        },
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4765,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4765"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "释放普通双buffer并ACK后传超大tensor，连续CUDA tensor直接IPC，CPU/noncontiguous保留copy；#4643到r0.8.0，#4765是main cherry-pick。",
+      "evidence_depth": "实际utils.py传输diff、测试与body中阈值变更说明",
+      "next_step": "验证生产consumer ACK前storage生存期与peak；当前recipe缩短并放宽reward gate，后验重评不能写成原test通过。"
+    },
+    {
+      "id": "RO14",
+      "title": "NeMo MXFP8 refit / grouped quantization",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 3294,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/3294"
+        },
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 4738,
+          "url": "https://github.com/NVIDIA-NeMo/RL/pull/4738"
+        }
+      ],
+      "decision": "Observe",
+      "learning_track": [
+        "RL"
+      ],
+      "signal_type": "system",
+      "reason": "预量化eligible Megatron weights再传E4M3+scale，可减少refit工作；当前机制限colocated sync，旧A/B不是当前HEAD性能。",
+      "evidence_depth": "3294 metadata及61-file清单；4738仅标题初筛",
+      "next_step": "配对复测当前HEAD端到端/refit/transfer阶段；核unsupported layouts与async Reshard拒绝。"
+    }
+  ],
+  "reviewed_candidates": [
+    {
+      "repo": "verl-project/verl",
+      "number": 7945,
+      "title": "[megatron] feat: add Liger TP fused cross entropy backend",
+      "author": "kolehma8",
+      "merged_at": "2026-10-15T06:31:02Z",
+      "merge_commit_sha": "5b550b0c3dad8c7bb7aab834a3fe195f8cdfc517",
+      "base": "main",
+      "changed_files": 15,
+      "url": "https://github.com/verl-project/verl/pull/7945",
+      "file_inventory": [
+        {
+          "path": "docs/examples/config.rst",
+          "changes": 28,
+          "patch_available": true
+        },
+        {
+          "path": "docs/perf/perf_tuning.rst",
+          "changes": 88,
+          "patch_available": true
+        },
+        {
+          "path": "pyproject.toml",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "requirements.txt",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "setup.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "tests/models/test_model_forward_fused.py",
+          "changes": 48,
+          "patch_available": true
+        },
+        {
+          "path": "tests/utils/test_linear_cross_entropy_on_cpu.py",
+          "changes": 330,
+          "patch_available": true
+        },
+        {
+          "path": "tests/utils/test_special_linear_cross_entropy_tp.py",
+          "changes": 78,
+          "patch_available": true
+        },
+        {
+          "path": "tests/workers/test_megatron_liger_fused_kernels_on_cpu.py",
+          "changes": 260,
+          "patch_available": true
+        },
+        {
+          "path": "uv.lock",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "verl/models/mcore/model_forward_fused.py",
+          "changes": 120,
+          "patch_available": true
+        },
+        {
+          "path": "verl/utils/kernel/linear_cross_entropy.py",
+          "changes": 145,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/config/engine.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/engine/megatron/transformer_impl.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/engine_workers.py",
+          "changes": 35,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4662,
+      "title": "feat(data-plane): bump TransferQueue to v0.1.11, add simple SSD offload",
+      "author": "ZhiyuLi-Nvidia",
+      "merged_at": "2026-10-15T22:16:35Z",
+      "merge_commit_sha": "cf63b8a395b3fa82fb5f985444c24f798206e723",
+      "base": "main",
+      "changed_files": 11,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4662",
+      "file_inventory": [
+        {
+          "path": "examples/configs/grpo_math_1B.yaml",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/grpo-llama3.2-1b-instruct-1n8g-automodel.v3-tq_simple.yaml",
+          "changes": 9,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/data_plane/README.md",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/data_plane/adapters/transfer_queue.py",
+          "changes": 64,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/data_plane/interfaces.py",
+          "changes": 34,
+          "patch_available": true
+        },
+        {
+          "path": "pyproject.toml",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/llm/grpo-llama3.2-1b-instruct-1n8g-automodel.v3-tq_simple.sh",
+          "changes": 18,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/data_plane/test_backend_config.py",
+          "changes": 158,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/data_plane/test_ssd_offload_e2e.py",
+          "changes": 117,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/reference_configs/grpo_math_1B.yaml",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "uv.lock",
+          "changes": 6,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1791,
+      "title": "fix(v2): pin generation versions before awaiting responses",
+      "author": "cyanseek",
+      "merged_at": "2026-10-16T03:25:11Z",
+      "merge_commit_sha": "b2f2f56f3701f46fef867036797a44d9f8226546",
+      "base": "main",
+      "changed_files": 2,
+      "url": "https://github.com/areal-project/AReaL/pull/1791",
+      "file_inventory": [
+        {
+          "path": "areal/v2/inference_service/inf_bridge.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_inf_bridge.py",
+          "changes": 33,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 3294,
+      "title": "perf: Reduce MXFP8 refit weight-transfer overheads",
+      "author": "seonjinn",
+      "merged_at": "2026-10-18T23:26:57Z",
+      "merge_commit_sha": "c74be94db340a7557003f62a4674f1176d0876cf",
+      "base": "main",
+      "changed_files": 61,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/3294",
+      "file_inventory": [
+        {
+          "path": "docs/fp8.md",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "docs/guides/refit.md",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/grpo_math_1B.yaml",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/performance/grpo-qwen3-235b-16n4g-mxfp8-rollout.yaml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/performance/grpo-qwen3-30ba3b-4n4g-async-1off-mxfp8-rollout.yaml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/performance/grpo-qwen3-30ba3b-4n4g-mxfp8-rollout.yaml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/performance/grpo-qwen3-32b-4n4g-mxfp8-rollout.yaml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/distillation.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/grpo.py",
+          "changes": 20,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/grpo_sync.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/ppo.py",
+          "changes": 17,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/modelopt/models/generation/vllm_quant_backend.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/__init__.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/dynamo/dynamo_generation.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/interfaces.py",
+          "changes": 13,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/megatron/megatron_generation.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/sglang/sglang_generation.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_generation.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/checkpoint_engine.py",
+          "changes": 24,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/config.py",
+          "changes": 36,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/quantization/fp8.py",
+          "changes": 230,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/quantization/fp8_train_utils.py",
+          "changes": 157,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_backend.py",
+          "changes": 71,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_generation.py",
+          "changes": 31,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_worker.py",
+          "changes": 21,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_worker_async.py",
+          "changes": 15,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/megatron/setup.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/__init__.py",
+          "changes": 9,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/interfaces.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/lm_policy.py",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/utils.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/workers/megatron_policy_worker.py",
+          "changes": 212,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/utils/packed_tensor.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/weight_sync/checkpoint_engine_weight_synchronizer.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/weight_sync/collective_weight_synchronizer.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/weight_sync/interfaces.py",
+          "changes": 31,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/weight_sync/ipc_weight_synchronizer.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "pyrefly.toml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/functional/L1_Functional_Tests_GB200_MXFP8.sh",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "tests/functional/grpo_vllm_mxfp8_rollout_gb200.sh",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_mxfp8_rollout_recipes.py",
+          "changes": 40,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_grpo.py",
+          "changes": 22,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_ppo.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/sglang/test_sglang_generation.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_mxfp8_prequant.py",
+          "changes": 351,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_backend.py",
+          "changes": 172,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_backend_deepseek_v4.py",
+          "changes": 13,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_checkpoint_engine.py",
+          "changes": 21,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_config.py",
+          "changes": 149,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_fp8_quantization.py",
+          "changes": 566,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_generation.py",
+          "changes": 49,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_modelopt_real_quant_config.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/trtllm/test_trtllm_generation.py",
+          "changes": 33,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/policy/test_megatron_worker.py",
+          "changes": 361,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/policy/test_policy_validation.py",
+          "changes": 24,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/reference_configs/grpo_math_1B.yaml",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/utils/test_packed_tensor.py",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/weight_sync/test_checkpoint_engine_weight_synchronizer.py",
+          "changes": 51,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/weight_sync/test_reconcile_communicator.py",
+          "changes": 31,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/weight_sync/test_vllm_remote_sparse_weight_synchronizer.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/weight_sync/test_weight_synchronizer.py",
+          "changes": 127,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4643,
+      "title": "fix(refit): reduce oversized IPC buffer memory",
+      "author": "sharonyu-115",
+      "merged_at": "2026-10-17T04:09:13Z",
+      "merge_commit_sha": "03f5d7d998b6a1a1929d34ec426e6676055f1ab3",
+      "base": "r0.8.0",
+      "changed_files": 4,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4643",
+      "file_inventory": [
+        {
+          "path": "examples/configs/recipes/llm/grpo-qwen3.5-397ba17b-32n8g-megatron.v2.yaml",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/utils.py",
+          "changes": 91,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/llm/grpo-qwen3.5-397ba17b-32n8g-megatron.v2.sh",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/policy/test_refit_oversized_param.py",
+          "changes": 167,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1790,
+      "title": "fix(engine): align Megatron loss scaling with upstream",
+      "author": "Adiactive",
+      "merged_at": "2026-10-15T01:17:47Z",
+      "merge_commit_sha": "cac36e7925f376ec6990ab61a07b55cd6209f8f8",
+      "base": "ascend",
+      "changed_files": 3,
+      "url": "https://github.com/areal-project/AReaL/pull/1790",
+      "file_inventory": [
+        {
+          "path": "areal/engine/megatron_engine.py",
+          "changes": 82,
+          "patch_available": true
+        },
+        {
+          "path": "tests/fp8/model_hooks.py",
+          "changes": 15,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_loss_normalization.py",
+          "changes": 171,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4458,
+      "title": "feat(automodel): support rollout routing replay (R3) on the Automodel policy",
+      "author": "joyang-nv",
+      "merged_at": "2026-10-17T11:32:00Z",
+      "merge_commit_sha": "c7aca812b741321d7d735e0c3175012f16064a87",
+      "base": "main",
+      "changed_files": 18,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4458",
+      "file_inventory": [
+        {
+          "path": "docs/guides/router-replay.md",
+          "changes": 53,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/dapo-nanov3.5-30BA3B-4n8g-automodel-ep8-r3.yaml",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/single_controller_utils/config.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/automodel/data.py",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/automodel/router_replay.py",
+          "changes": 317,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/automodel/setup.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/automodel/train.py",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/workers/automodel_policy_worker.py",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/policy/workers/base_policy_worker.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "pyrefly.toml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/llm/dapo-nanov3.5-30BA3B-4n8g-automodel-ep8-r3.sh",
+          "changes": 48,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/nightly.txt",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/automodel/test_automodel_data.py",
+          "changes": 41,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/automodel/test_automodel_train.py",
+          "changes": 77,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/automodel/test_router_replay.py",
+          "changes": 466,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/policy/test_base_policy_worker.py",
+          "changes": 46,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/single_controller/test_setup.py",
+          "changes": 9,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/test_recipes_and_test_suites.py",
+          "changes": 6,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4486,
+      "title": "fix(vllm): cancel abandoned chat completion requests on client disconnect",
+      "author": "linj-glitch",
+      "merged_at": "2026-10-16T10:20:31Z",
+      "merge_commit_sha": "3716196198310fb29b70a05eb807488339bfe721",
+      "base": "main",
+      "changed_files": 5,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4486",
+      "file_inventory": [
+        {
+          "path": "nemo_rl/models/generation/generation_router.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_worker_async.py",
+          "changes": 48,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_generation_router.py",
+          "changes": 103,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_chat_template_wiring.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/test_vllm_generation.py",
+          "changes": 307,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4757,
+      "title": "fix: avoid extra rollout on last async GRPO step and stop vLLM HTTP s…",
+      "author": "scsudhakaran",
+      "merged_at": "2026-10-16T17:37:38Z",
+      "merge_commit_sha": "79bca546d2e306c554335ad29c5a8f440bd2f8ee",
+      "base": "llmb-super-v3",
+      "changed_files": 2,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4757",
+      "file_inventory": [
+        {
+          "path": "nemo_rl/algorithms/grpo.py",
+          "changes": 25,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/vllm/vllm_worker_async.py",
+          "changes": 22,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4487,
+      "title": "fix(training): exclude prompt history from reward lengths and loss masks",
+      "author": "linj-glitch",
+      "merged_at": "2026-10-18T23:27:53Z",
+      "merge_commit_sha": "e12d18ba8e115fdcb957329740dae1f12864cb53",
+      "base": "main",
+      "changed_files": 14,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4487",
+      "file_inventory": [
+        {
+          "path": "docs/guides/dapo.md",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/distillation.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/ppo.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/reward_functions.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/data/llm_message_utils.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/experience/sync_rollout_actor.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_distillation.py",
+          "changes": 86,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_grpo.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_ppo.py",
+          "changes": 103,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_reward_functions.py",
+          "changes": 90,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/utils.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/data_plane/README.md",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/data_plane/test_message_log_decompose.py",
+          "changes": 49,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/experience/test_sync_rollout_actor.py",
+          "changes": 28,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1780,
+      "title": "feat(v2): add recipe-based data engineering and TIR example",
+      "author": "sitabulaixizawaluduo",
+      "merged_at": "2026-10-19T01:18:37Z",
+      "merge_commit_sha": "1683e8e8fba70e296b4238aa3c2300defd192f17",
+      "base": "main",
+      "changed_files": 26,
+      "url": "https://github.com/areal-project/AReaL/pull/1780",
+      "file_inventory": [
+        {
+          "path": "areal/utils/fs.py",
+          "changes": 40,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/logging.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/cli/state.py",
+          "changes": 35,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/__init__.py",
+          "changes": 53,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/__main__.py",
+          "changes": 51,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/runner.py",
+          "changes": 957,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/selection.py",
+          "changes": 56,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/snapshot.py",
+          "changes": 229,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/storage.py",
+          "changes": 279,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/data_engineering/types.py",
+          "changes": 340,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/_toc.yml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/customization/data_engineering.md",
+          "changes": 310,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/_toc.yml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/customization/data_engineering.md",
+          "changes": 238,
+          "patch_available": true
+        },
+        {
+          "path": "examples/data_engineering/tir/README.md",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "examples/data_engineering/tir/README_zh.md",
+          "changes": 20,
+          "patch_available": true
+        },
+        {
+          "path": "examples/data_engineering/tir/data_calibration.py",
+          "changes": 120,
+          "patch_available": true
+        },
+        {
+          "path": "examples/data_engineering/tir/data_generation.yaml",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "examples/data_engineering/tir/data_recipe.py",
+          "changes": 458,
+          "patch_available": true
+        },
+        {
+          "path": "examples/tir/README.md",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "examples/tir/README_zh.md",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "tests/data_engineering_fixtures.py",
+          "changes": 138,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_data_engineering.py",
+          "changes": 242,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_data_engineering_execution.py",
+          "changes": 602,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_data_engineering_module.py",
+          "changes": 66,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_data_engineering_parallel_stages.py",
+          "changes": 243,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2475,
+      "title": "Report trajectory rewards before rollout filters",
+      "author": "zhuzilin",
+      "merged_at": "2026-10-16T03:33:47Z",
+      "merge_commit_sha": "57ff5d669be6b998411f33b04ecef5e297538faa",
+      "base": "main",
+      "changed_files": 8,
+      "url": "https://github.com/THUDM/slime/pull/2475",
+      "file_inventory": [
+        {
+          "path": "slime/rollout/filter_hub/base_types.py",
+          "changes": 39,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/fully_async_distributed.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/fully_async_rollout.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/sglang_rollout.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_distributed_rollout.py",
+          "changes": 26,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_fully_async_rollout.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rollout_metrics.py",
+          "changes": 51,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rollout_straw_transport.py",
+          "changes": 29,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1613,
+      "title": "feat(engine): add CPU-staged Megatron AdamW",
+      "author": "yulangz",
+      "merged_at": "2026-10-16T02:15:52Z",
+      "merge_commit_sha": "89400da9aa7606b7b5fbc8fd46f576f689e3dc06",
+      "base": "main",
+      "changed_files": 46,
+      "url": "https://github.com/areal-project/AReaL/pull/1613",
+      "file_inventory": [
+        {
+          "path": ".github/workflows/test-areal.yml",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "areal/api/cli_args.py",
+          "changes": 44,
+          "patch_available": true
+        },
+        {
+          "path": "areal/dataset/__init__.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "areal/dataset/dapo_math_17k.py",
+          "changes": 60,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/awex/colocate_writer.py",
+          "changes": 62,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/awex/sglang_plugin.py",
+          "changes": 23,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_engine.py",
+          "changes": 142,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/checkpointer.py",
+          "changes": 72,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/gpu_staged_optimizer.py",
+          "changes": 1017,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/optimizer_chain.py",
+          "changes": 127,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/staged_optimizer_runtime.py",
+          "changes": 188,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/weight_residency.py",
+          "changes": 213,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/sglang_remote.py",
+          "changes": 105,
+          "patch_available": true
+        },
+        {
+          "path": "areal/infra/controller/rollout_controller.py",
+          "changes": 28,
+          "patch_available": true
+        },
+        {
+          "path": "areal/models/mcore/registry.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/rl_trainer.py",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/data.py",
+          "changes": 61,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/seqpack.py",
+          "changes": 35,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/weight_update/awex/megatron_adapter.py",
+          "changes": 127,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/cli_reference.md",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/cli_reference.md",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "examples/cpu_staged_offload/README.md",
+          "changes": 94,
+          "patch_available": true
+        },
+        {
+          "path": "examples/cpu_staged_offload/__init__.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/cpu_staged_offload/dapo-math_grpo_cpu_staged.yaml",
+          "changes": 194,
+          "patch_available": true
+        },
+        {
+          "path": "examples/cpu_staged_offload/dapo-math_grpo_qwen3_5_cpu_staged.yaml",
+          "changes": 58,
+          "patch_available": true
+        },
+        {
+          "path": "examples/cpu_staged_offload/dapo-math_rl_cpu_staged.py",
+          "changes": 53,
+          "patch_available": true
+        },
+        {
+          "path": "tests/megatron/test_gpu_staged_adamw_dp.py",
+          "changes": 55,
+          "patch_available": true
+        },
+        {
+          "path": "tests/megatron/torchrun/run_gpu_staged_adamw_dp.py",
+          "changes": 227,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_awex_colocate_writer.py",
+          "changes": 89,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_awex_sglang_plugin.py",
+          "changes": 61,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_cpu_staged_offload_example.py",
+          "changes": 58,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_gpu_staged_optimizer.py",
+          "changes": 864,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_gpu_staged_optimizer_awex.py",
+          "changes": 163,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_inference_engines.py",
+          "changes": 117,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_bridge_deterministic.py",
+          "changes": 28,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_engine_vlm.py",
+          "changes": 77,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_hf_staged_load.py",
+          "changes": 110,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_mopd_teacher.py",
+          "changes": 9,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_optimizer_config.py",
+          "changes": 76,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_mtp_only.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rollout_controller.py",
+          "changes": 66,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rtensor.py",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_sglang_launch_ports.py",
+          "changes": 39,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_sglang_theta_nccl.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_tree_training.py",
+          "changes": 157,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_utils.py",
+          "changes": 71,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1795,
+      "title": "fix(infra): correct multi-node vLLM DP launches in Ray scheduler",
+      "author": "geshi001",
+      "merged_at": "2026-10-16T02:36:54Z",
+      "merge_commit_sha": "e8043ef49ce3ae1b3a2306ee04cf3a29bd24aeb5",
+      "base": "ascend",
+      "changed_files": 2,
+      "url": "https://github.com/areal-project/AReaL/pull/1795",
+      "file_inventory": [
+        {
+          "path": "areal/infra/scheduler/ray.py",
+          "changes": 44,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ray_scheduler.py",
+          "changes": 259,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4095,
+      "title": "feat(trtllm): TRT-LLM prefill/decode disaggregation for GRPO rollouts",
+      "author": "shuyixiong",
+      "merged_at": "2026-10-15T09:56:49Z",
+      "merge_commit_sha": "339fad1f7463ad5bf3d1830a4a13e28dd3dd2c26",
+      "base": "main",
+      "changed_files": 29,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4095",
+      "file_inventory": [
+        {
+          "path": "docs/design-docs/pd-disaggregation-rollout.md",
+          "changes": 259,
+          "patch_available": true
+        },
+        {
+          "path": "docs/index.md",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/grpo_math_1B.yaml",
+          "changes": 26,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/grpo_math_1B_trtllm.yaml",
+          "changes": 32,
+          "patch_available": true
+        },
+        {
+          "path": "examples/configs/recipes/llm/grpo-qwen3-1.7b-2n4g-megatron-trtllm-disagg-swe1.yaml",
+          "changes": 128,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/grpo.py",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/distributed/virtual_cluster.py",
+          "changes": 66,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/distributed/worker_groups.py",
+          "changes": 38,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/environments/nemo_gym.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/__init__.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/interfaces.py",
+          "changes": 33,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/config.py",
+          "changes": 241,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_backend.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_disagg_server.py",
+          "changes": 666,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_generation.py",
+          "changes": 671,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_http_server.py",
+          "changes": 481,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/models/generation/trtllm/trtllm_worker_async.py",
+          "changes": 187,
+          "patch_available": true
+        },
+        {
+          "path": "pyrefly.toml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "ray.sub",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/llm/grpo-qwen3-1.7b-2n4g-megatron-trtllm-disagg-swe1.sh",
+          "changes": 60,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_suites/nightly_gb200.txt",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/distributed/test_topology_placement.py",
+          "changes": 78,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/distributed/test_worker_groups.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/environments/test_nemo_gym_utils.py",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/trtllm/test_trtllm_disagg_server.py",
+          "changes": 432,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/trtllm/test_trtllm_generation.py",
+          "changes": 349,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/trtllm/test_trtllm_http_server.py",
+          "changes": 201,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/generation/trtllm/test_trtllm_worker_async.py",
+          "changes": 166,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/reference_configs/grpo_math_1B.yaml",
+          "changes": 7,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8196,
+      "title": "[algo, rollout, cfg, doc] feat: automatically align score centering with sampler support",
+      "author": "cr-gao",
+      "merged_at": "2026-10-18T04:36:44Z",
+      "merge_commit_sha": "8ced5d2f4b148c2991217554e0c6f03028fa1470",
+      "base": "main",
+      "changed_files": 26,
+      "url": "https://github.com/verl-project/verl/pull/8196",
+      "file_inventory": [
+        {
+          "path": ".github/workflows/vllm.yml",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "docs/algo/rollout_corr.md",
+          "changes": 54,
+          "patch_available": true
+        },
+        {
+          "path": "examples/rollout_correction/run_qwen2_5_0_5b_score_centering_fsdp.sh",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/experimental/agent_loop/test_agent_loop_extra_fields_schema_on_cpu.py",
+          "changes": 61,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/test_score_centering_alignment_on_cpu.py",
+          "changes": 100,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/test_score_centering_config_on_cpu.py",
+          "changes": 50,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/test_score_centering_metrics_on_cpu.py",
+          "changes": 102,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/test_score_centering_numerics_on_cpu.py",
+          "changes": 55,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/test_score_centering_on_cpu.py",
+          "changes": 230,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/v1/test_agent_loop_tq_on_cpu.py",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "tests/trainer/ppo/v1/test_trainer_base_on_cpu.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "tests/workers/rollout/rollout_vllm/test_vllm_topk_support.py",
+          "changes": 138,
+          "patch_available": true
+        },
+        {
+          "path": "tests/workers/rollout/test_topk_coverage_on_cpu.py",
+          "changes": 242,
+          "patch_available": true
+        },
+        {
+          "path": "verl/experimental/agent_loop/agent_loop.py",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/config/algorithm.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/config/algorithm/rollout_correction.yaml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/ppo/padding_utils.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/ppo/score_centering.py",
+          "changes": 118,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/ppo/v1/agent_loop_tq.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "verl/trainer/ppo/v1/trainer_base.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "verl/utils/config.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/config/rollout.py",
+          "changes": 21,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/rollout/llm_server.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/rollout/utils.py",
+          "changes": 113,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/rollout/vllm_rollout/vllm_async_server.py",
+          "changes": 40,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/utils/losses.py",
+          "changes": 37,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4364,
+      "title": "fix(replay-buffer): avoid regenerating consumed targets",
+      "author": "wdykas",
+      "merged_at": "2026-10-14T09:52:53Z",
+      "merge_commit_sha": "27cc2e58fe146d75432573709ef32395e45739a8",
+      "base": "main",
+      "changed_files": 3,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4364",
+      "file_inventory": [
+        {
+          "path": "nemo_rl/algorithms/async_utils/interfaces.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "nemo_rl/algorithms/async_utils/replay_buffer.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/algorithms/test_async_utils.py",
+          "changes": 37,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2478,
+      "title": "Support GLM-5.3 Flash training and bump Docker image",
+      "author": "zhuzilin",
+      "merged_at": "2026-10-16T11:57:43Z",
+      "merge_commit_sha": "5bec7a10859f29ae1bf2c9ddd5a67aa70ead0fac",
+      "base": "main",
+      "changed_files": 33,
+      "url": "https://github.com/THUDM/slime/pull/2478",
+      "file_inventory": [
+        {
+          "path": ".github/workflows/pr-test.yml",
+          "changes": 20,
+          "patch_available": true
+        },
+        {
+          "path": ".github/workflows/pr-test.yml.j2",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "docker/README.md",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "docker/patch/latest/megatron.patch",
+          "changes": 30,
+          "patch_available": true
+        },
+        {
+          "path": "docker/patch/v0.5.21/megatron.patch",
+          "changes": 30,
+          "patch_available": true
+        },
+        {
+          "path": "docker/version.txt",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "scripts/models/glm5.3-flash-300B.sh",
+          "changes": 42,
+          "patch_available": true
+        },
+        {
+          "path": "scripts/run-glm5.3-flash-300B.sh",
+          "changes": 112,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/actor.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/arguments.py",
+          "changes": 9,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_checkpoint_saver.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_to_megatron/__init__.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_to_megatron/common.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_to_megatron/glm5_next.py",
+          "changes": 35,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/megatron_to_hf/__init__.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/megatron_to_hf/glm5_next.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/update_weight/expert_routing.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/sglang_utils/sglang_engine.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "slime/utils/model_config.py",
+          "changes": 41,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5/ops/tilelang_sparse_mla_bwd.py",
+          "changes": 20,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/README.md",
+          "changes": 156,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/__init__.py",
+          "changes": 0,
+          "patch_available": false
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/attention.py",
+          "changes": 179,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/glm5_next.py",
+          "changes": 114,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/model.py",
+          "changes": 123,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/ops.py",
+          "changes": 91,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/glm5_next/vision.py",
+          "changes": 83,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_expert_routing.py",
+          "changes": 23,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_glm5_next_cp.py",
+          "changes": 226,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_glm5_next_gpu.py",
+          "changes": 187,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_glm5_next_ops.py",
+          "changes": 135,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_hf_to_megatron.py",
+          "changes": 51,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_argument_validation.py",
+          "changes": 8,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1782,
+      "title": "feat(engine): support independently normalized named losses",
+      "author": "fishcrap",
+      "merged_at": "2026-10-14T07:35:11Z",
+      "merge_commit_sha": "ba237a1b21703417541c2f107adb923d8ca1f504",
+      "base": "main",
+      "changed_files": 10,
+      "url": "https://github.com/areal-project/AReaL/pull/1782",
+      "file_inventory": [
+        {
+          "path": "areal/api/engine_api.py",
+          "changes": 33,
+          "patch_available": true
+        },
+        {
+          "path": "areal/api/loss.py",
+          "changes": 57,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/core/__init__.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/core/train_engine.py",
+          "changes": 140,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/fsdp_engine.py",
+          "changes": 23,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_engine.py",
+          "changes": 99,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/loss.py",
+          "changes": 65,
+          "patch_available": true
+        },
+        {
+          "path": "areal/experimental/engine/archon_engine.py",
+          "changes": 24,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_named_loss_contract.py",
+          "changes": 282,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_named_loss_engines.py",
+          "changes": 375,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1794,
+      "title": "fix(engine): include vLLM internal DP in weight update ranks",
+      "author": "geshi001",
+      "merged_at": "2026-10-15T21:18:05Z",
+      "merge_commit_sha": "d78662faba5d8f1f9ddef94e51906494b51be49a",
+      "base": "ascend",
+      "changed_files": 2,
+      "url": "https://github.com/areal-project/AReaL/pull/1794",
+      "file_inventory": [
+        {
+          "path": "areal/engine/vllm_ext/vllm_worker_extension.py",
+          "changes": 7,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_vllm_worker_rank.py",
+          "changes": 40,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "number": 4329,
+      "title": "test(ppo): check that consecutive async checkpoints write fresh optimizer state",
+      "author": "bg51717",
+      "merged_at": "2026-10-15T10:55:27Z",
+      "merge_commit_sha": "25fc435cfd0b255e0acc87f50435b4a197be6a8f",
+      "base": "main",
+      "changed_files": 3,
+      "url": "https://github.com/NVIDIA-NeMo/RL/pull/4329",
+      "file_inventory": [
+        {
+          "path": "tests/check_checkpoint_freshness.py",
+          "changes": 95,
+          "patch_available": true
+        },
+        {
+          "path": "tests/functional/ppo_megatron.sh",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "tests/unit/models/policy/test_megatron_worker.py",
+          "changes": 164,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "THUDM/slime",
+      "number": 2474,
+      "title": "Support fully async coding-agent RL with 128k Qwen contexts",
+      "author": "zhuzilin",
+      "merged_at": "2026-10-15T15:02:43Z",
+      "merge_commit_sha": "2f4280e3b0e6934b954db93153bd79d9c9312830",
+      "base": "main",
+      "changed_files": 75,
+      "url": "https://github.com/THUDM/slime/pull/2474",
+      "file_inventory": [
+        {
+          "path": ".github/workflows/pr-test.yml",
+          "changes": 18,
+          "patch_available": true
+        },
+        {
+          "path": ".github/workflows/pr-test.yml.j2",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "docker/patch/latest/sglang-top_p.patch",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "docker/patch/v0.5.15.post1/sglang-top_p.patch",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "docker/version.txt",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/developer_guide/ci.md",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/developer_guide/ci.md",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/README.md",
+          "changes": 589,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/check_rollout.py",
+          "changes": 25,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/generate.py",
+          "changes": 181,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/prepare_mimo.py",
+          "changes": 23,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/prepare_sunabako_images.py",
+          "changes": 81,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/requirements-sunabako.txt",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/run_qwen38_27b_fully_async.sh",
+          "changes": 199,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/run_qwen38_27b_sunabako_2plus2.sh",
+          "changes": 147,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/sunabako_sandbox.py",
+          "changes": 84,
+          "patch_available": true
+        },
+        {
+          "path": "examples/coding_agent_rl/swe.py",
+          "changes": 128,
+          "patch_available": true
+        },
+        {
+          "path": "requirements.txt",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/adapters/common.py",
+          "changes": 192,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/harness/claude_code.py",
+          "changes": 39,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/harness/codex.py",
+          "changes": 51,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/harness/common.py",
+          "changes": 4,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/harness/compaction.py",
+          "changes": 80,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/sandbox.py",
+          "changes": 45,
+          "patch_available": true
+        },
+        {
+          "path": "slime/agent/trajectory.py",
+          "changes": 22,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/data.py",
+          "changes": 29,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_to_megatron/common.py",
+          "changes": 13,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/hf_to_megatron/qwen3_5.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/loss.py",
+          "changes": 106,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/megatron_to_hf/qwen3_5.py",
+          "changes": 23,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/model.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/update_weight/common.py",
+          "changes": 55,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/megatron_utils/update_weight/hf_weight_iterator_direct.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "slime/backends/sglang_utils/sglang_engine.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "slime/data/data_source.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "slime/observability/rollout_metrics.py",
+          "changes": 15,
+          "patch_available": true
+        },
+        {
+          "path": "slime/observability/trace_utils.py",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "slime/ray/rollout.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "slime/ray/training_recovery.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/base_types.py",
+          "changes": 17,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/filter_hub/dynamic_sampling_filters.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/fully_async_distributed.py",
+          "changes": 64,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/fully_async_rollout.py",
+          "changes": 38,
+          "patch_available": true
+        },
+        {
+          "path": "slime/rollout/sglang_rollout.py",
+          "changes": 37,
+          "patch_available": true
+        },
+        {
+          "path": "slime/utils/arguments.py",
+          "changes": 18,
+          "patch_available": true
+        },
+        {
+          "path": "slime/utils/ppo_utils.py",
+          "changes": 87,
+          "patch_available": true
+        },
+        {
+          "path": "slime/utils/types.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/hf_attention.py",
+          "changes": 35,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/qwen3_5.py",
+          "changes": 32,
+          "patch_available": true
+        },
+        {
+          "path": "slime_plugins/models/qwen3_5_native.py",
+          "changes": 43,
+          "patch_available": true
+        },
+        {
+          "path": "tests/observability/test_trace_utils.py",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_agent_rollout_cpu.py",
+          "changes": 245,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_e2e_asset_cache.py",
+          "changes": 68,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_harness.py",
+          "changes": 156,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_sampler_replay.py",
+          "changes": 274,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_sandbox_exec_and_wait.py",
+          "changes": 30,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_sunabako_provider.py",
+          "changes": 93,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_agent/test_swe_workspace_diff.py",
+          "changes": 44,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_distributed_rollout.py",
+          "changes": 342,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_fully_async_rollout.py",
+          "changes": 124,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_logprob_response_spans.py",
+          "changes": 88,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_argument_validation.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_grad_sync_memory.py",
+          "changes": 46,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_metric_report.py",
+          "changes": 46,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_policy_loss.py",
+          "changes": 53,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ppo_logprob_entropy.py",
+          "changes": 34,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ppo_logprob_entropy_gpu.py",
+          "changes": 111,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_qwen3_5_native_weights.py",
+          "changes": 320,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_qwen3_linear_attention_cu_seqlens.py",
+          "changes": 167,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rollout_manager_recovery.py",
+          "changes": 107,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_rollout_metrics.py",
+          "changes": 45,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_sglang_top_p_copy.py",
+          "changes": 62,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_stateless_adam.py",
+          "changes": 56,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_training_recovery.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "tools/trace_timeline_viewer.py",
+          "changes": 23,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8260,
+      "title": "[rollout, vllm] fix: reject engine_kwargs that override verl-managed vLLM args",
+      "author": "aoshen02",
+      "merged_at": "2026-10-16T07:40:12Z",
+      "merge_commit_sha": "6a54261bf517aa4a00ad6e59b7a746c6813d05ed",
+      "base": "main",
+      "changed_files": 4,
+      "url": "https://github.com/verl-project/verl/pull/8260",
+      "file_inventory": [
+        {
+          "path": "docs/perf/best_practices.rst",
+          "changes": 2,
+          "patch_available": true
+        },
+        {
+          "path": "tests/workers/rollout/test_vllm_cli_args_on_cpu.py",
+          "changes": 30,
+          "patch_available": true
+        },
+        {
+          "path": "verl/experimental/fully_async_policy/shell/dapo_30b_a3b_math_fsdp_npu.sh",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "verl/workers/rollout/vllm_rollout/vllm_async_server.py",
+          "changes": 31,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1496,
+      "title": "feat(engine): add native R3 router replay",
+      "author": "yulangz",
+      "merged_at": "2026-10-15T09:01:24Z",
+      "merge_commit_sha": "6cad8710bb5740a5480f8fba3a5970dd08638d01",
+      "base": "main",
+      "changed_files": 71,
+      "url": "https://github.com/areal-project/AReaL/pull/1496",
+      "file_inventory": [
+        {
+          "path": "CLAUDE.md",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "README.md",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "areal/api/cli_args.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_engine.py",
+          "changes": 616,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/megatron_utils/packed_context_parallel.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/__init__.py",
+          "changes": 22,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/asserts.py",
+          "changes": 41,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/config.py",
+          "changes": 97,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/discovery.py",
+          "changes": 103,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/layout.py",
+          "changes": 216,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/logging.py",
+          "changes": 6,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/orchestration.py",
+          "changes": 66,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/preprocess.py",
+          "changes": 223,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/r3/transport.py",
+          "changes": 47,
+          "patch_available": true
+        },
+        {
+          "path": "areal/engine/sglang_remote.py",
+          "changes": 14,
+          "patch_available": true
+        },
+        {
+          "path": "areal/experimental/openai/proxy/proxy_rollout_server.py",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "areal/experimental/openai/proxy/server.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "areal/experimental/openai/proxy/workflow.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "areal/experimental/openai/types.py",
+          "changes": 97,
+          "patch_available": true
+        },
+        {
+          "path": "areal/infra/remote_inf_engine.py",
+          "changes": 43,
+          "patch_available": true
+        },
+        {
+          "path": "areal/models/mcore/registry.py",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "areal/tools/check_pyproject_consistency.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/mopd/teacher_phase.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/actor.py",
+          "changes": 182,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/rl_trainer.py",
+          "changes": 104,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/data.py",
+          "changes": 12,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/logging.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/controller/controller.py",
+          "changes": 31,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/data_proxy/__main__.py",
+          "changes": 17,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/data_proxy/app.py",
+          "changes": 19,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/data_proxy/config.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/inf_bridge.py",
+          "changes": 39,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/sglang/bridge.py",
+          "changes": 15,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/sglang/launch_server.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/sglang/routed_experts_compat.py",
+          "changes": 138,
+          "patch_available": true
+        },
+        {
+          "path": "areal/v2/inference_service/sglang/scheduler.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "areal/workflow/rlvr.py",
+          "changes": 22,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/cli_reference.md",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/cli_reference.md",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "examples/r3/README.md",
+          "changes": 57,
+          "patch_available": true
+        },
+        {
+          "path": "examples/r3/gsm8k_multiturn.py",
+          "changes": 217,
+          "patch_available": true
+        },
+        {
+          "path": "examples/r3/gsm8k_multiturn_moonlight.yaml",
+          "changes": 186,
+          "patch_available": true
+        },
+        {
+          "path": "examples/r3/gsm8k_rlvr.py",
+          "changes": 58,
+          "patch_available": true
+        },
+        {
+          "path": "examples/r3/gsm8k_rlvr_moonlight.yaml",
+          "changes": 183,
+          "patch_available": true
+        },
+        {
+          "path": "r3/README.md",
+          "changes": 275,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_chunked_forward.py",
+          "changes": 56,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_engine_vlm.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_mopd_teacher_manager.py",
+          "changes": 11,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_openai_r3_interaction.py",
+          "changes": 318,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ppo_actor_r3.py",
+          "changes": 201,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ppo_gae.py",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_prompt_mean_actor.py",
+          "changes": 69,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_qwen_flash_next_recovery.py",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_config_discovery.py",
+          "changes": 201,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_engine_validation.py",
+          "changes": 263,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_layout.py",
+          "changes": 205,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_native_router_replay.py",
+          "changes": 119,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_orchestration.py",
+          "changes": 108,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_preprocess.py",
+          "changes": 163,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_qwen4_exp.py",
+          "changes": 102,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_r3_workflow_config.py",
+          "changes": 34,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_reassemble_cp_logprobs.py",
+          "changes": 29,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_remote_inf_engine_r3.py",
+          "changes": 154,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_seqpack.py",
+          "changes": 29,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_sglang_model_patches.py",
+          "changes": 16,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_trainer_eval_before_train.py",
+          "changes": 83,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_controller.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_data_proxy_chat.py",
+          "changes": 73,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_inf_bridge.py",
+          "changes": 142,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_sglang_multinode.py",
+          "changes": 10,
+          "patch_available": true
+        },
+        {
+          "path": "tests/v2/inference_service/test_sglang_routed_experts_compat.py",
+          "changes": 124,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1784,
+      "title": "feat(trainer): add composable advantage computation",
+      "author": "fishcrap",
+      "merged_at": "2026-10-16T12:58:14Z",
+      "merge_commit_sha": "1b2ab72f2ef5d8545d0938f81a5616dcab0ffe51",
+      "base": "main",
+      "changed_files": 21,
+      "url": "https://github.com/areal-project/AReaL/pull/1784",
+      "file_inventory": [
+        {
+          "path": "areal/api/cli_args.py",
+          "changes": 96,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/actor.py",
+          "changes": 443,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/advantage.py",
+          "changes": 555,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/advantage_algorithms.py",
+          "changes": 220,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/gae.py",
+          "changes": 52,
+          "patch_available": true
+        },
+        {
+          "path": "areal/trainer/ppo/lambda_fn.py",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "areal/utils/data.py",
+          "changes": 35,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/_toc.yml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/cli_reference.md",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "docs/en/customization/advantage.md",
+          "changes": 111,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/_toc.yml",
+          "changes": 1,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/cli_reference.md",
+          "changes": 27,
+          "patch_available": true
+        },
+        {
+          "path": "docs/zh/customization/advantage.md",
+          "changes": 92,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_advantage_algorithms.py",
+          "changes": 84,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_advantage_pipeline.py",
+          "changes": 438,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_advantage_pipeline_cuda.py",
+          "changes": 69,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_logical_rollout_distributed.py",
+          "changes": 32,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_logical_rollout_groups.py",
+          "changes": 8,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_ppo_gae.py",
+          "changes": 78,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_prm_config.py",
+          "changes": 36,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_token_rewards_advantage.py",
+          "changes": 46,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "verl-project/verl",
+      "number": 8187,
+      "title": "[fsdp] fix: prevent parameter corruption during FSDP2 CPU offload",
+      "author": "SelfDLer",
+      "merged_at": "2026-10-16T03:18:32Z",
+      "merge_commit_sha": "edd2c63b6a77b551c20cdded1c802d82a9cc751d",
+      "base": "main",
+      "changed_files": 6,
+      "url": "https://github.com/verl-project/verl/pull/8187",
+      "file_inventory": [
+        {
+          "path": ".github/workflows/npu_unit_tests.yml",
+          "changes": 3,
+          "patch_available": true
+        },
+        {
+          "path": "tests/special_distributed/run_all.sh",
+          "changes": 5,
+          "patch_available": true
+        },
+        {
+          "path": "tests/special_distributed/test_fsdp2_model_cpu_offload.py",
+          "changes": 167,
+          "patch_available": true
+        },
+        {
+          "path": "tests/special_distributed/test_fsdp2_pinned_model_transfer.py",
+          "changes": 20,
+          "patch_available": true
+        },
+        {
+          "path": "tests/utils/test_fsdp2_model_transfer_on_cpu.py",
+          "changes": 72,
+          "patch_available": true
+        },
+        {
+          "path": "verl/utils/fsdp_utils.py",
+          "changes": 19,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "number": 1788,
+      "title": "fix(engine): correct Bridge context-parallel loss scaling",
+      "author": "Adiactive",
+      "merged_at": "2026-10-14T20:41:57Z",
+      "merge_commit_sha": "fd60a28aef7233909e9fbad138604774c15ac141",
+      "base": "ascend",
+      "changed_files": 4,
+      "url": "https://github.com/areal-project/AReaL/pull/1788",
+      "file_inventory": [
+        {
+          "path": "areal/engine/megatron_engine.py",
+          "changes": 58,
+          "patch_available": true
+        },
+        {
+          "path": "areal/models/mcore/registry.py",
+          "changes": 13,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_bridge_config.py",
+          "changes": 71,
+          "patch_available": true
+        },
+        {
+          "path": "tests/test_megatron_loss_normalization.py",
+          "changes": 190,
+          "patch_available": true
+        }
+      ]
+    },
+    {
+      "repo": "huggingface/trl",
+      "number": 7328,
+      "title": "Tree attention",
+      "author": "AmineDiro",
+      "merged_at": "2026-10-13T16:47:19Z",
+      "merge_commit_sha": "ea4d31033e216377bdf66576d426e48187d3eb06",
+      "base": "main",
+      "changed_files": 5,
+      "url": "https://github.com/huggingface/trl/pull/7328",
+      "file_inventory": [
+        {
+          "path": "docs/source/async_grpo_trainer.md",
+          "changes": 74,
+          "patch_available": true
+        },
+        {
+          "path": "tests/experimental/test_async_grpo_trainer.py",
+          "changes": 384,
+          "patch_available": true
+        },
+        {
+          "path": "trl/experimental/async_grpo/async_grpo_config.py",
+          "changes": 28,
+          "patch_available": true
+        },
+        {
+          "path": "trl/experimental/async_grpo/async_grpo_trainer.py",
+          "changes": 311,
+          "patch_available": true
+        },
+        {
+          "path": "trl/experimental/async_grpo/packing.py",
+          "changes": 204,
+          "patch_available": true
+        }
+      ]
+    }
+  ],
+  "tests_executed": false,
+  "source_scope": "official GitHub REST merged PR search plus all six release histories; primary arXiv abs/HTML",
+  "limitations": [
+    "查询不限制base branch，包含ascend/release/实验分支及cherry-picks；97是PR记录数，不是97个独立系统变化。",
+    "全部题名完成初筛；仅重点patch/tests核查。Rejected不代表逐行证明无缺陷。",
+    "direct commits与历史外围PR缺口继续从2026-09-22T09:06:16Z(Asia/Shanghai17:06:16)保留；本轮不关闭这些覆盖缺口。"
+  ],
+  "accepted_release_group": {
+    "id": "RL5",
+    "source_id": "github:huggingface/trl:release:v1.16.0",
+    "title": "TRL v1.16.0: AsyncGRPO prefix-tree training",
+    "author": "qgallouedec",
+    "published_at": "2026-10-15T18:00:33Z",
+    "first_seen": "2026-10-19",
+    "window": {
+      "start": "2026-10-14T06:20:25Z",
+      "end": "2026-10-19T01:40:52Z"
+    },
+    "url": "https://github.com/huggingface/trl/releases/tag/v1.16.0",
+    "type": "official release with earlier merged PR evidence",
+    "impact": "high",
+    "decision": "Read",
+    "learning_track": [
+      "RL",
+      "Training"
+    ],
+    "signal_type": "system",
+    "lifecycle": "NEW",
+    "mechanism_source": {
+      "source_id": "github:huggingface/trl:pr:7328",
+      "title": "Tree attention",
+      "author": "AmineDiro",
+      "first_seen": "2026-09-22 (draft/open snapshot)",
+      "merged_at": "2026-10-13T16:47:19Z",
+      "fixed_sha": "ea4d31033e216377bdf66576d426e48187d3eb06",
+      "url": "https://github.com/huggingface/trl/pull/7328",
+      "event_classification": "earlier-window merge; mechanism evidence only, not a new-window merged PR"
+    },
+    "release_ancestry_check": {
+      "status": "ahead",
+      "ahead_by": 33,
+      "behind_by": 0,
+      "merge_base_sha": "ea4d31033e216377bdf66576d426e48187d3eb06"
+    },
+    "target_question": "共享prompt/多轮前缀能否只forward一次，同时保留不同rollout的next-token label、advantage和loss multiplicity？",
+    "reason": "公开实现将重复计算压缩为tree packing，并显式保留训练目标的多重性；对Agentic RL长上下文训练的计算/显存开销具有直接系统意义。",
+    "one_sentence_takeaway": "以(token,next_token)建trie，forward按unique tokens执行，FA3沿每个segment的祖先路径gather K/V，而token_index把logprob还原为原rollout的所有loss terms。",
+    "evidence": [
+      "实际读取5-file diff：packing.py完整TreeRow.fits/add/pack与FA3 wrapper，trainer的tree启用、unsupported model拒绝、planner以及token_index loss gather。",
+      "row预算同时限制unique forwarded tokens与training loss terms；attention cost用于负载平衡。",
+      "测试含branch causal mask、重复loss索引、group跨row与no-starvation；real compute_loss/backward对sequence baseline，loss atol/rtol 1e-3、全参数拼接梯度relative norm <5%。",
+      "GitHub compare确认v1.16.0包含固定merge（ahead33、behind0、merge base同SHA），不声称这33次后续提交均已审计。"
+    ],
+    "numeric_boundaries": [
+      "约3倍来自作者单H100 BF16 synthetic共享前缀forward+backward微基准；收益依赖packing ratio与fork threshold。",
+      "PR所列完整训练对比使用更早FlexAttention版本；不能外推为当前FA3端到端提升，也不能把作者lower-bound推断当测量。"
+    ],
+    "limitations": [
+      "Hopper/FA3路径；拒绝linear attention/convolution和attention sinks；Qwen3-VL测试仅text-only。",
+      "GRPO主loss逐rollout multiplicity被保留，但MoE auxiliary load-balancing按unique forwarded tokens计算，不等于所有训练目标完全不变。",
+      "本轮未执行上游测试/benchmark；BF16 aggregate-gradient容差不是逐参数bitwise equality。"
+    ],
+    "subsystem": [
+      "training",
+      "data/trajectory path"
+    ],
+    "engineering_dimension": [
+      "compute reuse",
+      "memory",
+      "loss correctness",
+      "branch-state isolation"
+    ],
+    "areal_transfer": "迁移shared-forward与per-rollout objective分离、双预算和branch mask验证；对含GDN/recurrent state模型必须先定义分支状态恢复，不能只移植attention mask。",
+    "next_step": "与AReaL树训练现状比较loss multiplicity、MoE auxiliary weighting和真实fork ratio；列P1候选，不改P0。",
+    "related_topics": [
+      "04-rl-infra/topics/agentic_rl.md",
+      "04-rl-infra/topics/rl_framework_selection.md"
+    ]
+  }
+}

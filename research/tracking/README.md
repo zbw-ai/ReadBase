@@ -1,5 +1,7 @@
 # Tracking
 
+最新：[Frontier Scan 2026-10-19](frontier_scan_2026-10-19.md)，覆盖至 **10/19 09:40:52**；19组重点信号与958条PR索引，先读REKI、T2-z和GR00T。完整判断与缺口见报告，具身机制接[核心topic](../../05-embodied-infra/topics/embodied_infra.md#oct19-learning)。
+
 新增[具身模型与 GitHub 补扫](embodied_followup_2026-10-13.md)：16 项接受信号、6 库有界核查；由[核心 topic](../../05-embodied-infra/topics/embodied_infra.md)进入基础到进阶学习。
 
 ## 2026-10-13 起：具身模型与 Infra 为下一阶段重点

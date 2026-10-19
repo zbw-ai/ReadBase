@@ -67,6 +67,21 @@
 
 前两篇代码当前均 Coming soon。适合先画机制与反例，再等待实现；具体阅读接到现有 [P1 具身阶段](../../research/reading_queue/P1.md#embodied-20261013)，不用重开一套队列。
 
+<a id="oct19-learning"></a>
+### 2026-10-19：记住历史、校准环境与学习动作是三个不同问题
+
+[本轮扫描](../../research/tracking/frontier_scan_2026-10-19.md)补充三类学习机制，适合沿已有模型基础继续看；都是公开方法的阶段性理解，未完成复现实验：
+
+| 问题 | 机制 | 对 Infra 的实际要求与边界 |
+|---|---|---|
+| 当前图像相似，却需要不同动作 | [REKI](https://arxiv.org/abs/2610.22178v1)让 action expert 的 registers 保留短历史；register 不读取 action token、避免 denoising 条件影响，从而跨去噪步复用 | cache 要随 episode reset，输入 cadence 与相机/state 顺序要匹配；短历史记忆不等于解决长期任务规划 |
+| 同一画面下，质量/摩擦等隐藏条件变了 | [T2-z](https://arxiv.org/abs/2610.22364v1)固定共享 world model，用少量交互的预测误差更新环境 latent | support/query 与环境身份绑定；测试时有优化成本，不能把秒级适配当毫秒控制。更新 latent 也不等于通过 reward 更新 policy 的交互 RL |
+| 训练样本是否都应做 action prediction | [监督目标分配研究](https://arxiv.org/abs/2610.21915v1)比较 action、latent-action、future-vision 路由 | 固定 sample occurrences 不等于固定 FLOPs；FV route 仍用 demonstration actions，少算 action loss 不代表少用了相同份额的动作标签 |
+
+部署时再读 [GR00T #790](https://github.com/NVIDIA/Isaac-GR00T/pull/790)：缓存不变 cross-KV、量化工件和 shape signature 必须一致，局部延迟/动作 cosine 与闭环任务质量要分别验收。[Isaac Lab #8480](https://github.com/isaac-sim/IsaacLab/pull/8480)则提醒：相同 `physx` 配置名称可能跨版本改变 ordering；旧 checkpoint 应绑定实际 joint/body names，不能只验张量 shape。
+
+建议讨论顺序是 **REKI 的“为什么当前帧不够”→ T2-z 的“历史信息与环境参数有什么区别”→ 一次 checkpoint 恢复到底要保存什么**。REKI register、T2-z latent、量化 metadata 和 joint order 是不同种类的状态，不应统称为一个可随意替换的 cache。需要复用的系统基础见[推理状态](../../03-inference-infra/topics/inference_state.md)，正式待办仍在[共享 P1](../../research/reading_queue/P1.md#embodied-20261013)。
+
 <a id="execution"></a>
 ## 4. 核心系统机制：三种时间与一个提交边界
 

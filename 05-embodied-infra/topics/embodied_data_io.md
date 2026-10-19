@@ -91,3 +91,11 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 数据多样性影响泛化；采样分布影响训练；解码与传输影响 GPU 利用率；processor 与 action 语义影响部署。优化任何一层都应保留其他层的验收条件。
 
 先完成[纸面契约练习](../../practice/experiments/embodied_contract_lab.md)，再按 [A100 E04](../../practice/experiments/a100_fsdp_io_lab.md#e04)执行真实多模态 I/O 对照。两者当前均没有运行结果。我们第一轮讨论可以只解释上面的 episode 边界反例，确认样本正确性，再进入吞吐问题。
+
+
+<a id="oct19-memory"></a>
+## 2026-10-19 补充：缓存预算与进程内存不是同一个账本
+
+[LeRobot #4903](https://github.com/huggingface/lerobot/pull/4903)将 HTTP `response.read()` 改成流式迭代后拼接，避免 response/stream 引用环在 cyclic GC 前多留一份完整视频。它仍会分配最终 bytes，不能称零复制；业务 compressed-byte budget 和 decoder cap 都守住，也不能保证 worker RSS 有界。
+
+排查顺序应是先固定依赖版本、worker 数和输入，再分别记录业务缓存、活跃 decoder、retained HTTP body、native live allocation 与 RSS。该 PR 作者在原支持栈的长时负载仍触发内存 guard；另一组新版 Torch/TorchCodec 的稳定性观察不属于本 PR 已验证的 locked runtime。因此正确下一步是同负载长跑与内存归因，而不是从单项修复推断 OOM 已彻底解决。来源与具体边界见[本轮扫描](../../research/tracking/frontier_scan_2026-10-19.md)；这里没有本地实测结果。
