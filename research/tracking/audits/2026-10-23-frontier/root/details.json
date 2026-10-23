@@ -1,0 +1,305 @@
+[
+  {
+    "name": "openai-bio",
+    "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.511610+00:00",
+    "sha256": "8b45b7fe2d63173943f3e9c001ce755fafd3a8e4c0ee8f1a634af13fd2fb598e",
+    "final_url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data/",
+    "title": "Using thousands of AI agents to uncover new leads in biological data | OpenAI",
+    "metadata": [],
+    "datePublished": []
+  },
+  {
+    "name": "openai-low-resource",
+    "url": "https://openai.com/index/low-resource-programming-languages/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.839267+00:00",
+    "sha256": "c7d95d04fa2ccba5017c3b29357d94c56e0727bc37a2fb5c81d71923163de842",
+    "final_url": "https://openai.com/index/low-resource-programming-languages/",
+    "title": "Advancing coding in low‑resource programming languages | OpenAI",
+    "metadata": [],
+    "datePublished": []
+  },
+  {
+    "name": "openai-ads",
+    "url": "https://openai.com/index/building-chatgpt-ad-stack/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.611875+00:00",
+    "sha256": "9487954bc4a96754303c6d6f159085bbddceef270f7f1ec1720528eca510c3a6",
+    "final_url": "https://openai.com/index/building-chatgpt-ad-stack/",
+    "title": "How we built ChatGPT’s novel ad stack for user trust and relevance | OpenAI",
+    "metadata": [],
+    "datePublished": []
+  },
+  {
+    "name": "openai-decisions",
+    "url": "https://openai.com/index/decisions-api/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:45.278099+00:00",
+    "sha256": "65ee4ea64d19bdf86de010918066ec6248f4703eedcfb2c5c647af8e85aadd71",
+    "final_url": "https://openai.com/index/decisions-api/",
+    "title": "Build more responsive apps with the Decisions API | OpenAI",
+    "metadata": [],
+    "datePublished": []
+  },
+  {
+    "name": "anthropic-formal",
+    "url": "https://www.anthropic.com/research/formal-verification",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:45.470026+00:00",
+    "sha256": "08f387ae3800bc5cf50c36d3539d905f17117bf6e24a14b60c845688f7250e25",
+    "final_url": "https://www.anthropic.com/research/formal-verification",
+    "title": "LLMs are making formal software verification feasible at a much larger scale \\ Anthropic",
+    "metadata": [
+      {
+        "property": "article:published_time",
+        "content": "2026-10-22T00:00:00.000Z"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-22T22:13:27.000Z"
+      }
+    ],
+    "datePublished": [
+      "2026-10-22T00:00:00.000Z"
+    ]
+  },
+  {
+    "name": "nvidia-gds-python",
+    "url": "https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:45.847648+00:00",
+    "sha256": "2771632e1695a5c2281ee3cd7c400f79b778f4c4e09131c101409efa621ea9dc",
+    "final_url": "https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage/",
+    "title": "How to Read Data into GPU Memory in Python with NVIDIA GPUDirect Storage | NVIDIA Technical Blog",
+    "metadata": [
+      {
+        "name": "robots",
+        "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+      },
+      {
+        "name": "description",
+        "content": "GPU applications are processing ever-growing datasets with increasingly powerful accelerators. According to the 2025 Stanford AI Index, compute for notable AI…"
+      },
+      {
+        "property": "og:type",
+        "content": "article"
+      },
+      {
+        "property": "og:locale",
+        "content": "en_US"
+      },
+      {
+        "property": "og:site_name",
+        "content": "NVIDIA Technical Blog"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-10-22T16:39:09+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-22T16:39:12+00:00"
+      }
+    ],
+    "datePublished": [
+      "2026-10-22T16:39:09+00:00"
+    ]
+  },
+  {
+    "name": "nvidia-mamba",
+    "url": "https://developer.nvidia.com/blog/accelerating-mamba-2-with-high-performance-forward-pass-kernels-in-nvidia-cuda-tile/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:47.048676+00:00",
+    "sha256": "bf43f9e3fce38409ff6df455706e26cbd1c592f8adfe8e08f8cbc90d762f853f",
+    "final_url": "https://developer.nvidia.com/blog/accelerating-mamba-2-with-high-performance-forward-pass-kernels-in-nvidia-cuda-tile/",
+    "title": "Accelerating Mamba-2 with High-Performance Forward Pass Kernels in NVIDIA CUDA Tile | NVIDIA Technical Blog",
+    "metadata": [
+      {
+        "name": "robots",
+        "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+      },
+      {
+        "name": "description",
+        "content": "NVIDIA CUDA Tile (cuTile) is a Python-based DSL and parallel programming model for NVIDIA GPUs that automatically leverages advanced hardware capabilities to…"
+      },
+      {
+        "property": "og:type",
+        "content": "article"
+      },
+      {
+        "property": "og:locale",
+        "content": "en_US"
+      },
+      {
+        "property": "og:site_name",
+        "content": "NVIDIA Technical Blog"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-10-19T17:00:00+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-20T17:11:37+00:00"
+      }
+    ],
+    "datePublished": [
+      "2026-10-19T17:00:00+00:00"
+    ]
+  },
+  {
+    "name": "nvidia-sentry",
+    "url": "https://developer.nvidia.com/blog/inside-nvidia-sentry-secure-ai-agents-at-runtime/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:45.847920+00:00",
+    "sha256": "110b812754f0f124028ec2f6ad7315885bec03e54002094c13dfc9a42af75abe",
+    "final_url": "https://developer.nvidia.com/blog/inside-nvidia-sentry-secure-ai-agents-at-runtime/",
+    "title": "Inside NVIDIA Sentry: Secure AI Agents at Runtime | NVIDIA Technical Blog",
+    "metadata": [
+      {
+        "name": "robots",
+        "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+      },
+      {
+        "name": "description",
+        "content": "An AI agent can complete its assignment and still cross a security boundary. Recent incidents show that agents can circumvent security controls while using…"
+      },
+      {
+        "property": "og:type",
+        "content": "article"
+      },
+      {
+        "property": "og:locale",
+        "content": "en_US"
+      },
+      {
+        "property": "og:site_name",
+        "content": "NVIDIA Technical Blog"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-10-21T09:52:16+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-21T09:52:19+00:00"
+      }
+    ],
+    "datePublished": [
+      "2026-10-21T09:52:16+00:00"
+    ]
+  },
+  {
+    "name": "nvidia-openshell",
+    "url": "https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:47.572608+00:00",
+    "sha256": "03111f58e1832acd6cc42b3783891587a041fa45d7c707316e9feeb2485e20a3",
+    "final_url": "https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/",
+    "title": "How NVIDIA OpenShell Reference Architecture Secures and Governs AI Agent Workloads at Scale | NVIDIA Technical Blog",
+    "metadata": [
+      {
+        "name": "robots",
+        "content": "max-snippet:-1,max-image-preview:standard,max-video-preview:-1"
+      },
+      {
+        "name": "description",
+        "content": "Autonomous agents can work for hours on complex tasks, accessing files, tools, the internet, and spawning other agents to collaborate with."
+      },
+      {
+        "property": "og:type",
+        "content": "article"
+      },
+      {
+        "property": "og:locale",
+        "content": "en_US"
+      },
+      {
+        "property": "og:site_name",
+        "content": "NVIDIA Technical Blog"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-10-21T09:50:14+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-21T09:50:18+00:00"
+      }
+    ],
+    "datePublished": [
+      "2026-10-21T09:50:14+00:00"
+    ]
+  },
+  {
+    "name": "hf-torchneuron",
+    "url": "https://huggingface.co/blog/hf-torchneuron",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.017128+00:00",
+    "sha256": "260c91640b933f1619a44cf0bc45d600ef2f169c8a98ebcc671748809b49ec3d",
+    "final_url": "https://huggingface.co/blog/hf-torchneuron",
+    "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
+    "metadata": [],
+    "datePublished": [
+      "2026-10-19T00:00:00.755Z"
+    ]
+  },
+  {
+    "name": "hf-torchtpu",
+    "url": "https://huggingface.co/blog/hf-torchtpu",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.399501+00:00",
+    "sha256": "479a2e1674c653c520d1740d1ef34943401bdbadcf534af0aa08074e3a9f698c",
+    "final_url": "https://huggingface.co/blog/hf-torchtpu",
+    "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
+    "metadata": [],
+    "datePublished": [
+      "2026-10-20T00:00:00.758Z"
+    ]
+  },
+  {
+    "name": "aws-profile",
+    "url": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:46.370505+00:00",
+    "sha256": "a5ab6d098457fbbf8094039088f53117ac7756b8873897448c19b77e154f14fe",
+    "final_url": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
+    "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+    "metadata": [],
+    "datePublished": [
+      "2026-10-21T16:04:43.286Z"
+    ]
+  },
+  {
+    "name": "pytorch-torchneuron",
+    "url": "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/",
+    "status": 200,
+    "fetched_at": "2026-10-23T03:32:47.779370+00:00",
+    "sha256": "5592a928cee259a4695fcf4333cb3541b07230720e0babff90a6379a5ee10630",
+    "final_url": "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/",
+    "title": "Introducing TorchNeuron: Native PyTorch backend for AWS Trainium - PyTorch",
+    "metadata": [
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-10-19T12:45:23+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-10-20T12:51:02+00:00"
+      },
+      {
+        "name": "author",
+        "content": "Ebba Simpson"
+      }
+    ],
+    "datePublished": [
+      "2026-10-19T05:45:23-07:00"
+    ]
+  }
+]

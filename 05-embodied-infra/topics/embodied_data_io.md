@@ -95,6 +95,17 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 先完成[纸面契约练习](../../practice/experiments/embodied_contract_lab.md)，再按 [A100 E04](../../practice/experiments/a100_fsdp_io_lab.md#e04)执行真实多模态 I/O 对照。两者当前均没有运行结果。我们第一轮讨论可以只解释上面的 episode 边界反例，确认样本正确性，再进入吞吐问题。
 
 
+<a id="oct23-data-contract"></a>
+## 2026-10-23 补充：先证明样本属于谁，再证明字节怎样进GPU
+
+[LeRobot #4890](https://github.com/huggingface/lerobot/pull/4890)暴露了一个分布式边界：trainer知道自己的DP rank，spawn出的DataLoader worker却未必继承process group或正确环境变量。显式把trainer的DP shard序列化进dataset，才不会在自建launcher下各rank重复读全部episode。验收应检查跨rank sample ID的交集与并集，并故意让环境变量和trainer配置冲突；loader有输出、长度正确、GPU忙都不充分。
+
+[AReaL #1812](https://github.com/areal-project/AReaL/pull/1812)处理另一个边界：视觉payload按trajectory的batch row归属，不能按token长度或把整批payload复制给每个分组。concat→计算advantage→split→筛选/重排→microbatch之后，图像仍须与对应token行一致；组间隔离和组内共享也要分别定义。这是可迁移的多模态数据契约，不是机器人性能实测。
+
+[NVIDIA KvikIO教程](https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage/)则提醒，读到GPU数组只证明结果所在位置：KvikIO可能绕过cuFile，cuFile也可能走CPU compatibility path。应同时记录两层配置，并在适用平台用nvfs/posix运行时计数核路径；GDS也可能使用GPU bounce buffer。随后再测解码、时间对齐和batch-ready，不能从直传字节推断端到端训练提速。具体版本与核验边界见[扫描](../../research/tracking/frontier_scan_2026-10-23.md)。
+
+以上检查均是待执行建议。优先按“样本覆盖/所有权正确→实际IO路径→吞吐瓶颈”排查，避免先优化一个产生重复或错配样本的loader。
+
 <a id="oct19-memory"></a>
 ## 2026-10-19 补充：缓存预算与进程内存不是同一个账本
 

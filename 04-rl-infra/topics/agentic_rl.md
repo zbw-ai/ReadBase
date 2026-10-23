@@ -1086,3 +1086,20 @@ Agentic RL Infra 的关键转变是：训练平台开始承担在线数据生产
 - **吞吐计数包含复用，不代表新经验来得更快。** [ReFlow](https://arxiv.org/abs/2610.21640v1)分别控制 replay 比例、loss 权重与 policy lag；作者 trainer processed tokens/s 包含 replay。评估应同时看 fresh trajectories、reuse、staleness 与目标一致性，不能只报 GPU utilization。
 
 R3 route replay 重放的是 expert IDs，[AReaL](https://github.com/areal-project/AReaL/pull/1496)与 [NeMo](https://github.com/NVIDIA-NeMo/RL/pull/4458)的 backend/CP/packing 限制不同；它与 ReFlow 的经验复用不是一个 replay。配置前先核 route 的 token/layer layout、missing-vs-corrupt 分支、backward recompute 生命周期，再谈 logprob 对齐。
+
+
+<a id="oct23-update-contract"></a>
+## 2026-10-23：更新权重时，KV、地址与环境租约各自如何失效
+
+[本轮代码与论文](../../research/tracking/frontier_scan_2026-10-23.md)将“模型已更新”拆为几个需要独立验收的条件，以下尚未本地训练验证。
+
+| 边界 | 机制与反例 | 对AReaL的检查建议 |
+|---|---|---|
+| 权重版本 → 活跃请求KV | [NeMo #3929](https://github.com/NVIDIA-NeMo/RL/pull/3929)以pause/refit/resume包住更新，默认重算active KV；prefix cache reset本身不覆盖在途请求。失败后dispatch保持关闭。 | 按backend记录active KV生命周期，注入transfer失败与替换worker；不能因接口都叫pause就认为语义相同。 |
+| 权重数值 → scale/layout/graph地址 | [verl #8306](https://github.com/verl-project/verl/pull/8306)在所有bucket到齐后重建backend布局并恢复capture存储；abandon恢复绑定不保证旧数值原子回滚。 | 明确量化由谁执行、最后bucket标志、失败generation gate和pointer稳定性。QAT不自动保证训推logprob一致。 |
+| 并发 → 有效新数据 | [TRL #7610](https://github.com/huggingface/trl/pull/7610)按KV压力调admission，减少排队引起的stale浪费；该PR又显式保留旧KV，与NeMo策略不同。 | raw tokens、fresh/accepted tokens和policy age分别计量；先核权重更新正确性，再迁移调度阈值。 |
+| 轨迹 → 有状态环境副本 | [BIRD-RL](https://arxiv.org/abs/2610.29426v1)租用replica跨tool call保留DB状态，终止后回收、下次租用前reset dirty副本。 | timeout后旧tool是否还能写入？pool耗尽/worker崩溃怎样处理？增加lease epoch与迟到写入检查；论文IO降幅不是吞吐倍数。 |
+
+训练本身也要验收backward：[Transformers EP修复](https://github.com/huggingface/transformers/pull/49688)与[可微dispatch修复](https://github.com/huggingface/transformers/pull/49710)分别处理BF16 reduction与collective梯度路径，forward正常不能证明expert在更新。[FlashNext-RL](https://arxiv.org/abs/2610.28998v1)提醒host staging、routing payload与checkpoint副本同样可能成为训练瓶颈；其短步吞吐不等于长期收敛或质量收益。
+
+讨论时拿一个具体请求，依次标出其trajectory ID、policy version、KV version、payload row和environment lease。任意一项变更后，先回答旧状态还能否使用，再讨论如何隐藏同步成本。

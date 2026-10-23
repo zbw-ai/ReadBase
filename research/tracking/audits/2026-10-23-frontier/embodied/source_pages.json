@@ -1,0 +1,164 @@
+{
+  "sources": [
+    {
+      "repo": "RLinf/RLinf",
+      "sha": "d844e6485d9c00da497b1e1980996fe36da6fb1c",
+      "default_branch": "main",
+      "readme_sha": "1220aaec57596efc7cf0c915197b33e61ae4de08",
+      "html_url": "https://github.com/RLinf/RLinf",
+      "created_at": "2025-08-14T03:52:19Z",
+      "fetched_utc": "2026-10-23T03:33:05.203296+00:00",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://blogs.nvidia.com/blog/cosmos-open-train-evaluate-deploy-world-models/",
+      "fetched_utc": "2026-10-23T03:30:45.823096+00:00",
+      "bytes": 126246,
+      "sha256": "ade50008d4c8b95e8b62cbbd86472523be1364c4b896cee8163e6abf3cb80cc7",
+      "title": "NVIDIA Cosmos Opens New Tools to Train, Evaluate and Deploy World Models | NVIDIA Blog",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "repo": "AdrienRR/cadre-autoencoders-and-world-models",
+      "sha": "3b07314239bf73fe952a98aab78ae03e1937d8bf",
+      "default_branch": "main",
+      "readme_sha": "95fe3836de65bc7bffc6736d9ccd01c72c90b7c2",
+      "html_url": "https://github.com/kyutai-labs/cadre-autoencoders-and-world-models",
+      "fetched_utc": "2026-10-23T03:30:53.009254+00:00",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://cel-robot-learning.github.io",
+      "fetched_utc": "2026-10-23T03:30:43.011282+00:00",
+      "bytes": 1300602,
+      "sha256": "42d81a93957b01d152ba965be14d99b69c94610366ec530856a265f74dc8a5fd",
+      "title": "Learning from Fleet Experience: Collective Experience Learning across 96 Robots",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "repo": "isaac-for-healthcare/cosmos3-h-dreams",
+      "sha": "fb18792d8af680a713801dea7688919e46329810",
+      "default_branch": "main",
+      "readme_sha": "842293dc1dae65281be22e04d24c44c7725c7b9e",
+      "html_url": "https://github.com/isaac-for-healthcare/cosmos3-h-dreams",
+      "created_at": "2026-10-12T11:10:09Z",
+      "fetched_utc": "2026-10-23T03:33:07.767537+00:00",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/api/models/lerobot/smolvla_base",
+      "fetched_utc": "2026-10-23T03:30:43.012268+00:00",
+      "bytes": 1871,
+      "sha256": "5ddf8fffbbf233bd0cb8713b348819cd9571bfb0b6e204808e0c44fb652571b9",
+      "title": null,
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/api/models/lerobot/smolvla_base/commits/main?limit=10",
+      "fetched_utc": "2026-10-23T03:30:43.012327+00:00",
+      "bytes": 3687,
+      "sha256": "24f7b83b506f6f68faf99da8897a96d55a16c8e10720daa87b3bc514b08805f2",
+      "title": null,
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
+      "fetched_utc": "2026-10-23T03:30:45.940694+00:00",
+      "bytes": 184912,
+      "sha256": "19d700327a4e1b1e3744940c9e690e3da26a2a6b7f71a1d0f4261ad7ba57ef56",
+      "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real",
+      "fetched_utc": "2026-10-23T03:30:46.637418+00:00",
+      "bytes": 170355,
+      "sha256": "9aa49bdfb1f049f4f404d98bfbc7d671ae946405287dac02ae405711f4f01f73",
+      "title": "Train in Simulation, Deploy on a Real Robot: Microduck with Isaac Lab 3.0",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+      "fetched_utc": "2026-10-23T03:30:46.176134+00:00",
+      "bytes": 165856,
+      "sha256": "59af5d13b9d5233bfbf22a9d52b5e576e9ed653a23e956a71a8e54ffb2c16a69",
+      "title": "Announcing SimReady Central: An Open Library of Simulation-Ready 3D Assets for Robotics and AI Factories",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://huggingface.co/lerobot/smolvla_base/raw/main/README.md",
+      "sha256": "1c4eab155e159a5fd3fd6c4d5f770c43f056665d73e11c0584e47f8b824d3c98",
+      "fetched_utc": "2026-10-23T03:26:54.378770+00:00",
+      "bytes": 4680,
+      "heading": null,
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://kyutai.org/blog/2026-10-22-cadre",
+      "fetched_utc": "2026-10-23T03:30:43.012193+00:00",
+      "bytes": 10043,
+      "sha256": "14260600f1973f526a6c88f8d92cf1c4827bfc7fcfe4024518dca2483319d1d1",
+      "title": "CADRE: Rethinking Video Autoencoders for Interactive World Models",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://learnsyslab.github.io/multiview_latent_action_pretraining/",
+      "fetched_utc": "2026-10-23T03:30:43.012104+00:00",
+      "bytes": 3411,
+      "sha256": "0d04215a67d14e16ecd03905ed9d9d5361a8484fcc1bad65479ab3832ce8e822",
+      "title": "Multi-View Latent Action Pretraining for Cross-Embodiment Robot Learning from Videos",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "repo": "NVIDIA/simready-foundation",
+      "sha": "702ca5ad7db55ca253bc19b9eab8de2c64eaf78e",
+      "default_branch": "main",
+      "readme_sha": "203e31b08794832cab235720e66da895dfdedf0f",
+      "html_url": "https://github.com/NVIDIA/simready-foundation",
+      "created_at": "2026-03-03T18:16:59Z",
+      "fetched_utc": "2026-10-23T03:33:10.530269+00:00",
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://www.pi.website/blog",
+      "sha256": "c7569dd6241350a272f83cf23529745a6b02603a72c6a1d91051b18ffa0f6cb3",
+      "fetched_utc": "2026-10-23T03:26:54.348393+00:00",
+      "bytes": 62426,
+      "heading": null,
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "url": "https://www.pi.website/research",
+      "sha256": "469be0fd3f707ee9e07f39aa8bd71608b3c40ba374aeadb41789f9f5c3dd75e0",
+      "fetched_utc": "2026-10-23T03:26:54.246093+00:00",
+      "bytes": 26998,
+      "heading": null,
+      "what_read": "Page/README content; no linked script executed."
+    },
+    {
+      "tag_name": "v3.0.0",
+      "name": "v3.0.0",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0",
+      "published_at": "2026-10-20T02:05:51Z",
+      "created_at": "2026-10-19T21:09:52Z",
+      "prerelease": false,
+      "target_commitish": "release/3.0.0",
+      "what_read": "Full release body, migration/boundaries inspected; not every linked document or all tag changes.",
+      "body_sha256": "59267ff7c6a007e6f48df7bd1e378950f9f119900ee4f520e36dc688adba567f"
+    }
+  ],
+  "scope": "Primary source page and README hashes/metadata only; no page/PR/paper body mirrored in repository.",
+  "nvidia_blog_dates": {
+    "cosmos_tools": "2026-10-21",
+    "cosmos3_h_dreams": "2026-10-20",
+    "simready_central": "2026-10-21",
+    "microduck": "2026-10-21"
+  },
+  "smolvla": {
+    "model": "lerobot/smolvla_base",
+    "sha": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6",
+    "lastModified": "2026-10-06T13:57:08.000Z",
+    "commits_requested": 10,
+    "scope": "Card/API/latest 10 commits, not all derived models."
+  }
+}

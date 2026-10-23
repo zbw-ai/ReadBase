@@ -1,0 +1,74 @@
+{
+  "window_start_utc": "2026-10-19T01:40:52Z",
+  "window_end_utc": "2026-10-23T03:09:27Z",
+  "verified_at_utc": "2026-10-23T03:55:41.902332Z",
+  "accepted_groups": 4,
+  "accepted_unique_source_ids": 5,
+  "observed_groups": 10,
+  "late_discovered_paper_candidates": 4,
+  "merged_pr_counts": {
+    "huggingface/transformers": 112,
+    "NVIDIA/TensorRT-LLM": 176,
+    "huggingface/accelerate": 3,
+    "huggingface/peft": 23,
+    "huggingface/kernels": 8,
+    "sgl-project/sglang": 385,
+    "vllm-project/vllm": 332
+  },
+  "merged_pr_total": 1039,
+  "runtime_merged_pr_total": 893,
+  "arxiv_deduplicated_ids": 2339,
+  "arxiv_keyword_candidates": 373,
+  "selected_pr_details": 14,
+  "paper_metadata_checked": 6,
+  "coverage_limits": [
+    "Window merged-PR indexes complete for seven named repositories; not all patches reviewed.",
+    "Release API first 100 per repo only, bounded lists cross window start.",
+    "Four-category arXiv new/recent directory coverage; replacement IDs included; overlapping other agents not additive.",
+    "Head checks first 100 each only, with failures; no claim of complete successful CI.",
+    "Historical gaps remain unchanged.",
+    "No upstream code/tests/benchmarks executed."
+  ],
+  "files": {
+    "evidence.json": {
+      "bytes": 165964,
+      "sha256": "3fee810000039074e59e08f11d0a488e6db82c5953697da467ca6bf301560d00"
+    },
+    "arxiv_coverage.json": {
+      "bytes": 673068,
+      "sha256": "d0b3647c9ccfbe65045b9906e03750f125f195b398ed0741e762b307a4b91fd6"
+    },
+    "merged_pr_index.json": {
+      "bytes": 997588,
+      "sha256": "a9bea84b18dab43baebaafade76fc0a45dec76185d3bfe81784cb041647d7af1"
+    },
+    "checks.json": {
+      "bytes": 93211,
+      "sha256": "8d5ecd31b6607477f5d93c71e9341f14e291ca2cb9ebe8b3e016f1e38769c40c"
+    },
+    "arxiv_candidates.json": {
+      "bytes": 68093,
+      "sha256": "c1d37bc51ecc38bcedb0c4439f8e36a550d5bcf343878071d7375902630fbdd4"
+    }
+  },
+  "window_releases": [
+    {
+      "repo": "huggingface/transformers",
+      "tag": "v5.20.2",
+      "published_at": "2026-10-19T17:45:37Z",
+      "prerelease": false
+    },
+    {
+      "repo": "NVIDIA/TensorRT-LLM",
+      "tag": "v1.4.0rc1",
+      "published_at": "2026-10-22T01:38:13Z",
+      "prerelease": true
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "tag": "v0.5.22",
+      "published_at": "2026-10-19T02:55:19Z",
+      "prerelease": false
+    }
+  ]
+}

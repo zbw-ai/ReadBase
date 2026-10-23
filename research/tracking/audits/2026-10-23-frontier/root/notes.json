@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-23T04:21:21.252445+00:00",
+  "accepted_groups": [
+    "R1",
+    "R2",
+    "R3",
+    "R4"
+  ],
+  "observed_groups": 8,
+  "upstream_code_executed": false,
+  "notes": {
+    "R1": "Official body and metadata; two path selection levels; no training performance assertion",
+    "R2": "Actual body byline verified (meta author is site editor); README pinned at 50b14171affaa365f1df6aa015232427336f6a4d; static shape and dtype limits override generic announcement wording; public README limitation is TorchAO integration for MXFP8/composite types, not all low-level FP8 capability",
+    "R3": "Blog research counts239/123 distinct from public pinned README60/25; no proof checker executed; public theorem semantics/memory exclusions distinguished from blog research protocol; ASan is incomplete",
+    "R4": "Official service account; no code/load p99 or independent production verification"
+  },
+  "pytorch_byline": "Nafea Bshara, Robert Hundt, Ron Diamant, Colin Brace, Rahul Solanki, Maen Suleiman, Khaled ElGalaind, Temesghen Kahsai, Cyril Bortolato, Indu Thangakrishnan, Shauheen Zahirazami, Sarang Ozarde, Adarsh Singh, Hanbo Wang, Esha Lakhotia, Jianying Lang",
+  "coverage_gaps": [
+    "HF community cards not all posts",
+    "selected vendor bodies, not full docs/changelog/history",
+    "all scripts and raw sources kept outside repo"
+  ]
+}

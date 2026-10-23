@@ -1,0 +1,95 @@
+[
+  {
+    "repo": "aws-neuron/torch-neuronx",
+    "checked_at": "2026-10-23T03:55:30.605808+00:00",
+    "meta": {
+      "html_url": "https://github.com/aws-neuron/torch-neuronx",
+      "default_branch": "main",
+      "created_at": "2025-09-24T18:31:15Z",
+      "pushed_at": "2026-10-20T17:16:28Z",
+      "archived": false,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      }
+    },
+    "head": [
+      {
+        "sha": "50b14171affaa365f1df6aa015232427336f6a4d",
+        "html_url": "https://github.com/aws-neuron/torch-neuronx/commit/50b14171affaa365f1df6aa015232427336f6a4d"
+      }
+    ],
+    "readme": {
+      "sha": "45fd1cb4c260b395113fa5c6199b525e38dfceb0",
+      "path": "README.md",
+      "html_url": "https://github.com/aws-neuron/torch-neuronx/blob/main/README.md",
+      "download_url": "https://raw.githubusercontent.com/aws-neuron/torch-neuronx/main/README.md",
+      "sha256": "ba949304007ede5f0d5134e49a7a9864c7971a12a8ea90f60597f5c8583b0f9c"
+    }
+  },
+  {
+    "repo": "theorem-labs/oss-verify-proofs",
+    "checked_at": "2026-10-23T03:55:33.126076+00:00",
+    "meta": {
+      "html_url": "https://github.com/theorem-labs/oss-verify-proofs",
+      "default_branch": "main",
+      "created_at": "2026-10-22T17:20:28Z",
+      "pushed_at": "2026-10-22T21:11:10Z",
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    "head": [
+      {
+        "sha": "8f5f46768858af236a4270f9628e6beed9aa0e72",
+        "html_url": "https://github.com/theorem-labs/oss-verify-proofs/commit/8f5f46768858af236a4270f9628e6beed9aa0e72"
+      }
+    ],
+    "readme": {
+      "sha": "4e13fb8f4df1fea17e11cfcce2c77c31ccf9b45e",
+      "path": "README.md",
+      "html_url": "https://github.com/theorem-labs/oss-verify-proofs/blob/main/README.md",
+      "download_url": "https://raw.githubusercontent.com/theorem-labs/oss-verify-proofs/main/README.md",
+      "sha256": "58e191365e6993e596e88f9b832136bb106077935dd66088c6c5afca874706e2"
+    }
+  },
+  {
+    "repo": "theorem-labs/rocq-linux-process-semantics",
+    "checked_at": "2026-10-23T03:55:35.312491+00:00",
+    "meta": {
+      "html_url": "https://github.com/theorem-labs/rocq-linux-process-semantics",
+      "default_branch": "main",
+      "created_at": "2026-10-19T15:29:07Z",
+      "pushed_at": "2026-10-22T05:30:13Z",
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    "head": [
+      {
+        "sha": "f1006fe8178338a499b5e5c41be83006c4edd058",
+        "html_url": "https://github.com/theorem-labs/rocq-linux-process-semantics/commit/f1006fe8178338a499b5e5c41be83006c4edd058"
+      }
+    ],
+    "readme": {
+      "sha": "24267f73173f899a5e1bdf5d80fc6d381af4a130",
+      "path": "README.md",
+      "html_url": "https://github.com/theorem-labs/rocq-linux-process-semantics/blob/main/README.md",
+      "download_url": "https://raw.githubusercontent.com/theorem-labs/rocq-linux-process-semantics/main/README.md",
+      "sha256": "4bd338f71f2dc3265f6c18384a03cac58c97ea1b87c7db4e830d33bf3bc24cfe"
+    }
+  }
+]

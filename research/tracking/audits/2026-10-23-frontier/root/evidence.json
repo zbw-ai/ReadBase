@@ -1,0 +1,270 @@
+{
+  "window_start_utc": "2026-10-19T01:40:52Z",
+  "event_cutoff_utc": "2026-10-23T03:09:27Z",
+  "scope": "Official vendor and HF visible indexes; selected primary source follow-ups; not exhaustive product docs or direct commits",
+  "pages": [
+    {
+      "name": "openai-research",
+      "url": "https://openai.com/news/research/",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.588827+00:00",
+      "sha256": "5149a4483121428094126042623000ec967949f75556789dcadd969644827d36",
+      "final_url": "https://openai.com/news/research/",
+      "title": "OpenAI Newsroom | Research | OpenAI",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "openai-engineering",
+      "url": "https://openai.com/news/engineering/",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.608046+00:00",
+      "sha256": "ce4edb015fffde4d8d54dd4102b06355283d3294419060950e72c2e393e8c9ce",
+      "final_url": "https://openai.com/news/engineering/",
+      "title": "OpenAI Newsroom | Engineering | OpenAI",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "openai-news",
+      "url": "https://openai.com/news/",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.309903+00:00",
+      "sha256": "581e447137a6a7cdc031546450362022bcef41053ae0464608b85b84df8808f4",
+      "final_url": "https://openai.com/news/",
+      "title": "OpenAI News | OpenAI",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-research",
+      "url": "https://www.anthropic.com/research",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:39.023257+00:00",
+      "sha256": "ea7f2908963c6926ca4ab02eecd10bf2232d4118302a9d3de69e945ca2b5477a",
+      "final_url": "https://www.anthropic.com/research",
+      "title": "Research \\ Anthropic",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-engineering",
+      "url": "https://www.anthropic.com/engineering",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.704544+00:00",
+      "sha256": "98f0f3af6fe49edd3d8f193436a1a95eeeb63c1257be00eae1e0e7e6ebe4634b",
+      "final_url": "https://www.anthropic.com/engineering",
+      "title": "Engineering \\ Anthropic",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "anthropic-news",
+      "url": "https://www.anthropic.com/news",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.729138+00:00",
+      "sha256": "79867798abd723c4dca293b82bfad8b0e16bd4fbcff9bcdbe0e19a6b1efebd63",
+      "final_url": "https://www.anthropic.com/news",
+      "title": "Newsroom \\ Anthropic",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "nvidia-blog",
+      "url": "https://developer.nvidia.com/blog/",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.770366+00:00",
+      "sha256": "7f51e84c31b3df73922106a1dc051098a8e81383f9cb157f96e8d1d9b09181ad",
+      "final_url": "https://developer.nvidia.com/blog/",
+      "title": "NVIDIA Technical Blog",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "nvidia-news",
+      "url": "https://nvidianews.nvidia.com/news",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.939864+00:00",
+      "sha256": "81992d33b197eaad1b402cf625f9433255666255864b7f91080730be6134c660",
+      "final_url": "https://nvidianews.nvidia.com/news",
+      "title": "News Archive | NVIDIA Newsroom",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "hf-blog",
+      "url": "https://huggingface.co/blog",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.824286+00:00",
+      "sha256": "5a2f43dc832beb337b19a48ad926af72671bf7dbfc2fa1d412a44ca3b0ca9164",
+      "final_url": "https://huggingface.co/blog",
+      "title": "Hugging Face – Blog",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-updates",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:38.806455+00:00",
+      "sha256": "9abda5ba89b86be5d82ad045864dbe5047e0908b45c161d8a4631d4d5fcb6f18",
+      "final_url": "https://api-docs.deepseek.com/updates/",
+      "title": "Change Log | DeepSeek API Docs",
+      "metadata": [],
+      "datePublished": []
+    },
+    {
+      "name": "deepseek-models",
+      "url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=20",
+      "status": 200,
+      "fetched_at": "2026-10-23T03:27:39.036600+00:00",
+      "sha256": "ea436a782bf08f7155da0530156e8724e05980fb12a77683e73765eb8959e496",
+      "final_url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=20",
+      "title": null,
+      "metadata": [],
+      "datePublished": [],
+      "models": [
+        {
+          "id": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "sha": null,
+          "createdAt": "2026-10-17T02:40:38.000Z",
+          "lastModified": "2026-10-17T05:46:55.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+          "sha": null,
+          "createdAt": "2026-09-10T02:17:58.000Z",
+          "lastModified": "2026-10-16T09:27:28.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+          "sha": null,
+          "createdAt": "2026-08-31T06:16:18.000Z",
+          "lastModified": "2026-09-01T09:22:10.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Pro-0813",
+          "sha": null,
+          "createdAt": "2026-08-13T03:05:06.000Z",
+          "lastModified": "2026-08-13T16:28:28.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
+          "sha": null,
+          "createdAt": "2026-07-31T07:30:24.000Z",
+          "lastModified": "2026-08-01T03:07:41.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Flash-DSpark",
+          "sha": null,
+          "createdAt": "2026-06-27T02:27:36.000Z",
+          "lastModified": "2026-07-04T03:15:12.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Pro-DSpark",
+          "sha": null,
+          "createdAt": "2026-06-27T03:02:56.000Z",
+          "lastModified": "2026-07-04T03:14:46.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/eagle3_gemma4_12b_ttt7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:37:17.000Z",
+          "lastModified": "2026-06-28T12:38:12.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/eagle3_qwen3_14b_ttt7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:36:20.000Z",
+          "lastModified": "2026-06-28T12:37:15.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/eagle3_qwen3_8b_ttt7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:35:29.000Z",
+          "lastModified": "2026-06-28T12:36:18.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/eagle3_qwen3_4b_ttt7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:34:59.000Z",
+          "lastModified": "2026-06-28T12:35:27.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dflash_gemma4_12b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:33:24.000Z",
+          "lastModified": "2026-06-28T12:34:57.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dflash_qwen3_14b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:31:30.000Z",
+          "lastModified": "2026-06-28T12:33:22.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dflash_qwen3_8b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:30:07.000Z",
+          "lastModified": "2026-06-28T12:31:28.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dflash_qwen3_4b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:29:12.000Z",
+          "lastModified": "2026-06-28T12:30:04.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dspark_gemma4_12b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:27:36.000Z",
+          "lastModified": "2026-06-28T12:29:10.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dspark_qwen3_14b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:25:33.000Z",
+          "lastModified": "2026-06-28T12:27:34.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dspark_qwen3_8b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T12:24:08.000Z",
+          "lastModified": "2026-06-28T12:25:30.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/dspark_qwen3_4b_block7",
+          "sha": null,
+          "createdAt": "2026-06-28T11:29:16.000Z",
+          "lastModified": "2026-06-28T12:24:05.000Z",
+          "gated": null
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Pro",
+          "sha": null,
+          "createdAt": "2026-04-22T06:04:45.000Z",
+          "lastModified": "2026-06-22T12:12:50.000Z",
+          "gated": null
+        }
+      ]
+    }
+  ]
+}

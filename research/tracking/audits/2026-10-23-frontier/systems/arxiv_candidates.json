@@ -1,0 +1,2731 @@
+[
+  {
+    "id": "2610.30344",
+    "title": "AQL-Lite: Enabling Efficient Knowledge Acquisition for Arabic LLMs via Data-Centric Continual Pretraining",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent",
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30664",
+    "title": "Compiling Autoregressive LLM Control into Policy-Exact Parallel Inference for Hierarchical RAG",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.30983",
+    "title": "A Reality Check of Inference-Time Context Augmentation Methods",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.31098",
+    "title": "RIFT: KV Cache Compression for Draft Models with Complementary Compressibility Training",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.31135",
+    "title": "Mixing Matters: Evidence Position Bias Across Sequence Mixers in Long-Context Question Answering",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent",
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31467",
+    "title": "From Structured Records to Patient Narratives: Preserving Clinical Alignment in LLM-Generated Health Summaries",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.31412",
+    "title": "SQuAT: Spherical Lattice Vector Quantization-Aware Training",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent",
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.24478",
+    "title": "Beyond Recall Saturation: Scaling Hard-Negative Reranker Training for Industrial Legal Retrieval",
+    "pages": [
+      "cs.CL-new",
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.30132",
+    "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29995",
+    "title": "Remembering Through Change: Provenance-Preserving Hypergraph Memory for Multimodal Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29933",
+    "title": "Graph Topology Meets Energy-Driven Pathfinding: Preserving Contextual Consistency in Retrieval-Augmented Generation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29926",
+    "title": "Task-Preserving Multilingual Instruction Tuning for Open-Ended QA in WMT 2026 MIST",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29922",
+    "title": "Unintended Side Effects of Value Training in LLMs",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29843",
+    "title": "Every Part Has Its Role: Part-of-Speech Effects in LLM Post-Training",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29792",
+    "title": "MAPS: Macro-Adaptive Parallel Reasoning for Regulating Search Momentum in Retrieval-Augmented Generation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29727",
+    "title": "Accept or Repair: Preserving Passage-Supported Answers in Contrastive Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29681",
+    "title": "Scaling Multilingual Pretraining of Pixel Language Models",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29657",
+    "title": "Effects of Model Scale and Quantization on Social Bias and Abstention in Question Answering",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29527",
+    "title": "RCSD: Reinforcement and Continual Learning for Domain-Specific Speculative Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29498",
+    "title": "A Strong MoE Is All You Need for Process Supervision",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29378",
+    "title": "Right On Q: Recovering Reasoning under Quantization via Self-Generated Trajectories",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29352",
+    "title": "Don't Stop Long-Context Continual Pre-Training Too Early: An Empirical Scaling Law",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29339",
+    "title": "ChronoSynth: Constraint-Aware Question Synthesis over Temporal Knowledge Graphs",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29210",
+    "title": "Understanding Target Probability Reuse in Speculative Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29171",
+    "title": "TrainBridge: Agentic NPU Training Optimization Guided by GPU Compilation Evidence",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29013",
+    "title": "Target Regeneration Shrinks the Gains of Draft-Training Objectives in Speculative Decoding",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28838",
+    "title": "How to Use Parallel Data for Multilingual Pretraining",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28823",
+    "title": "A Parallel Multi-Dialect Arabic Dependency Treebank",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28819",
+    "title": "LIFT: Scoped Constraints for Evaluating and Training Instruction Following",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.29662",
+    "title": "SPARE: Sparsity Allocation via Routing Entropy for Efficient MoEs",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29348",
+    "title": "Data Schedules and Learning Rate Schedules Should Be Designed Together",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29308",
+    "title": "LLM-Based Exogenous World Modeling for Dynamic Scheduling",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28834",
+    "title": "Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26542",
+    "title": "Breaking Diffusion: Parallel Reasoning with Draft Refinement",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28577",
+    "title": "Cache Engineering for Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28452",
+    "title": "MythoSemantic: An Interactive System for Discovering Semantic Parallels Across Mythological and Religious Traditions",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28393",
+    "title": "When Copying Is Hard: Copy-Constrained Decoding for Exact Span Reproduction",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.27648",
+    "title": "Speak vs. Know: Balancing Behavior and Knowledge Distributions of Large Language Models",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.27379",
+    "title": "DStill: Trajectory Consistency Distillation for Accelerated One-Step Drafting in Block Diffusion Speculative Decoding",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27114",
+    "title": "Joint Constraint Aggregation for Qualifier-Sensitive Retrieval-Augmented QA",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26993",
+    "title": "TRACE: Training-aware Robustness and Challenge Evaluation for Text-Vision Embedding Models",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26951",
+    "title": "The Bottleneck Is Retrieval, Not Reading: Diagnosing Evidence-Based Generation with RAG for Long Context Question Answering",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.28027",
+    "title": "From RL Papers to Framework Code: Inclusion and Review in Seven Open-Source Training Frameworks",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27993",
+    "title": "Building Telecom Language Models with RSOD: Domain Data, Specialist Post-Training, Memory-Conscious Distillation, and Networking Evaluation",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27677",
+    "title": "CovNav: Conformal Prediction-Guided Adaptive Inference for Object Goal Navigation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.27555",
+    "title": "Can Native Safety Travel? Reusing Safety Pretraining Across Models via On-Policy Distillation",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27213",
+    "title": "Profile-DP: Differential Privacy for User-Controlled Profile Release in Personalized LLM Inference",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26938",
+    "title": "GRaSP: Latency-Aware Optimization for Geo-Distributed Retrieval-Augmented Generation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26866",
+    "title": "High-dimensional layer-state trajectories reveal the internal dynamics of transformer inference",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26819",
+    "title": "ASTOR: Benchmarking and Improving Autoformulation for Soft-Constraint Optimization with a Formal Grammar",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26809",
+    "title": "Safety Mid-Training: Internalizing LLM Safety as a Foundational Capability",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26655",
+    "title": "The Development of Sycophancy in Language Models: Tracing Vulnerabilities from Pretraining to Post-Training",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26461",
+    "title": "Training Negatives Still Matter After Calibrating Answerability Readouts",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26426",
+    "title": "HarnessRL: Co-Evolving Policies with a Just-in-Time Training Harness for Open-Ended RL",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26425",
+    "title": "SNO-PI: Label-Scarce SNOMED CT Entity Linking with Pre-trained Encoders and Curated Terminology Knowledge",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26233",
+    "title": "Heartbeat Thinking: Speculative Reasoning and Tool Execution While Listening in Realtime Voice Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26059",
+    "title": "Honeyed Words, Hidden Daggers: Benchmarking and Training LLMs to See Through Mock Politeness",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26040",
+    "title": "Balance-Aware Pivot Selection for Parallel Diffusion LLM Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26006",
+    "title": "Scaling Synthetic Pre-training Data and Evaluation for Indic LLMs",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25999",
+    "title": "TempoMoE: Identifying and Steering Fast-Slow Thinking Experts for Efficient Multimodal Reasoning",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25919",
+    "title": "LEAPS: Long-context Evaluation of Adaptive Pattern Learning and State Tracking",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25836",
+    "title": "Where RL Breaks: Localizing and Repairing Failures via Targeted Continued Pretraining",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25816",
+    "title": "Modal Sense Disambiguation in Language Models: The Role of Context, Training Domain, and Input Frequency",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25650",
+    "title": "Consistency Training Suppresses Cue Following Without Teaching Cue Selectivity",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25463",
+    "title": "DiaLong: Benchmarking Reminiscence in Long-Context Dialogues",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25458",
+    "title": "Quality-Controlled Reply and Summary Data for Post-Training Small Language Models in AI Call-Screening Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25086",
+    "title": "Dual-Slot: From Serial Loops to Parallel Slots in Language Models",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24993",
+    "title": "When Does Better Acceptance Pay? A Controlled Study of Speculative Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24614",
+    "title": "Safety Kernel: Mechanistic Alignment for Cross-Lingual Defense in LLMs",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24593",
+    "title": "Training with Ciphers to Enhance In-Context Terminology Learning For Translation from Rare Languages",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24365",
+    "title": "FlashMap: Flow Map Speculative Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24343",
+    "title": "What Matters for NVFP4 Training? A Comparative Study of Low-Precision Pretraining Recipes",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24236",
+    "title": "Preserving Reasoning Diversity in Reinforcement Learning with Verifiable Rewards via Adaptive Replay",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24232",
+    "title": "Analyzing Repetition and Interference Effects in Memory-Constrained User Simulators",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24164",
+    "title": "Pronouncing Hard Words: Phoneme Adaptation of a Pretrained Conversational Text to Speech Model",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24123",
+    "title": "Prefix-Tuning for Arbitrary Output Sequences on Pretrained Transformers",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26747",
+    "title": "recAMPLIFY: Large-Scale Pretraining of Recursive Protein Language Models",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26693",
+    "title": "Parallel Language Models via Variational Decoding",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26511",
+    "title": "RouterWorld: Scaling Conversational AI with Latency-Aware LLM Routing",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26370",
+    "title": "An Empirical Study of Parameter-Efficient Fine-Tuning for Mixture-of-Experts LLMs",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26342",
+    "title": "VibeTraining-Bench: Data-Trainer-Harness Co-Design for Iterative System Improvement",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.26325",
+    "title": "Typed Decision Models under Prevalence Shift: Decision Training, Calibration, and Implicit Priors",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26310",
+    "title": "The Scheduler Is a Hidden Retriever: How Asynchrony Shapes Evidence Acquisition in Search Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25973",
+    "title": "Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25932",
+    "title": "Keep the Lineages Alive: Diversity-Preserving SMC for Diffusion LLM Decoding",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25897",
+    "title": "Budgeted Attack Scheduling for LLM Red-Teaming: The Roles of Static Priors, Semantic Guidance, and Online Feedback",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25519",
+    "title": "ATEST: Adaptive Resource-Aware Test-Time Scaling for LLM Inference",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25456",
+    "title": "System X: An LLM Decision Model That Replies from Its Own KV Cache",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.25161",
+    "title": "Indistinguishable Agents: Training Agent Privacy as Twin-World Indistinguishability",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25060",
+    "title": "Policy Is Not Capability: Some Safety Benchmarks Measure Which Definition of \"Unsafe\" You Trained On",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25034",
+    "title": "Beyond the Teacher: Understanding and Preserving Distillation Overshoot in Agentic On-Policy Distillation",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24960",
+    "title": "CoworkEnv: Synthesizing Training Environments for Long-Horizon Cowork Agents",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24914",
+    "title": "Arctic-SWE: Revisiting the Long Horizon Agent Training by Modeling-System Co-Design",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24515",
+    "title": "ProbePO: Sparse Probes, Redistributed Credit for Critic-Free LLM Reinforcement Learning",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24294",
+    "title": "Not Every User Says It All: Training Tool-Using Agents Beyond Ideal Simulated Users",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24107",
+    "title": "Cache2LoRA: Understanding and Improving Context Internalization",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24086",
+    "title": "Coopshift: Post-Training Amplifies The Memory Curse In LLM Cooperation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.24051",
+    "title": "LogicVal:A Logic-Formalized Benchmark for Constraint Satisfaction in Text-to-Image Generation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23858",
+    "title": "I$^2$-Med: Interpretable Medical Inference through Visual-Guided Dynamic Logits Calibration",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23818",
+    "title": "Acceptance Is Not Speed: Length Inflation in Training-Free Lossy Speculative Decoding",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23807",
+    "title": "Steering beyond Language: Improving Multilingual Training-Free Text Embeddings via Paired-Residual Subspace Removal",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23787",
+    "title": "DLite: History-free Speculative Decoding for Agentic AI",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23734",
+    "title": "Bridging the Language Gap in Scholarly Data II: Enhancing Gender Inference for Chinese Names",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23702",
+    "title": "VISTA: Steering LLMs with Latent User Values Inferred from a Few Survey Answers",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23587",
+    "title": "Analyzing Occupational Gender Bias across the LLM Training Lifecycle",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23309",
+    "title": "Inferring L1 Backgrounds from L2 English with LLM Token Probabilities",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23249",
+    "title": "Who Pays for Efficient Inference? Confidence-Based Small-to-Large LLM Routing Across Tasks and Languages",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23234",
+    "title": "MultiAgent-OPD: End-to-End Training of Hierarchical Multi-Agent Systems with On-Policy Distillation",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.23183",
+    "title": "AMEND: Constraint-Guided Multi-Agent Text Detoxification with Isolated Critics",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.22985",
+    "title": "Prism Attention: Proposal-Refined Index Sharing Mechanism for Efficient LLMs Inference",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.22937",
+    "title": "Many Biases, One Circuit: Post-Training Tunes a Pretrained Cue-Routing Mechanism",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22515",
+    "title": "alkhder at ImageEval 2026 Shared Tasks: Constrained Selection and Rotation-Averaged Logit Scoring for Multimodal Hallucination Detection",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.22468",
+    "title": "From Parallels to Divergence: Language Models' Learning of Action Nominal Constructions",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.22454",
+    "title": "Where Prefill Expert Reduction Hurts MoE Models: A Few Prompt Tokens Carry Most of the Short-Answer F1 Loss",
+    "pages": [
+      "cs.CL-recent",
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23443",
+    "title": "ScoutRoute: Efficient Mixture-of-Experts Routing Using Internal Language Model Signals",
+    "pages": [
+      "cs.CL-recent"
+    ]
+  },
+  {
+    "id": "2610.31633",
+    "title": "BeNice! Closing Looping's Inference-Memory Gap via KV-Sharing",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31612",
+    "title": "Efficient and Optimal Learning of Discrete Distributions with Person-Level Privacy",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31549",
+    "title": "Shift-aware score transport for privacy auditing without retraining",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31483",
+    "title": "Training Small Language Models for Transferable Tool Selection",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31479",
+    "title": "Evaluating the Applicability of LLM Inference Optimizations on Apple Silicon",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-new",
+      "cs.DC-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31465",
+    "title": "RheOPT: Few-Shot Non-Newtonian Flow Prediction via Newtonian Pretraining of RheOFormer",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31309",
+    "title": "Extreme Compression of Per-Layer Embeddings via Cross-Layer Latent Vector Quantization",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31089",
+    "title": "Transformers with CoT Discover Heavy-Ball Acceleration Through Training",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31075",
+    "title": "When Forgotten Facts Return: Relearning-Aware Unlearning of Knowledge Graph Embeddings via Tangent Kernels",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30965",
+    "title": "Energy and Latency First: How Deployment Constraints Reverse Time-Series Model Selection",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30957",
+    "title": "Doubly Robust Distributionally Robust Offline Contextual Pricing",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30884",
+    "title": "Tracing Subliminal Learning Through Pretraining",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30873",
+    "title": "MOER: Mix-Policy Optimization under Expert Prefix Guidance with Selective Rollback",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30853",
+    "title": "Training Mixed-Monotone Neural Networks for Verification Without Set Propagation",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30802",
+    "title": "Is spectral predictability enough? Testing Ω-matching for synthetic pretraining under distribution shift",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30792",
+    "title": "Trace2World: Reconstructing App Worlds from Real Interaction Traces for Scalable GUI Agent Training",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30791",
+    "title": "Gandalf: Flash Shall Not Die! Increasing Flash Storage Lifetime for KV Cache Offloading in LLM Serving",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30777",
+    "title": "One Pretrained Decision Model Is Enough for Training-Free Generalist Graph Anomaly Detection",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30756",
+    "title": "Primal-Dual Representation Learning for Low-Rank Constrained MDPs",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30744",
+    "title": "Random Remasking Scales Masked Diffusion Inference",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30729",
+    "title": "Width and Depth Limits Commute During Training",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30493",
+    "title": "Optimal Multitask Representations Under a Rate Constraint: An Information Bottleneck Analysis",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30362",
+    "title": "CTRL-FM: Inference-Time Structural Control for Flow-Based Virtual Sensing under Long-Horizon Node Outages",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30339",
+    "title": "Spike-Aware Gradient-Based Mixed-Precision Quantization of Spiking Neural Networks for Vision Applications",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30206",
+    "title": "MoEZip: Routing-Aware KV Cache Compression for Sparse Mixture-of-Experts LLMs",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31663",
+    "title": "Phase Transition from Random Features to Fully Trainable Networks",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31526",
+    "title": "Direct Inference on Admissible Sets (Diona)",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31524",
+    "title": "Nonparametric autoregressive estimation of probability distributions with parallel gradient boosting",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31504",
+    "title": "Structure-preserving reduced-order models of thin panels in supersonic and hypersonic flow",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.31260",
+    "title": "Can Entanglement-Induced Feature-Map Designs Improve Projected Quantum Kernels?",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30899",
+    "title": "Parameter Learning in Active Inference via Variational Message Passing",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30798",
+    "title": "Amplifying Latency and Cost of LLM Inference via Rowhammer Attack",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30480",
+    "title": "FIGFLEX: A Mixed-Precision FP-INT GEMM Accelerator Co-Designed with Low-Bit LLM Quantization",
+    "pages": [
+      "cs.LG-recent",
+      "cs.AR-new",
+      "cs.AR-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30465",
+    "title": "Flow-based Spectral Kernel Learning for Nonstationary Attention",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30421",
+    "title": "High-Value Training Data from Noisy, Diverse Sources",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30191",
+    "title": "Why Constrained Updates Still Forget: A Functional-Path Analysis of Continual SFT",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30182",
+    "title": "Detecting AI Training in Datacentre Power",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.30018",
+    "title": "ExGrad: Beyond Suppression - Explicit Clean-Gradient Subtraction in Adversarial Training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29734",
+    "title": "Monitorability Is Trainable: Post-Training for Chain-of-Thought Monitorability",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29676",
+    "title": "DriveMLP: When Training Strategy Outperforms Model Complexity in Autonomous Driving",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29605",
+    "title": "Improved Training of Strong Stochastic Flow Maps",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29538",
+    "title": "Stochastic Pruning of the DPO Computation Graph: 1.4x Faster Training and Lower Peak Memory",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29385",
+    "title": "Parallelizable Probabilistic Latent Reasoning for Diverse Reasoning Trajectories",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.29355",
+    "title": "GaP-MoE : Explicit Expert Specialization in Mixture-of-Experts via Orthogonal Gradient Accumulation and Projection",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29237",
+    "title": "MA-UITD: Offline Multi-Agent Reward Inference for Characterizing Continuous Social Behavior",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29024",
+    "title": "Dissimilarity-Based Markov Decision Processes for Stabilizing State Distributions",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29009",
+    "title": "Local and Sparse Kernel Operator Learning for Incompressible Flows: An Operator Lagrange Formulation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28947",
+    "title": "Is 2:4 Sparsity Still Worth It? Semi-Structured Sparsity versus Quantization in LLM Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28937",
+    "title": "Auditing Conformal Prediction for Language Models Under Inference-Time Model Shift",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28898",
+    "title": "Minimax-Optimal Predictive Flow Matching under Distribution Drift",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28883",
+    "title": "RL-IF: Tracking Non-local Training Data Influence for Online Reinforcement Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28878",
+    "title": "Actually, All Learnable Distribution Classes Are Privately Learnable",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28872",
+    "title": "LEAN: Loss-Engineered Modulation of the Model Weight-Sensitivity Distribution for Efficient, Error-Tolerant Neural Networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28788",
+    "title": "ArcFlow: Training Flow Policies for Multiple Solver Budgets",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28784",
+    "title": "Extreme Low-State Quantized Transformer for Electricity-Load Forecasting",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28773",
+    "title": "Building a Nested LADDER for LLM Unstructured Post-Training Pruning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28707",
+    "title": "SimHack: Predicting the onset of detectable reward hacking before RL training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28703",
+    "title": "Scalable Stress-Constrained Topology Optimization: A Super-resolution and Simultaneous Approach Based on Machine Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28637",
+    "title": "To Keep or Not to Keep: Learning KV Cache Retention in Disaggregated LLM Serving Systems",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29982",
+    "title": "The Price of Current-Effect Inference in Nonstationary Multi-Armed Bandits",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29909",
+    "title": "Tractable Inference with Kolmogorov-Arnold Networks",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.29845",
+    "title": "RangeNav: Task-Aligned LiDAR Range-Image Pretraining for Robot Navigation",
+    "pages": [
+      "cs.LG-recent",
+      "cs.LG-new"
+    ]
+  },
+  {
+    "id": "2610.29688",
+    "title": "Rethinking Post-hoc Debiasing of Large Pretrained Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29630",
+    "title": "Space weather dependence of decameter-scale ionospheric irregularities spatial distribution",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29595",
+    "title": "Near Minimax Rate for Quantile Distributional Reinforcement Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29530",
+    "title": "Residual-Based Causal Discovery via Pretrained In-Context Quantile Regression",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29261",
+    "title": "Group Distributionally Robust Optimization over Decentralized Networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29229",
+    "title": "Cache Locally, Recompute Selectively for Streaming Video Understanding",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29205",
+    "title": "Reconstruction differences rival individual differences in the fly compass connectome and break trained circuit models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29149",
+    "title": "SAFTER: Safety-Aware Filtering Through Explicit Recoverability for Robust Reinforcement Learning under Distribution Shift",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.29007",
+    "title": "A Jump-Modified Wasserstein Gradient Flow for Maximum Mean Discrepancy with Energy Kernels",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28759",
+    "title": "GPU-Accelerated Construction of the Gabriel Graph: Parallelization Strategies and Applications to Large-Margin Classification and Graph-Based Clustering",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.28698",
+    "title": "Scaling in Games: Continued Pre-Training For Embodied Agents In Diverse Virtual Worlds",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28591",
+    "title": "PaPi: Parallel Picard-Duhamel Integration for Fast Neuro-Spectral Architectures",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28409",
+    "title": "Rewards for Budget-Aware Multi-Turn Agents That Adapt to Arbitrary Test-Time Constraints",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28369",
+    "title": "Don't Skip the Baseline: A Controlled Comparison of Dynamic Expert Skipping in MoEs",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28355",
+    "title": "Beyond the Point Mass: Acceptance-Derived Weights and Distributional Losses for Speculative Decoding",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28322",
+    "title": "Manifold-Informed Neural Networks for Low-Label ECG Electrolyte Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28229",
+    "title": "TPO: Tri-level Distributionally Robust Learning for OOD Direct Preference Optimization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28203",
+    "title": "JAXbounce: A Continuous-Control Pong-Like Benchmark for Active Inference Beyond Low Dimensional Environments",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28036",
+    "title": "When Does Training on Synthetic Data Provably Work?",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27763",
+    "title": "Foundation-Style Pretraining for Scalable and Transferable Distributed PV Forecasting",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27558",
+    "title": "AnchorRM: Parallel Intra-Batch State Reconstruction with Anchor-Based Residual Memory for Temporal Graph Neural Networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27468",
+    "title": "Training-Free Continual Learning for Multimodal Forecasting via Prompt Evolution",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27389",
+    "title": "Fixed-Size Active Statistical Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27211",
+    "title": "A Theoretical Analysis of Environment-Aware Out-of-Distribution Detection for Vision-Language Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27123",
+    "title": "Reconstruction-Optimized Expert Pruning for Mixture-of-Experts Language Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28314",
+    "title": "Debiased Prior-Data Fitted Networks for Amortized Bayesian Semi-Parametric Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28192",
+    "title": "Offline Makes Online Better: Calibrated Cache Compression for Video Generation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.28155",
+    "title": "Predicting silent failures of learned inference under restricted access: what measurement physics and prior information explain",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27870",
+    "title": "Enumeration-Guided Training of Neural Hamilton-Jacobi Safety Certificates",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27668",
+    "title": "Inferring continuous cognitive traits from limited neuroimaging data using pairwise convolutional neural networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27621",
+    "title": "A Radiation-Hardened, Fault-Aware Quantized Neural Network That Self-Heals",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27570",
+    "title": "Bayesian Neural Networks via Dirichlet Process Priors on the Data-Generating Distribution for Randomized Value Functions in Deep Reinforcement Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27500",
+    "title": "Soliton Profiles in 1D: Enhanced Neural-Network Solvers and Constrained Deep Ritz Methods",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27412",
+    "title": "Learning the Geometry of Materials Space with Trained Neural Tangent Kernels",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27387",
+    "title": "Training Controllable World Models via Action Influence Maximization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.27309",
+    "title": "What Not to Erase: Saliency-Constrained Augmentation for Low-Resource Handwritten Character Recognition",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26987",
+    "title": "Dynamic Dual-Feedback Conformal Inference for Time Series Forecasting",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26863",
+    "title": "Text-to-Image Generative Modeling Without Language Pretraining",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26834",
+    "title": "Kronecker Delta Rule for Long Context Linear Attention",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26817",
+    "title": "Next Best Action: Causal Constrained Offline RL for Business Action Targeting",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26800",
+    "title": "Learning to Refer: Inference-Time Collaboration in Decentralized Federated Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26790",
+    "title": "Training with ML-labeled Data via Stochastic First- and Zeroth-Order Optimization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26651",
+    "title": "The Effectiveness and Durability of Pretraining Data Filtering in Protein Language Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26486",
+    "title": "Wet-Biased Data Pipelines Mislead the Training and Evaluation of Generative Precipitation Nowcasting",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26443",
+    "title": "Rethinking LLM Fine-Tuning via Weight Space Reparameterization: Preserving Safety during Downstream Adaptation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26347",
+    "title": "Logit Averaging During Training Sets a New State of the Art for Non-Invasive Speech BCI",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26156",
+    "title": "Dynamical Batching: How Class-Cycling Training Shapes the Internal Structure of Neural Networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26123",
+    "title": "Optimal Multi-Kernel Combination for Online Multi-Label Classification",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26114",
+    "title": "From Retrieval to Recognition:Knowledge-Enhanced Post-training of Time Series Foundation Models for Classification",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26102",
+    "title": "Provable Adversarial Detection: Prime Quantization meets Gromov--Wasserstein",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25933",
+    "title": "The KV-Surgeon: Compensation-Aware Offline KV-Cache Compaction",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25901",
+    "title": "Out-of-Distribution Detection in Continual Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25881",
+    "title": "Learn the Interface, Not the Implementation: Output Representation Dominates Training Regime in LLM-Based RTL Generation",
+    "pages": [
+      "cs.LG-recent",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.25749",
+    "title": "Cognitively Decoupled Meta-Induction for Out-of-Distribution Generalization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25739",
+    "title": "How Much Does One Wrong Answer Cost? Error Propagation in Constraint Pruning with Noisy LLM Oracles",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25627",
+    "title": "Conditional Average Treatment Effect Distillation for Hypothetical State-Intervention Targeting Under Budget Constraints",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25621",
+    "title": "Weighted State Souping for Efficient Long-Context Retrieval",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25604",
+    "title": "Adversarial Post-Training of Foundation Models for High-Frequency Trading",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25591",
+    "title": "Distributionally-Robust Policy Learning with Observational Data",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25577",
+    "title": "Finite Interaction Lens: Structured Precision Sharing for Vision-Language Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25431",
+    "title": "MOSAIC: Multi-Objective Search for Allocating Inference Cache Across LLM Decoder Layers",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25335",
+    "title": "A Distribution-Free Separation Between Learned and Fixed Features",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25325",
+    "title": "Where Groups Split: A Probe Prior for Nonzero Within-Group Variance in RL Post-Training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25048",
+    "title": "PACT: NVFP4 Data-Flow LoRA Fine-Tuning on Consumer GPUs",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25012",
+    "title": "Conjugate Compilation: Self-Improving Agentic Co-Compilation for Speculative Decoding",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24970",
+    "title": "PRECOCIAL: Pretraining with Code Curriculums via Iterative Search for Accelerated Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24938",
+    "title": "T-MUON: Tensorizing Muon via t-SVD for Large Language Model Pre-training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24937",
+    "title": "MLFont: Machine Learning-Driven Font Subsetting and Range-Compact Unicode-Range Slicing for Low-Latency Web Typography",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24897",
+    "title": "Distribution-Based Regularization for Reward Fine-Tuning Diffusion and Flow Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24875",
+    "title": "RAFT: Redundancy-Aware Input Filtering for Temporal Graph Neural Network Training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24816",
+    "title": "First-Order LoRA Training with Phone NPUs",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24736",
+    "title": "How Does Muon Work in Private Deep Learning? Scalable Differentially Private Training via Orthogonalization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24721",
+    "title": "Tensor Network Datamodels for Training Data Attribution",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24685",
+    "title": "Contrastive Adversarial Training for Robust Graph Neural Networks under Label Poisoning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24648",
+    "title": "EdgeKernelBench: Unified LLM-Driven Kernel Generation for Edge Backends",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24562",
+    "title": "No-Regret Revenue Maximization in Sequential Market Making Under Inventory Constraints",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24511",
+    "title": "TopoCompile: Molecular Generation with Exact Global Count Constraints",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24499",
+    "title": "TideKV: Delayed KV Eviction via Layer-Wise Chunked Prefill for Memory-Efficient Long-Context LLM Inference",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24441",
+    "title": "Transformers as Adaptive Kernel Learners across Tasks for In-Context Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24346",
+    "title": "Measuring the Task Value of Precision Upgrades in Closed-Loop Agents",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24278",
+    "title": "Dataset Inference for Data Provenance and Privacy Auditing in Tabular Foundation Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24185",
+    "title": "Bootstrap Stochastic Interpolant Tree for Inference-time Search Under Sparse Reward",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24026",
+    "title": "Dynamical Kernel Attention: Estimating the Present from a Record of the Past",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24014",
+    "title": "TWIN-MoE: Two-stage Intra-Expert Imputation Network for Incomplete Multimodal Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23955",
+    "title": "Physics-Aware Self-Supervised Pretraining on Multi-Domain Raman Spectra",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23951",
+    "title": "LatLM: Line-Parallel Language Models with Deferred Commitment",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23950",
+    "title": "Compaction-Aware Reinforcement Learning For Ascend Triton Kernel Generation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23949",
+    "title": "DS-Net: A Dynamic Split Network for Edge-Cloud Collaborative Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23942",
+    "title": "ReTTT: Reflection-Driven Test-Time Training via Experience-Based Parametric Memory",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23935",
+    "title": "Factorization-Guided Training and Inference for Diffusion-Drafted Speculative Decoding",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23934",
+    "title": "Organizing LLM Inference for Aggregate Predictions from Behavioral Data",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23861",
+    "title": "PolyGraph: Plan-Buffered CUDA Graphs for Adaptive Speculative Decoding",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26605",
+    "title": "A Probabilistic, Rotation-Preserving Kernel Operator Surrogate for Continuum-Robot Design Spaces",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26577",
+    "title": "SafeWall: A Risk-Aware Job Walltime Recommendation for HPC Scheduling",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.26551",
+    "title": "Training Natural Schemers: RL Can Amplify Oversight-Conditional Behavior",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26507",
+    "title": "Learn the Task, Not the Schedule: Reducing Spurious Cross-Arm Coupling in Bimanual Imitation Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26323",
+    "title": "TriScore: Post-Hoc Out-of-Distribution Detection with Energy, Boundary Probes, and Transform Consistency",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26153",
+    "title": "Physics-Driven Framework for QoS-Constrained Satellite System with Non-Linear PA Distortion",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.26100",
+    "title": "Multilingual Voicemail and Answering Machine Detection via Pretrained Audio Embeddings and Gradient Boosting Machines",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25460",
+    "title": "Reliability-Preserving Compression for Deployable Medical Image Segmentation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.25023",
+    "title": "Integrable building blocks for symplectic neural networks: learned-type layers, fiber-preserving layers, and what a single layer can do",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24892",
+    "title": "Scalable and Adaptive Distribution Regression via Random Features",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24890",
+    "title": "Query-Dependent Reading for Quantized Inner-Product Estimation: A Minimax Separation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24664",
+    "title": "Knowledge Diversion: A Novel Paradigm for Pre-training Decomposable Image Generation Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24509",
+    "title": "Denoising Implicit Variational Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.24229",
+    "title": "Training-Free Prompt Selection for Efficient Reinforcement Learning With Partial Rollouts",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23650",
+    "title": "JAXtari: High-Throughput and Easy-to-Modify Arcade Learning Environment",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23565",
+    "title": "Beyond Expected Values: Risk-Sensitive Planning with Distributional Monte-Carlo Tree Search",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23394",
+    "title": "Forecasting Voltage Time Series under Anomalies Using a WGAN Model With Lipschitz Control and Progressive Kernel Critic Strategy",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23328",
+    "title": "Peak-Memory Schedules You Can Trust: Exact Realization, Certified Optimality, and the Limits of Recomputation for Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23315",
+    "title": "Untrained CNN and coefficient-space regularization for joint reconstruction in photoacoustic tomography",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23289",
+    "title": "Data-Efficient Classifier Pretraining Through Diffusion Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23190",
+    "title": "LangNCO: Compiling Natural-Language Constraints into Inference-Time Interventions for Neural Combinatorial Optimization",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23185",
+    "title": "A Stronger Teacher Within: Strengthening MoE Models via On-Policy Bidirectional Distillation",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23145",
+    "title": "Local proxies for memory-efficient training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22998",
+    "title": "A Label Noise Robust Algorithm for Graph Data using Neighborhood Label Distribution",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22996",
+    "title": "TALLOP: Joint Optimization of Local Training and Communication Compression for Time-Constrained Federated Learning",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22955",
+    "title": "On the tradeoff between robustness and geometric accuracy in adversarial training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22925",
+    "title": "Scalable Levenberg-Marquardt Training Framework for Deep Learning",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22794",
+    "title": "Ori: Drift-Aware Streaming $k$-PCA for Very Low-Rank LLM Training",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22695",
+    "title": "Chance-Constrained Personalized LLM Routing with Online Preference Learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22650",
+    "title": "The Ephemeral Cost of Switching Optimizers Across LLM Training Stages",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22621",
+    "title": "Noise-shaped Sampling and Annealing for Scalable On-the-edge Training of Binary and Ternary AI Models",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22575",
+    "title": "Structure-Aware Spatial Kernels for Gaussian Process Distributed Port-Hamiltonian Systems",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22543",
+    "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22539",
+    "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22435",
+    "title": "TRACE: Transformer Residual Activation Codebook Encoding for Communication-efficient Distributed Edge Inference",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22433",
+    "title": "BOLT: Multi-Bottleneck Bound-Guided Learning for Flexible Job-Shop Scheduling with Time Lags and Resource-Coupled Transport",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22430",
+    "title": "CGDT-CESN: Correlation-Guided and Dynamics-Trained Clustered Echo State Network for Multivariate Time-Series Prediction",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23825",
+    "title": "ENFR: Evidence Networks with Flow-Matched References for Amortized Simulation-Based Model Inference",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23798",
+    "title": "Task-aware Kernel Stein certificates for Rényi differential privacy",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23788",
+    "title": "Parametric Resonance in Primal-Dual Learning for Slowly Non-Stationary Constrained MDPs",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23692",
+    "title": "Expressivity of IQP Feature-Map Quantum Kernels via Reproducing Kernel Hilbert Spaces",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23543",
+    "title": "Causal Discovery beyond Conditional Independence: Identifiability, Algorithms, and Statistical Inference for Directed Acyclic and Cyclic Graphs",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23477",
+    "title": "Towards optimal selection schedules for online active learning",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23292",
+    "title": "Distributed Performance Boosting through Neural Control for Plug-and-Play Networks",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.23047",
+    "title": "DIFFLET: A Fast Inference Engine for Diffusion Transformer Models on AWS Trainium",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22990",
+    "title": "PersonaCUABench: Benchmarking Computer-Use Agents Serving Diverse Personas",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22811",
+    "title": "Replay Pruning and Few-Bit Integer Inference for Hardware-Efficient Speed-Sign Recognition",
+    "pages": [
+      "cs.LG-recent",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.22722",
+    "title": "LLM-Attack Suite: A Unified Red-Team Framework for Privacy Evaluation of Split and Distributed LLM Systems",
+    "pages": [
+      "cs.LG-recent",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22431",
+    "title": "GPU-Accelerated Robust MA--RIS Pre-Optimization for Communication and Target Illumination",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.22377",
+    "title": "Memory Bandwidth, Not FLOPs: Profiling and Accelerating Query-Based Segmentation Decoders on Edge GPUs",
+    "pages": [
+      "cs.LG-recent",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.22376",
+    "title": "Physics-Transfer Learning: A Physics-Constrained Theory for Zero-Shot Generalization Along the Ladder of Complexity",
+    "pages": [
+      "cs.LG-recent"
+    ]
+  },
+  {
+    "id": "2610.30868",
+    "title": "uGDS: A User-Space Development Kit for High-Performance GPU Direct Storage",
+    "pages": [
+      "cs.DC-new",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.30923",
+    "title": "Low-Latency MoE Inference in Space Data Centers: A Wireless-Power-Transfer Perspective",
+    "pages": [
+      "cs.DC-new",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.31203",
+    "title": "Almost tight distributed approximation for domination in sparse graph classes",
+    "pages": [
+      "cs.DC-new",
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29503",
+    "title": "Hard and Soft Real-Time DNN Inference Scheduling on Heterogeneous Multi-Accelerator Systems via Reinforcement Learning",
+    "pages": [
+      "cs.DC-new",
+      "cs.DC-recent",
+      "cs.AR-new",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.29988",
+    "title": "Enumeration-based Triangle Counting on GPUs",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29820",
+    "title": "UlaCache: Unified Logical Addressing for Sparse LLM Serving",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29544",
+    "title": "RISK-KV: Quality-Aware Selective KV Cache Reconstruction for Distributed LLM Inference",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29183",
+    "title": "Resuming Vision-Language Inference across Onboard Interruptions",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.28867",
+    "title": "Engineering Low-Latency, High-Throughput Quantum Decoders on NVIDIA GPUs",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.29873",
+    "title": "HAWK: Heterogeneity-Aware KV Cache Transfer for Efficient GPU-NPU Phase-Disaggregated LLM Inference",
+    "pages": [
+      "cs.DC-recent",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.28805",
+    "title": "SAT Sampling at Scale via GPU-based Boolean Constraint Propagation",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.27930",
+    "title": "Benchmarking CPU, GPU, and ML Power-Flow Solvers from 14 to 70,000 Buses",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.27651",
+    "title": "Constrained Federated Reinforcement Learning for Secure Offloading in Vehicular Edge Computing",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.27306",
+    "title": "SweepANN: A GPU-Accelerated Large-K Approximate Vector Search for Drug Discovery",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.26991",
+    "title": "3D-MoE: Complementarity-Guided Hardware-Software Co-Design for MoE Decode on 3D-Stacked NMP",
+    "pages": [
+      "cs.DC-recent",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.26945",
+    "title": "Emulating DGEMM and ZGEMM with INT8 Matrix Engines on Intel Arc GPUs: Ozaki Scheme II on the Xe2 Architecture",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.26609",
+    "title": "CQTwin: A Digital-Twin Toolkit for Operational Analytics of HPC Schedulers",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.26178",
+    "title": "GeoTrain: Energy-Aware Automatic Parallelism for Foundation Model Training on Heterogeneous Geo-Distributed Resources",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.26171",
+    "title": "CEMA-Router: Infrastructure-Aware Batch Routing for LLM Inference in Cloud-Edge Systems",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25149",
+    "title": "panvram: GPU-resident random access to a human pangenome cohort",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25066",
+    "title": "Ineffective Occupancy in Heterogeneous GPU Clusters: Prediction, Contribution Analysis, and Readiness-Aware Scheduling",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25058",
+    "title": "Triple Overlap in Pipelined Krylov Methods on Multi-GPU Systems",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25039",
+    "title": "Mixed-Precision GPU Acceleration for Confidence Regions of Spatial Excursion Sets",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.25033",
+    "title": "PlaneZip: Lossless Bit-Plane Compression of Training Activations Offloaded over PCIe",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24997",
+    "title": "Hierarchical Rule Auditing with Exact Ternary GPU Correlation",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24974",
+    "title": "BitPCE: Batched Multi-Dimensional PolicyResolution with GPU Bitmap Algebra",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24830",
+    "title": "HEL: A Heterogeneous Extensible Layer for GPU-Resident Runtime Orchestration",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24355",
+    "title": "Koi: Evidence-Guided, Self-Calibrating Planning for Multi-Cloud, Heterogeneous LLM Inference Fleets",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24328",
+    "title": "SigmaTrace: Library-Agnostic Observability for CPU/GPU-Initiated RDMA Communication",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24179",
+    "title": "KVCompass: A Discovery Plane for Internet-Scale Prefix Cache Sharing in LLM Serving",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24038",
+    "title": "Merge Hulls Without Copying Vertices: GPU Isotonic Regression",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24431",
+    "title": "Low-Bit Distributed Constrained Optimization with Application to Optimal Scheduling and Allocation",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.24421",
+    "title": "Adding Heavy-Ball Momentum to Distributed Constrained Optimization for Energy Resource Management Subject to Time-Delays and Quantization",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.23064",
+    "title": "BaGuaLu-2: Taming Dynamic Memory Fluctuation for Efficient MoE Model Training over 10,000 GPUs",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22731",
+    "title": "Accelerated Dataflow: scaling inference in streaming data analytics with efficiency",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22690",
+    "title": "Fast Distributed $(Δ+ 1)$-Edge Coloring in Bipartite Graphs",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22508",
+    "title": "TCDA: Tunable Coded Distributed Arrays for Data Availability Sampling",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.23072",
+    "title": "ScaleRAN: A Runtime for Elastic GPU Resource Management in AI-RAN",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.22966",
+    "title": "Encodings and Node Architecture: Lessons from the Fault-Tolerant Distributed Transversal Fanout",
+    "pages": [
+      "cs.DC-recent"
+    ]
+  },
+  {
+    "id": "2610.30687",
+    "title": "HDLouvain: High-Throughput Incremental Clustering for Hyperdimensional Data",
+    "pages": [
+      "cs.AR-new",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.30990",
+    "title": "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching",
+    "pages": [
+      "cs.AR-new",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.31630",
+    "title": "Ray-by-Ray: Fine-Grained Resource Management for GPU Ray Tracing Units",
+    "pages": [
+      "cs.AR-new",
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.28671",
+    "title": "Accelerating CPU Speculative Decoding via Unified Graph Execution and Transactional KV Isolation",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.28246",
+    "title": "DiffRMST: A GPU-Accelerated Fully Differentiable Rectilinear Minimum Spanning Tree Wirelength Model for Global Placement",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.27345",
+    "title": "Sustainable Processing-in-DRAM Integration and Replacement for Transformer Inference Servers",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.26552",
+    "title": "A 105 MS/s 4.18 nJ/inference 0.765 $\\text{mm}^\\text{2}$ Mixed-Signal Streaming ML Engine for Wireless Baseband in 12LP+ FinFET",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.26131",
+    "title": "A Hybrid GPU and Processing-Near-Memory Architecture with Shared DRAM for Efficient Prefill-Decode Disaggregation",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.26083",
+    "title": "MX-Like Tensor Core for LLM Inference with NPU Integration via Hardware-Software Co-Design Exploration",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.23767",
+    "title": "TileDRAM: Compiler-Controlled Tile-to-DRAM Layouts for 3D DRAM GPGPUs",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.23222",
+    "title": "qGAMMA: A Framework for Optimal DNN Mapping on Multi-Precision Accelerators",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.22877",
+    "title": "BS-Spec: BFP-Based Bit-Sharing for Self-Speculative LLM Decoding with LUT-Driven Mixed-Precision Acceleration",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.22579",
+    "title": "MemLLM: End-to-end In-Storage Acceleration of On-device Retrieval-Augmented Generation using Precomputed KV Caches",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  },
+  {
+    "id": "2610.23415",
+    "title": "ConQUESTA: Topology-Aware Post-Training Structural Pruning of Quantum Neural Networks",
+    "pages": [
+      "cs.AR-recent"
+    ]
+  }
+]

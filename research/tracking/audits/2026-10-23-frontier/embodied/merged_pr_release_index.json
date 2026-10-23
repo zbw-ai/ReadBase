@@ -1,0 +1,1665 @@
+{
+  "event_window_utc": {
+    "start_exclusive": "2026-10-19T01:40:52Z",
+    "end_inclusive": "2026-10-23T03:09:27Z"
+  },
+  "scope": "Seven named repositories, all merged PR base branches. Search completeness is not direct-commit coverage. Release lists exhausted below 100 per repo.",
+  "repositories": [
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "query": "repo:NVIDIA/Isaac-GR00T is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Isaac-GR00T%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:51.038126+00:00",
+      "total_count": 1,
+      "incomplete_results": false,
+      "returned": 1,
+      "pages": 1,
+      "items": [
+        {
+          "number": 797,
+          "title": "Update GR00T N1.7",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/pull/797",
+          "created_at": "2026-10-21T22:04:46Z",
+          "updated_at": "2026-10-22T21:49:59Z",
+          "base": "main",
+          "merged_at": "2026-10-22T21:49:58Z",
+          "merge_commit_sha": "944fe70c4fd54e3fcb80a7d7258a328f9c061176",
+          "head_sha": "1e06cff635b734e31e9b5ed8082ba6a5af973559",
+          "author": "gr00t-agent[bot]"
+        }
+      ],
+      "releases_returned": 5,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "n1.6.1-release",
+          "name": "n1.6.1-release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.6.1-release",
+          "published_at": "2026-04-23T23:51:24Z",
+          "prerelease": false,
+          "target_commitish": "1d6_release"
+        },
+        {
+          "tag_name": "n1.7-release",
+          "name": "n1.7 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.7-release",
+          "published_at": "2026-04-18T14:45:14Z",
+          "prerelease": false,
+          "target_commitish": "23ace64f17aa5015259b8609d371eb61a357c776"
+        },
+        {
+          "tag_name": "n1.6-release",
+          "name": "n1.6 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.6-release",
+          "published_at": "2026-04-15T20:46:06Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "n1.5-release",
+          "name": "n1.5 release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1.5-release",
+          "published_at": "2025-12-15T15:54:30Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "n1-release",
+          "name": "n1-release",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/releases/tag/n1-release",
+          "published_at": "2025-06-11T12:29:00Z",
+          "prerelease": false,
+          "target_commitish": "n1-release"
+        }
+      ],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {
+        "main": 1
+      }
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "query": "repo:isaac-sim/IsaacLab is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Aisaac-sim/IsaacLab%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:50.198570+00:00",
+      "total_count": 37,
+      "incomplete_results": false,
+      "returned": 37,
+      "pages": 1,
+      "items": [
+        {
+          "number": 8782,
+          "title": "[PR9C] Fix native frame reads and preserve live Fabric poses",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8782",
+          "created_at": "2026-10-22T07:03:40Z",
+          "updated_at": "2026-10-22T22:13:20Z",
+          "base": "main",
+          "merged_at": "2026-10-22T22:05:56Z",
+          "merge_commit_sha": "41480b9fca0b89b098ea35d0cd88a73f832007d6",
+          "head_sha": "d996e785557b9daffe08c5ebd95403ea12267a8d",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8781,
+          "title": "Fix ray mesh triangulation and query shape validation",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8781",
+          "created_at": "2026-10-22T06:47:17Z",
+          "updated_at": "2026-10-22T22:32:06Z",
+          "base": "main",
+          "merged_at": "2026-10-22T22:31:02Z",
+          "merge_commit_sha": "e4df255fc38a2d1faf995774cfc4efbdf3b7936e",
+          "head_sha": "7b2413b4da2c8e7591218235407a611764fbbbed",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8774,
+          "title": "[PR9B] Simplify teleoperation and recording script setup",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8774",
+          "created_at": "2026-10-21T20:57:56Z",
+          "updated_at": "2026-10-22T04:28:14Z",
+          "base": "main",
+          "merged_at": "2026-10-22T04:28:14Z",
+          "merge_commit_sha": "50fa6957b614cd3eb820abf5cc72a25f5abbe26a",
+          "head_sha": "2ca4f15f9e2faa9bedaadf5b39646cb77a545cdb",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8773,
+          "title": "[PR9] Bind teleop and XR frame references during setup",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8773",
+          "created_at": "2026-10-21T19:58:22Z",
+          "updated_at": "2026-10-22T05:13:15Z",
+          "base": "main",
+          "merged_at": "2026-10-22T05:13:15Z",
+          "merge_commit_sha": "dee1edb8a7299ae34f20f179ef930e9c8dc330a6",
+          "head_sha": "6373fe05d7048fcb6b8ab4b93f358c6ee41d4690",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8770,
+          "title": "Document Cosmos Transfer demo setup and training",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8770",
+          "created_at": "2026-10-21T15:01:17Z",
+          "updated_at": "2026-10-21T15:20:26Z",
+          "base": "exp/cosmos",
+          "merged_at": "2026-10-21T15:01:41Z",
+          "merge_commit_sha": "a866a17a487282c887cfca3b3f1a4bcc99398249",
+          "head_sha": "a866a17a487282c887cfca3b3f1a4bcc99398249",
+          "author": "rubendsa"
+        },
+        {
+          "number": 8765,
+          "title": "[PR8] Share scene bindings for sensors and cuRobo",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8765",
+          "created_at": "2026-10-20T23:50:59Z",
+          "updated_at": "2026-10-22T09:41:42Z",
+          "base": "main",
+          "merged_at": "2026-10-22T05:45:37Z",
+          "merge_commit_sha": "8c9b995cb95c74ec81498ae948ce4c1d4e20ae00",
+          "head_sha": "a50937a8c605b5df1767a1a0bca064200c1b9e33",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8762,
+          "title": "[Fix] Cut ~4 s from the first articulation spawn by deferring the TorchScript converter import",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8762",
+          "created_at": "2026-10-20T21:55:14Z",
+          "updated_at": "2026-10-22T21:29:38Z",
+          "base": "main",
+          "merged_at": "2026-10-22T21:29:38Z",
+          "merge_commit_sha": "84b8df535bc1f8a976be8de5ec995e2e63f6e096",
+          "head_sha": "26ce03517f9a750c28df9fc9c41cd2159cdac578",
+          "author": "hujc7"
+        },
+        {
+          "number": 8759,
+          "title": "Backport Fern documentation banner to release/3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8759",
+          "created_at": "2026-10-20T20:11:56Z",
+          "updated_at": "2026-10-20T23:38:47Z",
+          "base": "release/3.0.0",
+          "merged_at": "2026-10-20T23:38:47Z",
+          "merge_commit_sha": "961760bcb91e3af48e7d116292e57e8ecaefc31e",
+          "head_sha": "8eb64a07b5d1296698136e3dcd766c65e871faa0",
+          "author": "StafaH"
+        },
+        {
+          "number": 8758,
+          "title": "Add Fern documentation banner",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8758",
+          "created_at": "2026-10-20T20:11:49Z",
+          "updated_at": "2026-10-20T23:12:46Z",
+          "base": "main",
+          "merged_at": "2026-10-20T23:12:46Z",
+          "merge_commit_sha": "73f27529175a6260bd8f09b14936dd1ef1b740a8",
+          "head_sha": "48f1b133b076e7a979af323ab2f04e3f29adbb0c",
+          "author": "StafaH"
+        },
+        {
+          "number": 8755,
+          "title": "Fix coffee kitchen physics routing after #8585",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8755",
+          "created_at": "2026-10-20T17:48:17Z",
+          "updated_at": "2026-10-21T09:05:22Z",
+          "base": "main",
+          "merged_at": "2026-10-21T09:05:21Z",
+          "merge_commit_sha": "46d6cc3d7b115906fad12efd372fbf69f4e3d3ed",
+          "head_sha": "3f788f36a2101ea89b11a5a6337091fce9c9b65f",
+          "author": "maxkra15"
+        },
+        {
+          "number": 8754,
+          "title": "Update documented NVIDIA driver versions",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8754",
+          "created_at": "2026-10-20T17:44:45Z",
+          "updated_at": "2026-10-20T19:29:27Z",
+          "base": "main",
+          "merged_at": "2026-10-20T19:29:27Z",
+          "merge_commit_sha": "4baec3a50786a19c4ad448101050f3e572e79b97",
+          "head_sha": "b277184685ed01e7a2622fe01d1f55cfc656d3d4",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8750,
+          "title": "[CI] Bump Isaac Sim image to dd8a9b417879",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8750",
+          "created_at": "2026-10-20T08:14:17Z",
+          "updated_at": "2026-10-20T15:01:58Z",
+          "base": "main",
+          "merged_at": "2026-10-20T15:00:13Z",
+          "merge_commit_sha": "f8edad88c9388a54a0197392451206811ddbb196",
+          "head_sha": "5be2bf47fbc94daa6972c5d35e1315c3455e2138",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "number": 8748,
+          "title": "Align docs and wheel CI with the main branch cutover",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8748",
+          "created_at": "2026-10-20T03:59:54Z",
+          "updated_at": "2026-10-20T05:03:01Z",
+          "base": "main",
+          "merged_at": "2026-10-20T05:03:01Z",
+          "merge_commit_sha": "800346bea12259fd58525232cc620f3dd3a7652b",
+          "head_sha": "f48c61759b3fa18d69478435c107c75eebd70cff",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8740,
+          "title": "Reduce tablecloth simulation cost with a coarse contact mesh",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8740",
+          "created_at": "2026-10-19T21:09:02Z",
+          "updated_at": "2026-10-20T09:13:08Z",
+          "base": "main",
+          "merged_at": "2026-10-20T09:13:08Z",
+          "merge_commit_sha": "159af106ce06165d7147683695b20d2e3ed63257",
+          "head_sha": "03161ff5e9da04c3a560205bc9fe632757746eb6",
+          "author": "maxkra15"
+        },
+        {
+          "number": 8739,
+          "title": "Run the Fabric Hierarchy update after seeding Fabric frame views",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8739",
+          "created_at": "2026-10-19T20:51:10Z",
+          "updated_at": "2026-10-20T20:58:35Z",
+          "base": "main",
+          "merged_at": "2026-10-20T20:58:35Z",
+          "merge_commit_sha": "1d1ed594336f3176333e558c06e305632ea3e648",
+          "head_sha": "994c9670bf7c547f434ec265895a8f69cefc32e6",
+          "author": "pv-nvidia"
+        },
+        {
+          "number": 8738,
+          "title": "Pin Python 3.12 in release documentation uvx commands",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8738",
+          "created_at": "2026-10-19T20:41:23Z",
+          "updated_at": "2026-10-19T21:09:53Z",
+          "base": "release/3.0.0",
+          "merged_at": "2026-10-19T21:09:52Z",
+          "merge_commit_sha": "e3f7d9ff1f5d7f8280de3ece9000b7117f66bcf4",
+          "head_sha": "5f78f7f636615aec1c7c5754c6f021adffc91974",
+          "author": "StafaH"
+        },
+        {
+          "number": 8732,
+          "title": "Preserve legacy 2.x documentation links",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8732",
+          "created_at": "2026-10-19T19:29:52Z",
+          "updated_at": "2026-10-19T21:44:13Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T21:44:13Z",
+          "merge_commit_sha": "4f16035df94b8c619ebc50c0c72c6205ac56a962",
+          "head_sha": "bd62f1675ff15cb9922cb64db56d7c25c618a5fc",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8731,
+          "title": "Add a Cosmos 3 Transfer README for the Shadow Hand camera task",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8731",
+          "created_at": "2026-10-19T18:44:28Z",
+          "updated_at": "2026-10-20T16:06:07Z",
+          "base": "exp/cosmos",
+          "merged_at": "2026-10-20T01:27:13Z",
+          "merge_commit_sha": "4f8fb991f6b4f4e29e221539e822c8643a46f4aa",
+          "head_sha": "fd78cdd152b6b0a8e47dfb75c2f508f845320d7f",
+          "author": "temiroff"
+        },
+        {
+          "number": 8729,
+          "title": "[Docs] Restore release installation commands in multiversion builds",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8729",
+          "created_at": "2026-10-19T15:50:26Z",
+          "updated_at": "2026-10-19T16:46:55Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T16:46:55Z",
+          "merge_commit_sha": "8702ec03e83be99de073f0408cac0d60bf0e08dd",
+          "head_sha": "0d63bf140f8420d48aa3fea92a8ed33a8959c552",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8728,
+          "title": "Prepare repository for main branch cutover",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8728",
+          "created_at": "2026-10-19T15:45:01Z",
+          "updated_at": "2026-10-19T21:44:40Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T21:44:40Z",
+          "merge_commit_sha": "b9808256e37fe26770e40100033d6603d81a9ba0",
+          "head_sha": "db6712faf2d55d30af5b48e877bebbcfe5f93c02",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8726,
+          "title": "[release/3.0.0] Correct task physics options in environment browser",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8726",
+          "created_at": "2026-10-19T15:06:59Z",
+          "updated_at": "2026-10-19T16:52:31Z",
+          "base": "release/3.0.0",
+          "merged_at": "2026-10-19T16:52:31Z",
+          "merge_commit_sha": "1ba66fef9c1d92cf01d3ba89d5e7057ef7cbf9ef",
+          "head_sha": "3b6bb778a10917a5155424f43989060180e156db",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8725,
+          "title": "Correct task physics options in environment browser",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8725",
+          "created_at": "2026-10-19T15:06:46Z",
+          "updated_at": "2026-10-19T16:48:12Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T16:48:12Z",
+          "merge_commit_sha": "4d8ba0e73c0635a045560279a44fbf63094b79e5",
+          "head_sha": "9d4dd2716bc8dc0daaf6bc8c1c8874dce0400d1a",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8723,
+          "title": "[CI] Bump Isaac Sim image to fe425a9f45a4",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8723",
+          "created_at": "2026-10-19T08:18:36Z",
+          "updated_at": "2026-10-19T14:37:29Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T14:35:48Z",
+          "merge_commit_sha": "7d486b09fea8c1f0de1a571800f7b8e7d3bd2681",
+          "head_sha": "1bae81301038f2f45d88b1389e261e712ff00984",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "number": 8722,
+          "title": "Fix demo visualizer startup and scene placement",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8722",
+          "created_at": "2026-10-19T08:11:53Z",
+          "updated_at": "2026-10-19T15:16:57Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T15:16:57Z",
+          "merge_commit_sha": "fa7202cf9c9009cf9eeb28a28f6407c18206b3d8",
+          "head_sha": "0ea4b720c82417b629ccc87d71dc646ccf37ce7b",
+          "author": "maxkra15"
+        },
+        {
+          "number": 8721,
+          "title": "Match GR00T PyTorch with Isaac Lab",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8721",
+          "created_at": "2026-10-19T03:51:09Z",
+          "updated_at": "2026-10-19T16:58:57Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T16:58:56Z",
+          "merge_commit_sha": "c6138dc95123d400da88e236bd881067864f8771",
+          "head_sha": "56efe3f821a5d8c5452cac29961d675ef8cd11ec",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8720,
+          "title": "[CI] Consolidate short GPU jobs and reduce sensor test startup",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8720",
+          "created_at": "2026-10-19T03:47:26Z",
+          "updated_at": "2026-10-19T22:28:27Z",
+          "base": "main",
+          "merged_at": "2026-10-19T22:28:27Z",
+          "merge_commit_sha": "7c47363f9aefecaa41ab742d98f87185815626c5",
+          "head_sha": "99bdbf0f2707da1dcd4eaff7d67854e1996821f8",
+          "author": "StafaH"
+        },
+        {
+          "number": 8719,
+          "title": "[Backport release/3.0.0] Update GR00T PyTorch to patched 2.10 release",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8719",
+          "created_at": "2026-10-19T03:10:16Z",
+          "updated_at": "2026-10-19T03:58:23Z",
+          "base": "release/3.0.0",
+          "merged_at": "2026-10-19T03:58:23Z",
+          "merge_commit_sha": "70ab24fec3eabf51222817db0cdb5a4e7133bd7e",
+          "head_sha": "f117ff7c9c82055032d8179e90853699cc67809b",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8718,
+          "title": "Update GR00T PyTorch to the patched 2.10 release",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8718",
+          "created_at": "2026-10-19T02:31:29Z",
+          "updated_at": "2026-10-19T03:52:52Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T03:52:52Z",
+          "merge_commit_sha": "5088b326c7fc81caa7899395b0176ad08b89e9e1",
+          "head_sha": "4786009c880540f77d95d658d99c5f42dbc5c566",
+          "author": "sheikh-nv"
+        },
+        {
+          "number": 8713,
+          "title": "[CI] Bump Isaac Sim image to 43dcaa3b2c11",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8713",
+          "created_at": "2026-10-18T08:12:36Z",
+          "updated_at": "2026-10-19T03:11:36Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T03:09:57Z",
+          "merge_commit_sha": "d89b25fa7ee6f97358b5c963fcd2b5d2d92222b3",
+          "head_sha": "dba9738281d78457bc691b46215ff09e5b55c64c",
+          "author": "isaaclab-bot[bot]"
+        },
+        {
+          "number": 8706,
+          "title": "Restore legacy OVRTX default for OvPhysX",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8706",
+          "created_at": "2026-10-17T15:14:50Z",
+          "updated_at": "2026-10-19T07:14:42Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T07:14:39Z",
+          "merge_commit_sha": "0ec7c2971cb6dccfad0f37f7d4cce03176400e6d",
+          "head_sha": "4e98616d473d62fec6060f651131c250f2515ca6",
+          "author": "r-schmitt"
+        },
+        {
+          "number": 8704,
+          "title": "[6Biv] Separate shared visualizer settings from backend options",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8704",
+          "created_at": "2026-10-17T06:14:50Z",
+          "updated_at": "2026-10-20T19:50:58Z",
+          "base": "main",
+          "merged_at": "2026-10-20T19:50:58Z",
+          "merge_commit_sha": "cb1bd7f0f83b86792f9542f638a05172afb89a3e",
+          "head_sha": "7f57131e548cfefa95768982d3d82920654fa4db",
+          "author": "ooctipus"
+        },
+        {
+          "number": 8681,
+          "title": "Place static ray-cast targets in each environment on kitless backends",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8681",
+          "created_at": "2026-10-16T12:40:42Z",
+          "updated_at": "2026-10-20T01:29:29Z",
+          "base": "main",
+          "merged_at": "2026-10-20T01:29:29Z",
+          "merge_commit_sha": "f847b1cbb6e9128f4d5f65fcb83b686650072a99",
+          "head_sha": "b6b7d919286185d803d5f1f1d35098321a7f43fe",
+          "author": "NeoZng"
+        },
+        {
+          "number": 8671,
+          "title": "Fix teapot Kit startup and interactive license prompts",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8671",
+          "created_at": "2026-10-16T10:21:58Z",
+          "updated_at": "2026-10-19T17:11:34Z",
+          "base": "develop",
+          "merged_at": "2026-10-19T17:11:33Z",
+          "merge_commit_sha": "6ebf11648847683b72e0504332800d58ccf694c6",
+          "head_sha": "5ce0418b2b06d1264dd793d38c55cea538f82259",
+          "author": "maxkra15"
+        },
+        {
+          "number": 8668,
+          "title": "Harden task entry point loading and the project generator",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8668",
+          "created_at": "2026-10-16T09:15:37Z",
+          "updated_at": "2026-10-20T18:25:26Z",
+          "base": "main",
+          "merged_at": "2026-10-20T18:25:25Z",
+          "merge_commit_sha": "9e663613bcd377ab0d134d678f62a3d87ee648c0",
+          "head_sha": "3a63492301a081c63b967282ab8a71336a80fe07",
+          "author": "AntoineRichard"
+        },
+        {
+          "number": 8645,
+          "title": "[Docs] Update release references for Isaac Lab 3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8645",
+          "created_at": "2026-10-16T05:43:07Z",
+          "updated_at": "2026-10-20T16:19:01Z",
+          "base": "main",
+          "merged_at": "2026-10-20T16:19:01Z",
+          "merge_commit_sha": "2dbb6146d75c4c5ab2e65a0a9a112dc2a65fb044",
+          "head_sha": "17b8dbeafba2a53d2682b9d5fbf7bc204ed2ef05",
+          "author": "kellyguo11"
+        },
+        {
+          "number": 8580,
+          "title": "Drop host page cache before ARM install tests",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8580",
+          "created_at": "2026-10-14T21:03:03Z",
+          "updated_at": "2026-10-20T22:33:11Z",
+          "base": "main",
+          "merged_at": "2026-10-20T22:33:11Z",
+          "merge_commit_sha": "f1da5ceea00757b45c38e8be4fbc69caac0cbfce",
+          "head_sha": "09150cc906507c7d7eccf3826754bbfe3c1eb6b9",
+          "author": "hujc7"
+        },
+        {
+          "number": 8557,
+          "title": "[Tasks] Start Shadow handover episodes from a random hand and add an opt-in action-rate penalty",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8557",
+          "created_at": "2026-10-14T05:37:09Z",
+          "updated_at": "2026-10-19T23:06:01Z",
+          "base": "main",
+          "merged_at": "2026-10-19T23:06:01Z",
+          "merge_commit_sha": "3a6656ebe8d9d4582f60a6e491f9c12fc7f52ae1",
+          "head_sha": "5fdfa2b870c0adb331305a3cdf5ca8d93ef8ace6",
+          "author": "hujc7"
+        }
+      ],
+      "releases_returned": 26,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "v3.0.0",
+          "name": "v3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0",
+          "published_at": "2026-10-20T02:05:51Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0"
+        },
+        {
+          "tag_name": "interactive-demos",
+          "name": "Interactive browser demos",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/interactive-demos",
+          "published_at": "2026-10-15T16:47:05Z",
+          "prerelease": true,
+          "target_commitish": "develop"
+        },
+        {
+          "tag_name": "v3.0.0-EA",
+          "name": "v3.0.0-EA",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA",
+          "published_at": "2026-09-16T22:34:03Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0"
+        },
+        {
+          "tag_name": "v3.0.0-beta2.patch1",
+          "name": "v3.0.0-beta2.patch1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2.patch1",
+          "published_at": "2026-07-02T04:21:18Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0-beta2"
+        },
+        {
+          "tag_name": "v3.0.0-beta2",
+          "name": "v3.0.0-beta2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2",
+          "published_at": "2026-06-17T02:16:55Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0-beta2"
+        },
+        {
+          "tag_name": "v3.0.0-beta",
+          "name": "v3.0.0-beta",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta",
+          "published_at": "2026-03-17T06:38:37Z",
+          "prerelease": false,
+          "target_commitish": "develop"
+        },
+        {
+          "tag_name": "v2.3.2",
+          "name": "v2.3.2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.2",
+          "published_at": "2026-02-02T18:54:35Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.3.1",
+          "name": "v2.3.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.1",
+          "published_at": "2025-12-04T22:26:35Z",
+          "prerelease": false,
+          "target_commitish": "release/2.3.0"
+        },
+        {
+          "tag_name": "v2.3.0",
+          "name": "v2.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.3.0",
+          "published_at": "2025-10-28T21:38:54Z",
+          "prerelease": false,
+          "target_commitish": "release/2.3.0"
+        },
+        {
+          "tag_name": "v2.2.1",
+          "name": "v2.2.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.2.1",
+          "published_at": "2025-08-29T17:58:55Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.2.0",
+          "name": "v2.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.2.0",
+          "published_at": "2025-08-07T19:42:33Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.1.1",
+          "name": "v2.1.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.1.1",
+          "published_at": "2025-07-30T12:59:44Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.1.0",
+          "name": "v2.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.1.0",
+          "published_at": "2025-04-24T15:13:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.2",
+          "name": "v2.0.2",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.2",
+          "published_at": "2025-03-05T23:37:20Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.1",
+          "name": "v2.0.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.1",
+          "published_at": "2025-02-26T01:27:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v2.0.0",
+          "name": "v2.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v2.0.0",
+          "published_at": "2025-01-30T22:56:47Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.4.1",
+          "name": "v1.4.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.4.1",
+          "published_at": "2025-01-30T20:59:05Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "name": "v1.4.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.4.0",
+          "published_at": "2024-12-20T16:10:07Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "name": "v1.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.3.0",
+          "published_at": "2024-11-21T23:01:07Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "name": "v1.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.2.0",
+          "published_at": "2024-09-20T17:44:31Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "name": "v1.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.1.0",
+          "published_at": "2024-07-26T21:06:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "name": "v1.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v1.0.0",
+          "published_at": "2024-06-26T08:37:57Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.1",
+          "name": "v0.3.1",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.3.1",
+          "published_at": "2024-05-31T13:05:15Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "name": "v0.3.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.3.0",
+          "published_at": "2024-04-17T20:01:45Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "name": "Release 0.2.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.2.0",
+          "published_at": "2024-02-10T12:22:32Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.1.0",
+          "name": "Release 0.1.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v0.1.0",
+          "published_at": "2023-01-18T09:21:20Z",
+          "prerelease": true,
+          "target_commitish": "main"
+        }
+      ],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [
+        {
+          "tag_name": "v3.0.0",
+          "name": "v3.0.0",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0",
+          "published_at": "2026-10-20T02:05:51Z",
+          "prerelease": false,
+          "target_commitish": "release/3.0.0"
+        }
+      ],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {
+        "main": 20,
+        "exp/cosmos": 2,
+        "release/3.0.0": 4,
+        "develop": 11
+      }
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "query": "repo:huggingface/lerobot is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/lerobot%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:51.302997+00:00",
+      "total_count": 42,
+      "incomplete_results": false,
+      "returned": 42,
+      "pages": 1,
+      "items": [
+        {
+          "number": 5055,
+          "title": "fix(wall-oss-05): preserve array typing in state discretization",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5055",
+          "created_at": "2026-10-22T13:54:37Z",
+          "updated_at": "2026-10-22T13:59:22Z",
+          "base": "main",
+          "merged_at": "2026-10-22T13:59:22Z",
+          "merge_commit_sha": "2e880446494bd864740b8d87cc2db0397a2f84a7",
+          "head_sha": "c6cfa3d1477e776bd9140c49b83ff4fa312d5035",
+          "author": "pkooij"
+        },
+        {
+          "number": 5045,
+          "title": "fix: stabilize mypy checks and resolve repository type errors",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5045",
+          "created_at": "2026-10-21T20:06:32Z",
+          "updated_at": "2026-10-22T13:39:29Z",
+          "base": "main",
+          "merged_at": "2026-10-22T13:39:29Z",
+          "merge_commit_sha": "ecb19db47956feba9ddc2979ce0c19ddf83eefc0",
+          "head_sha": "e123621921ad600a352e44cb7027a5057320520e",
+          "author": "pkooij"
+        },
+        {
+          "number": 5028,
+          "title": "docs: link SO-ARM 102 kit details",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5028",
+          "created_at": "2026-10-21T08:03:30Z",
+          "updated_at": "2026-10-21T08:31:26Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:31:26Z",
+          "merge_commit_sha": "cf7cf27879b15318de596d620f4bd9b5cbb8460b",
+          "head_sha": "8300a6f9a9338aa1f799ed5e28ac90b478ef8cd7",
+          "author": "brnikita"
+        },
+        {
+          "number": 5023,
+          "title": "feat(optim): add opt-in fused Adam/AdamW flag",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5023",
+          "created_at": "2026-10-20T13:24:46Z",
+          "updated_at": "2026-10-21T11:50:40Z",
+          "base": "main",
+          "merged_at": "2026-10-21T10:11:40Z",
+          "merge_commit_sha": "88d172eb9a172e885bcbd0fe7c097900f8fe52f9",
+          "head_sha": "a690fb52aca57a581cc02c0d8b571ccea4bf5a42",
+          "author": "tc-huang"
+        },
+        {
+          "number": 5022,
+          "title": "fix(envs): use VLABench instruction as description",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5022",
+          "created_at": "2026-10-20T12:28:45Z",
+          "updated_at": "2026-10-21T19:16:08Z",
+          "base": "main",
+          "merged_at": "2026-10-21T19:14:28Z",
+          "merge_commit_sha": "da7f9d62202f77880c8aae8f4c05f50d9c9c42c5",
+          "head_sha": "329d779cc1c5248a12370766cdb152c148c7c09c",
+          "author": "tc-huang"
+        },
+        {
+          "number": 5021,
+          "title": "Unitree G1 hero video update",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5021",
+          "created_at": "2026-10-20T07:58:44Z",
+          "updated_at": "2026-10-20T14:28:38Z",
+          "base": "main",
+          "merged_at": "2026-10-20T14:28:35Z",
+          "merge_commit_sha": "b33bf619d5b9f80c1fe1e9b2efb0ba1f65062bb0",
+          "head_sha": "2acf3898a6f3437821976f3d222aa3174aae5e99",
+          "author": "NikodemBartnik"
+        },
+        {
+          "number": 5019,
+          "title": "fix(datasets): reject image writers with no workers",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5019",
+          "created_at": "2026-10-20T04:23:42Z",
+          "updated_at": "2026-10-21T07:43:55Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:43:55Z",
+          "merge_commit_sha": "7460cf7f267d85a85c081328046f63da984dff57",
+          "head_sha": "635ee4eade6f8b74fb69a7730ea2f164c669ddca",
+          "author": "TinyGeek"
+        },
+        {
+          "number": 5017,
+          "title": "docs: list SO-ARM 102 under full robot kits",
+          "html_url": "https://github.com/huggingface/lerobot/pull/5017",
+          "created_at": "2026-10-19T14:32:48Z",
+          "updated_at": "2026-10-21T07:36:08Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:36:07Z",
+          "merge_commit_sha": "e31720450ceac6a0270f11250993ab594c5a664e",
+          "head_sha": "6d1662ab6cad6764ff28cc86b08159ee8b4f4e5c",
+          "author": "brnikita"
+        },
+        {
+          "number": 4997,
+          "title": "fix(envs): explain that gym_manipulator cannot be built by make_env",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4997",
+          "created_at": "2026-10-17T06:52:12Z",
+          "updated_at": "2026-10-21T08:43:10Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:43:09Z",
+          "merge_commit_sha": "c34e78a707dc71a8b7eff4e16ec20ce1a491d2c1",
+          "head_sha": "9c40d693f21bbbc0945cc68d5447fc8f812f0991",
+          "author": "BrutalCaeser"
+        },
+        {
+          "number": 4949,
+          "title": "fix(datasets): weight sampled image stats by episode length",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4949",
+          "created_at": "2026-10-13T07:50:44Z",
+          "updated_at": "2026-10-21T08:49:52Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:49:52Z",
+          "merge_commit_sha": "a554e5ef2f018dc5b2c5a79f3c0a3565688afa17",
+          "head_sha": "e71acc0a113089a9d76a7b535736e9749a63041d",
+          "author": "AaravMehta-07"
+        },
+        {
+          "number": 4935,
+          "title": "fix(scripts): don't crash lerobot-info when a package fails to import",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4935",
+          "created_at": "2026-10-12T10:15:48Z",
+          "updated_at": "2026-10-21T08:44:42Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:44:42Z",
+          "merge_commit_sha": "b4ecd266a02274c35830fef876e077b6881eb00b",
+          "head_sha": "674d1531c3078ca96492d2325b460820697c3cae",
+          "author": "LinCanNerd"
+        },
+        {
+          "number": 4910,
+          "title": "fix(cameras): add the missing space in the OpenCV open-failure message",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4910",
+          "created_at": "2026-10-10T14:26:33Z",
+          "updated_at": "2026-10-21T07:26:09Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:26:09Z",
+          "merge_commit_sha": "bca6663fd020a22e572038cb7a59990ad443bf15",
+          "head_sha": "b31bd7b8734389a42259edd015eb2153bd524e8b",
+          "author": "varun-projects"
+        },
+        {
+          "number": 4901,
+          "title": "fix(cameras): small docstring fix in camera_opencv.py",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4901",
+          "created_at": "2026-10-09T21:43:49Z",
+          "updated_at": "2026-10-21T07:26:32Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:26:32Z",
+          "merge_commit_sha": "5cf4d0d3c00971ce7c9669dd62db1f69f02d1b9e",
+          "head_sha": "618174a0535764a56446a3536f77b33f0cd8f72c",
+          "author": "gui-miotto"
+        },
+        {
+          "number": 4899,
+          "title": "docs: add the OpenArm KER leader plugin to the third-party hardware page",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4899",
+          "created_at": "2026-10-09T17:34:51Z",
+          "updated_at": "2026-10-21T07:35:18Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:35:18Z",
+          "merge_commit_sha": "9d92bc86d957def0887035863e2eaa283e0960a5",
+          "head_sha": "ab473bddb64cfff7f85d14bf7e80846326372239",
+          "author": "iamlakshya"
+        },
+        {
+          "number": 4891,
+          "title": "fix(streaming): apply image transforms on the training thread when num_workers=0",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4891",
+          "created_at": "2026-10-08T21:50:30Z",
+          "updated_at": "2026-10-21T19:25:53Z",
+          "base": "main",
+          "merged_at": "2026-10-21T19:25:35Z",
+          "merge_commit_sha": "ac5d06be8603742f40d4feb1d509b43067e67eca",
+          "head_sha": "48b030a281169bc5d6924dcb4d5cc520bb6f0be2",
+          "author": "Hadrien-Cornier"
+        },
+        {
+          "number": 4890,
+          "title": "fix(streaming): give the trainer's data-parallel rank to the streaming dataset",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4890",
+          "created_at": "2026-10-08T21:45:47Z",
+          "updated_at": "2026-10-21T19:26:55Z",
+          "base": "main",
+          "merged_at": "2026-10-21T19:26:55Z",
+          "merge_commit_sha": "8a125584153240d7511dddfbda440bbee56b134a",
+          "head_sha": "f3bde23867d3f563b2b3740c58e0ebc09917fa30",
+          "author": "Hadrien-Cornier"
+        },
+        {
+          "number": 4889,
+          "title": "fix(streaming): make the sidecar lock timeout a setting",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4889",
+          "created_at": "2026-10-08T21:45:44Z",
+          "updated_at": "2026-10-21T19:21:00Z",
+          "base": "main",
+          "merged_at": "2026-10-21T19:21:00Z",
+          "merge_commit_sha": "ecbcc3b3fff515f5cd69ab1f93e2a22a5256add0",
+          "head_sha": "7b65823397b4cc91381a3b8496e05dda8593e7dc",
+          "author": "Hadrien-Cornier"
+        },
+        {
+          "number": 4867,
+          "title": "refactor(motors): share the hand calibration and the motor setup of serial-bus devices",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4867",
+          "created_at": "2026-10-07T15:04:20Z",
+          "updated_at": "2026-10-19T12:07:00Z",
+          "base": "main",
+          "merged_at": "2026-10-19T12:06:57Z",
+          "merge_commit_sha": "326484d77d2ac90379e84222dfad21fe4acf1f71",
+          "head_sha": "eddb195974d0452eb6f95ae25d985fbf9a4b99d9",
+          "author": "nicolas-rabault"
+        },
+        {
+          "number": 4860,
+          "title": "docs(robocasa): fix camera rename_map for smolvla_robocasa",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4860",
+          "created_at": "2026-10-06T20:09:29Z",
+          "updated_at": "2026-10-21T10:16:46Z",
+          "base": "main",
+          "merged_at": "2026-10-21T10:16:46Z",
+          "merge_commit_sha": "5517a326eeb9b457cfe07d59b9bfdf291799c8d9",
+          "head_sha": "dc2bdf35ee05a22a6cee2ce78f532ea5934aa303",
+          "author": "JFan5"
+        },
+        {
+          "number": 4856,
+          "title": "fix(processor): retain device index across pipeline serialization",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4856",
+          "created_at": "2026-10-06T15:17:11Z",
+          "updated_at": "2026-10-21T08:48:36Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:48:36Z",
+          "merge_commit_sha": "9f263752672ad297959fe4eab3186746933bd6b4",
+          "head_sha": "3789527b34c6896e9b52649506b02769076bb511",
+          "author": "JonnyFaeth"
+        },
+        {
+          "number": 4852,
+          "title": "fix(datasets): warn only when the dataset is newer than the codebase",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4852",
+          "created_at": "2026-10-05T14:11:55Z",
+          "updated_at": "2026-10-21T07:58:29Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:58:28Z",
+          "merge_commit_sha": "cf1696089fc8cc5ecfccc2e62a7f2a5cacb29030",
+          "head_sha": "34a3e42d42e57149ef5dfee22fc1b4342cf7482f",
+          "author": "horizonbymuneeb"
+        },
+        {
+          "number": 4839,
+          "title": "docs: correct LIBERO-plus task counts and evaluation guidance",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4839",
+          "created_at": "2026-10-03T11:35:14Z",
+          "updated_at": "2026-10-21T07:39:27Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:37:51Z",
+          "merge_commit_sha": "406fa1cd030dfc13cb17fc19dc5f308fb0983037",
+          "head_sha": "c72eb2e979af0c0b9e75882f10b603a0b22fd9b4",
+          "author": "aroraanushri"
+        },
+        {
+          "number": 4835,
+          "title": "fix(vla_jepa): pair rotary frequencies with adjacent coordinates",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4835",
+          "created_at": "2026-10-02T09:34:03Z",
+          "updated_at": "2026-10-22T14:00:39Z",
+          "base": "main",
+          "merged_at": "2026-10-22T14:00:39Z",
+          "merge_commit_sha": "f9e9d739ea7055b282ea1b165e8785412a674693",
+          "head_sha": "7f9f6d1ce42507ebaa6a6f658e59324e9fe35315",
+          "author": "Afloat16"
+        },
+        {
+          "number": 4813,
+          "title": "feat(policies): accept the starting noise in predict_action_chunk",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4813",
+          "created_at": "2026-09-30T13:19:28Z",
+          "updated_at": "2026-10-20T14:32:13Z",
+          "base": "main",
+          "merged_at": "2026-10-20T14:32:13Z",
+          "merge_commit_sha": "afbf3f14a13bdad3e5990e2bed629c6539605658",
+          "head_sha": "1647d019ce9ac87ab60ec6f6c83f7e6b820c37cb",
+          "author": "shoumikhin"
+        },
+        {
+          "number": 4810,
+          "title": "fix(datasets): report a 29.97 fps stream rate",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4810",
+          "created_at": "2026-09-30T09:41:38Z",
+          "updated_at": "2026-10-22T01:56:46Z",
+          "base": "main",
+          "merged_at": "2026-10-21T09:30:56Z",
+          "merge_commit_sha": "c09bdd9d9f8df81ddf9272ff5aebc5686ce6e28b",
+          "head_sha": "02fde7b386e63c6d3e811f50a2baa4cf530421a3",
+          "author": "SashaMIT"
+        },
+        {
+          "number": 4796,
+          "title": "fix(datasets): honour quantile_list in get_feature_stats",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4796",
+          "created_at": "2026-09-28T20:09:31Z",
+          "updated_at": "2026-10-21T08:52:50Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:52:49Z",
+          "merge_commit_sha": "1d9b1093bc8e92a2bb7284c66cac0edc613d033b",
+          "head_sha": "352b53c00e5787e81a1834cc874c25e00fabf18d",
+          "author": "MohammadHijjawi97"
+        },
+        {
+          "number": 4761,
+          "title": "fix(wall_x): report incompatible checkpoint keys",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4761",
+          "created_at": "2026-09-24T12:35:32Z",
+          "updated_at": "2026-10-21T07:43:22Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:43:22Z",
+          "merge_commit_sha": "ea4917ebfd8de17cacb137ac57c4400e5cf1c171",
+          "head_sha": "81b2a39fb768085764fdc409a6eb8406117c16e8",
+          "author": "Samuel-Hills"
+        },
+        {
+          "number": 4750,
+          "title": "fix(rl): guard learner log_freq against ZeroDivisionError",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4750",
+          "created_at": "2026-09-24T08:30:21Z",
+          "updated_at": "2026-10-21T07:40:32Z",
+          "base": "main",
+          "merged_at": "2026-10-21T07:40:32Z",
+          "merge_commit_sha": "ed898c3ab0e4bec3c9eb72fad85a7f262bc206c4",
+          "head_sha": "8fea44c6b99484543f8ba41ae38afad2236bc60c",
+          "author": "ravediamond"
+        },
+        {
+          "number": 4748,
+          "title": "fix(tests): restore torch.backends flags after real train() calls",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4748",
+          "created_at": "2026-09-24T08:03:26Z",
+          "updated_at": "2026-10-21T08:38:52Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:38:52Z",
+          "merge_commit_sha": "9d1beec4e831e5b40c99b8bab53220b5f8f9cb00",
+          "head_sha": "650da685d65b07303283de87b50cbf8ceacabf45",
+          "author": "ravediamond"
+        },
+        {
+          "number": 4730,
+          "title": "Fix: fix phone teleop enable signal, clarify the controls",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4730",
+          "created_at": "2026-09-23T09:50:34Z",
+          "updated_at": "2026-10-19T14:44:05Z",
+          "base": "main",
+          "merged_at": "2026-10-19T14:44:05Z",
+          "merge_commit_sha": "b192c02dda8d7fa8560bfc15f9e8dae0f714e26e",
+          "head_sha": "8fe1b0506f4f31af7750f78f143e2e34e2debe4a",
+          "author": "cetiennec"
+        },
+        {
+          "number": 4707,
+          "title": "fix(utils): restore seeded context RNG state on exceptions",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4707",
+          "created_at": "2026-09-21T20:44:18Z",
+          "updated_at": "2026-10-21T09:37:41Z",
+          "base": "main",
+          "merged_at": "2026-10-21T09:37:41Z",
+          "merge_commit_sha": "463202b1b005e8802343a282661eb26ef27a160c",
+          "head_sha": "60b0ae229fd1e0c46eabc6843a70c1754f9529db",
+          "author": "dipeshbabu"
+        },
+        {
+          "number": 4706,
+          "title": "fix(utils): retain NumPy Gaussian RNG cache precision",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4706",
+          "created_at": "2026-09-21T20:40:49Z",
+          "updated_at": "2026-10-21T08:49:02Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:49:02Z",
+          "merge_commit_sha": "413d55031aa6002332b782c0f655938dc9953858",
+          "head_sha": "bfaa3b1693eb51edc39926f849f14bf1f472a45a",
+          "author": "dipeshbabu"
+        },
+        {
+          "number": 4705,
+          "title": "fix(utils): preserve Python Gaussian RNG cache in checkpoints",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4705",
+          "created_at": "2026-09-21T20:40:46Z",
+          "updated_at": "2026-10-21T09:31:12Z",
+          "base": "main",
+          "merged_at": "2026-10-21T09:31:12Z",
+          "merge_commit_sha": "1d927d1eb60bc9b6d30fb4edfa17638f1c755be7",
+          "head_sha": "dbcc4af1656b92744464350a0518714c79f7a229",
+          "author": "dipeshbabu"
+        },
+        {
+          "number": 4674,
+          "title": "Accept local dataset names in recording sanity check",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4674",
+          "created_at": "2026-09-18T15:35:04Z",
+          "updated_at": "2026-10-21T10:09:09Z",
+          "base": "main",
+          "merged_at": "2026-10-21T10:09:08Z",
+          "merge_commit_sha": "33e0b9e3c9e2f230b61af8c90d42b90be4667844",
+          "head_sha": "f4e9b115b712237953c7777aaee155554af8b7a5",
+          "author": "Hashim1999164"
+        },
+        {
+          "number": 4664,
+          "title": "fix(unitree-g1): correctly clear the SDK dq field for position commands",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4664",
+          "created_at": "2026-09-18T03:34:39Z",
+          "updated_at": "2026-10-19T19:22:43Z",
+          "base": "main",
+          "merged_at": "2026-10-19T19:22:43Z",
+          "merge_commit_sha": "7abbc995ce478efff90ece53c9c759cb8854d241",
+          "head_sha": "d7b29409643f1a178f01bbf912d8ffe12a58baa4",
+          "author": "davidwei"
+        },
+        {
+          "number": 4651,
+          "title": "feat(unitree-g1): add G1-23 embodiment support",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4651",
+          "created_at": "2026-09-16T00:26:05Z",
+          "updated_at": "2026-10-19T20:56:57Z",
+          "base": "main",
+          "merged_at": "2026-10-19T20:56:57Z",
+          "merge_commit_sha": "3991580a5673f5f0219a4e8835a5f973eeccf9a7",
+          "head_sha": "8c3f16c200f4c454a8ba8fc0065470d598f831d9",
+          "author": "davidwei"
+        },
+        {
+          "number": 4648,
+          "title": "fix(configs): backfill pretrained_path in PreTrainedConfig.from_pretrained",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4648",
+          "created_at": "2026-09-15T11:51:27Z",
+          "updated_at": "2026-10-21T19:15:42Z",
+          "base": "main",
+          "merged_at": "2026-10-21T19:15:42Z",
+          "merge_commit_sha": "1b5e5b784559d11acce279f7aa61c5bae9280372",
+          "head_sha": "5ab5007757d386e1725f367474f19a9946be030d",
+          "author": "DanMo661"
+        },
+        {
+          "number": 4598,
+          "title": "chore: update claude.yml",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4598",
+          "created_at": "2026-09-09T11:56:55Z",
+          "updated_at": "2026-10-21T08:34:07Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:34:05Z",
+          "merge_commit_sha": "60c77eaff105675a92d5517b6497179068d0041d",
+          "head_sha": "d8cb8412bfdedbddff9588365d65b6ba00f963ee",
+          "author": "hf-security-analysis[bot]"
+        },
+        {
+          "number": 4470,
+          "title": "feat(docker): add ROCm dockerfile for AMD Instinct GPUs",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4470",
+          "created_at": "2026-08-18T08:55:50Z",
+          "updated_at": "2026-10-21T18:54:07Z",
+          "base": "main",
+          "merged_at": "2026-10-21T18:54:07Z",
+          "merge_commit_sha": "3b31fd99e1fef140619f93a258edb1401bf8f7f4",
+          "head_sha": "37f90750cd4242826cd546996c50b06019c1ee19",
+          "author": "Treemann"
+        },
+        {
+          "number": 4322,
+          "title": "feat(dataset-viz): show the language task in the Rerun viewer",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4322",
+          "created_at": "2026-08-04T10:12:43Z",
+          "updated_at": "2026-10-21T08:47:12Z",
+          "base": "main",
+          "merged_at": "2026-10-21T08:47:12Z",
+          "merge_commit_sha": "4c17b1bac4464bd11e51bd6b4eb61f8f88c09ecc",
+          "head_sha": "5080c212f8429ad574e3957fa8621a7459e71408",
+          "author": "zuoxingdong"
+        },
+        {
+          "number": 4292,
+          "title": "fix(smolvla): normalize uint8 images before resizing",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4292",
+          "created_at": "2026-08-02T01:47:45Z",
+          "updated_at": "2026-10-21T10:14:14Z",
+          "base": "main",
+          "merged_at": "2026-10-21T10:14:13Z",
+          "merge_commit_sha": "c1789b1306ca451cdc61c4576c3eba691bd9b974",
+          "head_sha": "78f283c37aa65b54804db0e9b1ae53dcb14fdce5",
+          "author": "krmayn"
+        },
+        {
+          "number": 4200,
+          "title": "feat(policies): add Wall-OSS-0.5 support",
+          "html_url": "https://github.com/huggingface/lerobot/pull/4200",
+          "created_at": "2026-07-28T15:02:47Z",
+          "updated_at": "2026-10-22T13:36:17Z",
+          "base": "main",
+          "merged_at": "2026-10-22T13:36:17Z",
+          "merge_commit_sha": "65258ac2c6ef6d710c3615d56f58e8ca53122591",
+          "head_sha": "c2ce636a40f31f43861981107279918894a28384",
+          "author": "pkooij"
+        }
+      ],
+      "releases_returned": 11,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "v0.6.1",
+          "name": "Release v0.6.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.1",
+          "published_at": "2026-08-03T14:19:42Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.6.0",
+          "name": "Release v0.6.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.0",
+          "published_at": "2026-07-06T10:41:53Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.1",
+          "name": "Release v0.5.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.1",
+          "published_at": "2026-04-07T14:57:52Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.0",
+          "name": "Release v0.5.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.0",
+          "published_at": "2026-03-09T11:19:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.4",
+          "name": "Release v0.4.4",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.4",
+          "published_at": "2026-02-27T18:07:31Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.3",
+          "name": "Release v0.4.3",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.3",
+          "published_at": "2026-01-22T10:59:37Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "name": "Release v0.4.2",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.2",
+          "published_at": "2025-11-27T21:42:42Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "name": "Release v0.4.1",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.1",
+          "published_at": "2025-11-10T11:31:17Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "name": "Release v0.4.0",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.0",
+          "published_at": "2025-10-23T18:38:16Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.3",
+          "name": "Release v0.3.3",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.3.3",
+          "published_at": "2025-08-06T18:41:21Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.2",
+          "name": "Release v0.3.2",
+          "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.3.2",
+          "published_at": "2025-08-01T19:18:28Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        }
+      ],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {
+        "main": 42
+      }
+    },
+    {
+      "repo": "Physical-Intelligence/openpi",
+      "query": "repo:Physical-Intelligence/openpi is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3APhysical-Intelligence/openpi%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:48.945253+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": [],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {}
+    },
+    {
+      "repo": "moojink/openvla-oft",
+      "query": "repo:moojink/openvla-oft is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Amoojink/openvla-oft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:49.386555+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": [],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {}
+    },
+    {
+      "repo": "openvla/openvla",
+      "query": "repo:openvla/openvla is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Aopenvla/openvla%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:49.509326+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 0,
+      "release_limit": 100,
+      "releases": [],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {}
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "query": "repo:meta-pytorch/torchcodec is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "url": "https://api.github.com/search/issues?q=repo%3Ameta-pytorch/torchcodec%20is%3Apr%20is%3Amerged%20merged%3A2026-10-19T01%3A40%3A52Z..2026-10-23T03%3A09%3A27Z&per_page=100&page=1",
+      "fetched_utc": "2026-10-23T03:26:49.450117+00:00",
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "pages": 1,
+      "items": [],
+      "releases_returned": 24,
+      "release_limit": 100,
+      "releases": [
+        {
+          "tag_name": "v0.17.0",
+          "name": "TorchCodec 0.17 - Low-level decoding APIs",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+          "published_at": "2026-09-30T13:32:47Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.16.0",
+          "name": "TorchCodec 0.16 - Image decoding and encoding",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.16.0",
+          "published_at": "2026-08-13T12:27:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.15.0",
+          "name": "TorchCodec 0.15",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.15.0",
+          "published_at": "2026-07-15T10:32:13Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.14.0",
+          "name": "TorchCodec 0.14: HDR Video Decoding for CPU & CUDA, and Fast Wav Decoder",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.14.0",
+          "published_at": "2026-06-03T13:02:04Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.13.0",
+          "name": "TorchCodec 0.13",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.13.0",
+          "published_at": "2026-05-21T11:58:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.12.0",
+          "name": "TorchCodec 0.12",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.12.0",
+          "published_at": "2026-05-14T20:05:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.11.1",
+          "name": "TorchCodec 0.11.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.11.1",
+          "published_at": "2026-04-14T18:53:02Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.11.0",
+          "name": "TorchCodec 0.11",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.11.0",
+          "published_at": "2026-03-24T16:39:48Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.10.0",
+          "name": "TorchCodec 0.10",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.10.0",
+          "published_at": "2026-01-22T15:56:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.9.1",
+          "name": "TorchCodec 0.9.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.9.1",
+          "published_at": "2025-12-10T16:41:10Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.9.0",
+          "name": "TorchCodec 0.9",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.9.0",
+          "published_at": "2025-12-04T19:57:54Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.8.1",
+          "name": "TorchCodec 0.8.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.8.1",
+          "published_at": "2025-10-28T10:13:29Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.8.0",
+          "name": "TorchCodec 0.8",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.8.0",
+          "published_at": "2025-10-16T15:22:26Z",
+          "prerelease": false,
+          "target_commitish": "release/0.8"
+        },
+        {
+          "tag_name": "v0.7.0",
+          "name": "TorchCodec 0.7",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.7.0",
+          "published_at": "2025-09-08T14:43:52Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.6.0",
+          "name": "TorchCodec 0.6.0",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.6.0",
+          "published_at": "2025-08-07T09:03:55Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.5.0",
+          "name": "TorchCodec 0.5 ",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.5.0",
+          "published_at": "2025-07-23T19:29:23Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "name": "TorchCodec 0.4",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.4.0",
+          "published_at": "2025-05-16T09:27:02Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "name": "TorchCodec 0.3",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.3.0",
+          "published_at": "2025-04-24T09:29:56Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.1",
+          "name": "TorchCodec 0.2.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.2.1",
+          "published_at": "2025-03-12T13:55:00Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "name": "TorchCodec 0.2.0",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.2.0",
+          "published_at": "2025-02-05T17:49:49Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.1.1",
+          "name": "TorchCodec 0.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.1.1",
+          "published_at": "2024-12-12T15:54:19Z",
+          "prerelease": false,
+          "target_commitish": "release/0.1.0"
+        },
+        {
+          "tag_name": "v0.0.3",
+          "name": "TorchCodec 0.0.3 ",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.3",
+          "published_at": "2024-08-15T17:05:10Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.0.2",
+          "name": "TorchCodec 0.0.2",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.2",
+          "published_at": "2024-08-08T13:21:54Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        },
+        {
+          "tag_name": "v0.0.1",
+          "name": "TorchCodec 0.0.1",
+          "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.0.1",
+          "published_at": "2024-08-08T13:23:32Z",
+          "prerelease": false,
+          "target_commitish": "main"
+        }
+      ],
+      "release_pages": 1,
+      "releases_exhausted": true,
+      "window_releases": [],
+      "search_limit": 1000,
+      "per_page": 100,
+      "base_counts": {}
+    }
+  ],
+  "merged_total": 80,
+  "releases_returned": 66,
+  "window_release_count": 1
+}

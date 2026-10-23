@@ -1,0 +1,2129 @@
+[
+  {
+    "repo": "sgl-project/sglang",
+    "number": 45453,
+    "head": "2647c3761ea18a05fc0227a744b99ce388d5b88a",
+    "total": 126,
+    "returned": 100,
+    "checks": [
+      {
+        "name": "cancel",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39645451850/job/119379692883",
+        "completed_at": "2026-10-21T17:37:41Z"
+      },
+      {
+        "name": "setup-covstub",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319942401",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-c-test-perf-2-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319941164",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-b-test-1-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319940868",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-c-test-perf-16-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319940169",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "pr-test-npu-finish",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319940128",
+        "completed_at": "2026-10-21T15:44:49Z"
+      },
+      {
+        "name": "base-b-test-8-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319939509",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-c-test-acc-16-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319939494",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-b-test-2-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319939442",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-c-test-acc-2-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319939422",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-b-test-4-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319939293",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "base-b-test-16-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319938583",
+        "completed_at": "2026-10-21T15:44:43Z"
+      },
+      {
+        "name": "notify-pr-states",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319452152",
+        "completed_at": "2026-10-21T15:43:49Z"
+      },
+      {
+        "name": "notify-pr-states",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319426724",
+        "completed_at": "2026-10-21T15:43:46Z"
+      },
+      {
+        "name": "base-c-test-${{ matrix.runner_config }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319379357",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "base-c-test-${{ matrix.runner_config }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319378728",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "pr-test-finish",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319376977",
+        "completed_at": "2026-10-21T15:43:49Z"
+      },
+      {
+        "name": "call-multimodal-gen-tests",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319376048",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "base-b-test-${{ matrix.runner_config }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319376044",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "wait-for-base-b",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319375892",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "base-a-test-${{ matrix.runner_config }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374780",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "call-sgl-kernel-tests",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374652",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "base-a-test-cpu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374410",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "wait-for-base-a",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374350",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "sgl-kernel-build-wheels-arm",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374105",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "call-jit-kernel-tests",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319374079",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "rust-ext-build-aarch64",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319373420",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "sgl-kernel-build-wheels",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319373297",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "rust-ext-build",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319373086",
+        "completed_at": "2026-10-21T15:43:41Z"
+      },
+      {
+        "name": "${{ matrix.stage }}-test-${{ matrix.runner_config }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319370674",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "simulator-test-gpu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319369748",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "simulator-test-cpu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319369087",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "pr-test-extra-finish",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319368806",
+        "completed_at": "2026-10-21T15:43:46Z"
+      },
+      {
+        "name": "rust-ext-build",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319368697",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "sgl-kernel-build-wheels",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319368516",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "call-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217247/job/119319306305",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "build-test",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217328/job/119319304067",
+        "completed_at": "2026-10-21T15:43:33Z"
+      },
+      {
+        "name": "call-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217119/job/119319298641",
+        "completed_at": "2026-10-21T15:43:40Z"
+      },
+      {
+        "name": "build-test",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216806/job/119319280926",
+        "completed_at": "2026-10-21T15:43:31Z"
+      },
+      {
+        "name": "base-a-test-npu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319273735",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "multimodal-gen-test-4-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319273610",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "stage-a-test-1-gpu-xpu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216698/job/119319272513",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "multimodal-gen-test-1-gpu-xpu",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216698/job/119319272509",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "multimodal-gen-test-1-npu-a3",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319272340",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "finish",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216698/job/119319270503",
+        "completed_at": "2026-10-21T15:43:37Z"
+      },
+      {
+        "name": "multimodal-gen-test-1-gpu-musa",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319256389",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "sgl-kernel-unit-test-musa",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319256322",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "multimodal-gen-test-2-gpu-musa",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319256219",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "multimodal-gen-layer-unit-test-musa",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319255945",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "pr-test-musa-finish",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319254948",
+        "completed_at": "2026-10-21T15:43:33Z"
+      },
+      {
+        "name": "stage-a-unit-test-mps",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319249450",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "stage-a-unit-test-mlx",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319249090",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "stage-b-e2e-test-mps",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319248450",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "stage-b-e2e-test-mlx",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319248421",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "pr-test-mlx-finish",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319246702",
+        "completed_at": "2026-10-21T15:43:32Z"
+      },
+      {
+        "name": "stage-c-dsv4-pro-fp4-amd-mi35x (${{ matrix.rocm_version }}, ${{ matrix.runner }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319241792",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-c-test-large-8-gpu-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-8gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319241482",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-c-test-large-8-gpu-amd-mi35x (${{ matrix.rocm_version }}, ${{ matrix.runner }}, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319241010",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-c-dsv4-flash-fp4-fp8-amd-mi35x (${{ matrix.rocm_version }}, ${{ matrix.runner }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319240453",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "pr-test-amd-finish",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319240409",
+        "completed_at": "2026-10-21T15:43:32Z"
+      },
+      {
+        "name": "stage-c-test-4-gpu-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-4gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319240236",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-1-gpu-small-amd-nondeterministic (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319239548",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-1-gpu-small-amd-mi35x (${{ matrix.rocm_version }}, ${{ matrix.runner }}, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319239166",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-large-8-gpu-mi35x-disaggregation-amd (${{ matrix.rocm_version }}, ${{ matrix.runner }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319239059",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "wait-for-stage-b-amd",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319238810",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-2-gpu-large-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-2gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319238772",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-1-gpu-large-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319238632",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-b-test-1-gpu-small-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319238445",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "stage-a-test-1-gpu-small-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319237041",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "jit-kernel-unit-test-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319237039",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "wait-for-stage-a-amd",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319236907",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "jit-kernel-benchmark-test-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319236738",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "sgl-kernel-unit-test-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319236711",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "multimodal-gen-test-2-gpu-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-2gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319236076",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "multimodal-gen-test-1-gpu-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang, ${{ matrix.part }})",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319235986",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "sgl-kernel-unit-test-2-gpu-amd (${{ matrix.rocm_version }}, linux-${{ (inputs.runner_arch || 'mi300') }}-2gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319235960",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "call-pr-test-amd-extra",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217100/job/119319235718",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216698/job/119319216120",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216806/job/119319211814",
+        "completed_at": "2026-10-21T15:43:31Z"
+      },
+      {
+        "name": "tier-3 — k8s integration",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319207061",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217328/job/119319206955",
+        "completed_at": "2026-10-21T15:43:33Z"
+      },
+      {
+        "name": "tier-3 — docker (placeholder)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319206104",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "tier-3 — e2e",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319205436",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "tier-1 — lint",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319205424",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "tier-2 — build + test",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319204897",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "finish",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319204402",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "gate",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217025/job/119319203643",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "github.event.action == 'labeled' && github.event.label.name != 'run-ci' && 'ignored-label-sgl-processor-test' || 'sgl-processor-test'",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216949/job/119319199710",
+        "completed_at": "2026-10-21T15:43:22Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217064/job/119319199327",
+        "completed_at": "2026-10-21T15:43:30Z"
+      },
+      {
+        "name": "github.event.action == 'labeled' && github.event.label.name != 'run-ci' && 'ignored-label-sgl-processor-lint' || 'sgl-processor-lint'",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216949/job/119319197969",
+        "completed_at": "2026-10-21T15:43:21Z"
+      },
+      {
+        "name": "sgl-processor-gate",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216949/job/119319197588",
+        "completed_at": "2026-10-21T15:43:21Z"
+      },
+      {
+        "name": "sgl-processor-finish",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216949/job/119319197497",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "(github.event_name == 'pull_request' && github.event.action == 'labeled' &&\n     github.event.label.name != 'run-ci' && github.event.label.name != 'run-ci-ppu') &&\n    format('ignored-label-ppu-sanity ({0})', matrix.runner) ||\n    format('ppu-sanity ({0})', matrix.runner)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216902/job/119319191367",
+        "completed_at": "2026-10-21T15:43:21Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217006/job/119319191219",
+        "completed_at": "2026-10-21T15:43:28Z"
+      },
+      {
+        "name": "(github.event_name == 'pull_request' && github.event.action == 'labeled' &&\n     github.event.label.name != 'run-ci' && github.event.label.name != 'run-ci-ppu') &&\n    'ignored-label-ppu-build' || 'ppu-build'",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216902/job/119319189864",
+        "completed_at": "2026-10-21T15:43:20Z"
+      },
+      {
+        "name": "pr-gate",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216902/job/119319189616",
+        "completed_at": "2026-10-21T15:43:20Z"
+      },
+      {
+        "name": "pr-test-ppu-finish",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216902/job/119319188884",
+        "completed_at": "2026-10-21T15:43:26Z"
+      },
+      {
+        "name": "pr-gate / pr-gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628217038/job/119319187237",
+        "completed_at": "2026-10-21T15:43:27Z"
+      },
+      {
+        "name": "extra-a-test-1-gpu-large-amd (${{ (inputs.rocm_version || 'rocm10') }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216794/job/119319148580",
+        "completed_at": "2026-10-21T15:43:16Z"
+      },
+      {
+        "name": "extra-a-test-1-gpu-small-amd (${{ (inputs.rocm_version || 'rocm10') }}, linux-${{ (inputs.runner_arch || 'mi300') }}-1gpu-sglang)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/sgl-project/sglang/actions/runs/39628216794/job/119319148497",
+        "completed_at": "2026-10-21T15:43:16Z"
+      }
+    ]
+  },
+  {
+    "repo": "huggingface/transformers",
+    "number": 49688,
+    "head": "12aa280706e54a2b369a8cfc288c3ce423db1932",
+    "total": 114,
+    "returned": 100,
+    "checks": [
+      {
+        "name": "Benchmark",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39191370887/job/117864715066",
+        "completed_at": "2026-10-19T02:44:25Z"
+      },
+      {
+        "name": "pr-ci / PR CI status",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117585913687",
+        "completed_at": "2026-10-18T04:27:55Z"
+      },
+      {
+        "name": "pr-ci / Collect and aggregate test results",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117585862143",
+        "completed_at": "2026-10-18T04:27:45Z"
+      },
+      {
+        "name": "doc_build_status_check",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314040/job/117584694884",
+        "completed_at": "2026-10-18T04:20:39Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898857",
+        "completed_at": "2026-10-18T04:24:19Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 4/8]",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898848",
+        "completed_at": "2026-10-18T04:24:38Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898847",
+        "completed_at": "2026-10-18T04:25:25Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898842",
+        "completed_at": "2026-10-18T04:24:24Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898833",
+        "completed_at": "2026-10-18T04:24:26Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898820",
+        "completed_at": "2026-10-18T04:23:51Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898804",
+        "completed_at": "2026-10-18T04:25:21Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898798",
+        "completed_at": "2026-10-18T04:24:11Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898602",
+        "completed_at": "2026-10-18T04:19:52Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898545",
+        "completed_at": "2026-10-18T04:20:09Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898537",
+        "completed_at": "2026-10-18T04:19:54Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898522",
+        "completed_at": "2026-10-18T04:19:47Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898518",
+        "completed_at": "2026-10-18T04:20:33Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898512",
+        "completed_at": "2026-10-18T04:19:52Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898507",
+        "completed_at": "2026-10-18T04:20:00Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583898500",
+        "completed_at": "2026-10-18T04:19:51Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897884",
+        "completed_at": "2026-10-18T04:19:32Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897863",
+        "completed_at": "2026-10-18T04:19:28Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897854",
+        "completed_at": "2026-10-18T04:19:35Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897843",
+        "completed_at": "2026-10-18T04:20:18Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897838",
+        "completed_at": "2026-10-18T04:21:39Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897831",
+        "completed_at": "2026-10-18T04:19:52Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897821",
+        "completed_at": "2026-10-18T04:22:15Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897819",
+        "completed_at": "2026-10-18T04:21:25Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897752",
+        "completed_at": "2026-10-18T04:26:37Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897736",
+        "completed_at": "2026-10-18T04:20:09Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897726",
+        "completed_at": "2026-10-18T04:20:31Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897722",
+        "completed_at": "2026-10-18T04:19:52Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897700",
+        "completed_at": "2026-10-18T04:22:09Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897695",
+        "completed_at": "2026-10-18T04:21:41Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897664",
+        "completed_at": "2026-10-18T04:27:25Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897651",
+        "completed_at": "2026-10-18T04:22:22Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897480",
+        "completed_at": "2026-10-18T04:23:26Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897475",
+        "completed_at": "2026-10-18T04:25:41Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897464",
+        "completed_at": "2026-10-18T04:23:05Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897453",
+        "completed_at": "2026-10-18T04:23:21Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897447",
+        "completed_at": "2026-10-18T04:22:04Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897443",
+        "completed_at": "2026-10-18T04:23:22Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897437",
+        "completed_at": "2026-10-18T04:22:24Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897427",
+        "completed_at": "2026-10-18T04:22:23Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 4/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897287",
+        "completed_at": "2026-10-18T04:19:51Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 3/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897276",
+        "completed_at": "2026-10-18T04:20:10Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 0/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897273",
+        "completed_at": "2026-10-18T04:20:11Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 1/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897268",
+        "completed_at": "2026-10-18T04:19:34Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 5/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897239",
+        "completed_at": "2026-10-18T04:18:54Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 2/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897226",
+        "completed_at": "2026-10-18T04:18:34Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 6/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583897225",
+        "completed_at": "2026-10-18T04:19:28Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893768",
+        "completed_at": "2026-10-18T04:19:00Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893760",
+        "completed_at": "2026-10-18T04:18:07Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893745",
+        "completed_at": "2026-10-18T04:26:01Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893740",
+        "completed_at": "2026-10-18T04:18:47Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893724",
+        "completed_at": "2026-10-18T04:18:07Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893715",
+        "completed_at": "2026-10-18T04:19:57Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893711",
+        "completed_at": "2026-10-18T04:19:17Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893668",
+        "completed_at": "2026-10-18T04:19:15Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893126",
+        "completed_at": "2026-10-18T04:19:29Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893089",
+        "completed_at": "2026-10-18T04:20:34Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893069",
+        "completed_at": "2026-10-18T04:23:34Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893028",
+        "completed_at": "2026-10-18T04:23:12Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893017",
+        "completed_at": "2026-10-18T04:22:01Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893013",
+        "completed_at": "2026-10-18T04:19:51Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893011",
+        "completed_at": "2026-10-18T04:19:20Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583893003",
+        "completed_at": "2026-10-18T04:21:44Z"
+      },
+      {
+        "name": "pr-ci / tests_peft_integration / tests_peft_integration [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583892781",
+        "completed_at": "2026-10-18T04:17:55Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891909",
+        "completed_at": "2026-10-18T04:18:27Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891896",
+        "completed_at": "2026-10-18T04:19:58Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891877",
+        "completed_at": "2026-10-18T04:20:04Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891866",
+        "completed_at": "2026-10-18T04:18:20Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891859",
+        "completed_at": "2026-10-18T04:21:01Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891856",
+        "completed_at": "2026-10-18T04:18:48Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891838",
+        "completed_at": "2026-10-18T04:19:09Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891837",
+        "completed_at": "2026-10-18T04:18:17Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891834",
+        "completed_at": "2026-10-18T04:24:28Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891809",
+        "completed_at": "2026-10-18T04:18:11Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891805",
+        "completed_at": "2026-10-18T04:25:35Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891804",
+        "completed_at": "2026-10-18T04:18:38Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891775",
+        "completed_at": "2026-10-18T04:18:00Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891772",
+        "completed_at": "2026-10-18T04:18:12Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891765",
+        "completed_at": "2026-10-18T04:17:55Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583891734",
+        "completed_at": "2026-10-18T04:17:58Z"
+      },
+      {
+        "name": "pr-ci / tests_custom_tokenizers / tests_custom_tokenizers [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583890675",
+        "completed_at": "2026-10-18T04:18:26Z"
+      },
+      {
+        "name": "pr-ci / tests_repo_utils / tests_repo_utils [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583889728",
+        "completed_at": "2026-10-18T04:18:17Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / Setup — generate shard matrix (tests_fsdp_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870783",
+        "completed_at": "2026-10-18T04:15:48Z"
+      },
+      {
+        "name": "pr-ci / tests_custom_tokenizers / Setup — generate shard matrix (tests_custom_tokenizers)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870777",
+        "completed_at": "2026-10-18T04:15:46Z"
+      },
+      {
+        "name": "pr-ci / fast-integration / run",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870745",
+        "completed_at": "2026-10-18T04:19:19Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / Setup — generate shard matrix (tests_training_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870685",
+        "completed_at": "2026-10-18T04:15:46Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / Setup — generate shard matrix (tests_processors)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870656",
+        "completed_at": "2026-10-18T04:15:46Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / Setup — generate shard matrix (tests_tensor_parallel_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870644",
+        "completed_at": "2026-10-18T04:15:48Z"
+      },
+      {
+        "name": "pr-ci / tests_peft_integration / Setup — generate shard matrix (tests_peft_integration)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870625",
+        "completed_at": "2026-10-18T04:15:46Z"
+      },
+      {
+        "name": "pr-ci / tests_repo_utils / Setup — generate shard matrix (tests_repo_utils)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870624",
+        "completed_at": "2026-10-18T04:15:45Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / Setup — generate shard matrix (tests_non_model)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870577",
+        "completed_at": "2026-10-18T04:15:47Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / Setup — generate shard matrix (tests_exotic_models)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870543",
+        "completed_at": "2026-10-18T04:15:48Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / Setup — generate shard matrix (tests_tokenization)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870519",
+        "completed_at": "2026-10-18T04:15:46Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / Setup — generate shard matrix (tests_generate)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870511",
+        "completed_at": "2026-10-18T04:15:48Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / Setup — generate shard matrix (pipelines_torch)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870497",
+        "completed_at": "2026-10-18T04:15:48Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / Setup — generate shard matrix (tests_torch)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39096314245/job/117583870490",
+        "completed_at": "2026-10-18T04:15:48Z"
+      }
+    ]
+  },
+  {
+    "repo": "huggingface/transformers",
+    "number": 49710,
+    "head": "8ece029f2ddf0d11bf76ef4dd425207dd757775f",
+    "total": 116,
+    "returned": 100,
+    "checks": [
+      {
+        "name": "pr-ci / PR CI status",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118335008628",
+        "completed_at": "2026-10-19T22:08:58Z"
+      },
+      {
+        "name": "pr-ci / Collect and aggregate test results",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118334816220",
+        "completed_at": "2026-10-19T22:08:50Z"
+      },
+      {
+        "name": "pr-ci / Test preparation (fetcher)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332652691",
+        "completed_at": "2026-10-19T21:45:01Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332614156",
+        "completed_at": "2026-10-19T21:47:30Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613488",
+        "completed_at": "2026-10-19T21:48:37Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613406",
+        "completed_at": "2026-10-19T21:48:31Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613384",
+        "completed_at": "2026-10-19T21:47:16Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613329",
+        "completed_at": "2026-10-19T21:48:12Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613180",
+        "completed_at": "2026-10-19T21:47:59Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613178",
+        "completed_at": "2026-10-19T21:49:22Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613095",
+        "completed_at": "2026-10-19T21:48:03Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 6/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613089",
+        "completed_at": "2026-10-19T21:47:15Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613080",
+        "completed_at": "2026-10-19T21:51:04Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613031",
+        "completed_at": "2026-10-19T21:53:09Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332613005",
+        "completed_at": "2026-10-19T21:47:18Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612964",
+        "completed_at": "2026-10-19T21:48:41Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612860",
+        "completed_at": "2026-10-19T21:48:00Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612767",
+        "completed_at": "2026-10-19T21:48:51Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612694",
+        "completed_at": "2026-10-19T21:47:52Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612687",
+        "completed_at": "2026-10-19T21:49:22Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612657",
+        "completed_at": "2026-10-19T21:48:14Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612648",
+        "completed_at": "2026-10-19T21:48:56Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612636",
+        "completed_at": "2026-10-19T21:47:15Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 5/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612624",
+        "completed_at": "2026-10-19T21:47:34Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612619",
+        "completed_at": "2026-10-19T21:47:52Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612616",
+        "completed_at": "2026-10-19T21:47:52Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612593",
+        "completed_at": "2026-10-19T21:49:17Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612589",
+        "completed_at": "2026-10-19T21:51:54Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612563",
+        "completed_at": "2026-10-19T21:48:10Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612520",
+        "completed_at": "2026-10-19T21:51:36Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612477",
+        "completed_at": "2026-10-19T21:49:37Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 7/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612451",
+        "completed_at": "2026-10-19T21:49:07Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612443",
+        "completed_at": "2026-10-19T21:47:41Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612412",
+        "completed_at": "2026-10-19T21:47:50Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612408",
+        "completed_at": "2026-10-19T21:48:51Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612399",
+        "completed_at": "2026-10-19T21:53:05Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612384",
+        "completed_at": "2026-10-19T21:49:19Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612383",
+        "completed_at": "2026-10-19T21:50:10Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612374",
+        "completed_at": "2026-10-19T21:48:07Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612307",
+        "completed_at": "2026-10-19T21:47:43Z"
+      },
+      {
+        "name": "pr-ci / tests_peft_integration / tests_peft_integration [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612281",
+        "completed_at": "2026-10-19T21:48:28Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612239",
+        "completed_at": "2026-10-19T21:52:10Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612228",
+        "completed_at": "2026-10-19T21:48:26Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612153",
+        "completed_at": "2026-10-19T21:47:22Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 3/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612142",
+        "completed_at": "2026-10-19T21:47:22Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612134",
+        "completed_at": "2026-10-19T21:47:56Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612132",
+        "completed_at": "2026-10-19T21:48:07Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612131",
+        "completed_at": "2026-10-19T21:48:04Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612127",
+        "completed_at": "2026-10-19T21:48:55Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612124",
+        "completed_at": "2026-10-19T21:49:02Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 5/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612107",
+        "completed_at": "2026-10-19T21:48:52Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612095",
+        "completed_at": "2026-10-19T21:49:44Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612037",
+        "completed_at": "2026-10-19T21:48:02Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 4/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332612009",
+        "completed_at": "2026-10-19T21:47:34Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611960",
+        "completed_at": "2026-10-19T21:52:24Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611940",
+        "completed_at": "2026-10-19T21:53:37Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611920",
+        "completed_at": "2026-10-19T21:50:07Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611847",
+        "completed_at": "2026-10-19T21:47:54Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611838",
+        "completed_at": "2026-10-19T21:50:14Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611802",
+        "completed_at": "2026-10-19T21:49:40Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / tests_fsdp_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611763",
+        "completed_at": "2026-10-19T21:47:13Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611759",
+        "completed_at": "2026-10-19T21:49:45Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / pipelines_torch [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611739",
+        "completed_at": "2026-10-19T21:47:54Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 4/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611712",
+        "completed_at": "2026-10-19T21:51:39Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611706",
+        "completed_at": "2026-10-19T21:48:59Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611690",
+        "completed_at": "2026-10-19T21:48:45Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611623",
+        "completed_at": "2026-10-19T21:52:26Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / tests_training_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611610",
+        "completed_at": "2026-10-19T21:47:57Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611595",
+        "completed_at": "2026-10-19T21:48:23Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 0/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611559",
+        "completed_at": "2026-10-19T21:47:41Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 6/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611545",
+        "completed_at": "2026-10-19T21:52:14Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611543",
+        "completed_at": "2026-10-19T21:48:05Z"
+      },
+      {
+        "name": "pr-ci / tests_repo_utils / tests_repo_utils [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611532",
+        "completed_at": "2026-10-19T21:47:06Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / tests_tokenization [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611469",
+        "completed_at": "2026-10-19T21:48:24Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / tests_processors [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611359",
+        "completed_at": "2026-10-19T21:49:26Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 3/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611311",
+        "completed_at": "2026-10-19T21:51:44Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / tests_generate [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611279",
+        "completed_at": "2026-10-19T21:52:05Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / tests_non_model [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611263",
+        "completed_at": "2026-10-19T21:48:36Z"
+      },
+      {
+        "name": "pr-ci / tests_custom_tokenizers / tests_custom_tokenizers [shard 0/1]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611205",
+        "completed_at": "2026-10-19T21:47:18Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 2/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611203",
+        "completed_at": "2026-10-19T21:47:32Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / tests_tensor_parallel_ci [shard 0/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611130",
+        "completed_at": "2026-10-19T21:48:57Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / tests_exotic_models [shard 1/7]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332611106",
+        "completed_at": "2026-10-19T21:47:30Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 2/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610956",
+        "completed_at": "2026-10-19T21:51:11Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 0/8]",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610835",
+        "completed_at": "2026-10-19T22:08:20Z"
+      },
+      {
+        "name": "pr-ci / tests_processors / Setup — generate shard matrix (tests_processors)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610606",
+        "completed_at": "2026-10-19T21:45:39Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / tests_torch [shard 1/8]",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610585",
+        "completed_at": "2026-10-19T21:52:52Z"
+      },
+      {
+        "name": "pr-ci / tests_peft_integration / Setup — generate shard matrix (tests_peft_integration)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610453",
+        "completed_at": "2026-10-19T21:45:34Z"
+      },
+      {
+        "name": "pr-ci / tests_non_model / Setup — generate shard matrix (tests_non_model)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610430",
+        "completed_at": "2026-10-19T21:45:37Z"
+      },
+      {
+        "name": "pr-ci / tests_tokenization / Setup — generate shard matrix (tests_tokenization)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610323",
+        "completed_at": "2026-10-19T21:45:34Z"
+      },
+      {
+        "name": "pr-ci / tests_exotic_models / Setup — generate shard matrix (tests_exotic_models)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610120",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / tests_custom_tokenizers / Setup — generate shard matrix (tests_custom_tokenizers)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332610000",
+        "completed_at": "2026-10-19T21:45:34Z"
+      },
+      {
+        "name": "pr-ci / tests_fsdp_ci / Setup — generate shard matrix (tests_fsdp_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609983",
+        "completed_at": "2026-10-19T21:45:34Z"
+      },
+      {
+        "name": "pr-ci / tests_training_ci / Setup — generate shard matrix (tests_training_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609966",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / tests_repo_utils / Setup — generate shard matrix (tests_repo_utils)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609924",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / pipelines_torch / Setup — generate shard matrix (pipelines_torch)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609849",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / fast-integration / run",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609767",
+        "completed_at": "2026-10-19T21:48:13Z"
+      },
+      {
+        "name": "pr-ci / tests_tensor_parallel_ci / Setup — generate shard matrix (tests_tensor_parallel_ci)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609534",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / tests_generate / Setup — generate shard matrix (tests_generate)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609508",
+        "completed_at": "2026-10-19T21:45:36Z"
+      },
+      {
+        "name": "pr-ci / Quality gate",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332609118",
+        "completed_at": "2026-10-19T21:45:25Z"
+      },
+      {
+        "name": "pr-ci / tests_torch / Setup — generate shard matrix (tests_torch)",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/huggingface/transformers/actions/runs/39325751487/job/118332608684",
+        "completed_at": "2026-10-19T21:45:37Z"
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 # Tracking
 
-最新：[Frontier Scan 2026-10-19](frontier_scan_2026-10-19.md)，覆盖至 **10/19 09:40:52**；19组重点信号与958条PR索引，先读REKI、T2-z和GR00T。完整判断与缺口见报告，具身机制接[核心topic](../../05-embodied-infra/topics/embodied_infra.md#oct19-learning)。
+最新：[Frontier Scan 2026-10-23](frontier_scan_2026-10-23.md)，覆盖至 **10/23 11:09:27**；19组重点信号、54组观察与1320条PR索引，先读CEL、AIM和CADRE。机制接[具身核心topic](../../05-embodied-infra/topics/embodied_infra.md#oct23-learning)，3篇旧材料另归10月backfill。
 
 新增[具身模型与 GitHub 补扫](embodied_followup_2026-10-13.md)：16 项接受信号、6 库有界核查；由[核心 topic](../../05-embodied-infra/topics/embodied_infra.md)进入基础到进阶学习。
 
@@ -55,7 +55,7 @@
 
 ## 原始扫描与专题索引
 
-最新：[2026-10-14 Frontier Scan](frontier_scan_2026-10-14.md)——16 组 Accepted，其中具身 6 组；持续技能、质量条件、远程执行与数据/状态正确性；附 481 条 RL/推理 merged PR 索引。上轮见 [10/12](frontier_scan_2026-10-12.md)。
+最近扫描：[10/23](frontier_scan_2026-10-23.md) · [10/19](frontier_scan_2026-10-19.md) · [10/14](frontier_scan_2026-10-14.md)。完整时间与覆盖缺口见[扫描账本](scan_log.md)。
 
 <details>
 <summary>展开扫描、旧月报与专题文件列表</summary>

@@ -1,0 +1,726 @@
+{
+  "event_window_utc": {
+    "start_exclusive": "2026-10-19T01:40:52Z",
+    "end_inclusive": "2026-10-23T03:09:27Z"
+  },
+  "candidates": [
+    {
+      "id": "2610.25476v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.25476v1",
+          "sha256": "de67faa3f8153fd9dbf61be33aebf392ab9c83886d20a5551ac9f02a9b9308c9",
+          "bytes": 42961,
+          "fetched_utc": "2026-10-23T03:27:43.282338+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.25476v1",
+          "sha256": "bb3bcabdfa5741e8e1719d6134cddcb73125042fe06bb0c1b05d9311e04a9336",
+          "bytes": 287025,
+          "fetched_utc": "2026-10-23T03:27:44.703229+00:00"
+        }
+      ],
+      "citation_title": [
+        "CusADi2: Latency-Optimized Batch Computation of Robot Kinematics, Jacobians, and Hessians on the GPU"
+      ],
+      "citation_author": [
+        "Viljoen, John",
+        "Peters, Lasse",
+        "Tomizuka, Masayoshi",
+        "Mehr, Negar"
+      ],
+      "citation_date": [
+        "2026/10/18"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.25476"
+      ],
+      "submission_history": "Submission history From: John Viljoen Mr [ view email ] [v1] Sun, 18 Oct 2026 19:03:28 UTC (420 KB)",
+      "triage": "Late-discovered candidate",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata, abstract; HTML obtained, not method audit.",
+      "boundary": "2026-10-18 before cursor. Proposed backfill/2026-10.md, no new Accepted."
+    },
+    {
+      "id": "2610.25736v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.25736v1",
+          "sha256": "0223c1b14773fbd5afaa5119c81f4170429c606ed0d0ed6aa8b788f8f28c59f1",
+          "bytes": 48237,
+          "fetched_utc": "2026-10-23T03:27:43.030269+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.25736v1",
+          "sha256": "939dadeff74c9c785848bd26823438b7d709249a3ec6dc00ca224906773db65e",
+          "bytes": 772799,
+          "fetched_utc": "2026-10-23T03:27:43.822373+00:00"
+        }
+      ],
+      "citation_title": [
+        "Learning from Fleet Experience: A Collective Learning Paradigm for Robots"
+      ],
+      "citation_author": [
+        "Yu, Chao",
+        "Yu, Shu'ang",
+        "Lin, Hao",
+        "Zang, Hongzhi",
+        "Yan, Yuxiang",
+        "Jiang, Chenxi",
+        "Guo, Zhen",
+        "Li, Chuankang",
+        "Chen, Yihao",
+        "Xu, Xin",
+        "Fu, Xu",
+        "Zhou, Jiakai",
+        "Shi, Liangzhi",
+        "Ren, Hongyi",
+        "Liu, Yiwei",
+        "Wu, Jing",
+        "Wang, Yuanqing",
+        "Wu, Chen",
+        "Dai, Bo",
+        "Yang, Chunyu",
+        "Huang, Hongliang",
+        "Yue, Shuoyu",
+        "Yin, Weiqi",
+        "Chen, Yinuo",
+        "Chen, Ruihua",
+        "Zhu, Chunyang",
+        "Xiao, Han",
+        "Li, Yanghao",
+        "Wu, Ruipu",
+        "Cai, Zhikai",
+        "Chen, Xiu",
+        "Tan, Xu",
+        "Yan, Yuchen",
+        "Zhang, Jialin",
+        "Zeng, Wen",
+        "Zhou, Yiming",
+        "Huang, Zixiao",
+        "Ren, Guanghui",
+        "Zhang, Quanlu",
+        "Li, Boxun",
+        "Yao, Maoqing",
+        "Wang, Yu"
+      ],
+      "citation_date": [
+        "2026/10/19"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.25736"
+      ],
+      "submission_history": "Submission history From: Shu-Ang Yu [ view email ] [v1] Mon, 19 Oct 2026 03:41:27 UTC (14,558 KB) [v2] Wed, 21 Oct 2026 05:52:57 UTC (15,263 KB)",
+      "triage": "Accepted",
+      "decision": "Deep Dive",
+      "first_seen": "2026-10-23",
+      "what_read": "Sections 3, 4; appendices D/F and source metadata; project page; RLinf root README only. FERT/FATS implementation not located/audited.",
+      "boundary": "Failure-conditioned successful replay; worker incarnation/connection epoch/completed-episode admission. Not human-free; trace replay not deployed A/B."
+    },
+    {
+      "id": "2610.25961v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.25961v1",
+          "sha256": "21125e8e45dc0a3ff0e6e91183855cf6fa108f354769cadc49add02b36a2ea71",
+          "bytes": 43073,
+          "fetched_utc": "2026-10-23T03:27:45.552455+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.25961v1",
+          "sha256": "8d39cbd35076734cb4d9d36b8648c664c957537071c4e1985ecc081ac5123aa8",
+          "bytes": 451131,
+          "fetched_utc": "2026-10-23T03:27:46.619373+00:00"
+        }
+      ],
+      "citation_title": [
+        "PaceVLA: Adaptive Temporal Action Quantization in Vision-Language-Action Models"
+      ],
+      "citation_author": [
+        "Jeon, Hojin",
+        "Lee, Jimin",
+        "Kim, Taekwan",
+        "Oh, Nayoung",
+        "Kim, Taeyoung",
+        "Koo, Myungkyu",
+        "Koo, Jinmo",
+        "Ahn, Joonwoo",
+        "Shin, Jinwoo"
+      ],
+      "citation_date": [
+        "2026/10/19"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.25961"
+      ],
+      "submission_history": "Submission history From: Hojin Jeon [ view email ] [v1] Mon, 19 Oct 2026 07:54:13 UTC (3,535 KB) [v2] Wed, 21 Oct 2026 05:55:50 UTC (3,535 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.26584v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.26584v1",
+          "sha256": "60a5714ac3e8e232c7c3cc83c4b7d61fb361688dc0f857d0d6d0431604b7c681",
+          "bytes": 44696,
+          "fetched_utc": "2026-10-23T03:27:45.523723+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.26584v1",
+          "sha256": "b3c719b849e41fec7190c3ebf3feab4201258b713b30a1691286914a2c4b78d4",
+          "bytes": 300813,
+          "fetched_utc": "2026-10-23T03:27:46.473221+00:00"
+        }
+      ],
+      "citation_title": [
+        "HAF-VLA: Hierarchical Action Flow Framework for Humanoid Vision-Language-Action Control"
+      ],
+      "citation_author": [
+        "Gu, Langzhe",
+        "Hou, Chengkai",
+        "Li, Meng",
+        "Wang, Xinhua",
+        "Lv, Xinyuan",
+        "Bai, Shuanghao",
+        "Li, Guangrun",
+        "He, Jingyang",
+        "Ding, Ziluo",
+        "Xu, Zhiyuan",
+        "Ding, Ning",
+        "Cheng, Kuan",
+        "Tang, Jian",
+        "Zhang, Shanghang",
+        "Che, Zhengping"
+      ],
+      "citation_date": [
+        "2026/10/19"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.26584"
+      ],
+      "submission_history": "Submission history From: Langzhe Gu [ view email ] [v1] Mon, 19 Oct 2026 15:33:34 UTC (5,781 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.27387v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.27387v1",
+          "sha256": "0e12cbc9450d3e3d96b1fe7146b17db40ef7bdc0b464891d75c011973fb333fe",
+          "bytes": 42848,
+          "fetched_utc": "2026-10-23T03:27:43.816382+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.27387v1",
+          "sha256": "209f45052e8be1479f74f1acf932cc0083eb8c8191b2280208126aa750e01c5b",
+          "bytes": 498165,
+          "fetched_utc": "2026-10-23T03:27:44.703129+00:00"
+        }
+      ],
+      "citation_title": [
+        "Training Controllable World Models via Action Influence Maximization"
+      ],
+      "citation_author": [
+        "Bateman, Samuel M.",
+        "Yin, Tenny",
+        "Zheng, Chongyi",
+        "Huang, Lei",
+        "Wang, Brian",
+        "Eysenbach, Benjamin",
+        "Fisac, Jaime Fernández",
+        "Shah, Dhruv"
+      ],
+      "citation_date": [
+        "2026/10/19"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.27387"
+      ],
+      "submission_history": "Submission history From: Samuel Bateman [ view email ] [v1] Mon, 19 Oct 2026 23:21:18 UTC (13,926 KB)",
+      "triage": "Accepted",
+      "decision": "Read",
+      "first_seen": "2026-10-23",
+      "what_read": "Sections 3-5 and table/metric boundaries; source citation metadata. No official method repository verified.",
+      "boundary": "Action influence and targeted collection. Simulated Four Rooms/Push-T; data efficiency does not equal compute efficiency or task success."
+    },
+    {
+      "id": "2610.27794v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.27794v1",
+          "sha256": "b0870de702a450bb74189e007548ffb253165aef06bceffcb1ce5c3cf6388b78",
+          "bytes": 43915,
+          "fetched_utc": "2026-10-23T03:27:42.687470+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.27794v1",
+          "sha256": "f542cebcde7a7eae181e21aed2c1fe133bee712f9e9a0720e256afd8241bdb35",
+          "bytes": 205741,
+          "fetched_utc": "2026-10-23T03:27:43.114833+00:00"
+        }
+      ],
+      "citation_title": [
+        "Multi-View Latent Action Pretraining for Cross-Embodiment Robot Learning from Videos"
+      ],
+      "citation_author": [
+        "Hausdörfer, Oliver",
+        "Minzenmay, Felix",
+        "Majd, Mani",
+        "Christof, Maximilian P.",
+        "Zhang, Shiyuan",
+        "Schoellig, Angela P."
+      ],
+      "citation_date": [
+        "2026/10/20"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.27794"
+      ],
+      "submission_history": "Submission history From: Oliver Hausdörfer [ view email ] [v1] Tue, 20 Oct 2026 07:55:43 UTC (4,034 KB)",
+      "triage": "Accepted",
+      "decision": "Read",
+      "first_seen": "2026-10-23",
+      "what_read": "Sections III-V methods, action probes, benchmark/real-robot protocol; official project page.",
+      "boundary": "Joint cross-view latent encoder and sequential policy; deployment still has external+wrist camera; source code unavailable on checked page."
+    },
+    {
+      "id": "2610.28480v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.28480v1",
+          "sha256": "c00566c043065495f5c67dd04cf8ecca6567ac0d3e38c67a08dc1ccdd6242c29",
+          "bytes": 43122,
+          "fetched_utc": "2026-10-23T03:27:42.384353+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.28480v1",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "citation_title": [
+        "SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model"
+      ],
+      "citation_author": [
+        "Liao, Qiayuan",
+        "Shao, Yiyang",
+        "Long, Junfeng",
+        "Zakka, Kevin",
+        "Horowitz, Roberto",
+        "Abbeel, Pieter",
+        "Sreenath, Koushil"
+      ],
+      "citation_date": [
+        "2026/10/20"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.28480"
+      ],
+      "submission_history": "Submission history From: Qiayuan Liao [ view email ] [v1] Tue, 20 Oct 2026 16:29:30 UTC (2,834 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.28613v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.28613v1",
+          "sha256": "5e6535bb1f1552ee1363c606750888a4f3736a90e830aca08314741bbd392d27",
+          "bytes": 45304,
+          "fetched_utc": "2026-10-23T03:27:45.561732+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.28613v1",
+          "sha256": "c961133096d3eb840cd9bf45a95c33e3e6b60e3aa2884f80bc8f7c4b81e94309",
+          "bytes": 453232,
+          "fetched_utc": "2026-10-23T03:27:46.651407+00:00"
+        }
+      ],
+      "citation_title": [
+        "Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning"
+      ],
+      "citation_author": [
+        "Xing, Zebin",
+        "Zheng, Yuhang",
+        "Zheng, Yupeng",
+        "Zhang, Yichen",
+        "Li, Zichen",
+        "Zhou, Shangqing",
+        "Zang, Yujie",
+        "Liu, Yuchen",
+        "Xia, Zhongpu",
+        "Li, Haoran",
+        "Zhang, Qichao"
+      ],
+      "citation_date": [
+        "2026/10/20"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.28613"
+      ],
+      "submission_history": "Submission history From: Zebin Xing [ view email ] [v1] Tue, 20 Oct 2026 17:54:03 UTC (22,708 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.28626v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.28626v1",
+          "sha256": "460f630866a1bb6a3417971fb012f508f2f5abcb43a2eca282b7bc00850cce9e",
+          "bytes": 45077,
+          "fetched_utc": "2026-10-23T03:27:42.367211+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.28626v1",
+          "sha256": "f8e053e96016be32eb8a0cccefe6e62684f870bff688173f91453350ce8a7503",
+          "bytes": 452730,
+          "fetched_utc": "2026-10-23T03:27:42.949562+00:00"
+        }
+      ],
+      "citation_title": [
+        "UniWALM: Unified World Action Language Model for Embodied Robot Control"
+      ],
+      "citation_author": [
+        "Sajnani, Rahul",
+        "Romeres, Diego",
+        "Zhang, Mingyuan",
+        "Gao, Kai",
+        "Qi, Carl",
+        "Huang, Baichuan",
+        "Sridhar, Srinath",
+        "Randle, Dylan",
+        "Ratliff, Lillian J.",
+        "Barreiros, Jose",
+        "Nambi, Manikantan",
+        "Vanbaar, Jeroen"
+      ],
+      "citation_date": [
+        "2026/10/20"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.28626"
+      ],
+      "submission_history": "Submission history From: Rahul Sajnani [ view email ] [v1] Tue, 20 Oct 2026 17:59:04 UTC (10,279 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.29730v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.29730v1",
+          "sha256": "f40af6530766f186d35e6143cfc2ddae6b8f0d40dc5b95dcd5bd02f2e9dbeb01",
+          "bytes": 43618,
+          "fetched_utc": "2026-10-23T03:27:42.363135+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.29730v1",
+          "sha256": "9d6a709e13583b1c7b6a42e281717fcdd84701f07a6b4f659b511acb7e68f115",
+          "bytes": 574387,
+          "fetched_utc": "2026-10-23T03:27:43.042820+00:00"
+        }
+      ],
+      "citation_title": [
+        "Post-hoc Epistemic Uncertainty for Vision-Language-Action Policies"
+      ],
+      "citation_author": [
+        "Keller, Johannes",
+        "Bloße, Albrecht M.",
+        "Lindenmeyer, Adrian",
+        "Neumuth, Thomas",
+        "Schneider, Daniel"
+      ],
+      "citation_date": [
+        "2026/10/21"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.29730"
+      ],
+      "submission_history": "Submission history From: Daniel Schneider [ view email ] [v1] Wed, 21 Oct 2026 13:34:03 UTC (115 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.30117v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.30117v1",
+          "sha256": "35fa02c9ff492ff0d9dd430bb52ac9383f368b823c3896d26e2a81ce7eabaeed",
+          "bytes": 41419,
+          "fetched_utc": "2026-10-23T03:27:41.623845+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.30117v1",
+          "sha256": "282b6e692f581e4ccb549c4ee6da4e9df671427cc032092adaa851ba7dbee3e2",
+          "bytes": 154021,
+          "fetched_utc": "2026-10-23T03:27:42.053561+00:00"
+        }
+      ],
+      "citation_title": [
+        "CW-WAM: A Structured Contact-Wrench World Action Model for Force-Sensitive Manipulation"
+      ],
+      "citation_author": [
+        "Ding, Houzhu",
+        "Qi, Xinda",
+        "Wang, Luqi",
+        "Yang, Ming"
+      ],
+      "citation_date": [
+        "2026/10/21"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.30117"
+      ],
+      "submission_history": "Submission history From: Houzhu Ding [ view email ] [v1] Wed, 21 Oct 2026 17:55:53 UTC (2,570 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.30129v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.30129v1",
+          "sha256": "31098e321b7979b33226d85a76c62f096b0bd7f31dacbda4ed49b12e2a5f2915",
+          "bytes": 42211,
+          "fetched_utc": "2026-10-23T03:27:44.261423+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.30129v1",
+          "sha256": "1ec9836093cda39867315eb64ad1fd085c7ab85ac36fcdba935d44ea0e867fea",
+          "bytes": 875240,
+          "fetched_utc": "2026-10-23T03:27:55.149265+00:00"
+        }
+      ],
+      "citation_title": [
+        "Rethinking Video Autoencoders for Interactive World Models"
+      ],
+      "citation_author": [
+        "Rahary, Adrien Ramanana",
+        "Bai, Yutong",
+        "Dufour, Nicolas",
+        "Pérez, Patrick",
+        "Picard, David"
+      ],
+      "citation_date": [
+        "2026/10/21"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.30129"
+      ],
+      "submission_history": "Submission history From: Adrien Ramanana Rahary [ view email ] [v1] Wed, 21 Oct 2026 17:58:11 UTC (32,713 KB)",
+      "triage": "Accepted",
+      "decision": "Read",
+      "first_seen": "2026-10-23",
+      "what_read": "Sections 2-5, appendix scope, official code README at recorded SHA.",
+      "boundary": "Compression controls token cost and action delay. ARR is probe, not closed-loop success; README runtime/multires extra not dated as new release."
+    },
+    {
+      "id": "2610.30814v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.30814v1",
+          "sha256": "a38624b961c3ede39e1f544598054d0b0465b8157e3840b3fe9f41c5a8252b4a",
+          "bytes": 43718,
+          "fetched_utc": "2026-10-23T03:27:43.375179+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.30814v1",
+          "sha256": "1789229883a36ac9e735368320fd144885c150ae0bcef3db1408036728d76b9c",
+          "bytes": 1102852,
+          "fetched_utc": "2026-10-23T03:27:45.216888+00:00"
+        }
+      ],
+      "citation_title": [
+        "DRILL: Training World Models to Improve Policies, Not Predict Pixels"
+      ],
+      "citation_author": [
+        "Kang, Zhaolu",
+        "Luo, Tailong",
+        "Wei, Lei",
+        "Dong, Guangyuan",
+        "Liu, Sihan",
+        "He, Yingjie",
+        "Wang, Siheng",
+        "Li, Shuaibo",
+        "Zhang, Rongchao",
+        "Tian, Zhen",
+        "Xuan, Richeng",
+        "Hu, Zhichao"
+      ],
+      "citation_date": [
+        "2026/10/22"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.30814"
+      ],
+      "submission_history": "Submission history From: Zhaolu Kang [ view email ] [v1] Thu, 22 Oct 2026 06:40:31 UTC (2,454 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.31569v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.31569v1",
+          "sha256": "289145dabe79da2fca139a514d8c5433ff35f4192989c97c430711dd2eb1d0e6",
+          "bytes": 43704,
+          "fetched_utc": "2026-10-23T03:27:41.659247+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.31569v1",
+          "sha256": "36c0f622f051ac32a007791129fbdc29c78d76bf4bfd25dbb7ca77934be7f2ac",
+          "bytes": 393525,
+          "fetched_utc": "2026-10-23T03:27:42.123933+00:00"
+        }
+      ],
+      "citation_title": [
+        "Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models"
+      ],
+      "citation_author": [
+        "Liu, Yufeng",
+        "Fan, Bohao",
+        "Zhao, Juntu",
+        "Wang, Xinyi",
+        "Yu, Hang",
+        "Luo, Wenzhuan",
+        "Wang, Yingzhi",
+        "Li, Qinghai",
+        "Hu, Yingdong",
+        "Guo, Junliang",
+        "Wang, Richard",
+        "Wang, Dequan",
+        "Gao, Yang",
+        "Ma, Cheng"
+      ],
+      "citation_date": [
+        "2026/10/22"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.31569"
+      ],
+      "submission_history": "Submission history From: Yufeng Liu [ view email ] [v1] Thu, 22 Oct 2026 17:12:16 UTC (6,498 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.31613v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.31613v1",
+          "sha256": "add445dce3d0de8c7a4d11c5a396660e39a66ca6b9706a1a0c8ef555e362475b",
+          "bytes": 41809,
+          "fetched_utc": "2026-10-23T03:27:41.608625+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.31613v1",
+          "sha256": "fd11030a329ceeb6234a3f4e4e51c976429e70d00e611dcd85ee187440544380",
+          "bytes": 260620,
+          "fetched_utc": "2026-10-23T03:27:42.061466+00:00"
+        }
+      ],
+      "citation_title": [
+        "Progress Probes $P^2$: Lightweight Runtime Monitoring for Vision-Language-Action Models"
+      ],
+      "citation_author": [
+        "Bhardwaj, Atiksh",
+        "Duan, Edward W.",
+        "Seo, Junwon",
+        "Dan, Prithwish",
+        "Ma, Wei-Chiu",
+        "Bajscy, Andrea",
+        "Culbertson, Preston"
+      ],
+      "citation_date": [
+        "2026/10/22"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.31613"
+      ],
+      "submission_history": "Submission history From: Atiksh Bhardwaj [ view email ] [v1] Thu, 22 Oct 2026 17:40:19 UTC (4,987 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    },
+    {
+      "id": "2610.31617v1",
+      "pages": [
+        {
+          "url": "https://arxiv.org/abs/2610.31617v1",
+          "sha256": "69569c661f9006e94b5465520c983a76985e24c0e4453cc9b38e2923d051b1d3",
+          "bytes": 42452,
+          "fetched_utc": "2026-10-23T03:27:41.655745+00:00"
+        },
+        {
+          "url": "https://arxiv.org/html/2610.31617v1",
+          "sha256": "3c3ad79a0173febe757cf1d4111aa03a657290541d768040596065db83d4cb26",
+          "bytes": 211949,
+          "fetched_utc": "2026-10-23T03:27:42.086725+00:00"
+        }
+      ],
+      "citation_title": [
+        "DiffDreamer: Coupling World Models with Differentiable Simulation for Agile Quadrotor Control"
+      ],
+      "citation_author": [
+        "Li, Fanxing",
+        "Huang, Yuxiang",
+        "Wang, Shengyang",
+        "Sun, Fangyu",
+        "Wu, Shuyu",
+        "Zhang, Tianbao",
+        "Zuo, Dexin",
+        "Yufei, Yan",
+        "Zou, Danping",
+        "Yu, Wenxian"
+      ],
+      "citation_date": [
+        "2026/10/22"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2610.31617"
+      ],
+      "submission_history": "Submission history From: Fanxing Li [ view email ] [v1] Thu, 22 Oct 2026 17:41:13 UTC (7,919 KB)",
+      "triage": "Observed",
+      "decision": "Observe",
+      "first_seen": "2026-10-23",
+      "what_read": "Citation metadata and abstract read; HTML obtained unless 404, not full method/benchmark audit.",
+      "boundary": "No result reproduction or source-code execution."
+    }
+  ],
+  "accepted_count": 4,
+  "observed_current_window_papers": 11,
+  "late_candidate_count": 1,
+  "html_available": 15,
+  "local_execution": false
+}

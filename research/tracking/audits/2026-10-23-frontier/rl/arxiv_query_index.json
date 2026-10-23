@@ -1,0 +1,4770 @@
+{
+  "query": "submittedDate:[202610190140 TO 202610230309] AND (cat:cs.DC OR cat:cs.LG) AND (all:training OR all:reinforcement)",
+  "pages": [
+    {
+      "start": 0,
+      "max_results": 300,
+      "total": 467,
+      "returned": 300
+    },
+    {
+      "start": 300,
+      "max_results": 300,
+      "total": 467,
+      "returned": 167
+    }
+  ],
+  "total_returned": 467,
+  "filter_note": "API分钟粒度索引；Accepted逐篇以v1秒级时间核固定窗口。题名/关键词初筛，不宣称cs.CL-only或全arXiv发现完整；旧09/22以来历史发现缺口保留。",
+  "items": [
+    {
+      "id": "http://arxiv.org/abs/2610.31670v1",
+      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "published": "2026-10-22T17:59:51Z",
+      "updated": "2026-10-22T17:59:51Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31663v1",
+      "title": "Phase Transition from Random Features to Fully Trainable Networks",
+      "published": "2026-10-22T17:59:29Z",
+      "updated": "2026-10-22T17:59:29Z",
+      "categories": [
+        "math.NA",
+        "cs.LG",
+        "math.ST",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31659v1",
+      "title": "SpectralCanary: Embarrassingly Simple Low-Frequency Traces for T2I Dataset-Use Auditing",
+      "published": "2026-10-22T17:59:03Z",
+      "updated": "2026-10-22T17:59:03Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31657v1",
+      "title": "Cost-Aware Abstention for LLM-Based IT Ticket Classification",
+      "published": "2026-10-22T17:58:52Z",
+      "updated": "2026-10-22T17:58:52Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31656v1",
+      "title": "METTA: Memory-Enhanced Test-Time Adaptation for Meta-Reinforcement Learning",
+      "published": "2026-10-22T17:58:27Z",
+      "updated": "2026-10-22T17:58:27Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31633v1",
+      "title": "BeNice! Closing Looping's Inference-Memory Gap via KV-Sharing",
+      "published": "2026-10-22T17:49:44Z",
+      "updated": "2026-10-22T17:49:44Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31624v1",
+      "title": "Questioning Instrumental Convergence in RLVR: Checkpoint Evidence from OLMo-3",
+      "published": "2026-10-22T17:44:41Z",
+      "updated": "2026-10-22T17:44:41Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31616v1",
+      "title": "OP-Print: Tracing Membership Imprints in On-Policy Self-Distillation",
+      "published": "2026-10-22T17:41:04Z",
+      "updated": "2026-10-22T17:41:04Z",
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31594v1",
+      "title": "CRANE: Post-Hoc Counterfactual Retrieval for Multimodal Classifiers",
+      "published": "2026-10-22T17:26:58Z",
+      "updated": "2026-10-22T17:26:58Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31563v1",
+      "title": "When to Follow the Teacher: Advantage-Based On-Policy Distillation",
+      "published": "2026-10-22T17:05:21Z",
+      "updated": "2026-10-22T17:05:21Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31551v1",
+      "title": "Fine-Grained Analysis of Catastrophic Forgetting in Continual Learning via Algorithmic Stability",
+      "published": "2026-10-22T16:54:40Z",
+      "updated": "2026-10-22T16:54:40Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31549v1",
+      "title": "Shift-aware score transport for privacy auditing without retraining",
+      "published": "2026-10-22T16:54:11Z",
+      "updated": "2026-10-22T16:54:11Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31544v1",
+      "title": "Same Luck, Different Choice: Twin-World Credit Assignment for Agentic Reinforcement Learning",
+      "published": "2026-10-22T16:51:27Z",
+      "updated": "2026-10-22T16:51:27Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31539v1",
+      "title": "PYTHIA, a transferable machine learning framework for simultaneous defect and adsorption site optimization",
+      "published": "2026-10-22T16:46:46Z",
+      "updated": "2026-10-22T16:46:46Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31526v1",
+      "title": "Direct Inference on Admissible Sets (Diona)",
+      "published": "2026-10-22T16:35:47Z",
+      "updated": "2026-10-22T16:35:47Z",
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31510v1",
+      "title": "Piano2Pop: Expanding Piano Demos into Pop Productions Without Aligned Supervision",
+      "published": "2026-10-22T16:26:20Z",
+      "updated": "2026-10-22T16:26:20Z",
+      "categories": [
+        "cs.LG",
+        "cs.SD"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31504v1",
+      "title": "Structure-preserving reduced-order models of thin panels in supersonic and hypersonic flow",
+      "published": "2026-10-22T16:19:57Z",
+      "updated": "2026-10-22T16:19:57Z",
+      "categories": [
+        "cs.CE",
+        "cs.LG",
+        "math.NA"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31483v1",
+      "title": "Training Small Language Models for Transferable Tool Selection",
+      "published": "2026-10-22T16:07:49Z",
+      "updated": "2026-10-22T16:07:49Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31479v1",
+      "title": "Evaluating the Applicability of LLM Inference Optimizations on Apple Silicon",
+      "published": "2026-10-22T16:04:40Z",
+      "updated": "2026-10-22T16:04:40Z",
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31478v1",
+      "title": "MoG-VLM: Efficient Video Anomaly Detection through Motion-Guided Vision-Language Models",
+      "published": "2026-10-22T16:03:47Z",
+      "updated": "2026-10-22T16:03:47Z",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31465v1",
+      "title": "RheOPT: Few-Shot Non-Newtonian Flow Prediction via Newtonian Pretraining of RheOFormer",
+      "published": "2026-10-22T15:57:31Z",
+      "updated": "2026-10-22T15:57:31Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31438v1",
+      "title": "DIAL: Steerable Language Models with Distilled Instruction-Adherence Levels",
+      "published": "2026-10-22T15:34:39Z",
+      "updated": "2026-10-22T15:34:39Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31428v1",
+      "title": "Predictable performance is suboptimal, and what it means for model routing",
+      "published": "2026-10-22T15:27:27Z",
+      "updated": "2026-10-22T15:27:27Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31421v1",
+      "title": "How Depth Growth and Looping Shape In-Context Learning in Language Models",
+      "published": "2026-10-22T15:21:22Z",
+      "updated": "2026-10-22T15:21:22Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31420v1",
+      "title": "Post-Hoc Feature Selection Layer for Neural Networks Interpretability",
+      "published": "2026-10-22T15:20:50Z",
+      "updated": "2026-10-22T15:20:50Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31412v1",
+      "title": "SQuAT: Spherical Lattice Vector Quantization-Aware Training",
+      "published": "2026-10-22T15:14:44Z",
+      "updated": "2026-10-22T15:14:44Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31386v1",
+      "title": "Convex Equilibrium Potentials for Monge--Ampère: Curvature Bounds and A Posteriori Evaluation",
+      "published": "2026-10-22T14:53:15Z",
+      "updated": "2026-10-22T14:53:15Z",
+      "categories": [
+        "math.NA",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31383v1",
+      "title": "Pipelining vs. Combining in Aggregation Tasks",
+      "published": "2026-10-22T14:52:00Z",
+      "updated": "2026-10-22T14:52:00Z",
+      "categories": [
+        "cs.DC",
+        "cs.DS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31304v1",
+      "title": "Data-Driven Vision-Language Models for Remote Sensing: A Survey",
+      "published": "2026-10-22T14:03:29Z",
+      "updated": "2026-10-22T14:03:29Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31275v1",
+      "title": "Learning Robot Behavior Priors from Non-Robotic Synthetic Data",
+      "published": "2026-10-22T13:43:47Z",
+      "updated": "2026-10-22T13:43:47Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31251v1",
+      "title": "QuaNAS: Uncertainty-Aware Reuse of Earlier Searches for Query-Efficient Neural Architecture Search",
+      "published": "2026-10-22T13:30:25Z",
+      "updated": "2026-10-22T13:30:25Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31235v1",
+      "title": "Muting Tokens: Exploring Token Sparsification for Efficient Audio Transformers",
+      "published": "2026-10-22T13:15:30Z",
+      "updated": "2026-10-22T13:15:30Z",
+      "categories": [
+        "cs.SD",
+        "cs.LG",
+        "eess.AS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31180v1",
+      "title": "Track finding and particle identification performance with particle physics foundation models",
+      "published": "2026-10-22T12:32:26Z",
+      "updated": "2026-10-22T12:32:26Z",
+      "categories": [
+        "physics.data-an",
+        "cs.LG",
+        "hep-ex",
+        "nucl-ex"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31163v1",
+      "title": "Prediction Uncertainty Controlled Computer Model Calibration",
+      "published": "2026-10-22T12:22:01Z",
+      "updated": "2026-10-22T12:22:01Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "stat.AP",
+        "stat.CO",
+        "stat.ME"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31147v1",
+      "title": "PriMa-Causa: Causal Prescriptive Maintenance",
+      "published": "2026-10-22T12:06:59Z",
+      "updated": "2026-10-22T12:06:59Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31140v1",
+      "title": "GM-GReFEL: Geometry-Guided Spatiotemporal State-Space Learning for Robust Dynamic Facial Expression Recognition",
+      "published": "2026-10-22T11:59:56Z",
+      "updated": "2026-10-22T11:59:56Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31125v1",
+      "title": "Delta N-gram: Forward-Only Continual Writing into a Language Model's Native N-gram Memory",
+      "published": "2026-10-22T11:42:49Z",
+      "updated": "2026-10-22T11:42:49Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31089v1",
+      "title": "Transformers with CoT Discover Heavy-Ball Acceleration Through Training",
+      "published": "2026-10-22T10:59:26Z",
+      "updated": "2026-10-22T10:59:26Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31080v1",
+      "title": "nnInteractive Agent: General-Purpose AI Agents as 3D Image Annotators",
+      "published": "2026-10-22T10:55:15Z",
+      "updated": "2026-10-22T10:55:15Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31075v1",
+      "title": "When Forgotten Facts Return: Relearning-Aware Unlearning of Knowledge Graph Embeddings via Tangent Kernels",
+      "published": "2026-10-22T10:51:32Z",
+      "updated": "2026-10-22T10:51:32Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.31017v1",
+      "title": "Mostly Reading: What Open-Book Scores Measure in Document-Level LoRA Adapters",
+      "published": "2026-10-22T09:52:29Z",
+      "updated": "2026-10-22T09:52:29Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30995v1",
+      "title": "EEG-Captioner: Grounding EEG-to-Language Generation in Fundamental Signal Properties",
+      "published": "2026-10-22T09:37:53Z",
+      "updated": "2026-10-22T09:37:53Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30980v1",
+      "title": "Diagnostic Loss: Asymmetric Supervision for Radiology Report Generation",
+      "published": "2026-10-22T09:26:17Z",
+      "updated": "2026-10-22T09:26:17Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30970v1",
+      "title": "Joint or Per-Option? Compact Encoders for Closed-Set Decisions from 17 Million to 1 Billion Parameters",
+      "published": "2026-10-22T09:14:44Z",
+      "updated": "2026-10-22T09:14:44Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30957v1",
+      "title": "Doubly Robust Distributionally Robust Offline Contextual Pricing",
+      "published": "2026-10-22T09:06:01Z",
+      "updated": "2026-10-22T09:06:01Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30954v1",
+      "title": "Ground-Truth-First Benchmarking of Reinforcement Learning via Converse Optimality: From Smooth, Fully Observed Systems to Non-Smooth or Partially Observed Tasks",
+      "published": "2026-10-22T09:04:19Z",
+      "updated": "2026-10-22T09:04:19Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30951v1",
+      "title": "OpenAttention: One Percent Is Enough with Tail Proxies",
+      "published": "2026-10-22T09:03:08Z",
+      "updated": "2026-10-22T09:03:08Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30941v1",
+      "title": "PAIR: Preference-Aligned Intent Retrieval for Premium People Recommendation at LinkedIn",
+      "published": "2026-10-22T08:57:58Z",
+      "updated": "2026-10-22T08:57:58Z",
+      "categories": [
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30940v1",
+      "title": "Vision Transformers for Estimating Irradiance Using Data Scarce Sky Images",
+      "published": "2026-10-22T08:57:55Z",
+      "updated": "2026-10-22T08:57:55Z",
+      "categories": [
+        "eess.IV",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30903v1",
+      "title": "Same molecule, Different Knowledge: Cross-Identifier Binding Failures in LLMs For chemistry",
+      "published": "2026-10-22T08:25:51Z",
+      "updated": "2026-10-22T08:25:51Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30890v1",
+      "title": "Continuous-depth Deep Gaussian Processes",
+      "published": "2026-10-22T08:06:54Z",
+      "updated": "2026-10-22T08:06:54Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30888v1",
+      "title": "Building Presentation Intelligence for High-Quality Slide Generation",
+      "published": "2026-10-22T08:06:34Z",
+      "updated": "2026-10-22T08:06:34Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30884v1",
+      "title": "Tracing Subliminal Learning Through Pretraining",
+      "published": "2026-10-22T08:04:37Z",
+      "updated": "2026-10-22T08:04:37Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30882v1",
+      "title": "Inherited, Not Invented: Tracing the Provenance of Wait in Reasoning Models",
+      "published": "2026-10-22T08:03:07Z",
+      "updated": "2026-10-22T08:03:07Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30880v1",
+      "title": "One Teacher, Many Views: Reducing Reference Sensitivity in On-Policy Self-Distillation",
+      "published": "2026-10-22T07:59:48Z",
+      "updated": "2026-10-22T07:59:48Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30873v1",
+      "title": "MOER: Mix-Policy Optimization under Expert Prefix Guidance with Selective Rollback",
+      "published": "2026-10-22T07:54:45Z",
+      "updated": "2026-10-22T07:54:45Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30853v1",
+      "title": "Training Mixed-Monotone Neural Networks for Verification Without Set Propagation",
+      "published": "2026-10-22T07:29:10Z",
+      "updated": "2026-10-22T07:29:10Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30847v1",
+      "title": "Bifurcations from Weight Space: JEPAWG on Parametric Dynamical Systems",
+      "published": "2026-10-22T07:22:44Z",
+      "updated": "2026-10-22T07:22:44Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "nlin.CD"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30844v1",
+      "title": "Reverse-KL Policy Distillation: Statistical Guarantees and Limits",
+      "published": "2026-10-22T07:19:49Z",
+      "updated": "2026-10-22T07:19:49Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30843v1",
+      "title": "Lean Finder V2: Semantic Search for Mathlib That Disambiguates User Queries",
+      "published": "2026-10-22T07:19:43Z",
+      "updated": "2026-10-22T07:19:43Z",
+      "categories": [
+        "cs.LG",
+        "cs.IR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30823v1",
+      "title": "Neural Spectral Capacity with Residual Context for Heterogeneous Resource Allocation within Transformers",
+      "published": "2026-10-22T06:52:57Z",
+      "updated": "2026-10-22T06:52:57Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30815v1",
+      "title": "xVGAE: A Hierarchical Variational Graph Autoencoder for Exchangeable Graphs",
+      "published": "2026-10-22T06:41:35Z",
+      "updated": "2026-10-22T06:41:35Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30803v1",
+      "title": "What Lies Beyond Perception: A Partition Theory of the Limits of AI Evaluation and Oversight",
+      "published": "2026-10-22T06:28:29Z",
+      "updated": "2026-10-22T06:28:29Z",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30796v1",
+      "title": "GIFT: Gradient Informed Filtering for Distillation Augmented Reasoning RL",
+      "published": "2026-10-22T06:22:45Z",
+      "updated": "2026-10-22T06:22:45Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30792v1",
+      "title": "Trace2World: Reconstructing App Worlds from Real Interaction Traces for Scalable GUI Agent Training",
+      "published": "2026-10-22T06:10:53Z",
+      "updated": "2026-10-22T06:10:53Z",
+      "categories": [
+        "cs.LG",
+        "cs.SE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30777v1",
+      "title": "One Pretrained Decision Model Is Enough for Training-Free Generalist Graph Anomaly Detection",
+      "published": "2026-10-22T05:56:54Z",
+      "updated": "2026-10-22T05:56:54Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30746v1",
+      "title": "Wavenumber-Aware Deep Learning for Robust Analysis of Raman Spectra",
+      "published": "2026-10-22T05:16:31Z",
+      "updated": "2026-10-22T05:16:31Z",
+      "categories": [
+        "cs.LG",
+        "physics.chem-ph",
+        "physics.optics"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30744v1",
+      "title": "Random Remasking Scales Masked Diffusion Inference",
+      "published": "2026-10-22T05:15:10Z",
+      "updated": "2026-10-22T05:15:10Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30729v1",
+      "title": "Width and Depth Limits Commute During Training",
+      "published": "2026-10-22T04:56:49Z",
+      "updated": "2026-10-22T04:56:49Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30721v1",
+      "title": "Solvable models of learning to pursue a moving target",
+      "published": "2026-10-22T04:42:28Z",
+      "updated": "2026-10-22T04:42:28Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30688v1",
+      "title": "An Agent Architecture with Tools and Memory for Selective Correction of Wrist PPG Heart Rate Estimates",
+      "published": "2026-10-22T03:59:06Z",
+      "updated": "2026-10-22T03:59:06Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30685v1",
+      "title": "Learning Domain Trajectories with Flow Matching for Gradual Domain Adaptation",
+      "published": "2026-10-22T03:56:08Z",
+      "updated": "2026-10-22T03:56:08Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30678v1",
+      "title": "Scaling Laws for Safety Probes",
+      "published": "2026-10-22T03:43:33Z",
+      "updated": "2026-10-22T03:43:33Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30667v1",
+      "title": "Fast Iterative Combinatorial Auctions via Deep Reinforcement Learning",
+      "published": "2026-10-22T03:32:05Z",
+      "updated": "2026-10-22T03:32:05Z",
+      "categories": [
+        "cs.GT",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30630v1",
+      "title": "Interpreting Model Reasoning through Behavioral Counterfactuals",
+      "published": "2026-10-22T02:53:04Z",
+      "updated": "2026-10-22T02:53:04Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30576v1",
+      "title": "Bridging the Closed-World Gap: Interpretable Anomaly Detection via a Hybrid TSK-FCM Ensemble on the BETH Dataset",
+      "published": "2026-10-22T01:11:25Z",
+      "updated": "2026-10-22T01:11:25Z",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30564v1",
+      "title": "When News Gets Old: Portfolio Allocation with Reinforcement Learning and Large Language Models",
+      "published": "2026-10-22T00:44:03Z",
+      "updated": "2026-10-22T00:44:03Z",
+      "categories": [
+        "cs.LG",
+        "q-fin.PM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30552v1",
+      "title": "Repair Changes Which Layers to Remove: Exact Optima for Depth Pruning of Language Models",
+      "published": "2026-10-22T00:18:10Z",
+      "updated": "2026-10-22T00:18:10Z",
+      "categories": [
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30520v1",
+      "title": "NEST: Nested Embedding Representation for Multiscale Clustering",
+      "published": "2026-10-21T22:58:36Z",
+      "updated": "2026-10-21T22:58:36Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30493v1",
+      "title": "Optimal Multitask Representations Under a Rate Constraint: An Information Bottleneck Analysis",
+      "published": "2026-10-21T22:18:19Z",
+      "updated": "2026-10-21T22:18:19Z",
+      "categories": [
+        "cs.LG",
+        "cs.IT"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30474v1",
+      "title": "Rethinking SAE Evaluation: An Atomic Interpretable Unit Framework Reveals Hidden Polysemanticity and Redundancy",
+      "published": "2026-10-21T21:47:27Z",
+      "updated": "2026-10-21T21:47:27Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30472v1",
+      "title": "DiffLTM: Continuous Diffusions Large Tabular Models for Conditional Generation",
+      "published": "2026-10-21T21:43:32Z",
+      "updated": "2026-10-21T21:43:32Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30469v1",
+      "title": "Learning to Incentivise: Using Reinforcement Learning for Sustainable Urban Mobility",
+      "published": "2026-10-21T21:40:28Z",
+      "updated": "2026-10-21T21:40:28Z",
+      "categories": [
+        "cs.MA",
+        "cs.LG",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30461v1",
+      "title": "Short-to-Long: Detached Features for Long-Horizon Value Learning",
+      "published": "2026-10-21T21:17:28Z",
+      "updated": "2026-10-21T21:17:28Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30450v1",
+      "title": "Same Beliefs, Different Policies: Learning Reusable Representations for Early Stopping in LLM Reasoning",
+      "published": "2026-10-21T21:05:11Z",
+      "updated": "2026-10-21T21:05:11Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30442v1",
+      "title": "Towards Faithful Data Selection: Statistical Limits and Scalable Algorithms",
+      "published": "2026-10-21T20:51:04Z",
+      "updated": "2026-10-21T20:51:04Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30421v1",
+      "title": "High-Value Training Data from Noisy, Diverse Sources",
+      "published": "2026-10-21T20:32:43Z",
+      "updated": "2026-10-21T20:32:43Z",
+      "categories": [
+        "stat.ML",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30394v1",
+      "title": "Escaping the Phylogenetic Trap: Persistent Homology Enables Cross-Species Ion Channel Classification via Multimodal Graph Neural Networks",
+      "published": "2026-10-21T19:59:07Z",
+      "updated": "2026-10-21T19:59:07Z",
+      "categories": [
+        "cs.LG",
+        "q-bio.BM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30391v1",
+      "title": "Soft Ontology Priors over Latent Concept Posteriors for Weakly Supervised Neuro-Symbolic Learning",
+      "published": "2026-10-21T19:50:06Z",
+      "updated": "2026-10-21T19:50:06Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30388v1",
+      "title": "A Transformer-based Approach for Real-time Multi-agent Path Planning with Varying Initial/Final Conditions",
+      "published": "2026-10-21T19:48:21Z",
+      "updated": "2026-10-21T19:48:21Z",
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "math.NA"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30362v1",
+      "title": "CTRL-FM: Inference-Time Structural Control for Flow-Based Virtual Sensing under Long-Horizon Node Outages",
+      "published": "2026-10-21T19:25:00Z",
+      "updated": "2026-10-21T19:25:00Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30351v1",
+      "title": "Route-and-Generate: KL-Regularized Router Improvement for Reasoning Routing in LLMs",
+      "published": "2026-10-21T19:09:04Z",
+      "updated": "2026-10-21T19:09:04Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30349v1",
+      "title": "Consistency Is Not Validity: Self-Rewarded Moral Argumentation Makes Language Models Decisive but Pliable",
+      "published": "2026-10-21T19:08:39Z",
+      "updated": "2026-10-21T19:08:39Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30344v1",
+      "title": "AQL-Lite: Enabling Efficient Knowledge Acquisition for Arabic LLMs via Data-Centric Continual Pretraining",
+      "published": "2026-10-21T19:04:28Z",
+      "updated": "2026-10-21T19:04:28Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30339v1",
+      "title": "Spike-Aware Gradient-Based Mixed-Precision Quantization of Spiking Neural Networks for Vision Applications",
+      "published": "2026-10-21T18:58:52Z",
+      "updated": "2026-10-21T18:58:52Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30319v1",
+      "title": "TerraTransfer++: Demonstration-Free End-to-End Planner",
+      "published": "2026-10-21T18:31:28Z",
+      "updated": "2026-10-21T18:31:28Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30313v1",
+      "title": "SciFusion: Physics-Guided Compositional Diffusion for Multimodal 3D Scientific Image Generation",
+      "published": "2026-10-21T18:27:16Z",
+      "updated": "2026-10-21T18:27:16Z",
+      "categories": [
+        "eess.IV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30293v1",
+      "title": "EgoHand: Monocular 3D Hand Reconstruction from Egocentric Video",
+      "published": "2026-10-21T18:09:27Z",
+      "updated": "2026-10-21T18:09:27Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30284v1",
+      "title": "SWE-VERIFIER: Selective Verification for Cost-Efficient Coding Agents",
+      "published": "2026-10-21T18:02:33Z",
+      "updated": "2026-10-21T18:02:33Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30280v1",
+      "title": "A Quadratic Lens on Muon's Polar Update: Benefits, Pitfalls, and the Role of Newton-Schulz",
+      "published": "2026-10-21T18:01:04Z",
+      "updated": "2026-10-21T18:01:04Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30231v1",
+      "title": "Edit, Don't Imitate: Minimal-Edit On-Policy Distillation for Multimodal Reasoning",
+      "published": "2026-10-21T17:59:28Z",
+      "updated": "2026-10-21T17:59:28Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30132v1",
+      "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+      "published": "2026-10-21T17:59:14Z",
+      "updated": "2026-10-21T17:59:14Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30118v1",
+      "title": "The role of locality and weight sharing in convolutional neural networks",
+      "published": "2026-10-21T17:56:22Z",
+      "updated": "2026-10-21T17:56:22Z",
+      "categories": [
+        "cs.LG",
+        "cond-mat.dis-nn",
+        "cond-mat.stat-mech",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30229v1",
+      "title": "Automated screening of privacy risks in medical AI",
+      "published": "2026-10-21T17:52:43Z",
+      "updated": "2026-10-21T17:52:43Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30107v1",
+      "title": "Velocity Ambiguity Profiles: Time-Resolved Bayes-Risk Diagnostics for Flow Matching",
+      "published": "2026-10-21T17:52:40Z",
+      "updated": "2026-10-21T17:52:40Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30105v1",
+      "title": "Asymmetric On-Policy Distillation Learns In-Context Exploration",
+      "published": "2026-10-21T17:50:31Z",
+      "updated": "2026-10-21T17:50:31Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30099v1",
+      "title": "Differentially Private Sparse Reward Estimation with Preference Feedback",
+      "published": "2026-10-21T17:45:42Z",
+      "updated": "2026-10-21T17:45:42Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30090v1",
+      "title": "VX-One: Typed, Calibrated Decision Heads for Real-Time Perimeter Triage - An empirical study of unknown-attack honesty, cascade gray zones, and calibration under drift",
+      "published": "2026-10-21T17:39:12Z",
+      "updated": "2026-10-21T17:39:12Z",
+      "categories": [
+        "cs.CR",
+        "cs.CL",
+        "cs.LG",
+        "cs.NI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30086v1",
+      "title": "Orbitol: Crystal Generation on Wyckoff Orbits",
+      "published": "2026-10-21T17:33:59Z",
+      "updated": "2026-10-21T17:33:59Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30075v1",
+      "title": "From Classifier Heads to Encoder Prototypes: Personalized Federated Learning with Head-Derived Clustering",
+      "published": "2026-10-21T17:27:46Z",
+      "updated": "2026-10-21T17:27:46Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30068v1",
+      "title": "Loopholing All the Way: Language Modeling with pure Self-Conditioning",
+      "published": "2026-10-21T17:25:08Z",
+      "updated": "2026-10-21T17:25:08Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30066v1",
+      "title": "Looped Uniform Diffusion Language Models",
+      "published": "2026-10-21T17:24:35Z",
+      "updated": "2026-10-21T17:24:35Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30018v1",
+      "title": "ExGrad: Beyond Suppression - Explicit Clean-Gradient Subtraction in Adversarial Training",
+      "published": "2026-10-21T16:47:20Z",
+      "updated": "2026-10-21T16:47:20Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30016v2",
+      "title": "Code Comprehensor: Hierarchical Documentation and Cross-Modal Retrieval for Large Repositories",
+      "published": "2026-10-21T16:45:43Z",
+      "updated": "2026-10-22T03:09:23Z",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30009v1",
+      "title": "Mitigating Model Collapse through Dreaming Learning",
+      "published": "2026-10-21T16:41:53Z",
+      "updated": "2026-10-21T16:41:53Z",
+      "categories": [
+        "cs.LG",
+        "cond-mat.dis-nn",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29999v1",
+      "title": "EPIC: Rethinking Trust Regions for Autoregressive LLM Policies via Exact-KL Prefix Importance-Ratio Clipping",
+      "published": "2026-10-21T16:37:09Z",
+      "updated": "2026-10-21T16:37:09Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29992v1",
+      "title": "SCDM: Scalable Causal Discovery in Nonlinear Temporal Systems with Meta-Learning",
+      "published": "2026-10-21T16:31:07Z",
+      "updated": "2026-10-21T16:31:07Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30220v1",
+      "title": "When Reconstruction Is Not Enough: Doubly Robust Counterfactual and Interventional Mediation Analysis with Learned Multimodal Representations",
+      "published": "2026-10-21T16:22:52Z",
+      "updated": "2026-10-21T16:22:52Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ME",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29965v1",
+      "title": "CORD: Conflict-Aware Optimization for Joint RL and Distillation in Agents",
+      "published": "2026-10-21T16:19:22Z",
+      "updated": "2026-10-21T16:19:22Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29960v1",
+      "title": "Mastering Model Fit: Applications of the InterModel Vigorish for Interpretable Machine Learning",
+      "published": "2026-10-21T16:17:17Z",
+      "updated": "2026-10-21T16:17:17Z",
+      "categories": [
+        "stat.ME",
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29927v1",
+      "title": "Your Benchmark Is an Empirical Measure Over Difficulty",
+      "published": "2026-10-21T16:02:37Z",
+      "updated": "2026-10-21T16:02:37Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29922v1",
+      "title": "Unintended Side Effects of Value Training in LLMs",
+      "published": "2026-10-21T15:58:53Z",
+      "updated": "2026-10-21T15:58:53Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29909v2",
+      "title": "Tractable Inference with Kolmogorov-Arnold Networks",
+      "published": "2026-10-21T15:49:10Z",
+      "updated": "2026-10-22T04:11:37Z",
+      "categories": [
+        "physics.comp-ph",
+        "cs.LG",
+        "math.NA"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30215v1",
+      "title": "AI Mindmeld: A Latent Interconnect Protocol",
+      "published": "2026-10-21T15:47:56Z",
+      "updated": "2026-10-21T15:47:56Z",
+      "categories": [
+        "cs.LG",
+        "q-bio.BM",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29845v2",
+      "title": "RangeNav: Task-Aligned LiDAR Range-Image Pretraining for Robot Navigation",
+      "published": "2026-10-21T15:06:08Z",
+      "updated": "2026-10-22T07:24:01Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30211v1",
+      "title": "Prediction Is Not Calibration: Item Parameter Recovery and Representation Coupling in Knowledge Tracing",
+      "published": "2026-10-21T14:40:57Z",
+      "updated": "2026-10-21T14:40:57Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29815v1",
+      "title": "NeuroCodec: EEG-Guided Latent-Domain Generative Model for High-Fidelity Target Speaker Extraction",
+      "published": "2026-10-21T14:38:19Z",
+      "updated": "2026-10-21T14:38:19Z",
+      "categories": [
+        "eess.AS",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29734v1",
+      "title": "Monitorability Is Trainable: Post-Training for Chain-of-Thought Monitorability",
+      "published": "2026-10-21T13:35:57Z",
+      "updated": "2026-10-21T13:35:57Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29730v1",
+      "title": "Post-hoc Epistemic Uncertainty for Vision-Language-Action Policies",
+      "published": "2026-10-21T13:34:03Z",
+      "updated": "2026-10-21T13:34:03Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29688v1",
+      "title": "Rethinking Post-hoc Debiasing of Large Pretrained Models",
+      "published": "2026-10-21T13:00:28Z",
+      "updated": "2026-10-21T13:00:28Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29680v2",
+      "title": "TraceForge: Distilling with Your Own Thinking",
+      "published": "2026-10-21T12:57:29Z",
+      "updated": "2026-10-22T14:22:58Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29676v1",
+      "title": "DriveMLP: When Training Strategy Outperforms Model Complexity in Autonomous Driving",
+      "published": "2026-10-21T12:53:21Z",
+      "updated": "2026-10-21T12:53:21Z",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29667v1",
+      "title": "Leveraging Time-Series Foundation Models for Financial Crime Detection",
+      "published": "2026-10-21T12:42:17Z",
+      "updated": "2026-10-21T12:42:17Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29662v1",
+      "title": "SPARE: Sparsity Allocation via Routing Entropy for Efficient MoEs",
+      "published": "2026-10-21T12:40:00Z",
+      "updated": "2026-10-21T12:40:00Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29654v1",
+      "title": "Probabilistic Machine Learning for Short-Term Atmospheric Seeing Forecasting",
+      "published": "2026-10-21T12:35:47Z",
+      "updated": "2026-10-21T12:35:47Z",
+      "categories": [
+        "cs.LG",
+        "astro-ph.IM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29641v1",
+      "title": "Recursive Code Evolution for Task-Oriented Semantic Communications",
+      "published": "2026-10-21T12:23:33Z",
+      "updated": "2026-10-21T12:23:33Z",
+      "categories": [
+        "cs.IT",
+        "cs.LG",
+        "eess.SP"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29638v1",
+      "title": "Cross-Area Transfer Learning for VLC-based Indoor Localization with a Transfer Efficiency Score",
+      "published": "2026-10-21T12:18:14Z",
+      "updated": "2026-10-21T12:18:14Z",
+      "categories": [
+        "cs.LG",
+        "eess.SP"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29630v1",
+      "title": "Space weather dependence of decameter-scale ionospheric irregularities spatial distribution",
+      "published": "2026-10-21T12:12:15Z",
+      "updated": "2026-10-21T12:12:15Z",
+      "categories": [
+        "physics.ao-ph",
+        "cs.LG",
+        "physics.geo-ph"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29621v1",
+      "title": "Reliability-Aware Probabilistic Fusion for Multimodal Learning with Incomplete Evidence",
+      "published": "2026-10-21T12:04:01Z",
+      "updated": "2026-10-21T12:04:01Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29612v1",
+      "title": "Watch Your Step: Anticipated Perception for Humanoid Locomotion",
+      "published": "2026-10-21T11:52:29Z",
+      "updated": "2026-10-21T11:52:29Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29605v1",
+      "title": "Improved Training of Strong Stochastic Flow Maps",
+      "published": "2026-10-21T11:43:19Z",
+      "updated": "2026-10-21T11:43:19Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "math.DS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29604v1",
+      "title": "Local and Global Recursive Ridge Regression for Online Residual Correction of Frozen Multivariate Forecasters under Label Delay",
+      "published": "2026-10-21T11:43:05Z",
+      "updated": "2026-10-21T11:43:05Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29595v1",
+      "title": "Near Minimax Rate for Quantile Distributional Reinforcement Learning",
+      "published": "2026-10-21T11:35:36Z",
+      "updated": "2026-10-21T11:35:36Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29589v1",
+      "title": "Fragment-Level Graph Encoding for Interpretable Molecular Property Prediction",
+      "published": "2026-10-21T11:29:50Z",
+      "updated": "2026-10-21T11:29:50Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29581v1",
+      "title": "Unlocking Spatial Grounding in Flow-Matching Models via SNR Tuning",
+      "published": "2026-10-21T11:22:58Z",
+      "updated": "2026-10-21T11:22:58Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29578v1",
+      "title": "What Prediction-Market Contracts Reveal at Launch: Trading Volume and Dispute Risk",
+      "published": "2026-10-21T11:20:35Z",
+      "updated": "2026-10-21T11:20:35Z",
+      "categories": [
+        "q-fin.ST",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29577v1",
+      "title": "The Reflexivity Threshold: A Phase Transition for Multi-Agent Performative Prediction",
+      "published": "2026-10-21T11:20:29Z",
+      "updated": "2026-10-21T11:20:29Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29571v1",
+      "title": "Implicit Feature Reweighting for Label-Free Graph Generalization",
+      "published": "2026-10-21T11:04:32Z",
+      "updated": "2026-10-21T11:04:32Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29555v1",
+      "title": "WRDO: Weighted Refusal Direction Optimization in Aligned Language Models",
+      "published": "2026-10-21T10:42:25Z",
+      "updated": "2026-10-21T10:42:25Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29550v1",
+      "title": "Hyperspherical Simplex Representations for Backward-Compatible Retrieval",
+      "published": "2026-10-21T10:35:39Z",
+      "updated": "2026-10-21T10:35:39Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29538v1",
+      "title": "Stochastic Pruning of the DPO Computation Graph: 1.4x Faster Training and Lower Peak Memory",
+      "published": "2026-10-21T10:25:15Z",
+      "updated": "2026-10-21T10:25:15Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29531v1",
+      "title": "Phase Transitions in Learning Driven by Extremal Data",
+      "published": "2026-10-21T10:22:18Z",
+      "updated": "2026-10-21T10:22:18Z",
+      "categories": [
+        "cs.LG",
+        "cond-mat.stat-mech",
+        "physics.data-an"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29528v1",
+      "title": "Are Joint-Embedding Predictive Objectives Effective for Longitudinal EHRs?",
+      "published": "2026-10-21T10:18:40Z",
+      "updated": "2026-10-21T10:18:40Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29523v1",
+      "title": "pplx-embed-v2-late Technical Report",
+      "published": "2026-10-21T10:10:26Z",
+      "updated": "2026-10-21T10:10:26Z",
+      "categories": [
+        "cs.IR",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29519v1",
+      "title": "Supervision-Adaptive Curriculum and Guarded Anti-Curriculum Learning for Dense Prediction",
+      "published": "2026-10-21T10:06:22Z",
+      "updated": "2026-10-21T10:06:22Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29518v1",
+      "title": "Mitigating Query Shortcuts in Chain-of-Thought with Context-Aware Decoding",
+      "published": "2026-10-21T10:05:25Z",
+      "updated": "2026-10-21T10:05:25Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29503v2",
+      "title": "Hard and Soft Real-Time DNN Inference Scheduling on Heterogeneous Multi-Accelerator Systems via Reinforcement Learning",
+      "published": "2026-10-21T09:52:28Z",
+      "updated": "2026-10-22T08:23:37Z",
+      "categories": [
+        "cs.AR",
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29472v1",
+      "title": "OmniSimulator: Aligning Small Language Models for Authentic Heterogeneous Behavior Modeling",
+      "published": "2026-10-21T09:30:12Z",
+      "updated": "2026-10-21T09:30:12Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29458v1",
+      "title": "Harness Scaling for Generalizable Agentic Reinforcement Learning",
+      "published": "2026-10-21T09:15:50Z",
+      "updated": "2026-10-21T09:15:50Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29439v1",
+      "title": "How Far Can Foundation Models Be Distilled for Efficient Jet Tagging?",
+      "published": "2026-10-21T09:00:56Z",
+      "updated": "2026-10-21T09:00:56Z",
+      "categories": [
+        "cs.LG",
+        "hep-ex",
+        "hep-ph",
+        "physics.data-an"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29427v1",
+      "title": "One Act, Many Masks: Effect-Marginal Policy Optimization for Long-Horizon Agents",
+      "published": "2026-10-21T08:51:14Z",
+      "updated": "2026-10-21T08:51:14Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29426v1",
+      "title": "BIRD-RL: Scaling Agentic Reinforcement Learning over Stateful Data-Centric Environments",
+      "published": "2026-10-21T08:50:39Z",
+      "updated": "2026-10-21T08:50:39Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29419v1",
+      "title": "When Thoughts Become Memory: Unifying In-Context Learning and Fine-Tuning",
+      "published": "2026-10-21T08:44:52Z",
+      "updated": "2026-10-21T08:44:52Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29411v1",
+      "title": "The Predictive--Optimization Gap in GuanDan Self-Play",
+      "published": "2026-10-21T08:36:09Z",
+      "updated": "2026-10-21T08:36:09Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29396v1",
+      "title": "Progressive Permutation Alignment with Temperature-Controlled Spectral Sharpening",
+      "published": "2026-10-21T08:26:46Z",
+      "updated": "2026-10-21T08:26:46Z",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29385v2",
+      "title": "Parallelizable Probabilistic Latent Reasoning for Diverse Reasoning Trajectories",
+      "published": "2026-10-21T08:11:52Z",
+      "updated": "2026-10-22T07:41:12Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29378v1",
+      "title": "Right On Q: Recovering Reasoning under Quantization via Self-Generated Trajectories",
+      "published": "2026-10-21T08:03:24Z",
+      "updated": "2026-10-21T08:03:24Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29362v1",
+      "title": "Compositional neural networks for multimodal X-ray and neutron scattering inversion",
+      "published": "2026-10-21T07:54:26Z",
+      "updated": "2026-10-21T07:54:26Z",
+      "categories": [
+        "cs.LG",
+        "cond-mat.mtrl-sci",
+        "physics.app-ph"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29355v1",
+      "title": "GaP-MoE : Explicit Expert Specialization in Mixture-of-Experts via Orthogonal Gradient Accumulation and Projection",
+      "published": "2026-10-21T07:48:07Z",
+      "updated": "2026-10-21T07:48:07Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29348v1",
+      "title": "Data Schedules and Learning Rate Schedules Should Be Designed Together",
+      "published": "2026-10-21T07:42:20Z",
+      "updated": "2026-10-21T07:42:20Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29345v1",
+      "title": "Decodability Is Not Controllability: Local and Anisotropic Speaker Control in Continuous-Latent TTS",
+      "published": "2026-10-21T07:38:25Z",
+      "updated": "2026-10-21T07:38:25Z",
+      "categories": [
+        "cs.SD",
+        "cs.CL",
+        "cs.LG",
+        "eess.AS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29340v1",
+      "title": "Reader--Writer Coupling in Transformer MLPs",
+      "published": "2026-10-21T07:35:23Z",
+      "updated": "2026-10-21T07:35:23Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29320v1",
+      "title": "BrainCodes: A Lightweight EEG Foundation Model over Discrete Neural Codes",
+      "published": "2026-10-21T07:22:14Z",
+      "updated": "2026-10-21T07:22:14Z",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29315v1",
+      "title": "DISRL: Dual-Scale Incremental Semi-Supervised Reinforcement Learning for Dynamic Community Tracking",
+      "published": "2026-10-21T07:12:55Z",
+      "updated": "2026-10-21T07:12:55Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29313v1",
+      "title": "YingLan: A Multimodal Ocean Foundation Model for Unified Representation Learning from Heterogeneous Observations",
+      "published": "2026-10-21T07:09:14Z",
+      "updated": "2026-10-21T07:09:14Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29311v1",
+      "title": "Interpretable Cutting Plane Selection for Mixed-Integer Linear Programming Using Genetic Programming",
+      "published": "2026-10-21T07:06:29Z",
+      "updated": "2026-10-21T07:06:29Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29306v1",
+      "title": "Data-driven and physics-guided hindcasting of measured wave spectra",
+      "published": "2026-10-21T07:00:31Z",
+      "updated": "2026-10-21T07:00:31Z",
+      "categories": [
+        "physics.ao-ph",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29302v1",
+      "title": "Compressing Onboard Language Models for Space Robots under a Behavioral-Fidelity Requirement",
+      "published": "2026-10-21T06:59:07Z",
+      "updated": "2026-10-21T06:59:07Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29289v1",
+      "title": "Approximate Solomonoff Induction: On the Robustness of Learned Universal Predictors",
+      "published": "2026-10-21T06:44:09Z",
+      "updated": "2026-10-21T06:44:09Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29281v1",
+      "title": "Flat-RLVR: Sharpness-Aware Reinforcement Learning with Verifiable Rewards for Reasoning Capacity in LLMs",
+      "published": "2026-10-21T06:35:19Z",
+      "updated": "2026-10-21T06:35:19Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29262v1",
+      "title": "Estimating Performance for Safe Deployment of Machine Learning Models",
+      "published": "2026-10-21T06:13:50Z",
+      "updated": "2026-10-21T06:13:50Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29252v1",
+      "title": "Extending FAIR Principles with Observability for Trustworthy Federated Learning",
+      "published": "2026-10-21T06:00:31Z",
+      "updated": "2026-10-21T06:00:31Z",
+      "categories": [
+        "cs.LG",
+        "cs.IR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29237v1",
+      "title": "MA-UITD: Offline Multi-Agent Reward Inference for Characterizing Continuous Social Behavior",
+      "published": "2026-10-21T05:46:27Z",
+      "updated": "2026-10-21T05:46:27Z",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29229v1",
+      "title": "Cache Locally, Recompute Selectively for Streaming Video Understanding",
+      "published": "2026-10-21T05:39:35Z",
+      "updated": "2026-10-21T05:39:35Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29219v1",
+      "title": "PerSPL: Personalized Semi-supervised Preference Learning",
+      "published": "2026-10-21T05:21:36Z",
+      "updated": "2026-10-21T05:21:36Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29211v1",
+      "title": "On the gradient conjecture at infinity: Finite spherical length for gradient trajectories of definable potentials",
+      "published": "2026-10-21T05:06:29Z",
+      "updated": "2026-10-21T05:06:29Z",
+      "categories": [
+        "math.DS",
+        "cs.LG",
+        "math.AG",
+        "math.CA",
+        "math.LO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29205v1",
+      "title": "Reconstruction differences rival individual differences in the fly compass connectome and break trained circuit models",
+      "published": "2026-10-21T04:51:14Z",
+      "updated": "2026-10-21T04:51:14Z",
+      "categories": [
+        "cs.NE",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29192v1",
+      "title": "Curvature-Scaled Sharpness-Aware Minimization: Convergence Beyond Smoothness",
+      "published": "2026-10-21T04:26:54Z",
+      "updated": "2026-10-21T04:26:54Z",
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29187v1",
+      "title": "A Decade of Learning-Based Control: From Theoretic Foundations to Practical Deployment",
+      "published": "2026-10-21T04:18:47Z",
+      "updated": "2026-10-21T04:18:47Z",
+      "categories": [
+        "eess.SY",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29177v1",
+      "title": "ROCOCO: Robust Outline Completion of Occluded Curvilinear Objects",
+      "published": "2026-10-21T04:09:17Z",
+      "updated": "2026-10-21T04:09:17Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29172v1",
+      "title": "Conditional Flow Models Convert Epistemic Uncertainty into Apparent Aleatoric Variance",
+      "published": "2026-10-21T04:02:35Z",
+      "updated": "2026-10-21T04:02:35Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29149v1",
+      "title": "SAFTER: Safety-Aware Filtering Through Explicit Recoverability for Robust Reinforcement Learning under Distribution Shift",
+      "published": "2026-10-21T03:33:35Z",
+      "updated": "2026-10-21T03:33:35Z",
+      "categories": [
+        "eess.SY",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29106v1",
+      "title": "DriftNeRF: Cross-Ray Density Drifting for Sparse-View Neural Radiance Fields",
+      "published": "2026-10-21T02:49:34Z",
+      "updated": "2026-10-21T02:49:34Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29101v1",
+      "title": "Dual-Channel Contrastive Encoding of Sperm Whale Coda",
+      "published": "2026-10-21T02:46:56Z",
+      "updated": "2026-10-21T02:46:56Z",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29088v1",
+      "title": "Causal world models under physical parameter shifts",
+      "published": "2026-10-21T02:26:00Z",
+      "updated": "2026-10-21T02:26:00Z",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29086v1",
+      "title": "Internal Guidance as a Sampling Method for Tilted Diffusion Models",
+      "published": "2026-10-21T02:21:59Z",
+      "updated": "2026-10-21T02:21:59Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29075v1",
+      "title": "Value-Rectified Distillation for Flow-based Offline Reinforcement Learning",
+      "published": "2026-10-21T01:58:00Z",
+      "updated": "2026-10-21T01:58:00Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29063v1",
+      "title": "Distilling Multi-Teacher Scoring Principles for Unsupervised Time Series Anomaly Detection",
+      "published": "2026-10-21T01:42:19Z",
+      "updated": "2026-10-21T01:42:19Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29061v1",
+      "title": "OccJEPA: Occlusion as Masking for Amodal Video Segmentation",
+      "published": "2026-10-21T01:40:59Z",
+      "updated": "2026-10-21T01:40:59Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29054v1",
+      "title": "Dynamics of Hidden Learning Structure",
+      "published": "2026-10-21T01:35:10Z",
+      "updated": "2026-10-21T01:35:10Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29052v1",
+      "title": "Our Own Jev: Typed Decisions in One Forward Pass, from an In-House Judge to Open LoRA Models",
+      "published": "2026-10-21T01:28:58Z",
+      "updated": "2026-10-21T01:28:58Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29034v1",
+      "title": "Gate Initialisation versus Recurrent Dropout and Zoneout in Learning Long Dependencies: A Controlled Study of LSTM and GRU Networks on Synthetic Tasks",
+      "published": "2026-10-21T01:06:15Z",
+      "updated": "2026-10-21T01:06:15Z",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29029v1",
+      "title": "Better Policies, Worse Verifier Audits",
+      "published": "2026-10-21T01:00:43Z",
+      "updated": "2026-10-21T01:00:43Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29024v1",
+      "title": "Dissimilarity-Based Markov Decision Processes for Stabilizing State Distributions",
+      "published": "2026-10-21T00:56:40Z",
+      "updated": "2026-10-21T00:56:40Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29013v1",
+      "title": "Target Regeneration Shrinks the Gains of Draft-Training Objectives in Speculative Decoding",
+      "published": "2026-10-21T00:26:37Z",
+      "updated": "2026-10-21T00:26:37Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.29009v1",
+      "title": "Local and Sparse Kernel Operator Learning for Incompressible Flows: An Operator Lagrange Formulation",
+      "published": "2026-10-21T00:20:47Z",
+      "updated": "2026-10-21T00:20:47Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28998v1",
+      "title": "FlashNext-RL: A System Optimization Study for Long-Horizon Agentic RL of Qwen3.8-Flash-Next",
+      "published": "2026-10-20T23:53:09Z",
+      "updated": "2026-10-20T23:53:09Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28994v1",
+      "title": "The Optimal Sampler for Diverse TSP Solutions: Characterization, Limits, and Learning",
+      "published": "2026-10-20T23:48:08Z",
+      "updated": "2026-10-20T23:48:08Z",
+      "categories": [
+        "cs.CG",
+        "cs.DS",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28990v1",
+      "title": "Doob-Based Generative Policy Optimization",
+      "published": "2026-10-20T23:31:50Z",
+      "updated": "2026-10-20T23:31:50Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28989v1",
+      "title": "AgentPolicyForge: From Executable Environments to Policy Benchmarks and Adaptive Guards",
+      "published": "2026-10-20T23:31:32Z",
+      "updated": "2026-10-20T23:31:32Z",
+      "categories": [
+        "cs.AI",
+        "cs.CR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28988v1",
+      "title": "Attention-based Classification for Indirect Prompt Injection",
+      "published": "2026-10-20T23:31:19Z",
+      "updated": "2026-10-20T23:31:19Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28977v1",
+      "title": "Is In-Context Reinforcement Learning A Posterior Sampler? An Empirical Study",
+      "published": "2026-10-20T22:53:16Z",
+      "updated": "2026-10-20T22:53:16Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28968v1",
+      "title": "Unit-Aware Differentially Private Quantum Machine Learning for Clinical and Wearable Health Data",
+      "published": "2026-10-20T22:38:13Z",
+      "updated": "2026-10-20T22:38:13Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.NE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28964v1",
+      "title": "Can Quantum Layers offer Performance and Security Advantages in Vision-Language Models?",
+      "published": "2026-10-20T22:28:17Z",
+      "updated": "2026-10-20T22:28:17Z",
+      "categories": [
+        "quant-ph",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28958v1",
+      "title": "Transformers as Generic Deep Neural Networks: Exact Compilation, the Cost of Removing Activation-Activation Products, and Multi-Agent Attention Clustering",
+      "published": "2026-10-20T22:16:57Z",
+      "updated": "2026-10-20T22:16:57Z",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28950v1",
+      "title": "HyperDrone: Simulation-to-Reality Transfer at Millions of Frames per Second",
+      "published": "2026-10-20T22:03:11Z",
+      "updated": "2026-10-20T22:03:11Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28943v1",
+      "title": "Multi-Objective Protein Optimization via Modular Diffusion Steering",
+      "published": "2026-10-20T21:36:35Z",
+      "updated": "2026-10-20T21:36:35Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28937v1",
+      "title": "Auditing Conformal Prediction for Language Models Under Inference-Time Model Shift",
+      "published": "2026-10-20T21:30:43Z",
+      "updated": "2026-10-20T21:30:43Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28925v1",
+      "title": "One Policy, Many Styles: Where to Aggregate Preferences for Steerable Humanoid Control?",
+      "published": "2026-10-20T20:59:05Z",
+      "updated": "2026-10-20T20:59:05Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28915v1",
+      "title": "A Model-Free Continuous-Time RL Algorithm from Discrete-Time Off-Policy Data with End-to-End Guarantees",
+      "published": "2026-10-20T20:52:09Z",
+      "updated": "2026-10-20T20:52:09Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28907v1",
+      "title": "JaxMARL-BC: Multi-Agent Reinforcement Learning for Macroeconomic Modelling, in Seconds",
+      "published": "2026-10-20T20:35:44Z",
+      "updated": "2026-10-20T20:35:44Z",
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.LG",
+        "econ.GN"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28892v1",
+      "title": "Combating Catastrophic Forgetting in Continual Domain Adaptation via Knowledge Recasting",
+      "published": "2026-10-20T20:16:40Z",
+      "updated": "2026-10-20T20:16:40Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28883v1",
+      "title": "RL-IF: Tracking Non-local Training Data Influence for Online Reinforcement Learning",
+      "published": "2026-10-20T20:01:25Z",
+      "updated": "2026-10-20T20:01:25Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28872v1",
+      "title": "LEAN: Loss-Engineered Modulation of the Model Weight-Sensitivity Distribution for Efficient, Error-Tolerant Neural Networks",
+      "published": "2026-10-20T19:44:33Z",
+      "updated": "2026-10-20T19:44:33Z",
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28871v1",
+      "title": "How Much Gradient Does Truncated Backprop Lose in Looped Transformers?",
+      "published": "2026-10-20T19:42:35Z",
+      "updated": "2026-10-20T19:42:35Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28858v1",
+      "title": "DualHeads: Reward-tilted few-step diffusion made simple",
+      "published": "2026-10-20T19:31:03Z",
+      "updated": "2026-10-20T19:31:03Z",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28851v1",
+      "title": "Self-Supervised Tuning of Low-Fidelity Optimization Models via High-Fidelity Feedback",
+      "published": "2026-10-20T19:24:45Z",
+      "updated": "2026-10-20T19:24:45Z",
+      "categories": [
+        "math.OC",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28849v1",
+      "title": "When Do Gaussian Priors Fail? A Latent Geometry Investigation of RL Fine-Tuning",
+      "published": "2026-10-20T19:22:06Z",
+      "updated": "2026-10-20T19:22:06Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28818v1",
+      "title": "Brittle by Design? Multi-Scenario Reinforcement Learning for Robust Mission Coordination in Systems of Systems",
+      "published": "2026-10-20T18:40:12Z",
+      "updated": "2026-10-20T18:40:12Z",
+      "categories": [
+        "eess.SY",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28788v1",
+      "title": "ArcFlow: Training Flow Policies for Multiple Solver Budgets",
+      "published": "2026-10-20T18:18:42Z",
+      "updated": "2026-10-20T18:18:42Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28787v1",
+      "title": "Is Anyone Enforcing the Cartel? What Reinforcement Learning Teaches LLM Agents in Markets",
+      "published": "2026-10-20T18:18:10Z",
+      "updated": "2026-10-20T18:18:10Z",
+      "categories": [
+        "cs.CL",
+        "cs.GT",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28785v1",
+      "title": "Measure First, Then Allocate: Calibrated Rollout Budgets for MCP Agents in Reinforcement Learning",
+      "published": "2026-10-20T18:15:52Z",
+      "updated": "2026-10-20T18:15:52Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28784v1",
+      "title": "Extreme Low-State Quantized Transformer for Electricity-Load Forecasting",
+      "published": "2026-10-20T18:15:05Z",
+      "updated": "2026-10-20T18:15:05Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28779v1",
+      "title": "Second Thoughts: Exploring and Planning through Comparative Imagination in World Models",
+      "published": "2026-10-20T18:12:07Z",
+      "updated": "2026-10-20T18:12:07Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28773v1",
+      "title": "Building a Nested LADDER for LLM Unstructured Post-Training Pruning",
+      "published": "2026-10-20T18:10:32Z",
+      "updated": "2026-10-20T18:10:32Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28770v1",
+      "title": "ReAPO: Retry-Aware Policy Optimization for Efficient Exploration in LLM Reasoning",
+      "published": "2026-10-20T18:08:29Z",
+      "updated": "2026-10-20T18:08:29Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28767v1",
+      "title": "SkillEval: Learning Interpretable Ability Profiles of LLMs via Cognitive Diagnosis Models",
+      "published": "2026-10-20T18:06:47Z",
+      "updated": "2026-10-20T18:06:47Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28753v1",
+      "title": "Understanding the Inner Workings of a State-Space Foundation Model for Limit Order Books",
+      "published": "2026-10-20T18:01:16Z",
+      "updated": "2026-10-20T18:01:16Z",
+      "categories": [
+        "q-fin.TR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28747v1",
+      "title": "A Reverse-Gold Theorem: Positive-Data Identification by Substrate-Bounded Contrastive Learners",
+      "published": "2026-10-20T18:00:47Z",
+      "updated": "2026-10-20T18:00:47Z",
+      "categories": [
+        "stat.ML",
+        "cs.CL",
+        "cs.LG",
+        "q-bio.NC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28632v1",
+      "title": "Joints, Camera, Action! Co-Generating 3D Motion and Video for Arbitrary Rigs",
+      "published": "2026-10-20T17:59:56Z",
+      "updated": "2026-10-20T17:59:56Z",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR",
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28628v1",
+      "title": "Learning Adaptable Dexterous Skills via Hybrid Dexterous Mimicking",
+      "published": "2026-10-20T17:59:32Z",
+      "updated": "2026-10-20T17:59:32Z",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28623v2",
+      "title": "Planning under Noise with Neural Operators",
+      "published": "2026-10-20T17:58:30Z",
+      "updated": "2026-10-21T02:53:41Z",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28716v1",
+      "title": "Offline Apprenticeship Learning for Human-Centric Environments",
+      "published": "2026-10-20T17:56:15Z",
+      "updated": "2026-10-20T17:56:15Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28618v1",
+      "title": "Efficient Edge-aware Attention Network for Graph Generation",
+      "published": "2026-10-20T17:56:05Z",
+      "updated": "2026-10-20T17:56:05Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28714v1",
+      "title": "Big Claims, Small Margins: Do Reported GraphLLM Gains Survive Simple Baselines?",
+      "published": "2026-10-20T17:48:59Z",
+      "updated": "2026-10-20T17:48:59Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28602v1",
+      "title": "Turning TS2Vec into a Foundation Model for Time Series Classification",
+      "published": "2026-10-20T17:47:51Z",
+      "updated": "2026-10-20T17:47:51Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28591v1",
+      "title": "PaPi: Parallel Picard-Duhamel Integration for Fast Neuro-Spectral Architectures",
+      "published": "2026-10-20T17:42:52Z",
+      "updated": "2026-10-20T17:42:52Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28590v1",
+      "title": "WildMAE: Structure-Aware Masked Autoencoding for Wildlife Image Reconstruction",
+      "published": "2026-10-20T17:41:31Z",
+      "updated": "2026-10-20T17:41:31Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28580v1",
+      "title": "Continuous-Time Policy Gradient from Discrete Data: Convergence Analysis and Model-Free Algorithms",
+      "published": "2026-10-20T17:33:08Z",
+      "updated": "2026-10-20T17:33:08Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28568v1",
+      "title": "Evolving Semantic Indexes for Generative Retrieval",
+      "published": "2026-10-20T17:27:46Z",
+      "updated": "2026-10-20T17:27:46Z",
+      "categories": [
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28567v1",
+      "title": "Continual Concept Personalization in Diffusion Models via Residual-Space Adaptation",
+      "published": "2026-10-20T17:26:18Z",
+      "updated": "2026-10-20T17:26:18Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28565v1",
+      "title": "The Dynamics of Collapse and Recovery in Clustered Federated Learning",
+      "published": "2026-10-20T17:24:12Z",
+      "updated": "2026-10-20T17:24:12Z",
+      "categories": [
+        "cs.LG",
+        "math.DS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28561v1",
+      "title": "Convergence of stochastic gradient descent for learning linear neural networks",
+      "published": "2026-10-20T17:23:16Z",
+      "updated": "2026-10-20T17:23:16Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28556v1",
+      "title": "When Do LLMs Help with Feature Selection? A Systematic Empirical Study",
+      "published": "2026-10-20T17:18:55Z",
+      "updated": "2026-10-20T17:18:55Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28555v1",
+      "title": "Learning Computational Structure for Sample-Efficient Prediction",
+      "published": "2026-10-20T17:18:35Z",
+      "updated": "2026-10-20T17:18:35Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28545v1",
+      "title": "Discount Yourself: Self-inclusive Freshness-weighted Gossip for Decentralised Learning under Client Outages",
+      "published": "2026-10-20T17:12:35Z",
+      "updated": "2026-10-20T17:12:35Z",
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28543v1",
+      "title": "Binary Discrete Diffusion: Candidate-Set Diffusion for Logic and Planning Tasks",
+      "published": "2026-10-20T17:11:48Z",
+      "updated": "2026-10-20T17:11:48Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28512v1",
+      "title": "GraphCast-Mamba: Learning Non-Markovian Corrections for Weather Forecasting",
+      "published": "2026-10-20T16:52:01Z",
+      "updated": "2026-10-20T16:52:01Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28500v1",
+      "title": "BitMTP: When Multi-Token Prediction Meets Low-Bit Large Language Models",
+      "published": "2026-10-20T16:42:17Z",
+      "updated": "2026-10-20T16:42:17Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.DC",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28498v2",
+      "title": "Present but Hard to Read: Probing Latent Reasoning with Minimal Pairs",
+      "published": "2026-10-20T16:41:29Z",
+      "updated": "2026-10-21T20:10:48Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28709v1",
+      "title": "STAR-XPC: Set Transformer for Estimating X-ray Transmission in Polymer Composites",
+      "published": "2026-10-20T16:39:39Z",
+      "updated": "2026-10-20T16:39:39Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28458v1",
+      "title": "LocaLeJEPA: Maximum Entropy Representations under Geometric Priors",
+      "published": "2026-10-20T16:15:06Z",
+      "updated": "2026-10-20T16:15:06Z",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28442v1",
+      "title": "CNN-based classifier for subject-independent MBTI Extraversion/Introversion preference classification from short-time EEG signals",
+      "published": "2026-10-20T16:02:39Z",
+      "updated": "2026-10-20T16:02:39Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28439v1",
+      "title": "Do Neural Models Prefer Their Submodels?",
+      "published": "2026-10-20T16:01:13Z",
+      "updated": "2026-10-20T16:01:13Z",
+      "categories": [
+        "cs.LG",
+        "math.AG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28707v1",
+      "title": "SimHack: Predicting the onset of detectable reward hacking before RL training",
+      "published": "2026-10-20T15:58:47Z",
+      "updated": "2026-10-20T15:58:47Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28427v1",
+      "title": "Region-Specific EEG Classification of Hypnotic Susceptibility Using a Sliding-Window 2D CNN: A Subject-Independent Evaluation",
+      "published": "2026-10-20T15:55:22Z",
+      "updated": "2026-10-20T15:55:22Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28411v1",
+      "title": "Brain2Vec: A Self-Supervised 3D Foundation Model for Structural Brain MRI",
+      "published": "2026-10-20T15:50:35Z",
+      "updated": "2026-10-20T15:50:35Z",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28409v1",
+      "title": "Rewards for Budget-Aware Multi-Turn Agents That Adapt to Arbitrary Test-Time Constraints",
+      "published": "2026-10-20T15:49:32Z",
+      "updated": "2026-10-20T15:49:32Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28388v1",
+      "title": "Self-Credit: Credit Assignment for Long-Horizon Agentic RL via Intra-group Rescaling",
+      "published": "2026-10-20T15:38:21Z",
+      "updated": "2026-10-20T15:38:21Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28366v1",
+      "title": "Relative Representations Enable Portable White-Box Monitoring Across Language Models",
+      "published": "2026-10-20T15:26:28Z",
+      "updated": "2026-10-20T15:26:28Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28360v1",
+      "title": "Confessions of a Masked MDP",
+      "published": "2026-10-20T15:22:31Z",
+      "updated": "2026-10-20T15:22:31Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "math.ST"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28355v1",
+      "title": "Beyond the Point Mass: Acceptance-Derived Weights and Distributional Losses for Speculative Decoding",
+      "published": "2026-10-20T15:20:26Z",
+      "updated": "2026-10-20T15:20:26Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28348v1",
+      "title": "Characterizing Cross-Relay Generalization Failure in Machine Learning-Based Power System Protection",
+      "published": "2026-10-20T15:13:24Z",
+      "updated": "2026-10-20T15:13:24Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28327v2",
+      "title": "Observation Assimilation Transformer: Probabilistic Weather Analysis from Sparse Station Observations",
+      "published": "2026-10-20T15:00:09Z",
+      "updated": "2026-10-21T07:57:39Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28315v2",
+      "title": "Disclosure Begets Disclosure: A Self-Reinforcing Privacy Loop in LLM Agents with Persistent Memory",
+      "published": "2026-10-20T14:52:57Z",
+      "updated": "2026-10-22T14:31:33Z",
+      "categories": [
+        "cs.CR",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28302v1",
+      "title": "Learning Normal Coordinates on Riemannian Manifolds with Flow Charts",
+      "published": "2026-10-20T14:45:13Z",
+      "updated": "2026-10-20T14:45:13Z",
+      "categories": [
+        "cs.LG",
+        "math.DG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28294v1",
+      "title": "Adaptive Replay Refinement: Allocating Test-Time Compute Between Revision and Resampling",
+      "published": "2026-10-20T14:41:46Z",
+      "updated": "2026-10-20T14:41:46Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28256v1",
+      "title": "Geometry-Aware Block Selection for Sparse Variational Gaussian Processes",
+      "published": "2026-10-20T14:12:48Z",
+      "updated": "2026-10-20T14:12:48Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28255v1",
+      "title": "Convergent Performance, Divergent Mechanisms in LoRA-Adapted Vision Foundation Models for Brain MRI",
+      "published": "2026-10-20T14:12:44Z",
+      "updated": "2026-10-20T14:12:44Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28229v1",
+      "title": "TPO: Tri-level Distributionally Robust Learning for OOD Direct Preference Optimization",
+      "published": "2026-10-20T13:57:52Z",
+      "updated": "2026-10-20T13:57:52Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28197v1",
+      "title": "Reframing Object-Centric Reinforcement Learning: From Absolute to Relative Representations",
+      "published": "2026-10-20T13:38:23Z",
+      "updated": "2026-10-20T13:38:23Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28195v1",
+      "title": "Attractive Faces Skew Text-to-Image Reward Models and Leaderboards",
+      "published": "2026-10-20T13:35:34Z",
+      "updated": "2026-10-20T13:35:34Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28703v1",
+      "title": "Scalable Stress-Constrained Topology Optimization: A Super-resolution and Simultaneous Approach Based on Machine Learning",
+      "published": "2026-10-20T12:52:59Z",
+      "updated": "2026-10-20T12:52:59Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28145v1",
+      "title": "Curriculum Learning for Generative Flexible Docking",
+      "published": "2026-10-20T12:50:41Z",
+      "updated": "2026-10-20T12:50:41Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30186v1",
+      "title": "SIGNN++: Robust Graph Neural Star Identification on Earth",
+      "published": "2026-10-20T12:39:22Z",
+      "updated": "2026-10-20T12:39:22Z",
+      "categories": [
+        "astro-ph.IM",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28081v1",
+      "title": "PULSE: Personalized Opportunistic Learning for Wearable Devices",
+      "published": "2026-10-20T12:00:38Z",
+      "updated": "2026-10-20T12:00:38Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28072v1",
+      "title": "MuPACE: Learning to Pace Muon for LoRA Fine-Tuning",
+      "published": "2026-10-20T11:52:36Z",
+      "updated": "2026-10-20T11:52:36Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28059v1",
+      "title": "Auditing Where Concept Bottleneck Accuracy Comes From on CUB",
+      "published": "2026-10-20T11:47:49Z",
+      "updated": "2026-10-20T11:47:49Z",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28045v2",
+      "title": "Poisoning-Based Backdoors Are Not Cryptographic",
+      "published": "2026-10-20T11:27:30Z",
+      "updated": "2026-10-22T12:19:07Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28036v1",
+      "title": "When Does Training on Synthetic Data Provably Work?",
+      "published": "2026-10-20T11:23:59Z",
+      "updated": "2026-10-20T11:23:59Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28027v1",
+      "title": "From RL Papers to Framework Code: Inclusion and Review in Seven Open-Source Training Frameworks",
+      "published": "2026-10-20T11:16:01Z",
+      "updated": "2026-10-20T11:16:01Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "cs.SE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28699v1",
+      "title": "Reinforcement learning for hardware acceleration and system-level optimization on FPGA and integrated-circuit platforms: A survey",
+      "published": "2026-10-20T11:15:34Z",
+      "updated": "2026-10-20T11:15:34Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.AR",
+        "cs.PF",
+        "cs.RO",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28698v1",
+      "title": "Scaling in Games: Continued Pre-Training For Embodied Agents In Diverse Virtual Worlds",
+      "published": "2026-10-20T11:09:09Z",
+      "updated": "2026-10-20T11:09:09Z",
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28010v1",
+      "title": "RANGER: Retrieval Agent for Navigating Graphs with Semantic Evaluation Rewards",
+      "published": "2026-10-20T10:53:41Z",
+      "updated": "2026-10-20T10:53:41Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27993v1",
+      "title": "Building Telecom Language Models with RSOD: Domain Data, Specialist Post-Training, Memory-Conscious Distillation, and Networking Evaluation",
+      "published": "2026-10-20T10:30:58Z",
+      "updated": "2026-10-20T10:30:58Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27970v1",
+      "title": "Neural Closed-Loop Identification of Nonlinear Systems with Stability and Generalization Guarantees",
+      "published": "2026-10-20T10:15:34Z",
+      "updated": "2026-10-20T10:15:34Z",
+      "categories": [
+        "eess.SY",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27952v1",
+      "title": "Unsupervised Head Network Personalization for Split Computing via Federated Learning",
+      "published": "2026-10-20T09:57:52Z",
+      "updated": "2026-10-20T09:57:52Z",
+      "categories": [
+        "cs.LG",
+        "cs.DC",
+        "cs.NI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27943v1",
+      "title": "Near-Duplicate Image Selection Transfers Preferences in Vision-Language Models",
+      "published": "2026-10-20T09:51:18Z",
+      "updated": "2026-10-20T09:51:18Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27895v1",
+      "title": "The Shape of the DPO Hyperparameter Landscape: What to Measure, How It Moves with Scale, and When Not to Transfer It",
+      "published": "2026-10-20T09:14:22Z",
+      "updated": "2026-10-20T09:14:22Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27889v1",
+      "title": "Elicitation or Expansion? Demystifying Gains from Agent Harness Optimization",
+      "published": "2026-10-20T09:11:39Z",
+      "updated": "2026-10-20T09:11:39Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.28693v1",
+      "title": "Interaction-Gated Time-Frequency Learning for Parameter-Efficient PPG-Based Heart Rate Estimation",
+      "published": "2026-10-20T09:10:28Z",
+      "updated": "2026-10-20T09:10:28Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "eess.SP"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27870v1",
+      "title": "Enumeration-Guided Training of Neural Hamilton-Jacobi Safety Certificates",
+      "published": "2026-10-20T08:50:55Z",
+      "updated": "2026-10-20T08:50:55Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27863v1",
+      "title": "From Tokens to Files: Multi-Granularity Detection and Localization of AI-Involved Code",
+      "published": "2026-10-20T08:45:35Z",
+      "updated": "2026-10-20T08:45:35Z",
+      "categories": [
+        "cs.SE",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27851v2",
+      "title": "LaLa-World: Scaling Latent World Models with Natural Language Actions",
+      "published": "2026-10-20T08:32:14Z",
+      "updated": "2026-10-21T01:29:59Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27847v1",
+      "title": "SAPD: Learning from Agent Experience without Environment Interaction",
+      "published": "2026-10-20T08:30:30Z",
+      "updated": "2026-10-20T08:30:30Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27815v1",
+      "title": "ProVe: Proposer-Verifier Decoding",
+      "published": "2026-10-20T08:06:37Z",
+      "updated": "2026-10-20T08:06:37Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27793v1",
+      "title": "TerraNostra-Bench: Benchmarking Spatial Downscaling and Temporal Rollout for Global 1-km Land-Use Reconstruction",
+      "published": "2026-10-20T07:55:23Z",
+      "updated": "2026-10-20T07:55:23Z",
+      "categories": [
+        "physics.ao-ph",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27789v1",
+      "title": "Foundations of the Scaling Law",
+      "published": "2026-10-20T07:52:23Z",
+      "updated": "2026-10-20T07:52:23Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27773v1",
+      "title": "How Much Do $\\ell_1$ Attacks Need Concentrated Perturbations?",
+      "published": "2026-10-20T07:37:48Z",
+      "updated": "2026-10-20T07:37:48Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27763v1",
+      "title": "Foundation-Style Pretraining for Scalable and Transferable Distributed PV Forecasting",
+      "published": "2026-10-20T07:26:31Z",
+      "updated": "2026-10-20T07:26:31Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27758v1",
+      "title": "AC/DC on a Budget - Alternating Sparse Phases",
+      "published": "2026-10-20T07:21:23Z",
+      "updated": "2026-10-20T07:21:23Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27756v1",
+      "title": "Give the Model a Finger: Developmentally Aligned Evaluation of Counting in Vision-Language Models",
+      "published": "2026-10-20T07:19:03Z",
+      "updated": "2026-10-20T07:19:03Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27754v1",
+      "title": "Detection of Memorization in Diffusion Models Through Thermodynamic Singularity",
+      "published": "2026-10-20T07:18:28Z",
+      "updated": "2026-10-20T07:18:28Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27726v1",
+      "title": "Anytime-Valid Runtime Monitoring of Learned Barrier Certificates",
+      "published": "2026-10-20T06:46:22Z",
+      "updated": "2026-10-20T06:46:22Z",
+      "categories": [
+        "eess.SY",
+        "cs.AI",
+        "cs.LG",
+        "math.OC",
+        "math.ST"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27710v2",
+      "title": "Privacy Accounting for Empirical Denoisers",
+      "published": "2026-10-20T06:30:08Z",
+      "updated": "2026-10-21T16:49:44Z",
+      "categories": [
+        "cs.LG",
+        "cs.CR",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27689v1",
+      "title": "Influence Is the Target-Response Jacobian Times Residuals",
+      "published": "2026-10-20T06:04:57Z",
+      "updated": "2026-10-20T06:04:57Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27675v1",
+      "title": "CyberHull: Deterministic Malicious URL Isolation via Convex Hull",
+      "published": "2026-10-20T05:43:17Z",
+      "updated": "2026-10-20T05:43:17Z",
+      "categories": [
+        "cs.CR",
+        "cs.CG",
+        "cs.LG",
+        "cs.NI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27674v2",
+      "title": "Hybrid Momentum Methods for Optimizing Deep Learning Models",
+      "published": "2026-10-20T05:39:58Z",
+      "updated": "2026-10-21T09:25:17Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27669v1",
+      "title": "Pairwise Learning Increases Data Efficiency in Deep Neural Networks",
+      "published": "2026-10-20T05:34:16Z",
+      "updated": "2026-10-20T05:34:16Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27651v1",
+      "title": "Constrained Federated Reinforcement Learning for Secure Offloading in Vehicular Edge Computing",
+      "published": "2026-10-20T05:10:54Z",
+      "updated": "2026-10-20T05:10:54Z",
+      "categories": [
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27645v1",
+      "title": "CUA-Recovery: Benchmarking Error Recovery in Long-Horizon Computer-Use Agents",
+      "published": "2026-10-20T05:06:00Z",
+      "updated": "2026-10-20T05:06:00Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27641v1",
+      "title": "BCT: Bayes-Consistent Tempering for Flow Language Models",
+      "published": "2026-10-20T05:03:03Z",
+      "updated": "2026-10-20T05:03:03Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27623v1",
+      "title": "From Outcomes to Steps: Reliable Success-Aware Critic Learning for Long-Horizon Language Agents",
+      "published": "2026-10-20T04:40:33Z",
+      "updated": "2026-10-20T04:40:33Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27621v1",
+      "title": "A Radiation-Hardened, Fault-Aware Quantized Neural Network That Self-Heals",
+      "published": "2026-10-20T04:38:23Z",
+      "updated": "2026-10-20T04:38:23Z",
+      "categories": [
+        "astro-ph.IM",
+        "cs.LG",
+        "hep-ex",
+        "nucl-ex",
+        "physics.ins-det"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27606v1",
+      "title": "Ask to Learn: Query-Based Collaborative Reinforcement Learning",
+      "published": "2026-10-20T04:12:23Z",
+      "updated": "2026-10-20T04:12:23Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27580v1",
+      "title": "Factual Access States in Diffusion Language Models: From Mechanism to Knowledge Editing and Retrieval",
+      "published": "2026-10-20T03:45:45Z",
+      "updated": "2026-10-20T03:45:45Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27575v1",
+      "title": "From POMDP Theory to Deep RL with Particle Filters",
+      "published": "2026-10-20T03:41:30Z",
+      "updated": "2026-10-20T03:41:30Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27570v1",
+      "title": "Bayesian Neural Networks via Dirichlet Process Priors on the Data-Generating Distribution for Randomized Value Functions in Deep Reinforcement Learning",
+      "published": "2026-10-20T03:36:01Z",
+      "updated": "2026-10-20T03:36:01Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "stat.CO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27566v1",
+      "title": "Learned Readout Tokens for Extracting Large Language Model Confidence",
+      "published": "2026-10-20T03:30:28Z",
+      "updated": "2026-10-20T03:30:28Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27561v1",
+      "title": "HypoNet Nankai PS: rapid hypocenter determination for the Nankai Trough using physics-informed neural networks with three-dimensional P- and S-wave velocity models",
+      "published": "2026-10-20T03:22:04Z",
+      "updated": "2026-10-20T03:22:04Z",
+      "categories": [
+        "physics.geo-ph",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27558v1",
+      "title": "AnchorRM: Parallel Intra-Batch State Reconstruction with Anchor-Based Residual Memory for Temporal Graph Neural Networks",
+      "published": "2026-10-20T03:15:16Z",
+      "updated": "2026-10-20T03:15:16Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27555v1",
+      "title": "Can Native Safety Travel? Reusing Safety Pretraining Across Models via On-Policy Distillation",
+      "published": "2026-10-20T03:13:04Z",
+      "updated": "2026-10-20T03:13:04Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27500v1",
+      "title": "Soliton Profiles in 1D: Enhanced Neural-Network Solvers and Constrained Deep Ritz Methods",
+      "published": "2026-10-20T02:18:20Z",
+      "updated": "2026-10-20T02:18:20Z",
+      "categories": [
+        "math.NA",
+        "cs.LG",
+        "math.AP",
+        "nlin.PS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27491v1",
+      "title": "MiCLA: Mixture-to-Constituent Latent Alignment for Polyphonic Audio Representation Learning",
+      "published": "2026-10-20T02:10:10Z",
+      "updated": "2026-10-20T02:10:10Z",
+      "categories": [
+        "cs.SD",
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27490v1",
+      "title": "Orthogonal Boundary Unlearning for Dual-Use Concepts in Large Language Models",
+      "published": "2026-10-20T02:09:21Z",
+      "updated": "2026-10-20T02:09:21Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27468v1",
+      "title": "Training-Free Continual Learning for Multimodal Forecasting via Prompt Evolution",
+      "published": "2026-10-20T01:38:24Z",
+      "updated": "2026-10-20T01:38:24Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27467v1",
+      "title": "Projected Distillation: On Learning to Solve Hard Problems from Close, Correct Targets",
+      "published": "2026-10-20T01:38:01Z",
+      "updated": "2026-10-20T01:38:01Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27446v1",
+      "title": "Decision Sufficiency of Learned Representation Interfaces for Safe Generative Control",
+      "published": "2026-10-20T00:49:26Z",
+      "updated": "2026-10-20T00:49:26Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27444v1",
+      "title": "LoRASpace: A Pool-Wide Shared Substrate for Static and Dynamic Multi-LoRA Composition",
+      "published": "2026-10-20T00:46:19Z",
+      "updated": "2026-10-20T00:46:19Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27443v1",
+      "title": "Using Set Learning to Improve Set-Valued Classifiers on Long-tailed Data",
+      "published": "2026-10-20T00:46:14Z",
+      "updated": "2026-10-20T00:46:14Z",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27439v1",
+      "title": "Scaling Graph Reasoning in Language Models with Learnable Graph Positional Encodings",
+      "published": "2026-10-20T00:39:49Z",
+      "updated": "2026-10-20T00:39:49Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27438v1",
+      "title": "MLIPS: Multi-Layer Indexer Pool Sharing",
+      "published": "2026-10-20T00:37:29Z",
+      "updated": "2026-10-20T00:37:29Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.PF"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27421v1",
+      "title": "The Router Already Knows",
+      "published": "2026-10-20T00:17:25Z",
+      "updated": "2026-10-20T00:17:25Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27412v1",
+      "title": "Learning the Geometry of Materials Space with Trained Neural Tangent Kernels",
+      "published": "2026-10-20T00:07:11Z",
+      "updated": "2026-10-20T00:07:11Z",
+      "categories": [
+        "cond-mat.mtrl-sci",
+        "cond-mat.supr-con",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27387v1",
+      "title": "Training Controllable World Models via Action Influence Maximization",
+      "published": "2026-10-19T23:21:18Z",
+      "updated": "2026-10-19T23:21:18Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27384v1",
+      "title": "Sample-efficient learning with Dense Associative Memories",
+      "published": "2026-10-19T23:18:26Z",
+      "updated": "2026-10-19T23:18:26Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27379v1",
+      "title": "DStill: Trajectory Consistency Distillation for Accelerated One-Step Drafting in Block Diffusion Speculative Decoding",
+      "published": "2026-10-19T23:05:16Z",
+      "updated": "2026-10-19T23:05:16Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27375v1",
+      "title": "Shaped SAEs: Expanding the Toolkit for Mechanistic Interpretability",
+      "published": "2026-10-19T22:58:53Z",
+      "updated": "2026-10-19T22:58:53Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27366v1",
+      "title": "Trail-Weighted Influence Scores for Approximate Outcome Prediction in Bayesian Networks",
+      "published": "2026-10-19T22:46:24Z",
+      "updated": "2026-10-19T22:46:24Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27364v1",
+      "title": "Predictive Closure: A Set-Level Characterization of JEPA's Feature Selection",
+      "published": "2026-10-19T22:43:59Z",
+      "updated": "2026-10-19T22:43:59Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.30182v1",
+      "title": "Detecting AI Training in Datacentre Power",
+      "published": "2026-10-19T21:42:56Z",
+      "updated": "2026-10-19T21:42:56Z",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.CY",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27321v1",
+      "title": "Physics-Inspired Optimizers beyond the Edge of Stability: Period-Two Orbits and Delayed Instability",
+      "published": "2026-10-19T21:40:30Z",
+      "updated": "2026-10-19T21:40:30Z",
+      "categories": [
+        "nlin.CD",
+        "cond-mat.dis-nn",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27309v1",
+      "title": "What Not to Erase: Saliency-Constrained Augmentation for Low-Resource Handwritten Character Recognition",
+      "published": "2026-10-19T21:30:07Z",
+      "updated": "2026-10-19T21:30:07Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27280v1",
+      "title": "VPFlow: Value-Predictive Planning with Imperfect World Models for Offline Goal Reaching",
+      "published": "2026-10-19T20:55:03Z",
+      "updated": "2026-10-19T20:55:03Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27279v1",
+      "title": "A latent control model for realistic rodent motion",
+      "published": "2026-10-19T20:54:21Z",
+      "updated": "2026-10-19T20:54:21Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27266v1",
+      "title": "Auditing Safety Preference Supervision with Recorded Derivations",
+      "published": "2026-10-19T20:39:09Z",
+      "updated": "2026-10-19T20:39:09Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG",
+        "cs.SC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27259v1",
+      "title": "Guided Diffusion for Trustworthy Synthetic Text Generation",
+      "published": "2026-10-19T20:27:19Z",
+      "updated": "2026-10-19T20:27:19Z",
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27232v1",
+      "title": "Neighborhood-Aware Unlearning for Generative Recommendation",
+      "published": "2026-10-19T20:00:39Z",
+      "updated": "2026-10-19T20:00:39Z",
+      "categories": [
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27214v1",
+      "title": "Deep catastrophic-risk-aware reinforcement learning",
+      "published": "2026-10-19T19:44:22Z",
+      "updated": "2026-10-19T19:44:22Z",
+      "categories": [
+        "cs.LG",
+        "q-fin.RM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27210v1",
+      "title": "You Are the Trigger: Speaker-Activated Backdoors",
+      "published": "2026-10-19T19:43:13Z",
+      "updated": "2026-10-19T19:43:13Z",
+      "categories": [
+        "cs.LG",
+        "cs.CR",
+        "cs.SD"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27206v1",
+      "title": "Diffusion Score Estimation with Shallow Neural Networks: Regularity, Approximation, and Finite-Sample Rates",
+      "published": "2026-10-19T19:40:46Z",
+      "updated": "2026-10-19T19:40:46Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27193v1",
+      "title": "Low Residuals, Wrong Value: Learning the Viscosity Solution of Hamilton-Jacobi-Isaacs Equations with PINNs",
+      "published": "2026-10-19T19:29:18Z",
+      "updated": "2026-10-19T19:29:18Z",
+      "categories": [
+        "math.NA",
+        "cs.LG",
+        "math.AP",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27157v1",
+      "title": "Understanding the Benefits of Scaffolds through Computational Separations",
+      "published": "2026-10-19T18:51:08Z",
+      "updated": "2026-10-19T18:51:08Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27150v1",
+      "title": "Cross-disorder Learning of Imaging-derived Joint Mophometric Markers in Alzheimer's and Parkinson's Diseases",
+      "published": "2026-10-19T18:44:09Z",
+      "updated": "2026-10-19T18:44:09Z",
+      "categories": [
+        "q-bio.QM",
+        "cs.LG",
+        "q-bio.NC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27142v1",
+      "title": "ICLHerd: Herding-Based Data Selection for LLMs with In-Context Learning as a Proxy",
+      "published": "2026-10-19T18:36:59Z",
+      "updated": "2026-10-19T18:36:59Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27136v1",
+      "title": "Ammonia-Hydrogen Phase Equilibria in Planetary Envelopes from First-Principles-Based Machine-Learning Molecular Dynamics",
+      "published": "2026-10-19T18:33:47Z",
+      "updated": "2026-10-19T18:33:47Z",
+      "categories": [
+        "astro-ph.EP",
+        "cond-mat.mtrl-sci",
+        "cs.LG",
+        "physics.chem-ph",
+        "physics.geo-ph"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27132v1",
+      "title": "Glass-Box Deep Reinforcement Learning for High-Speed Flow Control",
+      "published": "2026-10-19T18:30:28Z",
+      "updated": "2026-10-19T18:30:28Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27123v1",
+      "title": "Reconstruction-Optimized Expert Pruning for Mixture-of-Experts Language Models",
+      "published": "2026-10-19T18:24:03Z",
+      "updated": "2026-10-19T18:24:03Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27107v1",
+      "title": "RGH-GNN : Risk-Gated Heterogeneous Graph Neural Network for Financial Fraud Detection",
+      "published": "2026-10-19T18:07:47Z",
+      "updated": "2026-10-19T18:07:47Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27100v1",
+      "title": "LOB-Impact Benchmark: Emergent Market Impact in Generative Limit Order Book Models",
+      "published": "2026-10-19T18:01:00Z",
+      "updated": "2026-10-19T18:01:00Z",
+      "categories": [
+        "q-fin.TR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27078v1",
+      "title": "LEAF: LUT-aware Efficient Attention on FPGAs",
+      "published": "2026-10-19T18:00:03Z",
+      "updated": "2026-10-19T18:00:03Z",
+      "categories": [
+        "cs.LG",
+        "hep-ex"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26863v2",
+      "title": "Text-to-Image Generative Modeling Without Language Pretraining",
+      "published": "2026-10-19T17:59:59Z",
+      "updated": "2026-10-20T15:44:34Z",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26852v1",
+      "title": "CoopUQ: Robust Multi-Robot Social Navigation via Uncertainty-Aware Cooperative Forecasting",
+      "published": "2026-10-19T17:59:49Z",
+      "updated": "2026-10-19T17:59:49Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26847v2",
+      "title": "WeAct: Dynamic Weight Switching as Agent Actions",
+      "published": "2026-10-19T17:59:19Z",
+      "updated": "2026-10-20T04:16:18Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27047v1",
+      "title": "Discrete Neural Interlingua for Ontology-Agnostic EHR Modeling",
+      "published": "2026-10-19T17:58:11Z",
+      "updated": "2026-10-19T17:58:11Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26833v1",
+      "title": "Supervised Learning with Quantum Hamiltonian Embeddings",
+      "published": "2026-10-19T17:56:44Z",
+      "updated": "2026-10-19T17:56:44Z",
+      "categories": [
+        "quant-ph",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26828v1",
+      "title": "Agent World Model in the Wild: Computer-Use Agent Environment Synthesis",
+      "published": "2026-10-19T17:55:35Z",
+      "updated": "2026-10-19T17:55:35Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26825v2",
+      "title": "MemT-1.0: Towards Memory-Native Evolution",
+      "published": "2026-10-19T17:54:35Z",
+      "updated": "2026-10-20T14:30:38Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26817v1",
+      "title": "Next Best Action: Causal Constrained Offline RL for Business Action Targeting",
+      "published": "2026-10-19T17:51:53Z",
+      "updated": "2026-10-19T17:51:53Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.IR",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26802v1",
+      "title": "Scaling Parameter-Efficient Fine-Tuning for Brain Encoding",
+      "published": "2026-10-19T17:46:08Z",
+      "updated": "2026-10-19T17:46:08Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26800v1",
+      "title": "Learning to Refer: Inference-Time Collaboration in Decentralized Federated Learning",
+      "published": "2026-10-19T17:44:55Z",
+      "updated": "2026-10-19T17:44:55Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26797v1",
+      "title": "Teacher Supervision, Fixed Representations and Calibration: Exact Risk Calculations for Candidate-Scoring Decision Models",
+      "published": "2026-10-19T17:42:24Z",
+      "updated": "2026-10-19T17:42:24Z",
+      "categories": [
+        "stat.ML",
+        "cs.CL",
+        "cs.LG",
+        "q-fin.RM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26794v1",
+      "title": "On Data Scaling in Tabular ML: More Data, Better Generalization?",
+      "published": "2026-10-19T17:40:30Z",
+      "updated": "2026-10-19T17:40:30Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26790v1",
+      "title": "Training with ML-labeled Data via Stochastic First- and Zeroth-Order Optimization",
+      "published": "2026-10-19T17:38:58Z",
+      "updated": "2026-10-19T17:38:58Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26789v1",
+      "title": "Cooperative Multi-Agent Reinforcement Learning for Market Making on Prediction-Market Order Books",
+      "published": "2026-10-19T17:38:36Z",
+      "updated": "2026-10-19T17:38:36Z",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "cs.MA",
+        "q-fin.TR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26757v1",
+      "title": "Simulation Priors for Rapid Adaptation in Model-Based RL for Autonomous Racing",
+      "published": "2026-10-19T17:17:24Z",
+      "updated": "2026-10-19T17:17:24Z",
+      "categories": [
+        "cs.LG",
+        "cs.RO",
+        "eess.SY"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26749v1",
+      "title": "Trajectory Replay: Continuous-Time Mixture Transport for Lifelong Generative Models",
+      "published": "2026-10-19T17:14:23Z",
+      "updated": "2026-10-19T17:14:23Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26747v1",
+      "title": "recAMPLIFY: Large-Scale Pretraining of Recursive Protein Language Models",
+      "published": "2026-10-19T17:12:55Z",
+      "updated": "2026-10-19T17:12:55Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26734v1",
+      "title": "CAVA: Complementary-Label-Aware Data Valuation",
+      "published": "2026-10-19T17:00:37Z",
+      "updated": "2026-10-19T17:00:37Z",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26733v1",
+      "title": "Cross-Fitting for Neural Posterior Estimation",
+      "published": "2026-10-19T16:59:19Z",
+      "updated": "2026-10-19T16:59:19Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26722v2",
+      "title": "Copying Under Repetition: From Prefix Matching to Position Hashing",
+      "published": "2026-10-19T16:50:03Z",
+      "updated": "2026-10-21T02:21:26Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26707v1",
+      "title": "GeoSplit: Selective Edge--Server Map Acquisition for Cross-User Travel-Mode Recognition",
+      "published": "2026-10-19T16:41:50Z",
+      "updated": "2026-10-19T16:41:50Z",
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26693v1",
+      "title": "Parallel Language Models via Variational Decoding",
+      "published": "2026-10-19T16:34:54Z",
+      "updated": "2026-10-19T16:34:54Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26685v1",
+      "title": "Intra-Rubric Reward Divergence: Mitigating Rubric Hacking through Latent Dimension Recovery and Balancing",
+      "published": "2026-10-19T16:31:54Z",
+      "updated": "2026-10-19T16:31:54Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26671v1",
+      "title": "PACT: Plan-Augmented Coordination via Trace-Graphs for Dynamic Multi-Agent Combinatorial Optimization",
+      "published": "2026-10-19T16:22:22Z",
+      "updated": "2026-10-19T16:22:22Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26666v1",
+      "title": "Nested Shared-Operator Recursion on ARC-AGI-1: An Empirical Study of HRM, TRM and URM",
+      "published": "2026-10-19T16:20:21Z",
+      "updated": "2026-10-19T16:20:21Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26655v1",
+      "title": "The Development of Sycophancy in Language Models: Tracing Vulnerabilities from Pretraining to Post-Training",
+      "published": "2026-10-19T16:13:43Z",
+      "updated": "2026-10-19T16:13:43Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26629v1",
+      "title": "VaDar: Implicit Goal Conditioning via Value Disaggregation",
+      "published": "2026-10-19T15:57:33Z",
+      "updated": "2026-10-19T15:57:33Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26605v1",
+      "title": "A Probabilistic, Rotation-Preserving Kernel Operator Surrogate for Continuum-Robot Design Spaces",
+      "published": "2026-10-19T15:45:57Z",
+      "updated": "2026-10-19T15:45:57Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26604v1",
+      "title": "ITU-DESC: a missingness-aware machine-learning dementia risk score in the UK Biobank cohort",
+      "published": "2026-10-19T15:45:51Z",
+      "updated": "2026-10-19T15:45:51Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26597v1",
+      "title": "Bombadil: A Foundation Model for Plant Electrophysiology",
+      "published": "2026-10-19T15:40:06Z",
+      "updated": "2026-10-19T15:40:06Z",
+      "categories": [
+        "cs.LG",
+        "eess.SP",
+        "q-bio.QM"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27029v1",
+      "title": "EGiME: Entropy-Guided Model Evaluation in Few-Shot Learning",
+      "published": "2026-10-19T15:35:51Z",
+      "updated": "2026-10-19T15:35:51Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26551v1",
+      "title": "Training Natural Schemers: RL Can Amplify Oversight-Conditional Behavior",
+      "published": "2026-10-19T15:12:41Z",
+      "updated": "2026-10-19T15:12:41Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26542v1",
+      "title": "Breaking Diffusion: Parallel Reasoning with Draft Refinement",
+      "published": "2026-10-19T15:02:45Z",
+      "updated": "2026-10-19T15:02:45Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26525v1",
+      "title": "A Fisher-Geometric View of Multi-Teacher On-Policy Distillation",
+      "published": "2026-10-19T14:54:47Z",
+      "updated": "2026-10-19T14:54:47Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26511v1",
+      "title": "RouterWorld: Scaling Conversational AI with Latency-Aware LLM Routing",
+      "published": "2026-10-19T14:45:25Z",
+      "updated": "2026-10-19T14:45:25Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26507v1",
+      "title": "Learn the Task, Not the Schedule: Reducing Spurious Cross-Arm Coupling in Bimanual Imitation Learning",
+      "published": "2026-10-19T14:44:03Z",
+      "updated": "2026-10-19T14:44:03Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26486v1",
+      "title": "Wet-Biased Data Pipelines Mislead the Training and Evaluation of Generative Precipitation Nowcasting",
+      "published": "2026-10-19T14:28:28Z",
+      "updated": "2026-10-19T14:28:28Z",
+      "categories": [
+        "cs.LG",
+        "physics.ao-ph"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26469v1",
+      "title": "VeriCUA: Learning Proactive Verification for Reliable GUI Agent Rewards",
+      "published": "2026-10-19T14:17:33Z",
+      "updated": "2026-10-19T14:17:33Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26458v1",
+      "title": "Residual-Based Adaptive Refinement in Hybrid Variational-Collocation PINNs for Singular Elliptic PDEs with Mixed Dirichlet-Neumann Boundary Conditions",
+      "published": "2026-10-19T14:11:14Z",
+      "updated": "2026-10-19T14:11:14Z",
+      "categories": [
+        "math.NA",
+        "cs.LG",
+        "physics.comp-ph"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26418v1",
+      "title": "Local data augmentation for imbalanced binary classification",
+      "published": "2026-10-19T13:49:08Z",
+      "updated": "2026-10-19T13:49:08Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "math.ST",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26416v1",
+      "title": "Co-Evolving Policy and Reward for Code Generation: A Mechanistic Study of Single-Adapter Drift",
+      "published": "2026-10-19T13:48:27Z",
+      "updated": "2026-10-19T13:48:27Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG",
+        "cs.SE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26404v1",
+      "title": "LaMER: Language-Conditioned Multi-Expert Routing for Weakly Supervised Referring Expression Comprehension",
+      "published": "2026-10-19T13:43:46Z",
+      "updated": "2026-10-19T13:43:46Z",
+      "categories": [
+        "cs.CV",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26395v1",
+      "title": "ForagerSim: Evaluating Embodied Map-Based Reasoning in Large-Scale Dynamic Worlds",
+      "published": "2026-10-19T13:40:47Z",
+      "updated": "2026-10-19T13:40:47Z",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27019v1",
+      "title": "MultiCard: Multiple Attribute Cardinality Estimation via Deep Learning",
+      "published": "2026-10-19T13:28:19Z",
+      "updated": "2026-10-19T13:28:19Z",
+      "categories": [
+        "cs.DB",
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26351v1",
+      "title": "PhyPro-FM: A Physics and Prompt-Guided Graph Foundation Model for Contingency Analysis",
+      "published": "2026-10-19T13:16:43Z",
+      "updated": "2026-10-19T13:16:43Z",
+      "categories": [
+        "eess.SY",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26347v1",
+      "title": "Logit Averaging During Training Sets a New State of the Art for Non-Invasive Speech BCI",
+      "published": "2026-10-19T13:13:25Z",
+      "updated": "2026-10-19T13:13:25Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26337v1",
+      "title": "CIS-Transolver: A Cross-Layer Incremental-State Neural Operator for Fine-Scale Automotive Aerodynamic Flow Prediction",
+      "published": "2026-10-19T13:08:19Z",
+      "updated": "2026-10-19T13:08:19Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26325v1",
+      "title": "Typed Decision Models under Prevalence Shift: Decision Training, Calibration, and Implicit Priors",
+      "published": "2026-10-19T13:01:20Z",
+      "updated": "2026-10-19T13:01:20Z",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26323v1",
+      "title": "TriScore: Post-Hoc Out-of-Distribution Detection with Energy, Boundary Probes, and Transform Consistency",
+      "published": "2026-10-19T13:00:36Z",
+      "updated": "2026-10-19T13:00:36Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26309v1",
+      "title": "CAST: Cast-Admissible Generative Design and Shape Optimization with Paired Depth Images",
+      "published": "2026-10-19T12:54:39Z",
+      "updated": "2026-10-19T12:54:39Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26286v1",
+      "title": "Toward Online Robust Zero-Sum Markov Games with Function Approximation",
+      "published": "2026-10-19T12:38:05Z",
+      "updated": "2026-10-19T12:38:05Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26285v1",
+      "title": "Learning SOCP Solver Dynamics with Graph Neural Networks",
+      "published": "2026-10-19T12:37:58Z",
+      "updated": "2026-10-19T12:37:58Z",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.27012v1",
+      "title": "Exploration via Activation-Space Steering for Reinforcement Learning with Verifiable Rewards",
+      "published": "2026-10-19T12:23:01Z",
+      "updated": "2026-10-19T12:23:01Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26252v1",
+      "title": "SEAM: Spectral Embedding Alignment and Merging for Low-Resource TTS",
+      "published": "2026-10-19T12:11:28Z",
+      "updated": "2026-10-19T12:11:28Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26244v1",
+      "title": "RECAP: Reciprocal Sparse Attention and Hierarchical Caching for Efficient Video Diffusion",
+      "published": "2026-10-19T12:03:07Z",
+      "updated": "2026-10-19T12:03:07Z",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26209v1",
+      "title": "OceanTensorCube and ST-MMT: A Multimodal Data and Transformer System for Seven-Day Forecasting of Pyropia Bleaching",
+      "published": "2026-10-19T11:36:34Z",
+      "updated": "2026-10-19T11:36:34Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26178v1",
+      "title": "GeoTrain: Energy-Aware Automatic Parallelism for Foundation Model Training on Heterogeneous Geo-Distributed Resources",
+      "published": "2026-10-19T11:10:54Z",
+      "updated": "2026-10-19T11:10:54Z",
+      "categories": [
+        "cs.DC"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26156v1",
+      "title": "Dynamical Batching: How Class-Cycling Training Shapes the Internal Structure of Neural Networks",
+      "published": "2026-10-19T10:44:18Z",
+      "updated": "2026-10-19T10:44:18Z",
+      "categories": [
+        "cs.LG",
+        "cond-mat.dis-nn",
+        "cond-mat.soft"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26153v1",
+      "title": "Physics-Driven Framework for QoS-Constrained Satellite System with Non-Linear PA Distortion",
+      "published": "2026-10-19T10:41:08Z",
+      "updated": "2026-10-19T10:41:08Z",
+      "categories": [
+        "eess.SP",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26143v1",
+      "title": "FLMNet: Self-Ensemble Distillation from Masks to Seeds for Single-Tower CTR Prediction",
+      "published": "2026-10-19T10:27:04Z",
+      "updated": "2026-10-19T10:27:04Z",
+      "categories": [
+        "cs.IR",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26138v1",
+      "title": "Reinforcement Learning Controllers for Fusion Scenario Development",
+      "published": "2026-10-19T10:25:00Z",
+      "updated": "2026-10-19T10:25:00Z",
+      "categories": [
+        "physics.plasm-ph",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26124v1",
+      "title": "Nash-MOPD: Optimizing Task Trade-offs in Multi-Teacher On-Policy Distillation",
+      "published": "2026-10-19T10:15:12Z",
+      "updated": "2026-10-19T10:15:12Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26114v1",
+      "title": "From Retrieval to Recognition:Knowledge-Enhanced Post-training of Time Series Foundation Models for Classification",
+      "published": "2026-10-19T10:09:12Z",
+      "updated": "2026-10-19T10:09:12Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26100v1",
+      "title": "Multilingual Voicemail and Answering Machine Detection via Pretrained Audio Embeddings and Gradient Boosting Machines",
+      "published": "2026-10-19T09:59:37Z",
+      "updated": "2026-10-19T09:59:37Z",
+      "categories": [
+        "cs.SD",
+        "cs.LG",
+        "eess.AS"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26030v2",
+      "title": "Truncate or Not? A Scaling Study of Looped Transformers with Truncated Backpropagation",
+      "published": "2026-10-19T08:52:29Z",
+      "updated": "2026-10-20T17:28:49Z",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26009v1",
+      "title": "ProtGlycanDock: Towards Accurate Protein-Glycan Docking with Tailored Dataset, Benchmark and Model",
+      "published": "2026-10-19T08:33:24Z",
+      "updated": "2026-10-19T08:33:24Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26001v1",
+      "title": "SPLASH: Contrastive Audit Pressure for Detecting and Localizing Security Hallucinations in Generated Code",
+      "published": "2026-10-19T08:24:50Z",
+      "updated": "2026-10-19T08:24:50Z",
+      "categories": [
+        "cs.CR",
+        "cs.LG",
+        "cs.SE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25999v1",
+      "title": "TempoMoE: Identifying and Steering Fast-Slow Thinking Experts for Efficient Multimodal Reasoning",
+      "published": "2026-10-19T08:22:28Z",
+      "updated": "2026-10-19T08:22:28Z",
+      "categories": [
+        "cs.CL",
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25973v1",
+      "title": "Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization",
+      "published": "2026-10-19T08:03:09Z",
+      "updated": "2026-10-19T08:03:09Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25957v1",
+      "title": "Productive State-Space Exploration for Multi-turn RL in LLM Agents",
+      "published": "2026-10-19T07:49:35Z",
+      "updated": "2026-10-19T07:49:35Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25949v1",
+      "title": "OrderGPT: Generation Order as a Learnable Modeling Choice",
+      "published": "2026-10-19T07:41:24Z",
+      "updated": "2026-10-19T07:41:24Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26992v1",
+      "title": "CoASFL: Coupled Consistency Optimization for Asynchronous Split Federated Learning",
+      "published": "2026-10-19T07:37:00Z",
+      "updated": "2026-10-19T07:37:00Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25932v1",
+      "title": "Keep the Lineages Alive: Diversity-Preserving SMC for Diffusion LLM Decoding",
+      "published": "2026-10-19T07:30:07Z",
+      "updated": "2026-10-19T07:30:07Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "stat.AP",
+        "stat.ML"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25931v1",
+      "title": "EvoSkill v2: Fully Agentic Skill Evolution from Benchmark Adaptation to a Stateful Evolver",
+      "published": "2026-10-19T07:29:21Z",
+      "updated": "2026-10-19T07:29:21Z",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25906v1",
+      "title": "An Analysis of Semantic and Spatio-Temporal Co-evolution for Edge Classification on Dynamic Text-Attributed Graphs",
+      "published": "2026-10-19T07:07:04Z",
+      "updated": "2026-10-19T07:07:04Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25881v1",
+      "title": "Learn the Interface, Not the Implementation: Output Representation Dominates Training Regime in LLM-Based RTL Generation",
+      "published": "2026-10-19T06:38:16Z",
+      "updated": "2026-10-19T06:38:16Z",
+      "categories": [
+        "cs.LG",
+        "cs.AR"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25880v1",
+      "title": "Asynchronous On-Policy Self-Distillation",
+      "published": "2026-10-19T06:38:04Z",
+      "updated": "2026-10-19T06:38:04Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25876v1",
+      "title": "Learning to Reason Efficiently with Interventional Step Credit",
+      "published": "2026-10-19T06:35:57Z",
+      "updated": "2026-10-19T06:35:57Z",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25873v1",
+      "title": "Residual-Guided Adaptive Tucker Rank Allocation for Parameter-Efficient MCI Conversion Prediction",
+      "published": "2026-10-19T06:33:23Z",
+      "updated": "2026-10-19T06:33:23Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25871v1",
+      "title": "CODA: Cohort- and Drift-aware Foundation Model for Multimodal Clinical Reasoning",
+      "published": "2026-10-19T06:29:13Z",
+      "updated": "2026-10-19T06:29:13Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25860v1",
+      "title": "Adaptive Decoding Methods for Token-Efficient Reinforcement Learning",
+      "published": "2026-10-19T06:13:38Z",
+      "updated": "2026-10-19T06:13:38Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25850v1",
+      "title": "Rubrics Beyond Evaluation: Exploiting Rubric Structure in Reinforcement Learning",
+      "published": "2026-10-19T06:06:42Z",
+      "updated": "2026-10-19T06:06:42Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25846v1",
+      "title": "Measurement Validity and Representation Dynamics of Confidence Signals in Large Language Models",
+      "published": "2026-10-19T06:04:38Z",
+      "updated": "2026-10-19T06:04:38Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25844v1",
+      "title": "SWIFT: Self-guided Weak-to-strong dIFfusion models via Target extrapolation",
+      "published": "2026-10-19T05:57:55Z",
+      "updated": "2026-10-19T05:57:55Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25812v1",
+      "title": "Is it RL or Data? A Controlled Comparison of GRPO and Rejection-Sampling Fine-Tuning",
+      "published": "2026-10-19T05:26:20Z",
+      "updated": "2026-10-19T05:26:20Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25806v1",
+      "title": "Sector-Ring Linear Reservoirs: Sector-Wise Decay-Timescale Allocation With State Reuse Across Candidate Settings",
+      "published": "2026-10-19T05:17:36Z",
+      "updated": "2026-10-19T05:17:36Z",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25758v1",
+      "title": "Remember Less, Adapt Longer: Bounded-State In-Context Reinforcement Learning with Recurrent Summary Memory",
+      "published": "2026-10-19T04:13:40Z",
+      "updated": "2026-10-19T04:13:40Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25751v2",
+      "title": "NADS: Navigator-Guided Data Selection for Mitigating Catastrophic Forgetting in Fine-Tuning",
+      "published": "2026-10-19T04:02:54Z",
+      "updated": "2026-10-22T03:30:30Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25735v1",
+      "title": "A Calibrated Instrument for Detecting Disposition Drift in Language Models",
+      "published": "2026-10-19T03:41:20Z",
+      "updated": "2026-10-19T03:41:20Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25725v1",
+      "title": "Anatomy of Off-Policy Policy Gradient: Importance Sampling, KL Regularization, and Baselines",
+      "published": "2026-10-19T03:27:25Z",
+      "updated": "2026-10-19T03:27:25Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25704v1",
+      "title": "Predictive Bandit Curriculum Reinforcement Learning via Gradient-Based Sample Group Discovery",
+      "published": "2026-10-19T02:50:01Z",
+      "updated": "2026-10-19T02:50:01Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25679v1",
+      "title": "LOOP: Recovery-Aligned Iterative Layer Pruning via On-Policy Distillation",
+      "published": "2026-10-19T02:30:18Z",
+      "updated": "2026-10-19T02:30:18Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25652v1",
+      "title": "A \"feature ODE\" describing the learning behavior of shallow MLPs on simple functions",
+      "published": "2026-10-19T01:52:58Z",
+      "updated": "2026-10-19T01:52:58Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25650v1",
+      "title": "Consistency Training Suppresses Cue Following Without Teaching Cue Selectivity",
+      "published": "2026-10-19T01:51:24Z",
+      "updated": "2026-10-19T01:51:24Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.25651v1",
+      "title": "OPDArena: Understanding Learning and Forgetting in On-Policy Distillation",
+      "published": "2026-10-19T01:51:24Z",
+      "updated": "2026-10-19T01:51:24Z",
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.26979v1",
+      "title": "Latent Projection for Latent Planning",
+      "published": "2026-10-19T01:51:14Z",
+      "updated": "2026-10-19T01:51:14Z",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ]
+    }
+  ]
+}

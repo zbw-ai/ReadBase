@@ -1,0 +1,267 @@
+{
+  "window": {
+    "start": "2026-10-19T01:40:52Z",
+    "end": "2026-10-23T03:09:27Z"
+  },
+  "verified_at": "2026-10-23T04:21:17.619860+00:00",
+  "upstream_tests_executed": false,
+  "accepted_pr_groups": [
+    {
+      "id": "RL1",
+      "heading": "活跃请求 KV 是 refit 状态的一部分，prefix cache reset 不足以保证重算",
+      "sources": [
+        {
+          "repo": "NVIDIA-NeMo/RL",
+          "number": 3929,
+          "title": "feat: pause SingleController refits and enable KV recomputation by default",
+          "author": "youngeunkwon0405",
+          "base": "main",
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3929",
+          "created_at": "2026-08-31T08:29:40Z",
+          "merged_at": "2026-10-19T20:45:38Z",
+          "merge_commit_sha": "7344ae75271a7474e87214f4e1de46792fa0d058",
+          "changed_files": 38
+        }
+      ],
+      "first_seen": "2026-09-22（open proposal）；本轮2026-10-23核实合并事件",
+      "tracks": "RL / Inference",
+      "impact": "high",
+      "subsystem": "weight sync / rollout / inference backend",
+      "dimension": "correctness / state / recovery",
+      "question": "异步请求跨越权重更新时，如何使KV、engine membership和dispatch gate在同一生命周期内变化？",
+      "reason": "默认行为改变且补齐active-request KV与故障恢复契约，不能仅按普通pause接口适配处理。",
+      "value": "以pause→refit→resume围住权重更新，默认清除活跃请求KV后重算；失败时保持dispatch关闭，重建fleet后重新pause参与者。",
+      "evidence": "已读single_controller.py、generation/interfaces.py、vllm_generation.py与SGLang lifecycle hooks实际diff，并核refit recovery/resume/controller回归；测试涵盖pause前失败、transfer后partial state、替换actor、共享resume deadline、失败不重开dispatch和SGLang只在pause内flush。",
+      "limits": "38-file PR为关键路径审查；未运行GPU或上游测试。SGLang synchronizer本来就flush，hooks只是确认，flag=false也不保留KV；不额外提供其timeout。旧head约3% step-time差异不作为当前性能结论，PR正文注明当前head GPU恢复/性能待测。同步vLLM等无native hook路径不自动获得等价保证。",
+      "next": "在AReaL建立request/weight/KV version状态表，注入pause timeout、transfer中断、replacement actor与resume失联，分别量重prefill开销和accepted fresh tokens。",
+      "transfer": "可迁移生命周期与失败gate；需按AReaL具体backend重写active-KV处理，不能只调用prefix-cache reset。",
+      "topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "04-rl-infra/topics/rl_framework_selection.md"
+      ]
+    },
+    {
+      "id": "RL2",
+      "heading": "低精度 RL：trainer量化与bucket refit共同定义权重/scale/layout契约",
+      "sources": [
+        {
+          "repo": "verl-project/verl",
+          "number": 8287,
+          "title": "[BREAKING][megatron, vllm, sglang, rollout, doc] refactor: unify QAT and low-precision rollout",
+          "author": "wuxibin89",
+          "base": "main",
+          "html_url": "https://github.com/verl-project/verl/pull/8287",
+          "created_at": "2026-10-19T12:46:39Z",
+          "merged_at": "2026-10-19T14:01:44Z",
+          "merge_commit_sha": "8f016846e3010e225072a947270dc0c1b98c1cd0",
+          "changed_files": 60
+        },
+        {
+          "repo": "verl-project/verl",
+          "number": 8306,
+          "title": "[2/3][sglang] feat: support mxfp8/mxfp4/nvfp4 weight refit",
+          "author": "wuxibin89",
+          "base": "main",
+          "html_url": "https://github.com/verl-project/verl/pull/8306",
+          "created_at": "2026-10-21T06:34:01Z",
+          "merged_at": "2026-10-21T08:39:31Z",
+          "merge_commit_sha": "5265d561a3bf29f3af3d0aeae8634fe8bf4617c3",
+          "changed_files": 9
+        },
+        {
+          "repo": "verl-project/verl",
+          "number": 8308,
+          "title": "[3/3][vllm] feat: standardize low-precision kernels on DeepGEMM",
+          "author": "wuxibin89",
+          "base": "main",
+          "html_url": "https://github.com/verl-project/verl/pull/8308",
+          "created_at": "2026-10-21T08:17:14Z",
+          "merged_at": "2026-10-21T10:23:29Z",
+          "merge_commit_sha": "619c397dc9917fed278b6e47c52a6620aef05466",
+          "changed_files": 8
+        }
+      ],
+      "first_seen": "2026-10-23",
+      "tracks": "RL / Training / Inference",
+      "impact": "high",
+      "subsystem": "training / weight sync / inference backend",
+      "dimension": "precision correctness / state / memory",
+      "question": "QAT或低精度rollout如何避免trainer与engine重复量化、scale布局漂移以及CUDA graph地址失效？",
+      "reason": "量化责任从rollout端移到trainer exporter，跨backend refit协议和配置均改变；格式支持本身不足以概括工程价值。",
+      "value": "trainer输出预量化权重与scale，engine累计所有sync buckets后重建kernel布局并写回已capture存储；适用FP8/MX格式统一DeepGEMM策略。",
+      "evidence": "已读engine quantizer注册/export路径、结构化RolloutQuantizationConfig、SGLang staging/finalize/abandon及MXFP4/NVFP4存储恢复、MXFP8派生scale重建，核vLLM后端选择与CPU restage测试；实际测试验证weight/derived scale地址与对象保留。",
+      "limits": "60/9/8-file PR仅选读关键路径，未逐行全审、未运行GPU。abandon恢复存储绑定不等于事务回滚旧数值；in-place staging可能已有部分新值。NVFP4保留专用backend，不可概括全部格式都DeepGEMM；硬件/shape/版本限制仍需核。不能从共同kernel推断logprob bitwise一致或收敛收益。",
+      "next": "AReaL评估trainer exporter/schema、final-bucket marker、失败后的generation gate与storage pointer；比较同token raw logprob tail而非只看均值；迁移旧字符串quantization配置须显式。",
+      "transfer": "可迁移quantization ownership、bucket-finalization和CUDA graph指针契约，不能直接复制全backend矩阵。",
+      "topics": [
+        "04-rl-infra/topics/rl_framework_selection.md",
+        "04-rl-infra/topics/agentic_rl.md"
+      ]
+    },
+    {
+      "id": "RL3",
+      "heading": "多模态轨迹重组必须按batch row切图像payload",
+      "sources": [
+        {
+          "repo": "areal-project/AReaL",
+          "number": 1812,
+          "title": "fix(utils): split multimodal payloads by trajectory rows",
+          "author": "zmuxuny",
+          "base": "main",
+          "html_url": "https://github.com/areal-project/AReaL/pull/1812",
+          "created_at": "2026-10-21T10:43:14Z",
+          "merged_at": "2026-10-23T02:46:10Z",
+          "merge_commit_sha": "86843b5001c6633f8dfe753c05f94dfba495c418",
+          "changed_files": 2
+        }
+      ],
+      "first_seen": "2026-10-23",
+      "tracks": "RL / Training / Embodied",
+      "impact": "high",
+      "subsystem": "data/trajectory path / training",
+      "dimension": "correctness / memory / multimodal ownership",
+      "question": "concat→advantages→split→选择/重排轨迹后，视觉payload如何仍与本轨迹token行对齐？",
+      "reason": "不仅重复拷贝图像造成内存增长，也破坏轨迹级所有权；对后续多模态/具身训练数据管道有直接约束。",
+      "value": "split仅对multi_modal_input*列表按trajectory group行数切片后deepcopy，并拒绝payload行数与batch不符，保留组内alias与组间隔离。",
+      "evidence": "完整读取2-file实际diff与CPU回归：不等长/空组、无图像占位、多模态key变体、错误行数、unique storage线性增长，以及真实PPOActor.compute_advantages后选择/重排再microbatch的图文对齐。",
+      "limits": "上游173项CPU通过和storage probe为作者报告，本轮未执行；CPU storage bytes不是RSS/GPU OOM或吞吐。仅list且匹配multi_modal key，普通metadata list不按行切。Megatron controller已有strip/restore workaround；不表示该路径此前无保护，也不证明机器人实验。",
+      "next": "AReaL多模态路径加入concat/split/reorder产权回归，将图像、视频或其他payload的row cardinality与token sequence长度分开检查。",
+      "transfer": "AReaL原生修复；具身迁移是数据所有权与重组验收，不是动作模型或机器人性能结论。",
+      "topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "04-rl-infra/topics/rl_framework_selection.md"
+      ]
+    },
+    {
+      "id": "RL4",
+      "heading": "AsyncGRPO admission按KV压力调整，吞吐必须扣除stale丢弃",
+      "sources": [
+        {
+          "repo": "huggingface/trl",
+          "number": 7610,
+          "title": "Adaptive in-flight cap from vLLM load in AsyncGRPO",
+          "author": "AmineDiro",
+          "base": "main",
+          "html_url": "https://github.com/huggingface/trl/pull/7610",
+          "created_at": "2026-10-09T13:37:12Z",
+          "merged_at": "2026-10-19T08:40:23Z",
+          "merge_commit_sha": "d296691ae5ca2db37887942fa6b60265f2581595",
+          "changed_files": 7
+        }
+      ],
+      "first_seen": "2026-10-23",
+      "tracks": "RL / Inference",
+      "impact": "medium-high",
+      "subsystem": "scheduler / rollout / weight sync",
+      "dimension": "latency / policy staleness / cache state",
+      "question": "固定max_inflight造成服务端排队时，怎样减少stale rollout而不把raw tokens/s误作有效训练供给？",
+      "reason": "从静态并发上限转为KV反馈控制，具可迁移调度价值；同PR改变KV保留语义，必须同时暴露。",
+      "value": "按KV capacity/max_model_len初始化cap，周期性读取usage/queue，超阈值减小admission且不取消在途请求，低负载随完成量渐增。",
+      "evidence": "完整读取7-file diff：usage>0.8降30%，<0.6且无queue并完成一个cap量后增25%，5秒poll；缺metrics不误当idle。fake metrics server测试真实控制/生成循环的扩容、spike、drain和group完整性。",
+      "limits": "未运行上游测试。作者2+2 H200受限8GiB KV对照显示raw生成下降而stale丢弃下降，不泛化其数字。该PR在async GRPO/distillation pause中显式clear_cache=false保留旧KV，不能视为与RL1重算方案等价；metadata缺失/服务不可达有fallback，KV cap也未解决满cache下纯policy-lag问题。",
+      "next": "在AReaL先对齐metrics/DP聚合语义，再记录raw/fresh/accepted token速率、age分布与trainer等待；独立验证跨weight update旧KV的policy一致性。",
+      "transfer": "可迁移admission控制与有效供给口径；不直接采纳clear_cache=false或固定阈值。",
+      "topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "04-rl-infra/topics/rl_framework_selection.md"
+      ]
+    }
+  ],
+  "accepted_papers": [
+    {
+      "id": "RP1",
+      "source_id": "arxiv:2610.29426v1",
+      "title": "BIRD-RL: Scaling Agentic Reinforcement Learning over Stateful Data-Centric Environments",
+      "authors": "Ge Qu, Jinyang Li, Xiaohan Xu, Xiaolong Li, Bowen Qin, Nan Huo, Ziwei Tang, Chenhao Ma, Reynold Cheng",
+      "published_at": "2026-10-21T08:50:39Z",
+      "url": "https://arxiv.org/abs/2610.29426v1",
+      "method_url": "https://arxiv.org/html/2610.29426v1",
+      "citation_metadata": {
+        "citation_title": [
+          "BIRD-RL: Scaling Agentic Reinforcement Learning over Stateful Data-Centric Environments"
+        ],
+        "citation_author": [
+          "Qu, Ge",
+          "Li, Jinyang",
+          "Xu, Xiaohan",
+          "Li, Xiaolong",
+          "Qin, Bowen",
+          "Huo, Nan",
+          "Tang, Ziwei",
+          "Ma, Chenhao",
+          "Cheng, Reynold"
+        ],
+        "citation_date": [
+          "2026/10/21"
+        ],
+        "citation_online_date": [
+          "2026/10/21"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.29426"
+        ],
+        "citation_arxiv_id": [
+          "2610.29426"
+        ]
+      },
+      "first_seen": "2026-10-23",
+      "tracks": "RL / Training / Systems",
+      "impact": "high",
+      "subsystem": "rollout / data/trajectory path / scheduler",
+      "dimension": "state isolation / IO / correctness",
+      "question": "多轮有状态数据库环境怎样复用replica，同时保持轨迹内连续性和轨迹间隔离？",
+      "value": "用worker分区pool和trajectory→replica绑定跨tool调用持有环境，终止/timeout回收，dirty副本在下次租用前lazy reset。",
+      "evidence": "官方citation_title/author/date与abs一致；已读§4、§5.3/Table3、Appendix D.2及limitations。SQLite B=16/R=16条件下线上DB lifecycle I/O 2.94TiB→236GiB（12.8×），另有69GiB离线pool；训练实现描述基于verl、8 H100。",
+      "limits": "12.8×不是吞吐/显存倍数，排除了pool物化且dirty rollout仅9.25%；hot DB耗尽、worker崩溃、timeout后迟到写入的fencing未在本轮验证。仅SQL场景；代码链接公开但尚未执行，性能/效果均作者自报。",
+      "next": "把pool exhaustion、lease epoch、late tool result、dirty reset失败纳入AReaL环境验收；先用SQLite故障注入再谈其他有状态环境。",
+      "topics": [
+        "04-rl-infra/topics/agentic_rl.md"
+      ]
+    },
+    {
+      "id": "RP2",
+      "source_id": "arxiv:2610.28998v1",
+      "title": "FlashNext-RL: A System Optimization Study for Long-Horizon Agentic RL of Qwen3.8-Flash-Next",
+      "authors": "Zhewei Yao, Yuxiong He",
+      "published_at": "2026-10-20T23:53:09Z",
+      "url": "https://arxiv.org/abs/2610.28998v1",
+      "method_url": "https://arxiv.org/html/2610.28998v1",
+      "citation_metadata": {
+        "citation_title": [
+          "FlashNext-RL: A System Optimization Study for Long-Horizon Agentic RL of Qwen3.8-Flash-Next"
+        ],
+        "citation_author": [
+          "Yao, Zhewei",
+          "He, Yuxiong"
+        ],
+        "citation_date": [
+          "2026/10/20"
+        ],
+        "citation_online_date": [
+          "2026/10/20"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.28998"
+        ],
+        "citation_arxiv_id": [
+          "2610.28998"
+        ]
+      },
+      "first_seen": "2026-10-23",
+      "tracks": "RL / Training / Systems",
+      "impact": "high",
+      "subsystem": "training / data/trajectory path / weight sync / checkpoint/recovery",
+      "dimension": "host memory / throughput / checkpoint state",
+      "question": "长上下文agent RL在host offload、routing payload、refit与checkpoint上怎样共同限住内存和停顿？",
+      "value": "先减少host copy/gradient staging，再优化稀疏attention与MoE；按CP shard和microbatch传routing payload，layerwise refit与有界buffer复用导出checkpoint。",
+      "evidence": "官方citation metadata与全文相符；已读§3 memory plan/CP/QSA/8-layer ladder、§4 host/batch/refit/checkpoint及§5实训口径。8层同批次累计对照2391→17678 REAL tok/s/GPU（7.4×）；完整48层开发行配置变化，不可直接作受控speedup。",
+      "limits": "作者自报，一训三推共4个8×B200节点；首两层、n-gram/indexer/MTP frozen。实训仅steps5–15，22.4min平均迭代，含padding trainer速率与REAL不可混用；稳定KL不是任务质量/长期收敛。未找到本文专属实现链接；引用prime-rl等不等于改动已开源。local NVMe DCP不能耐节点丢失。",
+      "next": "AReaL先量host PSS、routing bytes/token、pack/decode同时存活份数和checkpoint clone；保持同shape同batch做单变量试验，不复用论文推算8–11训练节点结论。",
+      "topics": [
+        "04-rl-infra/topics/agentic_rl.md",
+        "02-training-infra/topics/long_context_training.md",
+        "02-training-infra/topics/checkpointing.md"
+      ]
+    }
+  ]
+}

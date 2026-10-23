@@ -85,6 +85,20 @@
 
 建议讨论顺序是 **REKI 的“为什么当前帧不够”→ T2-z 的“历史信息与环境参数有什么区别”→ 一次 checkpoint 恢复到底要保存什么**。REKI register、T2-z latent、量化 metadata 和 joint order 是不同种类的状态，不应统称为一个可随意替换的 cache。需要复用的系统基础见[推理状态](../../03-inference-infra/topics/inference_state.md)，正式待办仍在[共享 P1](../../research/reading_queue/P1.md#embodied-20261013)。
 
+<a id="oct23-learning"></a>
+### 2026-10-23：经验是否有用，先看动作信息与交互时限
+
+沿[最新扫描](../../research/tracking/frontier_scan_2026-10-23.md)继续学习时，先把“收数”“学习”“执行”拆成下面四个问题。这是方法核查后的理解，未做实验。
+
+| 问题 | 机制与工程判断 | 应如何验证 |
+|---|---|---|
+| 失败能否帮助BC，而不把失败动作学进去？ | [CEL](https://arxiv.org/abs/2610.25736v1)从失败附近的上下文检索成功片段、提高成功动作采样权重；部署还需人工outcome/reset。交互产生了新数据，不表示训练必然是在线RL。 | 分别控制经验量与检索策略；完整episode才入训练，绑定station、worker incarnation、epoch和policy版本，拒绝重启前的迟到结果。 |
+| 更多成功视频为什么仍不能教会动作条件？ | [AIM](https://arxiv.org/abs/2610.27387v1)追求动作后果可区分与状态覆盖。只见一种成功动作时，模型可能靠状态猜未来。 | 检查同类状态的动作覆盖，做action shuffle/替代动作对照；预测画质、动作可控性和任务成功分别评价。原论文主要是仿真证据。 |
+| 多加一个相机只是增加输入量吗？ | [Multi-view LAM](https://arxiv.org/abs/2610.27794v1)用同步视角约束latent action，减少单视角对深度运动/遮挡的歧义；视频latent目标和机器人action目标不同。 | 固定同步、view identity、时间跨度与目标机器人的动作示范预算；表示probe改善不能替代闭环rollout。 |
+| 高FPS为什么仍然有控制滞后？ | [CADRE](https://arxiv.org/abs/2610.30129v1)提示时间压缩需要等覆盖的动作到齐，空间压缩可能丢小范围动作。 | 分开记录动作聚合等待、world-model计算、解码、网络/显示；action recoverability不是物理或任务成功证明。 |
+
+优先讨论 **“CEL中的交互收数为什么不自动等于RL”→“AIM所需的数据与BC成功示范有何不同”→“CADRE的等待时间能不能靠更快GPU解决”**。延续[模型与算法的正交关系](embodied_models_primer.md#model-vs-algorithm)，阅读任务仍挂在[共享P1](../../research/reading_queue/P1.md#embodied-20261013)。
+
 <a id="execution"></a>
 ## 4. 核心系统机制：三种时间与一个提交边界
 

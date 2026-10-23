@@ -1,0 +1,2334 @@
+{
+  "window": {
+    "start": "2026-10-19T01:40:52Z",
+    "end": "2026-10-23T03:09:27Z"
+  },
+  "queried_at": "2026-10-23T03:27:04.524415+00:00",
+  "repositories": [
+    {
+      "repo": "THUDM/slime",
+      "query": "repo:THUDM/slime is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 4,
+          "incomplete_results": false,
+          "returned": 4
+        }
+      ],
+      "total_returned": 4,
+      "items": [
+        {
+          "html_url": "https://github.com/THUDM/slime/pull/2480",
+          "number": 2480,
+          "title": "[docs] recover readme",
+          "created_at": "2026-10-19T02:13:46Z",
+          "updated_at": "2026-10-19T02:14:03Z",
+          "closed_at": "2026-10-19T02:14:01Z",
+          "author": "zhuzilin"
+        },
+        {
+          "html_url": "https://github.com/THUDM/slime/pull/2482",
+          "number": 2482,
+          "title": "Rewind Straw checkpoints in place with dataset cursor fallback",
+          "created_at": "2026-10-19T03:37:35Z",
+          "updated_at": "2026-10-19T03:46:59Z",
+          "closed_at": "2026-10-19T03:46:57Z",
+          "author": "zhuzilin"
+        },
+        {
+          "html_url": "https://github.com/THUDM/slime/pull/2484",
+          "number": 2484,
+          "title": "Support isolated SGLang Python runtimes",
+          "created_at": "2026-10-19T07:31:49Z",
+          "updated_at": "2026-10-19T08:41:51Z",
+          "closed_at": "2026-10-19T08:41:49Z",
+          "author": "zhuzilin"
+        },
+        {
+          "html_url": "https://github.com/THUDM/slime/pull/2489",
+          "number": 2489,
+          "title": "refactor(musa): migrate Slime bootstrap from musa_patch to musa_titan",
+          "created_at": "2026-10-22T03:50:18Z",
+          "updated_at": "2026-10-22T05:59:34Z",
+          "closed_at": "2026-10-22T05:59:34Z",
+          "author": "ForAxel"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 11
+        }
+      ],
+      "release_total_returned": 11,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/THUDM/slime/releases/tag/v0.4.0",
+          "tag_name": "v0.4.0",
+          "name": "v0.4.0: A First Step Toward Greater Scale",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-09T00:32:43Z",
+          "published_at": "2026-10-09T03:04:12Z",
+          "author": "zhuzilin"
+        },
+        {
+          "html_url": "https://github.com/THUDM/slime/releases/tag/v0.3.2",
+          "tag_name": "v0.3.2",
+          "name": "v0.3.2",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-28T02:17:03Z",
+          "published_at": "2026-08-28T02:38:24Z",
+          "author": "zhuzilin"
+        },
+        {
+          "html_url": "https://github.com/THUDM/slime/releases/tag/v0.3.1",
+          "tag_name": "v0.3.1",
+          "name": "v0.3.1",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-06T11:08:03Z",
+          "published_at": "2026-08-06T11:38:46Z",
+          "author": "zhuzilin"
+        }
+      ]
+    },
+    {
+      "repo": "alibaba/ROLL",
+      "query": "repo:alibaba/ROLL is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 0,
+          "incomplete_results": false,
+          "returned": 0
+        }
+      ],
+      "total_returned": 0,
+      "items": [],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 5
+        }
+      ],
+      "release_total_returned": 5,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/alibaba/ROLL/releases/tag/v0.4.0",
+          "tag_name": "v0.4.0",
+          "name": "v0.4.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-09-29T03:52:29Z",
+          "published_at": "2026-09-29T04:09:29Z",
+          "author": "gaow0007"
+        },
+        {
+          "html_url": "https://github.com/alibaba/ROLL/releases/tag/v0.3.0",
+          "tag_name": "v0.3.0",
+          "name": "v0.3.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-06-18T08:29:50Z",
+          "published_at": "2026-06-18T08:31:27Z",
+          "author": "PanAndy"
+        },
+        {
+          "html_url": "https://github.com/alibaba/ROLL/releases/tag/v0.2.1",
+          "tag_name": "v0.2.1",
+          "name": "v0.2.1",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-03-09T04:02:23Z",
+          "published_at": "2026-03-09T10:09:14Z",
+          "author": "PanAndy"
+        }
+      ]
+    },
+    {
+      "repo": "verl-project/verl",
+      "query": "repo:verl-project/verl is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 22,
+          "incomplete_results": false,
+          "returned": 22
+        }
+      ],
+      "total_returned": 22,
+      "items": [
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8274",
+          "number": 8274,
+          "title": "[veomni,ci] feat: add uv-based veomni training backend and cover it in GPU CI",
+          "created_at": "2026-10-18T08:00:18Z",
+          "updated_at": "2026-10-19T05:08:10Z",
+          "closed_at": "2026-10-19T05:08:10Z",
+          "author": "ETOgaosion"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8287",
+          "number": 8287,
+          "title": "[BREAKING][megatron, vllm, sglang, rollout, doc] refactor: unify QAT and low-precision rollout",
+          "created_at": "2026-10-19T12:46:39Z",
+          "updated_at": "2026-10-19T14:01:44Z",
+          "closed_at": "2026-10-19T14:01:44Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/7855",
+          "number": 7855,
+          "title": "[algo, fsdp, megatron, veomni] feat: add tail-aware top-k KL for on-policy distillation",
+          "created_at": "2026-09-13T10:45:57Z",
+          "updated_at": "2026-10-20T01:53:16Z",
+          "closed_at": "2026-10-20T01:53:15Z",
+          "author": "PengyuLi7"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8288",
+          "number": 8288,
+          "title": "[hardware, doc] feat: TPU examples: public-package image, 2-chip GRPO smoke test, DP shard size from TP, SFT torchrun fixes",
+          "created_at": "2026-10-19T15:44:56Z",
+          "updated_at": "2026-10-20T02:28:47Z",
+          "closed_at": "2026-10-20T02:28:47Z",
+          "author": "jialei777"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8286",
+          "number": 8286,
+          "title": "[megatron] fix: leave HybridDeviceOptimizer state untouched in optimizer offload (#8237)",
+          "created_at": "2026-10-19T11:59:44Z",
+          "updated_at": "2026-10-20T08:06:50Z",
+          "closed_at": "2026-10-20T08:06:50Z",
+          "author": "Jackie2049"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8282",
+          "number": 8282,
+          "title": "[doc, ci] feat: add English translation of Ascend tutorial docs",
+          "created_at": "2026-10-19T07:31:15Z",
+          "updated_at": "2026-10-20T09:29:45Z",
+          "closed_at": "2026-10-20T09:29:45Z",
+          "author": "Geofeng12138"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8292",
+          "number": 8292,
+          "title": "[hardware] fix: pin tensordict and install orjson in the TPU GRPO image",
+          "created_at": "2026-10-20T03:26:45Z",
+          "updated_at": "2026-10-20T16:19:28Z",
+          "closed_at": "2026-10-20T16:19:28Z",
+          "author": "jialei777"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8306",
+          "number": 8306,
+          "title": "[2/3][sglang] feat: support mxfp8/mxfp4/nvfp4 weight refit",
+          "created_at": "2026-10-21T06:34:01Z",
+          "updated_at": "2026-10-21T08:39:31Z",
+          "closed_at": "2026-10-21T08:39:31Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8298",
+          "number": 8298,
+          "title": "[ci] fix: change gsm8k datasets paths in Ascend jobs",
+          "created_at": "2026-10-20T12:40:21Z",
+          "updated_at": "2026-10-21T09:40:51Z",
+          "closed_at": "2026-10-21T09:40:51Z",
+          "author": "dodatboii"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8308",
+          "number": 8308,
+          "title": "[3/3][vllm] feat: standardize low-precision kernels on DeepGEMM",
+          "created_at": "2026-10-21T08:17:14Z",
+          "updated_at": "2026-10-21T10:23:30Z",
+          "closed_at": "2026-10-21T10:23:30Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8066",
+          "number": 8066,
+          "title": "[ci, hardware] fix: fix Ascend multinode GLM5.2 top-16-expert training CI",
+          "created_at": "2026-09-30T01:54:49Z",
+          "updated_at": "2026-10-21T11:56:46Z",
+          "closed_at": "2026-10-21T11:56:46Z",
+          "author": "lxb007981"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8127",
+          "number": 8127,
+          "title": "[megatron] feat: MXFP8 training recipe and end-to-end example",
+          "created_at": "2026-10-07T12:39:44Z",
+          "updated_at": "2026-10-22T02:41:08Z",
+          "closed_at": "2026-10-22T02:35:00Z",
+          "author": "wengeezhang"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8326",
+          "number": 8326,
+          "title": "[ci, vllm] fix: select Triton for L20 FP8 MoE test",
+          "created_at": "2026-10-22T02:56:36Z",
+          "updated_at": "2026-10-22T03:34:01Z",
+          "closed_at": "2026-10-22T03:34:01Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8025",
+          "number": 8025,
+          "title": "[training_utils, trainer, tests] feat: raw log-prob mismatch metrics for rollout vs actor",
+          "created_at": "2026-09-26T20:11:19Z",
+          "updated_at": "2026-10-22T03:39:07Z",
+          "closed_at": "2026-10-22T03:39:07Z",
+          "author": "cr-gao"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8325",
+          "number": 8325,
+          "title": "[megatron, trainer] fix: recipe-agnostic THD padding and FP8 padding of top-k distillation tensors",
+          "created_at": "2026-10-22T02:54:26Z",
+          "updated_at": "2026-10-22T06:11:07Z",
+          "closed_at": "2026-10-22T06:11:07Z",
+          "author": "wengeezhang"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8295",
+          "number": 8295,
+          "title": "[ci] chore: update dataset and temporary cache paths",
+          "created_at": "2026-10-20T07:03:45Z",
+          "updated_at": "2026-10-22T06:24:09Z",
+          "closed_at": "2026-10-22T06:24:09Z",
+          "author": "lxb007981"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8330",
+          "number": 8330,
+          "title": "[veomni] feat: expose low-precision ReduceScatter communication",
+          "created_at": "2026-10-22T05:00:33Z",
+          "updated_at": "2026-10-22T07:05:16Z",
+          "closed_at": "2026-10-22T07:03:51Z",
+          "author": "amenomori"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8332",
+          "number": 8332,
+          "title": "[megatron, trainer] fix: pack the teacher's top-k tensors with the student's CP split",
+          "created_at": "2026-10-22T06:37:55Z",
+          "updated_at": "2026-10-22T08:03:32Z",
+          "closed_at": "2026-10-22T08:03:32Z",
+          "author": "wengeezhang"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8329",
+          "number": 8329,
+          "title": "[megatron, ci] fix: honor module ignore patterns in ModelOpt QAT",
+          "created_at": "2026-10-22T03:51:16Z",
+          "updated_at": "2026-10-22T09:43:34Z",
+          "closed_at": "2026-10-22T09:43:33Z",
+          "author": "LZC-BELIEVER"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8333",
+          "number": 8333,
+          "title": "[ci] fix: support read-only dataset and model mounts in Ascend tests",
+          "created_at": "2026-10-22T06:51:27Z",
+          "updated_at": "2026-10-22T11:19:03Z",
+          "closed_at": "2026-10-22T11:19:03Z",
+          "author": "lxb007981"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8337",
+          "number": 8337,
+          "title": "[ci] fix: clean up orphaned vLLM processes after Ascend E2E tests",
+          "created_at": "2026-10-22T09:44:58Z",
+          "updated_at": "2026-10-23T02:03:15Z",
+          "closed_at": "2026-10-23T02:03:15Z",
+          "author": "lxb007981"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/pull/8284",
+          "number": 8284,
+          "title": "[hardware, tests] fix: convert hardcoded cuda/nccl from unit tests and linear cross-entropy kernel host code",
+          "created_at": "2026-10-19T09:58:54Z",
+          "updated_at": "2026-10-23T02:22:42Z",
+          "closed_at": "2026-10-23T02:22:42Z",
+          "author": "kahlun"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 16
+        }
+      ],
+      "release_total_returned": 16,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/verl-project/verl/releases/tag/v0.9.1",
+          "tag_name": "v0.9.1",
+          "name": "v0.9.1",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-09-20T07:21:24Z",
+          "published_at": "2026-09-20T07:24:43Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/releases/tag/v0.9.0",
+          "tag_name": "v0.9.0",
+          "name": "v0.9.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-14T07:34:50Z",
+          "published_at": "2026-08-14T07:55:09Z",
+          "author": "wuxibin89"
+        },
+        {
+          "html_url": "https://github.com/verl-project/verl/releases/tag/v0.8.0",
+          "tag_name": "v0.8.0",
+          "name": "v0.8.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-06-01T03:02:16Z",
+          "published_at": "2026-06-01T11:24:51Z",
+          "author": "wuxibin89"
+        }
+      ]
+    },
+    {
+      "repo": "areal-project/AReaL",
+      "query": "repo:areal-project/AReaL is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 11,
+          "incomplete_results": false,
+          "returned": 11
+        }
+      ],
+      "total_returned": 11,
+      "items": [
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1805",
+          "number": 1805,
+          "title": "ci: add two-step Ascend Geometry3K training test",
+          "created_at": "2026-10-18T19:35:25Z",
+          "updated_at": "2026-10-19T04:22:11Z",
+          "closed_at": "2026-10-19T04:22:11Z",
+          "author": "Adiactive"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1800",
+          "number": 1800,
+          "title": "fix(trainer): drain single-teacher RTensor input caches",
+          "created_at": "2026-10-17T09:36:37Z",
+          "updated_at": "2026-10-19T09:30:24Z",
+          "closed_at": "2026-10-19T09:30:24Z",
+          "author": "zhuqiweigit"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1803",
+          "number": 1803,
+          "title": "fix(infra): keep commas and equals in local scheduler env var values",
+          "created_at": "2026-10-18T00:45:16Z",
+          "updated_at": "2026-10-19T09:30:51Z",
+          "closed_at": "2026-10-19T09:30:51Z",
+          "author": "rudycelekli"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1801",
+          "number": 1801,
+          "title": "fix(engine): restore FSDP learning-rate scheduler state",
+          "created_at": "2026-10-17T09:54:16Z",
+          "updated_at": "2026-10-19T09:31:07Z",
+          "closed_at": "2026-10-19T09:31:07Z",
+          "author": "zhuqiweigit"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1802",
+          "number": 1802,
+          "title": "fix(utils): share the Saver frequency decision across models in a step",
+          "created_at": "2026-10-17T13:19:19Z",
+          "updated_at": "2026-10-19T09:31:36Z",
+          "closed_at": "2026-10-19T09:31:35Z",
+          "author": "MohammadHijjawi97"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1809",
+          "number": 1809,
+          "title": "fix(infra): close owned HTTP sessions on every exit",
+          "created_at": "2026-10-20T07:22:20Z",
+          "updated_at": "2026-10-21T02:57:29Z",
+          "closed_at": "2026-10-21T02:57:29Z",
+          "author": "zmuxuny"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1813",
+          "number": 1813,
+          "title": "fix(examples): report the correct tau2 message class",
+          "created_at": "2026-10-21T12:50:26Z",
+          "updated_at": "2026-10-23T02:45:56Z",
+          "closed_at": "2026-10-23T02:45:56Z",
+          "author": "bianyh"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1812",
+          "number": 1812,
+          "title": "fix(utils): split multimodal payloads by trajectory rows",
+          "created_at": "2026-10-21T10:43:14Z",
+          "updated_at": "2026-10-23T02:46:10Z",
+          "closed_at": "2026-10-23T02:46:10Z",
+          "author": "zmuxuny"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1815",
+          "number": 1815,
+          "title": "fix(utils): exhaust port candidates without duplicate draws",
+          "created_at": "2026-10-21T14:25:57Z",
+          "updated_at": "2026-10-23T02:47:25Z",
+          "closed_at": "2026-10-23T02:47:25Z",
+          "author": "bianyh"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1816",
+          "number": 1816,
+          "title": "feat(trainer): add configurable loss aggregation for Ascend",
+          "created_at": "2026-10-22T10:54:35Z",
+          "updated_at": "2026-10-23T02:50:21Z",
+          "closed_at": "2026-10-23T02:42:42Z",
+          "author": "geshi001"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/pull/1807",
+          "number": 1807,
+          "title": "fix(utils): split fused HCCL P2P batches by directed peer",
+          "created_at": "2026-10-19T07:32:38Z",
+          "updated_at": "2026-10-23T02:57:54Z",
+          "closed_at": "2026-10-23T02:57:54Z",
+          "author": "Adiactive"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 26
+        }
+      ],
+      "release_total_returned": 26,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/areal-project/AReaL/releases/tag/v2.1.0",
+          "tag_name": "v2.1.0",
+          "name": "v2.1.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-25T10:22:35Z",
+          "published_at": "2026-08-25T10:23:59Z",
+          "author": "sitabulaixizawaluduo"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/releases/tag/v2.0.0",
+          "tag_name": "v2.0.0",
+          "name": "v2.0.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-07-01T16:16:30Z",
+          "published_at": "2026-07-01T16:23:26Z",
+          "author": "sitabulaixizawaluduo"
+        },
+        {
+          "html_url": "https://github.com/areal-project/AReaL/releases/tag/v1.0.4",
+          "tag_name": "v1.0.4",
+          "name": "v1.0.4",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-05-07T08:27:41Z",
+          "published_at": "2026-05-07T08:30:10Z",
+          "author": "garrett4wade"
+        }
+      ]
+    },
+    {
+      "repo": "OpenRLHF/OpenRLHF",
+      "query": "repo:OpenRLHF/OpenRLHF is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 0,
+          "incomplete_results": false,
+          "returned": 0
+        }
+      ],
+      "total_returned": 0,
+      "items": [],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 100
+        },
+        {
+          "page": 2,
+          "returned": 10
+        }
+      ],
+      "release_total_returned": 110,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.2",
+          "tag_name": "v0.11.2",
+          "name": "Release v0.11.2",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-09-14T01:51:19Z",
+          "published_at": "2026-09-14T01:51:43Z",
+          "author": "hijkzzz"
+        },
+        {
+          "html_url": "https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.1",
+          "tag_name": "v0.11.1",
+          "name": "Release v0.11.1",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-09-10T14:12:24Z",
+          "published_at": "2026-09-10T14:35:17Z",
+          "author": "hijkzzz"
+        },
+        {
+          "html_url": "https://github.com/OpenRLHF/OpenRLHF/releases/tag/v0.11.0",
+          "tag_name": "v0.11.0",
+          "name": "Release v0.11.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-13T11:25:45Z",
+          "published_at": "2026-08-13T11:26:24Z",
+          "author": "hijkzzz"
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/RL",
+      "query": "repo:NVIDIA-NeMo/RL is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 54,
+          "incomplete_results": false,
+          "returned": 54
+        }
+      ],
+      "total_returned": 54,
+      "items": [
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4778",
+          "number": 4778,
+          "title": "cp: use GitHub App authentication for code freeze",
+          "created_at": "2026-10-18T19:32:59Z",
+          "updated_at": "2026-10-19T08:56:25Z",
+          "closed_at": "2026-10-19T08:56:25Z",
+          "author": "svcnemo-autobot"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4720",
+          "number": 4720,
+          "title": "fix: carry the export stream dependency across packed refit buffers",
+          "created_at": "2026-10-14T06:42:26Z",
+          "updated_at": "2026-10-19T09:24:47Z",
+          "closed_at": "2026-10-19T09:24:47Z",
+          "author": "yuekaizhang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4569",
+          "number": 4569,
+          "title": "perf(tests): enable vLLM CUDA graphs in eight eager nightly recipes",
+          "created_at": "2026-10-07T13:37:24Z",
+          "updated_at": "2026-10-19T09:48:54Z",
+          "closed_at": "2026-10-19T09:48:51Z",
+          "author": "joyang-nv"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4622",
+          "number": 4622,
+          "title": "feat: Nemotron 3.5 Super VL image GRPO and NeMo Gym agentic recipes",
+          "created_at": "2026-10-09T05:18:00Z",
+          "updated_at": "2026-10-19T11:41:25Z",
+          "closed_at": "2026-10-19T11:41:25Z",
+          "author": "yuekaizhang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3960",
+          "number": 3960,
+          "title": "feat(automodel): speculative decoding draft co-training",
+          "created_at": "2026-09-02T03:12:15Z",
+          "updated_at": "2026-10-19T14:17:23Z",
+          "closed_at": "2026-10-19T14:17:23Z",
+          "author": "yuekaizhang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4739",
+          "number": 4739,
+          "title": "test(ppo): add Qwen3-30B-A3B PPO + router replay single-controller nightly",
+          "created_at": "2026-10-15T10:05:14Z",
+          "updated_at": "2026-10-19T16:38:55Z",
+          "closed_at": "2026-10-19T16:38:55Z",
+          "author": "bg51717"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4788",
+          "number": 4788,
+          "title": "fix(nightly): fix flow-grpo and sft-gpt-oss nightlies",
+          "created_at": "2026-10-19T14:15:29Z",
+          "updated_at": "2026-10-19T16:49:34Z",
+          "closed_at": "2026-10-19T16:49:32Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4790",
+          "number": 4790,
+          "title": "cp: cherry-pick #4277 - docs(automodel): rename the DTensor backend to Automodel",
+          "created_at": "2026-10-19T15:11:31Z",
+          "updated_at": "2026-10-19T16:50:47Z",
+          "closed_at": "2026-10-19T16:50:44Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4774",
+          "number": 4774,
+          "title": "docs: add cp-to-main and cp-to-release contributor skills",
+          "created_at": "2026-10-18T06:05:19Z",
+          "updated_at": "2026-10-19T17:37:30Z",
+          "closed_at": "2026-10-19T17:37:29Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4789",
+          "number": 4789,
+          "title": "cp: cherry-pick #4696 - fix: install cv2 system libs, cut OCR nightly to 240 min",
+          "created_at": "2026-10-19T15:01:39Z",
+          "updated_at": "2026-10-19T18:26:44Z",
+          "closed_at": "2026-10-19T18:26:42Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4792",
+          "number": 4792,
+          "title": "fix(skills): make contributor frontmatter valid yaml",
+          "created_at": "2026-10-19T18:33:52Z",
+          "updated_at": "2026-10-19T18:52:35Z",
+          "closed_at": "2026-10-19T18:52:32Z",
+          "author": "ko3n1g"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4753",
+          "number": 4753,
+          "title": "chore(gym): bump Gym for vLLM server compatibility",
+          "created_at": "2026-10-16T06:19:14Z",
+          "updated_at": "2026-10-19T19:59:58Z",
+          "closed_at": "2026-10-19T19:59:58Z",
+          "author": "zyzhou5"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3929",
+          "number": 3929,
+          "title": "feat: pause SingleController refits and enable KV recomputation by default",
+          "created_at": "2026-08-31T08:29:40Z",
+          "updated_at": "2026-10-19T20:45:40Z",
+          "closed_at": "2026-10-19T20:45:38Z",
+          "author": "youngeunkwon0405"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4764",
+          "number": 4764,
+          "title": "refactor(refit): extract stateless parameter spec collections",
+          "created_at": "2026-10-17T03:36:52Z",
+          "updated_at": "2026-10-19T22:31:27Z",
+          "closed_at": "2026-10-19T22:31:25Z",
+          "author": "youngeunkwon0405"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4802",
+          "number": 4802,
+          "title": "fix(ci): raise nightly GPU-hour cap to 5380",
+          "created_at": "2026-10-20T03:06:22Z",
+          "updated_at": "2026-10-20T05:50:58Z",
+          "closed_at": "2026-10-20T05:50:56Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4794",
+          "number": 4794,
+          "title": "fix(recipes): disable vLLM async scheduling for Qwen3.5-397B GRPO",
+          "created_at": "2026-10-19T20:22:03Z",
+          "updated_at": "2026-10-20T06:19:24Z",
+          "closed_at": "2026-10-20T06:19:24Z",
+          "author": "sharonyu-115"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4781",
+          "number": 4781,
+          "title": "fix(automodel): release MoE dispatcher state before offload (cp #4756)",
+          "created_at": "2026-10-19T08:12:16Z",
+          "updated_at": "2026-10-20T08:31:23Z",
+          "closed_at": "2026-10-20T08:31:20Z",
+          "author": "fujial-code"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4122",
+          "number": 4122,
+          "title": "feat(trtllm): Qwen3.5 routed-expert block-FP8/MXFP8 refit",
+          "created_at": "2026-09-14T04:34:33Z",
+          "updated_at": "2026-10-20T08:57:22Z",
+          "closed_at": "2026-10-20T08:57:20Z",
+          "author": "hchings"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4808",
+          "number": 4808,
+          "title": "cp: `fix(recipes): disable vLLM async scheduling for Qwen3.5-397B GRPO 4794`",
+          "created_at": "2026-10-20T06:19:48Z",
+          "updated_at": "2026-10-20T13:50:39Z",
+          "closed_at": "2026-10-20T13:50:37Z",
+          "author": "svcnvidia-nemo-ci"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4787",
+          "number": 4787,
+          "title": "perf(tests): cherry-pick CUDA graph recipe optimizations to main (#4569)",
+          "created_at": "2026-10-19T10:30:51Z",
+          "updated_at": "2026-10-20T14:09:42Z",
+          "closed_at": "2026-10-20T14:09:40Z",
+          "author": "fujial-code"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4799",
+          "number": 4799,
+          "title": "docs: announce Beam 1.0 Day 0 support",
+          "created_at": "2026-10-19T23:25:16Z",
+          "updated_at": "2026-10-20T16:10:31Z",
+          "closed_at": "2026-10-20T16:07:22Z",
+          "author": "jinzex"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4813",
+          "number": 4813,
+          "title": "test(nightly): retire nanov3 MXFP8 flashinfer test",
+          "created_at": "2026-10-20T13:25:06Z",
+          "updated_at": "2026-10-20T17:40:43Z",
+          "closed_at": "2026-10-20T17:40:42Z",
+          "author": "tdene"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4746",
+          "number": 4746,
+          "title": "feat(data-plane): mooncake_cpu SSD offload",
+          "created_at": "2026-10-15T17:23:13Z",
+          "updated_at": "2026-10-20T17:45:25Z",
+          "closed_at": "2026-10-20T17:45:23Z",
+          "author": "ZhiyuLi-Nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4816",
+          "number": 4816,
+          "title": "docs(automodel): call the backend Automodel in the nanov3.5 recipe header",
+          "created_at": "2026-10-20T14:03:59Z",
+          "updated_at": "2026-10-20T17:55:30Z",
+          "closed_at": "2026-10-20T17:55:27Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4817",
+          "number": 4817,
+          "title": "cp: cherry-pick #4788 - fix(nightly): fix flow-grpo and sft-gpt-oss nightlies",
+          "created_at": "2026-10-20T14:09:12Z",
+          "updated_at": "2026-10-20T18:14:31Z",
+          "closed_at": "2026-10-20T18:14:29Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4811",
+          "number": 4811,
+          "title": "fix(timer): measure checkpoint_must_save_by from job start",
+          "created_at": "2026-10-20T08:46:58Z",
+          "updated_at": "2026-10-20T19:24:49Z",
+          "closed_at": "2026-10-20T19:24:48Z",
+          "author": "jseppanen"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4826",
+          "number": 4826,
+          "title": "ci(autobot): AUT-2600 enable comment reviews on ready transitions",
+          "created_at": "2026-10-20T20:10:57Z",
+          "updated_at": "2026-10-20T20:32:15Z",
+          "closed_at": "2026-10-20T20:32:15Z",
+          "author": "svcnemo-autobot"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4815",
+          "number": 4815,
+          "title": "docs(automodel): finish the backend rename on main",
+          "created_at": "2026-10-20T13:45:05Z",
+          "updated_at": "2026-10-20T21:46:27Z",
+          "closed_at": "2026-10-20T21:46:25Z",
+          "author": "yuki-97"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4763",
+          "number": 4763,
+          "title": "fix(vllm): align multimodal placeholders after exact prefix splicing",
+          "created_at": "2026-10-17T00:39:06Z",
+          "updated_at": "2026-10-20T22:08:20Z",
+          "closed_at": "2026-10-20T22:08:17Z",
+          "author": "aroshanghias-nvd"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4750",
+          "number": 4750,
+          "title": "feat(grpo): add adaptive-ppo-clip",
+          "created_at": "2026-10-15T19:05:23Z",
+          "updated_at": "2026-10-20T23:05:41Z",
+          "closed_at": "2026-10-20T23:05:39Z",
+          "author": "smahdavi4"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4823",
+          "number": 4823,
+          "title": "cp: cherry-pick #4615 - fix: Super QARL MTP compatibility and masked-loss safety",
+          "created_at": "2026-10-20T18:09:54Z",
+          "updated_at": "2026-10-21T03:27:32Z",
+          "closed_at": "2026-10-21T03:27:30Z",
+          "author": "mxinO"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4752",
+          "number": 4752,
+          "title": "ci: Bump MBridge.",
+          "created_at": "2026-10-15T22:02:19Z",
+          "updated_at": "2026-10-21T06:01:33Z",
+          "closed_at": "2026-10-21T06:01:30Z",
+          "author": "cspades"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3286",
+          "number": 3286,
+          "title": "feat(xtoken): replace DP token alignment with offset-based cluster alignment",
+          "created_at": "2026-07-19T18:56:25Z",
+          "updated_at": "2026-10-21T06:32:19Z",
+          "closed_at": "2026-10-21T06:32:16Z",
+          "author": "avenkateshha"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4809",
+          "number": 4809,
+          "title": "fix(trtllm): drop the srun launcher env in TRT-LLM Ray workers",
+          "created_at": "2026-10-20T07:03:46Z",
+          "updated_at": "2026-10-21T13:33:17Z",
+          "closed_at": "2026-10-21T13:33:15Z",
+          "author": "shuyixiong"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4806",
+          "number": 4806,
+          "title": "cp: cherry-pick #3984 - fix: release trainer memory before collective export",
+          "created_at": "2026-10-20T05:08:57Z",
+          "updated_at": "2026-10-21T16:28:27Z",
+          "closed_at": "2026-10-21T16:28:23Z",
+          "author": "seonjinn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4807",
+          "number": 4807,
+          "title": "cp: cherry-pick #3865 - perf: use NCCL Reshard for all async MXFP8 recipes",
+          "created_at": "2026-10-20T05:10:09Z",
+          "updated_at": "2026-10-21T16:28:53Z",
+          "closed_at": "2026-10-21T16:28:51Z",
+          "author": "seonjinn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4837",
+          "number": 4837,
+          "title": "feat(flint): add Automodel and SGLang GRPO support",
+          "created_at": "2026-10-21T16:32:16Z",
+          "updated_at": "2026-10-21T16:50:59Z",
+          "closed_at": "2026-10-21T16:50:56Z",
+          "author": "snowmanwwg"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4805",
+          "number": 4805,
+          "title": "cp: cherry-pick #3461 - perf(recipes): use FlashInfer TRT-LLM MoE for BF16",
+          "created_at": "2026-10-20T05:05:12Z",
+          "updated_at": "2026-10-21T22:20:06Z",
+          "closed_at": "2026-10-21T16:28:38Z",
+          "author": "seonjinn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4836",
+          "number": 4836,
+          "title": "perf(data_plane): count TransferQueue's physical cores once per process",
+          "created_at": "2026-10-21T16:30:47Z",
+          "updated_at": "2026-10-21T23:11:28Z",
+          "closed_at": "2026-10-21T23:11:26Z",
+          "author": "macandro96"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4842",
+          "number": 4842,
+          "title": "fix(data-plane): preserve jagged routes until microbatch padding",
+          "created_at": "2026-10-21T18:58:28Z",
+          "updated_at": "2026-10-21T23:17:40Z",
+          "closed_at": "2026-10-21T23:17:38Z",
+          "author": "macandro96"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4472",
+          "number": 4472,
+          "title": "feat(vlm): support Super video RL data and model loading",
+          "created_at": "2026-10-04T20:13:58Z",
+          "updated_at": "2026-10-22T00:26:51Z",
+          "closed_at": "2026-10-22T00:26:48Z",
+          "author": "ehosseiniasl"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4775",
+          "number": 4775,
+          "title": "fix(megatron): fix Megatron inference settings",
+          "created_at": "2026-10-18T16:40:50Z",
+          "updated_at": "2026-10-22T02:44:59Z",
+          "closed_at": "2026-10-22T02:44:59Z",
+          "author": "tdene"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4810",
+          "number": 4810,
+          "title": "fix(automodel): merge LoRA into refit weights under activation checkpointing",
+          "created_at": "2026-10-20T08:05:52Z",
+          "updated_at": "2026-10-22T03:41:53Z",
+          "closed_at": "2026-10-22T03:41:53Z",
+          "author": "yuekaizhang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4850",
+          "number": 4850,
+          "title": "fix(recipes): use Triton BF16 MoE on H100",
+          "created_at": "2026-10-22T00:41:09Z",
+          "updated_at": "2026-10-22T05:00:33Z",
+          "closed_at": "2026-10-22T05:00:32Z",
+          "author": "seonjinn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4847",
+          "number": 4847,
+          "title": "fix: restore Triton for DeepSeek V3 Hopper performance recipes",
+          "created_at": "2026-10-21T23:28:59Z",
+          "updated_at": "2026-10-22T05:33:48Z",
+          "closed_at": "2026-10-22T05:33:46Z",
+          "author": "youngeunkwon0405"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4511",
+          "number": 4511,
+          "title": "fix(sft): preserve checkpoint initialization and optimizer resume state",
+          "created_at": "2026-10-05T17:04:46Z",
+          "updated_at": "2026-10-22T06:12:18Z",
+          "closed_at": "2026-10-22T06:12:15Z",
+          "author": "rohitrango"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4851",
+          "number": 4851,
+          "title": "cp: cherry-pick #4850 - fix(recipes): use Triton BF16 MoE on H100",
+          "created_at": "2026-10-22T00:41:58Z",
+          "updated_at": "2026-10-22T06:43:36Z",
+          "closed_at": "2026-10-22T06:43:36Z",
+          "author": "seonjinn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4853",
+          "number": 4853,
+          "title": "cp: `fix: restore Triton for DeepSeek V3 Hopper performance recipes 4847`",
+          "created_at": "2026-10-22T05:34:18Z",
+          "updated_at": "2026-10-22T08:11:34Z",
+          "closed_at": "2026-10-22T08:11:31Z",
+          "author": "svcnvidia-nemo-ci"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4743",
+          "number": 4743,
+          "title": "feat(checkpoint): opt-in MSC (S3) checkpoint storage",
+          "created_at": "2026-10-15T16:44:01Z",
+          "updated_at": "2026-10-22T10:13:26Z",
+          "closed_at": "2026-10-22T10:13:24Z",
+          "author": "ZhiyuLi-Nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4433",
+          "number": 4433,
+          "title": "fix(vllm): discard colocated weights at safe sleeps",
+          "created_at": "2026-10-03T02:09:57Z",
+          "updated_at": "2026-10-22T18:13:13Z",
+          "closed_at": "2026-10-22T18:13:12Z",
+          "author": "humairafirdowse18"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4761",
+          "number": 4761,
+          "title": "docs: correct Dockerfile path in contributor setup",
+          "created_at": "2026-10-16T16:31:33Z",
+          "updated_at": "2026-10-22T20:23:44Z",
+          "closed_at": "2026-10-22T18:09:24Z",
+          "author": "original4422"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4797",
+          "number": 4797,
+          "title": "fix(sglang): disable legacy Outlines disk cache by default",
+          "created_at": "2026-10-19T21:41:16Z",
+          "updated_at": "2026-10-22T23:17:17Z",
+          "closed_at": "2026-10-22T23:17:15Z",
+          "author": "chtruong814"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4852",
+          "number": 4852,
+          "title": "chore: bump Megatron-Bridge to e0b56303 (Megatron-LM a69434877)",
+          "created_at": "2026-10-22T02:40:25Z",
+          "updated_at": "2026-10-22T23:41:53Z",
+          "closed_at": "2026-10-22T23:41:51Z",
+          "author": "RayenTian"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4866",
+          "number": 4866,
+          "title": "fix(r0.8.0): backport packed refit stream ordering fix (#4720)",
+          "created_at": "2026-10-22T21:21:15Z",
+          "updated_at": "2026-10-23T01:33:29Z",
+          "closed_at": "2026-10-23T01:33:28Z",
+          "author": "youngeunkwon0405"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 10
+        }
+      ],
+      "release_total_returned": 10,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.7.0",
+          "tag_name": "v0.7.0",
+          "name": "Release v0.7.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-07-29T03:55:59Z",
+          "published_at": "2026-07-29T04:31:13Z",
+          "author": "nemo-automation-bot[bot]"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.6.0",
+          "tag_name": "v0.6.0",
+          "name": "Release v0.6.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-04-29T21:32:56Z",
+          "published_at": "2026-04-30T19:23:11Z",
+          "author": "terrykong"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA-NeMo/RL/releases/tag/v0.5.0",
+          "tag_name": "v0.5.0",
+          "name": "Release 0.5.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-01-30T17:29:55Z",
+          "published_at": "2026-01-31T01:57:05Z",
+          "author": "terrykong"
+        }
+      ]
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "query": "repo:NVIDIA/Megatron-LM is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 58,
+          "incomplete_results": false,
+          "returned": 58
+        }
+      ],
+      "total_returned": 58,
+      "items": [
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8228",
+          "number": 8228,
+          "title": "build: update AnyIO to address CVE-2026-63374",
+          "created_at": "2026-10-14T18:25:12Z",
+          "updated_at": "2026-10-19T03:06:20Z",
+          "closed_at": "2026-10-19T03:06:20Z",
+          "author": "balasaajay"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8252",
+          "number": 8252,
+          "title": "remove a100 functional tests & golden values",
+          "created_at": "2026-10-15T12:46:51Z",
+          "updated_at": "2026-10-19T12:36:53Z",
+          "closed_at": "2026-10-19T12:36:51Z",
+          "author": "dimapihtar"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8323",
+          "number": 8323,
+          "title": "cp: use GitHub App authentication for code freeze",
+          "created_at": "2026-10-18T18:35:03Z",
+          "updated_at": "2026-10-19T14:24:02Z",
+          "closed_at": "2026-10-19T14:24:01Z",
+          "author": "svcnemo-autobot"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8207",
+          "number": 8207,
+          "title": "Replace IndexedOrder with ExecutionOrder for MFSDP v2",
+          "created_at": "2026-10-14T08:17:21Z",
+          "updated_at": "2026-10-19T18:10:06Z",
+          "closed_at": "2026-10-19T18:10:04Z",
+          "author": "shjwudp"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8322",
+          "number": 8322,
+          "title": "Fix Torch GDN recurrent state allocation during CUDA graph capture",
+          "created_at": "2026-10-18T17:57:35Z",
+          "updated_at": "2026-10-19T21:19:06Z",
+          "closed_at": "2026-10-19T21:19:05Z",
+          "author": "cuichenx"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8350",
+          "number": 8350,
+          "title": "cp: `Run nemotron Lightning functional tests in deterministic mode (8201)` into `core_r0.20.0`",
+          "created_at": "2026-10-19T21:37:40Z",
+          "updated_at": "2026-10-19T22:19:43Z",
+          "closed_at": "2026-10-19T22:19:43Z",
+          "author": "ZhiyuLi-Nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8149",
+          "number": 8149,
+          "title": "refactor(training): migrate TrainingConfig and ValidationConfig",
+          "created_at": "2026-10-12T17:36:18Z",
+          "updated_at": "2026-10-20T00:46:21Z",
+          "closed_at": "2026-10-20T00:46:20Z",
+          "author": "cuichenx"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7494",
+          "number": 7494,
+          "title": "Fix concurrent VMM allocator extension builds",
+          "created_at": "2026-09-18T20:59:11Z",
+          "updated_at": "2026-10-20T01:01:04Z",
+          "closed_at": "2026-10-20T01:01:02Z",
+          "author": "yashaswikarnati"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8197",
+          "number": 8197,
+          "title": "Remove TrainState dataloader flags from checkpoint",
+          "created_at": "2026-10-13T21:35:19Z",
+          "updated_at": "2026-10-20T04:48:16Z",
+          "closed_at": "2026-10-20T04:48:14Z",
+          "author": "maanug-nv"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7775",
+          "number": 7775,
+          "title": "Reuse full-iteration graph storage for optimizer gradient conversion",
+          "created_at": "2026-10-01T05:14:59Z",
+          "updated_at": "2026-10-20T04:59:47Z",
+          "closed_at": "2026-10-19T21:11:42Z",
+          "author": "JF-D"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8349",
+          "number": 8349,
+          "title": "cp: `Fix Torch GDN recurrent state allocation during CUDA graph capture (8322)` into `core_r0.20.0`",
+          "created_at": "2026-10-19T21:19:30Z",
+          "updated_at": "2026-10-20T06:06:48Z",
+          "closed_at": "2026-10-20T06:06:46Z",
+          "author": "ko3n1g"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8113",
+          "number": 8113,
+          "title": "fix: Defer frozen MFSDP cleanup without input gradients",
+          "created_at": "2026-10-11T00:33:01Z",
+          "updated_at": "2026-10-20T08:33:52Z",
+          "closed_at": "2026-10-20T08:33:52Z",
+          "author": "wujingyue"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8162",
+          "number": 8162,
+          "title": "Keep prompt log-probs raw under processed_logprobs",
+          "created_at": "2026-10-12T21:06:29Z",
+          "updated_at": "2026-10-20T10:30:19Z",
+          "closed_at": "2026-10-20T10:30:17Z",
+          "author": "santhnm2"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7222",
+          "number": 7222,
+          "title": "Fix strict checkpoint loading with idle rerun state",
+          "created_at": "2026-09-11T01:17:39Z",
+          "updated_at": "2026-10-20T11:58:37Z",
+          "closed_at": "2026-10-20T11:58:36Z",
+          "author": "bzantium"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8169",
+          "number": 8169,
+          "title": "Stage request payloads off the dynamic engine loop",
+          "created_at": "2026-10-12T22:40:08Z",
+          "updated_at": "2026-10-20T12:14:14Z",
+          "closed_at": "2026-10-20T12:14:12Z",
+          "author": "lauradang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8233",
+          "number": 8233,
+          "title": "[Dev] Bound a chained optimizer's state staging to one manager's windows",
+          "created_at": "2026-10-14T20:53:42Z",
+          "updated_at": "2026-10-20T13:20:48Z",
+          "closed_at": "2026-10-20T13:20:47Z",
+          "author": "HJSang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8334",
+          "number": 8334,
+          "title": "refactor(checkpoint): re-architect CheckpointWithoutOutput internals",
+          "created_at": "2026-10-19T09:23:20Z",
+          "updated_at": "2026-10-20T13:43:33Z",
+          "closed_at": "2026-10-20T13:43:33Z",
+          "author": "hxbai"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8268",
+          "number": 8268,
+          "title": "Stream the same text the non-streaming response returns",
+          "created_at": "2026-10-15T20:22:39Z",
+          "updated_at": "2026-10-20T14:08:17Z",
+          "closed_at": "2026-10-20T14:08:15Z",
+          "author": "santhnm2"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8364",
+          "number": 8364,
+          "title": "cp: `refactor(checkpoint): re-architect CheckpointWithoutOutput internals (8334)` into `core_r0.20.0`",
+          "created_at": "2026-10-20T13:43:54Z",
+          "updated_at": "2026-10-20T14:26:12Z",
+          "closed_at": "2026-10-20T14:26:10Z",
+          "author": "ko3n1g"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8019",
+          "number": 8019,
+          "title": "ci: Select PR unit tests on CPU before allocating GPUs",
+          "created_at": "2026-10-09T20:19:12Z",
+          "updated_at": "2026-10-20T15:17:39Z",
+          "closed_at": "2026-10-20T15:17:37Z",
+          "author": "balasaajay"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7960",
+          "number": 7960,
+          "title": "Full main-to-dev sync preserving dev DSv4 and Muon",
+          "created_at": "2026-10-08T04:13:28Z",
+          "updated_at": "2026-10-20T16:31:17Z",
+          "closed_at": "2026-10-20T16:31:17Z",
+          "author": "FDecaYed"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8346",
+          "number": 8346,
+          "title": "[inference] Cleanup: _tokenize_with_media_slots",
+          "created_at": "2026-10-19T17:51:49Z",
+          "updated_at": "2026-10-20T17:15:59Z",
+          "closed_at": "2026-10-20T17:15:57Z",
+          "author": "cspades"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8188",
+          "number": 8188,
+          "title": "remove unused functional tests",
+          "created_at": "2026-10-13T13:30:27Z",
+          "updated_at": "2026-10-20T17:16:00Z",
+          "closed_at": "2026-10-20T17:15:57Z",
+          "author": "dimapihtar"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8010",
+          "number": 8010,
+          "title": "Sync tied embedding copies under meta-device init",
+          "created_at": "2026-10-09T12:07:59Z",
+          "updated_at": "2026-10-20T18:17:33Z",
+          "closed_at": "2026-10-20T18:17:33Z",
+          "author": "tdene"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/3698",
+          "number": 3698,
+          "title": "Fix `config.softmax_scale` not being considered",
+          "created_at": "2026-03-04T15:15:56Z",
+          "updated_at": "2026-10-20T18:44:38Z",
+          "closed_at": "2026-10-20T18:44:35Z",
+          "author": "janEbert"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8313",
+          "number": 8313,
+          "title": "MFSDP v2: add Muon with sharded momentum",
+          "created_at": "2026-10-17T15:46:01Z",
+          "updated_at": "2026-10-20T21:22:07Z",
+          "closed_at": "2026-10-20T21:22:05Z",
+          "author": "wujingyue"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/5482",
+          "number": 5482,
+          "title": "Refinements to Offline KD",
+          "created_at": "2026-06-24T13:40:39Z",
+          "updated_at": "2026-10-20T21:41:40Z",
+          "closed_at": "2026-10-20T21:41:40Z",
+          "author": "AAnoosheh"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8372",
+          "number": 8372,
+          "title": "ci(autobot): AUT-2600 enable comment reviews on ready transitions",
+          "created_at": "2026-10-20T20:23:36Z",
+          "updated_at": "2026-10-21T00:54:46Z",
+          "closed_at": "2026-10-21T00:54:45Z",
+          "author": "svcnemo-autobot"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8353",
+          "number": 8353,
+          "title": "Fix GDN prefill CUDA graph replay with single-update GDP",
+          "created_at": "2026-10-20T01:49:41Z",
+          "updated_at": "2026-10-21T01:08:24Z",
+          "closed_at": "2026-10-21T01:08:22Z",
+          "author": "anlthms"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8216",
+          "number": 8216,
+          "title": "chore: add batch-invariant team to dedicated code owners",
+          "created_at": "2026-10-14T15:27:41Z",
+          "updated_at": "2026-10-21T04:37:14Z",
+          "closed_at": "2026-10-21T04:37:13Z",
+          "author": "wdykas"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8201",
+          "number": 8201,
+          "title": "Run nemotron Lightning functional tests in deterministic mode",
+          "created_at": "2026-10-14T03:10:23Z",
+          "updated_at": "2026-10-21T05:05:43Z",
+          "closed_at": "2026-10-21T05:05:41Z",
+          "author": "ZhiyuLi-Nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7156",
+          "number": 7156,
+          "title": "Add DSA over GQA to the hybrid model",
+          "created_at": "2026-09-09T04:59:22Z",
+          "updated_at": "2026-10-21T09:06:52Z",
+          "closed_at": "2026-10-21T09:06:50Z",
+          "author": "alokpathy"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8184",
+          "number": 8184,
+          "title": "Remove NVTE_CUTEDSL_FUSED_GROUPED_MLP and add `split_alignment` argument from latest TE API",
+          "created_at": "2026-10-13T07:18:50Z",
+          "updated_at": "2026-10-21T11:21:27Z",
+          "closed_at": "2026-10-21T11:21:25Z",
+          "author": "zhongbozhu"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8379",
+          "number": 8379,
+          "title": "Stream local Newton-Schulz batches in LayerShardedMuon",
+          "created_at": "2026-10-20T22:32:12Z",
+          "updated_at": "2026-10-21T13:09:27Z",
+          "closed_at": "2026-10-21T13:09:27Z",
+          "author": "yashaswikarnati"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8211",
+          "number": 8211,
+          "title": "refactor(training): migrate SchedulerConfig",
+          "created_at": "2026-10-14T12:24:30Z",
+          "updated_at": "2026-10-21T14:57:13Z",
+          "closed_at": "2026-10-21T14:57:11Z",
+          "author": "dimapihtar"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8326",
+          "number": 8326,
+          "title": "Fix MFSDP v2 checkpoint test setup and teardown",
+          "created_at": "2026-10-19T00:08:11Z",
+          "updated_at": "2026-10-21T17:34:49Z",
+          "closed_at": "2026-10-20T10:30:17Z",
+          "author": "ilml"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8386",
+          "number": 8386,
+          "title": "build: update Pillow to 13.0.0 on core_r0.20.0",
+          "created_at": "2026-10-20T23:42:01Z",
+          "updated_at": "2026-10-21T21:24:23Z",
+          "closed_at": "2026-10-21T21:24:23Z",
+          "author": "balasaajay"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8303",
+          "number": 8303,
+          "title": "build: use PyPI nvidia-cudnn-frontend 1.29.1 in CI dev image",
+          "created_at": "2026-10-17T01:10:13Z",
+          "updated_at": "2026-10-21T22:12:14Z",
+          "closed_at": "2026-10-21T22:12:11Z",
+          "author": "ZhiyuLi-Nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8378",
+          "number": 8378,
+          "title": "Fix sequence-packing scheduler crash on middle pipeline stages",
+          "created_at": "2026-10-20T22:29:26Z",
+          "updated_at": "2026-10-22T02:56:12Z",
+          "closed_at": "2026-10-22T02:56:11Z",
+          "author": "ilml"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8390",
+          "number": 8390,
+          "title": "[Dev] refactor(checkpoint): re-architect CheckpointWithoutOutput internals",
+          "created_at": "2026-10-21T01:15:43Z",
+          "updated_at": "2026-10-22T05:48:05Z",
+          "closed_at": "2026-10-22T05:48:03Z",
+          "author": "hxbai"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8374",
+          "number": 8374,
+          "title": "chore: bump Core to 0.21.0 and FSDP to 0.8.0rc0",
+          "created_at": "2026-10-20T21:47:27Z",
+          "updated_at": "2026-10-22T06:58:30Z",
+          "closed_at": "2026-10-22T06:58:29Z",
+          "author": "balasaajay"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8221",
+          "number": 8221,
+          "title": "fix(ssm): batch-invariant Mamba decode without a z replay buffer",
+          "created_at": "2026-10-14T17:41:43Z",
+          "updated_at": "2026-10-22T07:11:40Z",
+          "closed_at": "2026-10-22T07:11:38Z",
+          "author": "wdykas"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8232",
+          "number": 8232,
+          "title": "[Dev] Bound optimizer-owned master weights by the offload chunk size",
+          "created_at": "2026-10-14T20:53:40Z",
+          "updated_at": "2026-10-22T08:51:04Z",
+          "closed_at": "2026-10-22T08:51:04Z",
+          "author": "HJSang"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8385",
+          "number": 8385,
+          "title": "fix(inference): bound batch-invariant MoE work by live rows, not worst-case buffers",
+          "created_at": "2026-10-20T23:40:29Z",
+          "updated_at": "2026-10-22T10:34:35Z",
+          "closed_at": "2026-10-22T10:34:33Z",
+          "author": "wdykas"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8389",
+          "number": 8389,
+          "title": "Batch packed MTP context-parallel boundary exchanges",
+          "created_at": "2026-10-21T00:11:41Z",
+          "updated_at": "2026-10-22T10:44:42Z",
+          "closed_at": "2026-10-22T10:44:42Z",
+          "author": "yashaswikarnati"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7710",
+          "number": 7710,
+          "title": "Split MFSDP v2 adapter tests into focused files",
+          "created_at": "2026-09-29T21:40:51Z",
+          "updated_at": "2026-10-22T10:53:10Z",
+          "closed_at": "2026-10-22T10:53:07Z",
+          "author": "wujingyue"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8387",
+          "number": 8387,
+          "title": "build: update Pillow to 13.0.0",
+          "created_at": "2026-10-20T23:42:25Z",
+          "updated_at": "2026-10-22T13:54:36Z",
+          "closed_at": "2026-10-22T13:54:33Z",
+          "author": "balasaajay"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8371",
+          "number": 8371,
+          "title": "Honor RoPE arguments in Nemotron MIMO language provider",
+          "created_at": "2026-10-20T19:06:43Z",
+          "updated_at": "2026-10-22T14:02:10Z",
+          "closed_at": "2026-10-22T14:02:07Z",
+          "author": "mkhona-nvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8345",
+          "number": 8345,
+          "title": "[GTP] Preserve independent expert prefetch chains under CUDA graphs",
+          "created_at": "2026-10-19T16:07:26Z",
+          "updated_at": "2026-10-22T14:30:59Z",
+          "closed_at": "2026-10-22T14:30:57Z",
+          "author": "fanshiqing"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7478",
+          "number": 7478,
+          "title": "Perf and memory overheads fix for MTP and Cross Entropy",
+          "created_at": "2026-09-18T10:10:59Z",
+          "updated_at": "2026-10-22T17:06:27Z",
+          "closed_at": "2026-10-22T17:06:27Z",
+          "author": "xrennvidia"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8344",
+          "number": 8344,
+          "title": "Share Mamba branch execution through local residual state",
+          "created_at": "2026-10-19T16:02:27Z",
+          "updated_at": "2026-10-22T17:15:22Z",
+          "closed_at": "2026-10-22T16:57:13Z",
+          "author": "kwangjunahn"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8414",
+          "number": 8414,
+          "title": "Fix import error by DSA spec",
+          "created_at": "2026-10-21T15:16:04Z",
+          "updated_at": "2026-10-22T18:03:21Z",
+          "closed_at": "2026-10-22T18:03:20Z",
+          "author": "xuantengh"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8404",
+          "number": 8404,
+          "title": "remove more unused functional tests",
+          "created_at": "2026-10-21T12:04:54Z",
+          "updated_at": "2026-10-22T18:41:53Z",
+          "closed_at": "2026-10-22T18:41:50Z",
+          "author": "dimapihtar"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7937",
+          "number": 7937,
+          "title": "Fix Mixtral HF checkpoint loading with Transformers 5",
+          "created_at": "2026-10-07T13:10:13Z",
+          "updated_at": "2026-10-22T19:29:10Z",
+          "closed_at": "2026-10-22T19:29:09Z",
+          "author": "janbernloehr"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/6399",
+          "number": 6399,
+          "title": "Do not message oncall in default PR template",
+          "created_at": "2026-08-10T13:44:30Z",
+          "updated_at": "2026-10-22T19:42:48Z",
+          "closed_at": "2026-10-22T19:42:46Z",
+          "author": "janEbert"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7394",
+          "number": 7394,
+          "title": "[MCore] Add global-batch quantile balancing",
+          "created_at": "2026-09-16T09:01:54Z",
+          "updated_at": "2026-10-22T21:14:21Z",
+          "closed_at": "2026-10-22T21:14:21Z",
+          "author": "rkarimimahab"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8172",
+          "number": 8172,
+          "title": "Fuse GDP prefill preparation into the decode prepare kernel",
+          "created_at": "2026-10-12T23:01:48Z",
+          "updated_at": "2026-10-23T02:29:35Z",
+          "closed_at": "2026-10-23T02:29:33Z",
+          "author": "santhnm2"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/6429",
+          "number": 6429,
+          "title": "[Main] Recompute EP A2A overlap activations per layer segment (supersedes #5920)",
+          "created_at": "2026-08-11T02:53:18Z",
+          "updated_at": "2026-10-23T02:29:35Z",
+          "closed_at": "2026-10-23T02:29:33Z",
+          "author": "Wohox"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 51
+        }
+      ],
+      "release_total_returned": 51,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-lambda.rc1",
+          "tag_name": "26.09-lambda.rc1",
+          "name": "26.09-lambda.rc1",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-13T11:32:17Z",
+          "published_at": "2026-10-13T11:34:47Z",
+          "author": "mmarcinkiewicz"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc3",
+          "tag_name": "26.09-alpha.rc3",
+          "name": "26.09-alpha.rc3",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-13T07:44:04Z",
+          "published_at": "2026-10-13T08:10:56Z",
+          "author": "mmarcinkiewicz"
+        },
+        {
+          "html_url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.09-alpha.rc2",
+          "tag_name": "26.09-alpha.rc2",
+          "name": "26.09-alpha.rc2",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-10T08:05:03Z",
+          "published_at": "2026-10-08T17:51:58Z",
+          "author": "mmarcinkiewicz"
+        }
+      ]
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "query": "repo:deepspeedai/DeepSpeed is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 12,
+          "incomplete_results": false,
+          "returned": 12
+        }
+      ],
+      "total_returned": 12,
+      "items": [
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8732",
+          "number": 8732,
+          "title": "Enable CUDA Graph for continuous rollouts",
+          "created_at": "2026-10-03T08:12:21Z",
+          "updated_at": "2026-10-19T14:34:24Z",
+          "closed_at": "2026-10-19T14:34:24Z",
+          "author": "nathon-lee"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8799",
+          "number": 8799,
+          "title": "Add KLXPU (KUNLUNXIN XPU) accelerator",
+          "created_at": "2026-10-10T08:17:23Z",
+          "updated_at": "2026-10-20T02:16:30Z",
+          "closed_at": "2026-10-19T08:37:02Z",
+          "author": "GuCarpenter"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8871",
+          "number": 8871,
+          "title": "Update version post 0.19.8 release",
+          "created_at": "2026-10-20T17:13:58Z",
+          "updated_at": "2026-10-20T18:15:48Z",
+          "closed_at": "2026-10-20T18:15:46Z",
+          "author": "loadams"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8872",
+          "number": 8872,
+          "title": "Update to filter out version.txt from PR gates.",
+          "created_at": "2026-10-20T17:57:51Z",
+          "updated_at": "2026-10-20T20:16:34Z",
+          "closed_at": "2026-10-20T20:16:33Z",
+          "author": "loadams"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8836",
+          "number": 8836,
+          "title": "Skip the accelerator-only CPU optimizer tests on the cpu accelerator",
+          "created_at": "2026-10-16T09:02:54Z",
+          "updated_at": "2026-10-21T00:54:40Z",
+          "closed_at": "2026-10-21T00:54:39Z",
+          "author": "delock"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8857",
+          "number": 8857,
+          "title": "Keep Yuan's o_proj bias whole on every rank and describe it as replicated",
+          "created_at": "2026-10-18T23:57:56Z",
+          "updated_at": "2026-10-21T01:13:45Z",
+          "closed_at": "2026-10-21T01:13:45Z",
+          "author": "Achyuthan-S"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8855",
+          "number": 8855,
+          "title": "Expect AutoTP to keep a row-parallel output head tied to the embedding",
+          "created_at": "2026-10-18T15:27:18Z",
+          "updated_at": "2026-10-21T07:32:50Z",
+          "closed_at": "2026-10-21T07:32:50Z",
+          "author": "jinyouzhi"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8838",
+          "number": 8838,
+          "title": "Add Triton kernels for vocab-parallel logprobs, entropy and KL",
+          "created_at": "2026-10-16T14:47:36Z",
+          "updated_at": "2026-10-21T16:05:12Z",
+          "closed_at": "2026-10-21T16:05:12Z",
+          "author": "jinyouzhi"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8782",
+          "number": 8782,
+          "title": "Fix numerical stability in Triton masked softmax",
+          "created_at": "2026-10-09T05:26:39Z",
+          "updated_at": "2026-10-21T17:10:39Z",
+          "closed_at": "2026-10-21T17:10:39Z",
+          "author": "arcusbuilds"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8817",
+          "number": 8817,
+          "title": "Add RVV vectorized FP32 kernel to CPU Adam",
+          "created_at": "2026-10-13T12:04:20Z",
+          "updated_at": "2026-10-22T03:01:41Z",
+          "closed_at": "2026-10-22T03:01:41Z",
+          "author": "zhangjian29"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8839",
+          "number": 8839,
+          "title": "[OPSD] Request last-position logits only in HybridEngine rollout prefill",
+          "created_at": "2026-10-16T15:28:32Z",
+          "updated_at": "2026-10-22T09:24:39Z",
+          "closed_at": "2026-10-22T09:24:39Z",
+          "author": "jinyouzhi"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8688",
+          "number": 8688,
+          "title": "docs: fix 30 dead links across README, docs pages, tutorials and posts",
+          "created_at": "2026-09-28T01:37:54Z",
+          "updated_at": "2026-10-22T21:40:41Z",
+          "closed_at": "2026-10-22T21:40:41Z",
+          "author": "pratikgx"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 100
+        },
+        {
+          "page": 2,
+          "returned": 18
+        }
+      ],
+      "release_total_returned": 118,
+      "releases_in_window": [
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.8",
+          "tag_name": "v0.19.8",
+          "name": "v0.19.8 Patch Release",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-19T13:31:24Z",
+          "published_at": "2026-10-20T15:21:47Z",
+          "author": "loadams"
+        }
+      ],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.8",
+          "tag_name": "v0.19.8",
+          "name": "v0.19.8 Patch Release",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-19T13:31:24Z",
+          "published_at": "2026-10-20T15:21:47Z",
+          "author": "loadams"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.7",
+          "tag_name": "v0.19.7",
+          "name": "v0.19.7 Patch Release",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-09-16T18:13:39Z",
+          "published_at": "2026-09-16T22:00:09Z",
+          "author": "loadams"
+        },
+        {
+          "html_url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.6",
+          "tag_name": "v0.19.6",
+          "name": "v0.19.6 Patch Release",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-08-27T17:12:18Z",
+          "published_at": "2026-08-27T19:08:33Z",
+          "author": "loadams"
+        }
+      ]
+    },
+    {
+      "repo": "huggingface/trl",
+      "query": "repo:huggingface/trl is:pr is:merged merged:2026-10-19T01:40:52Z..2026-10-23T03:09:27Z",
+      "pages": [
+        {
+          "page": 1,
+          "total_count": 40,
+          "incomplete_results": false,
+          "returned": 40
+        }
+      ],
+      "total_returned": 40,
+      "items": [
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7773",
+          "number": 7773,
+          "title": "Place vLLM image features at the model config's image token",
+          "created_at": "2026-10-16T16:39:11Z",
+          "updated_at": "2026-10-19T07:07:57Z",
+          "closed_at": "2026-10-19T07:07:55Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7698",
+          "number": 7698,
+          "title": "Prevent VLM policies from generating the image placeholder token with vLLM",
+          "created_at": "2026-10-13T15:27:33Z",
+          "updated_at": "2026-10-19T07:10:28Z",
+          "closed_at": "2026-10-19T07:10:25Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7764",
+          "number": 7764,
+          "title": "Read and write text files as UTF-8 in tests",
+          "created_at": "2026-10-16T08:21:09Z",
+          "updated_at": "2026-10-19T07:12:01Z",
+          "closed_at": "2026-10-19T07:11:58Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7610",
+          "number": 7610,
+          "title": "Adaptive in-flight cap from vLLM load in AsyncGRPO",
+          "created_at": "2026-10-09T13:37:12Z",
+          "updated_at": "2026-10-19T08:40:26Z",
+          "closed_at": "2026-10-19T08:40:23Z",
+          "author": "AmineDiro"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7792",
+          "number": 7792,
+          "title": "Use FlashAttention-4 on Blackwell GPUs in async GRPO and async distillation",
+          "created_at": "2026-10-19T07:06:18Z",
+          "updated_at": "2026-10-19T08:43:19Z",
+          "closed_at": "2026-10-19T08:43:16Z",
+          "author": "lewtun"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7741",
+          "number": 7741,
+          "title": "Run tests_min_versions on Python 3.11 and pin every dependency at its floor",
+          "created_at": "2026-10-15T07:19:14Z",
+          "updated_at": "2026-10-19T09:15:11Z",
+          "closed_at": "2026-10-19T09:15:09Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7745",
+          "number": 7745,
+          "title": "Document that the minimum-versions CI job pins every dependency at its floor",
+          "created_at": "2026-10-15T07:54:04Z",
+          "updated_at": "2026-10-19T09:20:43Z",
+          "closed_at": "2026-10-19T09:20:41Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7743",
+          "number": 7743,
+          "title": "Document when to add, drop and change the default Python version",
+          "created_at": "2026-10-15T07:21:25Z",
+          "updated_at": "2026-10-19T09:32:48Z",
+          "closed_at": "2026-10-19T09:32:46Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7750",
+          "number": 7750,
+          "title": "Skip the async GRPO tests on transformers < 5.2.0",
+          "created_at": "2026-10-15T15:17:07Z",
+          "updated_at": "2026-10-19T09:36:17Z",
+          "closed_at": "2026-10-19T09:36:14Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7768",
+          "number": 7768,
+          "title": "Test that LoRA on an MoE model also trains its dense and shared expert layers",
+          "created_at": "2026-10-16T09:41:15Z",
+          "updated_at": "2026-10-19T11:30:17Z",
+          "closed_at": "2026-10-19T11:30:14Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7771",
+          "number": 7771,
+          "title": "Warn when LoRA skips the dense and shared expert layers of MoE models on transformers v5 with peft 0.19 to 0.21.2",
+          "created_at": "2026-10-16T11:14:38Z",
+          "updated_at": "2026-10-20T07:29:06Z",
+          "closed_at": "2026-10-19T12:53:45Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7751",
+          "number": 7751,
+          "title": "Fix the default IS mode in the GRPOConfig docstring",
+          "created_at": "2026-10-15T15:47:08Z",
+          "updated_at": "2026-10-19T19:54:15Z",
+          "closed_at": "2026-10-19T19:54:12Z",
+          "author": "sergiopaniego"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7791",
+          "number": 7791,
+          "title": "Hotfix CI: Xfail GOLD SmolVLM cross-arch test against transformers 5.20.1",
+          "created_at": "2026-10-19T06:24:23Z",
+          "updated_at": "2026-10-20T06:29:13Z",
+          "closed_at": "2026-10-19T06:34:02Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7810",
+          "number": 7810,
+          "title": "Hotfix CI: Expect the GOLD SmolVLM cross-arch test to pass now that transformers fixed SmolVLM",
+          "created_at": "2026-10-20T06:28:49Z",
+          "updated_at": "2026-10-20T06:49:20Z",
+          "closed_at": "2026-10-20T06:49:18Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/6676",
+          "number": 6676,
+          "title": "Accept instantiated models in AsyncGRPOTrainer",
+          "created_at": "2026-08-07T08:26:53Z",
+          "updated_at": "2026-10-20T14:06:24Z",
+          "closed_at": "2026-10-20T14:06:23Z",
+          "author": "kashif"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7799",
+          "number": 7799,
+          "title": "Add support for vLLM 0.32.0",
+          "created_at": "2026-10-19T19:52:56Z",
+          "updated_at": "2026-10-20T15:49:01Z",
+          "closed_at": "2026-10-20T15:48:59Z",
+          "author": "qgallouedec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7774",
+          "number": 7774,
+          "title": "Load the tokenizer for models that take no images",
+          "created_at": "2026-10-16T17:10:09Z",
+          "updated_at": "2026-10-20T16:15:30Z",
+          "closed_at": "2026-10-20T16:15:27Z",
+          "author": "qgallouedec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7844",
+          "number": 7844,
+          "title": "Document training on AMD GPUs",
+          "created_at": "2026-10-20T22:20:44Z",
+          "updated_at": "2026-10-21T03:37:33Z",
+          "closed_at": "2026-10-21T03:37:30Z",
+          "author": "qgallouedec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7846",
+          "number": 7846,
+          "title": "Hotfix CI: Pin liger-kernel to its floor in the min-versions CI job",
+          "created_at": "2026-10-21T06:47:36Z",
+          "updated_at": "2026-10-21T07:14:21Z",
+          "closed_at": "2026-10-21T07:14:19Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/5918",
+          "number": 5918,
+          "title": "Add AMD/ROCm CI",
+          "created_at": "2026-06-02T15:54:57Z",
+          "updated_at": "2026-10-21T08:31:54Z",
+          "closed_at": "2026-10-20T21:04:07Z",
+          "author": "kashif"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7800",
+          "number": 7800,
+          "title": "Fix the default IS mode in the GRPO vLLM tip",
+          "created_at": "2026-10-19T20:02:26Z",
+          "updated_at": "2026-10-21T09:25:00Z",
+          "closed_at": "2026-10-21T09:24:57Z",
+          "author": "sergiopaniego"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7699",
+          "number": 7699,
+          "title": "Prevent VLM policies in GOLD from generating the image placeholder token",
+          "created_at": "2026-10-13T15:38:18Z",
+          "updated_at": "2026-10-21T12:28:59Z",
+          "closed_at": "2026-10-21T12:28:56Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7708",
+          "number": 7708,
+          "title": "Prevent VLM policies in Online DPO from generating the image placeholder token",
+          "created_at": "2026-10-13T16:51:43Z",
+          "updated_at": "2026-10-21T12:29:25Z",
+          "closed_at": "2026-10-21T12:29:22Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7769",
+          "number": 7769,
+          "title": "Raise when LoRA would skip the routed experts of MoE models on transformers v5 with peft<0.19",
+          "created_at": "2026-10-16T09:45:42Z",
+          "updated_at": "2026-10-21T12:50:46Z",
+          "closed_at": "2026-10-21T12:50:43Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7796",
+          "number": 7796,
+          "title": "Keep a single LoRA target module from the CLI or a config file as a list",
+          "created_at": "2026-10-19T11:58:32Z",
+          "updated_at": "2026-10-21T12:55:43Z",
+          "closed_at": "2026-10-21T12:55:41Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7797",
+          "number": 7797,
+          "title": "Require accelerate>=1.11.0 and drop the FSDP2 ignored-modules fallback",
+          "created_at": "2026-10-19T14:26:05Z",
+          "updated_at": "2026-10-21T13:16:23Z",
+          "closed_at": "2026-10-21T13:16:20Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7808",
+          "number": 7808,
+          "title": "Reject a PeftModel passed as ref_model in DPO and KTO",
+          "created_at": "2026-10-20T05:30:26Z",
+          "updated_at": "2026-10-21T13:47:06Z",
+          "closed_at": "2026-10-21T13:47:03Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7813",
+          "number": 7813,
+          "title": "Remove the redundant liger_kernel and peft installs from the dev Docker image",
+          "created_at": "2026-10-20T10:44:57Z",
+          "updated_at": "2026-10-21T13:52:19Z",
+          "closed_at": "2026-10-21T13:52:15Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7815",
+          "number": 7815,
+          "title": "Install kernels through the TRL kernels extra in the Docker images",
+          "created_at": "2026-10-20T11:55:51Z",
+          "updated_at": "2026-10-21T14:06:04Z",
+          "closed_at": "2026-10-21T14:05:59Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7817",
+          "number": 7817,
+          "title": "Skip the uv cache when installing packages in the release Docker image",
+          "created_at": "2026-10-20T12:03:48Z",
+          "updated_at": "2026-10-21T14:13:16Z",
+          "closed_at": "2026-10-21T14:13:12Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7820",
+          "number": 7820,
+          "title": "Require vLLM >= 0.31.0 in the Docker images",
+          "created_at": "2026-10-20T12:22:28Z",
+          "updated_at": "2026-10-21T14:31:30Z",
+          "closed_at": "2026-10-21T14:31:26Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7862",
+          "number": 7862,
+          "title": "Explain the vLLM floor in the Docker images",
+          "created_at": "2026-10-21T15:13:05Z",
+          "updated_at": "2026-10-21T15:29:15Z",
+          "closed_at": "2026-10-21T15:15:54Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7825",
+          "number": 7825,
+          "title": "Cap the KV cache in the continuous batching tests",
+          "created_at": "2026-10-20T15:30:48Z",
+          "updated_at": "2026-10-21T16:12:43Z",
+          "closed_at": "2026-10-21T16:12:40Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7848",
+          "number": 7848,
+          "title": "Run the test workflows on push to main only",
+          "created_at": "2026-10-21T07:17:22Z",
+          "updated_at": "2026-10-22T09:03:12Z",
+          "closed_at": "2026-10-22T09:03:09Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7850",
+          "number": 7850,
+          "title": "Allow vLLM 0.32.x patch releases",
+          "created_at": "2026-10-21T09:46:01Z",
+          "updated_at": "2026-10-22T11:21:49Z",
+          "closed_at": "2026-10-22T11:21:45Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7855",
+          "number": 7855,
+          "title": "Pin deepspeed to its floor in the min-versions CI job",
+          "created_at": "2026-10-21T12:05:46Z",
+          "updated_at": "2026-10-22T11:33:07Z",
+          "closed_at": "2026-10-22T11:33:05Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7793",
+          "number": 7793,
+          "title": "AsyncGRPO: keep filling a micro-batch when another row has free room",
+          "created_at": "2026-10-19T08:19:15Z",
+          "updated_at": "2026-10-22T12:35:13Z",
+          "closed_at": "2026-10-22T10:08:27Z",
+          "author": "clementtisseau"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7860",
+          "number": 7860,
+          "title": "Test the MoE LoRA error and warning for PEFT versions that skip expert layers",
+          "created_at": "2026-10-21T13:30:43Z",
+          "updated_at": "2026-10-22T17:00:23Z",
+          "closed_at": "2026-10-22T17:00:21Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7864",
+          "number": 7864,
+          "title": "Raise the bitsandbytes floor to 0.45.2",
+          "created_at": "2026-10-21T15:34:23Z",
+          "updated_at": "2026-10-22T18:25:36Z",
+          "closed_at": "2026-10-22T18:25:33Z",
+          "author": "albertvillanova"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/pull/7859",
+          "number": 7859,
+          "title": "Pass mm_token_type_ids to the model in Online DPO",
+          "created_at": "2026-10-21T13:24:48Z",
+          "updated_at": "2026-10-22T19:16:56Z",
+          "closed_at": "2026-10-22T19:16:53Z",
+          "author": "albertvillanova"
+        }
+      ],
+      "release_pages": [
+        {
+          "page": 1,
+          "returned": 100
+        },
+        {
+          "page": 2,
+          "returned": 1
+        }
+      ],
+      "release_total_returned": 101,
+      "releases_in_window": [],
+      "latest_releases": [
+        {
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.16.0",
+          "tag_name": "v1.16.0",
+          "name": "v1.16.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-15T17:56:13Z",
+          "published_at": "2026-10-15T18:00:33Z",
+          "author": "qgallouedec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.15.0",
+          "tag_name": "v1.15.0",
+          "name": "v1.15.0",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-08T19:13:24Z",
+          "published_at": "2026-10-08T19:26:48Z",
+          "author": "qgallouedec"
+        },
+        {
+          "html_url": "https://github.com/huggingface/trl/releases/tag/v1.14.2",
+          "tag_name": "v1.14.2",
+          "name": "v1.14.2",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2026-10-06T20:29:20Z",
+          "published_at": "2026-10-06T20:30:35Z",
+          "author": "qgallouedec"
+        }
+      ]
+    }
+  ]
+}

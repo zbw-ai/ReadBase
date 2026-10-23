@@ -1,6 +1,6 @@
 # 推理状态：缓存成本、内容就绪与输入身份
 
-[所属 Part](../README.md) · [推理路线](../roadmap.md) · [本轮来源与证据](../../research/tracking/frontier_scan_2026-10-19.md)
+[所属 Part](../README.md) · [推理路线](../roadmap.md) · [10/19来源](../../research/tracking/frontier_scan_2026-10-19.md) · [10/23增量](../../research/tracking/frontier_scan_2026-10-23.md)
 
 ## 问题：命中缓存为什么还可能更慢，甚至答错？
 
@@ -46,6 +46,19 @@
 | 冷跑正确，命中后偶发错 | producer/copy/publish event，state owner 与版本 | 延迟 producer→驱逐→回读，检查内容而非只看 hit |
 | 换 encoder 后工具图片或续写异常 | 最终 tool order、payload 顺序、user-turn identity | 乱序结果、混合图片、同回合多次 tool call 对照 |
 | 标称长上下文却 OOM | 全权重、KV层布局、并发、临时 buffer 与分页 | 逐项内存账本；不要只按 active 参数或输出长度估算 |
+
+<a id="oct23-capacity"></a>
+## 2026-10-23 补充：容量、逻辑地址和允许释放不是同一件事
+
+[UlaCache](https://arxiv.org/abs/2610.29820v1)说明稀疏attention减少当步访问量，却仍可能需要保存全部历史。稳定logical address可以把KV的逻辑身份与CPU/GPU位置分开；换页必须先等旧读者结束，完成数据搬移，再发布mapping。其评测先完成prefill后测decode，不能把峰值decode吞吐当在线TTFT/SLO结论。
+
+[uGDS](https://arxiv.org/abs/2610.30868v1)进一步把CPU提交开销与payload DMA分开。超时意味着“不再等待”，未必意味着“设备已停止写入”；隔离失效queue和映射，待controller reset等停止条件成立才能安全回收。它需要块设备所有权，不是任意Python文件读取接口的直接替代。
+
+[SGLang #45453](https://github.com/sgl-project/sglang/pull/45453)处理跨rank释放：局部ACK不同会使TP ranks看到不同容量，随后admission与collective次序也分叉。先共同决定是否hold，再共同决定是否ready，不能由一个rank自行提前释放；host目标仍要求drain，device既有timeout分支并不证明所有remote write已结束。
+
+排查时至少列四列：**逻辑owner、物理位置、producer/readers完成、跨rank可回收条件**。测试要覆盖迟到写、错开ACK、映射重注册和独立请求推进。公开CPU/Gloo回归不替代真实GPU/RDMA验证；方法与CI边界见[10/23扫描](../../research/tracking/frontier_scan_2026-10-23.md)。
+
+同样的生命周期判断适用于[OpenAI旁路广告服务](https://openai.com/index/building-chatgpt-ad-stack/)：主响应到期可以舍弃未就绪辅助结果，但“业务上不再接收”不自动证明后台计算已取消、资源已释放或共享资源无干扰。服务协议和资源回收应分别验收。
 
 ## 相邻系统
 

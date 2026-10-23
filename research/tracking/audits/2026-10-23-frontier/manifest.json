@@ -1,0 +1,153 @@
+{
+  "window_start_utc": "2026-10-19T01:40:52Z",
+  "event_cutoff_utc": "2026-10-23T03:09:27Z",
+  "verified_at_utc": "2026-10-23T04:26:57.661058+00:00",
+  "accepted_groups": 19,
+  "accepted_unique_primary_source_ids": 22,
+  "accepted_source_ids": [
+    "arxiv:2610.25736v1",
+    "arxiv:2610.27387v1",
+    "arxiv:2610.27794v1",
+    "arxiv:2610.30129v1",
+    "github:huggingface/lerobot:pull:4890",
+    "github:NVIDIA-NeMo/RL:pull:3929",
+    "github:verl-project/verl:pull:8287",
+    "github:verl-project/verl:pull:8306",
+    "github:verl-project/verl:pull:8308",
+    "github:areal-project/AReaL:pull:1812",
+    "github:huggingface/trl:pull:7610",
+    "arxiv:2610.29426v1",
+    "arxiv:2610.28998v1",
+    "arxiv:2610.30868v1",
+    "arxiv:2610.29820v1",
+    "github:huggingface/transformers:pull:49688",
+    "github:huggingface/transformers:pull:49710",
+    "github:sgl-project/sglang:pull:45453",
+    "nvidia-blog:2026-10-22:kvikio-gds-python",
+    "pytorch-blog:2026-10-19:torchneuron-native",
+    "anthropic-research:2026-10-22:formal-verification",
+    "openai-engineering:2026-10-21:chatgpt-ad-stack"
+  ],
+  "observed_groups": 54,
+  "observed_by_area": {
+    "embodied": 17,
+    "rl_training": 19,
+    "systems_inference": 10,
+    "vendor_hf": 8
+  },
+  "historical_backfill_candidates": 3,
+  "publication_date_anomalies_pending": 2,
+  "merged_pr_counts": {
+    "embodied": 80,
+    "rl_core": 91,
+    "training_trl": 110,
+    "inference_runtime": 893,
+    "hf_systems": 146,
+    "total": 1320,
+    "repositories": 23
+  },
+  "arxiv_sets_non_additive": {
+    "embodied": 2756,
+    "systems": 2339,
+    "rl_limited_query": 467
+  },
+  "experiments_or_upstream_tests_executed": false,
+  "historical_gaps_shanghai": {
+    "arxiv_discovery": "2026-09-22 16:52:05",
+    "github_direct_commits_peripheral_history_release_bodies": "2026-09-22 17:06:16"
+  },
+  "files": {
+    "embodied/arxiv_index_summary.json": {
+      "bytes": 73560,
+      "sha256": "51f1e8f2f7ac712d2e357acf5495d895b671864ff4d60237281996197be11fb2"
+    },
+    "embodied/merged_pr_release_index.json": {
+      "bytes": 69155,
+      "sha256": "ada221ab527f5169d3dfa5e6e89a27230fdd53ffce33deff05eb7f7232965f49"
+    },
+    "embodied/paper_metadata.json": {
+      "bytes": 25189,
+      "sha256": "f77aa1e3ca7a44dcb009abaa95242a1580cdfbe8cf1be4f21731c2a6bcced759"
+    },
+    "embodied/pr_verification.json": {
+      "bytes": 120801,
+      "sha256": "fe98aebe9b690ba19003dceb65e79befbf91d9976cce97dc6aabf330db9b8d6c"
+    },
+    "embodied/source_pages.json": {
+      "bytes": 7482,
+      "sha256": "c29034a639802a3fb4c2e234c5e80a52fceef5c61e4a22025b1533c3a3574058"
+    },
+    "rl/accepted_evidence.json": {
+      "bytes": 15972,
+      "sha256": "124b76e2e0accdd49b3854bb12d97fc060bb34b7a4592dc334c36d78f1b50d9b"
+    },
+    "rl/arxiv_query_index.json": {
+      "bytes": 146238,
+      "sha256": "4b59ce4cbe2936c83c3926dd30d9d5f5f3fc6baee89b94a67880643ee4f03ad3"
+    },
+    "rl/merged_pr_index.json": {
+      "bytes": 91444,
+      "sha256": "6acb946b70771868235a128101dec5906ce6aead80e2c00fc369c96a762e145e"
+    },
+    "rl/selected_pr_metadata.json": {
+      "bytes": 124797,
+      "sha256": "bd8fd75b5a09a2c92d9bf8305cfe0bcef973c6ff435a991e53c5ba8b874fdd3e"
+    },
+    "rl/supplemental_triage.json": {
+      "bytes": 5607,
+      "sha256": "d8b165077450ded400a823fa14b13a1cbc3488cd6bbc5c4381bddcd339c2fd76"
+    },
+    "root/details.json": {
+      "bytes": 10990,
+      "sha256": "dc15985961884e25e4a2a0c344e545e6a2d9fd8591670f2704eb6b956afe8ed6"
+    },
+    "root/evidence.json": {
+      "bytes": 9360,
+      "sha256": "ba206acd072fb124ea9b77c5528fcd6996712cd22bbfdf919c5d3c94d084b4e7"
+    },
+    "root/notes.json": {
+      "bytes": 1373,
+      "sha256": "da6a77bb4c7cf239ff324ba3feed29234e2905c16e936ee8891a9588efdf403d"
+    },
+    "root/repos.json": {
+      "bytes": 3488,
+      "sha256": "b6e9c34882a5df240ea8da4624972db8bd4314fbbf2889690efb7c42cf368938"
+    },
+    "systems/arxiv_candidates.json": {
+      "bytes": 68093,
+      "sha256": "c1d37bc51ecc38bcedb0c4439f8e36a550d5bcf343878071d7375902630fbdd4"
+    },
+    "systems/arxiv_coverage.json": {
+      "bytes": 673068,
+      "sha256": "d0b3647c9ccfbe65045b9906e03750f125f195b398ed0741e762b307a4b91fd6"
+    },
+    "systems/checks.json": {
+      "bytes": 93211,
+      "sha256": "8d5ecd31b6607477f5d93c71e9341f14e291ca2cb9ebe8b3e016f1e38769c40c"
+    },
+    "systems/evidence.json": {
+      "bytes": 165964,
+      "sha256": "3fee810000039074e59e08f11d0a488e6db82c5953697da467ca6bf301560d00"
+    },
+    "systems/manifest.json": {
+      "bytes": 2401,
+      "sha256": "56fb2722fc3ccc59e3ce82d221b4907fc884280d50caad2a0a8d78088a27be38"
+    },
+    "systems/merged_pr_index.json": {
+      "bytes": 997588,
+      "sha256": "a9bea84b18dab43baebaafade76fc0a45dec76185d3bfe81784cb041647d7af1"
+    }
+  },
+  "validation": {
+    "changed_files": 36,
+    "markdown_files": 15,
+    "local_links_images_checked": 1071,
+    "json_files": 21,
+    "errors": [],
+    "tables_parsed": 68,
+    "accepted_groups_checked": 19,
+    "observed_groups_checked": 54,
+    "independent_reviews": "vendor facts and embodied integration reviewed; scope/date corrections applied",
+    "experiments_executed": false
+  }
+}

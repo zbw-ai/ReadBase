@@ -1,6 +1,6 @@
 # Master Reading List
 
-具身最新：[10/19扫描与选读](tracking/frontier_scan_2026-10-19.md) → [短历史、环境适配与执行工件](../05-embodied-infra/topics/embodied_infra.md#oct19-learning)；另建[独立推理状态章](../03-inference-infra/topics/inference_state.md)。材料仍为NEW，代码/真机未复现。
+具身最新：[10/23扫描与选读](tracking/frontier_scan_2026-10-23.md) → [经验、动作信息与交互时限](../05-embodied-infra/topics/embodied_infra.md#oct23-learning)；工程接[数据所有权](../05-embodied-infra/topics/embodied_data_io.md#oct23-data-contract)、[推理容量生命周期](../03-inference-infra/topics/inference_state.md#oct23-capacity)、[RL更新契约](../04-rl-infra/topics/agentic_rl.md#oct23-update-contract)。材料仍NEW，实验未运行。
 
 具身新增来源：[2026 模型与 GitHub 演进补扫](tracking/embodied_followup_2026-10-13.md)，包含来源日期、版本和验证边界；从[核心 topic](../05-embodied-infra/topics/embodied_infra.md)进入学习。
 

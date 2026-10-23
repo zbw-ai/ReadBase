@@ -1,0 +1,1734 @@
+{
+  "indexes": [
+    {
+      "url": "https://arxiv.org/list/cs.CV/new?skip=0&show=2000",
+      "sha256": "31cb5da54e77b9be10e476178677f7c47202477aa3d816c33c8933e5bbf48832",
+      "fetched_utc": "2026-10-23T03:26:53.426407+00:00",
+      "bytes": 644139,
+      "heading": "Showing new listings for Friday, 23 October 2026",
+      "returned": 192,
+      "headings": [
+        "Showing new listings for Friday, 23 October 2026",
+        "New submissions (showing 102 of 102 entries)",
+        "Cross submissions (showing 12 of 12 entries)",
+        "Replacement submissions (showing 78 of 78 entries)"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    },
+    {
+      "url": "https://arxiv.org/list/cs.CV/recent?skip=0&show=2000",
+      "sha256": "90eb54704f64c89a39821fc68dbd4689d4df3c876c6dbfe6c0aae51042ca623d",
+      "fetched_utc": "2026-10-23T03:26:55.695296+00:00",
+      "bytes": 1558772,
+      "heading": "Fri, 23 Oct 2026 (showing 114 of 114 entries )",
+      "returned": 907,
+      "headings": [
+        "Fri, 23 Oct 2026 (showing 114 of 114 entries )",
+        "Thu, 22 Oct 2026 (showing 138 of 138 entries )",
+        "Wed, 21 Oct 2026 (showing 183 of 183 entries )",
+        "Tue, 20 Oct 2026 (showing 346 of 346 entries )",
+        "Mon, 19 Oct 2026 (showing 126 of 126 entries )"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    },
+    {
+      "url": "https://arxiv.org/list/cs.LG/new?skip=0&show=2000",
+      "sha256": "6a8301ba1c0e6dab7713888f89768bcc54190ab626b1d9b7792b41641043f697",
+      "fetched_utc": "2026-10-23T03:26:53.571263+00:00",
+      "bytes": 1068532,
+      "heading": "Showing new listings for Friday, 23 October 2026",
+      "returned": 339,
+      "headings": [
+        "Showing new listings for Friday, 23 October 2026",
+        "New submissions (showing 117 of 117 entries)",
+        "Cross submissions (showing 88 of 88 entries)",
+        "Replacement submissions (showing 134 of 134 entries)"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    },
+    {
+      "url": "https://arxiv.org/list/cs.LG/recent?skip=0&show=2000",
+      "sha256": "2cd3908f8cba283a3469625d9e733e7d0544faccc29f8b7b8e63038d08568067",
+      "fetched_utc": "2026-10-23T03:26:54.246813+00:00",
+      "bytes": 2273651,
+      "heading": "Fri, 23 Oct 2026 (showing 205 of 205 entries )",
+      "returned": 1427,
+      "headings": [
+        "Fri, 23 Oct 2026 (showing 205 of 205 entries )",
+        "Thu, 22 Oct 2026 (showing 240 of 240 entries )",
+        "Wed, 21 Oct 2026 (showing 249 of 249 entries )",
+        "Tue, 20 Oct 2026 (showing 511 of 511 entries )",
+        "Mon, 19 Oct 2026 (showing 222 of 222 entries )"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    },
+    {
+      "url": "https://arxiv.org/list/cs.RO/new?skip=0&show=2000",
+      "sha256": "09e3183005087093f157d48c01061e6e5da0cdc386805032c04ff0bc8b0dbd79",
+      "fetched_utc": "2026-10-23T03:26:53.632088+00:00",
+      "bytes": 356139,
+      "heading": "Showing new listings for Friday, 23 October 2026",
+      "returned": 107,
+      "headings": [
+        "Showing new listings for Friday, 23 October 2026",
+        "New submissions (showing 63 of 63 entries)",
+        "Cross submissions (showing 6 of 6 entries)",
+        "Replacement submissions (showing 38 of 38 entries)"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    },
+    {
+      "url": "https://arxiv.org/list/cs.RO/recent?skip=0&show=2000",
+      "sha256": "521ba3ff61198aaf66dbbc058306f65ef26fb510d9d9ecee3997cee34bcb91bd",
+      "fetched_utc": "2026-10-23T03:26:53.267994+00:00",
+      "bytes": 813783,
+      "heading": "Fri, 23 Oct 2026 (showing 69 of 69 entries )",
+      "returned": 463,
+      "headings": [
+        "Fri, 23 Oct 2026 (showing 69 of 69 entries )",
+        "Thu, 22 Oct 2026 (showing 78 of 78 entries )",
+        "Wed, 21 Oct 2026 (showing 88 of 88 entries )",
+        "Tue, 20 Oct 2026 (showing 160 of 160 entries )",
+        "Mon, 19 Oct 2026 (showing 68 of 68 entries )"
+      ],
+      "requested_limit": 2000,
+      "pages": 1
+    }
+  ],
+  "deduplicated_ids_including_replacements": 2756,
+  "title_filter": "robot|vision.language.action|embodied|manipulat|world model|action.condition|humanoid|dexter|policy learning|robotic|vla|locomotion (case insensitive)",
+  "title_filter_returned": 325,
+  "candidates_title_filtered": [
+    {
+      "id": "2610.30732",
+      "title": "SmolVLA-MoE: Sparse Mixture-of-Experts for Efficient Multi-Task Robotic Manipulation",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30781",
+      "title": "DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30814",
+      "title": "DRILL: Training World Models to Improve Policies, Not Predict Pixels",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.31162",
+      "title": "HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.31299",
+      "title": "PiHand: Latent Hand-Object Interaction Priors for Physics-Based Policy Learning",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.31670",
+      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Machine Learning (cs.LG); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31010",
+      "title": "Revisiting Distribution Matching for State-to-Vision Policy Distillation in Laparoscopic Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.31149",
+      "title": "Navigating human-robot interaction challenges in private and residential aged care homes",
+      "subjects": "Subjects: Human-Computer Interaction (cs.HC) ; Computer Vision and Pattern Recognition (cs.CV); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31166",
+      "title": "Memory before Goal: Role of Pre-History Memory for Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.31194",
+      "title": "Inside-JEPA: From Prediction to Relational Grounding in Latent World Models",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Computer Vision and Pattern Recognition (cs.CV); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.21251",
+      "title": "Do VLAs Really Follow Instructions? Diagnosing How-Level Instruction Following in Vision-Language-Action Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22363",
+      "title": "Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2606.30362",
+      "title": "ReactiveBFM: Reactive Closed-Loop Motion Planning Towards Universal Humanoid Whole-Body Control",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2608.03496",
+      "title": "Principles of Robot Autonomy",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV); Systems and Control (eess.SY)"
+    },
+    {
+      "id": "2608.22869",
+      "title": "UniMem: Unifying Visual and Textual Memory in VLAs for Non-Markovian Tasks",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30129",
+      "title": "Rethinking Video Autoencoders for Interactive World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30120",
+      "title": "ALPS: Visual State Encoders for World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.29866",
+      "title": "GeoMem-VLA: Internalizing 3D Scene Understanding into Temporal Memory for Vision-Language-Action Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.29474",
+      "title": "Extending Affordance Segmentation for Wearable Robots to Multi-Object Images",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29408",
+      "title": "LiveAct: Towards Real-Time Multi-Agent World Models with Heterogeneous Action Interfaces",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30125",
+      "title": "PhysiCalWorld: In-Context Physics Calibration for World Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.30108",
+      "title": "Multimodal Embodied Agents: A Unified Capability-centric Perspective from Computer-Use to Robot-Use",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV); Multiagent Systems (cs.MA); Multimedia (cs.MM)"
+    },
+    {
+      "id": "2610.30097",
+      "title": "AtomicRL: Atomic Reinforcement Learning for Long-Horizon Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.29997",
+      "title": "DONIC: Generalist Dexterous Bimanual Tracking Control from Human Demonstrations",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.29246",
+      "title": "DepState-JEPA: Learning Depth-Grounded State Representation for Visual Perception and Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28880",
+      "title": "Real2Sem2Real: 3D Semantic Augmentations for Robot Learning from a Single Human RGB Demonstration",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28698",
+      "title": "Scaling in Games: Continued Pre-Training For Embodied Agents In Diverse Virtual Worlds",
+      "subjects": "Subjects: Artificial Intelligence (cs.AI) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.28631",
+      "title": "AEON: Unifying Video and 3D World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28554",
+      "title": "OverSeer: Multi-Agent World Models Beyond What Agents See",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28476",
+      "title": "CLOSER: Evidence-Aware Active Visual Verification for Embodied Object-Goal Navigation",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27974",
+      "title": "Media Intelligence Platform: Multimodal Detection of Synthetic and Manipulated Content",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Multimedia (cs.MM)"
+    },
+    {
+      "id": "2610.27914",
+      "title": "World Models with Configurable Perception",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.27890",
+      "title": "EndoWorld-JEPA: Motion-Guided Global-Local Latent World Modeling for Endoscopic Video Representation Learning",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.27851",
+      "title": "LaLa-World: Scaling Latent World Models with Natural Language Actions",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.27782",
+      "title": "RoboJudge: Multimodal Language Models as Judges for Embodied Video Generation",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27704",
+      "title": "VEOcc++: Learning Persistent Voxel Feature Maps for Embodied Online Semantic Occupancy Mapping and Offline Refinement",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.27698",
+      "title": "VLA-Retain: Benchmarking Cross-Dimension Effects of Vision Tuning in VLAs",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.26923",
+      "title": "CaMeWM: A Causal Medical World Model for Generative Tumor Evolution and Treatment Planning",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.26903",
+      "title": "Beckmann World Models: Direct Terminal-Map Learning for One-Step Action-Conditioned Prediction",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28628",
+      "title": "Learning Adaptable Dexterous Skills via Hybrid Dexterous Mimicking",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV); Graphics (cs.GR); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.28626",
+      "title": "UniWALM: Unified World Action Language Model for Embodied Robot Control",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28523",
+      "title": "VLM-Guided Contact Retargeting and Generative Partner Modeling for Humanoid-Human Interaction",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.28074",
+      "title": "Slot-JEPA: Object-Structured Prediction Interfaces for Latent World Models",
+      "subjects": "Subjects: Artificial Intelligence (cs.AI) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2601.07823",
+      "title": "Robotic Video World Models: A Survey of Applications, Research Challenges, Future Directions",
+      "subjects": "Subjects: Systems and Control (eess.SY) ; Computer Vision and Pattern Recognition (cs.CV); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26855",
+      "title": "Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26811",
+      "title": "State World Models: Execute the Rules, Generate the Pixels",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.26751",
+      "title": "Beyond Omni: A Unified MLLM for Embodied Sensory Understanding",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.26179",
+      "title": "Learning Goal-Conditioned Subgoals through Frozen Hierarchical World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25927",
+      "title": "CondenseVLA: Learnable History Condensation for Efficient Multi-Frame VLA",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25861",
+      "title": "ActionRoPE: Action as Coordinates for Spatially Consistent Control in Planar-Camera Game World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25781",
+      "title": "See the Future, Classify the Present: Stochastic Latent World Modeling for Hyperspectral Images",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25734",
+      "title": "Think Densely, Act Sparsely: Latent Expert Cognitive Chains for Vision-Language-Action Autonomous Driving",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25666",
+      "title": "Frechet Forcing: Training Long-Horizon Streaming World Models from Short Clips",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25333",
+      "title": "CoRe-WM: Conditioned Response-State World Modeling for Longitudinal Treatment-Response Prediction in Breast DCE-MRI",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25223",
+      "title": "Map2Vid: Embodied Navigation Video Generation with Human-Friendly Motion Control",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.24885",
+      "title": "Goal Images Are Control Targets: Spatially-Grounded Goal-Image Synthesis for Robotic Manipulation",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.24590",
+      "title": "Scene-Adaptive VLA: Efficient Autonomous Driving via Dynamic Layer Routing",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Artificial Intelligence (cs.AI); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23984",
+      "title": "Pretrained Features as Teachers, Not States: Compact Latent World Models for Visual Planning",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.23982",
+      "title": "Time-JEPA: Grounding Video World Models with Physical Time Series",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25874",
+      "title": "Vision-Language-Delta-Action: Learning Compact Deltas as Actionable Transition Interfaces for Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25459",
+      "title": "BiDex-100: A Comprehensive Benchmark for Bimanual Dexterous Manipulation Across 100+ Simulation Tasks",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.25288",
+      "title": "Vision as Proprioception: Estimating Humanoid Robot Pose from Video",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.25068",
+      "title": "Localization and Neural Splatting on the Edge: An FPGA Scene Memory for Robots",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.24534",
+      "title": "Structured Latent Dynamics for Long-Horizon Embodied World Models",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.24016",
+      "title": "CLARO: Clutter Aware Robot Orchestrator for Open-Vocabulary Grasping using VLM Agents",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.23896",
+      "title": "InJePA: Intention-First Latent Planning with Coupled JEPA World Models for Visual Navigation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23795",
+      "title": "Persistent Planar Memory for Video World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.23542",
+      "title": "Execution Before Memory: Diagnosing Memory Failures in Video World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Computation and Language (cs.CL)"
+    },
+    {
+      "id": "2610.23423",
+      "title": "Momentum: Persistent Dynamics for Video World Models",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.23408",
+      "title": "LithoWorld: An Endpoint World Model for Lithography Process-Window Recovery",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.22951",
+      "title": "MambaAct: Efficient Mamba Action Experts for Flow-Matching Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.22563",
+      "title": "Micro-Localization: High-Precision Mobile Robot Localization Using Microscopic Ground Texture",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV)"
+    },
+    {
+      "id": "2610.22471",
+      "title": "Has GPT-6-Astra Achieved Embodied Intelligence?",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG); Multimedia (cs.MM)"
+    },
+    {
+      "id": "2610.31275",
+      "title": "Learning Robot Behavior Priors from Non-Robotic Synthetic Data",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2609.40003",
+      "title": "DashVMC: Real-Time Discrete World Model Control in Geometry Dash",
+      "subjects": "Subjects: Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2608.11363",
+      "title": "What Does It Take For A Generalist Robot Policy To Adapt Using Minimal Data?",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.29845",
+      "title": "RangeNav: Task-Aligned LiDAR Range-Image Pretraining for Robot Navigation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.29088",
+      "title": "Causal world models under physical parameter shifts",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28779",
+      "title": "Second Thoughts: Exploring and Planning through Comparative Imagination in World Models",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.29730",
+      "title": "Post-hoc Epistemic Uncertainty for Vision-Language-Action Policies",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG); Machine Learning (stat.ML)"
+    },
+    {
+      "id": "2610.29612",
+      "title": "Watch Your Step: Anticipated Perception for Humanoid Locomotion",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.29302",
+      "title": "Compressing Onboard Language Models for Space Robots under a Behavioral-Fidelity Requirement",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.28925",
+      "title": "One Policy, Many Styles: Where to Aggregate Preferences for Steerable Humanoid Control?",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.27280",
+      "title": "VPFlow: Value-Predictive Planning with Imperfect World Models for Offline Goal Reaching",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.27573",
+      "title": "When LLMs Manipulate: Measuring Behavioral, Social, and Temporal Effects",
+      "subjects": "Subjects: Artificial Intelligence (cs.AI) ; Computation and Language (cs.CL); Computers and Society (cs.CY); Human-Computer Interaction (cs.HC); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.27387",
+      "title": "Training Controllable World Models via Action Influence Maximization",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.27277",
+      "title": "What Would Removing This Corruption Change? Failure Attribution for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.25591",
+      "title": "Distributionally-Robust Policy Learning with Observational Data",
+      "subjects": "Subjects: Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.25296",
+      "title": "World Model Interpretability: From Decoding Representations to Understanding Latent Worlds",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.25170",
+      "title": "World Models, Trees and Foundation Models for Retail Forecasting: Evidence from Four Public Data Sets",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.25013",
+      "title": "Latent World Models Should Plan with Distances Along the Latent Manifold",
+      "subjects": "Subjects: Machine Learning (cs.LG) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23862",
+      "title": "Forecasting Patient Trajectories from the Electronic Health Records with Action-Conditioned World Models",
+      "subjects": "Subjects: Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.26852",
+      "title": "CoopUQ: Robust Multi-Robot Social Navigation via Uncertainty-Aware Cooperative Forecasting",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.26828",
+      "title": "Agent World Model in the Wild: Computer-Use Agent Environment Synthesis",
+      "subjects": "Subjects: Artificial Intelligence (cs.AI) ; Computation and Language (cs.CL); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.26605",
+      "title": "A Probabilistic, Rotation-Preserving Kernel Operator Surrogate for Continuum-Robot Design Spaces",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.26395",
+      "title": "ForagerSim: Evaluating Embodied Map-Based Reasoning in Large-Scale Dynamic Worlds",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.25376",
+      "title": "TILDE: Teacher-in-the-Loop Distillation from Embodied Foundation Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.25114",
+      "title": "Compile Once, Run Cheap: Frozen, Portable Skills for Embodied Agents, and What Recursive Self-Improvement Adds",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.24008",
+      "title": "Weakly Supervised Discovery of Motion Styles for Compositional Robot Control",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23894",
+      "title": "Language-Forcing: Advancing Humanoid Loco-Manipulation via Semantic Alignment of Whole-Body World Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23872",
+      "title": "DUET: Decoupled Upper- and Lower-Body Execution for Task-Agnostic Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23372",
+      "title": "Beyond Success Rate: Interventional Evaluation of Memory in Vision-Language-Action Systems",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23271",
+      "title": "NestedVLA: Learning to Consolidate and Generate Skills for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.23053",
+      "title": "Unifying Embodied Foundation Models via a Model-to-Policy Formulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.22762",
+      "title": "Shape-Aware Neural Time Fields for Rigid-Body Motion and Manipulation Planning",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.22576",
+      "title": "Embodiment-Classifier Guidance: Transferring Frozen VLAs Across Robot Dynamics without Demonstrations",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.22556",
+      "title": "When Plans Change, Remember: Replanning-Guided Visual Memory for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Machine Learning (cs.LG)"
+    },
+    {
+      "id": "2610.30197",
+      "title": "Alpha: Systematic Fault Injection and Robustness Evaluation for LLM-Driven Embodied Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30334",
+      "title": "MPBRS: Multi-Potential-Based Reward Shaping for Unified Reward Configuration in Humanoid Locomotion",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.30438",
+      "title": "Tactile-Based Robotic Manipulation: From Mechanics-Driven to Data-Driven Perspectives",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30452",
+      "title": "Integrated Respiratory Sensing and Gated Control for Autonomous Needle Insertion Via CT Bore Robotic Arm",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30478",
+      "title": "Externalise the Memory: A Pre-Registered Study of Where an Embodied Agent's Experience Should Live",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.30540",
+      "title": "Motion Retargeting with Spatiotemporal Preferences for Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30587",
+      "title": "Know When to Escalate: Critic-Guided Adaptive Execution for Cloud-Local Embodied Agents",
+      "subjects": "Subjects: Robotics (cs.RO) ; Distributed, Parallel, and Cluster Computing (cs.DC)"
+    },
+    {
+      "id": "2610.30605",
+      "title": "PATH: Preference-Aware Traversability Estimation for Robotic Teleoperation in Off-Road Navigation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Human-Computer Interaction (cs.HC)"
+    },
+    {
+      "id": "2610.30671",
+      "title": "Co^2Gen: Collaboratively Generating Task Plans for Decentralized Multi-Robot and Human Collaboration",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30694",
+      "title": "Live Thread Reconstruction for Autonomous Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30810",
+      "title": "Adaptive Aerial Loco-Manipulation Policy Learning via LLM-Assisted Proactive Task Generation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30817",
+      "title": "Robot Motion Transition with Human Motion Prior",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30819",
+      "title": "TEAR: Task-Evidence Authority Routing for Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30876",
+      "title": "LocoManiLab: A Unified Testbed for Data, Policies, Controllers, and Deployment in Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30988",
+      "title": "In-Context Learning World Models for Robot Dual-Arm Manipulation of Soft Garment with Partial Observations",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31013",
+      "title": "Multi-Tool Selection for Robotic Systems: Comparing Semantic Retrieval and LLM",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.31020",
+      "title": "Demonstration-Based Robotic Feeding Using Dynamic Movement Primitives",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31028",
+      "title": "Multimodal Progress-Residual Fusion for Anticipating Navigation Retreat in Robotic Flexible Endoscopy",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31064",
+      "title": "AstroBench: Benchmarking Free-Floating Capture and Space Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31121",
+      "title": "RGraph-Eval: Task-Grounded Scene Graphs for Evaluating Robot Video Generation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31423",
+      "title": "FocusVLA: Future-Intent Guided Dynamic View Routing for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.31427",
+      "title": "FastHarness: Experience-Driven Review Scheduling for Vision-Language-Action Policies",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31474",
+      "title": "Skeleton-Grounded Latent Action Model for Robot World Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31518",
+      "title": "SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31540",
+      "title": "Dispersive Tree Agreements for Multi-Robot Coordination",
+      "subjects": "Subjects: Robotics (cs.RO) ; Multiagent Systems (cs.MA); Optimization and Control (math.OC)"
+    },
+    {
+      "id": "2610.31569",
+      "title": "Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31608",
+      "title": "Humanoid Mobility via Attention-based Contacts",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31613",
+      "title": "Progress Probes $P^2$: Lightweight Runtime Monitoring for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.31617",
+      "title": "DiffDreamer: Coupling World Models with Differentiable Simulation for Agile Quadrotor Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "0905.4950",
+      "title": "Sensitive dependence of the motion of a legged robot on granular media",
+      "subjects": "Subjects: Biological Physics (physics.bio-ph) ; Other Condensed Matter (cond-mat.other); Soft Condensed Matter (cond-mat.soft); Robotics (cs.RO); Quantitative Methods (q-bio.QM)"
+    },
+    {
+      "id": "2403.17147",
+      "title": "Hearing the shape of an arena with spectral swarm robotics",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Computational Geometry (cs.CG)"
+    },
+    {
+      "id": "2511.12380",
+      "title": "Multilaminate piezoelectric polymer actuators for insect-scale softrobots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2602.12628",
+      "title": "Beyond Imitation: Reinforcement Learning-Based Sim-Real Co-Training for VLA Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2603.25044",
+      "title": "ThermoAct:Thermal-Aware Vision-Language-Action Models for Robotic Perception and Decision-Making",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2604.07993",
+      "title": "HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2605.22021",
+      "title": "Dual-Arm Box Manipulation via Online Inertial Estimation and Convex Wrench Optimization",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2607.07968",
+      "title": "Soft Robotic Exogloves for Dexterous Mobility -- Towards Personalized Rehabilitation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2608.10383",
+      "title": "Learning Cooperative Bimanual Dexterous Grasp of Large Objects with Tactile Sensing",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2609.06114",
+      "title": "Where Success Breaks: Failure-Boundary Learning for Robust Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2609.17210",
+      "title": "FluxVLA Engine: A One-Stop VLA Engineering Platform for Embodied Intelligence",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2609.20582",
+      "title": "V2-STRep: VLM-Grounded Structured Task Representations for Reusable Robot Skills Acquired from Generated Videos",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2609.39304",
+      "title": "Scale and Selection: What Makes Automatic Harness Evolution Work for Visual-Interface Robot Agents",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.21515",
+      "title": "TRACE: Typed Reference-Aware Conversational Editing for Humanoid Motion Diffusion",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25287",
+      "title": "The Bitter Lesson Comes to Robotics",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27003",
+      "title": "Replan for Error Recovery: Training Embodied VLMs through Verifiable Interaction with Action-Grouped Turn-GSPO",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28589",
+      "title": "AgenticRoboRL: Bringing Coding-Agent Post-Training to Agentic Robotics",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29203",
+      "title": "NavBind: Diagnosing Instruction-Action Binding at Route Forks in Navigation VLAs",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29829",
+      "title": "Robot Generalization Beyond Volume: The Diversity Path via Zero-Shot Capabilities",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.30117",
+      "title": "CW-WAM: A Structured Contact-Wrench World Action Model for Force-Sensitive Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30080",
+      "title": "Do Earth-Trained Humanoid Controllers Walk on the Moon? Gravity, Terrain, and Soil Transfer",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30061",
+      "title": "Test-Time Motion Steering for Perceptive Humanoid Fall Recovery",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.30051",
+      "title": "From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.30044",
+      "title": "SP-HLM: Sparse-Pose-Driven Motion Generation and Whole-Body Control for Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.30043",
+      "title": "TARSphere: A Robot-Oriented Full-Stack Framework for Long-Horizon Embodied Agents in Evolving Physical and Social Environments",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29964",
+      "title": "Object- and Task-Aware Active Perception for Safe Navigation of Mobile Manipulators in Semi-Static Environments",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29903",
+      "title": "HuMiT: Low-Latency Whole-Body Humanoid Teleoperation via Compact Reference Tracking",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29839",
+      "title": "Spacetime Splines for Adaptive Robot Motions",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29716",
+      "title": "Reconstruction-Augmented Visuomotor Pre-Training of 3D-Grounded Bimanual Dexterity from RGB-Only Human Videos",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29702",
+      "title": "CausGround: Causal Interaction Grounding for Adaptive Embodied Planning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29692",
+      "title": "FlowVLA: Learning Flow-Aware Physical Completion for Quantitative Robotic Pouring",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29570",
+      "title": "Joint-Angle Invariance of Jacobian-Based Performance Indices for Serial Robotic Manipulators",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29565",
+      "title": "Preserving Operator Intent Under Actuation Constraints: Teleoperation of Manipulators with Coupled Transmissions",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29560",
+      "title": "From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29478",
+      "title": "S-Rolling: Steerable Rolling Gaits for Twistable Snake Robots in Low-Clearance Environments",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29461",
+      "title": "Linear Twisting Sidewinding Gaits for Twistable Snake Robot Motion Planning on Complex Terrains",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29438",
+      "title": "A2I-Calib++: A Kinematics-Driven Anti-noise Active Calibration Framework for Whole-Body Multi-IMU Systems on Legged Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29377",
+      "title": "Integrating Flow Matching and Model Predictive Control for Safe Robot Navigation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Systems and Control (eess.SY)"
+    },
+    {
+      "id": "2610.29356",
+      "title": "Payload generalization on feedforward control actions for trajectory tracking in robots with rigid and elastic joints",
+      "subjects": "Subjects: Robotics (cs.RO) ; Systems and Control (eess.SY)"
+    },
+    {
+      "id": "2610.29329",
+      "title": "Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29264",
+      "title": "Training in Deployment: Human-in-the-loop Online Post-Training for Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29169",
+      "title": "SMR: Learning streaming motion retargeting for humanoids from human semantic",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29161",
+      "title": "SimPT: An Automated Simulation Framework for Intervention-Based VLA Post-Training",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.29030",
+      "title": "PHD-Hand: A Printable Humanoid Dexterous Hand with Linkage-Driven 3-DOA Digits",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.28955",
+      "title": "SLoSa: Small, Low-Power, and Safe Foundation Models for Robotic Task Planning",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Logic in Computer Science (cs.LO)"
+    },
+    {
+      "id": "2610.28953",
+      "title": "GGraph: A GPU-Accelerated Library for Graph-Based Robot Deployment and Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28948",
+      "title": "COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28920",
+      "title": "Navigation Explainability for Object Avoidance with LLMs for Assistive Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28893",
+      "title": "Flexible Language-Guided Representation Editing for Adaptive Robot Behavior",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28882",
+      "title": "inr2action: Encoding Robot Episodes as Neural Implicit Representations for Recall and Action",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.28761",
+      "title": "Human-Robot Interaction via Meta-Learning Based Mode Recognition and Adaptive Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28712",
+      "title": "Warping the Workspace: Expanding Visual Access with Adjustable Reach Mapping for Humanoid Teleoperation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Human-Computer Interaction (cs.HC)"
+    },
+    {
+      "id": "2610.30102",
+      "title": "Implementation of Dynamic Microsegmentation for a Multi-Robot Network",
+      "subjects": "Subjects: Systems and Control (eess.SY) ; Multiagent Systems (cs.MA); Networking and Internet Architecture (cs.NI); Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28624",
+      "title": "Industrial ReMEmbR: Scaling Spatiotemporal Memory to Robot Fleets",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI); Software Engineering (cs.SE)"
+    },
+    {
+      "id": "2610.28613",
+      "title": "Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28480",
+      "title": "SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28470",
+      "title": "Fast Motion Retargeting Pipeline for Scalable Humanoid Robot Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28432",
+      "title": "Physical AI for Intralogistics: Benchmarking the NVIDIA Sim-to-Real Ecosystem for Cosmos-Enhanced COMPASS Navigation on Industrial Mobile Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28381",
+      "title": "CAPSafe: A Benchmark for Contextual Action and Plan Safety Reasoning in Embodied Agents",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computation and Language (cs.CL)"
+    },
+    {
+      "id": "2610.28259",
+      "title": "Large Multimodal Models for Direct Robot Control: GPT-6 as a Beginning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28251",
+      "title": "Safe Multi-Robot Collaboration With Uniform Exclusion Using Trust",
+      "subjects": "Subjects: Robotics (cs.RO) ; Multiagent Systems (cs.MA)"
+    },
+    {
+      "id": "2610.28184",
+      "title": "Perceives but Doesn't Brake: A Perception-Action Binding Gap in Reasoning Driving VLAs",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.28166",
+      "title": "Reasoning as a Distribution: Generative Plan Latents for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28164",
+      "title": "From Predictive Geometry to Action: Learning Complementary Predictive Representations for Embodied Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28122",
+      "title": "De-Diffusing WAMs: Action-Sufficient Direct Prediction for Robot Control",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.28109",
+      "title": "FIT-MAC: A Closed-Loop Multi-Agent Framework for Robust Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.28019",
+      "title": "PACT-VLA: Speculative Action-Chunk Verification with Pre-Commit Observations",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27998",
+      "title": "LocoPilot: Single-Operator Bilateral Teleoperation for Loco-Manipulation Policy Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27917",
+      "title": "EventSync: Event-Driven Memory Updates for History-Dependent Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27905",
+      "title": "High-Precision RCM Motion for Ophthalmic Robotics via Hierarchical QP Control and Authority-Guided Recovery Planning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27865",
+      "title": "Frontier LLMs Enter the World of Robotics: A Cross-Model Evaluation on RoboColiseum",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27861",
+      "title": "RoboCasa-Shift: Stage-Aware Robustness Evaluation of Vision-Language-Action Policies in Long-Horizon Household Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27794",
+      "title": "Multi-View Latent Action Pretraining for Cross-Embodiment Robot Learning from Videos",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27736",
+      "title": "AWLS: Advantage-Weighted Latent Steering for One-Step Generative Robotic Manipulation Policies",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27688",
+      "title": "Adaptive Traversal Tubes for Posture-Aware Navigation of Bipedal Humanoids",
+      "subjects": "Subjects: Robotics (cs.RO) ; Systems and Control (eess.SY)"
+    },
+    {
+      "id": "2610.27618",
+      "title": "JARVIS: From Visual Manuals to Autonomous Robotic Assembly",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27613",
+      "title": "Embodied Task Agents Can Perform Fine Manipulation through Tactile In-Context Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27504",
+      "title": "Robot-Task Suitability in Heterogeneous Multi-Robot Task Allocation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Multiagent Systems (cs.MA)"
+    },
+    {
+      "id": "2610.27496",
+      "title": "Evaluating Social Reasoning in Embodied Vision-Language Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Human-Computer Interaction (cs.HC)"
+    },
+    {
+      "id": "2610.27485",
+      "title": "HATCH: Hardware-Attested Task Chains for Verifiable Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27350",
+      "title": "Refuses When Asked, Complies When Acting: A Runtime Safety Check for Robot Control Loops",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.27336",
+      "title": "Determination of the Human-Robot Interaction Workspace for Robot Assisted Head Stabilization Control",
+      "subjects": "Subjects: Robotics (cs.RO) ; Biological Physics (physics.bio-ph); Medical Physics (physics.med-ph)"
+    },
+    {
+      "id": "2610.27315",
+      "title": "Design and Control of a Multimodal Legged-Aerial Robot Through Separate Control Contraction Metrics",
+      "subjects": "Subjects: Robotics (cs.RO) ; Systems and Control (eess.SY)"
+    },
+    {
+      "id": "2610.27242",
+      "title": "EmbodyHOI: Embodiment-Aware Generation of Hand-Object Interactions for Humanoid Dexterous Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.27162",
+      "title": "Visual Task Modeling and Automated Planning for Humanoid Robots in Education of Individuals with Autism Spectrum Disorder",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.27039",
+      "title": "Embodied Playground: A Long-Horizon Agentic Robotics Benchmark for Physical, Strategic, and Spatial Reasoning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26962",
+      "title": "DexGraspFlow: Topology-Aware SE(3) Flow Matching for Cross-Embodiment Dexterous Grasp Generation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26854",
+      "title": "Physical Words: A Vocabulary for Structuring Latent Reasoning in Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26846",
+      "title": "GPT-6 Astra Is a Native Visuo-Tactile Policy for Contact-Rich Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26810",
+      "title": "Bio-inspired Thrust-Assisted Trotting on a legged-Aerial Robot via Real-Time QP-MPC",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26765",
+      "title": "HandsOn: A Large-Scale Simulation Benchmark for Generalizable Dexterous Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26717",
+      "title": "Robot Learning with Vision-Language-Action Models for Agricultural Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26680",
+      "title": "Robotic Physical Comparison of Biologically Motivated and Counterfactual Sensory Arrangements using Biomimetic Skin",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26663",
+      "title": "RoboValue: A Fine-Grained Sim-and-Real Benchmark for Unified Evaluation of Robotic Value Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26584",
+      "title": "HAF-VLA: Hierarchical Action Flow Framework for Humanoid Vision-Language-Action Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26550",
+      "title": "Learning Wheel Motion Uncertainty for Degeneracy-Aware LiDAR-Inertial Odometry on Quadrupedal Wheel-Legged Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26487",
+      "title": "SPAR: Structural Pruning and Action Recovery for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.26414",
+      "title": "RoboMMT: Learning Stable Tracking of Modulated Expressive and Interactive Robot Motion",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26287",
+      "title": "Robotic Photography System based on Vision-Language-Action Model",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.26170",
+      "title": "Data-Efficient Learning from Demonstration for Humanoid Robots via Feature-Level Perception and Prompt-Based Object Detection",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26169",
+      "title": "Compositional Humanoid Manipulation through Isomorphic Teleoperation and Independent Skill Routing",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26106",
+      "title": "A GPU-Resident Pipeline for Multi-Robot 3D Inspection with Limited Perception",
+      "subjects": "Subjects: Robotics (cs.RO) ; Multiagent Systems (cs.MA)"
+    },
+    {
+      "id": "2610.26043",
+      "title": "OmniInteract: Towards Unified Whole-Body Interaction Control for Dual Humanoids",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26027",
+      "title": "A Spiking Ring-Attractor Architecture for Representation and Control of Revolute Robot Joints",
+      "subjects": "Subjects: Robotics (cs.RO) ; Neural and Evolutionary Computing (cs.NE)"
+    },
+    {
+      "id": "2610.25981",
+      "title": "FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25962",
+      "title": "SkateNav: Learning Energy-Efficient Navigation through Adaptive Skating on Passive-Wheel Quadrupedal Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25961",
+      "title": "PaceVLA: Adaptive Temporal Action Quantization in Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.25840",
+      "title": "OV-PEAR: Observation-Verified Pose-Scale Estimation and Reconstruction for Unknown Industrial Manipulation Objects",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.25763",
+      "title": "TrajWAM: An Efficient Trajectory-Guided World Action Model for Dynamic Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25736",
+      "title": "Learning from Fleet Experience: Collective Experience Learning Across 96 Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25711",
+      "title": "SWAP: Test-Time Steerable Humanoid Whole-Body Collision Avoidance",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25701",
+      "title": "Validation of Human Motor Development Scales with Humanoid Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25691",
+      "title": "ReDOA: Real-World Distillation via Observation Alignment for Image-Based Manipulation Policy Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25628",
+      "title": "Humanoid SRL: Augmenting Humanoids with Supernumerary Limbs for Coordinated Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25600",
+      "title": "Vector-Quantized World Model: Latent Feedback Motion Planning for Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25476",
+      "title": "CusADi2: Latency-Optimized Batch Computation of Robot Kinematics, Jacobians, and Hessians on the GPU",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25436",
+      "title": "Intent-Informed Model Predictive Control for Shared Autonomy in Remote Manipulation Tasks",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25426",
+      "title": "SurGPT: A Multi-Task Foundation Model for Robotic Surgical Skills Assessment and Gesture Recognition",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25419",
+      "title": "Learning When to Adapt: Reactivity-Conditioned Residual Adaptation under Human-Robot Distribution Shift",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25410",
+      "title": "T(R,O) Grasp++: Cross-Embodiment Dexterous Grasping in Cluttered Environments at Scale",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25407",
+      "title": "AeroDASH: Asynchronous Vision-Language-Action Control for Continuous UAV Flight",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25401",
+      "title": "Energy-Score Stabilized Attentive Mixture-Density Policy: A Lightweight Approach to Multimodal Robot Motion",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25397",
+      "title": "Visual-Inertial Odometry for Ground Robots with Dynamic Camera-IMU Extrinsic Calibration",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25261",
+      "title": "GOFusion: Real-Time Gaussian-Occupancy Submap Fusion for Fisher-Informed Autonomous Robot Navigation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25006",
+      "title": "Scalable, Intuitive, Mixed Reality-Based Semi-Autonomous Robotic Telemanipulation for the Execution of a Fine-Grained Bimanual Task",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24981",
+      "title": "Dream What I Can: Sparse Visual Planning for Long-Horizon Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24847",
+      "title": "DiPLO: Self-distilled Diffusion Planning for Loco-manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24804",
+      "title": "SARAM: Sparse Adapter Allocation with Reuse and Merging for Lifelong Robot Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24779",
+      "title": "Learning Structured Locomotion References for Optimization-Based Whole-Body Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24747",
+      "title": "EndoVLA-OOV: Language-Conditioned Out-of-View Target Acquisition in Robotic Endoscopy",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24705",
+      "title": "Relational Spatial Alignment for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24675",
+      "title": "Action-Aligned Latent Planning for Versatile Humanoid Loco-Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24674",
+      "title": "Noise-Invariant Spatial Encoding for 3D Manipulation Policies under Depth Corruption",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24610",
+      "title": "Solving a Giant Rubik's Cube with a Quadruped Robot",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24605",
+      "title": "RoMo-GS: Efficient Online 3D Gaussian Splatting for Robot Mapping via Exposure-Integrated Motion Blur",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24603",
+      "title": "Refuse the Harm, Complete the Task via Graph-of-Rules Planning for LLM-Enabled Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24587",
+      "title": "LIBERO-Pro2.0: A Benchmark for Evaluating the Robustness of Embodied Foundation Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24579",
+      "title": "LIBERO-Dynamic: Benchmarking Robotic Manipulation in Dynamic Environments",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24573",
+      "title": "Retrieval-triggered Action Projection Adjustment for Frozen VLA Policies: An Empirical Study and Failure Analysis",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24559",
+      "title": "SocialCoAct: Enabling and Benchmarking Egocentric Social Co-Action for VLM-Based Humanoid Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24512",
+      "title": "ContactBench 1.0: A Benchmark for Everyday Contact-Rich Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24507",
+      "title": "GazeAct: A Human-Gaze-Annotated Manipulation Dataset for Attention-Regularized Policies",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.24449",
+      "title": "Tension Tells the Tail: Cable-Obstacle Interaction Sensing for Tethered Mobile Robot Navigation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24392",
+      "title": "Gen2Dex: Learning Dexterous Manipulation from Simulation-Initialized Generated Video Demonstrations",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24312",
+      "title": "Beyond Human-Derived Motion: Exploring Robot-Specific Execution for Construction Humanoids",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24285",
+      "title": "ACTS: Learning Visuo-Tactile World Models from Human Physical Interaction",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.24267",
+      "title": "How exposed is work to robotics? Occupational, industry, and geographic measures",
+      "subjects": "Subjects: Robotics (cs.RO) ; Computers and Society (cs.CY); General Economics (econ.GN)"
+    },
+    {
+      "id": "2610.24257",
+      "title": "Evaluating Lightweight Contact Feedback in Dual-Operator Collaborative Humanoid Teleoperation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Human-Computer Interaction (cs.HC)"
+    },
+    {
+      "id": "2610.24241",
+      "title": "Towards Reinforcement Learning for Space Robotics: Fast Training and Reliable Real-World Transfer",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.24129",
+      "title": "Rollbot 2: Agile Locomotion by a Single-Actuator Spherical Robot",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23913",
+      "title": "UMI-WM: Interactive World Modeling for Bimanual Manipulation from Wrist Cameras",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.23891",
+      "title": "When to Make a Decision: Task-Sufficient Active Perception for Mobile Manipulator Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23888",
+      "title": "MoDex: Towards Universal Multi-Object Dexterous Grasping",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23887",
+      "title": "ContactKernels: Adaptive Proposals using Geometry-COnditioned Wrenches for Contact-Rich Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23880",
+      "title": "AutoPruner: Agentic Depth Pruning for Vision-Language-Action Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23879",
+      "title": "Adaptive Rejection of Unknown Hybrid Sinusoidal Disturbances with Application to Humanoid Walking under Unknown Ground Motion",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23874",
+      "title": "Adaptive Question Generation for Ambiguous Robot Instructions Based on Information Gain and Human Cognitive Characteristics",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.26174",
+      "title": "PhantomTac: Hijacking Robotic Tactile Systems with Deploy-and-forget Tags",
+      "subjects": "Subjects: Cryptography and Security (cs.CR) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.25043",
+      "title": "VLA-Rolling: Fewer Denoising Steps, Better Control via Adaptive Action Reuse",
+      "subjects": "Subjects: Artificial Intelligence (cs.AI) ; Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23882",
+      "title": "Transmission Error Compensation for Industrial Robots Using Fourier Series",
+      "subjects": "Subjects: Systems and Control (eess.SY) ; Robotics (cs.RO); Signal Processing (eess.SP)"
+    },
+    {
+      "id": "2610.23881",
+      "title": "Lubricant Temperature Observer for Gearboxes in Industrial Robots",
+      "subjects": "Subjects: Systems and Control (eess.SY) ; Robotics (cs.RO); Signal Processing (eess.SP)"
+    },
+    {
+      "id": "2610.23813",
+      "title": "MOSS: Multimodal Origami Swamp Robot System",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23662",
+      "title": "Learning Robot Metareasoning: Adaptive Computation Budgets for Real-Time Control",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23622",
+      "title": "Foundation-Model-Driven 3D Scene Graphs for Mobile Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23566",
+      "title": "Enhancing Visual Task-Redirection Attacks on Vision-Language-Action Models via Closed-Loop Optimization",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23551",
+      "title": "Embodiment-Aware Planning for Heterogeneous Bimanual Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23548",
+      "title": "Reinforcement Learning Based Multi-Terrain Adaptive Whole-Body Control for a Quadruped Manipulator",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23479",
+      "title": "HexaShell: A Thin Harness for Exploring the Limits of VLM Agents as Robot Coding Agents",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23438",
+      "title": "No Eyes, No Problem: What Does Touch Contribute to Blind Baoding Ball Manipulation?",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23396",
+      "title": "AWAM: Active Trajectory-Conditioned View Imagination for Robust Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2610.23378",
+      "title": "Look Before You Act: Bridging Active Perception and Vision-Language-Action Models via Observation-Aligned Data Adaptation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23334",
+      "title": "LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23319",
+      "title": "From Sliding Windows to Self-evolving Lifelong Memory: A Dual-perspective Survey of Memory Paradigms for Long-Horizon Robotics VLA Models",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23288",
+      "title": "CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23156",
+      "title": "ORD-WM: Learning Object-Centric Rigid Dynamics for 3D World Modeling in Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23128",
+      "title": "SCOPE: Selective Certification of Program Edits for Embodied Heuristic Learning",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23127",
+      "title": "BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23123",
+      "title": "GRASP: Global-Local Representation Alignment and Spatial-Physical Grounding for Bimanual Robotic Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23098",
+      "title": "InstAgent: A Recursively Self-Improving Agent Operating System for Heterogeneous Robot Collaboration",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23068",
+      "title": "Foundation Models for Autonomous Space Robotics: Architectures, Physical Adaptation, and Validation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23018",
+      "title": "VLA-Fabric: Learning Interaction for Composable Multi-Arm VLA Agents",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.23002",
+      "title": "Robotic Spatiotemporal Editing: A Unified Interface for Controllable Action Generation via Masked Action Reconstruction",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22932",
+      "title": "Ego2Contact: Predicting Touch from Egocentric Human Video for Contact-Rich Robot Manipulation",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22827",
+      "title": "DefFlow: Goal-Conditioned Deformable Object Manipulation using 3D Point Flows",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22765",
+      "title": "Pedicel-Targeted Strawberry Harvesting via Imitation Learning on a Low-Cost Teleoperated Robotic Arm",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22670",
+      "title": "Task Structure and Scalability in Multi-Robot Authoring",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22496",
+      "title": "Scaling Online Exploration for Robot Agents",
+      "subjects": "Subjects: Robotics (cs.RO)"
+    },
+    {
+      "id": "2610.22450",
+      "title": "DriveWorld3D Evidence Constrained 3D World Modeling and Generative Simulation for Real-World Autonomous Driving",
+      "subjects": "Subjects: Robotics (cs.RO) ; Artificial Intelligence (cs.AI)"
+    },
+    {
+      "id": "2604.20012",
+      "title": "EmbodiedMidtrain: Bridging the Gap between Vision-Language Models and Vision-Language-Action Models via Mid-training",
+      "subjects": "Subjects: Computer Vision and Pattern Recognition (cs.CV) ; Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Robotics (cs.RO)"
+    }
+  ],
+  "scope_limit": "Title/question triage, not full-paper triage of every ID. Recent pages show announcement dates 2026-10-19 through 2026-10-23; original publication timestamps checked separately for 16 selected candidates. Earlier discovery gaps remain."
+}

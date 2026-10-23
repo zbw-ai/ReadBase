@@ -1,0 +1,3161 @@
+{
+  "prs": [
+    {
+      "repo": "NVIDIA/Isaac-GR00T",
+      "number": 797,
+      "title": "Update GR00T N1.7",
+      "author": "gr00t-agent[bot]",
+      "created_at": "2026-10-21T22:04:46Z",
+      "merged_at": "2026-10-22T21:49:58Z",
+      "merge_commit_sha": "944fe70c4fd54e3fcb80a7d7258a328f9c061176",
+      "base": "main",
+      "head_sha": "1e06cff635b734e31e9b5ed8082ba6a5af973559",
+      "html_url": "https://github.com/NVIDIA/Isaac-GR00T/pull/797",
+      "changed_files": 4,
+      "checks": [
+        {
+          "name": "Python 3.12 - Lint",
+          "conclusion": "success",
+          "html_url": "https://github.com/NVIDIA/Isaac-GR00T/actions/runs/39857506075/job/120099593917",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:47.475236+00:00",
+      "body_sha256": "ed22cffdd1d49b3f5e71f4fe3426648298c8ba7894eccb97c319af61df348bf7",
+      "files_returned": 4,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "README.md",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "682fd6e44e737ae6a151e74b96158fa4c7ec9697f1b352ba99620fd99b1c77d3"
+        },
+        {
+          "filename": "scripts/deployment/README.md",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 40,
+          "changes": 70,
+          "patch_present": true,
+          "patch_sha256": "b6ad222aef8058127bfcee4b156c1f7158c576988ddcbf3ac019b4741b1585f6"
+        },
+        {
+          "filename": "tests/conftest.py",
+          "status": "modified",
+          "additions": 35,
+          "deletions": 0,
+          "changes": 35,
+          "patch_present": true,
+          "patch_sha256": "a6b66eab9ec9eace17d30f7f22ffceb1c5dc2667cabd64fafe75e7687baf83ca"
+        },
+        {
+          "filename": "tests/scripts/deployment/test_trt_pipeline.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 6,
+          "changes": 15,
+          "patch_present": true,
+          "patch_sha256": "ba39150c08f69ab0be7cb4151f63fcb67805cff166f5eb2297c8ab75aa94d952"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "success": 1
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "number": 8681,
+      "title": "Place static ray-cast targets in each environment on kitless backends",
+      "author": "NeoZng",
+      "created_at": "2026-10-16T12:40:42Z",
+      "merged_at": "2026-10-20T01:29:29Z",
+      "merge_commit_sha": "f847b1cbb6e9128f4d5f65fcb83b686650072a99",
+      "base": "main",
+      "head_sha": "b6b7d919286185d803d5f1f1d35098321a7f43fe",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8681",
+      "changed_files": 4,
+      "checks": [
+        {
+          "name": "Backport PR #${{ github.event.pull_request.number }}",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39353715415/job/118403615172",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_experimental",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118401876617",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_mimic",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118401876296",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_teleop",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118401876280",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_contrib",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118401876167",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118401280046",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (ovstage)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398100840",
+          "status": "completed"
+        },
+        {
+          "name": "warp-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398100544",
+          "status": "completed"
+        },
+        {
+          "name": "ovrtx-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398100371",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_assets",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098957",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke-benchmarks",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098939",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_physx",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098927",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_rl",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098882",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098879",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098875",
+          "status": "completed"
+        },
+        {
+          "name": "record-video",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098870",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098847",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (legacy)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098839",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_newton",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098831",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_visualizers",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098736",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098729",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_ov",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098726",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098702",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098601",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098570",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, non-Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098569",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398098554",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (kit-less)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118398097187",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118398094973",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU unit tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118398094901",
+          "status": "completed"
+        },
+        {
+          "name": "test-contrib-environments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398084938",
+          "status": "completed"
+        },
+        {
+          "name": "test-curobo",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118398084873",
+          "status": "completed"
+        },
+        {
+          "name": "Build & Test",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937469/job/118398025164",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118398005975",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache kit-less image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118398005891",
+          "status": "completed"
+        },
+        {
+          "name": "Build Kit-less Docker Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937242/job/118398001488",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (x86)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937296/job/118397994566",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (ARM)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937296/job/118397994561",
+          "status": "completed"
+        },
+        {
+          "name": "Build cuRobo Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118397990922",
+          "status": "completed"
+        },
+        {
+          "name": "Build Base Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118397990894",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937469/job/118397986837",
+          "status": "completed"
+        },
+        {
+          "name": "Deploy Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937491/job/118397972246",
+          "status": "completed"
+        },
+        {
+          "name": "Build Multi-Version Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937491/job/118397971577",
+          "status": "completed"
+        },
+        {
+          "name": "Build Latest Docs",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937491/job/118397970076",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118397946698",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118397946433",
+          "status": "completed"
+        },
+        {
+          "name": "dockerfile-contract",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351942677/job/118397946314",
+          "status": "completed"
+        },
+        {
+          "name": "Check for Broken Links",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937511/job/118397945286",
+          "status": "completed"
+        },
+        {
+          "name": "Build Wheel",
+          "conclusion": "failure",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937464/job/118397944520",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937469/job/118397944360",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Doc Build Type",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937491/job/118397944098",
+          "status": "completed"
+        },
+        {
+          "name": "Check changelog fragments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937342/job/118397943621",
+          "status": "completed"
+        },
+        {
+          "name": "pre-commit",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937396/job/118397942969",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118397942710",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937294/job/118397942220",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937296/job/118397940178",
+          "status": "completed"
+        },
+        {
+          "name": "license-check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937281/job/118397940141",
+          "status": "completed"
+        },
+        {
+          "name": "Docker Dependency Licenses Check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937281/job/118397939902",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937242/job/118397938698",
+          "status": "completed"
+        },
+        {
+          "name": "labeler",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39351937676/job/118397897766",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:47.777279+00:00",
+      "body_sha256": "14f52e15c9292541db8b2cb3c1ccc9443535dc1e93590239ea66c632915fbaf2",
+      "files_returned": 4,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "source/isaaclab/changelog.d/fix-ray-caster-static-env-targets.fixed.rst",
+          "status": "added",
+          "additions": 7,
+          "deletions": 0,
+          "changes": 7,
+          "patch_present": true,
+          "patch_sha256": "4ea316a40935abfef9ae1ea67b4a8eaecd0c27113dd8a3f1f49ba8b653d50f2e"
+        },
+        {
+          "filename": "source/isaaclab/isaaclab/sensors/ray_caster/base_multi_mesh_ray_caster.py",
+          "status": "modified",
+          "additions": 35,
+          "deletions": 3,
+          "changes": 38,
+          "patch_present": true,
+          "patch_sha256": "8bf8b1345ddbed1bdafcd34fe80cc9d09f6aa72f8776fe0806af7f3621daa5be"
+        },
+        {
+          "filename": "source/isaaclab_newton/changelog.d/fix-ray-caster-static-env-targets.skip",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "patch_present": false,
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "filename": "source/isaaclab_newton/test/sensors/test_newton_raycast_sensor.py",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 0,
+          "changes": 29,
+          "patch_present": true,
+          "patch_sha256": "a9d489c8b4ed26310f12d6f383c407f06ef296c1e186857cd3f9472485dcc7ea"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 7,
+        "success": 52,
+        "failure": 1
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "number": 8765,
+      "title": "[PR8] Share scene bindings for sensors and cuRobo",
+      "author": "ooctipus",
+      "created_at": "2026-10-20T23:50:59Z",
+      "merged_at": "2026-10-22T05:45:37Z",
+      "merge_commit_sha": "8c9b995cb95c74ec81498ae948ce4c1d4e20ae00",
+      "base": "main",
+      "head_sha": "a50937a8c605b5df1767a1a0bca064200c1b9e33",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8765",
+      "changed_files": 31,
+      "checks": [
+        {
+          "name": "Backport PR #${{ github.event.pull_request.number }}",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39729866638/job/119662187689",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119654602313",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_teleop",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119654302073",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_mimic",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119654302040",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_experimental",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119654302007",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_contrib",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119654301983",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (ovstage)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652696018",
+          "status": "completed"
+        },
+        {
+          "name": "warp-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652695776",
+          "status": "completed"
+        },
+        {
+          "name": "ovrtx-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652695677",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_newton",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694452",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_ov",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694450",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_visualizers",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694436",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694430",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, non-Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694428",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694426",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_assets",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694418",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_physx",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694416",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (legacy)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694406",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694398",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694385",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke-benchmarks",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694382",
+          "status": "completed"
+        },
+        {
+          "name": "record-video",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694377",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694355",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_rl",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694348",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694306",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694288",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652694195",
+          "status": "completed"
+        },
+        {
+          "name": "test-contrib-environments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652678059",
+          "status": "completed"
+        },
+        {
+          "name": "test-curobo",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652678027",
+          "status": "completed"
+        },
+        {
+          "name": "Build Base Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652589394",
+          "status": "completed"
+        },
+        {
+          "name": "Build cuRobo Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652589183",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652539953",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652539775",
+          "status": "completed"
+        },
+        {
+          "name": "dockerfile-contract",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726828604/job/119652539584",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (kit-less)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647867614",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647865217",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU unit tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647865213",
+          "status": "completed"
+        },
+        {
+          "name": "Build & Test",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305238/job/119647805858",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache kit-less image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647790701",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647790693",
+          "status": "completed"
+        },
+        {
+          "name": "Build Kit-less Docker Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305275/job/119647783631",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (x86)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305204/job/119647763663",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (ARM)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305204/job/119647763648",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305238/job/119647762997",
+          "status": "completed"
+        },
+        {
+          "name": "Build Multi-Version Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305270/job/119647755000",
+          "status": "completed"
+        },
+        {
+          "name": "Deploy Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305270/job/119647754498",
+          "status": "completed"
+        },
+        {
+          "name": "Build Latest Docs",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305270/job/119647753321",
+          "status": "completed"
+        },
+        {
+          "name": "labeler",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305219/job/119647729704",
+          "status": "completed"
+        },
+        {
+          "name": "Docker Dependency Licenses Check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305331/job/119647729029",
+          "status": "completed"
+        },
+        {
+          "name": "pre-commit",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305286/job/119647728798",
+          "status": "completed"
+        },
+        {
+          "name": "license-check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305331/job/119647728782",
+          "status": "completed"
+        },
+        {
+          "name": "Build Wheel",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305360/job/119647728664",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305275/job/119647728394",
+          "status": "completed"
+        },
+        {
+          "name": "Check changelog fragments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305285/job/119647728258",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Doc Build Type",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305270/job/119647728245",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305238/job/119647728121",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305204/job/119647728097",
+          "status": "completed"
+        },
+        {
+          "name": "Check for Broken Links",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305210/job/119647727989",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647727930",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39725305192/job/119647727738",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:48.126913+00:00",
+      "body_sha256": "8d66d10805e59460d79f8e29382b890093dd696f4aecd30461ad588b226f489e",
+      "files_returned": 31,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "docs/source/concepts/sensors/ray_caster.rst",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 2,
+          "changes": 12,
+          "patch_present": true,
+          "patch_sha256": "8438514f0cfbd3c01c9ad016ce956b504f294467795b295235066e7fc7dcfcc0"
+        },
+        {
+          "filename": "source/isaaclab/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "a2ef80a6a6ddecd57876fd8156f3b6267b4360892d3099cf556c19e52ef024fe"
+        },
+        {
+          "filename": "source/isaaclab/isaaclab/sensors/ray_caster/base_multi_mesh_ray_caster.py",
+          "status": "modified",
+          "additions": 50,
+          "deletions": 90,
+          "changes": 140,
+          "patch_present": true,
+          "patch_sha256": "119b6d7bdd46c18e604c711ffea651ddd9d3b49db8fa3efc47ca3bac69780281"
+        },
+        {
+          "filename": "source/isaaclab/isaaclab/sensors/ray_caster/base_ray_caster.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "patch_present": true,
+          "patch_sha256": "1b55a59b5bf0ed938a406cae815078a2f533bd6bf6867916ce3996b40c4e2d33"
+        },
+        {
+          "filename": "source/isaaclab/isaaclab/sensors/ray_caster/kernels.py",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 36,
+          "changes": 44,
+          "patch_present": true,
+          "patch_sha256": "de5aafb4eba83d7a636d7bdaf680c560d2cde0d06b5159279f709f1a631d6d11"
+        },
+        {
+          "filename": "source/isaaclab/test/sensors/test_ray_caster_integration.py",
+          "status": "modified",
+          "additions": 142,
+          "deletions": 47,
+          "changes": 189,
+          "patch_present": true,
+          "patch_sha256": "93a01128960554c4a4c11b95e399354e867aa25d3c654c73403ace0bc39005e9"
+        },
+        {
+          "filename": "source/isaaclab/test/sensors/test_ray_caster_kernels.py",
+          "status": "modified",
+          "additions": 41,
+          "deletions": 0,
+          "changes": 41,
+          "patch_present": true,
+          "patch_sha256": "af7c96ee868c6ce41e12e5cdff524694c880d27721956306d9154b6841d250a1"
+        },
+        {
+          "filename": "source/isaaclab_contrib/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "patch_present": true,
+          "patch_sha256": "4dad2ca90c5e67c73dd0b9d5112f66b10ee35586507463ba3e5696eafa43ea25"
+        },
+        {
+          "filename": "source/isaaclab_contrib/isaaclab_contrib/sensors/tacsl_sensor/visuotactile_sensor.py",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 75,
+          "changes": 97,
+          "patch_present": true,
+          "patch_sha256": "db76190a2e8bc8970b53f79c53517fecd806a18c93121e55b69282c5ee5a1fe0"
+        },
+        {
+          "filename": "source/isaaclab_contrib/test/sensors/test_visuotactile_sensor.py",
+          "status": "modified",
+          "additions": 56,
+          "deletions": 47,
+          "changes": 103,
+          "patch_present": true,
+          "patch_sha256": "e9ac6e7f141860d33950cf96030dd88e0c47a576baeebd781714f872020e02d4"
+        },
+        {
+          "filename": "source/isaaclab_mimic/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "patch_present": true,
+          "patch_sha256": "adbc3acbcf8143cc144d19f692e5e31c2861b7df7c3e061e05da420ed7d41f60"
+        },
+        {
+          "filename": "source/isaaclab_mimic/isaaclab_mimic/motion_planners/curobo/curobo_planner.py",
+          "status": "modified",
+          "additions": 47,
+          "deletions": 13,
+          "changes": 60,
+          "patch_present": true,
+          "patch_sha256": "d5b8a001b26328af067873ee45ca449b89ef764bf0d5c7f473df3520e6abf8eb"
+        },
+        {
+          "filename": "source/isaaclab_mimic/test/test_curobo_planner_franka.py",
+          "status": "modified",
+          "additions": 23,
+          "deletions": 6,
+          "changes": 29,
+          "patch_present": true,
+          "patch_sha256": "fbe5248519eba90833bccc85858843365f655eeab0b01a84c44497f9e9bfebea"
+        },
+        {
+          "filename": "source/isaaclab_newton/changelog.d/pr8-consumer-bindings.changed.rst",
+          "status": "added",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "5f3a8daca8bf9d9a5039e58add7d6acc67cef4a6613254c77b489a8ea11927f2"
+        },
+        {
+          "filename": "source/isaaclab_newton/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "a93e592ebbc8a05171b3ed30f6f31a70e3758e310064b638798436b62280ce5b"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/physics/newton_manager.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "patch_present": true,
+          "patch_sha256": "fd8e137a7bfdc100a44b7850d5144fc101c01c5d4626adf360d8eda0f344fa58"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sensors/frame_transformer/frame_transformer.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 28,
+          "changes": 34,
+          "patch_present": true,
+          "patch_sha256": "0c198fa0ab017469f6024e8e10c0fd0c01982bde4f7a6dbd3aa4bb67005b39be"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sensors/imu/imu.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 10,
+          "changes": 11,
+          "patch_present": true,
+          "patch_sha256": "5b45345d37e8a5fd3fbc9498359ec970689c63d3039ead2b000b1996ca842c9c"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sensors/pva/pva.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 4,
+          "changes": 5,
+          "patch_present": true,
+          "patch_sha256": "27a171c8241f98d887740a8611b530af6e4a9352e7b4efe93a46337f3349ae2c"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sensors/ray_caster/legacy_ray_caster.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 101,
+          "changes": 106,
+          "patch_present": true,
+          "patch_sha256": "7d5615dc604f85c13e3451942f4d18ab1efdd44505dc2d3a3ef0ea725b1d0838"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sensors/ray_caster/newton_raycast_sensor.py",
+          "status": "modified",
+          "additions": 37,
+          "deletions": 75,
+          "changes": 112,
+          "patch_present": true,
+          "patch_sha256": "9ab4d6b166ba9f182c7ef3eeac0aaee8f423d11ddacbf64c4172ba603c440818"
+        },
+        {
+          "filename": "source/isaaclab_newton/test/sensors/test_newton_raycast_sensor.py",
+          "status": "modified",
+          "additions": 48,
+          "deletions": 10,
+          "changes": 58,
+          "patch_present": true,
+          "patch_sha256": "b1e0e83da5eb541d05083c5c56bd77430eb94db254b0a7ff464744ebe6c9a8b6"
+        },
+        {
+          "filename": "source/isaaclab_newton/test/sensors/test_site_injection.py",
+          "status": "modified",
+          "additions": 96,
+          "deletions": 2,
+          "changes": 98,
+          "patch_present": true,
+          "patch_sha256": "88d83cceacbb9e59d946089dddc990e8e68972433ced860fcfc0f1b75e9c7c42"
+        },
+        {
+          "filename": "source/isaaclab_ov/benchmark/sensors/benchmark_ray_caster.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 7,
+          "changes": 8,
+          "patch_present": true,
+          "patch_sha256": "f0a308fd22225bc1cd033364d69336481d44214be8dd73fb13f293f5f342a0ba"
+        },
+        {
+          "filename": "source/isaaclab_ov/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "patch_present": true,
+          "patch_sha256": "0f514db8f64127af5c04fb028210f1a053b2291147c888595679f971092c0aae"
+        },
+        {
+          "filename": "source/isaaclab_ov/isaaclab_ov/sensors/ray_caster/ray_caster.py",
+          "status": "modified",
+          "additions": 42,
+          "deletions": 223,
+          "changes": 265,
+          "patch_present": true,
+          "patch_sha256": "72844a7d5b75517a25ab62995429bc29354308a9635421d68845b8201b55cfa0"
+        },
+        {
+          "filename": "source/isaaclab_ov/test/sensors/test_ray_caster.py",
+          "status": "modified",
+          "additions": 111,
+          "deletions": 52,
+          "changes": 163,
+          "patch_present": true,
+          "patch_sha256": "0be7ac9e6848c6441ee498276bff22b6acc1b9390d8bed917c67ad7c81db3480"
+        },
+        {
+          "filename": "source/isaaclab_physx/changelog.d/pr8-consumer-bindings.changed.rst",
+          "status": "added",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "3ded1204906830566f2d3c1f21048870d61050cdf6efb25deae13b307e70fada"
+        },
+        {
+          "filename": "source/isaaclab_physx/changelog.d/pr8-consumer-bindings.fixed.rst",
+          "status": "added",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "7c16d0f3d0a87513899d4c95fcde6ceb17d9fa113819a85fe98646d2a90dadf7"
+        },
+        {
+          "filename": "source/isaaclab_physx/isaaclab_physx/sensors/ray_caster/ray_caster.py",
+          "status": "modified",
+          "additions": 16,
+          "deletions": 82,
+          "changes": 98,
+          "patch_present": true,
+          "patch_sha256": "8571d67e5185c677f7704093039974ebc649c70992c034f408059e5bdc4c3406"
+        },
+        {
+          "filename": "source/isaaclab_physx/test/sensors/test_ray_caster_graph.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "e06e15dc256e6abe4468654bbba506452eb08906eb09cb2ede35cf1b7a53bfda"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 7,
+        "success": 53
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "number": 8773,
+      "title": "[PR9] Bind teleop and XR frame references during setup",
+      "author": "ooctipus",
+      "created_at": "2026-10-21T19:58:22Z",
+      "merged_at": "2026-10-22T05:13:15Z",
+      "merge_commit_sha": "dee1edb8a7299ae34f20f179ef930e9c8dc330a6",
+      "base": "main",
+      "head_sha": "6373fe05d7048fcb6b8ab4b93f358c6ee41d4690",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8773",
+      "changed_files": 6,
+      "checks": [
+        {
+          "name": "Backport PR #${{ github.event.pull_request.number }}",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39726773272/job/119652362237",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119641047500",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_mimic",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119640987461",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_teleop",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119640987398",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_contrib",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119640987386",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_experimental",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119640987326",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (ovstage)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639222166",
+          "status": "completed"
+        },
+        {
+          "name": "warp-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639221960",
+          "status": "completed"
+        },
+        {
+          "name": "ovrtx-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639221609",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_rl",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639221165",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220755",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke-benchmarks",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220716",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_visualizers",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220680",
+          "status": "completed"
+        },
+        {
+          "name": "record-video",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220668",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (legacy)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220640",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_newton",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220607",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_physx",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220589",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220578",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_assets",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220577",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220522",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_ov",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220512",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220481",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220463",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220458",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220437",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, non-Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220428",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639220294",
+          "status": "completed"
+        },
+        {
+          "name": "test-curobo",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639219674",
+          "status": "completed"
+        },
+        {
+          "name": "test-contrib-environments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639219474",
+          "status": "completed"
+        },
+        {
+          "name": "Build cuRobo Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639110337",
+          "status": "completed"
+        },
+        {
+          "name": "Build Base Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639110289",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639063884",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639063825",
+          "status": "completed"
+        },
+        {
+          "name": "dockerfile-contract",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39722538302/job/119639063585",
+          "status": "completed"
+        },
+        {
+          "name": "Build & Test",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312792/job/119599903493",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU unit tests",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599891310",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache kit-less image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599891080",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (Kit)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599890977",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (kit-less)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599890826",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599890817",
+          "status": "completed"
+        },
+        {
+          "name": "Build Kit-less Docker Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312783/job/119599876234",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312792/job/119599858887",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (x86)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312773/job/119599858565",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (ARM)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312773/job/119599858496",
+          "status": "completed"
+        },
+        {
+          "name": "Deploy Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312764/job/119599846629",
+          "status": "completed"
+        },
+        {
+          "name": "Build Multi-Version Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312764/job/119599846505",
+          "status": "completed"
+        },
+        {
+          "name": "Build Latest Docs",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312764/job/119599844462",
+          "status": "completed"
+        },
+        {
+          "name": "Docker Dependency Licenses Check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710313019/job/119599823561",
+          "status": "completed"
+        },
+        {
+          "name": "license-check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710313019/job/119599823333",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312783/job/119599822923",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312792/job/119599822748",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Doc Build Type",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312764/job/119599822686",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599822615",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312773/job/119599822562",
+          "status": "completed"
+        },
+        {
+          "name": "Check changelog fragments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312708/job/119599822533",
+          "status": "completed"
+        },
+        {
+          "name": "Build Wheel",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312725/job/119599822409",
+          "status": "completed"
+        },
+        {
+          "name": "Check for Broken Links",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312659/job/119599822383",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312731/job/119599822357",
+          "status": "completed"
+        },
+        {
+          "name": "pre-commit",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710312685/job/119599822134",
+          "status": "completed"
+        },
+        {
+          "name": "labeler",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39710310150/job/119599814835",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:48.183317+00:00",
+      "body_sha256": "8b782492284fad05cb0f865c3ec1338895651af403c04ed0e93dcfd12926f73f",
+      "files_returned": 6,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "source/isaaclab_teleop/changelog.d/pr9-frame-bindings.fixed.rst",
+          "status": "added",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "54cf8cee932637fadff9fc1e2a0ef81c86098864632cedab10a6381d4e01ace6"
+        },
+        {
+          "filename": "source/isaaclab_teleop/isaaclab_teleop/isaac_teleop_cfg.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 2,
+          "changes": 6,
+          "patch_present": true,
+          "patch_sha256": "a43c33bdc99a8fc39ac7459268b58ddf66f9001d9c45c1d5caffe0e075785ed1"
+        },
+        {
+          "filename": "source/isaaclab_teleop/isaaclab_teleop/isaac_teleop_device.py",
+          "status": "modified",
+          "additions": 25,
+          "deletions": 73,
+          "changes": 98,
+          "patch_present": true,
+          "patch_sha256": "c3cdbf94157040c18ef43fdb3d1f45276c98b65afdf42990871d422e983fcb69"
+        },
+        {
+          "filename": "source/isaaclab_teleop/isaaclab_teleop/xr_anchor_utils.py",
+          "status": "modified",
+          "additions": 13,
+          "deletions": 30,
+          "changes": 43,
+          "patch_present": true,
+          "patch_sha256": "c4d6bcdf4542716dd07b900e475d17003c42b217f3215a08b6b2b2c38a237508"
+        },
+        {
+          "filename": "source/isaaclab_teleop/test/test_oxr_device.py",
+          "status": "modified",
+          "additions": 44,
+          "deletions": 2,
+          "changes": 46,
+          "patch_present": true,
+          "patch_sha256": "e5caa908135afe7a7edbaa1cbde0702a458c1b97bd12c31da78c4deb089f6f7e"
+        },
+        {
+          "filename": "source/isaaclab_teleop/test/test_target_frame_rebase.py",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 14,
+          "changes": 31,
+          "patch_present": true,
+          "patch_sha256": "ad3ad9b787e2ea7a4f81b5d14d47b2e9f1b1d95cbbc31e50cfddb60f1ea0f7bd"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 12,
+        "success": 48
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "number": 8782,
+      "title": "[PR9C] Fix native frame reads and preserve live Fabric poses",
+      "author": "ooctipus",
+      "created_at": "2026-10-22T07:03:40Z",
+      "merged_at": "2026-10-22T22:05:56Z",
+      "merge_commit_sha": "41480b9fca0b89b098ea35d0cd88a73f832007d6",
+      "base": "main",
+      "head_sha": "d996e785557b9daffe08c5ebd95403ea12267a8d",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/pull/8782",
+      "changed_files": 14,
+      "checks": [
+        {
+          "name": "Backport PR #${{ github.event.pull_request.number }}",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39862405244/job/120116171720",
+          "status": "completed"
+        },
+        {
+          "name": "Greptile Review",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/runs/120116006238",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119717909249",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_contrib",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119717713890",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_teleop",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119717713851",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_experimental",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119717713755",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_mimic",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119717713651",
+          "status": "completed"
+        },
+        {
+          "name": "warp-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715502116",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (ovstage)",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715501258",
+          "status": "completed"
+        },
+        {
+          "name": "ovrtx-cache-warm",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715501248",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499616",
+          "status": "completed"
+        },
+        {
+          "name": "performance-smoke-benchmarks",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499598",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, non-Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499588",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_physx",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499555",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_rl",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499538",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_assets",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499523",
+          "status": "completed"
+        },
+        {
+          "name": "record-video",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499487",
+          "status": "completed"
+        },
+        {
+          "name": "standalone demos (headless, Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499477",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_visualizers",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499395",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_ov",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499383",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_newton",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499358",
+          "status": "completed"
+        },
+        {
+          "name": "rendering-correctness-kitless (legacy)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499313",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499228",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499143",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499080",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [3/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499063",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab (core) [2/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715499009",
+          "status": "completed"
+        },
+        {
+          "name": "isaaclab_tasks [1/3]",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715498993",
+          "status": "completed"
+        },
+        {
+          "name": "test-curobo",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715476912",
+          "status": "completed"
+        },
+        {
+          "name": "test-contrib-environments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715476833",
+          "status": "completed"
+        },
+        {
+          "name": "Build Base Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715357799",
+          "status": "completed"
+        },
+        {
+          "name": "Build cuRobo Docker Image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715357709",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715258393",
+          "status": "completed"
+        },
+        {
+          "name": "dockerfile-contract",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715258348",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746234490/job/119715257951",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (kit-less)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119715074664",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU unit tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714955206",
+          "status": "completed"
+        },
+        {
+          "name": "Multi-GPU training smoke (Kit)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714955177",
+          "status": "completed"
+        },
+        {
+          "name": "Build & Test",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077610/job/119714858295",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache kit-less image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714827117",
+          "status": "completed"
+        },
+        {
+          "name": "Build / cache image",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714826656",
+          "status": "completed"
+        },
+        {
+          "name": "Build Kit-less Docker Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077561/job/119714813413",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077610/job/119714805476",
+          "status": "completed"
+        },
+        {
+          "name": "Deploy Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077683/job/119714790830",
+          "status": "completed"
+        },
+        {
+          "name": "Build Multi-Version Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077683/job/119714790452",
+          "status": "completed"
+        },
+        {
+          "name": "Build Latest Docs",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077683/job/119714788427",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (x86)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077667/job/119714779169",
+          "status": "completed"
+        },
+        {
+          "name": "Installation Tests (ARM)",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077667/job/119714779058",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077561/job/119714738894",
+          "status": "completed"
+        },
+        {
+          "name": "Build Wheel",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077652/job/119714738842",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714738778",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077610/job/119714738698",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Doc Build Type",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077683/job/119714738655",
+          "status": "completed"
+        },
+        {
+          "name": "Docker Dependency Licenses Check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077648/job/119714738599",
+          "status": "completed"
+        },
+        {
+          "name": "Detect Changes",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077667/job/119714738579",
+          "status": "completed"
+        },
+        {
+          "name": "pre-commit",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077582/job/119714738502",
+          "status": "completed"
+        },
+        {
+          "name": "Load Config",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077712/job/119714738355",
+          "status": "completed"
+        },
+        {
+          "name": "Check for Broken Links",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077535/job/119714738341",
+          "status": "completed"
+        },
+        {
+          "name": "license-check",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077648/job/119714738329",
+          "status": "completed"
+        },
+        {
+          "name": "Check changelog fragments",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746077676/job/119714738183",
+          "status": "completed"
+        },
+        {
+          "name": "labeler",
+          "conclusion": "success",
+          "html_url": "https://github.com/isaac-sim/IsaacLab/actions/runs/39746074585/job/119714731467",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:48.031906+00:00",
+      "body_sha256": "291828fc31103fc6d00aef4e447f54fb8050de84ea799e8ff0cdd77c6b2fec7a",
+      "files_returned": 14,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "source/isaaclab/changelog.d/pr9c-shared-frame-poses.fixed.rst",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "1d30829d525066b5435634cecce9c9d7ad9bb9e0aed598536081ebf0cb963cef"
+        },
+        {
+          "filename": "source/isaaclab/isaaclab/sim/views/fabric_xform_selection.py",
+          "status": "modified",
+          "additions": 18,
+          "deletions": 26,
+          "changes": 44,
+          "patch_present": true,
+          "patch_sha256": "0f1d494b6b0aac66f1569e91c852d6248c2e86e033ff7592296f43e6d7853dfa"
+        },
+        {
+          "filename": "source/isaaclab_newton/changelog.d/pr9c-shared-frame-poses.added.rst",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "b7279a28db0832500488ff4e39f6a7ab9c870f1ef805a2900fe823212749b366"
+        },
+        {
+          "filename": "source/isaaclab_newton/changelog.d/pr9c-shared-frame-poses.minor",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "patch_present": false,
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "filename": "source/isaaclab_newton/isaaclab_newton/sim/views/newton_site_frame_view.py",
+          "status": "modified",
+          "additions": 25,
+          "deletions": 39,
+          "changes": 64,
+          "patch_present": true,
+          "patch_sha256": "1e900a19ec29055806c79ca753a25766083c6516ddb3da5cadafaacb3e58ec59"
+        },
+        {
+          "filename": "source/isaaclab_newton/test/assets/test_articulation.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 1,
+          "changes": 8,
+          "patch_present": true,
+          "patch_sha256": "26e2d439a07a3bd8cf6ecd7ef2f9090115c339e2b777053d3efc9939b7add7ab"
+        },
+        {
+          "filename": "source/isaaclab_newton/test/sim/test_views_xform_prim_newton.py",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 6,
+          "changes": 16,
+          "patch_present": true,
+          "patch_sha256": "157c3e5e762d51897c7016799909be154458374c330dc13a101e9264e247fac9"
+        },
+        {
+          "filename": "source/isaaclab_ov/changelog.d/pr9c-shared-frame-poses.added.rst",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "098021081d6fc2f315c2f0ee77dab888a0d3665b0be4450f57e47dfa56e29d3b"
+        },
+        {
+          "filename": "source/isaaclab_ov/changelog.d/pr9c-shared-frame-poses.minor",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "patch_present": false,
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "filename": "source/isaaclab_ov/isaaclab_ov/sim/views/ovphysx_frame_view.py",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 17,
+          "changes": 25,
+          "patch_present": true,
+          "patch_sha256": "acd07334dadf31a856273c1722cb9bd1a91bd3ae435013e61dd16b15cb9d33fb"
+        },
+        {
+          "filename": "source/isaaclab_ov/test/sim/test_views_xform_prim_ovphysx.py",
+          "status": "modified",
+          "additions": 16,
+          "deletions": 0,
+          "changes": 16,
+          "patch_present": true,
+          "patch_sha256": "a8b54751a85c64e3dba26210cf36278587d5d11046db5b232aa40d2998f127b8"
+        },
+        {
+          "filename": "source/isaaclab_physx/changelog.d/pr9c-shared-frame-poses.fixed.rst",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "b3ee4135ed9a45df71bca5189a2529ea8505113365a63d22e9fbe4ae509e59bf"
+        },
+        {
+          "filename": "source/isaaclab_physx/isaaclab_physx/sim/views/fabric_frame_view.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 105,
+          "changes": 107,
+          "patch_present": true,
+          "patch_sha256": "ee9c3524931b0794a414fde2cc75bc6f10a73feaf7efd9a9c08d7ca33cad31e1"
+        },
+        {
+          "filename": "source/isaaclab_physx/test/sim/test_views_xform_prim_fabric.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 3,
+          "changes": 5,
+          "patch_present": true,
+          "patch_sha256": "fddad98150b40d6c23d1035845b46f04f8fb0df9be64908df3fdf931c829b1db"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 7,
+        "success": 54
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4200,
+      "title": "feat(policies): add Wall-OSS-0.5 support",
+      "author": "pkooij",
+      "created_at": "2026-07-28T15:02:47Z",
+      "merged_at": "2026-10-22T13:36:17Z",
+      "merge_commit_sha": "65258ac2c6ef6d710c3615d56f58e8ca53122591",
+      "base": "main",
+      "head_sha": "c2ce636a40f31f43861981107279918894a28384",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4200",
+      "changed_files": 13,
+      "checks": [
+        {
+          "name": "Delete PR Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39780565910/job/119830440462",
+          "status": "completed"
+        },
+        {
+          "name": "Build and Push Docker",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39780565910/job/119830438978",
+          "status": "completed"
+        },
+        {
+          "name": "claude",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39780565893/job/119830438702",
+          "status": "completed"
+        },
+        {
+          "name": "GPU Tests",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39780565910/job/119830438513",
+          "status": "completed"
+        },
+        {
+          "name": "Full Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39780565910/job/119830436886",
+          "status": "completed"
+        },
+        {
+          "name": "Fast Pytest Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691823/job/119807461583",
+          "status": "completed"
+        },
+        {
+          "name": "RoboMME — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807292053",
+          "status": "completed"
+        },
+        {
+          "name": "MetaWorld — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807283040",
+          "status": "completed"
+        },
+        {
+          "name": "RoboTwin 2.0 — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807273446",
+          "status": "completed"
+        },
+        {
+          "name": "RoboCasa365 — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807264884",
+          "status": "completed"
+        },
+        {
+          "name": "Build Main Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773692246/job/119807227846",
+          "status": "completed"
+        },
+        {
+          "name": "LIBERO-plus — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807227140",
+          "status": "completed"
+        },
+        {
+          "name": "VLABench — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807226465",
+          "status": "completed"
+        },
+        {
+          "name": "RoboCerebra — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807225867",
+          "status": "completed"
+        },
+        {
+          "name": "Build PR Docs / build_pr_documentation",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773692246/job/119807225841",
+          "status": "completed"
+        },
+        {
+          "name": "Libero — build image + 1-episode eval",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691776/job/119807225644",
+          "status": "completed"
+        },
+        {
+          "name": "Run Documentation Checks (Doctests)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691690/job/119807224577",
+          "status": "completed"
+        },
+        {
+          "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691690/job/119807224401",
+          "status": "completed"
+        },
+        {
+          "name": "Secret Leaks Scan",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773691781/job/119807224181",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39773686791/job/119807208893",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:54.140929+00:00",
+      "body_sha256": "667af3a511985ac481837626fd4bb7543d16f31b82d5f4f773fe0805897586ee",
+      "files_returned": 13,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "README.md",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 7,
+          "changes": 14,
+          "patch_present": true,
+          "patch_sha256": "f8235e738bb06f896980b65bce361330b2d99e6e609cf9db71620007ded47455"
+        },
+        {
+          "filename": "docs/source/_toctree.yml",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "46c4cb22a77654ca45bcea05b35111d9979d11b498c4864b414ba3fd0f9da472"
+        },
+        {
+          "filename": "docs/source/wall_oss_05.mdx",
+          "status": "added",
+          "additions": 290,
+          "deletions": 0,
+          "changes": 290,
+          "patch_present": true,
+          "patch_sha256": "0bd599b40135bdb8c751f3ba5c7151f4c936d9676fe0b6fc342ea55fa427f490"
+        },
+        {
+          "filename": "pyproject.toml",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "c62025e9c4ff45a1f654b122cb6289eb3918fafbc3bf065d01b718941fb18a69"
+        },
+        {
+          "filename": "src/lerobot/policies/__init__.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "0c4aa223c00130c8c2d1a9968334a84bb8bbd51b4cb84b16cdcaf0b2d38a78e8"
+        },
+        {
+          "filename": "src/lerobot/policies/wall_oss_05/README.md",
+          "status": "added",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "29c2d84a0ba55db78b487f8195e907ff204153f088973f79dd1af95e35a1b9ad"
+        },
+        {
+          "filename": "src/lerobot/policies/wall_oss_05/__init__.py",
+          "status": "added",
+          "additions": 23,
+          "deletions": 0,
+          "changes": 23,
+          "patch_present": true,
+          "patch_sha256": "67d04e36d2d881594c235dd3f93653cdc95d4e641db282c3ebe5d68e0f896e94"
+        },
+        {
+          "filename": "src/lerobot/policies/wall_oss_05/configuration_wall_oss_05.py",
+          "status": "added",
+          "additions": 224,
+          "deletions": 0,
+          "changes": 224,
+          "patch_present": true,
+          "patch_sha256": "a0c189cc30e0773910123f0a046751d5e6c3baab24bb133b7f666bbad4a6e96d"
+        },
+        {
+          "filename": "src/lerobot/policies/wall_oss_05/modeling_wall_oss_05.py",
+          "status": "added",
+          "additions": 990,
+          "deletions": 0,
+          "changes": 990,
+          "patch_present": true,
+          "patch_sha256": "9955790a6d4b2db28911c423798edbfe0b657876362a0318aaaaadca853dc3ef"
+        },
+        {
+          "filename": "src/lerobot/policies/wall_oss_05/processor_wall_oss_05.py",
+          "status": "added",
+          "additions": 654,
+          "deletions": 0,
+          "changes": 654,
+          "patch_present": true,
+          "patch_sha256": "a7fca70f680d9a9b5934ced1f25495f26df02bfad1db04011cff190249519b82"
+        },
+        {
+          "filename": "src/lerobot/templates/lerobot_modelcard_template.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "c0323ba74826569a85a6c868721f1b422cb2829d1b14ecb9b9da9898474d68ef"
+        },
+        {
+          "filename": "tests/policies/wall_oss_05/test_wall_oss_05.py",
+          "status": "added",
+          "additions": 972,
+          "deletions": 0,
+          "changes": 972,
+          "patch_present": true,
+          "patch_sha256": "7fe742b3dbbba55d44d32e14a2c3f67adfe6c9e612b2007a780e6d77766e1b00"
+        },
+        {
+          "filename": "uv.lock",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 1,
+          "changes": 7,
+          "patch_present": true,
+          "patch_sha256": "cf0e45ec0b3dbf562815283a033b2c53841968184e5791c3369f9c7a54c64ec9"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 13,
+        "success": 7
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4292,
+      "title": "fix(smolvla): normalize uint8 images before resizing",
+      "author": "krmayn",
+      "created_at": "2026-08-02T01:47:45Z",
+      "merged_at": "2026-10-21T10:14:13Z",
+      "merge_commit_sha": "c1789b1306ca451cdc61c4576c3eba691bd9b974",
+      "base": "main",
+      "head_sha": "78f283c37aa65b54804db0e9b1ae53dcb14fdce5",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4292",
+      "changed_files": 2,
+      "checks": [
+        {
+          "name": "Build Main Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581089173/job/119158630252",
+          "status": "completed"
+        },
+        {
+          "name": "Build PR Docs / build_pr_documentation",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581089173/job/119158628681",
+          "status": "completed"
+        },
+        {
+          "name": "Run Documentation Checks (Doctests)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581088555/job/119158625888",
+          "status": "completed"
+        },
+        {
+          "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581088555/job/119158625644",
+          "status": "completed"
+        },
+        {
+          "name": "Secret Leaks Scan",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581088582/job/119158624722",
+          "status": "completed"
+        },
+        {
+          "name": "Fast Pytest Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581088504/job/119158621812",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39581085184/job/119158575473",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:52.398743+00:00",
+      "body_sha256": "0c9df41f42335b426604c0ee734d7a3c3eb8c5f0778e2b2d126529e38db26104",
+      "files_returned": 2,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "src/lerobot/policies/smolvla/modeling_smolvla.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "cdc9f17aeec7943bdb99c8b1bf410f1622c1c002fc8a17e84ad30417e36f648a"
+        },
+        {
+          "filename": "tests/policies/smolvla/test_modeling_smolvla.py",
+          "status": "added",
+          "additions": 43,
+          "deletions": 0,
+          "changes": 43,
+          "patch_present": true,
+          "patch_sha256": "e101fde4c5253ac5ed61981ba8a174ad511a1e40a76b78d38712ec30ce78ba4f"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 1,
+        "success": 6
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4813,
+      "title": "feat(policies): accept the starting noise in predict_action_chunk",
+      "author": "shoumikhin",
+      "created_at": "2026-09-30T13:19:28Z",
+      "merged_at": "2026-10-20T14:32:13Z",
+      "merge_commit_sha": "afbf3f14a13bdad3e5990e2bed629c6539605658",
+      "base": "main",
+      "head_sha": "1647d019ce9ac87ab60ec6f6c83f7e6b820c37cb",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4813",
+      "changed_files": 22,
+      "checks": [
+        {
+          "name": "claude",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39408293723/job/118579577652",
+          "status": "completed"
+        },
+        {
+          "name": "Delete PR Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39408293689/job/118579520018",
+          "status": "completed"
+        },
+        {
+          "name": "GPU Tests",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39408293689/job/118579519655",
+          "status": "completed"
+        },
+        {
+          "name": "Build and Push Docker",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39408293689/job/118579519226",
+          "status": "completed"
+        },
+        {
+          "name": "Full Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39408293689/job/118579517278",
+          "status": "completed"
+        },
+        {
+          "name": "Build Main Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385187644/job/118503227919",
+          "status": "completed"
+        },
+        {
+          "name": "Build PR Docs / build_pr_documentation",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385187644/job/118503226205",
+          "status": "completed"
+        },
+        {
+          "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385187030/job/118503224759",
+          "status": "completed"
+        },
+        {
+          "name": "Fast Pytest Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385187181/job/118503224721",
+          "status": "completed"
+        },
+        {
+          "name": "Run Documentation Checks (Doctests)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385187030/job/118503224563",
+          "status": "completed"
+        },
+        {
+          "name": "Secret Leaks Scan",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385186948/job/118503223741",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39385184012/job/118503216108",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:51.587874+00:00",
+      "body_sha256": "3a72758d2c362197134a5d70ca2648cc17fdbcde7f23636cbf8e44fc329cd836",
+      "files_returned": 22,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "src/lerobot/policies/diffusion/modeling_diffusion.py",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 3,
+          "changes": 9,
+          "patch_present": true,
+          "patch_sha256": "13b18d3ea22b6449d4c862e294203957a5e45d806ec7b8255c14d9a62a1a5348"
+        },
+        {
+          "filename": "src/lerobot/policies/fastwam/modeling_fastwam.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 3,
+          "changes": 10,
+          "patch_present": true,
+          "patch_sha256": "f6de1fb808cc43c6971e7d112fe718477502df067cda5b98d4efcab97d128c0e"
+        },
+        {
+          "filename": "src/lerobot/policies/fastwam/wan/modular.py",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 9,
+          "changes": 24,
+          "patch_present": true,
+          "patch_sha256": "1fad131913d4487057849a66e9397eb50438702f18c03d7b9465d4ddf856f719"
+        },
+        {
+          "filename": "src/lerobot/policies/fineart_vla/modeling_fineart_vla.py",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 5,
+          "changes": 19,
+          "patch_present": true,
+          "patch_sha256": "82e65ddee53fde94108c3cb907b045434bd44cc326680520ff17e8850f8969d7"
+        },
+        {
+          "filename": "src/lerobot/policies/flux3/modeling_flux3.py",
+          "status": "modified",
+          "additions": 54,
+          "deletions": 8,
+          "changes": 62,
+          "patch_present": true,
+          "patch_sha256": "1f36289aa595d55eef60e18354339053098232e7632a5c07b0b98e1bdde963a5"
+        },
+        {
+          "filename": "src/lerobot/policies/groot/groot_n1_7.py",
+          "status": "modified",
+          "additions": 20,
+          "deletions": 5,
+          "changes": 25,
+          "patch_present": true,
+          "patch_sha256": "7d81143c73b8bbdd55c85d8d0c443fa3b1097088b1709cc70f6c819a98454f1f"
+        },
+        {
+          "filename": "src/lerobot/policies/groot/modeling_groot.py",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 5,
+          "changes": 17,
+          "patch_present": true,
+          "patch_sha256": "3dc44cc40e3304dccdc945eadc47cf511a4d2497a93a8f9b1b22f26cb442e0a1"
+        },
+        {
+          "filename": "src/lerobot/policies/lawam/modeling_lawam.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 7,
+          "changes": 16,
+          "patch_present": true,
+          "patch_sha256": "cd805036a736e7532ac74ce1c3318e73fa0861541d4bfee0f641dbe150438d86"
+        },
+        {
+          "filename": "src/lerobot/policies/lawam/vlas/flowmatching_expert.py",
+          "status": "modified",
+          "additions": 9,
+          "deletions": 5,
+          "changes": 14,
+          "patch_present": true,
+          "patch_sha256": "885306ec2d7218511c432a7a74574a68dc2f0ca48ad0a04aad798a2530aae71d"
+        },
+        {
+          "filename": "src/lerobot/policies/lawam/vlas/lawam.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "patch_present": true,
+          "patch_sha256": "8828f0aa14eaa7b1a4d1fd7aa2c4d6c397f84a9c848cf87eb43a5e9245d7115b"
+        },
+        {
+          "filename": "src/lerobot/policies/lingbot_va/modeling_lingbot_va.py",
+          "status": "modified",
+          "additions": 39,
+          "deletions": 12,
+          "changes": 51,
+          "patch_present": true,
+          "patch_sha256": "a2547aa63983823ac2b03ff1b10f8fdac57802199bc8e7e40c0051282b20fa09"
+        },
+        {
+          "filename": "src/lerobot/policies/molmoact2/modeling_molmoact2.py",
+          "status": "modified",
+          "additions": 24,
+          "deletions": 12,
+          "changes": 36,
+          "patch_present": true,
+          "patch_sha256": "8ac20b52a1dff9893a17b06bdc3916ba65d0a137104db6b661b92779ff0fdebf"
+        },
+        {
+          "filename": "src/lerobot/policies/molmoact2/molmoact2_hf_model/modeling_molmoact2.py",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 7,
+          "changes": 17,
+          "patch_present": true,
+          "patch_sha256": "df3864b5d0528adb42c735b855cb1c54205641c4fa3f3a15cb8fdf2fb99922f2"
+        },
+        {
+          "filename": "src/lerobot/policies/multi_task_dit/modeling_multi_task_dit.py",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 15,
+          "changes": 44,
+          "patch_present": true,
+          "patch_sha256": "95efb8ccf781cae24bcf7684d78a4c42abe85f22bd48cf4b16dd2daa3d929be0"
+        },
+        {
+          "filename": "src/lerobot/policies/pi0/modeling_pi0.py",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 5,
+          "changes": 22,
+          "patch_present": true,
+          "patch_sha256": "42091bd4f2f318097c32ef1ba923bbced86bf19bb99603b9fc5fdc41b786def3"
+        },
+        {
+          "filename": "src/lerobot/policies/pi05/modeling_pi05.py",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 5,
+          "changes": 20,
+          "patch_present": true,
+          "patch_sha256": "1bcf3eaabedcfd12dd9b19dd5a57526a575c654da9a64a4aeb31f792e51c7125"
+        },
+        {
+          "filename": "src/lerobot/policies/pretrained.py",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "patch_present": true,
+          "patch_sha256": "46314196c46d1d9344894eea996d817af35ce7e668ad4add38b7e70520067b07"
+        },
+        {
+          "filename": "src/lerobot/policies/smolvla/modeling_smolvla.py",
+          "status": "modified",
+          "additions": 19,
+          "deletions": 5,
+          "changes": 24,
+          "patch_present": true,
+          "patch_sha256": "4c6168999754480543c092d8f4cb31f65208367c2bc350954763d2c852a209d9"
+        },
+        {
+          "filename": "src/lerobot/policies/vla_jepa/action_head.py",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 7,
+          "changes": 18,
+          "patch_present": true,
+          "patch_sha256": "b96d03696345cd3a4b501543f50c0065d371df7433d783cdbe3523686621468f"
+        },
+        {
+          "filename": "src/lerobot/policies/vla_jepa/modeling_vla_jepa.py",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 6,
+          "changes": 20,
+          "patch_present": true,
+          "patch_sha256": "e74d35624247d5b3a1c90ea893a1affaab26f01944aeaffe9fa419f59c8d410b"
+        },
+        {
+          "filename": "src/lerobot/policies/xvla/modeling_xvla.py",
+          "status": "modified",
+          "additions": 18,
+          "deletions": 7,
+          "changes": 25,
+          "patch_present": true,
+          "patch_sha256": "3e5313d94f59221e9597130d58b0be0440cb95578aa383128cd35bea4ac14bc9"
+        },
+        {
+          "filename": "tests/policies/groot/test_groot_n1_7.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "patch_present": true,
+          "patch_sha256": "2051cacf04a9d20d98a61556af11e16e7d2703ce6a7d1074fe164d9bda24a360"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 5,
+        "success": 7
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4835,
+      "title": "fix(vla_jepa): pair rotary frequencies with adjacent coordinates",
+      "author": "Afloat16",
+      "created_at": "2026-10-02T09:34:03Z",
+      "merged_at": "2026-10-22T14:00:39Z",
+      "merge_commit_sha": "f9e9d739ea7055b282ea1b165e8785412a674693",
+      "base": "main",
+      "head_sha": "7f9f6d1ce42507ebaa6a6f658e59324e9fe35315",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4835",
+      "changed_files": 2,
+      "checks": [
+        {
+          "name": "Delete PR Image",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39786768529/job/119852181878",
+          "status": "completed"
+        },
+        {
+          "name": "Build and Push Docker",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39786768529/job/119852181022",
+          "status": "completed"
+        },
+        {
+          "name": "GPU Tests",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39786768529/job/119852180746",
+          "status": "completed"
+        },
+        {
+          "name": "Full Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39786768529/job/119852178353",
+          "status": "completed"
+        },
+        {
+          "name": "Secret Leaks Scan",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716785524/job/119852168522",
+          "status": "completed"
+        },
+        {
+          "name": "Build Main Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716786019/job/119852161172",
+          "status": "completed"
+        },
+        {
+          "name": "Build PR Docs / build_pr_documentation",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716786019/job/119852158965",
+          "status": "completed"
+        },
+        {
+          "name": "claude",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39786768547/job/119852158108",
+          "status": "completed"
+        },
+        {
+          "name": "Fast Pytest Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716785587/job/119852154789",
+          "status": "completed"
+        },
+        {
+          "name": "Run Documentation Checks (Doctests)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716785478/job/119852151190",
+          "status": "completed"
+        },
+        {
+          "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716785478/job/119852150788",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/38574476232/job/115887844638",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37716783136/job/113115000109",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:51.178367+00:00",
+      "body_sha256": "839edab65897cddee1afd1bbefd06a4e673295f7406a85135ace6c590cfd9b15",
+      "files_returned": 2,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "docs/source/policy_vla_jepa_README.md",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "patch_present": true,
+          "patch_sha256": "e275e1d025e3822811cbfc4b4334e84e9c13d5139d3d94a14c023e9237e7bf3e"
+        },
+        {
+          "filename": "src/lerobot/policies/vla_jepa/world_model.py",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 2,
+          "changes": 7,
+          "patch_present": true,
+          "patch_sha256": "8546ac90f2649199de5a15d5ceeb90e7411e578e0b3f3858c856be45052a72b1"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "skipped": 6,
+        "success": 7
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4856,
+      "title": "fix(processor): retain device index across pipeline serialization",
+      "author": "JonnyFaeth",
+      "created_at": "2026-10-06T15:17:11Z",
+      "merged_at": "2026-10-21T08:48:36Z",
+      "merge_commit_sha": "9f263752672ad297959fe4eab3186746933bd6b4",
+      "base": "main",
+      "head_sha": "3789527b34c6896e9b52649506b02769076bb511",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4856",
+      "changed_files": 2,
+      "checks": [
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/37486290862/job/112347031729",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:55.124123+00:00",
+      "body_sha256": "8d0bb5d32d7cabacc429b8f463dcecac2bd5789deeb87cad3fda0626faf239bc",
+      "files_returned": 2,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "src/lerobot/processor/device_processor.py",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "bd2037b68d1c84597d72b9088cad7d0445d8b684dbf68893cdcf0832973925d2"
+        },
+        {
+          "filename": "tests/processor/test_device_processor.py",
+          "status": "modified",
+          "additions": 18,
+          "deletions": 3,
+          "changes": 21,
+          "patch_present": true,
+          "patch_sha256": "933578ae1d298fb81ae8764b1b6a76e6bcf0fc424d3d9a4b1ca7799b80bf4341"
+        }
+      ],
+      "what_read": "PR body, complete file index and returned head check list. Not every production patch audited.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "success": 1
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4890,
+      "title": "fix(streaming): give the trainer's data-parallel rank to the streaming dataset",
+      "author": "Hadrien-Cornier",
+      "created_at": "2026-10-08T21:45:47Z",
+      "merged_at": "2026-10-21T19:26:55Z",
+      "merge_commit_sha": "8a125584153240d7511dddfbda440bbee56b134a",
+      "base": "main",
+      "head_sha": "f3bde23867d3f563b2b3740c58e0ebc09917fa30",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4890",
+      "changed_files": 4,
+      "checks": [
+        {
+          "name": "Build Main Docs",
+          "conclusion": "skipped",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661692186/job/119436061135",
+          "status": "completed"
+        },
+        {
+          "name": "Build PR Docs / build_pr_documentation",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661692186/job/119436058794",
+          "status": "completed"
+        },
+        {
+          "name": "Fast Pytest Tests",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661691130/job/119436054044",
+          "status": "completed"
+        },
+        {
+          "name": "Secret Leaks Scan",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661691154/job/119436053994",
+          "status": "completed"
+        },
+        {
+          "name": "Run Documentation Checks (Doctests)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661691183/job/119436053522",
+          "status": "completed"
+        },
+        {
+          "name": "Run Pre-commit Hooks (Lint, Format & Static Analysis)",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661691183/job/119436052988",
+          "status": "completed"
+        },
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/39661685185/job/119436035597",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:50.350502+00:00",
+      "body_sha256": "6ef6aff7ead28077e142f16a945969d822d3c2c55c50c29b1f0d312fa99d56ae",
+      "files_returned": 4,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "src/lerobot/datasets/streaming_dataset.py",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 1,
+          "changes": 13,
+          "patch_present": true,
+          "patch_sha256": "185f09f5e87e2606da0e495affc74745bf3cb97db5c9003b4b9755c8d058a0b5"
+        },
+        {
+          "filename": "src/lerobot/scripts/lerobot_train.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "patch_present": true,
+          "patch_sha256": "936e4c50c93d206137e7640d83a1c0caf38805ce5248638538af1265386076b5"
+        },
+        {
+          "filename": "tests/datasets/test_streaming_production.py",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "patch_present": true,
+          "patch_sha256": "02385cd3a3b2fa124e74ca42ec273c3b008bf44a3652c5b94e38fb8a2f10840b"
+        },
+        {
+          "filename": "tests/utils/test_train_utils.py",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 0,
+          "changes": 32,
+          "patch_present": true,
+          "patch_sha256": "a890a3690be3b9cea0d053239edec02b56d4a535cb18eb1bd47d85ab70365e76"
+        }
+      ],
+      "what_read": "All 4 file patches, including real spawn regression and trainer wiring test; body and checks.",
+      "triage": "Accepted",
+      "decision": "Read",
+      "check_counts": {
+        "skipped": 1,
+        "success": 6
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "number": 4949,
+      "title": "fix(datasets): weight sampled image stats by episode length",
+      "author": "AaravMehta-07",
+      "created_at": "2026-10-13T07:50:44Z",
+      "merged_at": "2026-10-21T08:49:52Z",
+      "merge_commit_sha": "a554e5ef2f018dc5b2c5a79f3c0a3565688afa17",
+      "base": "main",
+      "head_sha": "e71acc0a113089a9d76a7b535736e9749a63041d",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4949",
+      "changed_files": 2,
+      "checks": [
+        {
+          "name": "Label PR",
+          "conclusion": "success",
+          "html_url": "https://github.com/huggingface/lerobot/actions/runs/38365295726/job/115188857943",
+          "status": "completed"
+        }
+      ],
+      "fetched_utc": "2026-10-23T03:27:50.723565+00:00",
+      "body_sha256": "5c6286eca5a4186b3579fcc1282d26af4b77fd18a73c14f00ad5faa6b4a73685",
+      "files_returned": 2,
+      "files_pages": 1,
+      "files_limit": 3000,
+      "file_index": [
+        {
+          "filename": "src/lerobot/datasets/compute_stats.py",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "patch_present": true,
+          "patch_sha256": "ec43dcf3dd67e7408347e218ee4b82f91eb9ae8c3d1bc89ce550f36028edac8c"
+        },
+        {
+          "filename": "tests/datasets/test_compute_stats.py",
+          "status": "modified",
+          "additions": 31,
+          "deletions": 0,
+          "changes": 31,
+          "patch_present": true,
+          "patch_sha256": "66084660c6dc5d91f9e653ea7f7ab800c5f40c1558e668e824a11627bc3e807e"
+        }
+      ],
+      "what_read": "All 2 file patches including real PNG analytical count/mean/std oracle and persisted/resumed aggregation; body and checks.",
+      "triage": "Observed",
+      "decision": "Observe",
+      "check_counts": {
+        "success": 1
+      },
+      "checks_query_limit": 100,
+      "checks_exhausted": true,
+      "local_tests_run": false
+    }
+  ],
+  "detail_count": 12,
+  "full_diff_read_count": 2,
+  "check_boundary": "Check conclusion snapshots are upstream reports, not local verification; skipped and failed jobs retained."
+}

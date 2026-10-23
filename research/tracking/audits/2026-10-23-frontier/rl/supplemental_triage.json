@@ -1,0 +1,171 @@
+{
+  "verified_at": "2026-10-23T04:22:31.343814+00:00",
+  "sources": [
+    {
+      "source_id": "arxiv:2610.26426v1",
+      "url": "https://arxiv.org/abs/2610.26426v1",
+      "decision": "Observe",
+      "citation_metadata": {
+        "citation_title": [
+          "HarnessRL: Co-Evolving Policies with a Just-in-Time Training Harness for Open-Ended RL"
+        ],
+        "citation_author": [
+          "Wang, Xiaoqiang",
+          "Lin, Ting-En",
+          "Wu, Yuchuan",
+          "Zhang, Pinyi",
+          "Kang, Caixin",
+          "Li, Ling",
+          "Qiu, Bingxue",
+          "Ye, Jieping",
+          "Li, Yongbin",
+          "Liu, Bang"
+        ],
+        "citation_date": [
+          "2026/10/19"
+        ],
+        "citation_online_date": [
+          "2026/10/19"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.26426"
+        ],
+        "citation_arxiv_id": [
+          "2610.26426"
+        ]
+      },
+      "reason": "方法HTML已取，尚未深核harness更新开销与reward漂移边界。",
+      "abs_sha256": "6c4e68261cf7d746771003e503931120bdef1372b9a751070aa66450b6e84fb2"
+    },
+    {
+      "source_id": "arxiv:2610.25860v1",
+      "url": "https://arxiv.org/abs/2610.25860v1",
+      "decision": "Observe",
+      "citation_metadata": {
+        "citation_title": [
+          "Adaptive Decoding Methods for Token-Efficient Reinforcement Learning"
+        ],
+        "citation_author": [
+          "Li, Zhaonan",
+          "Cheng, Zelei",
+          "Mishra, Amritansh",
+          "Lee, Chia-Hsuan",
+          "Patel, Mann",
+          "Sahu, Sambit",
+          "Zhou, Ben",
+          "Campbell, William M."
+        ],
+        "citation_date": [
+          "2026/10/19"
+        ],
+        "citation_online_date": [
+          "2026/10/19"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.25860"
+        ],
+        "citation_arxiv_id": [
+          "2610.25860"
+        ]
+      },
+      "reason": "已核primary metadata/abstract；小样本噪声与test replay不支持稳定系统收益。",
+      "abs_sha256": "654c8afd69a39e2496978e2233d895f49e7e9bf5a4cba371f83ba14650bbca1f"
+    },
+    {
+      "source_id": "arxiv:2610.29458v1",
+      "url": "https://arxiv.org/abs/2610.29458v1",
+      "decision": "Observe",
+      "citation_metadata": {
+        "citation_title": [
+          "Harness Scaling for Generalizable Agentic Reinforcement Learning"
+        ],
+        "citation_author": [
+          "Bai, Fei",
+          "Song, Huatong",
+          "Hao, Chuan",
+          "Tao, Ran",
+          "Yang, Jian",
+          "Dai, Bryan",
+          "Zhao, Wayne Xin",
+          "Wen, Ji-Rong"
+        ],
+        "citation_date": [
+          "2026/10/21"
+        ],
+        "citation_online_date": [
+          "2026/10/21"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.29458"
+        ],
+        "citation_arxiv_id": [
+          "2610.29458"
+        ]
+      },
+      "reason": "已核primary metadata/abstract；harness泛化成本与外部环境边界待全文。",
+      "abs_sha256": "b123d919262e988505b29f558781b937357a482f858b3e8d74f4b0a4291714d9"
+    },
+    {
+      "source_id": "arxiv:2610.28785v1",
+      "url": "https://arxiv.org/abs/2610.28785v1",
+      "decision": "Observe",
+      "citation_metadata": {
+        "citation_title": [
+          "Measure First, Then Allocate: Calibrated Rollout Budgets for MCP Agents in Reinforcement Learning"
+        ],
+        "citation_author": [
+          "Tran, Hieu",
+          "Yao, Zonghai",
+          "Kwon, Sunjae",
+          "Yu, Hong"
+        ],
+        "citation_date": [
+          "2026/10/20"
+        ],
+        "citation_online_date": [
+          "2026/10/20"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2610.28785"
+        ],
+        "citation_arxiv_id": [
+          "2610.28785"
+        ]
+      },
+      "reason": "已核primary metadata/abstract；历史bank成本与新增rollout需分账，全文未核。",
+      "abs_sha256": "0ace2f9977c7921dd952cd22d5f86ea2d4a257629aa993fcb254f039f7ea5565"
+    },
+    {
+      "source_id": "hf-blog:microsoft/thinkingbox-training:2026-10-22",
+      "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+      "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+      "author_byline": "Tuhin Kundu",
+      "published": "2026-10-22",
+      "source_class": "Microsoft-authored Enterprise Article; article states joint Microsoft/Hugging Face contribution",
+      "decision": "Observe",
+      "reason": "新训练pipeline有价值；旧benchmark不重复收录，187训练任务私有，公开sample不能复现报告结果。",
+      "read_sections": [
+        "training loop",
+        "offline policy-relative difficulty",
+        "reward paths",
+        "training stack and dataset limitation"
+      ],
+      "pinned_implementation_link": "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
+      "implementation_read": false
+    },
+    {
+      "source_id": "hf-blog:huggingface/train-agents:2026-10-20",
+      "url": "https://huggingface.co/blog/huggingface/train-agents",
+      "title": "A curriculum for post-training agents",
+      "authors": [
+        "ben burtenshaw",
+        "Sergio Paniego",
+        "merve"
+      ],
+      "published": "2026-10-20",
+      "source_class": "Community Article by Hugging Face team members",
+      "decision": "Observe",
+      "reason": "五阶段学习导航，未建立独立新系统机制。"
+    }
+  ]
+}

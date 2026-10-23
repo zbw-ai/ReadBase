@@ -1,0 +1,4587 @@
+[
+  {
+    "repo": "THUDM/slime",
+    "number": 2484,
+    "title": "Support isolated SGLang Python runtimes",
+    "author": "zhuzilin",
+    "base": "main",
+    "html_url": "https://github.com/THUDM/slime/pull/2484",
+    "created_at": "2026-10-19T07:31:49Z",
+    "merged_at": "2026-10-19T08:41:49Z",
+    "merge_commit_sha": "a4202e0595467d9374d9a68d45a34f45c3f8d230",
+    "changed_files": 14,
+    "additions": 526,
+    "deletions": 18,
+    "files": [
+      {
+        "filename": ".github/workflows/pr-test.yml",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/pr-test.yml.j2",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/advanced/external-rollout-engines.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/advanced/sglang-config.md",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 0,
+        "changes": 37,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/advanced/external-rollout-engines.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/advanced/sglang-config.md",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 0,
+        "changes": 37,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/backends/sglang_utils/arguments.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/backends/sglang_utils/engine_group.py",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 5,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/backends/sglang_utils/runtime.py",
+        "status": "added",
+        "additions": 119,
+        "deletions": 0,
+        "changes": 119,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/backends/sglang_utils/sglang_engine.py",
+        "status": "modified",
+        "additions": 42,
+        "deletions": 13,
+        "changes": 55,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_server_control.py",
+        "status": "modified",
+        "additions": 34,
+        "deletions": 0,
+        "changes": 34,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_sglang_runtime.py",
+        "status": "added",
+        "additions": 190,
+        "deletions": 0,
+        "changes": 190,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_sglang_arguments.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_sglang_config.py",
+        "status": "modified",
+        "additions": 34,
+        "deletions": 0,
+        "changes": 34,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 14,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 14
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "areal-project/AReaL",
+    "number": 1800,
+    "title": "fix(trainer): drain single-teacher RTensor input caches",
+    "author": "zhuqiweigit",
+    "base": "main",
+    "html_url": "https://github.com/areal-project/AReaL/pull/1800",
+    "created_at": "2026-10-17T09:36:37Z",
+    "merged_at": "2026-10-19T09:30:24Z",
+    "merge_commit_sha": "25c1dd1af8ba46cafab839515511b5962d3b2aab",
+    "changed_files": 3,
+    "additions": 337,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "areal/infra/controller/rollout_controller.py",
+        "status": "modified",
+        "additions": 35,
+        "deletions": 0,
+        "changes": 35,
+        "patch_returned": true
+      },
+      {
+        "filename": "areal/trainer/rl_trainer.py",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 0,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_teacher_rtensor_cleanup.py",
+        "status": "added",
+        "additions": 295,
+        "deletions": 0,
+        "changes": 295,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 3,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 3
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "huggingface/trl",
+    "number": 7610,
+    "title": "Adaptive in-flight cap from vLLM load in AsyncGRPO",
+    "author": "AmineDiro",
+    "base": "main",
+    "html_url": "https://github.com/huggingface/trl/pull/7610",
+    "created_at": "2026-10-09T13:37:12Z",
+    "merged_at": "2026-10-19T08:40:23Z",
+    "merge_commit_sha": "d296691ae5ca2db37887942fa6b60265f2581595",
+    "changed_files": 7,
+    "additions": 212,
+    "deletions": 18,
+    "files": [
+      {
+        "filename": "docs/source/async_grpo_trainer.md",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 1,
+        "changes": 11,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/experimental/test_async_grpo_trainer.py",
+        "status": "modified",
+        "additions": 92,
+        "deletions": 0,
+        "changes": 92,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_distillation/vllm_client.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 2,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/async_grpo_trainer.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/async_rollout_worker.py",
+        "status": "modified",
+        "additions": 91,
+        "deletions": 10,
+        "changes": 101,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/vllm_client.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 2,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/weight_transfer.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 3,
+        "changes": 11,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 7,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 7
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "deepspeedai/DeepSpeed",
+    "number": 8732,
+    "title": "Enable CUDA Graph for continuous rollouts",
+    "author": "nathon-lee",
+    "base": "master",
+    "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8732",
+    "created_at": "2026-10-03T08:12:21Z",
+    "merged_at": "2026-10-19T14:34:23Z",
+    "merge_commit_sha": "0eb3a8bcc6d9a8775478e5377482c4bf2dd23c1c",
+    "changed_files": 10,
+    "additions": 757,
+    "deletions": 16,
+    "files": [
+      {
+        "filename": "accelerator/abstract_accelerator.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "accelerator/cuda_accelerator.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "deepspeed/runtime/rollout/hybrid_engine_rollout.py",
+        "status": "modified",
+        "additions": 329,
+        "deletions": 5,
+        "changes": 334,
+        "patch_returned": true
+      },
+      {
+        "filename": "deepspeed/utils/static_cache.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/_tutorials/accelerator-abstraction-interface.md",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/code-docs/source/inference-engine.rst",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 1,
+        "changes": 12,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/accelerator/test_accelerator_graph.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/runtime/rollout/test_hybrid_engine_rollout.py",
+        "status": "modified",
+        "additions": 228,
+        "deletions": 6,
+        "changes": 234,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/utils/test_static_cache.py",
+        "status": "modified",
+        "additions": 42,
+        "deletions": 0,
+        "changes": 42,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/v1/test_hybrid_engine_rollout_v1.py",
+        "status": "modified",
+        "additions": 127,
+        "deletions": 3,
+        "changes": 130,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 10,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 10
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 4842,
+    "title": "fix(data-plane): preserve jagged routes until microbatch padding",
+    "author": "macandro96",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4842",
+    "created_at": "2026-10-21T18:58:28Z",
+    "merged_at": "2026-10-21T23:17:38Z",
+    "merge_commit_sha": "7421e488b8011ca6101490b7f66bac47930dbb00",
+    "changed_files": 2,
+    "additions": 58,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "nemo_rl/data_plane/adapters/transfer_queue.py",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 0,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data_plane/test_codec_mooncake.py",
+        "status": "modified",
+        "additions": 51,
+        "deletions": 0,
+        "changes": 51,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 4511,
+    "title": "fix(sft): preserve checkpoint initialization and optimizer resume state",
+    "author": "rohitrango",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4511",
+    "created_at": "2026-10-05T17:04:46Z",
+    "merged_at": "2026-10-22T06:12:15Z",
+    "merge_commit_sha": "353d5c199b16e6c94b1c7c75af85b708cd3fc898",
+    "changed_files": 7,
+    "additions": 134,
+    "deletions": 19,
+    "files": [
+      {
+        "filename": "nemo_rl/algorithms/sft_v2.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/megatron/community_import.py",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 2,
+        "changes": 20,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/megatron/setup.py",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 13,
+        "changes": 26,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/utils/checkpoint.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_sft_v2.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 0,
+        "changes": 25,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/megatron/test_community_import.py",
+        "status": "modified",
+        "additions": 58,
+        "deletions": 1,
+        "changes": 59,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/megatron/test_megatron_setup.py",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 2,
+        "changes": 18,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 7,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 7
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8306,
+    "title": "[2/3][sglang] feat: support mxfp8/mxfp4/nvfp4 weight refit",
+    "author": "wuxibin89",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8306",
+    "created_at": "2026-10-21T06:34:01Z",
+    "merged_at": "2026-10-21T08:39:31Z",
+    "merge_commit_sha": "5265d561a3bf29f3af3d0aeae8634fe8bf4617c3",
+    "changed_files": 9,
+    "additions": 832,
+    "deletions": 25,
+    "files": [
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_sglang.yml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/qat.md",
+        "status": "modified",
+        "additions": 23,
+        "deletions": 18,
+        "changes": 41,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/__init__.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/compressed_tensors.py",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 2,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/sglang/sglang_fp4_utils.py",
+        "status": "added",
+        "additions": 260,
+        "deletions": 0,
+        "changes": 260,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/sglang/sglang_fp8_utils.py",
+        "status": "added",
+        "additions": 211,
+        "deletions": 0,
+        "changes": 211,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/sglang/sglang_quant_utils.py",
+        "status": "added",
+        "additions": 273,
+        "deletions": 0,
+        "changes": 273,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/sglang_rollout/async_sglang_server.py",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 4,
+        "changes": 22,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/sglang_rollout/sglang_rollout.py",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 0,
+        "changes": 29,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 9,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 9
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "areal-project/AReaL",
+    "number": 1801,
+    "title": "fix(engine): restore FSDP learning-rate scheduler state",
+    "author": "zhuqiweigit",
+    "base": "main",
+    "html_url": "https://github.com/areal-project/AReaL/pull/1801",
+    "created_at": "2026-10-17T09:54:16Z",
+    "merged_at": "2026-10-19T09:31:07Z",
+    "merge_commit_sha": "432357180bcb8679a787478cab0f00139d19f1c2",
+    "changed_files": 4,
+    "additions": 322,
+    "deletions": 3,
+    "files": [
+      {
+        "filename": "areal/engine/fsdp_engine.py",
+        "status": "modified",
+        "additions": 32,
+        "deletions": 3,
+        "changes": 35,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/reference/checkpointing.md",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/reference/checkpointing.md",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_fsdp_scheduler_checkpoint.py",
+        "status": "added",
+        "additions": 278,
+        "deletions": 0,
+        "changes": 278,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 4,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 4
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8127,
+    "title": "[megatron] feat: MXFP8 training recipe and end-to-end example",
+    "author": "wengeezhang",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8127",
+    "created_at": "2026-10-07T12:39:44Z",
+    "merged_at": "2026-10-22T02:35:00Z",
+    "merge_commit_sha": "d1390eea0c94467d4ae1387eeda9e2f78f8d73ea",
+    "changed_files": 12,
+    "additions": 776,
+    "deletions": 16,
+    "files": [
+      {
+        "filename": "docs/index.rst",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/mxfp8.md",
+        "status": "added",
+        "additions": 161,
+        "deletions": 0,
+        "changes": 161,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/mxfp8/run_qwen3_30b_a3b_megatron.sh",
+        "status": "added",
+        "additions": 182,
+        "deletions": 0,
+        "changes": 182,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/mxfp8/run_qwen3_8b_megatron.sh",
+        "status": "added",
+        "additions": 160,
+        "deletions": 0,
+        "changes": 160,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/models/test_model_forward_fused.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_megatron_fp8_padding_on_cpu.py",
+        "status": "added",
+        "additions": 142,
+        "deletions": 0,
+        "changes": 142,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_mxfp8_ignored_layers_on_cpu.py",
+        "status": "added",
+        "additions": 68,
+        "deletions": 0,
+        "changes": 68,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/model_forward.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 2,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/model_forward_fused.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 3,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/util.py",
+        "status": "modified",
+        "additions": 30,
+        "deletions": 5,
+        "changes": 35,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/megatron/router_replay_utils.py",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 6,
+        "changes": 21,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine/megatron/transformer_impl.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 12,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 12
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8287,
+    "title": "[BREAKING][megatron, vllm, sglang, rollout, doc] refactor: unify QAT and low-precision rollout",
+    "author": "wuxibin89",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8287",
+    "created_at": "2026-10-19T12:46:39Z",
+    "merged_at": "2026-10-19T14:01:44Z",
+    "merge_commit_sha": "8f016846e3010e225072a947270dc0c1b98c1cd0",
+    "changed_files": 60,
+    "additions": 2915,
+    "deletions": 3131,
+    "files": [
+      {
+        "filename": ".github/workflows/e2e_ppo_grpo_trainer_trtllm.yml",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 28,
+        "changes": 28,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_sglang.yml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 2,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_vllm.yml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_vllm_2.yml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_vllm_rocm.yml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": ".pre-commit-config.yaml",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 2,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/ascend_tutorial/zh/dev_guide/model_dev/parameter_and_metrics.md",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/ascend_tutorial/zh/feature_support/ascend_backend_features.md",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/ascend_tutorial/zh/feature_support/npu_advance_features.md",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/index.rst",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/fp8.md",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 48,
+        "changes": 61,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/nvfp4_qat.md",
+        "status": "modified",
+        "additions": 40,
+        "deletions": 69,
+        "changes": 109,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/qat.md",
+        "status": "added",
+        "additions": 223,
+        "deletions": 0,
+        "changes": 223,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/grpo_trainer/run_nemotron_nano_v3_30b_a3b_megatron.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/grpo_trainer/run_qwen3_30b_a3b_megatron.sh",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 10,
+        "changes": 18,
+        "patch_returned": true
+      },
+      {
+        "filename": "scripts/rollout_logprob_diff.py",
+        "status": "added",
+        "additions": 307,
+        "deletions": 0,
+        "changes": 307,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/experimental/agent_loop/agent_utils.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 1,
+        "changes": 9,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/special_e2e/run_ppo_trainer_megatron.sh",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 1,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/special_sanity/check_device_api_usage.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_modelopt_mxfp8_on_cpu.py",
+        "status": "added",
+        "additions": 455,
+        "deletions": 0,
+        "changes": 455,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_sglang_fp8_utils.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 107,
+        "changes": 107,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_vllm_fp8_restage_same_shape_on_cpu.py",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 0,
+        "changes": 20,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_vllm_mxfp4_restage_on_cpu.py",
+        "status": "added",
+        "additions": 168,
+        "deletions": 0,
+        "changes": 168,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_vllm_quant_utils_moe_on_cpu.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 240,
+        "changes": 240,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_vllm_weight_name_normalization_on_cpu.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 6,
+        "changes": 11,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/workers/rollout/test_vllm_weight_update_utils_on_cpu.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/workers/test_megatron_liger_fused_kernels_on_cpu.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/experimental/fully_async_policy/shell/grpo_30b_a3b_base_math_megatron_8_8_mis_trtllm.sh",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 7,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_megatron_trainer.yaml",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 8,
+        "changes": 23,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_torchtitan_trainer.yaml",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 5,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_trainer.yaml",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 5,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_veomni_trainer.yaml",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 5,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/engine/megatron.yaml",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/reward/reward.yaml",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 2,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/rollout/rollout.yaml",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 7,
+        "changes": 24,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/modelopt/__init__.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 36,
+        "changes": 36,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/modelopt/qat_utils.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 45,
+        "changes": 45,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/modelopt/qat_weight_exporter.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 275,
+        "changes": 275,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/modelopt/quantize.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 80,
+        "changes": 80,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/modelopt/vllm_modelopt_patch.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 619,
+        "changes": 619,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/__init__.py",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 13,
+        "changes": 29,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/compressed_tensors.py",
+        "status": "added",
+        "additions": 583,
+        "deletions": 0,
+        "changes": 583,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/modelopt.py",
+        "status": "added",
+        "additions": 355,
+        "deletions": 0,
+        "changes": 355,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/qat/vllm_patch.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 828,
+        "changes": 828,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/sglang/sglang_fp8_utils.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 127,
+        "changes": 127,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/trtllm/trtllm_fp8_utils.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 21,
+        "changes": 21,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/vllm/vllm_fp4_utils.py",
+        "status": "modified",
+        "additions": 379,
+        "deletions": 15,
+        "changes": 394,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/vllm/vllm_fp8_utils.py",
+        "status": "modified",
+        "additions": 74,
+        "deletions": 4,
+        "changes": 78,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/vllm/vllm_quant_utils.py",
+        "status": "modified",
+        "additions": 35,
+        "deletions": 299,
+        "changes": 334,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/config/engine.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/config/rollout.py",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 6,
+        "changes": 43,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine/base.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine/megatron/transformer_impl.py",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 5,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine_workers.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/sglang_rollout/async_sglang_server.py",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 25,
+        "changes": 46,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/sglang_rollout/sglang_rollout.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 23,
+        "changes": 23,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/trtllm_rollout/trtllm_async_server.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 14,
+        "changes": 16,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/trtllm_rollout/trtllm_rollout.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 17,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/vllm_rollout/utils.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 45,
+        "changes": 53,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/vllm_rollout/vllm_async_server.py",
+        "status": "modified",
+        "additions": 24,
+        "deletions": 65,
+        "changes": 89,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 60,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 60
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA/Megatron-LM",
+    "number": 8233,
+    "title": "[Dev] Bound a chained optimizer's state staging to one manager's windows",
+    "author": "HJSang",
+    "base": "dev",
+    "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8233",
+    "created_at": "2026-10-14T20:53:42Z",
+    "merged_at": "2026-10-20T13:20:47Z",
+    "merge_commit_sha": "3280d14fc7bef1872ee90928f79f2d09dbf5f774",
+    "changed_files": 6,
+    "additions": 504,
+    "deletions": 55,
+    "files": [
+      {
+        "filename": "megatron/core/optimizer/cpu_offloading/README.md",
+        "status": "modified",
+        "additions": 23,
+        "deletions": 15,
+        "changes": 38,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/optimizer/cpu_offloading/chunked_optimizer_state_offload.py",
+        "status": "modified",
+        "additions": 90,
+        "deletions": 12,
+        "changes": 102,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/optimizer/layer_wise_optimizer.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/optimizer/optimizer.py",
+        "status": "modified",
+        "additions": 81,
+        "deletions": 24,
+        "changes": 105,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/test_layer_wise_optimizer.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/test_optimizer_state_offloading.py",
+        "status": "modified",
+        "additions": 302,
+        "deletions": 2,
+        "changes": 304,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 6,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 6
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "THUDM/slime",
+    "number": 2482,
+    "title": "Rewind Straw checkpoints in place with dataset cursor fallback",
+    "author": "zhuzilin",
+    "base": "main",
+    "html_url": "https://github.com/THUDM/slime/pull/2482",
+    "created_at": "2026-10-19T03:37:35Z",
+    "merged_at": "2026-10-19T03:46:57Z",
+    "merge_commit_sha": "4f204660abcd531882dd4918ee301f107a952eb4",
+    "changed_files": 24,
+    "additions": 990,
+    "deletions": 724,
+    "files": [
+      {
+        "filename": ".github/workflows/pr-test.yml",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/pr-test.yml.j2",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/advanced/rollout-scheduling.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/advanced/straw.md",
+        "status": "modified",
+        "additions": 39,
+        "deletions": 38,
+        "changes": 77,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/en/developer_guide/ci.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/advanced/rollout-scheduling.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/advanced/straw.md",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 13,
+        "changes": 29,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/zh/developer_guide/ci.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/archive.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/batch_builder.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 4,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/checkpoint.py",
+        "status": "modified",
+        "additions": 107,
+        "deletions": 159,
+        "changes": 266,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/codec.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 1,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/queue_data_source.py",
+        "status": "modified",
+        "additions": 220,
+        "deletions": 222,
+        "changes": 442,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/rewind.py",
+        "status": "added",
+        "additions": 158,
+        "deletions": 0,
+        "changes": 158,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/data/transport.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 30,
+        "changes": 31,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/observability/rollout_data_utils.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/ray/rollout.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/ray/training_recovery.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 4,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "slime/rollout/sglang_rollout.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_distributed_rollout.py",
+        "status": "modified",
+        "additions": 253,
+        "deletions": 77,
+        "changes": 330,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_rollout_straw_transport.py",
+        "status": "modified",
+        "additions": 88,
+        "deletions": 85,
+        "changes": 173,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_straw_checkpoint_rewind.py",
+        "status": "renamed",
+        "additions": 46,
+        "deletions": 72,
+        "changes": 118,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_training_recovery.py",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 7,
+        "changes": 44,
+        "patch_returned": true
+      },
+      {
+        "filename": "train.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 24,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 24
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 4720,
+    "title": "fix: carry the export stream dependency across packed refit buffers",
+    "author": "yuekaizhang",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4720",
+    "created_at": "2026-10-14T06:42:26Z",
+    "merged_at": "2026-10-19T09:24:47Z",
+    "merge_commit_sha": "affdc0189fedb5bf7a6bffe3965ebfa72e42075b",
+    "changed_files": 2,
+    "additions": 90,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "nemo_rl/utils/packed_tensor.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/utils/test_packed_tensor.py",
+        "status": "modified",
+        "additions": 76,
+        "deletions": 0,
+        "changes": 76,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8025,
+    "title": "[training_utils, trainer, tests] feat: raw log-prob mismatch metrics for rollout vs actor",
+    "author": "cr-gao",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8025",
+    "created_at": "2026-09-26T20:11:19Z",
+    "merged_at": "2026-10-22T03:39:07Z",
+    "merge_commit_sha": "16ec093cc4a235c603c29aed1f2c4e9f551fab48",
+    "changed_files": 4,
+    "additions": 56,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "tests/trainer/ppo/v1/test_metrics_aggregator_on_cpu.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/debug/test_metrics.py",
+        "status": "modified",
+        "additions": 33,
+        "deletions": 0,
+        "changes": 33,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/ppo/v1/utils.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/debug/metrics.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 4,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 4
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 4433,
+    "title": "fix(vllm): discard colocated weights at safe sleeps",
+    "author": "humairafirdowse18",
+    "base": "r0.8.0",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4433",
+    "created_at": "2026-10-03T02:09:57Z",
+    "merged_at": "2026-10-22T18:13:11Z",
+    "merge_commit_sha": "4b3a141cf120c440db7bfda67d27a5c0fa5f1040",
+    "changed_files": 20,
+    "additions": 471,
+    "deletions": 17,
+    "files": [
+      {
+        "filename": ".github/workflows/config/.secrets.baseline",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/performance/grpo-nemotron3-super-120BA12B-32n4g.yaml",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo.py",
+        "status": "modified",
+        "additions": 46,
+        "deletions": 5,
+        "changes": 51,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo_sync.py",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 0,
+        "changes": 16,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/single_controller_utils/config.py",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 0,
+        "changes": 12,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/megatron/megatron_generation.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/config.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_generation.py",
+        "status": "modified",
+        "additions": 52,
+        "deletions": 2,
+        "changes": 54,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_worker.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_worker_async.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 3,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_discard_weights_on_sleep.py",
+        "status": "added",
+        "additions": 42,
+        "deletions": 0,
+        "changes": 42,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_grpo.py",
+        "status": "modified",
+        "additions": 111,
+        "deletions": 0,
+        "changes": 111,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/generation/test_vllm_generation.py",
+        "status": "modified",
+        "additions": 129,
+        "deletions": 0,
+        "changes": 129,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/reference_configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_checkpointing.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_ppo_setup.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_resiliency_config.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 2,
+        "changes": 12,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_setup.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/test_recipe_settings.py",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 0,
+        "changes": 15,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 20,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 20
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA/Megatron-LM",
+    "number": 8232,
+    "title": "[Dev] Bound optimizer-owned master weights by the offload chunk size",
+    "author": "HJSang",
+    "base": "dev",
+    "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8232",
+    "created_at": "2026-10-14T20:53:40Z",
+    "merged_at": "2026-10-22T08:51:04Z",
+    "merge_commit_sha": "a5aa637fa5dbe2b08af7b413e32306dbc086aa01",
+    "changed_files": 3,
+    "additions": 281,
+    "deletions": 150,
+    "files": [
+      {
+        "filename": "megatron/core/optimizer/cpu_offloading/README.md",
+        "status": "modified",
+        "additions": 22,
+        "deletions": 17,
+        "changes": 39,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/optimizer/cpu_offloading/chunked_optimizer_state_offload.py",
+        "status": "modified",
+        "additions": 108,
+        "deletions": 124,
+        "changes": 232,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/test_optimizer_state_offloading.py",
+        "status": "modified",
+        "additions": 151,
+        "deletions": 9,
+        "changes": 160,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 3,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 3
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 3929,
+    "title": "feat: pause SingleController refits and enable KV recomputation by default",
+    "author": "youngeunkwon0405",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3929",
+    "created_at": "2026-08-31T08:29:40Z",
+    "merged_at": "2026-10-19T20:45:38Z",
+    "merge_commit_sha": "7344ae75271a7474e87214f4e1de46792fa0d058",
+    "changed_files": 38,
+    "additions": 1229,
+    "deletions": 146,
+    "files": [
+      {
+        "filename": "docs/guides/async-grpo.md",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 4,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/guides/ppo.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/guides/single-controller.md",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 2,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/grpo_math_1B_megatron_single_controller.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/ppo_math_1B.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/ppo_math_1B_megatron_single_controller.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-nanov3-30BA3B-2n8g-megatron_generation-colocated-reshard-async-gym.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-nanov3-30BA3B-2n8g-megatron_generation-noncolocated-async-gym.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen2.5-math-1.5b-instruct-1n4g-megatron_generation-noncolocated-single-controller-async-lag4.yaml",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen2.5-math-1.5b-instruct-1n8g-megatron_generation-noncolocated-single-controller-async-lag4.yaml",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/ppo-deepseek-r1-distill-qwen-7b-8n4g-megatron-noncolocated-async-single-controller.yaml",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 1,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/vlm/vlm_grpo-nemotron-omni-30ba3b-16n8g-megatron-tp4ep4-async-gym-video.v1.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/vlm/vlm_grpo-nemotron-omni-30ba3b-clevr-8n4g-megatron-single-controller-async.v1.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/grpo_qwen3_0_6b_megatron_generation_single_controller.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 8,
+        "changes": 18,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/ppo.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/single_controller.py",
+        "status": "modified",
+        "additions": 75,
+        "deletions": 29,
+        "changes": 104,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/single_controller_utils/config.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 3,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/interfaces.py",
+        "status": "modified",
+        "additions": 34,
+        "deletions": 12,
+        "changes": 46,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/megatron/config.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/sglang/sglang_generation.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 0,
+        "changes": 25,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_generation.py",
+        "status": "modified",
+        "additions": 62,
+        "deletions": 25,
+        "changes": 87,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/grpo_megatron_generation_colocated_reshard_gym_single_controller.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/nemotron_omni_clevr_megatron_single_controller_1n2g.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_grpo.py",
+        "status": "modified",
+        "additions": 61,
+        "deletions": 1,
+        "changes": 62,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/generation/test_vllm_generation.py",
+        "status": "modified",
+        "additions": 67,
+        "deletions": 24,
+        "changes": 91,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/generation/test_vllm_refit_resume.py",
+        "status": "added",
+        "additions": 220,
+        "deletions": 0,
+        "changes": 220,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/reference_configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/reference_configs/ppo_math_1B_megatron.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_checkpointing.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_refit_recovery.py",
+        "status": "modified",
+        "additions": 158,
+        "deletions": 0,
+        "changes": 158,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_setup.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_single_controller_actor.py",
+        "status": "modified",
+        "additions": 289,
+        "deletions": 11,
+        "changes": 300,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_train_pump_e2e.py",
+        "status": "modified",
+        "additions": 23,
+        "deletions": 7,
+        "changes": 30,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/test_config_v2.py",
+        "status": "modified",
+        "additions": 58,
+        "deletions": 0,
+        "changes": 58,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/test_recipe_settings.py",
+        "status": "modified",
+        "additions": 98,
+        "deletions": 1,
+        "changes": 99,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/weight_sync/test_reshard_rebuild.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 38,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 38
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "areal-project/AReaL",
+    "number": 1807,
+    "title": "fix(utils): split fused HCCL P2P batches by directed peer",
+    "author": "Adiactive",
+    "base": "ascend",
+    "html_url": "https://github.com/areal-project/AReaL/pull/1807",
+    "created_at": "2026-10-19T07:32:38Z",
+    "merged_at": "2026-10-23T02:57:54Z",
+    "merge_commit_sha": "abe0fb0a94e6121fedc3597ef2073e28a69dd67c",
+    "changed_files": 2,
+    "additions": 74,
+    "deletions": 8,
+    "files": [
+      {
+        "filename": "areal/utils/torch_npu_compat.py",
+        "status": "modified",
+        "additions": 30,
+        "deletions": 7,
+        "changes": 37,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_torch_npu_compat.py",
+        "status": "modified",
+        "additions": 44,
+        "deletions": 1,
+        "changes": 45,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 3286,
+    "title": "feat(xtoken): replace DP token alignment with offset-based cluster alignment",
+    "author": "avenkateshha",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3286",
+    "created_at": "2026-07-19T18:56:25Z",
+    "merged_at": "2026-10-21T06:32:16Z",
+    "merge_commit_sha": "4fdd49c2255d4f83efe8628508b79cc7372a89da",
+    "changed_files": 45,
+    "additions": 7583,
+    "deletions": 1448,
+    "files": [
+      {
+        "filename": ".github/workflows/config/.secrets.baseline",
+        "status": "modified",
+        "additions": 39,
+        "deletions": 0,
+        "changes": 39,
+        "patch_returned": true
+      },
+      {
+        "filename": "README.md",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/guides/xtoken-off-policy-distillation.md",
+        "status": "modified",
+        "additions": 139,
+        "deletions": 7,
+        "changes": 146,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/chat_templates/qwen3_history.jinja",
+        "status": "added",
+        "additions": 95,
+        "deletions": 0,
+        "changes": 95,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/distillation-xtoken-off-policy-multiteacher-qwen3-4b-llama3.2-3b-to-llama3.2-1b-1n8g-automodel-tp4cp2.yaml",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 6,
+        "changes": 16,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/distillation-xtoken-off-policy-qwen3-4b-to-llama3.2-1b-1n8g-automodel-tp4cp2.yaml",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/xtoken_multiteacher_off_policy_distillation.yaml",
+        "status": "modified",
+        "additions": 36,
+        "deletions": 16,
+        "changes": 52,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/xtoken_native_chat.yaml",
+        "status": "added",
+        "additions": 111,
+        "deletions": 0,
+        "changes": 111,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/xtoken_off_policy_distillation.yaml",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 16,
+        "changes": 53,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/run_xtoken_off_policy_distillation.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 4,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/loss/loss_functions.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 4,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/x_token/loss_utils.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 15,
+        "changes": 16,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/x_token/token_aligner.py",
+        "status": "modified",
+        "additions": 1036,
+        "deletions": 739,
+        "changes": 1775,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/xtoken_off_policy_distillation.py",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 28,
+        "changes": 77,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/chat_templates.py",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 0,
+        "changes": 21,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/chat_utils.py",
+        "status": "added",
+        "additions": 61,
+        "deletions": 0,
+        "changes": 61,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/cross_tokenizer_collate.py",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 205,
+        "changes": 205,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/datasets/response_datasets/oai_format_dataset.py",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 0,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/interfaces.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/processors.py",
+        "status": "modified",
+        "additions": 54,
+        "deletions": 6,
+        "changes": 60,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/xtoken/__init__.py",
+        "status": "added",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/xtoken/cross_tokenizer_collate.py",
+        "status": "added",
+        "additions": 503,
+        "deletions": 0,
+        "changes": 503,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/xtoken/native_chat.py",
+        "status": "added",
+        "additions": 602,
+        "deletions": 0,
+        "changes": 602,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/utils/outdated_config_checks.py",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 0,
+        "changes": 15,
+        "patch_returned": true
+      },
+      {
+        "filename": "pyrefly.toml",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/L1_Functional_Tests_Other_2.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/test_data/xtoken_native_chat.jsonl",
+        "status": "added",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/xtoken_native_chat.sh",
+        "status": "added",
+        "additions": 54,
+        "deletions": 0,
+        "changes": 54,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/functional/xtoken_off_policy_distillation.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/distillation-xtoken-off-policy-multiteacher-qwen3-4b-llama3.2-3b-to-llama3.2-1b-1n8g-automodel-tp4cp2.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/distillation-xtoken-off-policy-qwen3-4b-to-llama3.2-1b-1n8g-automodel-tp4cp2.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_loss_functions.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 12,
+        "changes": 15,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_chat_eot_supervision.py",
+        "status": "added",
+        "additions": 241,
+        "deletions": 0,
+        "changes": 241,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_loss_utils.py",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 44,
+        "changes": 44,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_token_aligner.py",
+        "status": "modified",
+        "additions": 589,
+        "deletions": 272,
+        "changes": 861,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_token_aligner_native.py",
+        "status": "added",
+        "additions": 732,
+        "deletions": 0,
+        "changes": 732,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_xtoken_off_policy_distillation.py",
+        "status": "modified",
+        "additions": 231,
+        "deletions": 41,
+        "changes": 272,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data/test_chat_data_transport.py",
+        "status": "added",
+        "additions": 272,
+        "deletions": 0,
+        "changes": 272,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data/test_cross_tokenizer_chat_eot.py",
+        "status": "added",
+        "additions": 211,
+        "deletions": 0,
+        "changes": 211,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data/test_cross_tokenizer_collate.py",
+        "status": "modified",
+        "additions": 359,
+        "deletions": 14,
+        "changes": 373,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data/test_cross_tokenizer_native_chat.py",
+        "status": "added",
+        "additions": 1393,
+        "deletions": 0,
+        "changes": 1393,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/data/test_qwen3_history_template.py",
+        "status": "added",
+        "additions": 561,
+        "deletions": 0,
+        "changes": 561,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/test_automodel_context_parallel.py",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 11,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/test_config_validation.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/utils/test_outdated_config_checks.py",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 0,
+        "changes": 49,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 45,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 45
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "areal-project/AReaL",
+    "number": 1812,
+    "title": "fix(utils): split multimodal payloads by trajectory rows",
+    "author": "zmuxuny",
+    "base": "main",
+    "html_url": "https://github.com/areal-project/AReaL/pull/1812",
+    "created_at": "2026-10-21T10:43:14Z",
+    "merged_at": "2026-10-23T02:46:10Z",
+    "merge_commit_sha": "86843b5001c6633f8dfe753c05f94dfba495c418",
+    "changed_files": 2,
+    "additions": 171,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "areal/utils/data.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_multimodal_trajectory_split.py",
+        "status": "added",
+        "additions": 157,
+        "deletions": 0,
+        "changes": 157,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA/Megatron-LM",
+    "number": 6429,
+    "title": "[Main] Recompute EP A2A overlap activations per layer segment (supersedes #5920)",
+    "author": "Wohox",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/6429",
+    "created_at": "2026-08-11T02:53:18Z",
+    "merged_at": "2026-10-23T02:29:33Z",
+    "merge_commit_sha": "da2c0ec614d9bb7bdfc16c833ee6568f64f73af9",
+    "changed_files": 8,
+    "additions": 1153,
+    "deletions": 187,
+    "files": [
+      {
+        "filename": "megatron/core/models/common/model_chunk_schedule_plan.py",
+        "status": "modified",
+        "additions": 293,
+        "deletions": 2,
+        "changes": 295,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/models/common/utils.py",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 1,
+        "changes": 18,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/pipeline_parallel/combined_1f1b.py",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/pipeline_parallel/utils.py",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 3,
+        "changes": 23,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/README.md",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/transformer_config.py",
+        "status": "modified",
+        "additions": 77,
+        "deletions": 9,
+        "changes": 86,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/README.md",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 0,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/a2a_overlap/test_schedule_chunk_1f1b.py",
+        "status": "modified",
+        "additions": 718,
+        "deletions": 172,
+        "changes": 890,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 8,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 8
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 4743,
+    "title": "feat(checkpoint): opt-in MSC (S3) checkpoint storage",
+    "author": "ZhiyuLi-Nvidia",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/4743",
+    "created_at": "2026-10-15T16:44:01Z",
+    "merged_at": "2026-10-22T10:13:24Z",
+    "merge_commit_sha": "d643cc4c116affb780b2af42a6220288b91dfb8c",
+    "changed_files": 30,
+    "additions": 872,
+    "deletions": 193,
+    "files": [
+      {
+        "filename": "docs/design-docs/checkpointing.md",
+        "status": "modified",
+        "additions": 36,
+        "deletions": 0,
+        "changes": 36,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/async_utils/replay_buffer.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/distillation.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 5,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/dpo.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 4,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 19,
+        "changes": 44,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo_sync.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 8,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/ppo.py",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 10,
+        "changes": 19,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/rm.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 5,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/sft.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 4,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/sft_v2.py",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 6,
+        "changes": 18,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/single_controller.py",
+        "status": "modified",
+        "additions": 24,
+        "deletions": 8,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/single_controller_utils/setup.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 5,
+        "changes": 19,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/xtoken_off_policy_distillation.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 6,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/data/utils.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 4,
+        "changes": 29,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/megatron/setup.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 14,
+        "changes": 39,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/lm_policy.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/workers/megatron_policy_worker.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/value/lm_value.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/value/workers/megatron_value_worker.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/utils/checkpoint.py",
+        "status": "modified",
+        "additions": 53,
+        "deletions": 75,
+        "changes": 128,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/utils/checkpoint_storage.py",
+        "status": "added",
+        "additions": 149,
+        "deletions": 0,
+        "changes": 149,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/utils/path_utils.py",
+        "status": "added",
+        "additions": 105,
+        "deletions": 0,
+        "changes": 105,
+        "patch_returned": true
+      },
+      {
+        "filename": "pyproject.toml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "pyrefly.toml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/test_rm.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/x_token/test_xtoken_off_policy_distillation.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 2,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_setup.py",
+        "status": "modified",
+        "additions": 32,
+        "deletions": 0,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/utils/test_checkpoint.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 4,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/utils/test_checkpoint_msc.py",
+        "status": "added",
+        "additions": 224,
+        "deletions": 0,
+        "changes": 224,
+        "patch_returned": true
+      },
+      {
+        "filename": "uv.lock",
+        "status": "modified",
+        "additions": 85,
+        "deletions": 5,
+        "changes": 90,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 30,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 30
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "huggingface/trl",
+    "number": 7793,
+    "title": "AsyncGRPO: keep filling a micro-batch when another row has free room",
+    "author": "clementtisseau",
+    "base": "main",
+    "html_url": "https://github.com/huggingface/trl/pull/7793",
+    "created_at": "2026-10-19T08:19:15Z",
+    "merged_at": "2026-10-22T10:08:27Z",
+    "merge_commit_sha": "a707c77fc1e3a571c3c605a5ab1a381831430ab9",
+    "changed_files": 4,
+    "additions": 53,
+    "deletions": 16,
+    "files": [
+      {
+        "filename": "docs/source/async_grpo_trainer.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/experimental/test_async_grpo_trainer.py",
+        "status": "modified",
+        "additions": 33,
+        "deletions": 9,
+        "changes": 42,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/async_grpo_trainer.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 6,
+        "changes": 14,
+        "patch_returned": true
+      },
+      {
+        "filename": "trl/experimental/async_grpo/packing.py",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 0,
+        "changes": 11,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 4,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 4
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8325,
+    "title": "[megatron, trainer] fix: recipe-agnostic THD padding and FP8 padding of top-k distillation tensors",
+    "author": "wengeezhang",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8325",
+    "created_at": "2026-10-22T02:54:26Z",
+    "merged_at": "2026-10-22T06:11:07Z",
+    "merge_commit_sha": "b1a98e1d425e44180ddbf8d87aa074dde71c5466",
+    "changed_files": 10,
+    "additions": 253,
+    "deletions": 99,
+    "files": [
+      {
+        "filename": "tests/models/test_model_forward_fused.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 4,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_megatron_fp8_padding_on_cpu.py",
+        "status": "modified",
+        "additions": 138,
+        "deletions": 20,
+        "changes": 158,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/workers/test_megatron_distillation_only_on_cpu.py",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 5,
+        "changes": 34,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/model_forward.py",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 8,
+        "changes": 15,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/model_forward_fused.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 6,
+        "changes": 10,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/models/mcore/util.py",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 32,
+        "changes": 57,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/losses.py",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 1,
+        "changes": 10,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/megatron/losses.py",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 4,
+        "changes": 22,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/megatron/router_replay_utils.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 18,
+        "changes": 28,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine/megatron/transformer_impl.py",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 1,
+        "changes": 12,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 10,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 10
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "deepspeedai/DeepSpeed",
+    "number": 8838,
+    "title": "Add Triton kernels for vocab-parallel logprobs, entropy and KL",
+    "author": "jinyouzhi",
+    "base": "master",
+    "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8838",
+    "created_at": "2026-10-16T14:47:36Z",
+    "merged_at": "2026-10-21T16:05:12Z",
+    "merge_commit_sha": "0b0d4081a00971585b693b0b4fbaecfaec70d824",
+    "changed_files": 4,
+    "additions": 695,
+    "deletions": 27,
+    "files": [
+      {
+        "filename": "deepspeed/ops/triton_ops/vocab_parallel_softmax.py",
+        "status": "added",
+        "additions": 366,
+        "deletions": 0,
+        "changes": 366,
+        "patch_returned": true
+      },
+      {
+        "filename": "deepspeed/sequence/vocab_parallel_ops.py",
+        "status": "modified",
+        "additions": 166,
+        "deletions": 27,
+        "changes": 193,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/_tutorials/autotp-training.md",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/v1/sequence_parallelism/test_vocab_parallel_ops.py",
+        "status": "modified",
+        "additions": 157,
+        "deletions": 0,
+        "changes": 157,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 4,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 4
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 7855,
+    "title": "[algo, fsdp, megatron, veomni] feat: add tail-aware top-k KL for on-policy distillation",
+    "author": "PengyuLi7",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/7855",
+    "created_at": "2026-09-13T10:45:57Z",
+    "merged_at": "2026-10-20T01:53:15Z",
+    "merge_commit_sha": "5a8dd519ab32bfd36d2509a137f830ba79e89c54",
+    "changed_files": 14,
+    "additions": 709,
+    "deletions": 45,
+    "files": [
+      {
+        "filename": "docs/algo/opd.md",
+        "status": "modified",
+        "additions": 88,
+        "deletions": 5,
+        "changes": 93,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/on_policy_distillation_trainer/README.md",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/utils/test_special_megatron_kl_loss_tp.py",
+        "status": "modified",
+        "additions": 74,
+        "deletions": 2,
+        "changes": 76,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/workers/test_distillation_topk_symmetry_on_cpu.py",
+        "status": "modified",
+        "additions": 237,
+        "deletions": 3,
+        "changes": 240,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_megatron_trainer.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_torchtitan_trainer.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_trainer.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/_generated_ppo_veomni_trainer.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/config/distillation/distillation.yaml",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/fsdp/losses.py",
+        "status": "modified",
+        "additions": 72,
+        "deletions": 10,
+        "changes": 82,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/losses.py",
+        "status": "modified",
+        "additions": 54,
+        "deletions": 5,
+        "changes": 59,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/megatron/losses.py",
+        "status": "modified",
+        "additions": 87,
+        "deletions": 15,
+        "changes": 102,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/tail_kl.py",
+        "status": "added",
+        "additions": 70,
+        "deletions": 0,
+        "changes": 70,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/config/distillation.py",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 3,
+        "changes": 19,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 14,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 14
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA/Megatron-LM",
+    "number": 8313,
+    "title": "MFSDP v2: add Muon with sharded momentum",
+    "author": "wujingyue",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/8313",
+    "created_at": "2026-10-17T15:46:01Z",
+    "merged_at": "2026-10-20T21:22:05Z",
+    "merge_commit_sha": "91d774de79a6d732f28d7f44fab0abbaac1b57a6",
+    "changed_files": 4,
+    "additions": 400,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "megatron/core/distributed/fsdp/src/megatron_fsdp/experimental/muon.py",
+        "status": "added",
+        "additions": 261,
+        "deletions": 0,
+        "changes": 261,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/distributed/fsdp/src/pyproject.toml",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/determinism/kernels/manifest.py",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/distributed/mfsdp_v2/test_muon.py",
+        "status": "added",
+        "additions": 126,
+        "deletions": 0,
+        "changes": 126,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 4,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 4
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "areal-project/AReaL",
+    "number": 1802,
+    "title": "fix(utils): share the Saver frequency decision across models in a step",
+    "author": "MohammadHijjawi97",
+    "base": "main",
+    "html_url": "https://github.com/areal-project/AReaL/pull/1802",
+    "created_at": "2026-10-17T13:19:19Z",
+    "merged_at": "2026-10-19T09:31:35Z",
+    "merge_commit_sha": "3b93679888e9f4929f6f155f13c6a286a62dfd72",
+    "changed_files": 2,
+    "additions": 61,
+    "deletions": 3,
+    "files": [
+      {
+        "filename": "areal/utils/saver.py",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 3,
+        "changes": 20,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_saver.py",
+        "status": "modified",
+        "additions": 44,
+        "deletions": 0,
+        "changes": 44,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA/Megatron-LM",
+    "number": 7394,
+    "title": "[MCore] Add global-batch quantile balancing",
+    "author": "rkarimimahab",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA/Megatron-LM/pull/7394",
+    "created_at": "2026-09-16T09:01:54Z",
+    "merged_at": "2026-10-22T21:14:21Z",
+    "merge_commit_sha": "92641a421f40eeb40fc83f3f13ec83ca652c8b13",
+    "changed_files": 19,
+    "additions": 1431,
+    "deletions": 44,
+    "files": [
+      {
+        "filename": "megatron/core/distributed/finalize_model_grads.py",
+        "status": "modified",
+        "additions": 71,
+        "deletions": 6,
+        "changes": 77,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/extensions/transformer_engine.py",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 0,
+        "changes": 15,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/cuda_graphs.py",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 0,
+        "changes": 20,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/README.md",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/moe_utils.py",
+        "status": "modified",
+        "additions": 136,
+        "deletions": 16,
+        "changes": 152,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/paged_stash.py",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 0,
+        "changes": 13,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/router.py",
+        "status": "modified",
+        "additions": 61,
+        "deletions": 6,
+        "changes": 67,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/moe/token_dispatcher.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 1,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/core/transformer/transformer_config.py",
+        "status": "modified",
+        "additions": 102,
+        "deletions": 8,
+        "changes": 110,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/training/arguments.py",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 2,
+        "changes": 11,
+        "patch_returned": true
+      },
+      {
+        "filename": "megatron/training/checkpointing.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/determinism/kernels/manifest.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 2,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/determinism/kernels/test_moe_kernels.py",
+        "status": "modified",
+        "additions": 87,
+        "deletions": 0,
+        "changes": 87,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/determinism/kernels/test_te_wrappers.py",
+        "status": "modified",
+        "additions": 50,
+        "deletions": 0,
+        "changes": 50,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/models/test_hybrid_moe_model.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/test_checkpointing.py",
+        "status": "modified",
+        "additions": 32,
+        "deletions": 0,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/transformer/moe/test_paged_stashing.py",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 0,
+        "changes": 49,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/transformer/moe/test_quantile_balancing.py",
+        "status": "added",
+        "additions": 686,
+        "deletions": 0,
+        "changes": 686,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit_tests/transformer/test_cuda_graphs.py",
+        "status": "modified",
+        "additions": 83,
+        "deletions": 2,
+        "changes": 85,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 19,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 19
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "NVIDIA-NeMo/RL",
+    "number": 3960,
+    "title": "feat(automodel): speculative decoding draft co-training",
+    "author": "yuekaizhang",
+    "base": "main",
+    "html_url": "https://github.com/NVIDIA-NeMo/RL/pull/3960",
+    "created_at": "2026-09-02T03:12:15Z",
+    "merged_at": "2026-10-19T14:17:22Z",
+    "merge_commit_sha": "f9b4a98a1f3a1e960894458c07564e9cd2ed1749",
+    "changed_files": 86,
+    "additions": 8288,
+    "deletions": 278,
+    "files": [
+      {
+        "filename": ".github/workflows/config/.secrets.baseline",
+        "status": "modified",
+        "additions": 41,
+        "deletions": 19,
+        "changes": 60,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/assets/qwen3-30ba3b-2507-automodel-speculative-decoding.png",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "docs/assets/qwen3-8b-automodel-speculative-decoding.png",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "docs/guides/automodel-speculative-decoding.md",
+        "status": "added",
+        "additions": 269,
+        "deletions": 0,
+        "changes": 269,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/guides/eagle3-speculative-decoding.md",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 2,
+        "changes": 17,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/index.md",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 32,
+        "deletions": 7,
+        "changes": 39,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/ppo_math_1B_megatron_single_controller.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-30ba3b-2507-instruct-4n8g-automodel-eagle3.yaml",
+        "status": "added",
+        "additions": 28,
+        "deletions": 0,
+        "changes": 28,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-30ba3b-2507-instruct-4n8g-automodel.yaml",
+        "status": "added",
+        "additions": 54,
+        "deletions": 0,
+        "changes": 54,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-8b-4n8g-automodel-dflash.yaml",
+        "status": "added",
+        "additions": 32,
+        "deletions": 0,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-8b-4n8g-automodel-dspark.yaml",
+        "status": "added",
+        "additions": 28,
+        "deletions": 0,
+        "changes": 28,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-8b-4n8g-automodel-eagle3.yaml",
+        "status": "added",
+        "additions": 26,
+        "deletions": 0,
+        "changes": 26,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/grpo-qwen3-8b-4n8g-automodel.yaml",
+        "status": "added",
+        "additions": 104,
+        "deletions": 0,
+        "changes": 104,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/configs/recipes/llm/ppo-qwen2.5-1.5b-gsm8k-2n8g-megatron-valuetp2sp-dynbatch-noncolocated-async-single-controller.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/grpo_nanov3.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/grpo_workplace_assistant_nemotron_nano_v2_9b.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/nemotron-3-super/stage1_rlvr.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/nemotron-3-super/stage2_swe1.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/nemotron-3-super/stage3_rlhf.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/nemo_gym/run_grpo_nemo_gym.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 1,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/run_grpo.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 1,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "examples/run_grpo_single_controller.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/grpo_sync.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/loss/__init__.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/loss/wrapper.py",
+        "status": "modified",
+        "additions": 64,
+        "deletions": 0,
+        "changes": 64,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/algorithms/utils.py",
+        "status": "modified",
+        "additions": 32,
+        "deletions": 0,
+        "changes": 32,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/checkpoint.py",
+        "status": "modified",
+        "additions": 46,
+        "deletions": 28,
+        "changes": 74,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/config.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/__init__.py",
+        "status": "added",
+        "additions": 47,
+        "deletions": 0,
+        "changes": 47,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/checkpoint.py",
+        "status": "added",
+        "additions": 325,
+        "deletions": 0,
+        "changes": 325,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/common.py",
+        "status": "added",
+        "additions": 255,
+        "deletions": 0,
+        "changes": 255,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/draft_qwen3.py",
+        "status": "added",
+        "additions": 701,
+        "deletions": 0,
+        "changes": 701,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/eagle3_llama.py",
+        "status": "added",
+        "additions": 400,
+        "deletions": 0,
+        "changes": 400,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/hidden_capture.py",
+        "status": "added",
+        "additions": 151,
+        "deletions": 0,
+        "changes": 151,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/loss.py",
+        "status": "added",
+        "additions": 405,
+        "deletions": 0,
+        "changes": 405,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/markov_head.py",
+        "status": "added",
+        "additions": 117,
+        "deletions": 0,
+        "changes": 117,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/runtime.py",
+        "status": "added",
+        "additions": 592,
+        "deletions": 0,
+        "changes": 592,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/draft/setup.py",
+        "status": "added",
+        "additions": 593,
+        "deletions": 0,
+        "changes": 593,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/setup.py",
+        "status": "modified",
+        "additions": 126,
+        "deletions": 12,
+        "changes": 138,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/automodel/train.py",
+        "status": "modified",
+        "additions": 132,
+        "deletions": 69,
+        "changes": 201,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/__init__.py",
+        "status": "modified",
+        "additions": 28,
+        "deletions": 0,
+        "changes": 28,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/interfaces.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/draft_utils.py",
+        "status": "added",
+        "additions": 312,
+        "deletions": 0,
+        "changes": 312,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/utils.py",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_backend.py",
+        "status": "modified",
+        "additions": 61,
+        "deletions": 14,
+        "changes": 75,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/generation/vllm/vllm_generation.py",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 0,
+        "changes": 13,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/__init__.py",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 2,
+        "changes": 15,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/draft_config.py",
+        "status": "modified",
+        "additions": 136,
+        "deletions": 18,
+        "changes": 154,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/lm_policy.py",
+        "status": "modified",
+        "additions": 123,
+        "deletions": 50,
+        "changes": 173,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/policy/workers/automodel_policy_worker.py",
+        "status": "modified",
+        "additions": 173,
+        "deletions": 37,
+        "changes": 210,
+        "patch_returned": true
+      },
+      {
+        "filename": "nemo_rl/models/value/workers/automodel_value_worker.py",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 13,
+        "changes": 27,
+        "patch_returned": true
+      },
+      {
+        "filename": "pyrefly.toml",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "research/template_project/configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/disabled.txt",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-30ba3b-2507-instruct-4n8g-automodel-eagle3.sh",
+        "status": "added",
+        "additions": 44,
+        "deletions": 0,
+        "changes": 44,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-30ba3b-2507-instruct-4n8g-automodel.sh",
+        "status": "added",
+        "additions": 38,
+        "deletions": 0,
+        "changes": 38,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-8b-4n8g-automodel-dflash.sh",
+        "status": "added",
+        "additions": 48,
+        "deletions": 0,
+        "changes": 48,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-8b-4n8g-automodel-dspark.sh",
+        "status": "added",
+        "additions": 48,
+        "deletions": 0,
+        "changes": 48,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-8b-4n8g-automodel-eagle3.sh",
+        "status": "added",
+        "additions": 48,
+        "deletions": 0,
+        "changes": 48,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/llm/grpo-qwen3-8b-4n8g-automodel.sh",
+        "status": "added",
+        "additions": 38,
+        "deletions": 0,
+        "changes": 38,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/test_suites/nightly.txt",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 0,
+        "changes": 7,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/draft/__init__.py",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "tests/unit/algorithms/draft/test_draft_loss_wrapper.py",
+        "status": "renamed",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "tests/unit/algorithms/draft/test_draft_runtime_loss_wrapper.py",
+        "status": "added",
+        "additions": 107,
+        "deletions": 0,
+        "changes": 107,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/algorithms/draft/test_draft_soft_ce.py",
+        "status": "renamed",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "tests/unit/algorithms/draft/test_finalize_draft_ratio_metrics.py",
+        "status": "added",
+        "additions": 67,
+        "deletions": 0,
+        "changes": 67,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/__init__.py",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "patch_returned": false
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_draft_config_adapters.py",
+        "status": "added",
+        "additions": 192,
+        "deletions": 0,
+        "changes": 192,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_draft_loss_decay.py",
+        "status": "added",
+        "additions": 159,
+        "deletions": 0,
+        "changes": 159,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_draft_optimizer_layout.py",
+        "status": "added",
+        "additions": 96,
+        "deletions": 0,
+        "changes": 96,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_draft_refit_transports.py",
+        "status": "added",
+        "additions": 124,
+        "deletions": 0,
+        "changes": 124,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_draft_vocab_maps.py",
+        "status": "added",
+        "additions": 171,
+        "deletions": 0,
+        "changes": 171,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_dspark_anchor_sampling.py",
+        "status": "added",
+        "additions": 130,
+        "deletions": 0,
+        "changes": 130,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_dspark_checkpoint_meta.py",
+        "status": "added",
+        "additions": 284,
+        "deletions": 0,
+        "changes": 284,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/automodel/draft/test_eagle3_trainer_grads.py",
+        "status": "added",
+        "additions": 483,
+        "deletions": 0,
+        "changes": 483,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/generation/test_vllm_backend.py",
+        "status": "modified",
+        "additions": 533,
+        "deletions": 0,
+        "changes": 533,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/generation/test_vllm_draft_utils.py",
+        "status": "added",
+        "additions": 63,
+        "deletions": 0,
+        "changes": 63,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/policy/test_automodel_checkpoint_engine.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/policy/test_automodel_worker.py",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/policy/test_draft_config.py",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/models/policy/test_lm_policy_draft_guards.py",
+        "status": "modified",
+        "additions": 30,
+        "deletions": 1,
+        "changes": 31,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/reference_configs/grpo_math_1B.yaml",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 1,
+        "changes": 8,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/single_controller/test_entrypoint.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/test_recipes_and_test_suites.py",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3,
+        "changes": 6,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 86,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 86
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8308,
+    "title": "[3/3][vllm] feat: standardize low-precision kernels on DeepGEMM",
+    "author": "wuxibin89",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8308",
+    "created_at": "2026-10-21T08:17:14Z",
+    "merged_at": "2026-10-21T10:23:29Z",
+    "merge_commit_sha": "619c397dc9917fed278b6e47c52a6620aef05466",
+    "changed_files": 8,
+    "additions": 232,
+    "deletions": 147,
+    "files": [
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_sglang.yml",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": ".github/workflows/e2e_ppo_trainer_megatron_vllm.yml",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "patch_returned": true
+      },
+      {
+        "filename": "docs/low_precision/qat.md",
+        "status": "modified",
+        "additions": 46,
+        "deletions": 16,
+        "changes": 62,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/sglang/sglang_quant_utils.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 8,
+        "changes": 12,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/vllm/vllm_fp4_utils.py",
+        "status": "modified",
+        "additions": 112,
+        "deletions": 109,
+        "changes": 221,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/utils/vllm/vllm_quant_utils.py",
+        "status": "modified",
+        "additions": 55,
+        "deletions": 0,
+        "changes": 55,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/sglang_rollout/async_sglang_server.py",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/rollout/vllm_rollout/vllm_async_server.py",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 10,
+        "changes": 15,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 8,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 8
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "deepspeedai/DeepSpeed",
+    "number": 8839,
+    "title": "[OPSD] Request last-position logits only in HybridEngine rollout prefill",
+    "author": "jinyouzhi",
+    "base": "master",
+    "html_url": "https://github.com/deepspeedai/DeepSpeed/pull/8839",
+    "created_at": "2026-10-16T15:28:32Z",
+    "merged_at": "2026-10-22T09:24:39Z",
+    "merge_commit_sha": "ff34be65ee1656ddca9a4b31fda3e817bbb34313",
+    "changed_files": 2,
+    "additions": 61,
+    "deletions": 0,
+    "files": [
+      {
+        "filename": "deepspeed/runtime/rollout/hybrid_engine_rollout.py",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 0,
+        "changes": 11,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/unit/runtime/rollout/test_hybrid_engine_rollout.py",
+        "status": "modified",
+        "additions": 50,
+        "deletions": 0,
+        "changes": 50,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 2,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 2
+      }
+    ],
+    "file_pagination_complete": true
+  },
+  {
+    "repo": "verl-project/verl",
+    "number": 8332,
+    "title": "[megatron, trainer] fix: pack the teacher's top-k tensors with the student's CP split",
+    "author": "wengeezhang",
+    "base": "main",
+    "html_url": "https://github.com/verl-project/verl/pull/8332",
+    "created_at": "2026-10-22T06:37:55Z",
+    "merged_at": "2026-10-22T08:03:32Z",
+    "merge_commit_sha": "67bf1df3f2d294f4c5fa65a5dd4585f24d642816",
+    "changed_files": 5,
+    "additions": 202,
+    "deletions": 23,
+    "files": [
+      {
+        "filename": "tests/utils/test_megatron_fp8_padding_on_cpu.py",
+        "status": "modified",
+        "additions": 99,
+        "deletions": 3,
+        "changes": 102,
+        "patch_returned": true
+      },
+      {
+        "filename": "tests/workers/test_megatron_distillation_only_on_cpu.py",
+        "status": "modified",
+        "additions": 65,
+        "deletions": 10,
+        "changes": 75,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/losses.py",
+        "status": "modified",
+        "additions": 22,
+        "deletions": 5,
+        "changes": 27,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/trainer/distillation/megatron/losses.py",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 4,
+        "changes": 13,
+        "patch_returned": true
+      },
+      {
+        "filename": "verl/workers/engine/megatron/transformer_impl.py",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 1,
+        "changes": 8,
+        "patch_returned": true
+      }
+    ],
+    "actual_files_returned": 5,
+    "file_pages_expected": 1,
+    "file_pages": [
+      {
+        "page": 1,
+        "returned": 5
+      }
+    ],
+    "file_pagination_complete": true
+  }
+]
