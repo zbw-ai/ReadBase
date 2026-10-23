@@ -28,6 +28,8 @@
 | RL／Agent | [框架与机制](../04-rl-infra/README.md)、[历史来源](tracking/historical_backfill.md) | 以已有来源笔记和代码分析为基线，不自动视作实验验证 |
 | 具身 | [核心 topic](../05-embodied-infra/topics/embodied_infra.md)、[模型与算法](../05-embodied-infra/topics/embodied_models_primer.md#model-roles)、[样本到动作推演](../05-embodied-infra/topics/embodied_models_primer.md#sample-to-action)、[Infra 关注点](../05-embodied-infra/topics/embodied_models_primer.md#infra-priorities)、[数据 I/O](../05-embodied-infra/topics/embodied_data_io.md) | 基础正文已建立；[VLT 术语来源边界](tracking/backfill/2026-04.md#xpeng-vlt-terminology)仅作名称核验；读者掌握与实验验证待记录 |
 
+岗位应用入口：[AI Infra 入职手册的公开业务来源](../practice/projects/2026-10-agibot-onboarding.md#sources) → [技术准备与既有正文](../practice/projects/2026-10-agibot-onboarding.md#technical-prep)。这是特定入职准备的来源集合与个人计划，不作为新增研究扫描、阅读完成或生产验证记录。
+
 ## 0. 使用方式
 
 - 每篇先读 `解决的问题`、`工程价值`、`生产环境思考题`，再决定是否深读公式和实验。

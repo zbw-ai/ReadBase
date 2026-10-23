@@ -8,6 +8,7 @@
 2. [A100 / FSDP / IO 实验路线](experiments/a100_fsdp_io_lab.md)：配合 [FSDP 正文](../02-training-infra/topics/fsdp.md)学习；E00–E08 均未执行，不存在本路线实测收益。
 3. [生产排障目录](playbooks/README.md)：有故障时按症状选入口，优先找 first failure 和影响范围，避免先调参数。
 4. [长上下文 Agentic RL 项目](projects/2026-q3-long-context-agentic-rl/README.md)：学会区分历史 baseline、诊断 case 与后续实验，最新记录以项目 [STATUS](projects/2026-q3-long-context-agentic-rl/STATUS.md)原日期为准。
+5. [AI Infra 入职与三个月行动手册](projects/2026-10-agibot-onboarding.md#quick-nav)：公司与业务认知、主管沟通、30/60/90 天交付、技术准备与工作模板；当前是个人规划，尚非公司确认的 OKR，也没有已执行的工作成果。后续内部记录不填入公开仓库。
 
 ## 问题到验证
 

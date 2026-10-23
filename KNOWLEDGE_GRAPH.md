@@ -38,6 +38,7 @@ flowchart TB
 | 短历史 / 环境latent → 状态生命周期 | [10/19来源](research/tracking/frontier_scan_2026-10-19.md) ↔ [具身学习机制](05-embodied-infra/topics/embodied_infra.md#oct19-learning) ↔ [推理状态](03-inference-infra/topics/inference_state.md) ↔ [RL状态](04-rl-infra/topics/agentic_rl.md#oct19-state-lifecycle) | 核输入身份、reset、producer完成和checkpoint；未实验验证 |
 | 持续经验 / 质量标签 → 执行身份 | [10/14 来源](research/tracking/frontier_scan_2026-10-14.md) ↔ [学习机制](05-embodied-infra/topics/embodied_infra.md#oct14-learning) ↔ [I/O 验收](05-embodied-infra/topics/embodied_data_io.md#oct14-io) | 方法/源码核查，实验未执行 |
 | 外部证据 → 工程判断 → 可证伪实验 | [研究流程](research/README.md) ↔ [实验与项目](practice/README.md) | 学习状态与实测结果分别记录 |
+| 具身学习 → 真实需求 → 基线与阶段交付 | [具身路线](05-embodied-infra/roadmap.md) ↔ [AI Infra 入职手册](practice/projects/2026-10-agibot-onboarding.md#technical-prep) | [候选项目与验收](practice/projects/2026-10-agibot-onboarding.md#candidate-projects)为个人规划，未执行、未作为正式 OKR 确认 |
 
 下面保留训练基础图、已建立的双向索引与研究关联，供按需深入；它们不取代以上跨领域视图。
 
