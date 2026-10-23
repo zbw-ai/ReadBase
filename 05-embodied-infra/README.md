@@ -12,7 +12,7 @@
 
 | 编号 | 阶段入口 | 正文入口与真实覆盖 |
 |---|---|---|
-| 5.1 | [模型与动作](roadmap.md#stage-1) | [具身模型入门](topics/embodied_models_primer.md)：任务、MLLM、VLA、world model 与训练目标 |
+| 5.1 | [模型与动作](roadmap.md#stage-1) | [具身模型入门](topics/embodied_models_primer.md)：[VLM／VLT／VLA](topics/embodied_models_primer.md#model-roles)、学习算法、world model 与 [Infra 核心关注点](topics/embodied_models_primer.md#infra-priorities) |
 | 5.2 | [Episode 数据契约](roadmap.md#stage-2) | [数据契约基础](topics/embodied_data_io.md#sample-contract) → [平台 schema](topics/agentic_for_embodied.md)；未验证 |
 | 5.3 | [存储与多模态 I/O](roadmap.md#stage-3) | [数据与 I/O 正文](topics/embodied_data_io.md) → [E04](../practice/experiments/a100_fsdp_io_lab.md#e04)；实验未执行 |
 | 5.4 | [训练与状态分片](roadmap.md#stage-4) | 复用 [FSDP / FSDP2 / ZeRO](../02-training-infra/topics/fsdp.md)；先 DDP 基线与显存账本，实验未执行 |

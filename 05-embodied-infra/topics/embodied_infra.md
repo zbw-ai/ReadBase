@@ -11,6 +11,8 @@
 
 具身 Infra 支撑的是一条有物理反馈的学习链：把真实或模拟交互变成可信的数据，把模型变成及时可用的动作，再把任务结果带回评估与学习。它包括数据、训练、环境、部署和可观测性；既有离线 BC，也可能有交互 RL。
 
+术语速查：[VLM／VLT／VLA 的区别](embodied_models_primer.md#model-roles) → [BC／RL 与动作生成的关系](embodied_models_primer.md#model-vs-algorithm) → [Infra 岗位的五个核心关注点](embodied_models_primer.md#infra-priorities)。VLT 在该对照中限定为 IRON 的 Vision-Language-Task 用法，其他来源仍需核原文。
+
 ![执行循环与学习循环](../../assets/handbook/embodied_infra/learning_execution_loops.svg)
 
 图是功能地图，不要求每个框都部署成独立服务。**执行循环**改变环境状态；**学习循环**改变模型参数。执行中重规划不等于在线训练，动作推理异步也不等于异步 RL。

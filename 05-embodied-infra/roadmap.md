@@ -41,7 +41,7 @@ flowchart LR
 - **World model**：预测观察或潜在状态的演化；是否以动作作为条件、是否用于规划，取决于模型。不能把所有视频生成模型当成可用的机器人动力学模型。
 - **学习方式与输出方式分开**：BC 从示范学习；RL 从奖励与交互学习。Action chunk 是一次预测多个时间步；Diffusion / Flow Matching 是可用于连续动作生成的方法，不是 RL 的同义词。
 
-阅读顺序：[模型入门](topics/embodied_models_primer.md) → [数据正文](topics/embodied_data_io.md) → [系统正文最小机器人背景](topics/agentic_for_embodied.md)。VLT 未给出具体出处时保留歧义，不强行定义。
+阅读顺序：[模型入门](topics/embodied_models_primer.md) → [数据正文](topics/embodied_data_io.md) → [系统正文最小机器人背景](topics/agentic_for_embodied.md)。先用 [VLM／VLT／VLA 对照](topics/embodied_models_primer.md#model-roles)理解职责，再看[学习与生成方式](topics/embodied_models_primer.md#model-vs-algorithm)；VLT 仅在给出出处时定义，IRON 的 Vision-Language-Task 不能套用到所有论文。
 
 **过关标准**：对一个选定的公开策略，写清 observation shape、action shape、预测长度、实际执行长度、loss 和可训练模块；说明“看懂杯子”与“夹爪动作可执行”的区别。先对比 action chunk、动作生成与视觉语言条件这三个机制，再按需要选 ACT、Diffusion Policy、OpenVLA / openpi 的代表材料，不把模型名单全部升为必读。
 

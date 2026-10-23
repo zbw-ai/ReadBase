@@ -22,7 +22,7 @@
 | 训练 | 下方模型／并行／状态／精度材料；[训练导航](../02-training-infra/README.md) | FSDP/ZeRO 与多模态 workload 是近期深化方向 |
 | 推理 | [推理导航](../03-inference-infra/README.md)、[工程博客](engineering_blogs/README.md) | 现有内容局部覆盖，独立 serving 章节待建设 |
 | RL／Agent | [框架与机制](../04-rl-infra/README.md)、[历史来源](tracking/historical_backfill.md) | 以已有来源笔记和代码分析为基线，不自动视作实验验证 |
-| 具身 | [核心 topic](../05-embodied-infra/topics/embodied_infra.md)、[模型入门](../05-embodied-infra/topics/embodied_models_primer.md)、[数据 I/O](../05-embodied-infra/topics/embodied_data_io.md) | 基础正文已建立；读者掌握与实验验证待记录 |
+| 具身 | [核心 topic](../05-embodied-infra/topics/embodied_infra.md)、[VLM／VLT／VLA 与算法](../05-embodied-infra/topics/embodied_models_primer.md#model-roles)、[Infra 核心关注点](../05-embodied-infra/topics/embodied_models_primer.md#infra-priorities)、[数据 I/O](../05-embodied-infra/topics/embodied_data_io.md) | 基础正文已建立；[VLT 术语来源边界](tracking/backfill/2026-04.md#xpeng-vlt-terminology)仅作名称核验；读者掌握与实验验证待记录 |
 
 ## 0. 使用方式
 
