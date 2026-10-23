@@ -1,6 +1,8 @@
-# 按时间线读懂训练基础设施：2025 季度 / 2026 月度复盘
+# 按时间线读懂 AI Systems 与具身智能：2025 季度 / 2026 月度复盘
 
 **这是过去扫描的默认阅读入口。** 不需要把每次 frontier scan 逐份补读。2025 年按季度、2026 年按月，先读“回看导读 / 先读这页”，得到问题、机制、工程后果，再按需打开原始记录。7–8 月原月报放在可展开的来源明细里，9 月现已更新为自然月正式报告，覆盖缺口单独标注。
+
+**2026-10-23 补充：[2026 年具身双线时间表](#embodied-2026)。** 1—9 月月报现分别补充 `Models / Learning` 与 `Infra`；先汇入已有具身补录，再把本次独立核验的历史来源登记到原始月份的 backfill，由月报摘要引用。下方旧复盘与此次补充的范围分别记录，原 Accepted、Decision 和扫描游标不变。10 月尚未结束，继续用 frontier scan，不提前生成正式月报。
 
 2026-09-22 复盘批次，2026-10-08 继续整合：新增 2025 Q1–Q4 四份季度报告，加深 2026 年 1–6 月原月报，衔接 7–9 月 28 次扫描的重点综合。历史 PR 定向补证已保存；2025—2026 H1 全量 GitHub 索引因临时缓存失效及 API 连接失败，仍待重建。原始扫描、原 Accepted、原 Decision 和游标保留；“仓库收录/写笔记”不等于“用户已读/掌握”。
 
@@ -33,6 +35,29 @@
 
 9 月月末更新：从 [10/08 扫描](frontier_scan_2026-10-08.md)归回 9 月下旬的论文、release 与实现证据；六框架新增区间含 82 条 merged PR，具体选择与排除见[归档账本](audits/2026-09-monthly/aggregation.json)。10 月材料保留原归属。
 
+<a id="embodied-2026"></a>
+## 2026 具身智能与 Infra：按月补齐两条线
+
+这是 **2026-10-23 Historical Supplement**，回答当前学习缺口，不代表 1—9 月当时已经做过具身全量扫描。每个月先看下面一行，再进入对应月报的具身补充；来源与证据回到 backfill。完整范围、去重与未覆盖项见[此次补充账本](audits/2026-10-23-embodied-monthly/README.md)。
+
+| 月份 | Models / Learning：模型学什么 | Infra：系统需要保证什么 | 读后能回答的问题 |
+|---|---|---|---|
+| [1 月](monthly_signal_2026-01.md#embodied-20261023) | LingBot-VLA：动作 flow 与视觉表征的联合训练 | TorchCodec v0.10：把视频变换接进解码路径，核输出语义与资源成本 | 动作学习的目标与视频处理的优化分别改变哪里？ |
+| [2 月](monthly_signal_2026-02.md#embodied-20261023) | DreamZero：未来视频与动作共同建模 | LeRobot v0.4.4：采集时流式编码，关注写入与 episode 完成 | world model 的预测如何接回实际观察，数据何时才可训练？ |
+| [3 月](monthly_signal_2026-03.md#embodied-20261023) | MEM：近期视觉与长期摘要共同提供历史信息 | Isaac Lab v3.0.0-beta：物理后端与 Warp 接口边界 | 模型记忆和仿真状态分别由谁管理？ |
+| [4 月](monthly_signal_2026-04.md#embodied-20261023) | π0.7 的行为条件；GR00T N1.7 EA 的模型与数据披露 | LeRobot v0.5.1：revision 与缓存路径绑定 | 条件、数据版本和部署工件能否对应同一次实验？ |
+| [5 月](monthly_signal_2026-05.md#embodied-20261023) | MiraBench：动作跟随、物理一致性与失败保留 | TorchCodec v0.13：增量、多流编码及 finalization | 视频好看、任务成功和数据完整为什么要分别验收？ |
+| [6 月](monthly_signal_2026-06.md#embodied-20261023) | OSCAR：以骨架表示动作条件，研究跨本体视频预测 | Isaac Lab v3.0.0-beta2：replay 与仿真接口 | 录制动作回放能证明什么，为什么不能替代在线策略闭环？ |
+| [7 月](monthly_signal_2026-07.md#embodied-20261023) | GR00T 端到端流程连接数据、训练与部署；FBFM 保持 Observe | GR00T 图像预处理数值一致性及版本边界 | pipeline 能连通之后，怎样排除训练与部署的输入偏差？ |
+| [8 月](monthly_signal_2026-08.md#embodied-20261023) | ChainVLA：动作链机制，实验范围与实时假设需单独核对 | LeRobot v0.6.1：恢复 normalization 与数据加载错误传播 | 保存权重为什么还不足以恢复同一个动作模型？ |
+| [9 月](monthly_signal_2026-09.md#embodied-20261023) | VLA-Feedback：利用新观察修正 chunk 内动作 | Isaac Lab v3.0.0-EA 与 TorchCodec v0.17：共享状态和异步解码生命周期 | 局部修正快，为什么端到端反馈仍可能迟到？ |
+
+**趋势推断：** 这些已选材料显示，学习侧不断显式处理动作条件、历史信息和反馈，工程侧则需要维护与之匹配的数据、预处理、仿真和执行状态。这不是全领域单向替代的时间线，也不表示后发表的方法一定更好。对 Infra 岗位，贯穿九个月的问题是：**优化之后，模型看到的输入、学到的目标和机器人执行的动作，是否仍属于同一个时间、版本与评估协议？**
+
+当前可按三个问题选读：先用 [π0.7（4 月）](monthly_signal_2026-04.md#embodied-20261023)理解动作模型的条件与目标，再用 [MiraBench（5 月）](monthly_signal_2026-05.md#embodied-20261023)辨认评估边界，最后用 [VLA-Feedback 与状态生命周期（9 月）](monthly_signal_2026-09.md#embodied-20261023)连接执行与 Infra。基础概念仍从[核心 topic](../../05-embodied-infra/topics/embodied_infra.md#monthly-2026)进入；这只是按问题选读，不新增 P0、不把来源核验记为用户已读或实验完成。
+
+**尚有缺口：** 本次是选定来源的历史补齐，未穷尽每月 cs.RO / cs.LG / cs.CV、OpenVLA / OFT / openpi 的全部版本或 GitHub 事件，也没有新增独立 LLM serving 全量审计。各月“Observed”“未检查/未核验”与“检查后无重要新增”分别标注，不能由表格完整推出历史覆盖完整。
+
 ## 现在只看三处（当前问题优先）
 
 1. [8 月复盘](monthly_signal_2026-08.md)：解释为什么异步系统即使不断产出 token，仍可能丢样本、恢复错位或使用旧状态。
@@ -56,7 +81,7 @@
 
 7–9 月重评完整依据：[7 月原始材料](backfill/2026-07.md)、[8 月原始材料](backfill/2026-08.md)。后续报告提供了新的关注理由，不等于替早期材料完成了独立验证。
 
-## 覆盖与证据边界
+## 前轮复盘的覆盖与证据边界
 
 - GitHub：15 库，2026-07-01 00:00 至 09-22 17:06:16（上海）；11,114 commits、11,728 merged PR、55 releases，集合有重叠。逐页索引完成，重点复核 20 个 PR；不把全量索引称为全量代码审计。
 - 论文：重新核验选定 35 篇的标题、作者、日期与摘要，对重评候选进一步读方法/限制；并非对三个月 arXiv 全站穷尽检索。[书目证据](audits/2026-09-22-retrospective/paper_metadata.json)。
@@ -119,3 +144,5 @@
 ## 与知识库的连接
 
 月报中的判断进入 [Agentic RL](../../04-rl-infra/topics/agentic_rl.md#monthly-retrospective-invariants)、[状态边界实验设计](../../practice/experiments/rl_state_boundaries.md#retrospective-test-cases)和[慢步排障](../../practice/playbooks/slow_step_debug.md#retrospective-observability)。它们是后续验证入口，不是已完成实验。[Master Reading List](../MASTER_READING_LIST.md)与[Knowledge Graph](../../KNOWLEDGE_GRAPH.md)均以本页作为月度导航。
+
+具身补充接到[模型条件、数据语义与反馈时限](../../05-embodied-infra/topics/embodied_infra.md#monthly-2026)，再进入[数据 I/O](../../05-embodied-infra/topics/embodied_data_io.md)和[契约练习](../../practice/experiments/embodied_contract_lab.md)。月报保留资讯与取舍，技术章解释机制，练习仍待执行。

@@ -1,0 +1,152 @@
+{
+  "audit_date": "2026-10-23",
+  "audit_type": "User-requested bounded embodied historical supplement; monthly summaries consume backfill",
+  "timezone": "Asia/Shanghai; arXiv month follows citation_date; GitHub events converted from UTC",
+  "scope_months": [
+    "2026-07",
+    "2026-08",
+    "2026-09"
+  ],
+  "items": [
+    {
+      "month": "2026-07",
+      "original_date": "2026-07-07",
+      "source_id": "nvidia:gr00t-end-to-end:2026-07-07",
+      "source_url": "https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/",
+      "backfill_anchor": "research/tracking/backfill/2026-07.md#groot-end-to-end-20260707",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "已有归并",
+      "value": "把采集、数据转换、训练、评估和部署接成可检查的开发路径。"
+    },
+    {
+      "month": "2026-07",
+      "original_date": "2026-07-01T03:20:45+08:00",
+      "source_id": "github:NVIDIA/Isaac-GR00T:pr:714",
+      "source_url": "https://github.com/NVIDIA/Isaac-GR00T/pull/714",
+      "backfill_anchor": "research/tracking/backfill/2026-07.md#embodied-20261023-groot-714",
+      "decision": "Observe",
+      "disposition": "Observed",
+      "new_or_existing": "已有归并",
+      "value": "可选letterbox和逐图padding提醒前处理配置也是模型输入契约。"
+    },
+    {
+      "month": "2026-07",
+      "original_date": "2026-07-30T07:11:09+08:00",
+      "source_id": "github:NVIDIA/Isaac-GR00T:pr:727",
+      "source_url": "https://github.com/NVIDIA/Isaac-GR00T/pull/727",
+      "backfill_anchor": "research/tracking/backfill/2026-07.md#embodied-github-5",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "已有归并",
+      "value": "格式转换优化需要旧路径输入parity与真实相机覆盖。"
+    },
+    {
+      "month": "2026-07",
+      "original_date": "2026-07-31",
+      "source_id": "arxiv:2607.29235v1",
+      "source_url": "https://arxiv.org/abs/2607.29235v1",
+      "backfill_anchor": "research/tracking/backfill/2026-07.md#embodied-followup-2607-29235",
+      "decision": "Observe",
+      "disposition": "Observed",
+      "new_or_existing": "已有归并",
+      "value": "生成中反馈须同时检查已提交动作与真实时钟开销。"
+    },
+    {
+      "month": "2026-08",
+      "original_date": "2026-08-03",
+      "source_id": "arxiv:2608.02326v1",
+      "source_url": "https://arxiv.org/abs/2608.02326v1",
+      "backfill_anchor": "research/tracking/backfill/2026-08.md#chainvla-2608-02326",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "新补录",
+      "value": "任务记忆和未执行计划共同进入下一段动作生成。"
+    },
+    {
+      "month": "2026-08",
+      "original_date": "2026-08-03T22:19:42+08:00",
+      "source_id": "github:huggingface/lerobot:release:v0.6.1",
+      "source_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.1",
+      "backfill_anchor": "research/tracking/backfill/2026-08.md#lerobot-v061-20260803",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "新补录",
+      "value": "发布中的统计量恢复与错误传播修复共同保护训练输入语义。"
+    },
+    {
+      "month": "2026-09",
+      "original_date": "2026-09-17",
+      "source_id": "arxiv:2609.21022v1",
+      "source_url": "https://arxiv.org/abs/2609.21022v1",
+      "backfill_anchor": "research/tracking/backfill/2026-09.md#embodied-followup-2609-21022",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "已有归并",
+      "value": "用新观察做末步去噪，必须与完整传感器到执行延迟一起评估。"
+    },
+    {
+      "month": "2026-09",
+      "original_date": "2026-09-17T06:34:03+08:00",
+      "source_id": "github:isaac-sim/IsaacLab:release:v3.0.0-EA",
+      "source_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA",
+      "backfill_anchor": "research/tracking/backfill/2026-09.md#embodied-github-6",
+      "decision": "Deep Dive",
+      "disposition": "Accepted",
+      "new_or_existing": "已有归并",
+      "value": "共享Warp/Torch view与姿态顺序迁移改变仿真状态契约。"
+    },
+    {
+      "month": "2026-09",
+      "original_date": "2026-09-30T21:32:47+08:00",
+      "source_id": "github:meta-pytorch/torchcodec:release:v0.17.0",
+      "source_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+      "backfill_anchor": "research/tracking/backfill/2026-09.md#embodied-github-7",
+      "decision": "Deep Dive",
+      "disposition": "Accepted",
+      "new_or_existing": "已有归并",
+      "value": "阶段化解码把CUDA依赖与storage寿命暴露为调用方责任。"
+    }
+  ],
+  "counts": {
+    "2026-07": {
+      "new_accepted": 0,
+      "existing_accepted": 2,
+      "existing_observed": 2
+    },
+    "2026-08": {
+      "new_accepted": 2,
+      "existing_accepted": 0,
+      "existing_observed": 0
+    },
+    "2026-09": {
+      "new_accepted": 0,
+      "existing_accepted": 3,
+      "existing_observed": 0
+    }
+  },
+  "historical_accepted_counts_changed": false,
+  "frontier_cursor_changed": false,
+  "new_p0_items": 0,
+  "gaps": {
+    "2026-07": [
+      "No complete PI/openpi, OpenVLA/OFT, SmolVLA, Isaac Lab or TorchCodec month-wide history scan",
+      "FBFM pseudo-asynchronous evidence does not establish wall-clock control gains"
+    ],
+    "2026-08": [
+      "Bounded arXiv and LeRobot search, not exhaustive cs.RO/cs.LG/cs.CV or vendor history",
+      "ChainVLA fixed-rate simulation with one seed; no hardware or async timing evidence",
+      "LeRobot release studied through two diffs; no wheel installation or local tests"
+    ],
+    "2026-09": [
+      "Reuse of three 10/13 records, not a new month-wide discovery pass",
+      "Isaac Lab September EA is not October GA; TorchCodec October PR1758 is excluded from v0.17"
+    ]
+  },
+  "date_boundaries": [
+    "GR00T #714 merged 2026-06-30T19:20:45Z, assigned July in Asia/Shanghai",
+    "LeRobot v0.6.1 released in August; supporting PR4022/4237 merged July 30 and are not counted independently"
+  ],
+  "raw_abstract_or_patch_stored": false,
+  "local_model_tests_run": false
+}

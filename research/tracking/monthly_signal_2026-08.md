@@ -1,5 +1,29 @@
 # Monthly Signal Report, 2026-08
 
+<a id="embodied-20261023"></a>
+## 2026-10-23 历史补充：模型状态要连续，训练输入要可信
+
+原有 8 月记录缺少具身双线材料；本次按用户指定范围做定向历史补扫，先将 2 项新接受材料写入[8 月 backfill](backfill/2026-08.md#embodied-20261023)，本节再作归并。它们属于 10/23 晚发现，不修改当年 8 月扫描 Accepted、原全文或游标；旧 Watch 与其他领域判断全部保留。
+
+**趋势推断：** 两项证据指向不同层次的连续性：模型需要保留任务进度与未执行计划，训练系统需要保留归一化语义并暴露数据失败。两者都要求识别跨边界的状态，但不能据此把模型机制的收益归因于某个数据修复。
+
+### Embodied Models & Infra Watch
+
+| Models / Learning | Infra |
+|---|---|
+| **Accepted / Read — [ChainVLA](https://arxiv.org/abs/2608.02326v1)**：任务进度记忆与未执行动作后缀共同条件化下一段预测，旧后缀可被最新观察修订；[补录证据](backfill/2026-08.md#chainvla-2608-02326)核对 citation 三字段、顺序训练与条件 flow 目标；Next：区分“已执行历史”和“未执行计划”的状态流。 | **Accepted / Read — [LeRobot v0.6.1](https://github.com/huggingface/lerobot/releases/tag/v0.6.1)**：resume 保留 checkpoint processor stats，并将帧构造错误与 shard 耗尽分开；[release/固定 SHA/diff](backfill/2026-08.md#lerobot-v061-20260803)已核；Next：分别做统计量一致性与坏帧错误传播验证。 |
+| **证据边界**：ChainVLA 的消融支持这套系统依赖两个状态路径，但实验限固定频率仿真、单 seed；没有真机或异步实时验证，命令边界平滑也不是物理轨迹质量证明。 | **日期边界**：LeRobot release 于 8/3 发布；选读的 #4022 与 #4237 均在 7/30 合并。按 8 月软件交付归档一项，不声称 8 月首次实现，也不重复计 PR。 |
+
+当前可形成的工程问题是：episode 被切成训练样本以后，哪些状态仍必须按查询顺序携带？恢复 checkpoint 时，数据集新计算的统计量能否覆盖模型保存的 processor？解码失败是显式失败，还是悄悄改变了有效样本集合？这些是基于来源的迁移问题，不是本仓库已完成的实验结论。
+
+**覆盖与缺口：** 本轮检查 arXiv 定向检索、ChainVLA 方法、LeRobot release 与两项实现；没有穷尽 8 月 cs.RO/cs.LG/cs.CV，也没有逐项历史核验 PI/openpi、OpenVLA/OFT、NVIDIA 与 TorchCodec。没有检出的来源不写成“当月没有更新”；已有 10/13 源索引亦不等于 8 月完整代码审计。两项状态保持 NEW，下一步从状态图和数据错误契约开始，不扩充 P0。[本次计数与缺口账本](audits/2026-10-23-embodied-monthly/q3/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 ## 先读这页：异步化之后，必须重新定义什么叫完成
 
 **2026-09-22 回看。** 本月整理 11 次 8 月扫描，并吸收 9 月 1 日扫描中原始发布于 8 月的材料。新增历史补漏单独标注；原月报在文末保留。

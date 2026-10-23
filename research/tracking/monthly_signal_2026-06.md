@@ -1,5 +1,37 @@
 # Monthly Signal Report, 2026-06
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充：动作条件预测与回放验收分层
+
+> 本节为 **2026-10-23 Historical Supplement**，先复用 10/13 已核材料，再将本轮定向 Infra 核验登记到原始月份 backfill 后归并。事件时间与补录时间分开；保留下方原文、Accepted 计数、Historical Audit 和 Watch，不推进 scan cursor，不改 P0 或原有条目的已读状态。代码／测试已读不代表本地运行；本节统计独立于原月报。
+
+**趋势推断：** 6 月材料给出两种不同的“回放”：OSCAR 把记录动作转换成可跨本体使用的骨架条件，评估未来视频；Isaac Lab 则把 teleop 记录送回环境检查终止结果。前者回答生成模型如何理解动作，后者回答环境／控制栈是否仍能执行同一记录，不能互相充当证据。
+
+### Embodied Models & Infra Watch · Historical Supplement
+
+#### Models / Learning
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 6/3 [OSCAR v1](https://arxiv.org/abs/2606.04463v1) · [10/13 补录](backfill/2026-06.md#embodied-followup-2606-04463) | 已核 citation 三字段与方法：将跨本体动作渲染为骨架条件来生成未来视频；评估使用校准筛选后的记录动作。 | **Accepted / Read**；补动作表示与评估缺口。条件对齐与失败保留怎样验证？并读 MiraBench，检查相机标定、重放动作和视频评委偏差。 |
+
+模型边界：这不是 DreamZero 式联合动作策略，也不是在线闭环评测；视觉生成质量不能直接证明动作可执行性或跨本体泛化。将相机标定与动作 schema 纳入版本契约，是工程推断。
+
+#### Infra
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 6/17 [Isaac Lab 3.0 Beta 2](https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2) · [10/23 新补录](backfill/2026-06.md#embodied-20261023-isaaclab-beta2) | 固定 tag `28a37ce` 的 MCAP 回放入口重放 START／STOP／RESET，区分环境失败、成功与超时，并单独计量 active env.step。 | **Accepted / Read**；补演示回归验收。依赖升级后同一记录还能走完吗？固定 scene、controller、asset/runtime，比较终止语义与时延；Beta 2 不等于 GA。 |
+
+**覆盖与缺口：** 新核 Isaac Lab release／固定回放实现；未执行仿真、XR 或机器人实验。回放成功不保证物理确定性，无 XR 回放的帧率也不代表在线 XR 负载。多后端架构早于 Beta 2，本月不重复当首次创新；LeRobot、TorchCodec、openpi 的 6 月全事件仍未穷举。独立归并：2 项 Read（其中 1 项新补录），不改原统计。另核 GR00T #714 的合并时间为北京时间 7/1，归入 [7 月账本](backfill/2026-07.md#embodied-20261023-groot-714)，不计本月；[审计](audits/2026-10-23-embodied-monthly/q2/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：可组合训练栈需要跨组件验收

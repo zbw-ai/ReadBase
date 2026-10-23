@@ -1,0 +1,160 @@
+{
+  "audit_date": "2026-10-23",
+  "scope": "Q2 embodied historical monthly supplement; no frontier cursor or existing reading-status changes",
+  "months": {
+    "2026-04": {
+      "report": "research/tracking/monthly_signal_2026-04.md#embodied-20261023",
+      "sources": [
+        {
+          "source_id": "arxiv:2604.15483v1",
+          "url": "https://arxiv.org/abs/2604.15483v1",
+          "decision": "Read",
+          "integration": "existing_backfill",
+          "backfill": "research/tracking/backfill/2026-04.md#embodied-followup-2604-15483",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "nvidia-hf-gr00t-n1-7-20260417",
+          "url": "https://huggingface.co/blog/nvidia/gr00t-n1-7",
+          "decision": "Read",
+          "integration": "existing_backfill",
+          "backfill": "research/tracking/backfill/2026-04.md#embodied-followup-groot-n17",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "xpeng-esg-2025-vlt-20260416",
+          "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526160201/d134229dex993.htm",
+          "decision": "Observe",
+          "integration": "existing_backfill",
+          "backfill": "research/tracking/backfill/2026-04.md#xpeng-vlt-terminology",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "github:huggingface/lerobot:release:v0.5.1",
+          "url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.1",
+          "decision": "Read",
+          "integration": "new_backfill",
+          "backfill": "research/tracking/backfill/2026-04.md#embodied-20261023-lerobot-v051",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        }
+      ],
+      "supplement_counts": {
+        "Read": 3,
+        "Observe": 1,
+        "new_accepted_backfill": 1
+      },
+      "original_monthly_body_sha256": "a7d97ceaa9a44ebcb5b03ee654ebd2e8a6e82bde8217d5c7df660c6002162df2",
+      "original_body_preserved_verbatim": true,
+      "historical_accepted_count_unchanged": true,
+      "coverage_gap": "Targeted evidence only; no exhaustive monthly openpi/OpenVLA/GR00T/IsaacLab/LeRobot/TorchCodec or cs.RO/cs.CV enumeration; no local simulation, robot, codec or distributed training runs."
+    },
+    "2026-05": {
+      "report": "research/tracking/monthly_signal_2026-05.md#embodied-20261023",
+      "sources": [
+        {
+          "source_id": "arxiv:2605.29360v1",
+          "url": "https://arxiv.org/abs/2605.29360v1",
+          "decision": "Read",
+          "integration": "existing_backfill",
+          "backfill": "research/tracking/backfill/2026-05.md#embodied-followup-2605-29360",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "github:meta-pytorch/torchcodec:release:v0.13.0",
+          "url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.13.0",
+          "decision": "Read",
+          "integration": "new_backfill",
+          "backfill": "research/tracking/backfill/2026-05.md#embodied-20261023-torchcodec-v013",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "github:huggingface/lerobot:pr:3614",
+          "url": "https://github.com/huggingface/lerobot/pull/3614",
+          "decision": "Observe",
+          "integration": "existing_audit_to_backfill",
+          "backfill": "research/tracking/backfill/2026-05.md#embodied-20261023-lerobot-3614",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        }
+      ],
+      "supplement_counts": {
+        "Read": 2,
+        "Observe": 1,
+        "new_accepted_backfill": 1
+      },
+      "original_monthly_body_sha256": "2f041b8328ebe84d9d42897210f6334bdb9c9e25846b7ce9ab8429d0a11157fa",
+      "original_body_preserved_verbatim": true,
+      "historical_accepted_count_unchanged": true,
+      "coverage_gap": "Targeted evidence only; no exhaustive monthly openpi/OpenVLA/GR00T/IsaacLab/LeRobot/TorchCodec or cs.RO/cs.CV enumeration; no local simulation, robot, codec or distributed training runs."
+    },
+    "2026-06": {
+      "report": "research/tracking/monthly_signal_2026-06.md#embodied-20261023",
+      "sources": [
+        {
+          "source_id": "arxiv:2606.04463v1",
+          "url": "https://arxiv.org/abs/2606.04463v1",
+          "decision": "Read",
+          "integration": "existing_backfill",
+          "backfill": "research/tracking/backfill/2026-06.md#embodied-followup-2606-04463",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        },
+        {
+          "source_id": "github:isaac-sim/IsaacLab:release:v3.0.0-beta2",
+          "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2",
+          "decision": "Read",
+          "integration": "new_backfill",
+          "backfill": "research/tracking/backfill/2026-06.md#embodied-20261023-isaaclab-beta2",
+          "status": "NEW",
+          "user_reading_status_changed": false
+        }
+      ],
+      "supplement_counts": {
+        "Read": 2,
+        "Observe": 0,
+        "new_accepted_backfill": 1
+      },
+      "original_monthly_body_sha256": "b148c7d3d505283cf6ba12123c6b4bd1b451807b0a480f587f14f45ac94abe7f",
+      "original_body_preserved_verbatim": true,
+      "historical_accepted_count_unchanged": true,
+      "coverage_gap": "Targeted evidence only; no exhaustive monthly openpi/OpenVLA/GR00T/IsaacLab/LeRobot/TorchCodec or cs.RO/cs.CV enumeration; no local simulation, robot, codec or distributed training runs."
+    }
+  },
+  "new_accepts": 3,
+  "existing_accepts_coalesced": 4,
+  "observed_sources_coalesced": 2,
+  "tests_run_locally": false,
+  "timezone_rule": "GitHub release/merge event month uses Asia/Shanghai; raw UTC retained. arXiv existing notes retain source citation dates.",
+  "boundary_notes": [
+    "LeRobot v0.5.1 released Apr 7; cache PR #3233 merged Mar 27 UTC (Mar 28 Asia/Shanghai). April count is the release event, not a first mechanism claim.",
+    "GR00T N1.7 Apr 17 is the NVIDIA-authored EA article, not first announcement or GA.",
+    "Isaac Lab GitHub prerelease=false does not override the Beta 2 title/body.",
+    "GR00T #714 merged July 1 in Asia/Shanghai; evidence handed to Q3 and excluded from Q2 counts."
+  ],
+  "evidence_files": [
+    "release_metadata.json",
+    "pr_metadata.json",
+    "code_metadata.json",
+    "mechanism_review.json"
+  ],
+  "preserved_source_audits": [
+    "research/tracking/audits/2026-10-13-embodied-followup/model_sources.json",
+    "research/tracking/audits/2026-10-13-embodied-followup/late_model_sources.json",
+    "research/tracking/audits/2026-10-13-embodied-followup/method_pages.json",
+    "research/tracking/audits/2026-10-13-embodied-followup/github_evidence.json"
+  ],
+  "verification": {
+    "local_markdown_links_checked": 177,
+    "link_issues": 0,
+    "audit_json_files_parsed": 5,
+    "original_monthly_bodies_preserved": true,
+    "git_diff_check_exit_code": 0,
+    "code_or_robot_tests_run": false
+  }
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "source_id": "github:huggingface/lerobot:release:v0.5.1",
+    "evidence_read": [
+      "dataset_metadata.py _pull_from_repo, fixed tag",
+      "test_lerobot_dataset.py test_without_root_reads_different_revisions_from_distinct_snapshot_roots, fixed tag",
+      "PR #3233 diff and merged_at"
+    ],
+    "judgment": "Revision selection must propagate to metadata and sample roots; April release packages a March change. Explicit local roots are not automatically immutable snapshots.",
+    "limit": "Read mocks and implementation only; no concurrent Hub download or migration experiment."
+  },
+  {
+    "source_id": "github:meta-pytorch/torchcodec:release:v0.13.0",
+    "evidence_read": [
+      "_multi_stream_encoder.py VideoStream.add_frames, Encoder.add_video/open_file/close",
+      "multi_stream_encoding.py incremental and multi-stream example",
+      "test_encoders.py TestEncoder.test_add_audio_and_video_and_encode, test_multiple_video_streams_and_audio"
+    ],
+    "judgment": "Incremental encoding exposes a useful recording lifecycle, but fixed per-stream frame_rate and close semantics do not provide sensor clock synchronization or atomic episode commits.",
+    "limit": "No local CPU/CUDA codec execution; file-like in-memory output is not a bounded-memory claim."
+  },
+  {
+    "source_id": "github:isaac-sim/IsaacLab:release:v3.0.0-beta2",
+    "evidence_read": [
+      "release Beta 2 status and replay description",
+      "teleop_replay_agent.py _handle_reset, _run_single_replay, active-step measurement and XR anchor caveat"
+    ],
+    "judgment": "Recorded control events, reset order and success/failure/timeout are part of replay validation. Throughput must be measured under the original rendering and anchor configuration.",
+    "limit": "No Isaac Sim or XR run; does not prove physics determinism, new-task generalization or GA readiness."
+  }
+]

@@ -1,5 +1,38 @@
 # Monthly Signal Report, 2026-05
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充：可信动作后果与可检查的视频数据
+
+> 本节为 **2026-10-23 Historical Supplement**，先复用 10/13 已核材料，再将本轮定向 Infra 核验登记到原始月份 backfill 后归并。事件时间与补录时间分开；保留下方原文、Accepted 计数、Historical Audit 和 Watch，不推进 scan cursor，不改 P0 或原有条目的已读状态。代码／测试已读不代表本地运行；本节统计独立于原月报。
+
+**趋势推断：** 本月两侧证据共同提醒：世界模型输出“看起来合理”和 episode 数据“能够读写”，都不足以证明训练／评估可信。前者需要保留失败动作的后果，后者需要核验每条流的帧数、身份和生命周期；二者不能用同一个视频质量分数验收。
+
+### Embodied Models & Infra Watch · Historical Supplement
+
+#### Models / Learning
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 5/28 [MiraBench v1](https://arxiv.org/abs/2605.29360v1) · [10/13 补录](backfill/2026-05.md#embodied-followup-2605-29360) | 已核 citation 三字段、可靠性定义及条件分组：分别检查物理一致性、动作遵循和失败保留，不能把逼真的成功视频当可靠 dynamics。 | **Accepted / Read**；补 world model 评估边界。失败动作是否仍被预测成成功？设计成功／失败与 vector／text 条件矩阵，不把不同动作接口的榜单横比。 |
+
+模型结论受任务与评委覆盖约束；本记录未证明任何视频世界模型能替代在线机器人测试，也未声称 DreamZero 已被该基准直接测过。把失败保留列为上线验收项属于本仓库工程推断。
+
+#### Infra
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 5/21 [TorchCodec 0.13](https://github.com/meta-pytorch/torchcodec/releases/tag/v0.13.0) · [10/23 新补录](backfill/2026-05.md#embodied-20261023-torchcodec-v013) | 固定 tag `6e692e9` 的 Encoder 可增量写入多条音视频流，close 刷出缓冲；测试按 stream index 回读帧数、shape 和像素容差。 | **Accepted / Read**；补多相机采集 IO。分块编码怎样与 episode 提交对齐？保留 frame/action timestamp manifest，测试中途终止与解码回读。 |
+| 5/19 [LeRobot #3614](https://github.com/huggingface/lerobot/pull/3614) · [既有 Observe 归账](backfill/2026-05.md#embodied-20261023-lerobot-3614) | 固定 merge `dfdc48a` 中 decoder cache 改为 LRU，测试检查容量和淘汰／clear 后文件句柄关闭。 | **Observed / Observe**（沿用 10/13）；相邻排障证据。跨 episode 时资源是否累积？测 FD、RSS、cache hit 与 seek 成本后再定实验。 |
+
+系统边界：多流编码并不自动同步机器人传感器，`frame_rate` 也不是逐帧采集时间戳；cache 有限不等于进程 RSS 有硬上界。**覆盖与缺口：** 实查两条 IO 来源及固定代码；没有重扫 5 月 openpi／OpenVLA、GR00T／Isaac Lab 的全部事件，也没有运行 CPU/CUDA 编解码或采集恢复测试。原 5 月报告的论文分类截断仍然存在。独立归并：2 项 Read（其中 1 项新补录）、1 项沿用 Observe；详见 [审计](audits/2026-10-23-embodied-monthly/q2/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：用有效样本的成本连接网络与数据复用

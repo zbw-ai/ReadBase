@@ -1,5 +1,31 @@
 # Monthly Signal Report, 2026-07
 
+<a id="embodied-20261023"></a>
+## 2026-10-23 历史补充：从平台工作流到动作反馈的边界
+
+本节按最新具身双线重点归并已有历史证据：2 项 Accepted、2 项 Observed，均非本次新发现；旧月报正文、Accepted 计数与 Watch 原样保留，也不推进 frontier 游标。7 月材料的补录日仍分别保留在[原月 backfill](backfill/2026-07.md)，整理不改变个人阅读状态。
+
+**趋势推断：** 这些材料把注意力从“有一个 VLA checkpoint”移向数据、控制器、前处理和反馈如何接成闭环，但证据仍有层级差异：厂商工作流说明模块如何连接，输入 parity 只覆盖指定转换，算法观察项尚未证明真实时钟下的控制收益。
+
+### Embodied Models & Infra Watch
+
+| Models / Learning | Infra |
+|---|---|
+| **Observed / Observe — [FBFM](https://arxiv.org/abs/2607.29235v1)**：在 flow 生成中接收反馈并保留已承诺动作，回答 chunk 内怎样修订计划；[7 月账本](backfill/2026-07.md#embodied-followup-2607-29235)已核 citation 与方法，但伪异步时钟、额外求导和有限控制证据不足以支持实时泛化；Next：等待真实 wall-clock 闭环，暂不新增深读任务。 | **Accepted / Read — [GR00T 端到端工作流](https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/)**：将采集、LeRobot 转换、post-training、仿真评估和部署组织成开发路径；[7 月账本](backfill/2026-07.md#groot-end-to-end-20260707)承接厂商机制披露，效果与规模不当独立复现；Next：先画清数据和控制接口，再选实际实验。 |
+| **模型来源缺口**：本轮没有新增 PI/openpi、OpenVLA/OFT 或 SmolVLA 的 7 月机制核验；不能将这三项覆盖称为全月模型扫描，也不据后续文档反推当时能力。 | **Accepted / Read — [GR00T #727](https://github.com/NVIDIA/Isaac-GR00T/pull/727)**：去掉图像格式往返并以旧 PIL 路径作输入 oracle；[固定实现与测试](backfill/2026-07.md#embodied-github-5)有 gated skip，原审计公开 lint 失败，不能写成全部 CI 通过；Next：在目标相机格式上做 parity 后再测前处理时延。 |
+
+两栏的连接问题是：反馈读到哪次观察、输入转换是否同义、已经提交的动作能否撤回。它们影响部署，但本轮没有运行机器人、GPU 或训练；“代码有测试”“作者报告通过”“本地验证完成”继续分开。GR00T 工作流已有 DIGESTED 记录，#727 与 FBFM 仍 NEW，不因进入月报升级。
+
+**Infra 另承接 Observed / Observe — [GR00T #714](https://github.com/NVIDIA/Isaac-GR00T/pull/714)**：letterbox 改为可选并按当前图像计算 padding，已有 diff 与 variable-size 测试；[日期补核](backfill/2026-07.md#embodied-20261023-groot-714)确认 UTC 6/30 合并对应上海 7/1，Next 是固定前处理配置并对照多相机输入，未运行测试。
+
+**覆盖与下一步：** 本次复用 NVIDIA、FBFM 和 10/13 固定实现审计；Isaac Lab、TorchCodec 与其他 7 月机器人模型的完整历史未补扫。原有 OpenAI / Anthropic / NVIDIA / DeepSeek、HF、RL 等 Watch 保留其原范围，本节只补具身双线。先阅读平台接口与一条 parity 路径，避免以演示数量代替学习结论。[本次计数与缺口账本](audits/2026-10-23-embodied-monthly/q3/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 ## 先读这页：为什么 GPU 很忙，RL 仍然很慢
 
 **2026-09-22 回看。** 本月原始窗口为 7 月；下面是事后综合判断，新增补漏并非当时已知。读完本节即可掌握主线，不必逐份阅读 10 次扫描。原月报完整保留在文末。

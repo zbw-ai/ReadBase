@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-23",
+  "checks": [
+    {
+      "path": "research/tracking/monthly_signal_2026-01.md",
+      "original_preserved": true,
+      "original_sha256": "21bb1a1ee2d79118d51b74acfc16e5cd5bdb3d029dbf76c38b673b430eee168d"
+    },
+    {
+      "path": "research/tracking/monthly_signal_2026-02.md",
+      "original_preserved": true,
+      "original_sha256": "9664eab0b1500b687e77ef21695cba204f2b6bd936e1fdbca1e59f0ccf458694"
+    },
+    {
+      "path": "research/tracking/monthly_signal_2026-03.md",
+      "original_preserved": true,
+      "original_sha256": "71f0d9651afb05fadc40144c7bcff2782709cc2ae6d6977bcc9b6f627e350da6"
+    },
+    {
+      "path": "research/tracking/backfill/2026-01.md",
+      "original_preserved": true
+    },
+    {
+      "path": "research/tracking/backfill/2026-02.md",
+      "original_preserved": true
+    },
+    {
+      "path": "research/tracking/backfill/2026-03.md",
+      "original_preserved": true
+    },
+    {
+      "json_files_parsed": 3
+    },
+    {
+      "new_relative_links_checked": 40,
+      "unique_sources": 6,
+      "new_backfill_accepted": 4,
+      "existing_consolidated": 2
+    }
+  ],
+  "errors": [],
+  "result": "pass",
+  "external_experiments_run": false
+}

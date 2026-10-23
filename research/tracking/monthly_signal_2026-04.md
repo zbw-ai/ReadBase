@@ -1,5 +1,39 @@
 # Monthly Signal Report, 2026-04
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充：策略可调，数据版本也必须可追溯
+
+> 本节为 **2026-10-23 Historical Supplement**，先复用 10/13 已核材料，再将本轮定向 Infra 核验登记到原始月份 backfill 后归并。事件时间与补录时间分开；保留下方原文、Accepted 计数、Historical Audit 和 Watch，不推进 scan cursor，不改 P0 或原有条目的已读状态。代码／测试已读不代表本地运行；本节统计独立于原月报。
+
+**趋势推断：** 4 月材料把注意力从“能否生成动作”推进到“用什么条件引导动作、换什么数据训练”。π0.7 的条件化学习与 GR00T 的模型接口值得单独阅读；Infra 证据则要求数据 revision 落到实际文件。这是本仓库从已核样本作出的判断，不是全月趋势统计。
+
+### Embodied Models & Infra Watch · Historical Supplement
+
+#### Models / Learning
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 4/16 [π0.7 v1](https://arxiv.org/abs/2604.15483v1) · [10/13 补录](backfill/2026-04.md#embodied-followup-2604-15483) | 已核 citation 三字段与方法：质量、速度、控制模式和视觉子目标进入训练条件，推理可调性有学习机制依据。 | **Accepted / Read**；补可控策略缺口。混合质量数据如何改变动作分布？对照 π0.5→RECAP→MEM→π0.7 的输入、目标与数据配方。 |
+| 4/17 [GR00T N1.7 厂商文章](https://huggingface.co/blog/nvidia/gr00t-n1-7) · [10/13 补录](backfill/2026-04.md#embodied-followup-groot-n17) | NVIDIA 作者披露 Cosmos-Reason2-2B 与 action DiT；HF 的 Community 标记不改变作者身份。 | **Accepted / Read**；补 VLM→动作专家接口。checkpoint、state/action schema 如何配套？先固定版本；该日期是 EA 文章，不是首次宣布或 GA，冲突性能／数据口径不照抄。 |
+| 4/16 [XPENG ESG 报告](https://www.sec.gov/Archives/edgar/data/1810997/000119312526160201/d134229dex993.htm) · [10/23 术语账本](backfill/2026-04.md#xpeng-vlt-terminology) | VLT 展开为 Vision-Language-Task；现有披露只支持术语和厂商功能分工。 | **Observed / Observe**；防止把命名当结构。T 对应什么可核接口？等待结构、loss 或闭环评估，不升为模型机制证据。 |
+
+学习结论止于披露：条件化策略不等于任意任务零样本泛化；VLT 不能作为跨厂商统一分类。版本化输入、记忆和控制条件的部署建议是工程推断。
+
+#### Infra
+
+| 原始事件与来源／账本 | Evidence 与一句话收获 | Decision / Reason；Target question；Next |
+|---|---|---|
+| 4/7 [LeRobot v0.5.1](https://github.com/huggingface/lerobot/releases/tag/v0.5.1) · [10/23 新补录](backfill/2026-04.md#embodied-20261023-lerobot-v051) | 固定 tag `1396b9f` 中，Hub snapshot cache 隔离不同 revision；测试用不同 schema 核对路径与列。缓存机制在 3/27 UTC（上海 3/28）已合并，本月是发行收录。 | **Accepted / Read**；补 episode 数据可重复性。metadata 与样本是否同版本？构造双 revision 回读验收；显式 `root` 仍需自行管理。 |
+
+**覆盖与缺口：** 模型侧复用两份已核机制来源和一份术语 Observe；Infra 本轮只定向读取上述 release、缓存 PR、固定 tag 实现与测试。openpi／OpenVLA-OFT 当月实现、Isaac Lab 与 TorchCodec 4 月事件未系统重扫，不能写成“无新增”。未运行机器人、多 GPU 或 IO benchmark。独立归并计数：3 项 Read（其中 1 项新补录）、1 项 Observe；不计入原 Accepted。详见 [本批审计](audits/2026-10-23-embodied-monthly/q2/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：调度、数值、恢复与环境开始成为同一个问题

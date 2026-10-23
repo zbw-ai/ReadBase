@@ -1,0 +1,66 @@
+[
+  {
+    "number": 3233,
+    "url": "https://github.com/huggingface/lerobot/pull/3233",
+    "title": "fix(dataset): use revision-safe Hub cache for downloaded datasets",
+    "author": "imstevenpmwork",
+    "merged_at": "2026-03-27T21:21:55Z",
+    "merge_commit_sha": "4e45acca52679745f9c7d4b80984ef4c59fe9a57",
+    "head_sha": "f63381e69484b3d54c69aa8f318b8903f70b6a25",
+    "files": [
+      "src/lerobot/configs/default.py",
+      "src/lerobot/datasets/dataset_metadata.py",
+      "src/lerobot/datasets/dataset_reader.py",
+      "src/lerobot/datasets/lerobot_dataset.py",
+      "src/lerobot/datasets/streaming_dataset.py",
+      "src/lerobot/datasets/utils.py",
+      "src/lerobot/utils/constants.py",
+      "tests/datasets/test_lerobot_dataset.py"
+    ],
+    "retrieved_payload_sha256": "6ab08f4bf4ad60071dd036e72e82ef2e179f98cbae0d34eb7a7128a35a127ff6",
+    "diff_read": true,
+    "tests_run_locally": false,
+    "merged_at_asia_shanghai": "2026-03-28T05:21:55+08:00"
+  },
+  {
+    "number": 3614,
+    "url": "https://github.com/huggingface/lerobot/pull/3614",
+    "title": "fix(datasets): bound VideoDecoderCache to prevent OOM on large datasets",
+    "author": "rzninvo",
+    "merged_at": "2026-05-19T14:54:26Z",
+    "merge_commit_sha": "dfdc48a7f131c89ade51e322f5c11180b8509c72",
+    "head_sha": "81c6fdb267122f1e25bca02666410dfdb46dbf86",
+    "files": [
+      "src/lerobot/datasets/video_utils.py",
+      "tests/datasets/test_video_decoder_cache.py"
+    ],
+    "retrieved_payload_sha256": "3cb74d433f1d1a59dc21603f214d6e6a67726bea15c0922f091d55fed6d953b3",
+    "diff_read": true,
+    "tests_run_locally": false,
+    "merged_at_asia_shanghai": "2026-05-19T22:54:26+08:00"
+  },
+  {
+    "number": 714,
+    "url": "https://github.com/NVIDIA/Isaac-GR00T/pull/714",
+    "title": "Make N1.6 letterbox transforms opt-in and fix 1d6 tests",
+    "author": "ryhalabi",
+    "merged_at": "2026-06-30T19:20:45Z",
+    "merge_commit_sha": "9b37aa1ce69c73c6d165233fa88128283bba4508",
+    "head_sha": "23e29121d831e49f9d0aeaf7d305c74833b090e5",
+    "files": [
+      "gr00t/configs/model/gr00t_n1d6.py",
+      "gr00t/data/dataset/sharded_mixture_dataset.py",
+      "gr00t/eval/sim/LIBERO/setup_libero.sh",
+      "gr00t/model/gr00t_n1d6/image_augmentations.py",
+      "gr00t/model/gr00t_n1d6/processing_gr00t_n1d6.py",
+      "gr00t/model/gr00t_n1d6/setup.py",
+      "tests/gr00t/data/test_sharded_mixture_dataset.py",
+      "tests/gr00t/model/test_variable_image_size.py"
+    ],
+    "retrieved_payload_sha256": "6aa6aea9ca126ea69cb6ef1e700135fa5f62a3f72d7418bf1eaf3e08b07d2a5b",
+    "diff_read": true,
+    "tests_run_locally": false,
+    "merged_at_asia_shanghai": "2026-07-01T03:20:45+08:00",
+    "scope_note": "July event in Asia/Shanghai; delegated to Q3; not included in Q2 backfill or counts."
+  }
+]

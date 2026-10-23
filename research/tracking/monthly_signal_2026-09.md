@@ -1,5 +1,29 @@
 # Monthly Signal Report · 2026-09
 
+<a id="embodied-20261023"></a>
+## 2026-10-23 历史补充：反馈位置与共享状态需要一起验收
+
+本节归并 10/13 已核验的 3 项 9 月历史材料，全部沿用原 Decision；没有新增来源，不改原月报的 5 组 Accepted、历史 Watch 或扫描游标。First seen 仍为 10/13，原始时间与固定代码见[9 月 backfill](backfill/2026-09.md)，不将事后发现写成当月已覆盖。
+
+**趋势推断：** 这组材料让“更及时地行动”具体化：模型把新观察放到动作生成的后段，仿真与视频流水线则用共享存储和显式依赖减少搬运。收益是否成立取决于观察新鲜度、buffer 寿命与执行边界，单个模块的耗时不能代表完整控制时延。
+
+### Embodied Models & Infra Watch
+
+| Models / Learning | Infra |
+|---|---|
+| **Accepted / Read — [VLA-Feedback](https://arxiv.org/abs/2609.21022v1)**：训练反馈模块，用新观察完成最后一步动作去噪以修正已有 chunk；[方法核验](backfill/2026-09.md#embodied-followup-2609-21022)区分模块计算与传感器到执行的延迟；Next：与 RTC 对照反馈位置、是否训练和动作提交边界，不以局部时延推断控制频率。 | **Accepted / Deep Dive — [Isaac Lab v3.0.0-EA](https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA)**：Warp/Torch view 共享可变存储，且 quaternion 顺序发生变化；[固定实现与测试](backfill/2026-09.md#embodied-github-6)已核；Next：优先测试 aliasing、reset 后 view 生命周期及 controller 约定。 |
+| **模型证据边界**：VLA-Feedback 任务与机器人覆盖有限，作者效果未本地复现；这次只归并已核方法，没有完成 PI/openpi、OFT、SmolVLA 的 9 月全量检索。 | **Accepted / Deep Dive — [TorchCodec v0.17.0](https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0)**：解复用、解码、颜色转换可分阶段组织，但跨 CUDA stream 等待与 storage 寿命由调用方负责；[原账本](backfill/2026-09.md#embodied-github-7)核过示例与测试；Next：先做 pts/像素对齐和跨 stream 压力验证，再测 overlap。 |
+
+月份边界必须保留：Isaac Lab 这里是 9/16 UTC（上海 9/17）发布的 **EA**，不是 10 月 GA，也不声称架构首次在 9 月出现；TorchCodec 这里是 9/30 的 v0.17，10 月 #1758 的 NVDEC 缓解没有倒写进发布包。当前 docs 不能替代历史 tag，公开测试也不能替代本地结果。
+
+**覆盖与下一步：** 已有固定版本证据足以安排一条“新观察→反馈生成→执行”状态图和一条“视频帧→CUDA consumer”生命周期图，尚不足以声称真实机器人、分布式仿真或 GPU 解码已验证。原有厂商、HF 与 RL Watch 继续按原范围阅读；本次不扩展其他领域，三项均保持 NEW。[本次计数、复用来源与缺口](audits/2026-10-23-embodied-monthly/q3/summary.json)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 - 统计窗口：**2026-09-01 00:00:00 → 2026-09-30 23:59:59，Asia/Shanghai**。
 - 编制日期：2026-10-08；类型：月度高质量复盘，替代原截至 9/22 的阶段版。
 - 来源：7 次 9 月 frontier scans、9/22 GitHub 专项与历史复盘、已有专题阅读，以及 [10/08 scan](frontier_scan_2026-10-08.md) 中原始发表/合并于 9 月的材料。**不重新发现文章，不推进 frontier 游标。**

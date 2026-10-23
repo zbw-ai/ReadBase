@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-23T05:49:30.663685+00:00",
+  "scope": "Three selected historical releases; not exhaustive Q2 enumeration",
+  "releases": [
+    {
+      "id": 306145434,
+      "tag_name": "v0.5.1",
+      "name": "Release v0.5.1",
+      "published_at": "2026-04-07T14:57:52Z",
+      "created_at": "2026-04-07T14:11:14Z",
+      "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.1",
+      "prerelease": false,
+      "repo": "huggingface/lerobot",
+      "author": "github-actions[bot]",
+      "sha": "1396b9fab7aecddd10006c33c47a487ffdcb54b4",
+      "raw_sha256": "654e60df9a862136c1dd39843a023ea3e85b95702ac0d9e612cfd11a7d853695",
+      "body_sha256": "6a776f7a9b7faaf38a1e31b52ebda10f64681128cb174ccc0034c9dd8554de89",
+      "published_at_asia_shanghai": "2026-04-07T22:57:52+08:00"
+    },
+    {
+      "id": 326862982,
+      "tag_name": "v0.13.0",
+      "name": "TorchCodec 0.13",
+      "published_at": "2026-05-21T11:58:23Z",
+      "created_at": "2026-05-20T10:11:33Z",
+      "html_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.13.0",
+      "prerelease": false,
+      "repo": "meta-pytorch/torchcodec",
+      "author": "NicolasHug",
+      "sha": "6e692e9f9f55470cc013914c8cc69ec7ae2eefea",
+      "raw_sha256": "96ad38264688636a4b0a5d948ed9990853f8e89fb09a5019d4cfd6c90bbb6cf2",
+      "body_sha256": "e7432a0c9ffd56e5c0eda0731a534f801fa896805b4d45b4ba15d2e583aaf86c",
+      "published_at_asia_shanghai": "2026-05-21T19:58:23+08:00"
+    },
+    {
+      "id": 339606784,
+      "tag_name": "v3.0.0-beta2",
+      "name": "v3.0.0-beta2",
+      "published_at": "2026-06-17T02:16:55Z",
+      "created_at": "2026-06-16T06:51:45Z",
+      "html_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta2",
+      "prerelease": false,
+      "repo": "isaac-sim/IsaacLab",
+      "author": "kellyguo11",
+      "sha": "28a37cecdd433c22d9eabd6a5954add9f13a8951",
+      "raw_sha256": "bb6daa538029a0fd7849bde367ee4bc6c9f6f024f78e69eeb57f372aee65d2ab",
+      "body_sha256": "f6290935086d638fee053bee2f7cf08b96d6ecf026389f5ef3edb5b863bb5db3",
+      "published_at_asia_shanghai": "2026-06-17T10:16:55+08:00"
+    }
+  ]
+}

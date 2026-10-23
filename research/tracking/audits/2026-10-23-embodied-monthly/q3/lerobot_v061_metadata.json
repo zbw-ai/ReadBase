@@ -1,0 +1,66 @@
+{
+  "id": 364271124,
+  "tag_name": "v0.6.1",
+  "name": "Release v0.6.1",
+  "published_at": "2026-08-03T14:19:42Z",
+  "created_at": "2026-08-03T14:05:01Z",
+  "html_url": "https://github.com/huggingface/lerobot/releases/tag/v0.6.1",
+  "target_commitish": "main",
+  "author": "github-actions[bot]",
+  "release_api_sha256": "fea7b7daf9bf5613e24edc77ae4c43f671afd628f1a67db8d4aa8101f6116be3",
+  "tag_ref": {
+    "sha": "7e241bd630a3719a56157a497ce5d08f244784f1",
+    "type": "commit",
+    "url": "https://api.github.com/repos/huggingface/lerobot/git/commits/7e241bd630a3719a56157a497ce5d08f244784f1"
+  },
+  "tag_api_sha256": "e3e56e3d7079339e03c752563e87e1b8a3fb914050a0c10d33d669f4e1afb680",
+  "release_body_sha256": "df93c32e2450a710683b8b6423f46b8668f65c851487d2a7fac7124494363c60",
+  "selected_prs": [
+    {
+      "number": 4022,
+      "title": "fix(train): keep checkpoint processor stats on resume",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4022",
+      "merged_at": "2026-07-30T11:47:57Z",
+      "merge_commit_sha": "0cef9cd197a2aa01ff219931efabe6b4f60364c6",
+      "author": "jashshah999",
+      "pr_api_sha256": "23328eba6c8d3603a8044e0cf892dac0ef6315ad4f41578937dfb938a65410b9",
+      "files_api_sha256": "bc2da8c7b1d5bed57357a339e59ee42882fa0a6bd9a1b5be9950e1bdb12cb2ce",
+      "files": [
+        {
+          "filename": "src/lerobot/scripts/lerobot_train.py",
+          "sha": "4c0e12eafc6f27106ee1a8baa979dab3a931b907",
+          "patch_sha256": "c6d23451e651fadd0d6289c9482443b33a63d5fc672a4a3f34a1e73ceb507d9e"
+        }
+      ]
+    },
+    {
+      "number": 4237,
+      "title": "fix(datasets): stop frame errors being treated as shard exhaustion in StreamingLeRobotDataset",
+      "html_url": "https://github.com/huggingface/lerobot/pull/4237",
+      "merged_at": "2026-07-30T14:19:38Z",
+      "merge_commit_sha": "fbe8f5c9da4d456b83d7784e30f270adfab64b2d",
+      "author": "imstevenpmwork",
+      "pr_api_sha256": "b3fdf95af2bafc9d556574780e099a8ecddeb680b956dc88de4e4a522d976e70",
+      "files_api_sha256": "ede428ecd3d6d234a96ab5efedac297bc53cffc8319d1eff7356533acdc7b149",
+      "files": [
+        {
+          "filename": "src/lerobot/datasets/streaming_dataset.py",
+          "sha": "b63e34dc8c6d97ebac59982b25d36292efdbb3b0",
+          "patch_sha256": "6e8e79edaecb7a5f35877a040fe2ef72aecc3d5994f051388f184c9f7c9c0d59"
+        },
+        {
+          "filename": "tests/datasets/test_streaming.py",
+          "sha": "08544326f8105208ac6d23d482b335b73646524d",
+          "patch_sha256": "7ad42061dbb463db19ed34e0b2cb9a90d619011de07910770d9394356b3a1beb"
+        }
+      ]
+    }
+  ],
+  "source_id": "github:huggingface/lerobot:release:v0.6.1",
+  "checked_at": "2026-10-23",
+  "decision": "Read",
+  "disposition": "Accepted",
+  "status": "NEW",
+  "original_summary": "发布包含resume保留checkpoint processor统计，以及区分数据帧错误与stream耗尽的修复；按release为一条交付信号，不把其全部PR算为新信号。",
+  "evidence_boundary": "静态阅读selected diffs；没有安装wheel、跑数据/训练或证明全部release修改正确。"
+}

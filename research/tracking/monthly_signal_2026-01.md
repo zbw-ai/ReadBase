@@ -1,5 +1,36 @@
 # Monthly Signal Report, 2026-01
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充
+
+本节汇总先写入 [1 月 backfill](backfill/2026-01.md#embodied-20261023-lingbot-vla) 的历史核验：新增 2 个来源，发生时间均在 1 月，发现与补录发生在 10 月。下方原月报、Accepted 数量与历史 Watch 保留；不推进扫描游标，不改变 P0/P1 阅读状态。
+
+**趋势推断：** 这两条材料把“更大规模机器人数据是否有用”与“数据能否高效进入训练”连起来：前者需要跨 embodiment 的受控评估，后者需要检查解码、预处理和编码落在哪种设备上。它们不能证明整个 1 月的具身研究都沿这一方向发展。
+
+### Embodied Models & Infra Watch · 历史补充
+
+#### Models / Learning
+
+| 当月材料与一句话看点 | Evidence / Decision / Reason / Target question / Next |
+|---|---|
+| 01-26 UTC：[LingBot-VLA v1](https://arxiv.org/abs/2601.18692v1) 用多视角图像、语言与本体状态生成连续 action chunk，并用 depth distillation 加入几何监督；[补录账本](backfill/2026-01.md#embodied-20261023-lingbot-vla)。 | **Accepted / Read**；已核 citation 三字段及 §3–5，MoT 中 VLM 与 action expert 共享 attention、采用 flow matching。目标问题：数据规模、几何监督和跨机器人适配各贡献什么？下一步按数据划分与有无 depth 的消融读，避免把固定底盘的桌面任务结果外推成移动操作泛化。 |
+
+#### Infra
+
+| 当月材料与原始看点 | 当前工程意义与后续核验 |
+|---|---|
+| 01-22：[TorchCodec 0.10](https://github.com/meta-pytorch/torchcodec/releases/tag/v0.10.0) 将 Resize/Crop 接到 decoder，并提供 GPU video encoding；[补录账本](backfill/2026-01.md#embodied-20261023-torchcodec-010)。 | **Accepted / Read**；固定 tag 与代码已核。目标问题：episode 的处理瓶颈在解码、帧变换还是编码？下一步记录设备、格式与 CPU fallback，比较相同视频的端到端耗时；官方编码加速不等于机器人训练吞吐提升。 |
+| 同一 LingBot-VLA 来源的 §4.2 披露 action-expert shard groups、混合精度及 attention/kernel 优化；不重复计数。 | 机制提示 VLM 与 action expert 可有不同通信开销；**工程推断**是先测 dataloader 等待和 sharding 通信再调并行策略。论文吞吐属作者报告，本仓库未复现。 |
+
+**覆盖与缺口：** 本次实际核验 LingBot-VLA v1、TorchCodec 固定版本，并检查 LeRobot/Isaac Lab release 索引与 PI 官方博客日期；这些入口检查不等于当月全部 PR 或论文已审。OpenVLA/OFT、GR00T 当月机制与 cs.RO/cs.LG/cs.CV 全量覆盖仍有缺口。证据、hash 与原始日期见 [Q1 审计](audits/2026-10-23-embodied-monthly/q1/README.md)；两条新账本均为 NEW，收录不等于已读或实验成功。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：异步化首先改变样本与状态的归属

@@ -1,0 +1,170 @@
+{
+  "audit_date": "2026-10-23",
+  "source_audits": [
+    {
+      "path": "research/tracking/audits/2026-10-13-embodied-followup/github_evidence.json",
+      "sha256": "b4381ba917576e4f777a7e53027872531d52eadf3bcd6bad8c67af1f0128f26a"
+    },
+    {
+      "path": "research/tracking/audits/2026-10-13-embodied-followup/late_model_sources.json",
+      "sha256": "09170f32e8665b681abf0145462933ede24a6f7e43bae9bf8f96d4dfdc5f4ff5"
+    }
+  ],
+  "items": [
+    {
+      "source_id": "github:NVIDIA/Isaac-GR00T:pr:727",
+      "title": "Remove PIL and tensor round-trips from the inference image path",
+      "author": "maxwbuckley",
+      "original_time": "2026-07-29T23:11:09Z",
+      "date_kind": "PR merged_at",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/pull/727",
+      "commit": "742fbd2221181090538eb4f48102c841c9400727",
+      "decision": "Read",
+      "status": "NEW",
+      "evidence": [
+        "已读processing_gr00t_n1d7.py与新增test_vlm_image_input_parity.py：三种尺寸、2/6帧，把旧PIL路径作oracle，逐输出torch.equal。",
+        "测试fixture在Cosmos-Reason2-2B gated processor不可访问时skip；PR自报7 passed和性能数字，未本地复现。",
+        "本次公开head check-runs只有Python 3.10 - Lint=failure；不能写全部CI通过。"
+      ],
+      "limitations": "parity证明覆盖processor输入路径，不等于任意相机格式或所有模型输出都等价；作者时延数字依赖其processor与机器。",
+      "next_step": "在实际机器人分辨率与相机数上运行旧/新processor parity，再分解CPU前处理与GPU推理耗时。"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab:release:v3.0.0-EA",
+      "title": "v3.0.0-EA",
+      "author": "kellyguo11",
+      "original_time": "2026-09-16T22:34:03Z",
+      "date_kind": "GitHub release published_at; architecture introduced earlier in beta",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-EA",
+      "commit": "ae37b028ea415c91ea2bc32609efcd759ed2b974",
+      "decision": "Deep Dive",
+      "status": "NEW",
+      "evidence": [
+        "release/tag解析到固定sha；实读ProxyArray实现与552行测试文件。",
+        "test_torch_is_cached检查对象身份，test_torch_shares_memory写Torch后从Warp读取；quatf访问告警测试核验旧/新顺序提示。"
+      ],
+      "limitations": "EA并非GA；多后端支持组合仍因task而异；本次没跑IsaacSim/多GPU，也不把release中性能概述当benchmark结果。这里的日期是EA发布，不声称这些机制首次引入于9月。",
+      "next_step": "迁移测试优先检查aliasing、reset后view生命周期、硬编码quaternion与controller/observation接口。"
+    },
+    {
+      "source_id": "github:meta-pytorch/torchcodec:release:v0.17.0",
+      "title": "TorchCodec 0.17 - Low-level decoding APIs",
+      "author": "NicolasHug",
+      "original_time": "2026-09-30T13:32:47Z",
+      "date_kind": "GitHub release published_at",
+      "url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0",
+      "commit": "d9dc54238e173000bc3969eb3959777026ff9ae8",
+      "decision": "Deep Dive",
+      "status": "NEW",
+      "evidence": [
+        "实读固定tag的CUDA streams示例：分开处理event/wait和allocator reuse两种依赖，明确planes.record_stream无效。",
+        "实读smoke_test中low-level video seek/reset/drain与multi-stream路径；并核查#1749将同步责任交回用户、#1752新增smoke tests的diff。"
+      ],
+      "limitations": "low-level API处于Beta；多线程/零拷贝机会不等于本机吞吐收益。record_stream可能增加不可预测峰值显存；本次未执行GPU解码。",
+      "next_step": "建立CPU reference、pts/像素对齐和跨stream压力测试，再测stage overlap；显式记录在途帧数和显存。"
+    },
+    {
+      "source_id": "arxiv:2607.29235v1",
+      "url": "https://arxiv.org/abs/2607.29235v1",
+      "metadata": {
+        "citation_title": [
+          "FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution"
+        ],
+        "citation_author": [
+          "Li, Peize",
+          "Zhang, Ruimeng",
+          "Zhang, Ru",
+          "Huang, Cong",
+          "Chen, Kai",
+          "Zhang, Shanghang"
+        ],
+        "citation_date": [
+          "2026/07/31"
+        ],
+        "citation_online_date": [
+          "2026/07/31"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2607.29235"
+        ],
+        "citation_arxiv_id": [
+          "2607.29235"
+        ]
+      },
+      "abs_sha256": "6209e9c3713e8f8131009be1891a9b8629035f2395bfa3ade145de5140a05d38",
+      "method_html_sha256": "5e859865399d7c564b7f208c58d4f7274fc94549b0fb162492b69d15341fc382",
+      "method_sections_checked": "§3.1–3.5, §4.2–4.3, §5.3, §7, Appendix E",
+      "decision": "Observe",
+      "disposition": "Observed",
+      "evidence_boundary": "Pseudo-asynchronous clock decoupled from wall-clock; JVP overhead; limited heterogeneous aggregate effects; real-world prediction diagnostic not policy control."
+    },
+    {
+      "source_id": "arxiv:2609.21022v1",
+      "url": "https://arxiv.org/abs/2609.21022v1",
+      "metadata": {
+        "citation_title": [
+          "Catch Me If You Can: Real-Time Feedback Denoising for Responsive VLAs"
+        ],
+        "citation_author": [
+          "Ji, Yiheng",
+          "Zhou, Xingru",
+          "Sentis, Luis",
+          "Seo, Mingyo"
+        ],
+        "citation_date": [
+          "2026/09/17"
+        ],
+        "citation_online_date": [
+          "2026/09/17"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2609.21022"
+        ],
+        "citation_arxiv_id": [
+          "2609.21022"
+        ]
+      },
+      "abs_sha256": "a371678569f51c0295aa5a88d54c3e02ce5d69b7eca1c2539d408ace0cdaf5df",
+      "method_html_sha256": "ff080047a5512c716ae1ac91411f134c2a5005d87416bd8c44017eef6e1bb359",
+      "method_sections_checked": "§3.1–3.3, §4.1–4.4, §5, A.2–A.3",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "evidence_boundary": "Trained feedback module; hardware end-to-end 71.01 ms vs inference 1.95 ms; 10 Hz control; limited Franka task set."
+    },
+    {
+      "source_id": "nvidia:gr00t-end-to-end:2026-07-07",
+      "url": "https://developer.nvidia.com/blog/develop-humanoid-robot-policies-end-to-end-with-nvidia-isaac-gr00t/",
+      "title": "Develop Humanoid Robot Policies End-to-End with NVIDIA Isaac GR00T",
+      "authors": [
+        "Edith Llontop",
+        "Brandon Neel"
+      ],
+      "original_date": "2026-07-07",
+      "checked_at": "2026-10-23",
+      "page_sha256": "a121ce936020b13423b1c523849905a516f0bd20cdeeeadfe5651824b80a4cde",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "status": "DIGESTED",
+      "original_summary": "官方正文提供从仿真设置、示范采集、LeRobot格式转换、post-training到评估和部署的工作流。",
+      "evidence_boundary": "既有条目元数据补齐；没有采用自动生成摘要、benchmarks或当前docs回推历史实现。"
+    },
+    {
+      "source_id": "github:NVIDIA/Isaac-GR00T:pr:714",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/pull/714",
+      "title": "Make N1.6 letterbox transforms opt-in and fix 1d6 tests",
+      "author": "ryhalabi",
+      "merged_at": "2026-06-30T19:20:45Z",
+      "original_date_shanghai": "2026-07-01T03:20:45+08:00",
+      "commit": "9b37aa1ce69c73c6d165233fa88128283bba4508",
+      "decision": "Observe",
+      "disposition": "Observed",
+      "status": "NEW",
+      "provenance": "2026-10-13 observed_or_excluded; Q2 collaborator rechecked metadata and diff on 2026-10-23",
+      "metadata_audit": "research/tracking/audits/2026-10-23-embodied-monthly/q2/pr_metadata.json",
+      "original_summary": "letterbox改为opt-in；padding按当前图像计算，并增加variable-size与replay路径测试。",
+      "evidence_boundary": "沿用Observe，未本地运行；按Asia/Shanghai归7月，旧审计UTC日不改写。"
+    }
+  ],
+  "raw_bodies_stored": false,
+  "local_model_tests_run": false
+}

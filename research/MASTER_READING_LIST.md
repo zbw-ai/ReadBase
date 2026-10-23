@@ -1,5 +1,7 @@
 # Master Reading List
 
+历史月报：[2026 年 1—9 月具身 Models / Learning 与 Infra](tracking/monthly_reviews.md#embodied-2026) → [贯穿月份的工程判断](../05-embodied-infra/topics/embodied_infra.md#monthly-2026)。此次 10/23 回溯补齐分别保存旧记录承接与新增历史核验，来源收录不代表已读。
+
 具身最新：[10/23扫描与选读](tracking/frontier_scan_2026-10-23.md) → [经验、动作信息与交互时限](../05-embodied-infra/topics/embodied_infra.md#oct23-learning)；工程接[数据所有权](../05-embodied-infra/topics/embodied_data_io.md#oct23-data-contract)、[推理容量生命周期](../03-inference-infra/topics/inference_state.md#oct23-capacity)、[RL更新契约](../04-rl-infra/topics/agentic_rl.md#oct23-update-contract)。材料仍NEW，实验未运行。
 
 具身新增来源：[2026 模型与 GitHub 演进补扫](tracking/embodied_followup_2026-10-13.md)，包含来源日期、版本和验证边界；从[核心 topic](../05-embodied-infra/topics/embodied_infra.md)进入学习。

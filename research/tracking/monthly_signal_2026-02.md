@@ -1,5 +1,36 @@
 # Monthly Signal Report, 2026-02
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充
+
+本节归并 [10 月 13 日已入账的 DreamZero](backfill/2026-02.md#embodied-followup-2602-15922)，并汇总本次先补入 [2 月账本的 LeRobot encoding](backfill/2026-02.md#embodied-20261023-lerobot-streaming)：当月来源 2 个，其中新增历史补录 1 个、已有记录归并 1 个。所有补录发生在 10 月，不改原 Accepted、扫描游标或共享 P1 的 NEW 状态。
+
+**趋势推断：** 世界预测与真实机器人数据都需要正确的时间边界。DreamZero 要处理“预测历史何时让位于真实观察”，LeRobot 则处理“采集控制循环怎样与视频编码解耦”。这提示具身 Infra 不能仅用 GPU 利用率评估，还要检查动作截止时间和观察缺失。
+
+### Embodied Models & Infra Watch · 历史补充
+
+#### Models / Learning
+
+| 当月材料与一句话看点 | Evidence / Decision / Reason / Target question / Next |
+|---|---|
+| 02-17：[DreamZero v1](https://arxiv.org/abs/2602.15922v1) 联合预测未来视频与动作，并在执行后用真实观察更新缓存；[已有账本](backfill/2026-02.md#embodied-followup-2602-15922)。 | **Accepted / Deep Dive（沿用）**；复用已核 citation、§3.1–3.2 和执行说明。目标问题：视频先验怎样帮助控制，怎样防止虚构历史继续支配下一步动作？下一步画 observation、cache 与 action 提交时间线。它是面向控制的 WAM 证据，不能只按视频观感评估；作者实时结果受硬件与具体优化组合约束。 |
+
+#### Infra
+
+| 当月材料与原始看点 | 当前工程意义与后续核验 |
+|---|---|
+| 02-23 合入、02-27 UTC 发布：[LeRobot #2974](https://github.com/huggingface/lerobot/pull/2974) 在采集中按相机线程编码，绕过逐帧 PNG 落盘再读回；已进入 [v0.4.4](https://github.com/huggingface/lerobot/releases/tag/v0.4.4)，[补录账本](backfill/2026-02.md#embodied-20261023-lerobot-streaming)。 | **Accepted / Read**；merge SHA、编码队列和多相机/取消测试已读，未运行。目标问题：降低 episode 间等待是否损害观察完整性？实现对满队列采用有限等待后丢帧并告警；下一步同时验 frame count、timestamp、动作对齐及中断恢复，不能把更快保存视为无损采集。 |
+| 同一 DreamZero 来源的真实观察回填与执行流程；不重复计数。 | **工程推断：** inference cache 的版本、观察时刻与动作有效期应共同追踪；吞吐测量需要包含取像、传输和动作提交，不能把作者硬件上的执行结果直接承诺给任意部署。 |
+
+**版本与覆盖边界：** 3 月 LeRobot v0.5 发布博客汇总过 streaming encoding，但本次已据合入与 v0.4.4 归到 2 月；不在 3 月重复接受。实际检查了该 PR、release 及固定代码，另查 Isaac Lab/TorchCodec release 索引；后两者不等于当月所有变更已审。openpi/OpenVLA/GR00T 的 2 月版本史及实际训练恢复实验仍未补齐。见 [Q1 审计](audits/2026-10-23-embodied-monthly/q1/README.md)。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：从远端 rollout 到可恢复的环境供给

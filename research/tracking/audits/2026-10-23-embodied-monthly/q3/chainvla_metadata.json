@@ -1,0 +1,47 @@
+{
+  "source_id": "arxiv:2608.02326v1",
+  "checked_at": "2026-10-23",
+  "original_month": "2026-08",
+  "url": "https://arxiv.org/abs/2608.02326v1",
+  "metadata": {
+    "citation_title": [
+      "ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation"
+    ],
+    "citation_author": [
+      "Huang, Yuzhi",
+      "Bu, Weijue",
+      "Xiong, Ziyi",
+      "Wu, Jie",
+      "Huang, Fanding",
+      "Jiang, Jingyan",
+      "Wang, Zhi"
+    ],
+    "citation_date": [
+      "2026/08/03"
+    ],
+    "citation_online_date": [
+      "2026/08/03"
+    ],
+    "citation_pdf_url": [
+      "https://arxiv.org/pdf/2608.02326"
+    ],
+    "citation_arxiv_id": [
+      "2608.02326"
+    ]
+  },
+  "abs_sha256": "019efbf39d163b31d48b5d6d56910ddc57d7f4cbc37095fa34f014863ae0416b",
+  "method_url": "https://arxiv.org/html/2608.02326v1",
+  "method_html_sha256": "8c899577102de8ac8f12fd05c762b605941e19caf6dad2c5aa44098725529b10",
+  "method_sections_checked": [
+    "3.2–3.5",
+    "4.1",
+    "4.3",
+    "Appendix D"
+  ],
+  "decision": "Read",
+  "disposition": "Accepted",
+  "status": "NEW",
+  "original_summary": "任务进度记忆与上一预测未执行后缀共同构成可修订状态；按episode顺序训练，下一查询仍重生成完整动作段。",
+  "evidence_boundary": "固定频率仿真、单seed；外部基线未同协议重跑，无真机或异步实时验证。",
+  "abstract_sha256": "26e7d4cedf1cef2c263d5bddc818c7328c9e2f030213a9a72a82e270f92d1ea9"
+}

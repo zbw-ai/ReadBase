@@ -31,11 +31,11 @@
 
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
+| 2026-10-23 | 具身历史月报补充 | [1—9 月双线时间表](research/tracking/monthly_reviews.md#embodied-2026)：模型条件、记忆与反馈，对应数据 I/O、仿真、恢复和执行约束；各月保留来源日期、历史补充边界与选读建议 |
 | 2026-10-23 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-23.md)：CEL、AIM、CADRE及RL/推理状态；[具身学习问题](05-embodied-infra/topics/embodied_infra.md#oct23-learning)，附23仓1320条PR索引与3篇晚发现补录 |
 | 2026-10-23 | 具身基础讨论与工程推演 | [VLM／VLT／VLA 与学习算法](05-embodied-infra/topics/embodied_models_primer.md#model-roles) → [样本到 loss 与动作](05-embodied-infra/topics/embodied_models_primer.md#sample-to-action)；补动作生成成本、BC／RL 系统差异和[Infra 核心关注点](05-embodied-infra/topics/embodied_models_primer.md#infra-priorities)，教学算例未替代实验 |
 | 2026-10-19 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-19.md)：REKI、T2-z、GR00T部署与Nemotron；[具身新问题](05-embodied-infra/topics/embodied_infra.md#oct19-learning)和[推理状态章](03-inference-infra/topics/inference_state.md)，附958条PR索引 |
 | 2026-10-14 | 研究扫描与具身学习 | [16 组最新信号](research/tracking/frontier_scan_2026-10-14.md)：ACCRUE、质量感知预训练、远程动作与状态正确性；[具身机制回写](05-embodied-infra/topics/embodied_infra.md#oct14-learning)，附 481 条 PR 索引 |
-| 2026-10-13 | 具身核心专题与补扫 | [具身 Infra 核心入口](05-embodied-infra/topics/embodied_infra.md)：整体地图、模型入门、数据 I/O 与讨论路径；[模型／GitHub 补扫](research/tracking/embodied_followup_2026-10-13.md)补版本与验证边界 |
 
 这里只记录仓库新增或实质更新，最多 5 条；外部新文章看[研究雷达](research/tracking/README.md)，项目进展看[实践入口](practice/README.md)。
 

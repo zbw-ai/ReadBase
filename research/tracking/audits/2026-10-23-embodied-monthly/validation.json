@@ -1,0 +1,29 @@
+{
+  "validation_date": "2026-10-23",
+  "scope": "Changed Markdown links/images/explicit anchors, JSON parsing, monthly original-body preservation, source counts and cursor/P0 preservation",
+  "changed_files": 42,
+  "markdown_files": 27,
+  "local_links_images_checked": 1523,
+  "markdown_tables_parsed": 101,
+  "json_files_parsed": 15,
+  "original_monthly_bodies_preserved": 9,
+  "original_monthly_sha256": {
+    "research/tracking/monthly_signal_2026-01.md": "21bb1a1ee2d79118d51b74acfc16e5cd5bdb3d029dbf76c38b673b430eee168d",
+    "research/tracking/monthly_signal_2026-02.md": "9664eab0b1500b687e77ef21695cba204f2b6bd936e1fdbca1e59f0ccf458694",
+    "research/tracking/monthly_signal_2026-03.md": "71f0d9651afb05fadc40144c7bcff2782709cc2ae6d6977bcc9b6f627e350da6",
+    "research/tracking/monthly_signal_2026-04.md": "1666e7e79f2a9a701b011aa2b45b33da47f777854363fdea6272d2f531a9745d",
+    "research/tracking/monthly_signal_2026-05.md": "aeb7385285939aa8db4dfcf9ef83d1722bd73f52c4f44d875f05f6906f789d0c",
+    "research/tracking/monthly_signal_2026-06.md": "120f701c3129f322b5658d85d82acdb71f3e7cab25528e8408da869c6aa9cf88",
+    "research/tracking/monthly_signal_2026-07.md": "c809e73f720ba4ceef802b2fa0616e3f67b4a4d1da07c39822cf6edb3e5266d9",
+    "research/tracking/monthly_signal_2026-08.md": "4fe67b1de6365f3172cd7163a8ad40a1cc71d8a64ed3a69ffd85ab967148b25c",
+    "research/tracking/monthly_signal_2026-09.md": "9da2f1b74083e3f32a2e29a27d247e8b20585f61386d0030a4dc1661cf83f4f5"
+  },
+  "scan_log_unchanged": true,
+  "p0_unchanged": true,
+  "unique_supplement_sources": 24,
+  "new_historical_accepted": 9,
+  "existing_accepted": 11,
+  "existing_observed": 4,
+  "code_simulation_robot_experiments_run": false,
+  "errors": []
+}

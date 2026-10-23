@@ -1,5 +1,36 @@
 # Monthly Signal Report, 2026-03
 
+<a id="embodied-20261023"></a>
+
+## 2026-10-23 具身历史补充
+
+本节归并 [10 月 13 日已核验的 MEM](backfill/2026-03.md#embodied-followup-2603-03596)，并汇总先写入 [3 月账本的 Isaac Lab beta](backfill/2026-03.md#embodied-20261023-isaaclab-3beta)：新增历史补录 1 个、已有记录归并 1 个。它们是 3 月公开的机制和版本，10 月才进入本次复盘；原月报全文、Accepted 与历史 Watch 保留，阅读状态和扫描游标不变。
+
+**趋势推断：** 模型开始显式携带跨时间状态，仿真平台则显式分离物理、渲染与数据接口；二者共同让“状态由谁持有、何时重置、怎样解释”成为工程问题。这个判断来自所选来源，不代表已经验证所有后端或长任务可靠性。
+
+### Embodied Models & Infra Watch · 历史补充
+
+#### Models / Learning
+
+| 当月材料与一句话看点 | Evidence / Decision / Reason / Target question / Next |
+|---|---|
+| 03-04（arXiv v1）：[MEM](https://arxiv.org/abs/2603.03596v1) 用近期视觉与长期文字摘要分别承载不同时间尺度的信息，让 VLA 不再只依赖当前图像；[已有账本](backfill/2026-03.md#embodied-followup-2603-03596)。 | **Accepted / Read（沿用）**；复用 citation 三字段及 §III-A–D 核验。目标问题：遮挡消歧与长任务规划各需要保留什么？下一步对比 reactive、frame history 与 MEM，并检查摘要丢事件、错误积累及跨 episode 记忆泄漏；作者长程表现不等于任意任务上的可靠记忆。 |
+
+#### Infra
+
+| 当月材料与原始看点 | 当前工程意义与后续核验 |
+|---|---|
+| 03-17：[Isaac Lab v3.0.0-beta](https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta) 以多物理后端与可插拔渲染拆开仿真依赖，并引入 Warp 数据路径；[补录账本](backfill/2026-03.md#embodied-20261023-isaaclab-3beta)。 | **Accepted / Read**；固定 beta SHA 与迁移文档已核。目标问题：更换仿真后端后 observation/action 语义是否仍相同？当时 `.data.*` 返回 `wp.array`，四元数转为 XYZW，写接口区分 index/mask；下一步做姿态、reset 和 contact 回归。它是 beta，Newton 尚非全功能等价，不把 10 月正式版接口倒写进来。 |
+| 同一 MEM 来源的多尺度记忆状态；不重复计数。 | **工程推断：** episode reset 与模型记忆 reset 必须形成同一边界，恢复时需要明确哪些历史可复用。当前账本仅支持实验设计，没有执行模型 checkpoint、记忆服务或仿真恢复测试。 |
+
+**覆盖与缺口：** 实际复用 MEM 原始版本核验，检查 Isaac Lab beta 固定代码及 LeRobot v0.5 release 边界；LeRobot streaming encoding 已归到 [2 月补录](monthly_signal_2026-02.md#embodied-20261023)，不重复计数。PI 3 月其他模型方法、GR00T/OpenVLA 全部当月变更及 TorchCodec 3 月完整实现仍未逐项核验；入口可见不算接受。审计见 [Q1 记录](audits/2026-10-23-embodied-monthly/q1/README.md)，两项均保持 NEW，不标作已读或 VERIFIED。
+
+### Inference Systems Watch · 本次补充边界
+
+**本次未新增独立推理核验（Not verifiable in this supplement）。** 旧正文的 serving、KV、kernel 或部署材料沿用原记录；本次只归并具身模型和 Infra，不另扫 vLLM / SGLang / TensorRT-LLM，也不把机器人动作推理视为这些引擎的完整覆盖。“未检查”不表示当月无重要变化。
+
+---
+
 > 整合说明（2026-10-08）：本文保留 9/22 的来源核验与复评日期；[GitHub 历史定向补证](github_history_2025_to_2026_h1.md)已保存，但全窗口事件索引重建仍因 API 连接失败待补，不能据此声称历史 GitHub 全覆盖。
 
 ## 2026-09-22 历史复盘：硬件瓶颈迁移与框架契约开始并行演进

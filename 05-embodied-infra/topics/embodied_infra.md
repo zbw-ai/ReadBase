@@ -59,6 +59,17 @@
 
 历史来路看[第一批 13 项复盘](../../research/tracking/embodied_retrospective_2026-10-13.md)，后续演进与源码证据看[模型和 GitHub 补扫](../../research/tracking/embodied_followup_2026-10-13.md)。它们是来源账本，正文负责形成可迁移的判断。新材料即使不提升 Infra 性能，只要澄清模型学习问题，也值得评估。
 
+<a id="monthly-2026"></a>
+### 从 2026 年月报归纳：模型需要的信息决定系统要维护的状态
+
+[1—9 月具身时间线](../../research/tracking/monthly_reviews.md#embodied-2026)把历史来源分成模型／学习与 Infra 两条线。下面是跨材料的工程归纳，不是已验证的统一架构：
+
+- **条件与历史会改变“一个样本”的定义。** 只存当前图像和动作，无法完整表达行为质量条件、长期记忆或上一段动作。排查 loss 正常但部署失效时，先核训练与执行是否提供同样的信息，再查模型容量；对应 [MEM（3 月）](../../research/tracking/monthly_signal_2026-03.md#embodied-20261023)与 [π0.7（4 月）](../../research/tracking/monthly_signal_2026-04.md#embodied-20261023)。
+- **优化输入路径时，版本与数值语义也是输出。** 解码、resize、normalization、数据 revision 与 checkpoint 需要共同确定输入；恢复时只载入权重不足以重建这个契约。配置与排障应保存 processor、stats、dataset revision 和 action adapter，并用固定样本比较训练与部署处理结果；对应 [7 月预处理](../../research/tracking/monthly_signal_2026-07.md#embodied-20261023)和 [8 月恢复](../../research/tracking/monthly_signal_2026-08.md#embodied-20261023)。
+- **每个评估结论都有自己的时间与因果边界。** 视频预测像真、录制动作回放合理、反馈模块低延迟，分别不能单独证明 policy 在真实闭环中成功。先写清输入动作来自谁、何时观察、何时执行、失败是否保留，再测效果；对应 [5 月评估](../../research/tracking/monthly_signal_2026-05.md#embodied-20261023)、[6 月回放](../../research/tracking/monthly_signal_2026-06.md#embodied-20261023)和 [9 月反馈](../../research/tracking/monthly_signal_2026-09.md#embodied-20261023)。
+
+这些检查分别落到[样本契约](embodied_data_io.md#sample-contract)、[执行时间线](#execution)与[评估边界](#evaluation)。先把同一个 episode 从采集画到执行，再选择并行、缓存或异步优化，才能说明性能收益是否保留了学习与控制语义。
+
 <a id="oct14-learning"></a>
 ### 2026-10-14：从“更多经验”追问到“经验还能不能正确使用”
 

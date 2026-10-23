@@ -1,5 +1,7 @@
 # Historical Backfill By Month
 
+2026-10-23：[1—9 月具身月报补充](../monthly_reviews.md#embodied-2026)汇入已有记录，并按原始月份登记本次新核验来源；[补充账本](../audits/2026-10-23-embodied-monthly/README.md)区分新增、承接和仍待覆盖的来源。
+
 [具身后续补扫](../embodied_followup_2026-10-13.md)涵盖 2025 历史遗漏与 2026 模型／代码演进，进入[核心 topic](../../../05-embodied-infra/topics/embodied_infra.md)理解机制。
 
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](../embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。

@@ -1,0 +1,159 @@
+{
+  "scope": "2026 Q1 targeted embodied monthly supplement",
+  "audit_date": "2026-10-23",
+  "historical_accepted_counts_changed": false,
+  "scan_cursor_changed": false,
+  "p0_p1_status_changed": false,
+  "items": [
+    {
+      "month": "2026-01",
+      "original_date": "2026-01-26T17:08:04Z",
+      "source_id": "arxiv:2601.18692v1",
+      "source_url": "https://arxiv.org/abs/2601.18692v1",
+      "title": "A Pragmatic VLA Foundation Model",
+      "backfill_anchor": "research/tracking/backfill/2026-01.md#embodied-20261023-lingbot-vla",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "new_backfill",
+      "watch": [
+        "Models / Learning",
+        "Infra"
+      ],
+      "summary": "多视角语言与本体状态经 MoT / flow matching 生成 action chunk，depth distillation 与 sharding 设计把泛化、几何监督和训练效率连起来。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-23",
+      "monthly_report": "research/tracking/monthly_signal_2026-01.md#embodied-20261023"
+    },
+    {
+      "month": "2026-01",
+      "original_date": "2026-01-22T15:56:23Z",
+      "source_id": "github:meta-pytorch/torchcodec/releases/v0.10.0",
+      "source_url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.10.0",
+      "title": "TorchCodec 0.10",
+      "backfill_anchor": "research/tracking/backfill/2026-01.md#embodied-20261023-torchcodec-010",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "new_backfill",
+      "watch": [
+        "Infra"
+      ],
+      "summary": "Decoder transforms 与 GPU encoding 让视频变换位置和设备路径可以单独检查，但不能直接外推为具身训练吞吐收益。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-23",
+      "monthly_report": "research/tracking/monthly_signal_2026-01.md#embodied-20261023"
+    },
+    {
+      "month": "2026-02",
+      "original_date": "2026-02-17T15:04:02Z",
+      "source_id": "arxiv:2602.15922v1",
+      "source_url": "https://arxiv.org/abs/2602.15922v1",
+      "title": "World Action Models are Zero-shot Policies",
+      "backfill_anchor": "research/tracking/backfill/2026-02.md#embodied-followup-2602-15922",
+      "decision": "Deep Dive",
+      "disposition": "Accepted",
+      "new_or_existing": "existing_consolidation",
+      "watch": [
+        "Models / Learning",
+        "Infra"
+      ],
+      "summary": "视频与动作联合预测必须通过真实观察回填构成闭环，缓存更新和执行延迟是部署边界。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-13",
+      "monthly_report": "research/tracking/monthly_signal_2026-02.md#embodied-20261023"
+    },
+    {
+      "month": "2026-02",
+      "original_date": "2026-02-23T12:57:43Z",
+      "release_date": "2026-02-27T18:07:31Z",
+      "source_id": "github:huggingface/lerobot/pull/2974",
+      "source_url": "https://github.com/huggingface/lerobot/pull/2974",
+      "title": "feat(dataset): add streaming video encoding + HW encoder support",
+      "backfill_anchor": "research/tracking/backfill/2026-02.md#embodied-20261023-lerobot-streaming",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "new_backfill",
+      "watch": [
+        "Infra"
+      ],
+      "summary": "按相机线程持续编码减少 episode 间 PNG 回读等待，但有限队列丢帧要求把观察完整性纳入验收。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-23",
+      "monthly_report": "research/tracking/monthly_signal_2026-02.md#embodied-20261023"
+    },
+    {
+      "month": "2026-03",
+      "original_date": "2026-03-04T00:03:02Z",
+      "source_id": "arxiv:2603.03596v1",
+      "source_url": "https://arxiv.org/abs/2603.03596v1",
+      "title": "MEM: Multi-Scale Embodied Memory for Vision Language Action Models",
+      "backfill_anchor": "research/tracking/backfill/2026-03.md#embodied-followup-2603-03596",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "existing_consolidation",
+      "watch": [
+        "Models / Learning",
+        "Infra"
+      ],
+      "summary": "近期视觉和长期文字摘要分担记忆尺度，带来摘要遗漏、过期状态与跨 episode 泄漏的检验问题。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-13",
+      "monthly_report": "research/tracking/monthly_signal_2026-03.md#embodied-20261023"
+    },
+    {
+      "month": "2026-03",
+      "original_date": "2026-03-17T06:38:37Z",
+      "source_id": "github:isaac-sim/IsaacLab/releases/v3.0.0-beta",
+      "source_url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta",
+      "title": "v3.0.0-beta",
+      "backfill_anchor": "research/tracking/backfill/2026-03.md#embodied-20261023-isaaclab-3beta",
+      "decision": "Read",
+      "disposition": "Accepted",
+      "new_or_existing": "new_backfill",
+      "watch": [
+        "Infra"
+      ],
+      "summary": "多物理后端与 Warp 数据路径拆开仿真依赖，同时引入四元数、写入和 tensor 接口的正确性迁移要求。",
+      "lifecycle": "NEW",
+      "backfill_date": "2026-10-23",
+      "monthly_report": "research/tracking/monthly_signal_2026-03.md#embodied-20261023"
+    }
+  ],
+  "counts": {
+    "new_backfill_accepted": 4,
+    "existing_consolidated": 2,
+    "unique_sources": 6
+  },
+  "months": {
+    "2026-01": {
+      "new_backfill_accepted": 2,
+      "existing_consolidated": 0,
+      "unique_sources": 2,
+      "gaps": [
+        "OpenVLA/OFT 与 GR00T 当月版本史未逐项重建",
+        "cs.RO/cs.LG/cs.CV 仅定向检索，非全量枚举",
+        "模型和 IO 机制未运行复现"
+      ]
+    },
+    "2026-02": {
+      "new_backfill_accepted": 1,
+      "existing_consolidated": 1,
+      "unique_sources": 2,
+      "gaps": [
+        "openpi/OpenVLA/GR00T 2 月机制与代码史未补齐",
+        "release 索引检查不等于所有当月 PR 充分核验",
+        "编码取消/恢复及训练数据对齐未运行测试"
+      ]
+    },
+    "2026-03": {
+      "new_backfill_accepted": 1,
+      "existing_consolidated": 1,
+      "unique_sources": 2,
+      "gaps": [
+        "PI 3 月其他模型方法与 GR00T/OpenVLA 当月变更未逐项审阅",
+        "TorchCodec 3 月 release 实现未深入核查",
+        "Isaac beta 未运行，各后端功能及正确性未验证"
+      ]
+    }
+  },
+  "limitations": "Targeted historical source audit, not full monthly scans; source reading does not imply owner reading completion or experiments."
+}

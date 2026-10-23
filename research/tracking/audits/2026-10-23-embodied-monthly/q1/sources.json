@@ -1,0 +1,218 @@
+{
+  "scope": "Targeted Q1 embodied historical audit; not an exhaustive source scan",
+  "checked_at": "2026-10-23",
+  "releases": [
+    {
+      "source_id": "github:meta-pytorch/torchcodec/releases/v0.10.0",
+      "repo": "meta-pytorch/torchcodec",
+      "tag": "v0.10.0",
+      "title": "TorchCodec 0.10",
+      "published_at": "2026-01-22T15:56:23Z",
+      "release_author": "Dan-Flores",
+      "url": "https://github.com/meta-pytorch/torchcodec/releases/tag/v0.10.0",
+      "release_api_sha256": "d0d780b66b50663d0fac56b8d3bb57a1a0c0dba2cc7994fb819add554c48b6f9",
+      "body_sha256": "62129cd06238e628294a55ba62eafefb6c98527eff3e51d6140aab455900eda9",
+      "commit_sha": "0b261b98080925f2b709712a5491a1e8dd817065",
+      "commit_date": "2026-01-22T15:47:57Z",
+      "tag_ref_api_sha256": "7410aee2b7fa59d1d059fd23ccd14c9c55986969326bb811b9d9eff9474ee6e9",
+      "checked_at": "2026-10-23"
+    },
+    {
+      "source_id": "github:huggingface/lerobot/releases/v0.4.4",
+      "repo": "huggingface/lerobot",
+      "tag": "v0.4.4",
+      "title": "Release v0.4.4",
+      "published_at": "2026-02-27T18:07:31Z",
+      "release_author": "github-actions[bot]",
+      "url": "https://github.com/huggingface/lerobot/releases/tag/v0.4.4",
+      "release_api_sha256": "c40d3ee67b2dff53412747e42b266c4cf8fa42d556c3948f92c0451a844ecccb",
+      "body_sha256": "b68bd8dba19c55f022b74c30fa70e0d0e9d5042ef96d4bc16521a1b3cfe7f2d4",
+      "commit_sha": "8fff0fde7c79f23a93d845d1a50e985de01f8b8a",
+      "commit_date": "2026-02-27T17:22:44Z",
+      "tag_ref_api_sha256": "8c9de1ba1210a11b5a7554273f306916f29da93d26dd4d3b4e5d80bda8f9ac4f",
+      "checked_at": "2026-10-23"
+    },
+    {
+      "source_id": "github:huggingface/lerobot/releases/v0.5.0",
+      "repo": "huggingface/lerobot",
+      "tag": "v0.5.0",
+      "title": "Release v0.5.0",
+      "published_at": "2026-03-09T11:19:04Z",
+      "release_author": "github-actions[bot]",
+      "url": "https://github.com/huggingface/lerobot/releases/tag/v0.5.0",
+      "release_api_sha256": "834b1d716422928ed7e9167f482f30e7fe988f574c0ee5e3e5eb2aae2e39878d",
+      "body_sha256": "b3ec978a33a5ff6ce67201e98b4af7ae5368b9d560d7b81757a5cf9cf3469373",
+      "commit_sha": "00b662de02734a6972ec674b8792696ecd1cb28e",
+      "commit_date": "2026-03-09T10:34:52Z",
+      "tag_ref_api_sha256": "5a2b6ac7dcb97202d7c5c17c91c0b579048edd1162dfc5efae42fba302e1f6c3",
+      "checked_at": "2026-10-23"
+    },
+    {
+      "source_id": "github:isaac-sim/IsaacLab/releases/v3.0.0-beta",
+      "repo": "isaac-sim/IsaacLab",
+      "tag": "v3.0.0-beta",
+      "title": "v3.0.0-beta",
+      "published_at": "2026-03-17T06:38:37Z",
+      "release_author": "kellyguo11",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0-beta",
+      "release_api_sha256": "b5978e242078e51597c4411185c846ba6c276298cf14394c2948ab828d0be948",
+      "body_sha256": "ae900d8a23fb1344f09445fb0c169bc8ffddabf95cba518c7949e1518b9d00df",
+      "commit_sha": "a4a7602f29e755e2673fe0022ea35566df6dd7d5",
+      "commit_date": "2026-03-17T06:38:12Z",
+      "tag_ref_api_sha256": "848ee1455c10fd186d6a1d9e9771ca9b9b7d35d4f51cbf14b4274b94b6bfcdb0",
+      "checked_at": "2026-10-23"
+    }
+  ],
+  "pull_request": {
+    "number": 2974,
+    "title": "feat(dataset): add streaming video encoding + HW encoder support",
+    "html_url": "https://github.com/huggingface/lerobot/pull/2974",
+    "created_at": "2026-02-16T12:39:31Z",
+    "merged_at": "2026-02-23T12:57:43Z",
+    "merge_commit_sha": "e96339a3b49ac080e11664d2be4737987d861a57",
+    "author": "imstevenpmwork",
+    "api_sha256": "002d7fd70ad447773dd80c5a26b209f1879b22a2be8cbe3c4c2625218168f21a",
+    "body_sha256": "a39eada834e262e24bbfd4a8266a4fc286be54cbcdadb154941d2ca65f51d276",
+    "checked_at": "2026-10-23"
+  },
+  "files": [
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "ref": "0b261b98080925f2b709712a5491a1e8dd817065",
+      "path": "src/torchcodec/transforms/_decoder_transforms.py",
+      "git_blob_sha": "378e5235d6c945c5ab31dcd7f526c923389964c0",
+      "sha256": "9903f2f6904c8efd234192bfcda77577d50fbe01bd8aa1b860643ba982e70c5a",
+      "url": "https://github.com/meta-pytorch/torchcodec/blob/0b261b98080925f2b709712a5491a1e8dd817065/src/torchcodec/transforms/_decoder_transforms.py"
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "ref": "0b261b98080925f2b709712a5491a1e8dd817065",
+      "path": "src/torchcodec/encoders/_video_encoder.py",
+      "git_blob_sha": "5d98b159f5e56b9150ffe40fbd22290dbcfaa884",
+      "sha256": "716d005823369182a7efac324220d4ca50a61007bf1c20dbfe2ec29c7f8a025b",
+      "url": "https://github.com/meta-pytorch/torchcodec/blob/0b261b98080925f2b709712a5491a1e8dd817065/src/torchcodec/encoders/_video_encoder.py"
+    },
+    {
+      "repo": "meta-pytorch/torchcodec",
+      "ref": "0b261b98080925f2b709712a5491a1e8dd817065",
+      "path": "examples/decoding/performance_tips.py",
+      "git_blob_sha": "4676d6d12232a649aa1baf37a7adc5421039ed59",
+      "sha256": "50f8f7e9615dad8cce5b2e2f7c34fde4967f2307335034448b2eb16dd27bf9a6",
+      "url": "https://github.com/meta-pytorch/torchcodec/blob/0b261b98080925f2b709712a5491a1e8dd817065/examples/decoding/performance_tips.py"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "ref": "e96339a3b49ac080e11664d2be4737987d861a57",
+      "path": "src/lerobot/datasets/video_utils.py",
+      "git_blob_sha": "acc24a9e05d04ad561a536b645dcff5cfec8113b",
+      "sha256": "059a65fcde4cb276bda0ec60ab556c13131d8ce2eef05402586b6a2fc6b277ac",
+      "url": "https://github.com/huggingface/lerobot/blob/e96339a3b49ac080e11664d2be4737987d861a57/src/lerobot/datasets/video_utils.py"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "ref": "e96339a3b49ac080e11664d2be4737987d861a57",
+      "path": "tests/datasets/test_streaming_video_encoder.py",
+      "git_blob_sha": "a85db6a8dedf4f0fb3292c0d3f4b791f4d462e2b",
+      "sha256": "c8ad592666c588ce795256dd17e41a86adc767f0c06540917eb8d44944ba41e6",
+      "url": "https://github.com/huggingface/lerobot/blob/e96339a3b49ac080e11664d2be4737987d861a57/tests/datasets/test_streaming_video_encoder.py"
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "ref": "a4a7602f29e755e2673fe0022ea35566df6dd7d5",
+      "path": "docs/source/migration/migrating_to_isaaclab_3-0.rst",
+      "git_blob_sha": "f1a057d9738d620c89584c25902cb47d6e0086c8",
+      "sha256": "cc53bc8cc5fcc0bc6207ba89c56e170eb57a4f147a971eedf999591be75c409b",
+      "url": "https://github.com/isaac-sim/IsaacLab/blob/a4a7602f29e755e2673fe0022ea35566df6dd7d5/docs/source/migration/migrating_to_isaaclab_3-0.rst"
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "ref": "a4a7602f29e755e2673fe0022ea35566df6dd7d5",
+      "path": "source/isaaclab/isaaclab/assets/articulation/base_articulation_data.py",
+      "git_blob_sha": "61ee8f28e7a970c06b6db2fccdc279c4cdf6841e",
+      "sha256": "bd1a19e32756f5b0b9559943b60833c0ea225ef9b483d46287bbc07cc45d0298",
+      "url": "https://github.com/isaac-sim/IsaacLab/blob/a4a7602f29e755e2673fe0022ea35566df6dd7d5/source/isaaclab/isaaclab/assets/articulation/base_articulation_data.py"
+    }
+  ],
+  "arxiv": [
+    {
+      "url": "https://arxiv.org/abs/2601.18692v1",
+      "sha256": "ac868901783b1a6e58eb278e5d4fb38cd3266bfd2575c2d5e599710f2e9a6640",
+      "bytes": 45181,
+      "metadata": {
+        "citation_title": [
+          "A Pragmatic VLA Foundation Model"
+        ],
+        "citation_author": [
+          "Wu, Wei",
+          "Lu, Fan",
+          "Wang, Yunnan",
+          "Yang, Shuai",
+          "Liu, Shi",
+          "Wang, Fangjing",
+          "Zhu, Qian",
+          "Sun, He",
+          "Wang, Yong",
+          "Ma, Shuailei",
+          "Ren, Yiyu",
+          "Zhang, Kejia",
+          "Yu, Hui",
+          "Zhao, Jingmei",
+          "Zhou, Shuai",
+          "Qiu, Zhenqi",
+          "Xiong, Houlong",
+          "Wang, Ziyu",
+          "Wang, Zechen",
+          "Cheng, Ran",
+          "Li, Yong-Lu",
+          "Huang, Yongtao",
+          "Zhu, Xing",
+          "Shen, Yujun",
+          "Zheng, Kecheng"
+        ],
+        "citation_date": [
+          "2026/01/26"
+        ],
+        "citation_online_date": [
+          "2026/01/26"
+        ],
+        "citation_pdf_url": [
+          "https://arxiv.org/pdf/2601.18692"
+        ],
+        "citation_arxiv_id": [
+          "2601.18692"
+        ]
+      },
+      "checked_at": "2026-10-23",
+      "abstract_sha256": "d94da7b5a7223258e24d5999b495b1dc42cab2eceea0edd27b73161e88077ee1",
+      "metadata_verified": true,
+      "method_sections_checked": "v1 §§3, 4.1–4.2, 5.1; input/action/objective, geometry supervision, training strategy, evaluation boundaries",
+      "original_verification_summary": "citation metadata matches the v1 title, all authors and 2026/01/26 date. The method uses a VLM/action-expert MoT with conditional flow matching and depth-token distillation. Real-robot evaluation fixes the base/waist for tabletop tasks. Training throughput is an author-reported result, not independently reproduced."
+    },
+    {
+      "url": "https://arxiv.org/html/2601.18692v1",
+      "sha256": "196b04585f337cdaf2096c2e7429b88c6522c81a0451c3da8642f8fe15192cfe",
+      "bytes": 901366,
+      "metadata": {},
+      "checked_at": "2026-10-23"
+    }
+  ],
+  "reuse": [
+    {
+      "source_id": "arxiv:2602.15922v1",
+      "metadata_audit": "research/tracking/audits/2026-10-13-embodied-followup/model_sources.json",
+      "method_audit": "research/tracking/audits/2026-10-13-embodied-followup/method_pages.json",
+      "verification_mode": "Reuse prior primary-source metadata/method verification; no new experiment"
+    },
+    {
+      "source_id": "arxiv:2603.03596v1",
+      "metadata_audit": "research/tracking/audits/2026-10-13-embodied-followup/model_sources.json",
+      "method_audit": "research/tracking/audits/2026-10-13-embodied-followup/method_pages.json",
+      "verification_mode": "Reuse prior primary-source metadata/method verification; no new experiment"
+    }
+  ],
+  "original_verification_summaries": {
+    "torchcodec": "Fixed 0.10 tag contains Resize/CenterCrop/RandomCrop decoder transforms. Release describes CUDA-frame encoding through VideoEncoder; performance tips discuss decode/device choices. No robotics training benchmark was performed.",
+    "lerobot": "Read fixed merge video_utils.py and test_streaming_video_encoder.py. Queue insertion waits up to its timeout then counts/reports dropped frames; per-camera threads avoid the PNG write/read round trip. Tests cover multicamera, sequential/cancelled episodes. Presence of tests is not proof of a local run.",
+    "isaaclab": "Fixed beta migration docs and articulation interface establish wp.array return types and WXYZ-to-XYZW conversion. Release declares backend-specific features and beta caveats. This is not the October final release or its ProxyArray interface."
+  }
+}
