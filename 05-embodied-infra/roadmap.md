@@ -43,6 +43,8 @@ flowchart LR
 
 阅读顺序：[模型入门](topics/embodied_models_primer.md) → [数据正文](topics/embodied_data_io.md) → [系统正文最小机器人背景](topics/agentic_for_embodied.md)。先用 [VLM／VLT／VLA 对照](topics/embodied_models_primer.md#model-roles)理解职责，再看[学习与生成方式](topics/embodied_models_primer.md#model-vs-algorithm)；VLT 仅在给出出处时定义，IRON 的 Vision-Language-Task 不能套用到所有论文。
 
+具体推演从[样本到 loss 与动作](topics/embodied_models_primer.md#sample-to-action)开始，再比较[动作生成计算路径](topics/embodied_models_primer.md#action-compute)和 [BC／RL 系统差异](topics/embodied_models_primer.md#bc-rl-infra)。算例提供理解参照，仍需自己完成下面的过关产出。
+
 **过关标准**：对一个选定的公开策略，写清 observation shape、action shape、预测长度、实际执行长度、loss 和可训练模块；说明“看懂杯子”与“夹爪动作可执行”的区别。先对比 action chunk、动作生成与视觉语言条件这三个机制，再按需要选 ACT、Diffusion Policy、OpenVLA / openpi 的代表材料，不把模型名单全部升为必读。
 
 <a id="stage-2"></a>

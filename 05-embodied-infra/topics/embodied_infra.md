@@ -36,7 +36,7 @@
 
 | 深度 | 先解决一个问题 | 正文入口 | 讨论时拿出什么 |
 |---|---|---|---|
-| 入门，约 20–30 分钟 | MLLM、VLA、policy、world model 分别输出什么？ | [模型入门](embodied_models_primer.md) | 一个模型的输入、输出和目标 |
+| 入门，约 20–30 分钟 | VLM／VLT／VLA、policy、world model 分别输出什么？ | [模型入门](embodied_models_primer.md) → [样本到动作算例](embodied_models_primer.md#sample-to-action) | 一个模型的输入、输出和目标 |
 | 基础，约 30–45 分钟 | 一个训练样本为什么可能时间错位？ | [数据契约与 I/O](embodied_data_io.md#sample-contract) | 一条 episode 的观察与动作时间线 |
 | 机制，约 45 分钟 | 模型不大，为什么 GPU 仍在等数据或爆显存？ | [I/O 测量](embodied_data_io.md#pipeline)、[训练阶段](../roadmap.md#stage-4)、[FSDP](../../02-training-infra/topics/fsdp.md) | 样本吞吐分解和状态账本 |
 | 系统，约 45 分钟 | 为什么更快生成不一定让机器人更可靠？ | [动作时限](#execution)、[闭环评估阶段](../roadmap.md#stage-5) | 观测年龄、动作提交与失败分母 |
@@ -50,6 +50,7 @@
 | 常见信号 | 值得追问的机制 | 正文与核验方向 |
 |---|---|---|
 | 新 VLA／新 action head | 动作表示、目标、解码或数据配方改变了吗？ | [动作生成](embodied_models_primer.md#actions)，用 ACT / OpenVLA / π 系列对照 |
+| 从模仿学习转向 RL | 奖励、环境采样与策略更新究竟新增了什么？ | [BC／离线 RL／在线 RL 对照](embodied_models_primer.md#bc-rl-infra)，先核数据与算法契约 |
 | 新数据集或数据格式 | 多样性、语义标准化、索引还是读取路径改变？ | [数据 I/O](embodied_data_io.md)，区分 OXE / DROID 与 LeRobot 存储格式 |
 | 训练吞吐提高 | 是少读数据、换样本、冻结模块，还是同语义下加速？ | [训练阶段](../roadmap.md#stage-4)，固定有效样本与训练目标 |
 | 异步／实时推理 | 降低空等，还是正确处理延迟与已提交动作？ | [执行契约](#execution)，区分 SmolVLA async 与 RTC |

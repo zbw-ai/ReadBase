@@ -25,6 +25,8 @@
 
 视频帧可能有自己的 presentation timestamp；不应把帧编号除以名义 FPS 当作所有媒体的精确时间。插值、最近邻、容差和缺帧策略会改变训练目标，必须在数据契约中声明。
 
+想把这些字段接回训练，可看[一个样本到 loss 与动作的完整算例](embodied_models_primer.md#sample-to-action)：两路图像、状态、四步动作标签、有效 mask 与 L1 分母，再接到在线执行。这是教学推演，不是数据实验结果。
+
 ## 3. 存储机制：逻辑 Episode 与物理 Shard 分开
 
 LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件，通过 metadata 定位片段；读取者必须同时理解 schema、episode offset 与视频时间。迁移后“每个 episode 一个文件”的假设不再可靠。官方[当前格式文档](https://huggingface.co/docs/lerobot/en/lerobot-dataset-v3)是实现入口，具体 API 以固定版本为准，不能把今天文档里的所有能力倒推到最初版本。
@@ -49,7 +51,6 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 
 先测单进程基线，再逐个改变配置。增加 worker 可能只是把瓶颈转到 CPU、存储或内存；平均吞吐提高也可能仍被慢 rank 拖住。同时报告窗口数/s、有效动作步数/s 与 padding 比例；含部分 padding 的窗口仍可能有有效监督，不能只看原始窗口数，也不能把整窗一概剔除。
 
-<a id="deployment"></a>
 ### 从代码变化理解“等价”的具体含义
 
 [LeRobot #3917](https://github.com/huggingface/lerobot/pull/3917)用有界 episode 池处理远端视频，并测试 rank 覆盖、顺序和恢复；池内混合不代表全局均匀随机，历史 worker 限制也已被后续版本改变。[TorchCodec v0.17](https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0)允许拆开 demux、decode 和颜色转换，跨 CUDA stream 的执行依赖与底层存储寿命都须验收；只等 event 不自动解决 allocator 复用。
@@ -67,6 +68,7 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 
 顺序、样本覆盖和观测身份必须分别验证；上述上游代码/测试未在本仓库运行。
 
+<a id="deployment"></a>
 ## 5. 生产陷阱：训练端与执行端必须用同一种动作语言
 
 归一化可以改变尺度，却不会自动对齐机器人动作语义。例如两个 7 维向量可能分别是绝对末端目标与相对位姿增量；拼接前必须有明确 adapter，不能由统一维数判断兼容。
