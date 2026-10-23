@@ -1,5 +1,7 @@
 # 具身模型入门：从理解杯子到输出动作
 
+个人学习顺序见[八次学习指南](../roadmap.md#study-sessions)。理解输入、目标和动作后，接[具身训练](embodied_training.md#step)，再用[仿真评估](embodied_sim_evaluation.md)与[部署执行](embodied_runtime.md)检查模型怎样进入闭环。
+
 [核心入口](embodied_infra.md) · [所属 Part](../README.md) · [六阶段路线](../roadmap.md#stage-1)
 
 这篇先解释模型在解决什么问题，再把它接到 Infra。贯穿例子是“把桌上的杯子递给我”；例子包含指代澄清、抓取和失败恢复，但不代表某个公开模型已经可靠实现全部过程。本文以机器人操作为主。

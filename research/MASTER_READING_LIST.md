@@ -1,5 +1,7 @@
 # Master Reading List
 
+具身个人学习：[六阶段与八次学习](../05-embodied-infra/roadmap.md#study-sessions) → [训练](../05-embodied-infra/topics/embodied_training.md)／[仿真评估](../05-embodied-infra/topics/embodied_sim_evaluation.md)／[部署执行](../05-embodied-infra/topics/embodied_runtime.md)。先用正文与算例建立判断，再按当前问题选原始论文；[E1–E6](../practice/experiments/embodied_contract_lab.md)仍待作答与验证。
+
 历史月报：[2026 年 1—9 月具身 Models / Learning 与 Infra](tracking/monthly_reviews.md#embodied-2026) → [贯穿月份的工程判断](../05-embodied-infra/topics/embodied_infra.md#monthly-2026)。此次 10/23 回溯补齐分别保存旧记录承接与新增历史核验，来源收录不代表已读。
 
 具身最新：[10/23扫描与选读](tracking/frontier_scan_2026-10-23.md) → [经验、动作信息与交互时限](../05-embodied-infra/topics/embodied_infra.md#oct23-learning)；工程接[数据所有权](../05-embodied-infra/topics/embodied_data_io.md#oct23-data-contract)、[推理容量生命周期](../03-inference-infra/topics/inference_state.md#oct23-capacity)、[RL更新契约](../04-rl-infra/topics/agentic_rl.md#oct23-update-contract)。材料仍NEW，实验未运行。

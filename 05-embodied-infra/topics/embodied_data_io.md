@@ -51,6 +51,29 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 
 先测单进程基线，再逐个改变配置。增加 worker 可能只是把瓶颈转到 CPU、存储或内存；平均吞吐提高也可能仍被慢 rank 拖住。同时报告窗口数/s、有效动作步数/s 与 padding 比例；含部分 padding 的窗口仍可能有有效监督，不能只看原始窗口数，也不能把整窗一概剔除。
 
+<a id="io-case"></a>
+### 算一个 batch：为什么加 worker 也会先耗尽内存
+
+下面是教学假设，没有读取真实数据或执行 benchmark。在两相机案例上增加 2 帧观察历史：`B=16`、2 路 RGB、每路 2 帧、分辨率 `224×224`。假设 CPU worker 已将图像转为 FP32，则图像张量为 `[16,2,2,3,224,224]`：
+
+```text
+image_bytes_per_batch = 16 × 2 × 2 × 3 × 224 × 224 × 4
+                      = 38,535,168 bytes = 36.75 MiB
+8 workers × 每 worker 2 个预取 batch 的图像容量 = 588 MiB
+```
+
+这只是这些预取槽位全部占满时的图像 payload 估算；不包含 worker 正在处理的数据、压缩视频、decoder 工作集、Python 对象、pinned staging 或主进程当前 batch。实际队列组织与 dtype 需按实现核对，不能把 588 MiB 当 RSS 上限；多个训练进程还会各自创建 loader。
+
+再假设同一批 64 个请求帧只有 32 个唯一的 `(video, frame)`，由于 seek 与关键帧依赖，decoder 实际处理 96 帧。对唯一需求的解码放大是 `96/32=3`；按最终 tensor 槽位计算则是 `96/64=1.5`，两者分母不同。复用帧可以减少重复解码，但必须 scatter 回原来的样本、相机、时间和重复位置。
+
+| 一次串行 batch 的教学计时 | 读取 | 解码 | 变换 | Collate | H2D | GPU 训练 |
+|---|---:|---:|---:|---:|---:|---:|
+| 耗时 | 8 ms | 24 ms | 6 ms | 2 ms | 4 ms | 30 ms |
+
+串行合计是 74 ms。为单独解释流水线重叠，此处另设一个串行 CPU 供给 stage，四段合计 40 ms；上面的 8-worker 配置仅用于预取内存算例。若 CPU 供给、传输、GPU 计算能够完整重叠、资源也不互相争用，该假设下的稳态理想间隔下界是 `max(40,4,30)=40 ms/batch`。多 worker 能跨 batch 并行时，应使用汇总后的实际供给间隔，不能用单 batch 的 CPU 延迟代替它。这只是容量推导，不是预取后的实测结果；真实 warmup、队列波动、内存拷贝和解码争用还会改变间隔。仅增大 prefetch 无法把持续 40 ms 的供给能力变成 30 ms。
+
+这时合理的下一步是固定同样的 sample IDs，对照窗口合并解码或 CPU 处理，检查像素、时间戳、action/mask，再测稳态间隔与 RSS。训练侧最终消费多少有效动作元素，还要接[全局 loss 分母](embodied_training.md#loss-normalization)；吞吐不能由窗口数独自代表。
+
 ### 从代码变化理解“等价”的具体含义
 
 [LeRobot #3917](https://github.com/huggingface/lerobot/pull/3917)用有界 episode 池处理远端视频，并测试 rank 覆盖、顺序和恢复；池内混合不代表全局均匀随机，历史 worker 限制也已被后续版本改变。[TorchCodec v0.17](https://github.com/meta-pytorch/torchcodec/releases/tag/v0.17.0)允许拆开 demux、decode 和颜色转换，跨 CUDA stream 的执行依赖与底层存储寿命都须验收；只等 event 不自动解决 allocator 复用。
@@ -91,6 +114,8 @@ LeRobotDataset v3 将多个 episode 的低维数据与视频存进共享文件�
 ## 7. 相邻系统与小练习
 
 数据多样性影响泛化；采样分布影响训练；解码与传输影响 GPU 利用率；processor 与 action 语义影响部署。优化任何一层都应保留其他层的验收条件。
+
+数据进入[trainer step](embodied_training.md#step)，评估保留[case 与 episode 账本](embodied_sim_evaluation.md#episode-ledger)，部署核[processor 与动作工件](embodied_runtime.md#artifact)。这三个消费者共享数据身份，但各自检查不同边界。
 
 先完成[纸面契约练习](../../practice/experiments/embodied_contract_lab.md)，再按 [A100 E04](../../practice/experiments/a100_fsdp_io_lab.md#e04)执行真实多模态 I/O 对照。两者当前均没有运行结果。我们第一轮讨论可以只解释上面的 episode 边界反例，确认样本正确性，再进入吞吐问题。
 

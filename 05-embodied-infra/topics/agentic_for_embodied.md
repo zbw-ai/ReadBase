@@ -1,6 +1,6 @@
 # Agentic for Embodied：从系统地图到生产平台
 
-基础阅读先看[具身 Infra 核心入口](embodied_infra.md)、[模型入门](embodied_models_primer.md)与[数据 I/O](embodied_data_io.md)。本篇保留为平台接口、资源池、状态机与 fleet 的进阶设计。
+基础阅读按[个人学习指南](../roadmap.md#study-sessions)进入[模型](embodied_models_primer.md)、[数据 I/O](embodied_data_io.md)、[训练](embodied_training.md)、[仿真评估](embodied_sim_evaluation.md)与[部署执行](embodied_runtime.md)。本篇保留为平台接口、资源池、状态机与 fleet 的进阶设计；不需要把 20 节全文当第一轮入门必读。
 
 [所属 Part](../README.md) · [首页](../../README.md) · [知识地图](../../KNOWLEDGE_GRAPH.md)
 
@@ -318,6 +318,8 @@ robot cell 是稀缺、带位置和安全约束的有状态资源，不能当普
 
 ### 8.1 Training plane
 
+具体 trainer step、冻结、全局有效 loss 与恢复算例见[具身训练正文](embodied_training.md)；本节只保留它在平台中的职责。
+
 训练侧仍可复用熟悉的 Infra：FSDP/Megatron、mixed precision、checkpoint、object storage、data loader 和 experiment tracking。新增难点主要是：
 
 - video decode 与随机 clip sampling；
@@ -387,9 +389,11 @@ Policy process 不能自行从 `SAFETY_STOP` 恢复。恢复权限属于独立 s
 
 ### 9.1 三层评估
 
+先从[具体评估账本](embodied_sim_evaluation.md#episode-ledger)理解分母，再用下表定位成本与证据层级；[证据对照](embodied_sim_evaluation.md#evidence-boundaries)进一步区分日志评分、录制动作回放和 policy 闭环。
+
 | 层级 | 解决的问题 | 不能证明什么 |
 |---|---|---|
-| Offline replay | action error、representation、数据覆盖 | 闭环稳定和真实成功率 |
+| 日志上的离线评分 | action error、representation、数据覆盖 | 闭环稳定和真实成功率；录制动作回放另核环境/adapter |
 | Simulation | 大规模回归、failure taxonomy、环境扰动 | 真实传感器/接触/现场分布 |
 | Real robot | 最终闭环效果和安全 | 大规模覆盖，除非投入高昂 fleet 成本 |
 

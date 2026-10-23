@@ -4,6 +4,8 @@
 
 这里是具身 Infra 的核心 topic，也是我们持续学习和讨论的入口。先理解机器人一次任务如何闭环，再沿模型、数据、训练、仿真、执行逐层深入。以“把桌上的杯子递给我”为例；它是教学场景，不代表仓库实现了真机系统。
 
+**需要比本页更具体的梳理，直接看[个人学习指南](../roadmap.md#study-sessions)**：八次学习分别对应正文和练习。模型与数据之后，新增[具身训练](embodied_training.md)、[仿真与评估](embodied_sim_evaluation.md)、[部署与执行](embodied_runtime.md)，用全局 loss、评估账本和动作时间线把概念落到可计算、可排查的问题。
+
 **当前进度**：已有模型基础、数据 I/O 与系统设计正文；已做历史来源与 GitHub 补扫。阅读掌握程度待讨论确认，实验尚未执行。来源更新在[统一研究雷达](../../research/tracking/README.md)，正式待办在[共享 P1](../../research/reading_queue/P1.md#embodied-20261013)。本页负责解释核心概念及把问题引向正文，不再维护第二套雷达、队列或进度表。
 
 <a id="start"></a>
@@ -38,8 +40,8 @@
 |---|---|---|---|
 | 入门，约 20–30 分钟 | VLM／VLT／VLA、policy、world model 分别输出什么？ | [模型入门](embodied_models_primer.md) → [样本到动作算例](embodied_models_primer.md#sample-to-action) | 一个模型的输入、输出和目标 |
 | 基础，约 30–45 分钟 | 一个训练样本为什么可能时间错位？ | [数据契约与 I/O](embodied_data_io.md#sample-contract) | 一条 episode 的观察与动作时间线 |
-| 机制，约 45 分钟 | 模型不大，为什么 GPU 仍在等数据或爆显存？ | [I/O 测量](embodied_data_io.md#pipeline)、[训练阶段](../roadmap.md#stage-4)、[FSDP](../../02-training-infra/topics/fsdp.md) | 样本吞吐分解和状态账本 |
-| 系统，约 45 分钟 | 为什么更快生成不一定让机器人更可靠？ | [动作时限](#execution)、[闭环评估阶段](../roadmap.md#stage-5) | 观测年龄、动作提交与失败分母 |
+| 机制，按问题选读 | 训练慢或加卡后变化，应先查哪里？ | [I/O 算例](embodied_data_io.md#io-case)、[训练与全局 loss](embodied_training.md#loss-normalization)、[状态账本](embodied_training.md#memory) | 样本吞吐分解、loss 分母与恢复清单 |
+| 系统，按问题选读 | 为什么更快生成不一定让机器人更可靠？ | [部署时间线](embodied_runtime.md#time-budget)、[评估账本](embodied_sim_evaluation.md#episode-ledger) | 观测年龄、动作提交与失败分母 |
 | 进阶，按问题展开 | 如何组织仿真、训练、发布、恢复与 fleet？ | [现有平台设计](agentic_for_embodied.md) | workload、owner、版本和故障边界 |
 
 <a id="news-to-mechanism"></a>
