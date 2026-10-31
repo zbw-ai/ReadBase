@@ -347,3 +347,5 @@ MOPD2 必须显式记录 prefix 来源。标准路径由 student 完整 rollout�
 实现或排障时，建议分别记录 `prefix_source`、`teacher_version`、`student_policy_version`、`history_id`、action mask，以及各路径的评分成本。若 teacher loss 降低而完整任务回归，先检查 prefix 覆盖、token / mask 对齐、路由及其他领域能力，再判断是否增加 teacher 算力。配置上分别控制路径配比和资源配额，不把 teacher 服务更快返回误当作应增加学习权重的依据。
 
 这是基于论文的接口与验收建议，未接入框架或运行实验；本专题总体仍为 READING。完整任务的验收入口见[过程行为实验 F](../../practice/experiments/mimo_v26_environment_and_mixer.md#release-behavior)。
+
+[Omni 蒸馏与 RL](../../05-embodied-infra/topics/omni_models_infra.md)：Qwen3.5-Omni 的 paired audio/text OPD 披露与 teacher 数据身份；报告未给出完整 KL objective，不能据名称等同本章具体实现。

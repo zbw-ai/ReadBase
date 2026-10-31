@@ -24,6 +24,7 @@
 | 约 +1、第一次谈什么、怎么说 | [首次 1:1](#first-one-on-one) · [会后确认](#alignment-note) |
 | 判断自己该负责什么 | [岗位定位](#role) · [协作边界](#interfaces) |
 | 选试用期项目、商定目标 | [30/60/90 天](#ninety-days) · [三条候选主线](#candidate-projects) · [验收指标](#acceptance) |
+| Omni 模型算法与 Infra 专项准备 | [六阶段路线](../../05-embodied-infra/roadmaps/omni.md) · [SFT / RL / serving 正文](../../05-embodied-infra/topics/omni_models_infra.md)；2026-10-31 新增通用学习入口，未替代内部目标确认 |
 | 有限时间优先学什么 | [技术准备](#technical-prep) |
 | 汇报进展、暴露风险、准备转正 | [周报](#weekly-update) · [风险与变更](#risks) · [转正材料](#probation-review) |
 | 区分事实与假设、查原始出处 | [已知与待确认](#known-unknown) · [公开来源](#sources) |

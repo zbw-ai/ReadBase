@@ -13,6 +13,7 @@
 | 3.3 | Batching 与调度：[供给与执行容量](../04-rl-infra/topics/agentic_rl.md#gateway-streaming-refill) | 现有内容仅覆盖 rollout；continuous batching / chunked prefill 正文待补 |
 | 3.4 | Kernel、Graph 与量化：[compile / CUDA Graph](../01-systems/topics/transformer_engine.md#torch-compile) · [FP8 验证边界](../01-systems/topics/fp8.md#precision-validation) | 区分 kernel 优化、提交开销与数值约束；推理量化专项待补 |
 | 3.5 | SLO 与分布式服务：[NCCL](../01-systems/topics/nccl.md) · [版本准入](../04-rl-infra/topics/agentic_rl.md#rl-state-boundaries) | 现有内容提供底层机制；SLO、容量规划与分布式 serving 正文待补 |
+| 3.6 | [Omni 算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) | 多阶段语音服务、首播 SLO、Hybrid state 与取消回压；复用同一专题正文 |
 
 ## 问题到验证
 

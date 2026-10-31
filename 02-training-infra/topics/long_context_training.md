@@ -475,3 +475,5 @@ SFT 里最常见的问题不是“放不下”，而是：
 ## 我的总结
 
 长上下文训练是一条系统主线，不是一个开关。Pretraining 关注 token 吞吐和稳定性，SFT 关注 packing、loss mask 和长尾样本，RL 关注 rollout、KV cache、reward 和 policy version。真正的工程判断来自端到端拆解：每卡 token、kernel 舒适区、通信拓扑、checkpoint 恢复、rollout latency 和有效 token 利用率必须一起看。
+
+[Omni SFT 专题](../../05-embodied-infra/topics/omni_models_infra.md#sft)：把长上下文扩展到音视频展开、有效目标计数、packing 与 Hybrid state 边界；[验证实验](../../practice/experiments/omni_sft_rl_lab.md)未执行。

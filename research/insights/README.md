@@ -32,3 +32,5 @@
 
 ## Follow-up
 ```
+
+[Omni 优化的目标与状态契约](omni_optimization_contracts.md)：区分执行提速、质量/成本取舍与训练语义变化；工程假设，未实验。

@@ -13,6 +13,7 @@
 | 4.3 | [RL 框架选型](topics/rl_framework_selection.md) | 按 workload、placement、后端和二次开发边界比较，不把历史版本判断当成永久排名 |
 | 4.4 | [权重同步与状态提交](topics/agentic_rl.md#areal-weight-sync-xccl-disk) | 区分传输 artifact、checkpoint 与新版本流量准入 |
 | 4.5 | [MOPD](topics/mopd.md) | 在理解 rollout / training 数据流后，追问 Teacher 服务、routing 与多领域信号怎样影响系统成本 |
+| 4.6 | [Omni 算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) | Thinker/Talker 的 OPD、DPO、在线 RL 与概率/版本契约；复用同一专题正文 |
 
 ## 问题到验证
 

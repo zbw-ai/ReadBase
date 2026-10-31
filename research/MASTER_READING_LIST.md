@@ -1,5 +1,8 @@
 # Master Reading List
 
+Omni 专题：[Qwen3.5-Omni Technical Report（Qwen Team，2026-04-17，v2 04-21）](tech_reports/qwen35_omni.md) → [算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) → [学习路线](../05-embodied-infra/roadmaps/omni.md)。[原始全文](https://arxiv.org/html/2604.15804v2)已核核心机制；[四月回补](tracking/backfill/2026-04.md#qwen35-omni)，不是十月新发布；[工程判断](insights/omni_optimization_contracts.md)与实验均待验证。
+
+
 具身个人学习：[六阶段与八次学习](../05-embodied-infra/roadmap.md#study-sessions) → [训练](../05-embodied-infra/topics/embodied_training.md)／[仿真评估](../05-embodied-infra/topics/embodied_sim_evaluation.md)／[部署执行](../05-embodied-infra/topics/embodied_runtime.md)。先用正文与算例建立判断，再按当前问题选原始论文；[E1–E6](../practice/experiments/embodied_contract_lab.md)仍待作答与验证。
 
 历史月报：[2026 年 1—9 月具身 Models / Learning 与 Infra](tracking/monthly_reviews.md#embodied-2026) → [贯穿月份的工程判断](../05-embodied-infra/topics/embodied_infra.md#monthly-2026)。此次 10/23 回溯补齐分别保存旧记录承接与新增历史核验，来源收录不代表已读。

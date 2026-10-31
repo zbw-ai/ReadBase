@@ -1103,3 +1103,5 @@ R3 route replay 重放的是 expert IDs，[AReaL](https://github.com/areal-proje
 训练本身也要验收backward：[Transformers EP修复](https://github.com/huggingface/transformers/pull/49688)与[可微dispatch修复](https://github.com/huggingface/transformers/pull/49710)分别处理BF16 reduction与collective梯度路径，forward正常不能证明expert在更新。[FlashNext-RL](https://arxiv.org/abs/2610.28998v1)提醒host staging、routing payload与checkpoint副本同样可能成为训练瓶颈；其短步吞吐不等于长期收敛或质量收益。
 
 讨论时拿一个具体请求，依次标出其trajectory ID、policy version、KV version、payload row和environment lease。任意一项变更后，先回答旧状态还能否使用，再讨论如何隐藏同步成本。
+
+[Omni RL 专题](../../05-embodied-infra/topics/omni_models_infra.md#rl)：分别定义 Thinker/Talker 的 action、logprob、reward、group 与版本元组；复用本章调度和恢复方法，未声明框架已兼容目标模型。

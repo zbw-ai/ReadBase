@@ -30,6 +30,7 @@
 | 2.5 | [长上下文训练](topics/long_context_training.md) · [Context Parallelism](topics/context_parallelism.md) | 追问 activation、重计算、变长负载和 loss 路径的边界 |
 | 2.6 | [MoE](topics/moe.md) | 理解专家并行与负载不均；正文已有，排障仍需按 workload 验证 |
 | 2.7 | [Checkpointing](topics/checkpointing.md) · [容错](topics/fault_tolerance.md) | 从“能保存”推进到状态一致、可恢复和长期 goodput |
+| 2.8 | [Omni 算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) | SFT 数据、loss 归一化、音视频负载与 Hybrid/MoE 适配；复用同一专题正文 |
 
 ## 问题到验证
 

@@ -20,6 +20,8 @@
 
 下一阶段优先投入具身模型与具身 Infra；[13 项历史补扫](research/tracking/embodied_retrospective_2026-10-13.md)将动作模型、数据契约、闭环执行串为三个阅读阶段。已有的 LLM Training 与 Agentic RL 积累继续保留：
 
+**Omni 专题：[算法与 Infra 正文](05-embodied-infra/topics/omni_models_infra.md) → [六阶段学习路线](05-embodied-infra/roadmaps/omni.md)**。以 Qwen3.5-Omni 为公开参考，重点串联 SFT、蒸馏、Thinker/Talker RL 和流式服务；[报告笔记](research/tech_reports/qwen35_omni.md)标明披露边界，[O0–O6](practice/experiments/omni_sft_rl_lab.md)均未执行。
+
 1. [具身 Infra 核心 topic](05-embodied-infra/topics/embodied_infra.md) → [具身六阶段路线](05-embodied-infra/roadmap.md)：模型与动作 → episode 契约 → 数据 I/O → 训练 → 评估 → 部署；先建立模型印象，再复用已有 Infra 正文。
 2. [FSDP／FSDP2／ZeRO](02-training-infra/topics/fsdp.md)：从状态账本、通信和参数生命周期入手，继续深化源码与性能取舍。
 3. [A100 学习实验](practice/experiments/a100_fsdp_io_lab.md)：先环境画像，再状态分片、通信与多模态 I/O；E00–E08 均未执行。
@@ -31,11 +33,11 @@
 
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
+| 2026-10-31 | Omni 算法与 Infra | [核心专题与路线](05-embodied-infra/roadmaps/omni.md)：Qwen3.5-Omni、SFT/OPD、Thinker/Talker RL、Hybrid state 与流式服务；[来源笔记](research/tech_reports/qwen35_omni.md)及 O0–O6 验证设计，未实验 |
 | 2026-10-23 | 工程实践规划 | [AI Infra 入职与三个月行动手册](practice/projects/2026-10-agibot-onboarding.md#quick-nav)：业务认知、主管对齐、阶段交付与技术准备；个人计划未替代正式目标或实测结果 |
 | 2026-10-23 | 具身个人学习整理 | [八次具体学习](05-embodied-infra/roadmap.md#study-sessions)：新增[训练](05-embodied-infra/topics/embodied_training.md)、[仿真评估](05-embodied-infra/topics/embodied_sim_evaluation.md)、[部署执行](05-embodied-infra/topics/embodied_runtime.md)三章；从 loss 分母、评估账本到动作时间线，配 E1–E6 自测，实验未执行 |
 | 2026-10-23 | 具身历史月报补充 | [1—9 月双线时间表](research/tracking/monthly_reviews.md#embodied-2026)：模型条件、记忆与反馈，对应数据 I/O、仿真、恢复和执行约束；各月保留来源日期、历史补充边界与选读建议 |
 | 2026-10-23 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-23.md)：CEL、AIM、CADRE及RL/推理状态；[具身学习问题](05-embodied-infra/topics/embodied_infra.md#oct23-learning)，附23仓1320条PR索引与3篇晚发现补录 |
-| 2026-10-19 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-19.md)：REKI、T2-z、GR00T部署与Nemotron；[具身新问题](05-embodied-infra/topics/embodied_infra.md#oct19-learning)和[推理状态章](03-inference-infra/topics/inference_state.md)，附958条PR索引 |
 
 这里只记录仓库新增或实质更新，最多 5 条；外部新文章看[研究雷达](research/tracking/README.md)，项目进展看[实践入口](practice/README.md)。
 
@@ -60,6 +62,7 @@
 
 | 路线 | 核心主线 |
 |---|---|
+| [Omni 算法与 Infra](05-embodied-infra/roadmaps/omni.md) | 模型接口 → SFT → 性能基线 → 蒸馏/RL → 流式服务 → 集成恢复 |
 | [具身 Models & Infra（当前重点）](05-embodied-infra/roadmap.md) | 模型 → episode → I/O → 训练 → 闭环评估 → 部署 |
 | [GPU Systems](01-systems/roadmaps/gpu-systems.md) | 执行与内存 → tiling/layout → IO-aware kernel → runtime → 测量 |
 | [Distributed Systems](01-systems/roadmaps/distributed-systems.md) | 通信 → 部分失败 → 背压 → 版本协调 → 持久化与恢复 |

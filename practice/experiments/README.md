@@ -2,6 +2,8 @@
 
 [工程实践](../README.md) · [首页](../../README.md) · [知识地图](../../KNOWLEDGE_GRAPH.md)
 
+[Omni O0–O6](omni_sft_rl_lab.md)：样本与时间轴 → SFT 正确性/性能 → 蒸馏与 RL → 流式服务 → 恢复；全部未执行。
+
 ## 当前学习课程
 
 [A100 E00–E08 实验课程](a100_fsdp_io_lab.md)：环境画像 → FSDP/ZeRO 状态账本 → 通信生命周期 → 多模态 I/O，并保留恢复、跨机、推理与 RL 实验。全部未执行，需先确认环境、预算与授权。

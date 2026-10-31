@@ -4,6 +4,8 @@
 
 这一部分先补模型、任务与动作闭环的基础，再理解数据采集、训练、仿真与部署。2026-10-23 已补成模型、数据、训练、评估与执行五块具体正文，包含计算示例、配置判断与排障；Agentic for Embodied 保留为进阶平台设计。正文整理、读者掌握与实验结果分开记录，目前未执行仿真或真机验证。
 
+**Omni 工作学习专题：[算法与 Infra](topics/omni_models_infra.md) · [六阶段路线](roadmaps/omni.md)**。以 Qwen3.5-Omni 的公开架构与后训练为参考，补齐音视频理解、语音交互、SFT/RL 与系统优化；与机器人动作学习分别定义接口和评估。
+
 ## 从哪里开始
 
 **核心 topic：[具身 Infra：从一个动作到完整学习系统](topics/embodied_infra.md)**。先看整体地图，再从问题进入基础正文；[讨论起点](topics/embodied_infra.md#discussion)串起后续学习。
@@ -18,6 +20,7 @@
 | 5.4 | [训练与状态分片](roadmap.md#stage-4) | [具身训练](topics/embodied_training.md)：冻结/梯度、mask、DDP 全局 loss、状态分片与恢复；复用训练 Part 的通信机制 |
 | 5.5 | [闭环评估](roadmap.md#stage-5) | [仿真与评估](topics/embodied_sim_evaluation.md)：环境与时钟、终止/截断、12-case 分母、reset 吞吐与 sim-to-real |
 | 5.6 | [部署与反馈](roadmap.md#stage-6) | [部署与执行](topics/embodied_runtime.md)：80 ms 时间线、动作队列、迟到响应、提交边界与部署工件 |
+| 5.7 | [Omni 六阶段](roadmaps/omni.md) | [Omni 模型算法与 Infra](topics/omni_models_infra.md)：Thinker/Talker、SFT、OPD/DPO/RL、Hybrid state 与流式推理；[O0–O6](../practice/experiments/omni_sft_rl_lab.md)未执行 |
 
 [Agentic RL 数据与状态主线](../04-rl-infra/topics/agentic_rl.md)用于比较哪些 rollout / version / recovery 能力可复用、哪些物理系统约束需要重建。按[实践与证据规则](../practice/README.md)先定义可验证问题和安全边界，现阶段不把设计蓝图标为实验结果。
 

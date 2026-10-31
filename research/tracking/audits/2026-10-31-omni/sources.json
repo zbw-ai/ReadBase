@@ -1,0 +1,56 @@
+{
+  "checked_on": "2026-10-31",
+  "scope": "用户指定 Omni 专题的定向来源核验；不是 frontier scan，不推进 cursor",
+  "source_id": "arxiv:2604.15804v2",
+  "abstract_url": "https://arxiv.org/abs/2604.15804v2",
+  "html_url": "https://arxiv.org/html/2604.15804v2",
+  "metadata": {
+    "citation_title": [
+      "Qwen3.5-Omni Technical Report"
+    ],
+    "citation_author": [
+      "Qwen Team"
+    ],
+    "citation_date": [
+      "2026/04/17"
+    ],
+    "citation_online_date": [
+      "2026/04/21"
+    ],
+    "citation_pdf_url": [
+      "https://arxiv.org/pdf/2604.15804"
+    ],
+    "citation_arxiv_id": [
+      "2604.15804"
+    ],
+    "citation_abstract": [
+      "In this work, we present Qwen3.5-Omni, the latest advancement in the Qwen-Omni model family. Representing a significant evolution over its predecessor, Qwen3.5-Omni scales to hundreds of billions of parameters and supports a 256k context length. By leveraging a massive dataset comprising heterogeneous text-vision pairs and over 100 million hours of audio-visual content, the model demonstrates robust omni-modality capabilities. Qwen3.5-Omni-plus achieves SOTA results across 215 audio and audio-visual understanding, reasoning, and interaction subtasks and benchmarks, surpassing Gemini-3.1 Pro in key audio tasks and matching it in comprehensive audio-visual understanding. Architecturally, Qwen3.5-Omni employs a Hybrid Attention Mixture-of-Experts (MoE) framework for both Thinker and Talker, enabling efficient long-sequence inference. The model facilitates sophisticated interaction, supporting over 10 hours of audio understanding and 400 seconds of 720P video (at 1 FPS). To address the inherent instability and unnaturalness in streaming speech synthesis, often caused by encoding efficiency discrepancies between text and speech tokenizers, we introduce ARIA. ARIA dynamically aligns text and speech units, significantly enhancing the stability and prosody of conversational speech with minimal latency impact. Furthermore, Qwen3.5-Omni expands linguistic boundaries, supporting multilingual understanding and speech generation across 10 languages with human-like emotional nuance. Finally, Qwen3.5-Omni exhibits superior audio-visual grounding capabilities, generating script-level structured captions with precise temporal synchronization and automated scene segmentation. Remarkably, we observed the emergence of a new capability in omnimodal models: directly performing coding based on audio-visual instructions, which we call Audio-Visual Vibe Coding."
+    ]
+  },
+  "version": "v1 2026-04-17; v2 2026-04-21",
+  "html_sha256": "7ba28a0a3c1a332adcd668352990220b46fccaab436eeca06832df877e874c8f",
+  "checked_sections": [
+    "Abstract",
+    "2 Architecture (including Tables 1–2)",
+    "3 Pretraining",
+    "4 Post-training",
+    "5 Evaluation (task structure)"
+  ],
+  "evidence": {
+    "architecture": "§2: Hybrid Attention MoE Thinker/Talker, GDN, explicit timestamps, RVQ/MTP/causal ConvNet, ARIA prefix rate constraint",
+    "thinker": "§4.1: Specialist Distillation; On-Policy Distillation using text-conditioned responses for paired audio queries; Interaction-Aligned RL",
+    "talker": "§4.2: General; Long-Context; DPO + rule-based GSPO; Speaker Fine-tuning",
+    "serving": "§2.5: internal vLLM; torch.compile and CUDA Graph for MTP and codec decoder; theoretical latency; different Plus/Flash resources",
+    "limits": "未核验到 Qwen3.5-Omni 开放权重或端到端训练 recipe；不把 Qwen3-Omni 公开仓库当作 3.5 实现"
+  },
+  "supplemental_checks": [
+    {
+      "url": "https://github.com/QwenLM/Qwen3-Omni",
+      "scope": "README: Qwen3-Omni 名称、公开推理入口、对比用途；不是新增 accepted 来源"
+    },
+    {
+      "url": "https://huggingface.co/api/models?author=Qwen&search=Omni&limit=100",
+      "scope": "该查询返回的官方模型中有 Qwen3-Omni，未见 Qwen3.5-Omni；不能证明全部渠道不存在开放工件"
+    }
+  ]
+}

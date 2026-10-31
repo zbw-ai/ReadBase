@@ -65,3 +65,5 @@
 这些问题独立存在于普通 serving，也会传到 [RL rollout](../../04-rl-infra/topics/agentic_rl.md)：错误输入、未完成权重/状态传输会改变训练轨迹。具身模型的 [register memory、环境 latent 与动作工件](../../05-embodied-infra/topics/embodied_infra.md#oct19-learning)也有类似的 reset/owner/version 需求，但语义不同，不能直接套用 LLM KV 的淘汰策略。
 
 下一步在共享阅读队列按问题选读，不把本章当作性能复现或完整推理手册。完整证据、原始日期和限制见 [10/19 扫描](../../research/tracking/frontier_scan_2026-10-19.md)。
+
+[Omni 流式服务](../../05-embodied-infra/topics/omni_models_infra.md#serving)：Thinker/Talker、GDN、codec 与播放队列的状态生命周期；[O5](../../practice/experiments/omni_sft_rl_lab.md)为待执行设计。
