@@ -210,3 +210,21 @@ DDP 的 `no_sync()` 只控制梯度同步时机，**不修正 loss 权重**；�
 - [FSDP2 官方教程](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html)：本次读取页面标为 2.14，核对分片、混合冻结与 optimizer 初始化；具体参数以执行环境版本为准。
 - [LingBot-VLA 原始账本](../../research/tracking/backfill/2026-01.md#embodied-20261023-lingbot-vla)、[LeRobot 恢复账本](../../research/tracking/backfill/2026-08.md#lerobot-v061-20260803)：分别作为训练分组和 processor 恢复的已核案例，不外推作者性能。
 - [数据](embodied_data_io.md)、[仿真与评估](embodied_sim_evaluation.md)、[执行](embodied_runtime.md)分别提供训练输入、闭环验收与动作提交约束；[平台章](agentic_for_embodied.md)保留跨资源池设计。
+
+<a id="oct31-precision-state"></a>
+## 2026-10-31 补充：参数更新、分片 adapter 与 EMA 的状态账本
+
+来源：[LeRobot 三项训练变更](../../research/tracking/frontier_scan_2026-10-31.md#a5)、[VLA 精度历史补录](../../research/tracking/backfill/2026-10.md#oct31-vla-precision)。以下为源码/论文核查与实验建议，未在本仓执行。
+
+**问题：有 gradient，为什么参数没有动？** BF16 autocast、可训练参数的 storage dtype、FP32 master、optimizer moments 和梯度 reduction dtype 是不同选择。若 optimizer 直接把小更新写回 BF16 参数，rounding 可能让参数保持原值；loss 非零、gradient 非零都不能证明更新保留下来。不能从最终 checkpoint 的 dtype 反推训练时有没有 master copy，也不要只凭模型名称判定配方。
+
+先抽样预期可训练张量，记录 step 前后数值、gradient、学习率和实际更新范数；排除冻结、稀疏未命中、overflow 跳步后，再检查 rounding。对照 FP32 参数/master 路径时固定 batch、seed、optimizer 和执行 horizon，防止把频率或学习率差异算成精度收益。阈值受数值量级和舍入位置影响，不用单一百分比判所有参数。完整验证设计见 [E7](../../practice/experiments/embodied_contract_lab.md#e7)。
+
+| 状态 | 配置／机制 | 生产验收与常见坑 |
+|---|---|---|
+| FSDP2 compute / reduction | LeRobot #5095 可分开设置 `param_dtype`、`reduce_dtype`、`output_dtype`、`cast_forward_inputs`；默认仍由 Accelerate 推导 | 配了某一显式字段后按完整 policy 检查其他字段，不能假定全部继承；浮点 timestep/RoPE 输入是否应 cast 要由模型决定 |
+| 梯度累积 | `sync_each_batch` 每 microbatch reduction，保持分片梯度，增加通信 | 用相同有效 batch 比较峰值显存和 step time；不等同减少总梯度计算 |
+| PEFT checkpoint | #5086 保存 adapter 与 config，先载 base、建 adapter，prepare 后载 DCP shard | base revision、adapter target modules、processor/stats 都要可恢复；adapter-only 不代表不依赖 base；导出 full/gathered 格式仍有峰值 |
+| 参数 EMA | #5117 FP32 averages 跟随 DTensor placement；更新与实际 policy step 对齐；DCP 保存 EMA 状态 | 同时核 EMA update count、decay、online 权重与评估使用的权重；恢复后不能重置历史；发布时看清 EMA/main 与 live 分支 |
+
+这些是 10 月末 main 合并的能力，不保证已包含在你安装的 LeRobot release。把具体 commit、PyTorch/Accelerate、模型与 base revision 放在实验 manifest 中；先跑单步、save/load、resume 对照，再扩大训练。与 [FSDP 状态账本](../../02-training-infra/topics/fsdp.md)和[动作模型](embodied_models_primer.md)双向理解：分片解决驻留成本，不能替代学习目标和实际更新验收。

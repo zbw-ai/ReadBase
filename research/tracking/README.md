@@ -2,7 +2,7 @@
 
 月度补充：[2026 年 1—9 月具身智能与 Infra 时间线](monthly_reviews.md#embodied-2026)，每月分别看模型／学习与工程约束；2026-10-23 回溯补齐，保留原始扫描统计与游标，10 月继续使用日常扫描。
 
-最新：[Frontier Scan 2026-10-23](frontier_scan_2026-10-23.md)，覆盖至 **10/23 11:09:27**；19组重点信号、54组观察与1320条PR索引，先读CEL、AIM和CADRE。机制接[具身核心topic](../../05-embodied-infra/topics/embodied_infra.md#oct23-learning)，3篇旧材料另归10月backfill。
+最新：[Frontier Scan 2026-10-31](frontier_scan_2026-10-31.md)，固定事件窗口覆盖至 **10/31 22:20:20**；15组重点信号、18组观察、1篇晚发现精度审计另入backfill。先读 Rynn latent action、World Model 评估与 LeRobot 分片训练；[P1三项动作](../reading_queue/P1.md#oct31-frontier)。arXiv CV/CL 与 GitHub 全窗口 PR 覆盖仍有缺口，详见报告。
 
 新增[具身模型与 GitHub 补扫](embodied_followup_2026-10-13.md)：16 项接受信号、6 库有界核查；由[核心 topic](../../05-embodied-infra/topics/embodied_infra.md)进入基础到进阶学习。
 

@@ -1105,3 +1105,15 @@ R3 route replay 重放的是 expert IDs，[AReaL](https://github.com/areal-proje
 讨论时拿一个具体请求，依次标出其trajectory ID、policy version、KV version、payload row和environment lease。任意一项变更后，先回答旧状态还能否使用，再讨论如何隐藏同步成本。
 
 [Omni RL 专题](../../05-embodied-infra/topics/omni_models_infra.md#rl)：分别定义 Thinker/Talker 的 action、logprob、reward、group 与版本元组；复用本章调度和恢复方法，未声明框架已兼容目标模型。
+
+<a id="oct31-contracts"></a>
+## 2026-10-31：分布、布局、接纳与恢复分别设提交条件
+
+来源：[TRL / AReaL / verl / NeMo RL 本轮核查](../../research/tracking/frontier_scan_2026-10-31.md#a8)。代码与方法已读，训练和故障注入未执行。
+
+1. **分布一致性**：top-k/p/min-p 的 sampled token logprob 与 full-vocabulary logprob 不一定具有同一归一化分母。记录 sampling support、temperature、processor、precision 与 policy version，再解释 importance ratio；不能把其偏差全归因于异步 staleness。TRL 1.17 的 GRPO colocate sampling-mask 路径与 AsyncGRPO 默认 score-centering 目标变化应分别验收，额外 top-logprobs 还会改变传输成本。
+2. **权重布局一致性**：checkpoint tensor 写入完成后，还可能需要 kernel-specific shuffle、quantization 或 refit。AReaL 的 ROCm aiter 修复说明 shape 相同并不保证 runtime layout 相同；旧 SGLang patch 和新版 update session 不可重复套用。权重恢复服务前要做同输入 forward/logprob 检查，并确认 graph storage 仍有效。
+3. **接纳与执行分离**：verl 将 pause barrier 从“首 token 产出”提前到“有序入队完成”，避免排队/prefill 阻塞权重切换。迁移该设计前必须核 backend 的发送顺序、pause 与 abort 语义；失败路径同样要归还计数，取消用实际内部请求身份。
+4. **恢复身份完整性**：NeMo RL 保存被选中的逻辑轨迹、capture receipts、RNG 与单调 external task counter；同 attempt 的 sibling retry 与新 attempt 使用不同身份规则。不能只恢复模型和 dataloader offset。对于确认状态不明的外部写入，要先对账，不能直接把它当普通数据错误重发。
+
+工程排查可以依次问：是否同分布？是否同权重且同运行布局？请求究竟入队还是已生成？恢复后是不是同一次逻辑样本与外部执行？这些检查分别对应数值、模型状态、调度和持久化边界；没有一个全局 step ID 能替代它们。

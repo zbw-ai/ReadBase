@@ -67,3 +67,14 @@
 下一步在共享阅读队列按问题选读，不把本章当作性能复现或完整推理手册。完整证据、原始日期和限制见 [10/19 扫描](../../research/tracking/frontier_scan_2026-10-19.md)。
 
 [Omni 流式服务](../../05-embodied-infra/topics/omni_models_infra.md#serving)：Thinker/Talker、GDN、codec 与播放队列的状态生命周期；[O5](../../practice/experiments/omni_sft_rl_lab.md)为待执行设计。
+
+<a id="oct31-storage"></a>
+## 2026-10-31：KV 的命中需要在 deadline 前兑现
+
+来源：[FlatCake 扫描与证据边界](../../research/tracking/frontier_scan_2026-10-31.md#a12)。论文方法已核，未运行实现；以下是基于机制的工程推导。
+
+分层 cache 的目录命中不等于推理可复用：当 host staging buffer 被长前缀占满，SSD 即使命中，也可能赶不上 prefill，最后仍走重算。FlatCake 利用 KV 的 immutable、session reuse 特征，将 DRAM/SSD 视为 peer media，在写入时建立 session-contiguous、layer-major 布局，结合合并读取、有界 GPU window 和独立队列。核心不只是 GDS，布局与排队共同决定读放大和及时交付。
+
+选型时先画复用距离、session KV 大小、物理读字节、staging 占用与恢复队列，再比较 tiered / flat。不能假定新方案适合所有 mutable recurrent state、短 session 或没有 GDS 的部署。该论文主要是指定硬件上的生产 trace replay，不是本仓生产验证。
+
+指标至少分开：逻辑 cache hit、在需要前抵达 GPU 的 delivered hit、SSD read amplification、restore queue time、被取消 prefetch 和 prefix recompute。若命中率高而 TTFT 变差，先检查 staging 争用与布局碎片，不急于增加 cache 容量。相关数据路径与验证前置条件可接 [GPU Systems 路线](../../01-systems/roadmaps/gpu-systems.md)；实际配置须锁定 runtime、KV format 与存储版本。

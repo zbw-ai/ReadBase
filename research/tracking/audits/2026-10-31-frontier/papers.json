@@ -1,0 +1,281 @@
+[
+  {
+    "title": [
+      "Full-Weight VLA Fine-Tuning Without an fp32 Master Copy Silently Erases Most Updates"
+    ],
+    "author": [
+      "Singh, Shubham"
+    ],
+    "date": [
+      "2026/10/22"
+    ],
+    "submission_history": "Submission history From: Shubham Singh [view email]      \n    [v1]\n        Thu, 22 Oct 2026 19:45:06 UTC (56 KB)",
+    "id": "2610.31859",
+    "url": "https://arxiv.org/abs/2610.31859v1"
+  },
+  {
+    "title": [
+      "RynnUnify: Towards Unified Embodied Brain"
+    ],
+    "author": [
+      "Zhu, Minghao",
+      "Hou, Bohan",
+      "Xiang, Kun",
+      "Wang, Zixuan",
+      "Tang, Yinzhou",
+      "Yang, Yifei",
+      "Wang, Zhikai",
+      "Zhang, Tianyi",
+      "Li, Kehan",
+      "Zhao, Haoyu",
+      "Huang, Siteng",
+      "Qu, Leigang",
+      "Leng, Sicong",
+      "Huang, Dongchi",
+      "Chen, Mingxiu",
+      "Lu, Shijian",
+      "Wang, Yue",
+      "Liang, Xiaodan",
+      "Zeng, Zhenyu",
+      "Zhao, Deli",
+      "Liu, Chengju",
+      "Yang, Jianfei",
+      "Li, Xin"
+    ],
+    "date": [
+      "2026/10/23"
+    ],
+    "submission_history": "Submission history From: Bohan Hou [view email]      \n    [v1]\n        Fri, 23 Oct 2026 17:54:07 UTC (30,039 KB)",
+    "id": "2610.32965",
+    "url": "https://arxiv.org/abs/2610.32965v1"
+  },
+  {
+    "title": [
+      "WorldFailBench: Do World Models Understand Policy Failures?"
+    ],
+    "author": [
+      "Zhang, Zheng",
+      "Tang, Xiaoyang",
+      "Cheng, Shuaiqi",
+      "Huang, Jiakai",
+      "Wu, Zhongbo",
+      "Zhang, Ziyi",
+      "Si, Yuan",
+      "Liu, Zeyu",
+      "Gao, Weibo",
+      "Liu, Shunyu",
+      "You, Shan",
+      "Wang, Fei",
+      "Wang, Xiaogang",
+      "Tao, Dacheng"
+    ],
+    "date": [
+      "2026/10/24"
+    ],
+    "submission_history": "Submission history From: Zheng Zhang [view email]      \n    [v1]\n        Sat, 24 Oct 2026 09:33:52 UTC (6,632 KB)",
+    "id": "2610.33565",
+    "url": "https://arxiv.org/abs/2610.33565v1"
+  },
+  {
+    "title": [
+      "RynnVLA-Latent: Scaling Robotic Manipulation Foundation Models with 3D-Grounded Latent Actions"
+    ],
+    "author": [
+      "Zhao, Haoyu",
+      "Zhao, Xingyue",
+      "Su, Zhian",
+      "Hou, Bohan",
+      "Tang, Yinzhou",
+      "Wang, Fengyi",
+      "Li, Kehan",
+      "Jiang, Yuming",
+      "Huang, Siteng",
+      "Li, Xin",
+      "Zeng, Zhenyu",
+      "Chen, Mingxiu",
+      "Zhao, Deli",
+      "Li, Zhongyu"
+    ],
+    "date": [
+      "2026/10/25"
+    ],
+    "submission_history": "Submission history From: Haoyu Zhao [view email]      \n    [v1]\n        Sun, 25 Oct 2026 15:05:32 UTC (28,525 KB)",
+    "id": "2610.34356",
+    "url": "https://arxiv.org/abs/2610.34356v1"
+  },
+  {
+    "title": [
+      "ScaleRLT: Exact Log-Probabilities and Fast Deferred Rollouts for Reinforcement Learning on Looped Transformers"
+    ],
+    "author": [
+      "Lu, Dezhen",
+      "Ni, Zixiang",
+      "Li, Runguo"
+    ],
+    "date": [
+      "2026/10/25"
+    ],
+    "submission_history": "Submission history From: Zixiang Ni [view email]      \n    [v1]\n        Sun, 25 Oct 2026 16:35:30 UTC (38 KB)",
+    "id": "2610.34427",
+    "url": "https://arxiv.org/abs/2610.34427v1"
+  },
+  {
+    "title": [
+      "What Does World Modeling Actually Improve in Robot Action Learning?"
+    ],
+    "author": [
+      "Cui, Hanwen",
+      "Li, Yuanyuan",
+      "Guo, Qing",
+      "Zhang, Zhida",
+      "Chen, Chao",
+      "Chen, Xi",
+      "Cao, Jie"
+    ],
+    "date": [
+      "2026/10/25"
+    ],
+    "submission_history": "Submission history From: Yuanyuan Li [view email]      \n    [v1]\n        Sun, 25 Oct 2026 21:47:19 UTC (1,788 KB)\n            [v2]\n        Tue, 27 Oct 2026 15:50:03 UTC (2,167 KB)",
+    "id": "2610.34593",
+    "url": "https://arxiv.org/abs/2610.34593v1"
+  },
+  {
+    "title": [
+      "RynnWorld-Latent: A Cross-Embodiment World Model Conditioned on Universal Latent Actions"
+    ],
+    "author": [
+      "Zhao, Haoyu",
+      "Tang, Yinzhou",
+      "Wang, Zixuan",
+      "Zhu, Minghao",
+      "Huang, Dongchi",
+      "Zhao, Xingyue",
+      "Zhao, Qin",
+      "Li, Kehan",
+      "Huang, Siteng",
+      "Li, Xin",
+      "Zeng, Zhenyu",
+      "Chen, Mingxiu",
+      "Zhao, Deli",
+      "Li, Zhongyu"
+    ],
+    "date": [
+      "2026/10/27"
+    ],
+    "submission_history": "Submission history From: Haoyu Zhao [view email]      \n    [v1]\n        Tue, 27 Oct 2026 07:54:16 UTC (19,906 KB)",
+    "id": "2610.36791",
+    "url": "https://arxiv.org/abs/2610.36791v1"
+  },
+  {
+    "title": [
+      "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving"
+    ],
+    "author": [
+      "Li, Shuhuai",
+      "Ye, Shengdong",
+      "Ge, Dongdong",
+      "Ye, Yinyu",
+      "Lin, Jianghao"
+    ],
+    "date": [
+      "2026/10/27"
+    ],
+    "submission_history": "Submission history From: Shuhuai Li [view email]      \n    [v1]\n        Tue, 27 Oct 2026 13:38:44 UTC (796 KB)",
+    "id": "2610.37230",
+    "url": "https://arxiv.org/abs/2610.37230v1"
+  },
+  {
+    "title": [
+      "LRMoE: Demand-Side Load Re-Calibration for Efficient MoE Training on Memory-Constrained Nodes"
+    ],
+    "author": [
+      "Hu, Jiaming",
+      "Jiang, Zhida",
+      "Xing, Zhaolong",
+      "Li, Yu",
+      "Chen, Zhen",
+      "Zhang, Ke"
+    ],
+    "date": [
+      "2026/10/27"
+    ],
+    "submission_history": "Submission history From: Jiaming Hu [view email]      \n    [v1]\n        Tue, 27 Oct 2026 09:41:17 UTC (5,166 KB)",
+    "id": "2610.37720",
+    "url": "https://arxiv.org/abs/2610.37720v1"
+  },
+  {
+    "title": [
+      "Same Label, Different Interface: Beyond Action-Space Labels in Robot Learning"
+    ],
+    "author": [
+      "Sangwan, Arshia",
+      "Zhang, Zhongyang"
+    ],
+    "date": [
+      "2026/10/28"
+    ],
+    "submission_history": "Submission history From: Arshia Sangwan [view email]      \n    [v1]\n        Wed, 28 Oct 2026 00:41:57 UTC (2,282 KB)",
+    "id": "2610.38104",
+    "url": "https://arxiv.org/abs/2610.38104v1"
+  },
+  {
+    "title": [
+      "FlatCake: A Flat KVCache Storage Architecture for LLM Serving"
+    ],
+    "author": [
+      "Huang, Xin",
+      "Ma, Teng",
+      "Li, Zhuoran",
+      "Zhao, Yibo",
+      "Li, Zhaoshi",
+      "Zhu, Qianchao",
+      "Yang, Wei",
+      "Wang, Chenxi",
+      "Xie, Tao",
+      "Zhuo, Youwei"
+    ],
+    "date": [
+      "2026/10/28"
+    ],
+    "submission_history": "Submission history From: Zhuoran Li [view email]      \n    [v1]\n        Wed, 28 Oct 2026 06:54:51 UTC (911 KB)",
+    "id": "2610.38355",
+    "url": "https://arxiv.org/abs/2610.38355v1"
+  },
+  {
+    "title": [
+      "Rimuru: Unified Memory Management for Modern LLM Serving via Elastic Expert Offloading"
+    ],
+    "author": [
+      "Fang, Zhiyuan",
+      "Li, Dingyang",
+      "Zhong, Jianfeng",
+      "Wang, Bin",
+      "Zhu, Weixi",
+      "Ni, Cunshu",
+      "Hong, Zicong",
+      "Chen, Wuhui",
+      "Zheng, Zibin"
+    ],
+    "date": [
+      "2026/10/29"
+    ],
+    "submission_history": "Submission history From: Zhiyuan Fang [view email]      \n    [v1]\n        Thu, 29 Oct 2026 15:47:19 UTC (1,274 KB)",
+    "id": "2610.40305",
+    "url": "https://arxiv.org/abs/2610.40305v1"
+  },
+  {
+    "title": [
+      "Continuous-Action World Models: Learning Cross-Embodiment Spatiotemporal Dynamics Priors"
+    ],
+    "author": [
+      "Li, Liangyu",
+      "Liu, Qingwen"
+    ],
+    "date": [
+      "2026/10/29"
+    ],
+    "submission_history": "Submission history From: Liangyu Li [view email]      \n    [v1]\n        Thu, 29 Oct 2026 16:34:54 UTC (273 KB)",
+    "id": "2610.40401",
+    "url": "https://arxiv.org/abs/2610.40401v1"
+  }
+]

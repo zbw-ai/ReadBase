@@ -1,0 +1,1601 @@
+[
+  {
+    "key": "pi",
+    "url": "https://www.pi.website/blog",
+    "retrieved_at": "2026-10-31T14:20:51.193986+00:00",
+    "status": 200,
+    "final_url": "https://www.pi.website/blog",
+    "bytes": 61045,
+    "sha256": "988b71da8d0936e41335d659f76d32f4cdfa090e543b36a71834b82b78cad2a7"
+  },
+  {
+    "key": "openai",
+    "url": "https://openai.com/news/research/",
+    "retrieved_at": "2026-10-31T14:20:51.194729+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "openai-eng",
+    "url": "https://openai.com/news/engineering/",
+    "retrieved_at": "2026-10-31T14:20:51.194898+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "anthropic",
+    "url": "https://www.anthropic.com/research",
+    "retrieved_at": "2026-10-31T14:20:51.195054+00:00",
+    "status": 200,
+    "final_url": "https://www.anthropic.com/research",
+    "bytes": 363657,
+    "sha256": "87acb1afec9d4970f46216419998898676d5f66a8a73182d014bfb13fc288a2b"
+  },
+  {
+    "key": "anthropic-eng",
+    "url": "https://www.anthropic.com/engineering",
+    "retrieved_at": "2026-10-31T14:20:51.195172+00:00",
+    "status": 200,
+    "final_url": "https://www.anthropic.com/engineering",
+    "bytes": 325227,
+    "sha256": "21a69880567c68372f3107d72f6c293d8ac705dad4ac2b606f4a3825c2f716ca"
+  },
+  {
+    "key": "nvidia",
+    "url": "https://developer.nvidia.com/blog/",
+    "retrieved_at": "2026-10-31T14:20:51.195281+00:00",
+    "status": 200,
+    "final_url": "https://developer.nvidia.com/blog/",
+    "bytes": 391240,
+    "sha256": "73bd74ac319c45c110b1eb80f542f0cfabbae669cd4376796d1ae881b0dfbef4"
+  },
+  {
+    "key": "deepseek",
+    "url": "https://api-docs.deepseek.com/updates",
+    "retrieved_at": "2026-10-31T14:20:51.195408+00:00",
+    "status": 200,
+    "final_url": "https://api-docs.deepseek.com/updates/",
+    "bytes": 54140,
+    "sha256": "cebed7147f68c2fbbba2f1c80cf86a7a7a0efe160326760bc99588ec9246a7ee"
+  },
+  {
+    "key": "deepseek-hf",
+    "url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=30",
+    "retrieved_at": "2026-10-31T14:20:51.642296+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified&direction=-1&limit=30",
+    "bytes": 12377,
+    "sha256": "50b9dfc82d5597ea9b6a14ece768243e0f15fe80fd41b5a596b270e42965579c"
+  },
+  {
+    "key": "hf-blog",
+    "url": "https://huggingface.co/blog",
+    "retrieved_at": "2026-10-31T14:20:51.673282+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog",
+    "bytes": 299674,
+    "sha256": "b15606f71fad6f4178e74a2be38221eb7de80842e9b6bae49295bb8c7c6612b8"
+  },
+  {
+    "key": "hf-feed",
+    "url": "https://huggingface.co/blog/feed.xml",
+    "retrieved_at": "2026-10-31T14:20:51.701719+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog/feed.xml",
+    "bytes": 264083,
+    "sha256": "9dbae7407a50b90f204bf619710c3d41d4a4bf8d2c28276ec6a2da1b65a81966"
+  },
+  {
+    "key": "arxiv-cs.RO",
+    "url": "https://arxiv.org/list/cs.RO/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:51.944880+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "arxiv-cs.LG",
+    "url": "https://arxiv.org/list/cs.LG/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:52.327094+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "arxiv-cs.CV",
+    "url": "https://arxiv.org/list/cs.CV/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:52.339144+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "arxiv-cs.DC",
+    "url": "https://arxiv.org/list/cs.DC/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:52.345801+00:00",
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  {
+    "key": "arxiv-cs.AR",
+    "url": "https://arxiv.org/list/cs.AR/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:52.859530+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "arxiv-cs.CL",
+    "url": "https://arxiv.org/list/cs.CL/2610?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:20:52.909637+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "Physical-Intelligence--openpi-releases",
+    "url": "https://api.github.com/repos/Physical-Intelligence/openpi/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:53.999926+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/Physical-Intelligence/openpi/releases?per_page=30",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "key": "Physical-Intelligence--openpi-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3APhysical-Intelligence/openpi%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:54.114124+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3APhysical-Intelligence/openpi%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 79,
+    "sha256": "c9938edecb99d754b2d039ac9eec320a94c769b6a6417921e2dcbef9e2fe01a0"
+  },
+  {
+    "key": "openvla--openvla-releases",
+    "url": "https://api.github.com/repos/openvla/openvla/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:54.297981+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/openvla/openvla/releases?per_page=30",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "key": "openvla--openvla-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Aopenvla/openvla%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:54.656433+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Aopenvla/openvla%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 79,
+    "sha256": "c9938edecb99d754b2d039ac9eec320a94c769b6a6417921e2dcbef9e2fe01a0"
+  },
+  {
+    "key": "moojink--openvla-oft-releases",
+    "url": "https://api.github.com/repos/moojink/openvla-oft/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:54.797133+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/moojink/openvla-oft/releases?per_page=30",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "key": "moojink--openvla-oft-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Amoojink/openvla-oft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:54.981293+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Amoojink/openvla-oft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 79,
+    "sha256": "c9938edecb99d754b2d039ac9eec320a94c769b6a6417921e2dcbef9e2fe01a0"
+  },
+  {
+    "key": "NVIDIA--Isaac-GR00T-releases",
+    "url": "https://api.github.com/repos/NVIDIA/Isaac-GR00T/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:55.415326+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/NVIDIA/Isaac-GR00T/releases?per_page=30",
+    "bytes": 9689,
+    "sha256": "07527ee7903761465eac70a875ea1b1d0a910867b9b6de7c6f3ac38d935ebe00"
+  },
+  {
+    "key": "NVIDIA--Isaac-GR00T-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Isaac-GR00T%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:55.468906+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Isaac-GR00T%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 2736,
+    "sha256": "7cbef805e373eb7b35f3214407939d4f0eb374b86ffe322dcf5a699963ab5b86"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-releases",
+    "url": "https://api.github.com/repos/isaac-sim/IsaacLab/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:55.673508+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/isaac-sim/IsaacLab/releases?per_page=30",
+    "bytes": 300171,
+    "sha256": "68748a198f37b54ec2c3d3494c1c9cb63cf4a66a2c246b508284740dfdd586be"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Aisaac-sim/IsaacLab%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:56.105829+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Aisaac-sim/IsaacLab%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 427568,
+    "sha256": "466a858171e02a027faf06a5a8fedde47bd39a95fe0cfca038d0bc4cfb7a7178"
+  },
+  {
+    "key": "huggingface--lerobot-releases",
+    "url": "https://api.github.com/repos/huggingface/lerobot/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:56.241561+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/lerobot/releases?per_page=30",
+    "bytes": 237826,
+    "sha256": "fb6a4be0d61c6dec164078a7bbd9c736d156716316e3a35db1a5143b3ff6f0ac"
+  },
+  {
+    "key": "huggingface--lerobot-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/lerobot%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:56.655409+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/lerobot%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 288708,
+    "sha256": "5a85188fb2ed42d8a8f3c546a5fd3e497e9185099cf50a879dd746e005249d3b"
+  },
+  {
+    "key": "pytorch--torchcodec-releases",
+    "url": "https://api.github.com/repos/pytorch/torchcodec/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:56.746829+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repositories/807642214/releases?per_page=30",
+    "bytes": 94067,
+    "sha256": "a361f836c83ccf6597db4374cb1eb6eed2de37536d29f1075494870e4666b0f6"
+  },
+  {
+    "key": "pytorch--torchcodec-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Apytorch/torchcodec%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:56.803416+00:00",
+    "error": "HTTP Error 422: Unprocessable Entity"
+  },
+  {
+    "key": "areal-project--AReaL-releases",
+    "url": "https://api.github.com/repos/areal-project/AReaL/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:57.260463+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/areal-project/AReaL/releases?per_page=30",
+    "bytes": 186001,
+    "sha256": "3fab9a4b834bd6714148e7d31bea937a4936d9c06e8c8266878e5e5648a6bf6e"
+  },
+  {
+    "key": "areal-project--AReaL-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Aareal-project/AReaL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:57.444305+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Aareal-project/AReaL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 164775,
+    "sha256": "f1a869e7349b2950c983a3d8302138cb87328de3358ae5004b79ddac5c39e024"
+  },
+  {
+    "key": "verl-project--verl-releases",
+    "url": "https://api.github.com/repos/verl-project/verl/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:57.725554+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/verl-project/verl/releases?per_page=30",
+    "bytes": 476175,
+    "sha256": "766f4d085543dd392944341363c977ac7ed67a8bf0a7e2f2ad2ab3c7a9feaa02"
+  },
+  {
+    "key": "verl-project--verl-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Averl-project/verl%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:58.021175+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3Averl-project/verl%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 145074,
+    "sha256": "a7d219ca310184c0ee0c930108badb41deaa57da71f8851d5c831c3dd94c8684"
+  },
+  {
+    "key": "THUDM--slime-releases",
+    "url": "https://api.github.com/repos/THUDM/slime/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:58.250369+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/THUDM/slime/releases?per_page=30",
+    "bytes": 183015,
+    "sha256": "8cf41ad271ef2ff771d025485fc36c22b0a68aa701344f88122fd8ecbb2a3ab2"
+  },
+  {
+    "key": "THUDM--slime-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3ATHUDM/slime%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:58.332212+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/search/issues?q=repo%3ATHUDM/slime%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "bytes": 7742,
+    "sha256": "b9d6285d6f2c3f7a998bc8983d87d4b792b02162d5b1df0e5d7aac42a9169d38"
+  },
+  {
+    "key": "alibaba--ROLL-releases",
+    "url": "https://api.github.com/repos/alibaba/ROLL/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:58.599588+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/alibaba/ROLL/releases?per_page=30",
+    "bytes": 26505,
+    "sha256": "a069aab7403ac3be22f6a24f2e6339a683ed264815844bf0aa6a3ea06bff8e28"
+  },
+  {
+    "key": "alibaba--ROLL-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Aalibaba/ROLL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:58.896291+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "OpenRLHF--OpenRLHF-releases",
+    "url": "https://api.github.com/repos/OpenRLHF/OpenRLHF/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:59.097423+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/OpenRLHF/OpenRLHF/releases?per_page=30",
+    "bytes": 80427,
+    "sha256": "6a43cdb601a22b2a22745ca45b640c668538f3434cc171f0912714c52646f6bc"
+  },
+  {
+    "key": "OpenRLHF--OpenRLHF-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3AOpenRLHF/OpenRLHF%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:59.166314+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-releases",
+    "url": "https://api.github.com/repos/NVIDIA-NeMo/RL/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:59.250748+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/NVIDIA-NeMo/RL/releases?per_page=30",
+    "bytes": 297189,
+    "sha256": "3cf9f1bf69fe4f5e79d8351b838c985296102f081af692c37b1920470b94e013"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA-NeMo/RL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:59.305570+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "vllm-project--vllm-releases",
+    "url": "https://api.github.com/repos/vllm-project/vllm/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:59.351045+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/vllm-project/vllm/releases?per_page=30",
+    "bytes": 876920,
+    "sha256": "873c90516465b2d1b38f5571dd5323c33931d5537f1e1169cc7922871e4cd0e0"
+  },
+  {
+    "key": "vllm-project--vllm-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Avllm-project/vllm%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:59.569277+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "sgl-project--sglang-releases",
+    "url": "https://api.github.com/repos/sgl-project/sglang/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:59.702214+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/sgl-project/sglang/releases?per_page=30",
+    "bytes": 1393125,
+    "sha256": "e60498a7c7a0d9a1551bb5489158d0938823de00c591ab9e26d2288e04c4c507"
+  },
+  {
+    "key": "sgl-project--sglang-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Asgl-project/sglang%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:20:59.805928+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA--TensorRT-LLM-releases",
+    "url": "https://api.github.com/repos/NVIDIA/TensorRT-LLM/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:20:59.967412+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/NVIDIA/TensorRT-LLM/releases?per_page=30",
+    "bytes": 965819,
+    "sha256": "170be091d20fe1dec6539812b87cacba0d9b6f750fff7c6780455947155a767e"
+  },
+  {
+    "key": "NVIDIA--TensorRT-LLM-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/TensorRT-LLM%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:00.008127+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--trl-releases",
+    "url": "https://api.github.com/repos/huggingface/trl/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:00.203564+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/trl/releases?per_page=30",
+    "bytes": 542990,
+    "sha256": "c90a2cf80751746a87e92b044bc090cf88822e2d33bd5be960b92097809b37b3"
+  },
+  {
+    "key": "huggingface--trl-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/trl%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:00.399707+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--transformers-releases",
+    "url": "https://api.github.com/repos/huggingface/transformers/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:00.412085+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/transformers/releases?per_page=30",
+    "bytes": 359737,
+    "sha256": "010bd56d1794f4519c184557b0272ee38185cca18a14c6ea81145c58b87f4a3d"
+  },
+  {
+    "key": "huggingface--transformers-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/transformers%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:00.753079+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--accelerate-releases",
+    "url": "https://api.github.com/repos/huggingface/accelerate/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:00.918656+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/accelerate/releases?per_page=30",
+    "bytes": 197634,
+    "sha256": "499b88a835ac58f6f23fc853e6494f1f66c9f8e49e4bd558558266fddd0f6558"
+  },
+  {
+    "key": "huggingface--accelerate-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/accelerate%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:01.313951+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--peft-releases",
+    "url": "https://api.github.com/repos/huggingface/peft/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:01.536961+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/peft/releases?per_page=30",
+    "bytes": 319411,
+    "sha256": "70b02d31d362de329d0032dc7ceabec683f261bc2bf76cfc7fb31f1d4b51b35f"
+  },
+  {
+    "key": "huggingface--peft-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/peft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:01.622444+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--kernels-releases",
+    "url": "https://api.github.com/repos/huggingface/kernels/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:01.628591+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/huggingface/kernels/releases?per_page=30",
+    "bytes": 747360,
+    "sha256": "4ed1911f5b490d719c9c7a1030d8e36aec03569d63be8219c246b86319326b5e"
+  },
+  {
+    "key": "huggingface--kernels-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/kernels%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:01.713135+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA--Megatron-LM-releases",
+    "url": "https://api.github.com/repos/NVIDIA/Megatron-LM/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:01.849639+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/NVIDIA/Megatron-LM/releases?per_page=30",
+    "bytes": 444545,
+    "sha256": "e30b26108f1989b468c45196d5c05832c9a2406e5eeb12ec139005494b569aeb"
+  },
+  {
+    "key": "NVIDIA--Megatron-LM-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Megatron-LM%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:02.019292+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "deepspeedai--DeepSpeed-releases",
+    "url": "https://api.github.com/repos/deepspeedai/DeepSpeed/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:02.108031+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/deepspeedai/DeepSpeed/releases?per_page=30",
+    "bytes": 176825,
+    "sha256": "4f7ba9f612aa6f5745992a0eeebfcac22faaa9df06219dc33dcbeb25deb72641"
+  },
+  {
+    "key": "deepspeedai--DeepSpeed-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Adeepspeedai/DeepSpeed%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:02.395482+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "pytorch--pytorch-releases",
+    "url": "https://api.github.com/repos/pytorch/pytorch/releases?per_page=30",
+    "retrieved_at": "2026-10-31T14:21:02.423889+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/pytorch/pytorch/releases?per_page=30",
+    "bytes": 1642204,
+    "sha256": "fe48cfd9594d222c620c00edbe7bc8143b67fa81d372c43c77f840503c661049"
+  },
+  {
+    "key": "pytorch--pytorch-prs",
+    "url": "https://api.github.com/search/issues?q=repo%3Apytorch/pytorch%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:02.600408+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "recent-cs.RO",
+    "url": "https://arxiv.org/list/cs.RO/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.793541+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/list/cs.RO/recent?skip=0&show=2000",
+    "bytes": 846199,
+    "sha256": "2e03739b61adef83aa98dbcb10c2c433bdd8ef4592b83a9226ab1b77c29c4687"
+  },
+  {
+    "key": "recent-cs.LG",
+    "url": "https://arxiv.org/list/cs.LG/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.794130+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/list/cs.LG/recent?skip=0&show=2000",
+    "bytes": 2312016,
+    "sha256": "15d0d02b174e1355f1d8e72b886b8dda88d7fdc405ab39524a3396f493227a78"
+  },
+  {
+    "key": "recent-cs.CV",
+    "url": "https://arxiv.org/list/cs.CV/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.794365+00:00",
+    "error": "The read operation timed out"
+  },
+  {
+    "key": "recent-cs.DC",
+    "url": "https://arxiv.org/list/cs.DC/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.794591+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/list/cs.DC/recent?skip=0&show=2000",
+    "bytes": 218339,
+    "sha256": "b8ab49def78aa7bb7f496c0c0eaabb8a1d989dfee511fd5c7f1b1ea9cdf4e943"
+  },
+  {
+    "key": "recent-cs.AR",
+    "url": "https://arxiv.org/list/cs.AR/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.794806+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/list/cs.AR/recent?skip=0&show=2000",
+    "bytes": 130818,
+    "sha256": "31d43026445b40c90818cb88c400c447f3ef530a1801f9f943fd2eb6a23f3b0c"
+  },
+  {
+    "key": "recent-cs.CL",
+    "url": "https://arxiv.org/list/cs.CL/recent?skip=0&show=2000",
+    "retrieved_at": "2026-10-31T14:21:40.795114+00:00",
+    "error": "The read operation timed out"
+  },
+  {
+    "key": "alibaba--ROLL-pulls",
+    "url": "https://api.github.com/repos/alibaba/ROLL/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:40.795278+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/alibaba/ROLL/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "bytes": 1610063,
+    "sha256": "eb0a83533372cd61c35688e362c0cbd076acc5de12331acb993fc1484942ff3e"
+  },
+  {
+    "key": "OpenRLHF--OpenRLHF-pulls",
+    "url": "https://api.github.com/repos/OpenRLHF/OpenRLHF/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:43.099421+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/OpenRLHF/OpenRLHF/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "bytes": 1575045,
+    "sha256": "e0226365bc1b05b04c4f8d15d2d37eaa05dffbeeca07b879beff9d31b4a4eb9b"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-pulls",
+    "url": "https://api.github.com/repos/NVIDIA-NeMo/RL/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:43.232755+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/NVIDIA-NeMo/RL/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "bytes": 1932252,
+    "sha256": "58d890e73b8a2ca0010892993d6fa3fdf2a4eacb82ed7457e3bc8e9e20a0cf03"
+  },
+  {
+    "key": "vllm-project--vllm-pulls",
+    "url": "https://api.github.com/repos/vllm-project/vllm/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:45.445225+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "sgl-project--sglang-pulls",
+    "url": "https://api.github.com/repos/sgl-project/sglang/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:45.475681+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA--TensorRT-LLM-pulls",
+    "url": "https://api.github.com/repos/NVIDIA/TensorRT-LLM/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:45.849740+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--trl-pulls",
+    "url": "https://api.github.com/repos/huggingface/trl/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:45.862961+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "pytorch--torchcodec-pulls",
+    "url": "https://api.github.com/repos/pytorch/torchcodec/pulls?state=closed&sort=updated&direction=desc&per_page=100",
+    "retrieved_at": "2026-10-31T14:21:46.245616+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "pytorch--torchcodec-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Apytorch/torchcodec%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:46.256177+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "alibaba--ROLL-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Aalibaba/ROLL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:46.635104+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "OpenRLHF--OpenRLHF-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3AOpenRLHF/OpenRLHF%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:46.645264+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA-NeMo/RL%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.036001+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "vllm-project--vllm-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Avllm-project/vllm%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.044530+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "sgl-project--sglang-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Asgl-project/sglang%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.434315+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA--TensorRT-LLM-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/TensorRT-LLM%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.442047+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--trl-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/trl%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.829390+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--transformers-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/transformers%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:47.837575+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--accelerate-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/accelerate%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:48.230348+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--peft-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/peft%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:48.240064+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--kernels-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Ahuggingface/kernels%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:48.625571+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "NVIDIA--Megatron-LM-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3ANVIDIA/Megatron-LM%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:48.665046+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "deepspeedai--DeepSpeed-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Adeepspeedai/DeepSpeed%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:48.874065+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "pytorch--pytorch-prs-retry",
+    "url": "https://api.github.com/search/issues?q=repo%3Apytorch/pytorch%20is%3Apr%20is%3Amerged%20merged%3A2026-10-23T03%3A09%3A27Z..2026-10-31T14%3A20%3A20Z&per_page=100&page=1",
+    "retrieved_at": "2026-10-31T14:21:49.024662+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "hf-mistral",
+    "url": "https://huggingface.co/blog/mistral-large4",
+    "retrieved_at": "2026-10-31T14:21:49.143574+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog/mistral-large4",
+    "bytes": 231009,
+    "sha256": "205ef9ea19ad3f0c070bbe84c518eaf9c62e5e5cdab5eb01e91ead7b087215a9"
+  },
+  {
+    "key": "hf-lfm",
+    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+    "retrieved_at": "2026-10-31T14:21:49.276401+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog/LiquidAI/lfm3",
+    "bytes": 371337,
+    "sha256": "7cc680d88bd033b13e021b37ad3972a8e15b6ce41e045d080c8c17b77526d85d"
+  },
+  {
+    "key": "hf-granite",
+    "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+    "retrieved_at": "2026-10-31T14:21:49.424023+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+    "bytes": 181524,
+    "sha256": "245042b477c764498225a044a610209b8aeb89a680b210e3b60b99326140db14"
+  },
+  {
+    "key": "hf-nemotron",
+    "url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+    "retrieved_at": "2026-10-31T14:21:50.081923+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+    "bytes": 185365,
+    "sha256": "6e62cb6b1e0bc80cc29ddb1e96bedb63c1d127b872f50a637495fd318669f7c7"
+  },
+  {
+    "key": "nv-0",
+    "url": "https://developer.nvidia.com/blog/build-a-validated-kubernetes-runtime-for-nvidia-dynamo/",
+    "retrieved_at": "2026-10-31T14:22:32.237887+00:00",
+    "status": 200,
+    "final_url": "https://developer.nvidia.com/blog/build-a-validated-kubernetes-runtime-for-nvidia-dynamo/",
+    "bytes": 281062,
+    "sha256": "422aaf89b4b650332c827e29b05f8b5d9806f95d9115bb04a2d19712a0beac84"
+  },
+  {
+    "key": "nv-1",
+    "url": "https://developer.nvidia.com/blog/how-to-check-and-configure-nvidia-gpudirect-storage-for-your-platform/",
+    "retrieved_at": "2026-10-31T14:22:32.238475+00:00",
+    "status": 200,
+    "final_url": "https://developer.nvidia.com/blog/how-to-check-and-configure-nvidia-gpudirect-storage-for-your-platform/",
+    "bytes": 240454,
+    "sha256": "982159a4f0fd877a02de2af0a627f37c7cdc7117caf6a69bb212dae9d5af6b71"
+  },
+  {
+    "key": "nv-2",
+    "url": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4/",
+    "retrieved_at": "2026-10-31T14:22:32.238601+00:00",
+    "status": 200,
+    "final_url": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4/",
+    "bytes": 257691,
+    "sha256": "00ac6f30bdfaf639376a4f98fa3cdaaf28688b04bef6972c62da26ddeaed3e86"
+  },
+  {
+    "key": "nv-3",
+    "url": "https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage/",
+    "retrieved_at": "2026-10-31T14:22:32.238718+00:00",
+    "status": 200,
+    "final_url": "https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage/",
+    "bytes": 264361,
+    "sha256": "e48ee3f54d7ba50a67be21f500f96bcfbf83b3503b7f7fd0657dda1b4082235a"
+  },
+  {
+    "key": "huggingface--lerobot-5117",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5117",
+    "retrieved_at": "2026-10-31T14:22:32.238823+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5117-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5117/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:32.238920+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5095",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5095",
+    "retrieved_at": "2026-10-31T14:22:32.239019+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5095-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5095/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:32.659104+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5086",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5086",
+    "retrieved_at": "2026-10-31T14:22:32.665995+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5086-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5086/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:32.666196+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5049",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5049",
+    "retrieved_at": "2026-10-31T14:22:33.068658+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5049-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5049/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:33.077953+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5008",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5008",
+    "retrieved_at": "2026-10-31T14:22:33.079320+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5008-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5008/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:33.471736+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-4897",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/4897",
+    "retrieved_at": "2026-10-31T14:22:33.481055+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-4897-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/4897/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:33.481197+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5107",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5107",
+    "retrieved_at": "2026-10-31T14:22:33.886709+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "huggingface--lerobot-5107-files",
+    "url": "https://api.github.com/repos/huggingface/lerobot/pulls/5107/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:33.886998+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-8780",
+    "url": "https://api.github.com/repos/isaac-sim/IsaacLab/pulls/8780",
+    "retrieved_at": "2026-10-31T14:22:33.899954+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-8780-files",
+    "url": "https://api.github.com/repos/isaac-sim/IsaacLab/pulls/8780/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:34.279950+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "areal-project--AReaL-1834",
+    "url": "https://api.github.com/repos/areal-project/AReaL/pulls/1834",
+    "retrieved_at": "2026-10-31T14:22:34.280968+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "areal-project--AReaL-1834-files",
+    "url": "https://api.github.com/repos/areal-project/AReaL/pulls/1834/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:34.291709+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "areal-project--AReaL-1825",
+    "url": "https://api.github.com/repos/areal-project/AReaL/pulls/1825",
+    "retrieved_at": "2026-10-31T14:22:34.680730+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "areal-project--AReaL-1825-files",
+    "url": "https://api.github.com/repos/areal-project/AReaL/pulls/1825/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:34.687435+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "verl-project--verl-8397",
+    "url": "https://api.github.com/repos/verl-project/verl/pulls/8397",
+    "retrieved_at": "2026-10-31T14:22:34.701992+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "verl-project--verl-8397-files",
+    "url": "https://api.github.com/repos/verl-project/verl/pulls/8397/files?per_page=100",
+    "retrieved_at": "2026-10-31T14:22:34.915870+00:00",
+    "error": "HTTP Error 403: rate limit exceeded"
+  },
+  {
+    "key": "2610.40401-abs",
+    "url": "https://arxiv.org/abs/2610.40401v1",
+    "retrieved_at": "2026-10-31T14:23:09.814538+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.40401v1",
+    "bytes": 41062,
+    "sha256": "eaca1c99eb32d51c2f0f0c4b85d3c2e4022e0ba6e19ed80e9c2a3794899a5076"
+  },
+  {
+    "key": "2610.40401-html",
+    "url": "https://arxiv.org/html/2610.40401v1",
+    "retrieved_at": "2026-10-31T14:23:09.815015+00:00",
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  {
+    "key": "2610.40207-abs",
+    "url": "https://arxiv.org/abs/2610.40207v1",
+    "retrieved_at": "2026-10-31T14:23:09.815155+00:00",
+    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+  },
+  {
+    "key": "2610.40207-html",
+    "url": "https://arxiv.org/html/2610.40207v1",
+    "retrieved_at": "2026-10-31T14:23:09.815271+00:00",
+    "error": "The read operation timed out"
+  },
+  {
+    "key": "2610.36791-abs",
+    "url": "https://arxiv.org/abs/2610.36791v1",
+    "retrieved_at": "2026-10-31T14:23:09.815366+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.36791v1",
+    "bytes": 44166,
+    "sha256": "e66028b22fc1867c5a64a40e41fd0ddc1d7e560851b3bbf3bb03cf7e205d2392"
+  },
+  {
+    "key": "2610.36791-html",
+    "url": "https://arxiv.org/html/2610.36791v1",
+    "retrieved_at": "2026-10-31T14:23:09.815456+00:00",
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  {
+    "key": "2610.34356-abs",
+    "url": "https://arxiv.org/abs/2610.34356v1",
+    "retrieved_at": "2026-10-31T14:23:09.815545+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.34356v1",
+    "bytes": 43933,
+    "sha256": "2d223e2ebfad13a34399c637d01dcc71ba9f102d1fa6df1a545df1bf83776fa5"
+  },
+  {
+    "key": "2610.34356-html",
+    "url": "https://arxiv.org/html/2610.34356v1",
+    "retrieved_at": "2026-10-31T14:23:14.581897+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.34356v1",
+    "bytes": 462934,
+    "sha256": "434eadada532ac543d71905c833bcd0763621da98f9e6fa20b889c5f4b51edec"
+  },
+  {
+    "key": "2610.32965-abs",
+    "url": "https://arxiv.org/abs/2610.32965v1",
+    "retrieved_at": "2026-10-31T14:23:14.606403+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.32965v1",
+    "bytes": 44201,
+    "sha256": "88a5e6ba5d7538174af1a3ad40af293dfb92adefb1e81455e46b97132ea0094b"
+  },
+  {
+    "key": "2610.32965-html",
+    "url": "https://arxiv.org/html/2610.32965v1",
+    "retrieved_at": "2026-10-31T14:23:14.941794+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.32965v1",
+    "bytes": 68541,
+    "sha256": "d97caf905415f5fe73547537730212022ee0bba83f9f23e926b871d84200ae2e"
+  },
+  {
+    "key": "2610.31859-abs",
+    "url": "https://arxiv.org/abs/2610.31859v1",
+    "retrieved_at": "2026-10-31T14:23:20.486943+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.31859v1",
+    "bytes": 40996,
+    "sha256": "84b41c3e8ff9ed32ac9dbbd1fda8d988e4b38765572153279dc1bd9c136f9e11"
+  },
+  {
+    "key": "2610.31859-html",
+    "url": "https://arxiv.org/html/2610.31859v1",
+    "retrieved_at": "2026-10-31T14:23:21.040355+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.31859v1",
+    "bytes": 143045,
+    "sha256": "9ac77597123b179e5ad72b72ee97cdc7d3a0b535c7a5d249e69f2c28eb435907"
+  },
+  {
+    "key": "2610.34593-abs",
+    "url": "https://arxiv.org/abs/2610.34593v1",
+    "retrieved_at": "2026-10-31T14:23:24.514347+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.34593v1",
+    "bytes": 42533,
+    "sha256": "8947cf3d73dffe66fa6df5a507cd116c5cf679b4d459582bb864a27f9cbbc51b"
+  },
+  {
+    "key": "2610.34593-html",
+    "url": "https://arxiv.org/html/2610.34593v1",
+    "retrieved_at": "2026-10-31T14:23:25.242171+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.34593v1",
+    "bytes": 361542,
+    "sha256": "ed33c77752ea1475ac48ea31dcbff062cf81673ea9c0a2d925db631b6b0f523a"
+  },
+  {
+    "key": "2610.38104-abs",
+    "url": "https://arxiv.org/abs/2610.38104v1",
+    "retrieved_at": "2026-10-31T14:23:28.530228+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.38104v1",
+    "bytes": 41897,
+    "sha256": "a76633ccbd2359d2004a166d5da218fd3e8864090e69e1a536c9e623877fdab9"
+  },
+  {
+    "key": "2610.38104-html",
+    "url": "https://arxiv.org/html/2610.38104v1",
+    "retrieved_at": "2026-10-31T14:23:34.183402+00:00",
+    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+  },
+  {
+    "key": "2610.39385-abs",
+    "url": "https://arxiv.org/abs/2610.39385v1",
+    "retrieved_at": "2026-10-31T14:23:36.937844+00:00",
+    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+  },
+  {
+    "key": "2610.39385-html",
+    "url": "https://arxiv.org/html/2610.39385v1",
+    "retrieved_at": "2026-10-31T14:23:39.734554+00:00",
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  {
+    "key": "2610.33565-abs",
+    "url": "https://arxiv.org/abs/2610.33565v1",
+    "retrieved_at": "2026-10-31T14:23:40.237722+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.33565v1",
+    "bytes": 43303,
+    "sha256": "e704ac25703349adb322e25111a963a495927ac8326b3f9119c9fb43c6d918a7"
+  },
+  {
+    "key": "2610.33565-html",
+    "url": "https://arxiv.org/html/2610.33565v1",
+    "retrieved_at": "2026-10-31T14:23:44.268135+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.33565v1",
+    "bytes": 603195,
+    "sha256": "391d8bb3652599172d5d2d04aa9d9862501427e528aaf9964e953f24d8b31a99"
+  },
+  {
+    "key": "2610.38355-abs",
+    "url": "https://arxiv.org/abs/2610.38355v1",
+    "retrieved_at": "2026-10-31T14:23:44.846569+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.38355v1",
+    "bytes": 43299,
+    "sha256": "4fb732ff11e558494b3bc58411e8644be8127a5ba0dfa7983c7e191173d7ae50"
+  },
+  {
+    "key": "2610.38355-html",
+    "url": "https://arxiv.org/html/2610.38355v1",
+    "retrieved_at": "2026-10-31T14:23:44.854482+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.38355v1",
+    "bytes": 261288,
+    "sha256": "3dc03b74b9ee23bc98568d333b5e446ad2c64685cba8e1d89541402bbb8cb655"
+  },
+  {
+    "key": "2610.37230-abs",
+    "url": "https://arxiv.org/abs/2610.37230v1",
+    "retrieved_at": "2026-10-31T14:23:49.107845+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.37230v1",
+    "bytes": 40116,
+    "sha256": "eeda963f8c6c00c7ed650ed243681fc823e72cbb186c8ed59ae65e746da88087"
+  },
+  {
+    "key": "2610.37230-html",
+    "url": "https://arxiv.org/html/2610.37230v1",
+    "retrieved_at": "2026-10-31T14:23:50.556952+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.37230v1",
+    "bytes": 480347,
+    "sha256": "46838cbd9315e3e1d59b1b0db259eadd14dbf83f3f6890a672efadae5e085310"
+  },
+  {
+    "key": "2610.34427-abs",
+    "url": "https://arxiv.org/abs/2610.34427v1",
+    "retrieved_at": "2026-10-31T14:23:51.966800+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.34427v1",
+    "bytes": 43785,
+    "sha256": "e0ae38fbba029ff5b2ac578e40cc71fed370c329a36862e455c6c0564209449d"
+  },
+  {
+    "key": "2610.34427-html",
+    "url": "https://arxiv.org/html/2610.34427v1",
+    "retrieved_at": "2026-10-31T14:23:53.000079+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.34427v1",
+    "bytes": 285538,
+    "sha256": "1f09ddf894184ec4043bca33fb99ac8d6ab5f60daeed853d8f3a17dd0b131862"
+  },
+  {
+    "key": "2610.37720-abs",
+    "url": "https://arxiv.org/abs/2610.37720v1",
+    "retrieved_at": "2026-10-31T14:23:53.920395+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.37720v1",
+    "bytes": 41290,
+    "sha256": "af8c8a1b5b93667187eff8c75adac2cedf58e7176c65826119a20e9ca11ee71c"
+  },
+  {
+    "key": "2610.37720-html",
+    "url": "https://arxiv.org/html/2610.37720v1",
+    "retrieved_at": "2026-10-31T14:23:55.043598+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.37720v1",
+    "bytes": 275476,
+    "sha256": "f46d67c40547b78587dbaa0c564182c7180c7d65dca8ed1ba141b21e6b9da8da"
+  },
+  {
+    "key": "huggingface--lerobot-5117-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5117",
+    "retrieved_at": "2026-10-31T14:24:02.497676+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5117",
+    "bytes": 422216,
+    "sha256": "2381bd371840fbc539839b529f7facb4370ec466046e07a08185418ca40560d5"
+  },
+  {
+    "key": "huggingface--lerobot-5117-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5117.patch",
+    "retrieved_at": "2026-10-31T14:24:03.444162+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5117.patch",
+    "bytes": 100164,
+    "sha256": "89a4361c6fc4bb51f07f31a11401540a02c0ac2f1f2332f72ee2ab68f14aa1b5"
+  },
+  {
+    "key": "huggingface--lerobot-5095-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5095",
+    "retrieved_at": "2026-10-31T14:24:03.606565+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5095",
+    "bytes": 360969,
+    "sha256": "5bda71421ae455dc13e1428f80803eff016e4c44020c891fe6c8bb74c0bdf520"
+  },
+  {
+    "key": "huggingface--lerobot-5095-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5095.patch",
+    "retrieved_at": "2026-10-31T14:24:04.313911+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5095.patch",
+    "bytes": 18818,
+    "sha256": "a2af8968a1c0818cf362a131ef80081081ac30a5d9f175b6f052460218226cb2"
+  },
+  {
+    "key": "huggingface--lerobot-5086-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5086",
+    "retrieved_at": "2026-10-31T14:24:05.342505+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5086",
+    "bytes": 373555,
+    "sha256": "47c789ab0a0c161f29182f7d07e896b2ddde9f99e17224063cad5334e745d6d7"
+  },
+  {
+    "key": "huggingface--lerobot-5086-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5086.patch",
+    "retrieved_at": "2026-10-31T14:24:05.366152+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5086.patch",
+    "bytes": 68942,
+    "sha256": "b6fc082537ac965b79dd7e8cb78550b8a7927be2cbaaca40ef13f6e52edec732"
+  },
+  {
+    "key": "huggingface--lerobot-5049-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5049",
+    "retrieved_at": "2026-10-31T14:24:05.864950+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5049",
+    "bytes": 383617,
+    "sha256": "8dee2db2a1c9bf6847395f1d20c6154331ba0652dc44b4ed58301025f452f29d"
+  },
+  {
+    "key": "huggingface--lerobot-5049-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5049.patch",
+    "retrieved_at": "2026-10-31T14:24:06.979569+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5049.patch",
+    "bytes": 172371,
+    "sha256": "f06390d3ab788fb088c68dd9f3fc77041815c05c560069de3e7b423ab79494df"
+  },
+  {
+    "key": "huggingface--lerobot-5008-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5008",
+    "retrieved_at": "2026-10-31T14:24:07.086131+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5008",
+    "bytes": 841980,
+    "sha256": "f17b5ab6f40e33233441595455c0638385ca6e7822adab640ca4659b1847dedc"
+  },
+  {
+    "key": "huggingface--lerobot-5008-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5008.patch",
+    "retrieved_at": "2026-10-31T14:24:07.331209+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5008.patch",
+    "bytes": 1259345,
+    "sha256": "c8544f9e179afa23c2187d9f189c6a8e05c64229b49e8bcd12a44d093bd277b1"
+  },
+  {
+    "key": "huggingface--lerobot-4897-page",
+    "url": "https://github.com/huggingface/lerobot/pull/4897",
+    "retrieved_at": "2026-10-31T14:24:07.921449+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/4897",
+    "bytes": 648386,
+    "sha256": "2c0478d014db7fb3c6f20f4b92d68c99cb4c62647eb4b92f8826efecbda9fd3f"
+  },
+  {
+    "key": "huggingface--lerobot-4897-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/4897.patch",
+    "retrieved_at": "2026-10-31T14:24:08.008470+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/4897.patch",
+    "bytes": 1597896,
+    "sha256": "9d8ac096c8850fc5a31fd373f5cd9e78d2cc1789bad29b3b0419593a02644c11"
+  },
+  {
+    "key": "huggingface--lerobot-5107-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5107",
+    "retrieved_at": "2026-10-31T14:24:09.101591+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5107",
+    "bytes": 316631,
+    "sha256": "bcbd18a93908da7fc23b08164147f1256f5cb541c05327a0f6e7317956e7b6fe"
+  },
+  {
+    "key": "huggingface--lerobot-5107-files-patch",
+    "url": "https://github.com/huggingface/lerobot/pull/5107.patch",
+    "retrieved_at": "2026-10-31T14:24:09.460519+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/lerobot/pull/5107.patch",
+    "bytes": 1271,
+    "sha256": "0039d8651dff0b3472e979e6660ef80e79b18513e4b4d9881490f134cb8876ec"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-8780-page",
+    "url": "https://github.com/isaac-sim/IsaacLab/pull/8780",
+    "retrieved_at": "2026-10-31T14:24:09.797006+00:00",
+    "status": 200,
+    "final_url": "https://github.com/isaac-sim/IsaacLab/pull/8780",
+    "bytes": 634552,
+    "sha256": "4d0c7d4facc52027f0ef0957f7653f84dbed83018737dfb827397534a69317b1"
+  },
+  {
+    "key": "isaac-sim--IsaacLab-8780-files-patch",
+    "url": "https://github.com/isaac-sim/IsaacLab/pull/8780.patch",
+    "retrieved_at": "2026-10-31T14:24:10.305057+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/isaac-sim/IsaacLab/pull/8780.patch",
+    "bytes": 231929,
+    "sha256": "ddfd892d83c89fe9a4ae702a975503c3556ad0a846926bb8dd8e2ea62e4cb651"
+  },
+  {
+    "key": "areal-project--AReaL-1834-page",
+    "url": "https://github.com/areal-project/AReaL/pull/1834",
+    "retrieved_at": "2026-10-31T14:24:10.375797+00:00",
+    "status": 200,
+    "final_url": "https://github.com/areal-project/AReaL/pull/1834",
+    "bytes": 327662,
+    "sha256": "f2d1e10823b72c8f6d4f8ae2ca8ebb7a26f788e189f0f409c2912e04c486b1a6"
+  },
+  {
+    "key": "areal-project--AReaL-1834-files-patch",
+    "url": "https://github.com/areal-project/AReaL/pull/1834.patch",
+    "retrieved_at": "2026-10-31T14:24:10.880376+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/areal-project/AReaL/pull/1834.patch",
+    "bytes": 18155,
+    "sha256": "4c763789d8457539cb64caa8df9da61739eb090513b3f2b99a676663bf5d3af1"
+  },
+  {
+    "key": "areal-project--AReaL-1825-page",
+    "url": "https://github.com/areal-project/AReaL/pull/1825",
+    "retrieved_at": "2026-10-31T14:24:11.082120+00:00",
+    "status": 200,
+    "final_url": "https://github.com/areal-project/AReaL/pull/1825",
+    "bytes": 411412,
+    "sha256": "489cc39f2fdd65eb89413317df16c6a85608e25470439c45d4df6ff101afe1e5"
+  },
+  {
+    "key": "areal-project--AReaL-1825-files-patch",
+    "url": "https://github.com/areal-project/AReaL/pull/1825.patch",
+    "retrieved_at": "2026-10-31T14:24:11.590209+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/areal-project/AReaL/pull/1825.patch",
+    "bytes": 172524,
+    "sha256": "5e212ebb08c59ec1f04c298787da537eb8783cd6ce7712fc450432a8d8d43838"
+  },
+  {
+    "key": "verl-project--verl-8397-page",
+    "url": "https://github.com/verl-project/verl/pull/8397",
+    "retrieved_at": "2026-10-31T14:24:12.095161+00:00",
+    "status": 200,
+    "final_url": "https://github.com/verl-project/verl/pull/8397",
+    "bytes": 496604,
+    "sha256": "f149afe3933ab264bcd0d84b366ea85bd7e635c3b4183d679eca93338531de66"
+  },
+  {
+    "key": "verl-project--verl-8397-files-patch",
+    "url": "https://github.com/verl-project/verl/pull/8397.patch",
+    "retrieved_at": "2026-10-31T14:24:12.095451+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/verl-project/verl/pull/8397.patch",
+    "bytes": 19444,
+    "sha256": "8213746adca927b17bec56474b7267042827ab4f2d834a564e4f61c601d633c4"
+  },
+  {
+    "key": "openai-rss",
+    "url": "https://openai.com/news/rss.xml",
+    "retrieved_at": "2026-10-31T14:24:12.437267+00:00",
+    "status": 200,
+    "final_url": "https://openai.com/news/rss.xml",
+    "bytes": 816763,
+    "sha256": "5c44886b2706cf8e0b6eecac69cce56b7f7e902fc585f22876c0be97d49388f1"
+  },
+  {
+    "key": "2610.36791-html",
+    "url": "https://arxiv.org/html/2610.36791v1",
+    "retrieved_at": "2026-10-31T14:25:42.107402+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.36791v1",
+    "bytes": 353827,
+    "sha256": "168e3b634aaf6325bf7436aeec425fff780c27fdd9b8b5234b2e7b69aa56f735"
+  },
+  {
+    "key": "2610.38104-html",
+    "url": "https://arxiv.org/html/2610.38104v1",
+    "retrieved_at": "2026-10-31T14:25:42.107828+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.38104v1",
+    "bytes": 207706,
+    "sha256": "5e96fca78ed10bb62678a6a1ad33246bd9717897ac7157187eb7e59e6a66cdf3"
+  },
+  {
+    "key": "2610.40401-html",
+    "url": "https://arxiv.org/html/2610.40401v1",
+    "retrieved_at": "2026-10-31T14:25:42.107947+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.40401v1",
+    "bytes": 165821,
+    "sha256": "5fee34a95950a963b130f6ba4608ffc5ffa22229ee6bf856fdc16dcaa1dfa991"
+  },
+  {
+    "key": "recent-cs.CV",
+    "url": "https://arxiv.org/list/cs.CV/recent?skip=0&show=1000",
+    "retrieved_at": "2026-10-31T14:25:42.108052+00:00",
+    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+  },
+  {
+    "key": "recent-cs.CL",
+    "url": "https://arxiv.org/list/cs.CL/recent?skip=0&show=1000",
+    "retrieved_at": "2026-10-31T14:25:42.108154+00:00",
+    "error": "The read operation timed out"
+  },
+  {
+    "key": "huggingface--lerobot-5117-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5117",
+    "retrieved_at": "2026-10-31T14:25:42.108264+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5117",
+    "bytes": 422216,
+    "sha256": "cf312f5a415632691bf10a700a7360dc2bcfef449beb17b47408dbd41b687c50"
+  },
+  {
+    "key": "huggingface--lerobot-5095-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5095",
+    "retrieved_at": "2026-10-31T14:25:42.108373+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5095",
+    "bytes": 360965,
+    "sha256": "9117088bd7c5b8714dd7c6d7baa5606c1f99dc5fb1d9f84724e4e5470027b565"
+  },
+  {
+    "key": "huggingface--lerobot-5086-page",
+    "url": "https://github.com/huggingface/lerobot/pull/5086",
+    "retrieved_at": "2026-10-31T14:25:43.962901+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/lerobot/pull/5086",
+    "bytes": 373555,
+    "sha256": "ce09df8f66557da112e9f1cdee92ba132b170279f3ca4361932a8e82ec2a3deb"
+  },
+  {
+    "key": "huggingface--trl-7866-page",
+    "url": "https://github.com/huggingface/trl/pull/7866",
+    "retrieved_at": "2026-10-31T14:25:44.141260+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/trl/pull/7866",
+    "bytes": 416250,
+    "sha256": "d8fb7c30714af00e61aa97b71e721044745ea859cfece0d6b19e8e011d2a8a96"
+  },
+  {
+    "key": "huggingface--trl-7866-patch",
+    "url": "https://github.com/huggingface/trl/pull/7866.patch",
+    "retrieved_at": "2026-10-31T14:25:45.635930+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/trl/pull/7866.patch",
+    "bytes": 43014,
+    "sha256": "0c0f7e76d3f1dc99695ba24df4e12b89e4c2fc222217d0a4256d9241e7b728da"
+  },
+  {
+    "key": "huggingface--trl-7760-page",
+    "url": "https://github.com/huggingface/trl/pull/7760",
+    "retrieved_at": "2026-10-31T14:25:46.121522+00:00",
+    "status": 200,
+    "final_url": "https://github.com/huggingface/trl/pull/7760",
+    "bytes": 455736,
+    "sha256": "e08ee15fb7c3f9d82a169abcd1f2d88e8c1196d8d37395da0d2f36187d5b8248"
+  },
+  {
+    "key": "huggingface--trl-7760-patch",
+    "url": "https://github.com/huggingface/trl/pull/7760.patch",
+    "retrieved_at": "2026-10-31T14:25:47.324027+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/huggingface/trl/pull/7760.patch",
+    "bytes": 99944,
+    "sha256": "312d72d8317f343d1acb2ae1b674b54545c1c486455065dbc5a280b497989f2c"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-4200-page",
+    "url": "https://github.com/NVIDIA-NeMo/RL/pull/4200",
+    "retrieved_at": "2026-10-31T14:25:48.114520+00:00",
+    "status": 200,
+    "final_url": "https://github.com/NVIDIA-NeMo/RL/pull/4200",
+    "bytes": 596662,
+    "sha256": "fc7789eecc90dbebf9dc053882abb39251d46a8e13b77cb0b0bfe8afd3764bde"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-4200-patch",
+    "url": "https://github.com/NVIDIA-NeMo/RL/pull/4200.patch",
+    "retrieved_at": "2026-10-31T14:25:49.308237+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/NVIDIA-NeMo/RL/pull/4200.patch",
+    "bytes": 161651,
+    "sha256": "89b608b64ab56a06cac05d22f6dda3e62d86e0a88131bb463b79dfc3e6b5cbea"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-4245-page",
+    "url": "https://github.com/NVIDIA-NeMo/RL/pull/4245",
+    "retrieved_at": "2026-10-31T14:25:50.769528+00:00",
+    "status": 200,
+    "final_url": "https://github.com/NVIDIA-NeMo/RL/pull/4245",
+    "bytes": 412005,
+    "sha256": "10b77f6af9bba1b42a819728128da1c7e2a67599738dfced14675d4543b09209"
+  },
+  {
+    "key": "NVIDIA-NeMo--RL-4245-patch",
+    "url": "https://github.com/NVIDIA-NeMo/RL/pull/4245.patch",
+    "retrieved_at": "2026-10-31T14:25:51.125569+00:00",
+    "status": 200,
+    "final_url": "https://patch-diff.githubusercontent.com/raw/NVIDIA-NeMo/RL/pull/4245.patch",
+    "bytes": 39394,
+    "sha256": "f904816064f4b8e931cfd0d54368192b1ae4094db9a26e53bb41a21e095bd64c"
+  },
+  {
+    "key": "mistral-card",
+    "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/README.md",
+    "retrieved_at": "2026-10-31T14:25:52.943789+00:00",
+    "status": 200,
+    "final_url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/README.md",
+    "bytes": 19051,
+    "sha256": "bd99fb7896a8e8e59f811be20716df569ceff7de4115d9757ede28bf6d17d314"
+  },
+  {
+    "key": "rynnvla-readme",
+    "url": "https://raw.githubusercontent.com/alibaba-damo-academy/RynnVLA-Latent/main/README.md",
+    "retrieved_at": "2026-10-31T14:25:52.944044+00:00",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/alibaba-damo-academy/RynnVLA-Latent/main/README.md",
+    "bytes": 12057,
+    "sha256": "befb05aa1f21007b8a9482ba92a8b53a74733659b3cd8311df25db27b185367c"
+  },
+  {
+    "key": "rynnworld-readme",
+    "url": "https://raw.githubusercontent.com/alibaba-damo-academy/RynnWorld-Latent/main/README.md",
+    "retrieved_at": "2026-10-31T14:25:53.613376+00:00",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/alibaba-damo-academy/RynnWorld-Latent/main/README.md",
+    "bytes": 14029,
+    "sha256": "f35f973c149ef694421468369f2c6cd4d507bf330d846a5a38c8d26e2d36dbb3"
+  },
+  {
+    "key": "openai-misalign",
+    "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment/",
+    "retrieved_at": "2026-10-31T14:25:53.634559+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "key": "vllm-project--vllm-atom",
+    "url": "https://github.com/vllm-project/vllm/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.072287+00:00",
+    "status": 200,
+    "final_url": "https://github.com/vllm-project/vllm/commits/main.atom",
+    "bytes": 21511,
+    "sha256": "47fb06aee87836479d94c3573d2544e44e8034a0118282ee7705aa9d60e4bb2a"
+  },
+  {
+    "key": "sgl-project--sglang-atom",
+    "url": "https://github.com/sgl-project/sglang/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.073043+00:00",
+    "status": 200,
+    "final_url": "https://github.com/sgl-project/sglang/commits/main.atom",
+    "bytes": 18850,
+    "sha256": "9ed01368f03107ce8db329446b0a5561a127ff428ab1225111e89ffe7e10221a"
+  },
+  {
+    "key": "NVIDIA--TensorRT-LLM-atom",
+    "url": "https://github.com/NVIDIA/TensorRT-LLM/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.073290+00:00",
+    "status": 200,
+    "final_url": "https://github.com/NVIDIA/TensorRT-LLM/commits/main.atom",
+    "bytes": 18733,
+    "sha256": "af9350b515d4fd1e69e582f26fe998701e28f8ff2228911cf6f73a8a7405b061"
+  },
+  {
+    "key": "alibaba--ROLL-atom",
+    "url": "https://github.com/alibaba/ROLL/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.073526+00:00",
+    "status": 200,
+    "final_url": "https://github.com/alibaba/ROLL/commits/main.atom",
+    "bytes": 17142,
+    "sha256": "9395bbdbe1f521834049b62fb310b9a218948e2984b7340d0d0ade2200c31e7e"
+  },
+  {
+    "key": "OpenRLHF--OpenRLHF-atom",
+    "url": "https://github.com/OpenRLHF/OpenRLHF/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.073878+00:00",
+    "status": 200,
+    "final_url": "https://github.com/OpenRLHF/OpenRLHF/commits/main.atom",
+    "bytes": 21981,
+    "sha256": "27c9ace7486fd04f0cace82181a147f125718ede833cdeff868c62b9f38c19ad"
+  },
+  {
+    "key": "pytorch--torchcodec-atom",
+    "url": "https://github.com/pytorch/torchcodec/commits/main.atom",
+    "retrieved_at": "2026-10-31T14:27:28.074047+00:00",
+    "status": 200,
+    "final_url": "https://github.com/meta-pytorch/torchcodec/commits/main.atom",
+    "bytes": 15994,
+    "sha256": "8f7e03c193fe61833482ccc00a89003ebd0a4255259f22b4ac510c7412663913"
+  },
+  {
+    "key": "2610.37609-abs",
+    "url": "https://arxiv.org/abs/2610.37609v1",
+    "retrieved_at": "2026-10-31T14:27:28.074297+00:00",
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  {
+    "key": "2610.37609-html",
+    "url": "https://arxiv.org/html/2610.37609v1",
+    "retrieved_at": "2026-10-31T14:27:28.918781+00:00",
+    "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+  },
+  {
+    "key": "2610.40305-abs",
+    "url": "https://arxiv.org/abs/2610.40305v1",
+    "retrieved_at": "2026-10-31T14:27:28.933851+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/abs/2610.40305v1",
+    "bytes": 43794,
+    "sha256": "d433b07a89e1eb2f44d0ec3db739900ebbbf038c3059e4afc47498be5edc54ba"
+  },
+  {
+    "key": "2610.40305-html",
+    "url": "https://arxiv.org/html/2610.40305v1",
+    "retrieved_at": "2026-10-31T14:27:28.934054+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/html/2610.40305v1",
+    "bytes": 238728,
+    "sha256": "f30918d76bc76e9db1e1538c98db8ffe26d5a2caaf7d8008ce28e9f7d8ad811f"
+  }
+]

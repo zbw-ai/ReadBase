@@ -168,3 +168,18 @@
 [进一步的可证伪判断：状态与时间契约](../../research/insights/embodied_state_contracts.md)把模型和工程证据连到验收设计。
 
 本页为工程解释与学习入口；具体已核来源见上面的两批复盘。没有在本仓库运行仿真或真机验证，所有配置建议需通过相应实验后才能提升证据等级。
+
+<a id="oct31-learning"></a>
+## 2026-10-31：把运动表示、训练收益和执行有效性分开
+
+来源：[本轮扫描 A1–A7](../../research/tracking/frontier_scan_2026-10-31.md#a1)。这是方法核查后的工程解释，尚未做训练或闭环实验。
+
+**先问 latent 学到了什么。** RynnLAM 从相邻视觉状态提取运动描述，通过几何伪标签和相机运动解耦约束表示；RynnVLA 先学 latent chunk，再用目标机器人动作与状态对齐。RynnWorld 把同类 latent 作为视频预测条件。三者共同使用中间运动表示，不表示 latent 已经具有控制器单位、坐标系或执行频率。公开 Stage-1 VLA 权重也不是开箱即用的机器人控制策略。
+
+对数据平台，应分别记录原视频 frame stride、latent interval、policy chunk 的采样间距、native action 时间戳和目标机器人接口。World Model 合成观察与 retargeting/IK 产生的 pseudo-action 来自两条路径，视觉上看起来合理不足以证明动作—观察一致；质量过滤需要检查时序、动作可达性和下游闭环，而不只检查图像质量。这是从论文机制推导出的数据验收建议，尚未在本仓验证。
+
+**再问未来预测在哪个阶段有用。** WAM 消融论文表明，future prediction 可作为训练辅助目标，部署时不一定保留 video generator；但 seen-task 增益、unseen-task 迁移和环境扰动鲁棒性是不同证据。配置实验时固定 action pathway、初始化、训练样本和预算，分别比较无辅助目标、训练期 predictor、执行期想象。参数量不能直接充当训练成本或部署延迟测量。
+
+**最后问失败是否被正确描述。** WorldFailBench 把 failure reason、stage、boundary 分开；模拟“抓错东西”与真机“抓住后掉落”即使都失败，也会引导不同的排障方向。Same Label, Different Interface 进一步提醒：动作需要经过缩放、滤波、reference hold、feedback 与 effort limits；两个接口都叫 joint-position，并不构成公平的控制对照。动作 EMA 与训练参数 EMA 必须在日志与配置中分开命名。
+
+排查顺序：先对齐数据和动作接口，再核训练期实际参数更新，随后核 reset 后观察新鲜度，最后比较模型机制。训练问题见[精度与状态](embodied_training.md#oct31-precision-state)，执行问题见[runtime](embodied_runtime.md)，评估记录见[仿真评估](embodied_sim_evaluation.md)；验证动作复用[契约实验 E7](../../practice/experiments/embodied_contract_lab.md#e7)。

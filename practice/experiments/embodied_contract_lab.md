@@ -84,3 +84,17 @@
 | E6 | 假设时钟与请求序列 | 无软件回归、读者作答或闭环结果 | NEW |
 
 讨论之后把解释回写[模型入门](../../05-embodied-infra/topics/embodied_models_primer.md)或[数据正文](../../05-embodied-infra/topics/embodied_data_io.md)，进度写入[共享学习记录](../../research/learning_log/2026-10.md#embodied-discussion)。
+
+<a id="e7"></a>
+## E7：参数是否真的更新，恢复后是否还是同一训练状态？
+
+来源：[VLA 精度补录](../../research/tracking/backfill/2026-10.md#oct31-vla-precision)、[LeRobot 分片训练](../../research/tracking/frontier_scan_2026-10-31.md#a5)；解释见[具身训练](../../05-embodied-infra/topics/embodied_training.md#oct31-precision-state)。**状态 NEW，未执行**；本轮只设计验收，不下载模型或启动 GPU。
+
+假设：参数更新可能被低精度 storage rounding 吞掉；分片训练的 adapter / EMA 即使能保存，也可能未按原始状态恢复。这是两个独立假设，分两步测试。
+
+1. 固定模型与源码 revision、输入 batch、seed、loss mask、学习率、optimizer 与执行 horizon；记录 trainable parameter、gradient、master copy、moments 的 dtype。选择相同初始表示的一小组可训练张量，对照 BF16 storage 无 master 和 FP32 storage/master 路径；模型计算精度尽量保持相同。
+2. 每个已提交 step 保存抽样参数前后差、gradient norm、实际 update norm、unchanged fraction、overflow/skip 标记。用显式高精度参考更新帮助区分 rounding、未命中参数、冻结与算法本来应为零的更新；不将 unchanged fraction 单独解释为丢失更新率。
+3. 在小规模 FSDP2 + PEFT + EMA run 中，分别连续运行和中途 checkpoint/resume；固定数据顺序，比较下一批 sample IDs、adapter、optimizer、scheduler、EMA count/decay/weights。分别验证 DCP resume 与导出 checkpoint 的加载，不要求跨硬件天然 bitwise。
+4. 验收时先写允许误差、应更新/冻结的参数集合和 expected state。任何 loss 差异先回查数据、precision 和 RNG，不直接归因于分片；性能记录同时包含峰值显存、通信与完整 step time。
+
+产出：manifest、参数更新表、resume 差异表及不通过项；未执行前不填写 pass，不把论文效果当自己的结果。E1–E6 与原有在读安排保持不变。

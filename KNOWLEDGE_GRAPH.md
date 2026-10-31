@@ -10,6 +10,8 @@
 
 新增关系：[RL 状态身份](04-rl-infra/topics/agentic_rl.md#oct12-state-identity)把 FSDP snapshot ownership、GRPO 采样组和 Inference DP cache locality 连起来；来源见 [10/12 扫描](research/tracking/frontier_scan_2026-10-12.md)，均未实验验证。
 
+新增关系：[运动表示与执行边界](05-embodied-infra/topics/embodied_infra.md#oct31-learning) ↔ [参数实际更新与分片恢复](05-embodied-infra/topics/embodied_training.md#oct31-precision-state) ↔ [E7验收](practice/experiments/embodied_contract_lab.md#e7)；[RL分布/布局/身份](04-rl-infra/topics/agentic_rl.md#oct31-contracts)与[KV及时交付](03-inference-infra/topics/inference_state.md#oct31-storage)分别连接正确性和性能。依据[10/31核查](research/tracking/frontier_scan_2026-10-31.md)，均未实验验证。
+
 ## 全库关系：共享基础，按问题进入
 
 ```mermaid

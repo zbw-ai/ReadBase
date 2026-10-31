@@ -33,11 +33,11 @@
 
 | 文档更新 | 类别 | 值得读的变化 |
 |---|---|---|
+| 2026-10-31 | 前沿扫描与工程验收 | [15组重点信号](research/tracking/frontier_scan_2026-10-31.md)：latent action、WAM评估、LeRobot分片训练与RL正确性；[精度/恢复验收](05-embodied-infra/topics/embodied_training.md#oct31-precision-state)，另1篇历史补录，实验未执行 |
 | 2026-10-31 | Omni 算法与 Infra | [核心专题与路线](05-embodied-infra/roadmaps/omni.md)：Qwen3.5-Omni、SFT/OPD、Thinker/Talker RL、Hybrid state 与流式服务；[来源笔记](research/tech_reports/qwen35_omni.md)及 O0–O6 验证设计，未实验 |
 | 2026-10-23 | 工程实践规划 | [AI Infra 入职与三个月行动手册](practice/projects/2026-10-agibot-onboarding.md#quick-nav)：业务认知、主管对齐、阶段交付与技术准备；个人计划未替代正式目标或实测结果 |
 | 2026-10-23 | 具身个人学习整理 | [八次具体学习](05-embodied-infra/roadmap.md#study-sessions)：新增[训练](05-embodied-infra/topics/embodied_training.md)、[仿真评估](05-embodied-infra/topics/embodied_sim_evaluation.md)、[部署执行](05-embodied-infra/topics/embodied_runtime.md)三章；从 loss 分母、评估账本到动作时间线，配 E1–E6 自测，实验未执行 |
 | 2026-10-23 | 具身历史月报补充 | [1—9 月双线时间表](research/tracking/monthly_reviews.md#embodied-2026)：模型条件、记忆与反馈，对应数据 I/O、仿真、恢复和执行约束；各月保留来源日期、历史补充边界与选读建议 |
-| 2026-10-23 | 研究扫描与机制回写 | [19组重点信号](research/tracking/frontier_scan_2026-10-23.md)：CEL、AIM、CADRE及RL/推理状态；[具身学习问题](05-embodied-infra/topics/embodied_infra.md#oct23-learning)，附23仓1320条PR索引与3篇晚发现补录 |
 
 这里只记录仓库新增或实质更新，最多 5 条；外部新文章看[研究雷达](research/tracking/README.md)，项目进展看[实践入口](practice/README.md)。
 

@@ -1,0 +1,20 @@
+{
+  "event_window_utc": {
+    "start": "2026-10-23T03:09:27Z",
+    "end": "2026-10-31T14:20:20Z"
+  },
+  "timezone": "Asia/Shanghai",
+  "accepted_groups": 15,
+  "observed_groups": 18,
+  "separate_backfill": 1,
+  "verification_recorded_utc": "2026-10-31T14:35:24.406875+00:00",
+  "scope": "Bounded source scan; see README and report for failures and carry-forward gaps. No upstream execution.",
+  "validation": {
+    "markdown_files": 14,
+    "local_links_and_image_targets_checked": 1177,
+    "missing_paths_or_anchors": 0,
+    "json_files_parsed": 6,
+    "git_diff_check": "passed",
+    "upstream_tests": "not run"
+  }
+}

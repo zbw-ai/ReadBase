@@ -1,5 +1,7 @@
 # Master Reading List
 
+2026-10-31 新关系：[latent action 与评估边界](../05-embodied-infra/topics/embodied_infra.md#oct31-learning) → [参数精度/分片恢复](../05-embodied-infra/topics/embodied_training.md#oct31-precision-state) → [E7待执行验收](../practice/experiments/embodied_contract_lab.md#e7)。来源见[15组扫描](tracking/frontier_scan_2026-10-31.md)与[晚发现精度审计](tracking/backfill/2026-10.md#oct31-vla-precision)；阅读只在[P1](reading_queue/P1.md#oct31-frontier)选择启动，未实验。
+
 Omni 专题：[Qwen3.5-Omni Technical Report（Qwen Team，2026-04-17，v2 04-21）](tech_reports/qwen35_omni.md) → [算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) → [学习路线](../05-embodied-infra/roadmaps/omni.md)。[原始全文](https://arxiv.org/html/2604.15804v2)已核核心机制；[四月回补](tracking/backfill/2026-04.md#qwen35-omni)，不是十月新发布；[工程判断](insights/omni_optimization_contracts.md)与实验均待验证。
 
 
