@@ -1,6 +1,6 @@
 # Tracking
 
-月度补充：[2026 年 1—9 月具身智能与 Infra 时间线](monthly_reviews.md#embodied-2026)，每月分别看模型／学习与工程约束；2026-10-23 回溯补齐，保留原始扫描统计与游标，10 月继续使用日常扫描。
+月度补充：[2026 年 1—9 月具身智能与 Infra 时间线](monthly_reviews.md#embodied-2026)，每月分别看模型／学习与工程约束；2026-10-23 回溯补齐，保留原始扫描统计与游标，十月已整理[月底摘要](monthly_signal_2026-10.md)，证据截至10/31 22:20:20，月底余下时段未覆盖。
 
 最新：[Frontier Scan 2026-10-31](frontier_scan_2026-10-31.md)，固定事件窗口覆盖至 **10/31 22:20:20**；15组重点信号、18组观察、1篇晚发现精度审计另入backfill。先读 Rynn latent action、World Model 评估与 LeRobot 分片训练；[P1三项动作](../reading_queue/P1.md#oct31-frontier)。arXiv CV/CL 与 GitHub 全窗口 PR 覆盖仍有缺口，详见报告。
 
@@ -33,7 +33,9 @@
 
 ## 默认阅读入口：2025 按季度，2026 按月
 
-最新正式月报：[2026 年 9 月](monthly_signal_2026-09.md)，覆盖 9/1–9/30 的五条工程主线，并归回 10/08 扫描中晚发现的 9 月材料；日期归档完整，来源覆盖缺口仍显式保留。
+最新月底摘要：[2026年10月](monthly_signal_2026-10.md)，五条主线与[历史月报缺漏审计](monthly_audit_2026-10-31.md)；截至10/31 22:20:20，未声称自然月闭合。
+
+最近已闭合月份月报：[2026 年 9 月](monthly_signal_2026-09.md)，覆盖 9/1–9/30 的五条工程主线，并归回 10/08 扫描中晚发现的 9 月材料；日期归档完整，来源覆盖缺口仍显式保留。
 
 先看[时间线总览](monthly_reviews.md)，不必逐份补读 frontier scans。2025 年按 [Q1](quarterly_signal_2025-Q1.md) / [Q2](quarterly_signal_2025-Q2.md) / [Q3](quarterly_signal_2025-Q3.md) / [Q4](quarterly_signal_2025-Q4.md)理解来路，2026 年按月追踪问题演进。各份先解释技术主线和工程后果，再给少量选读；原扫描保留作证据。
 

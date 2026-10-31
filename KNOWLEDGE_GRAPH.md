@@ -1,5 +1,7 @@
 # Knowledge Graph
 
+[十月月报](research/tracking/monthly_signal_2026-10.md)串联表示→评估→更新/恢复→状态交付；[历史月报审计](research/tracking/monthly_audit_2026-10-31.md)区分来源归并与覆盖缺口。
+
 2026-10-13 下一阶段重点：[具身模型与 Infra：13 项历史补扫与复评](research/tracking/embodied_retrospective_2026-10-13.md)，从动作模型、数据契约到闭环执行；6 项新增、7 项复评，实验未执行。
 
 [首页](README.md) · [最近更新](README.md#recent-updates) · [材料索引](research/MASTER_READING_LIST.md) · [研究流程](research/README.md)

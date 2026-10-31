@@ -1,5 +1,15 @@
 # Monthly Signal Report, 2026-04
 
+<a id="omni-20261031"></a>
+## 2026-10-31 月度审计补充：Omni 来源归回四月
+
+[Qwen3.5-Omni Technical Report](https://arxiv.org/abs/2604.15804v2)（Qwen Team，v1 4/17、本文依据 v2 4/21）已于10/31核验并登记[四月 backfill](backfill/2026-04.md#qwen35-omni)，本节补齐此前缺失的月报入口。Source ID：`arxiv:2604.15804v2`；First seen / 补录为10/31，非四月当时已覆盖；Impact High；Decision Deep Dive；Learning track Training / Inference / RL；Signal type model / system。
+
+Target question：Thinker/Talker、交错语音文本、Hybrid state 与后训练目标怎样改变 SFT、RL 和流式服务？Evidence 沿用[已有报告笔记](../tech_reports/qwen35_omni.md)的元数据与方法核验，模型/性能为作者披露，未复现。工程价值是把模态对齐、概率定义、状态版本和首音频时延一起验收；Omni 的 agentic action 不是机器人关节动作证据。
+
+本来源笔记为 **SUMMARIZED**，用户掌握、源码验证和实验未完成；Next 沿[既有 P1](../reading_queue/P1.md#omni-20261031)与[路线](../../05-embodied-infra/roadmaps/omni.md)选择最小基线。原月报 Accepted 与历史补充计数不变，本次仅归并已有来源，不重新发现、不推进游标。[本次月报审计](monthly_audit_2026-10-31.md)。
+
+
 <a id="embodied-20261023"></a>
 
 ## 2026-10-23 具身历史补充：策略可调，数据版本也必须可追溯
