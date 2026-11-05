@@ -100,8 +100,6 @@ Qwen3.5-Omni Thinker 用 specialist 数据整合能力，再用成对音频/文�
 
 **Reward 不能只优化一个总分**：ASR 一致性可能鼓励单调、过慢语音；自然度 judge 可能偏爱冗长回答；时间惩罚可能促使提前结束。保留各分量、超时和无效输出，冻结评估集，用独立任务结果与抽样人评校验。零方差 group、缺失候选、超时补样应显式定义；不能挑剩下的高分样本悄悄改变分布。
 
-全双工、多轮语音 Agent 进一步见[专项训练正文](../../04-rl-infra/topics/full_duplex_voice_rl.md)：以公开模型与窗口 RL 为依据，补齐双音轨数据、接话／让话奖励、实际播放边界和完整会话训练；工程交付见[专项路线](../roadmaps/omni.md#duplex-project)，验证仍复用 [O4](../../practice/experiments/omni_sft_rl_lab.md#duplex-o4)，尚未执行。
-
 <a id="serving"></a>
 ### 推理：优化用户可感知的关键路径
 

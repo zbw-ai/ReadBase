@@ -4,8 +4,6 @@
 
 [Omni O0–O6](omni_sft_rl_lab.md)：样本与时间轴 → SFT 正确性/性能 → 蒸馏与 RL → 流式服务 → 恢复；全部未执行。
 
-其中[全双工 O4-a–e](omni_sft_rl_lab.md#duplex-o4)补充因果回放、时机 reward 反例、概率／梯度对照、完整会话和性能；对应[D0–D5 工程交付](../../05-embodied-infra/roadmaps/omni.md#duplex-project)，均未执行。
-
 ## 当前学习课程
 
 [A100 E00–E08 实验课程](a100_fsdp_io_lab.md)：环境画像 → FSDP/ZeRO 状态账本 → 通信生命周期 → 多模态 I/O，并保留恢复、跨机、推理与 RL 实验。全部未执行，需先确认环境、预算与授权。
