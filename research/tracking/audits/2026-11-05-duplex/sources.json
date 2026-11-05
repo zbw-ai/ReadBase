@@ -1,0 +1,420 @@
+{
+  "scope": "Targeted public-source study of full-duplex multimodal voice Agent training. Not a frontier scan; no cursor or historical accepted-count changes. No internal screenshot or targets retained.",
+  "verified_date": "2026-11-05",
+  "sources": [
+    {
+      "source_id": "arxiv:2410.00037v2",
+      "kind": "paper/report",
+      "title": "Moshi: a speech-text foundation model for real-time dialogue",
+      "authors": [
+        "Défossez, Alexandre",
+        "Mazaré, Laurent",
+        "Orsini, Manu",
+        "Royer, Amélie",
+        "Pérez, Patrick",
+        "Jégou, Hervé",
+        "Grave, Edouard",
+        "Zeghidour, Neil"
+      ],
+      "citation_date": [
+        "2024/09/17"
+      ],
+      "citation_online_date": [
+        "2024/09/17"
+      ],
+      "original_month": "2024-09",
+      "version": "2410.00037v2",
+      "metadata_url": "https://arxiv.org/abs/2410.00037v1",
+      "method_url": "https://arxiv.org/html/2410.00037v2",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "用户与助手为什么要分为并行音轨，真实对话补了什么？",
+      "metadata_sha256": "a058c98f76321680c7fe347cf348af854352e2551c3bb01d81509f8da614178c",
+      "method_sha256": "3320f329d2255ffeaebdb04a05af00ab72dd8a077f33c3456fd29dd388f1ecdd",
+      "evidence_excerpts": [
+        "Moshi pre-training.\nThen, we initialize the Temporal Transformer in Moshi with Helium, while the Depth Transformer described in\nSection\n3.4.1\nis randomly initialized.\nWe first train on the unsupervised audio dataset presented in\nSection\n4.2\n, using a single stream of audio, with a batch size covering 16 hours of audio, each batch item consisting of a 5 mn sequence. We mask the corresponding text tokens with a probability of 30%. We randomize the delay between the text and audio tokens between -0.6 and +0.6 seconds.\nIn order to prevent catastrophic forgetting, we also train half of the time on batches of text only data from the same dataset as used for Helium. In total, we make 1 million training steps, with a cosine learning rate starting at\n3\n⋅\n10\n−\n5\n3\\cdot 10^{-5}\nfor the Temporal Transformer, and\n2\n⋅\n10\n−\n4\n2\\cdot 10^{-4}\nfor the Depth Transformer, also with a linear warmup. In order to ensure the updates from the text-only batches are balanced with those from the audio dataset, we use two separate optimizer states. In addition, when operating on the text stream from an audio batch, we multiply the learning rate for the text embedding and text linear layer by 0.75. Finally, as ",
+        "Moshi post-training.\nStarting from the model obtained from the previous stage, we then train it to gain its multi-stream ability. First, we use PyAnnote\n(\nBredin, 2023\n)\nto diarize the audio from the unsupervised audio dataset. We sample one speaker at random, which will act as the main speaker, and derive a binary mask over the waveform, with a value of\n1\n1\nwhen the speaker is active based on the diarization, and\n0\n0\notherwise. This mask provides us with two waveforms: one with the speaker, and one with the residual (potentially several speakers), which are encoded separately and then used as the two input audio streams described in\nSection\n3.4.3\n. The text stream only contains the text tokens from the selected main speaker, and the delay between text and audio tokens is fixed to 0. We train for 100k steps, with a batch size of 8 hours of audio, and a fixed learning rate of\n3\n⋅\n10\n−\n6\n3\\cdot 10^{-6}\nfor the Temporal Transformer, and\n5\n⋅\n10\n−\n5\n5\\cdot 10^{-5}\nfor the Depth Transformer. Like for the pretraining phase, we sample full text-only batches 10% of the time.\nMoshi finetuning.\nThe previously described simulated multi-stream provides a good pre-training task but is far from b",
+        "Moshi finetuning.\nThe previously described simulated multi-stream provides a good pre-training task but is far from being sufficient to capture natural conversations: For instance, it contains no overlap, and the stream of an inactive speaker is perfectly silent. We then use the Fisher dataset\n(\nCieri et al., 2004\n)\nto have the model learn real multi-stream interaction. We sample one of the two speakers to be the first (and main) speaker. We train for 10k batches, with a batch size of 40min of audio with a learning rate of\n2\n⋅\n10\n−\n6\n2\\cdot 10^{-6}\n/\n4\n⋅\n10\n−\n6\n4\\cdot 10^{-6}\nfor the main/Depth Transformer. We no longer sample full text batches.\nFinally, we set the speaker identity for the first speaker stream to be that of Moshi, a useful conversational assistant, with a final stage of instruct finetuning. We use the synthetic instruct dataset described in\nSection\n4.3\n, with a batch size of 2.7 hours of audio, for 30k steps, with a learning rate of\n2\n⋅\n10\n−\n6\n2\\cdot 10^{-6}\nfor both transformers.\nDuring this stage, we perform data augmentation on the user’s stream to make Moshi robust to various situations. Namely, we apply a random gain to the user stream between -24 dB and +15 d"
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "date_note": "v1 submission 2024-09-17; v2 method text dated 2024-10-02; do not infer publication month from identifier prefix.",
+      "engineering_value": "把用户与助手建模为并行音轨，并用真实双人对话补足模拟分流缺失的 overlap；当前用于确定全双工 SFT 的输入和时序监督，不能替代在线 RL。"
+    },
+    {
+      "source_id": "arxiv:2602.06053v1",
+      "kind": "paper/report",
+      "title": "PersonaPlex: Voice and Role Control for Full Duplex Conversational Speech Models",
+      "authors": [
+        "Roy, Rajarshi",
+        "Raiman, Jonathan",
+        "Lee, Sang-gil",
+        "Ene, Teodor-Dumitru",
+        "Kirby, Robert",
+        "Kim, Sungwon",
+        "Kim, Jaehyeon",
+        "Catanzaro, Bryan"
+      ],
+      "citation_date": [
+        "2026/01/14"
+      ],
+      "citation_online_date": [
+        "2026/01/14"
+      ],
+      "original_month": "2026-01",
+      "version": "2602.06053v1",
+      "metadata_url": "https://arxiv.org/abs/2602.06053v1",
+      "method_url": "https://arxiv.org/html/2602.06053v1",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "如何用角色与音色条件、真实和合成对话补助手行为？",
+      "metadata_sha256": "1a2ab98be3df371470ef225d47e64b3b150d310b87dcacc6f7f33b074e8c9f9d",
+      "method_sha256": "ae02047fcc0642ad914cc02dddfedb693ec048751d03e315ac386d59505580b9",
+      "evidence_excerpts": [
+        "introduce a\nHybrid System Prompt\ncombining textual role descriptions with audio voice examples.\nThe\nHybrid System Prompt\nconsists of two temporally concatenated segments: a text prompt segment and a voice prompt segment. The text prompt segment performs role conditioning by forcing scenario-specific text tokens on the agent text channel while keeping the agent audio channel silent. The voice prompt segment performs voice prompting by supplying a short speech sample on the agent audio channel while padding the agent text channel. With this setup, subsequent agent utterances are generated in the same voice, enabling zero-shot voice cloning. For stable conditioning, the user audio channel is replaced with a 440 Hz sine wave, and custom text/audio delimiters mark the boundary between the Hybrid System Prompt and dialogue.\nWe observe no difference in model performance regardless of whether the voice prompt segment or text prompt segment is positioned first. In our implementation, the voice prompt precedes the text prompt to enable prefilling during inference when zero-shot voice cloning i",
+        "65\n0.257\ndGSLM\n0.934\n0.935\n0.691\n0.015\n0.934\n0.975\n0.352\n0.917\n0.201\n2.531\n3.2\nSynthetic Data\n3.2.1\nDialog Transcripts and Text Prompt Generation\nWe construct a diverse set of synthetic dialogs reflecting the breadth of interactions encountered in two-speaker conversations. All dialog transcripts are generated using Qwen-3-32B\n[\n23\n]\nand GPT-OSS-120B\n[\n19\n]\n.\nService Scenarios\nDialogs are generated hierarchically by first sampling a service domain (e.g. restaurant, bank), then selecting a scenario (e.g., refund, information request, general enquiry). Each scenario is grounded with a high-level description, which is subsequently expanded into a full two-speaker transcript through large language model generation. A corresponding role context (example in\nTable 3\n) is generated for the service agent. Note that all training scenarios are distinct from those used in our\nService-Duplex-Bench\nevaluation (Section\n3.3\n), ensuring the model is tested on unseen service contexts.\nQuestion-Answering Assistant Scenarios\nWe additionally synthesize two-turn question–answering dialogs across various t",
+        " several improvements over the experimental setup described in this paper:\nReal Conversational Data\nThe released model is additionally trained on 7,303 conversations (1,217 hours) from the Fisher English corpus\n[\n6\n]\nto improve natural backchanneling, expressions, and emotional responses. These conversations were annotated with prompts at varying detail levels using GPT-OSS-120B to balance generalization capability with instruction-following precision:\n•\nMinimal: “You enjoy having a good conversation.”\n•\nTopic-specific: “You enjoy having a good conversation. Have a casual discussion about eating at home versus dining out.”\n•\nHighly detailed: “You enjoy having a good conversation. Have a reflective conversation about career changes and feeling of home. You have lived in California for 21 years and consider San Francisco your home. You work as a teacher and have traveled a lot. You dislike meetings.”\nSynthetic Voice Generation\nFor data privacy, all synthetic dialogs use synthetic voices sampled from TortoiseTTS\n[\n1\n]\nrather than real voice datasets described in Section\n3.2.2\n. These sy"
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "date_note": "Original month follows citation_date/submission history 2026-01-14, not the 2602 identifier prefix.",
+      "engineering_value": "用文本角色与音频音色的 hybrid prompt 扩展 Moshi，并混合定向合成与自然对话；当前用于设计角色任务数据，不把后续工具／alignment 方向写成已实现。"
+    },
+    {
+      "source_id": "arxiv:2507.16632v3",
+      "kind": "paper/report",
+      "title": "Step-Audio 2 Technical Report",
+      "authors": [
+        "Wu, Boyong",
+        "Yan, Chao",
+        "Hu, Chen",
+        "Yi, Cheng",
+        "Feng, Chengli",
+        "Tian, Fei",
+        "Shen, Feiyu",
+        "Yu, Gang",
+        "Zhang, Haoyang",
+        "Li, Jingbei",
+        "Chen, Mingrui",
+        "Liu, Peng",
+        "You, Wang",
+        "Zhang, Xiangyu Tony",
+        "Li, Xingyuan",
+        "Yang, Xuerui",
+        "Deng, Yayue",
+        "Huang, Yechang",
+        "Li, Yuxin",
+        "Zhang, Yuxin",
+        "You, Zhao",
+        "Li, Brian",
+        "Wan, Changyi",
+        "Hu, Hanpeng",
+        "Zhen, Jiangjie",
+        "Chen, Siyu",
+        "Yuan, Song",
+        "Zhang, Xuelin",
+        "Jiang, Yimin",
+        "Zhou, Yu",
+        "Yang, Yuxiang",
+        "Li, Bingxin",
+        "Ma, Buyun",
+        "Song, Changhe",
+        "Pang, Dongqing",
+        "Hu, Guoqiang",
+        "Sun, Haiyang",
+        "An, Kang",
+        "Wang, Na",
+        "Gao, Shuli",
+        "Ji, Wei",
+        "Li, Wen",
+        "Sun, Wen",
+        "Wen, Xuan",
+        "Ren, Yong",
+        "Ma, Yuankai",
+        "Lu, Yufan",
+        "Wang, Bin",
+        "Li, Bo",
+        "Miao, Changxin",
+        "Liu, Che",
+        "Xu, Chen",
+        "Shi, Dapeng",
+        "Hu, Dingyuan",
+        "Wu, Donghang",
+        "Liu, Enle",
+        "Huang, Guanzhe",
+        "Yan, Gulin",
+        "Zhang, Han",
+        "Nie, Hao",
+        "Jia, Haonan",
+        "Zhou, Hongyu",
+        "Sun, Jianjian",
+        "Wu, Jiaoren",
+        "Wu, Jie",
+        "Yang, Jie",
+        "Yang, Jin",
+        "Lin, Junzhe",
+        "Li, Kaixiang",
+        "Yang, Lei",
+        "Shi, Liying",
+        "Zhou, Li",
+        "Gu, Longlong",
+        "Li, Ming",
+        "Li, Mingliang",
+        "Li, Mingxiao",
+        "Wu, Nan",
+        "Han, Qi",
+        "Tan, Qinyuan",
+        "Pang, Shaoliang",
+        "Fan, Shengjie",
+        "Liu, Siqi",
+        "Cao, Tiancheng",
+        "Lu, Wanying",
+        "He, Wenqing",
+        "Xie, Wuxun",
+        "Zhao, Xu",
+        "Li, Xueqi",
+        "Yu, Yanbo",
+        "Yang, Yang",
+        "Liu, Yi",
+        "Lu, Yifan",
+        "Wang, Yilei",
+        "Ding, Yuanhao",
+        "Liang, Yuanwei",
+        "Lu, Yuanwei",
+        "Luo, Yuchu",
+        "Yin, Yuhe",
+        "Zhan, Yumeng",
+        "Zhang, Yuxiang",
+        "Yang, Zidong",
+        "Zhang, Zixin",
+        "Jiao, Binxing",
+        "Jiang, Daxin",
+        "Shum, Heung-Yeung",
+        "Chen, Jiansheng",
+        "Li, Jing",
+        "Zhang, Xiangyu",
+        "Zhu, Yibo"
+      ],
+      "citation_date": [
+        "2025/07/22"
+      ],
+      "citation_online_date": [
+        "2025/08/27"
+      ],
+      "original_month": "2025-07",
+      "version": "2507.16632v3",
+      "metadata_url": "https://arxiv.org/abs/2507.16632v3",
+      "method_url": "https://arxiv.org/html/2507.16632v3",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "语音理解、推理与工具能力怎么分阶段训练，和让话有什么区别？",
+      "metadata_sha256": "5f4d06ec27383667aaa652e8e0c30135d8c9e1a061221391756139063833fece",
+      "method_sha256": "d8996cd62b904ae6ffd87b90b7bcb8d9a2b0d5a0c4a52a5080843de700c699da",
+      "evidence_excerpts": [
+        "vity detection (VAD) module to filter out input speeches and achieves real-time voice conversation.\n3.2\nPre-training\nStep-Audio 2 model is initialized with a textual LLM and then continually pre-trained on 1.356T tokens of textual and audio data\nover 21 days.\nWe first utilize\n100B tokens\nof ASR data to facilitate effective alignment between speech and text feature spaces within the adaptor.\nDuring this phase, both the audio encoder and LLM are frozen, with only the adaptor being trained.\nWe conduct training for 12K steps at an 8,192 sequence length.\nAnd the learning rate decays from\n10\n−\n4\n10^{-4}\nto\n2\n×\n10\n−\n5\n2\\times 10^{-5}\n.\nWe then extend the tokenizer of the textual LLM with 6.6K audio tokens.\nTo properly embed the new audio tokens and preserve the model’s textual capabilities,\nthe model is then trained on 128B tokens of text data and 128B tokens of audio data.\nSpecifically, audio data includes 80B, 32B and 16B tokens of TTS, speech-to-speech conversation and utterance-level text-speech interleaved continuation data respectively.\nThe sequence length is increased to 16,384.\nAnd ",
+        "tion capabilities\nwhile maintaining its textual performance inherited from the initial textual LLM.\n3.3\nSupervised fine-tuning\nWe subsequently perform a large-scale, multi-task supervised fine-tuning (SFT) procedure\n[\n69\n]\nto\ninstruct the model\nto follow human intention in fluid conversations\nand master core tasks.\nWe select audio data\nfrom open-source and proprietary data to ensure broad coverage and high quality.\nThe model is trained on 4B tokens of text and audio data for a single epoch.\nAnd the learning rate decays from\n10\n−\n5\n10^{-5}\nto\n10\n−\n6\n10^{-6}\n.\nSpecifically, we leverage extensive corpora such as\nGigaSpeech\n[\n8\n]\n,\nWenetSpeech\n[\n78\n]\n,\nand other in-house data to enhance the model’s performance in multilingual and multi-dialect ASR scenarios.\nWe reformat existing datasets for audio event classification and audio captioning, such as AudioSet\n[\n23\n]\nand AudioCaps\n[\n41\n]\n, into speech question-answer pairs for audio understanding.\nTo capture paralinguistic information beyond just semantics, we introduce a detailed speech captioning task and build an in-house dataset, requiri",
+        "-by-step reasoning traces, according to the audio mixing recipes or the generated dialogue scripts.\n3.4\nReinforcement learning\nTo enhance the model’s reasoning capabilities in audio understanding and speech interaction,\nwe implement a multi-stage reinforcement learning strategy.\nWe leverage our reasoning-centric datasets from SFT and utilize two stages of proximal policy optimization (PPO)\n[\n54\n]\nto optimize reasoning efficiency for real-time audio engagement.\nIn the first stage, a binary reward function is employed to limit the thinking sequence length to a predefined maximum.\nThis reward function assigns a value of 1 for reasoning that is appropriately concise (neither empty nor excessively long) and 0 otherwise.\nTraining is conducted for 60 iterations with a global batch size of 64, using an actor learning rate of\n1\n×\n10\n−\n6\n1\\times 10^{-6}\nand a critic learning rate of\n2.5\n×\n10\n−\n6\n2.5\\times 10^{-6}\n.\nThe second stage transitions from binary rewards to learned preference scoring, utilizing a trained reward model to evaluate response quality.\nThis stage involves an additional 120 "
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "engineering_value": "披露模态对齐、多任务 SFT、推理长度／质量 PPO 与感知 GRPO；当前用于区分内容能力 RL 和全双工时机 RL，不混淆两者。"
+    },
+    {
+      "source_id": "arxiv:2606.11167v1",
+      "kind": "paper/report",
+      "title": "Multi-Faceted Interactivity Alignment in Full-Duplex Speech Models",
+      "authors": [
+        "Ohashi, Atsumoto",
+        "Zeghidour, Neil",
+        "Défossez, Alexandre",
+        "Kharitonov, Eugene"
+      ],
+      "citation_date": [
+        "2026/06/09"
+      ],
+      "citation_online_date": [
+        "2026/06/09"
+      ],
+      "original_month": "2026-06",
+      "version": "2606.11167v1",
+      "metadata_url": "https://arxiv.org/abs/2606.11167v1",
+      "method_url": "https://arxiv.org/html/2606.11167v1",
+      "verified_date": "2026-11-05",
+      "decision": "Deep Dive",
+      "target_question": "如何同时优化不抢话、及时接话、附和与让话，并保留内容质量？",
+      "metadata_sha256": "34a1c9d176e5e8bd7bd4f2fca0553c8ecae52cd61a31728ba507397773941cfd",
+      "method_sha256": "1cb7bf941c9d84be3901165bba5a19013af9c0cb1b0ffb050881ac4125c7e1d6",
+      "evidence_excerpts": [
+        "G\nsamples before their advantages are summed with equal weight.\n4\nExperiments\n4.1\nTraining Datasets\nWe construct RL training data from spoken dialogue corpora in which each speaker is recorded on a separate channel. To demonstrate that our method generalizes across corpora with different recording conditions, speaker populations, and conversational styles, we adopt two datasets that are complementary in these respects: Fisher\n(\nCieri et al., 2004\n)\nand Seamless Interaction\n(\nAgrawal et al., 2025\n)\n. The Fisher dataset contains a total of\n2,000\n​\nh\n2{,}000\\;\\text{h}\nof recorded telephone conversations between random pairs of people. The Seamless dataset comprises two recording conditions, the\nImprovised\nsubset contains\n1,300\n​\nh\n1{,}300\\;\\text{h}\naudio of professional actors performing conversations based on improvised roles and emotions, while the\nNaturalistic\nsubset contains\n2,700\n​\nh\n2{,}700\\;\\text{h}\naudio of general participants engaging in natural, authentic conversation. We combined these two subsets together during training.\nFor each dataset, we apply the segment extraction pr",
+        "to the input audio. The context length is drawn randomly during training (details in Section\n4.3\n). The loss is computed only over the segment itself; the context window is masked out.\n3.3\nTraining Data Curation\nWe construct the training set\n𝒟\nℓ\n\\mathcal{D}_{\\ell}\nfor each interactivity axis\nℓ\n∈\n{\npause\n,\nturn\n,\nbc\n,\nint\n}\n\\ell\\in\\{\\mathrm{pause},\\mathrm{turn},\\mathrm{bc},\\mathrm{int}\\}\nfrom corpora of two-party human conversations in which each speaker is recorded on a separate channel. One channel serves as the user input (\nX\nX\n) and the other as the target speaker (\nY\nY\n) whose behavior the model learns to reproduce. The extraction proceeds in two stages: utterance annotation and event-driven segment identification.\nUtterance annotation\nWe first annotate each recording using a VAD model, which produces, a sequence of labeled intervals classified as inter-pausal units (IPUs) or silences for each speaker. We then group consecutive IPUs from the same speaker into\nutterances\nby placing an utterance boundary at any silence longer than\n1.0\n​\ns\n1.0\\;\\text{s}\n. A silence of at most\n1.0\n​\n",
+        "\n\\rho_{n}\nand the objective is computed using only the probability of the text tokens\nw\n^\n\\hat{w}\n, excluding the audio tokens\ny\n^\n\\hat{y}\n.\nTo help the model generalize beyond the short segment boundaries, we prepend a context, which is the recording immediately preceding the segment, to the input audio. The context length is drawn randomly during training (details in Section\n4.3\n). The loss is computed only over the segment itself; the context window is masked out.\n3.3\nTraining Data Curation\nWe construct the training set\n𝒟\nℓ\n\\mathcal{D}_{\\ell}\nfor each interactivity axis\nℓ\n∈\n{\npause\n,\nturn\n,\nbc\n,\nint\n}\n\\ell\\in\\{\\mathrm{pause},\\mathrm{turn},\\mathrm{bc},\\mathrm{int}\\}\nfrom corpora of two-party human conversations in which each speaker is recorded on a separate channel. One channel serves as the user input (\nX\nX\n) and the other as the target speaker (\nY\nY\n) whose behavior the model learns to reproduce. The extraction proceeds in two stages: utterance annotation and event-driven segment identification.\nUtterance annotation\nWe first annotate each recording using a VAD model, which produ"
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "engineering_value": "从独立双音轨提取 pause／turn／backchannel／interrupt 短段，以时机 reward 加语义 judge 联合优化；当前直接服务专项数据、mask 与奖励设计。"
+    },
+    {
+      "source_id": "arxiv:2607.07148v1",
+      "kind": "paper/report",
+      "title": "Decoupling Conversational Dynamics in Full-Duplex Spoken Models through Reinforcement Learning",
+      "authors": [
+        "Li, Yuxin",
+        "Wu, Donghang",
+        "Lin, Guan-Ting",
+        "Lee, Hung-yi",
+        "Qin, Chengwei",
+        "Chen, Zhehuai",
+        "Chen, Chen"
+      ],
+      "citation_date": [
+        "2026/07/08"
+      ],
+      "citation_online_date": [
+        "2026/07/08"
+      ],
+      "original_month": "2026-07",
+      "version": "2607.07148v1",
+      "metadata_url": "https://arxiv.org/abs/2607.07148v1",
+      "method_url": "https://arxiv.org/html/2607.07148v1",
+      "verified_date": "2026-11-05",
+      "decision": "Deep Dive",
+      "target_question": "局部时机窗口怎样分配信用并控制长会话训练成本？",
+      "metadata_sha256": "6f1cbdee7d33b1f260c29637dc5ea6f0290f7831c4b6dfb54d4c8435d32f04cf",
+      "method_sha256": "e52afa1a146abc3ebc62088b9ca590023395009ce5067d0f3ee35a69e0bd7b2b",
+      "evidence_excerpts": [
+        "ined in subsection\n3.3\n. For a window\nW\ni\nW_{i}\nwith temporal support\n[\ns\ni\n,\ne\ni\n)\n[s_{i},e_{i})\n, the policy samples actions only inside the window while conditioning on the teacher-forced history before\ns\ni\ns_{i}\n. The sampled sub-trajectory is evaluated by a window-level reward:\nR\ni\n=\nR\n⁡\n(\nW\ni\n,\ny\n[\ns\ni\n,\ne\ni\n)\n)\n,\nR_{i}=R(W_{i},y_{[s_{i},e_{i})}),\n(2)\nwhere\ny\n[\ns\ni\n,\ne\ni\n)\ny_{[s_{i},e_{i})}\ndenotes the agent’s sampled decisions within the window.\n3.3\nDynamics-Critical Window Sampling\nPrior study suggests that conversational turn transfer is often determined by local timing and prosodic cues near possible response points, rather than by evidence uniformly distributed across the entire dialogue\n(\nWard and Tsukahara, 2000\n;\nSacks et al., 1974\n)\n. Therefore, DuplexPO does not optimize the policy over full conversations. Instead, it selects short but important local windows, such as turn transitions, backchannels, and user barge-ins, where real-time speaking decisions are most critical.\nLet\n(\na\ni\n,\nb\ni\n)\n(a_{i},b_{i})\ndenote the start and end times of the\ni\ni\n-th annotated human age",
+        "e same window group. We then apply a policy-gradient loss only to sampled tokens inside the window, with a KL penalty toward the rollout behavior policy:\nℒ\nGRPO\n=\nℒ\npolicy\n+\nβ\n​\nℒ\nKL\n.\n\\mathcal{L}_{\\mathrm{GRPO}}=\\mathcal{L}_{\\mathrm{policy}}+\\beta\\mathcal{L}_{\\mathrm{KL}}.\n(10)\nWe also implement a DPO-style baseline by constructing pairwise preferences among continuations from the same window, and report the ablation in Appendix\nJ\n.\n4\nData and Model Training\n4.1\nConversational Dynamics-Aware Dialogue Data Generation\nFisher\n(\nCieri et al., 2004\n)\nand Seamless-Naturalistic-HQ\n(Seamless)\n(\nAgrawal et al., 2025\n)\nprovide natural two-party\nconversations with word-level timing, making them suitable sources for learning conversational dynamics. The two corpora cover complementary interaction regimes: Fisher is closer to symmetric peer-to-peer conversation, whereas Seamless contains more role-asymmetric, question-answer-oriented interactions. This combination enables us to test whether DuplexPO can handle both balanced conversational exchange and assistant-like spoken interaction. All Fishe",
+        "tering, and sampling details for data preprocessing are given in Appendix\nA\n.\n4.2\nTraining Pipeline\nThe training pipeline consists of four stages: pre-training, SFT, RL with DuplexPO, and speech-synthesis SFT. The pre-training and SFT stages follow the setup of Nemotron-VoiceChat\n(\nNVIDIA, 2026\n)\nand we provide more training and data details in Appendix\nA\n. Then, DuplexPO is applied to optimize conversational dynamics with explicit rewards over dynamics-critical windows. Finally, in speech-synthesis SFT, we freeze all parameters except the speech generation module and train the streaming TTS model on the same speech dataset\n(\nDu et al., 2024\n)\n. The implementation, optimization, and stage-wise hyperparameters are in Appendix\nB\n.\n5\nEvaluation and Benchmark\nWe evaluate Spoken Dialogue Language Models (SDLMs) from two complementary aspects, namely conversational dynamics and model intelligence. The former assesses full-duplex conversational dynamics, such as turn-taking and backchanneling. The latter examines general capabilities, including factual knowledge, instruction following, spee"
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "engineering_value": "把长对话优化集中到动态关键窗口，以因子化 reward 分配时机信用；当前用于降低无关长序列开销，并检查语义能力与局部窗口的迁移边界。"
+    },
+    {
+      "source_id": "arxiv:2609.12623v1",
+      "kind": "paper/report",
+      "title": "SteerDuplex: Steerable Duplex Speech Dialogue Models",
+      "authors": [
+        "Tyagi, Utkarsh",
+        "Selvakumar, Ramaneswaran",
+        "Gosai, Advait",
+        "Kumar, Sonal",
+        "Barhate, Nikhil",
+        "Sagar, Isabell",
+        "Li, Steven",
+        "Bavare, Miheer",
+        "Quigley, Daniel",
+        "Carrillo, Fabiola Tapia",
+        "E, Jose M Patron",
+        "Gutiérrez, Diego Macías",
+        "Song, Paul",
+        "Duraiswami, Ramani",
+        "Manocha, Dinesh",
+        "He, Yunzhong"
+      ],
+      "citation_date": [
+        "2026/09/11"
+      ],
+      "citation_online_date": [
+        "2026/09/11"
+      ],
+      "original_month": "2026-09",
+      "version": "2609.12623v1",
+      "metadata_url": "https://arxiv.org/abs/2609.12623v1",
+      "method_url": "https://arxiv.org/html/2609.12623v1",
+      "verified_date": "2026-11-05",
+      "decision": "Deep Dive",
+      "target_question": "怎样防止靠沉默、过早让话和不完整回答刷高交互 reward？",
+      "metadata_sha256": "59e98ad41f6dc9c55b6d65238393cd079da58293184d7480bc5e7ab408afdc74",
+      "method_sha256": "40183a16b9acecbd8d6709644d32c0f818721a3e5e0d6319d5d207c5f9849aaa",
+      "evidence_excerpts": [
+        "nt boundaries and cap context and response at\n300\n300\nseconds, subject to shorter benchmark limits.\nThe supervised training mixture combines natural conversations with targeted examples of instruction following, steering, duplex interaction, safety, and reasoning. Natural speech supplies variation in prosody, overlap, and turn structure; targeted examples supply explicit steering instructions and complete conversation state. The mixture contains\n504,416\n504{,}416\naudio records and\n65,675\n65{,}675\ntext records, sampled at\n88\n%\n88\\%\nand\n12\n%\n12\\%\nof the training mass, respectively. Audio durations sum to\n8,510.9\n8{,}510.9\nhours of audio records; repeated source material means this is not a count of unique recording hours. Fixed sampling weights keep smaller targeted subsets represented without allowing synthetic examples to dominate. Quality checks cover semantic consistency, audio validity, provenance, privacy, and safety. We use word-level alignment from\nQwen3-ForcedAligner-0.6B\n[\n34\n]\nand turn-aware loss masks. Appendix\nG\ngives data composition and Appendix\nA\ngives training settings",
+        "se events. This stage rewards continuing through listener feedback that does not request the floor. Both stages use a policy loss over text-stream actions and an adaptive sampled-action KL penalty, rather than the exact full-distribution KL of\nOhashi et al. [26]\n. Moshi’s temporal transformer processes joint audio/text history and supplies both text logits and the representation used by the audio decoder, so text-action gradients can change subsequent speech generation. We include sampled padding tokens because they encode frames without a new text token, making their timing relevant to pauses and speech onset; excluding them would remove credit from these decisions. Audio-codebook actions receive no direct policy loss. Appendix\nA\ngives the training settings.\n3.3\nRewards and Audio Validity\nThe RL objective combines interaction timing rewards (weight\n1.0\n1.0\n), the continuity terms above, a Gemini 3.6 Flash transcript judge on turn and interruption groups (weight\n0.75\n0.75\n), and a waveform-integrity gate. Timing rewards distinguish responding, yielding, waiting, and continuing; the j",
+        " assesses semantic response quality. Waveform checks reject silence, clipping, and invalid outputs. Interruption credit requires assistant speech before the interruption, preventing silence from earning yielding credit. Appendix\nA.1\nlists the weights; Section\n7\nexamines reward shortcuts and trade-offs.\nReference-audio rubrics evaluate steerability but do not enter the reported RL objective. Given a target clip, generated speech, and both transcripts, the judge assesses requested delivery, prosody, rate, articulation, naturalness, and task success. Speaker identity matters only when explicitly requested by the rubric. Fixed references give acoustic criteria a concrete target, although audio presentation and prompting can influence judge reliability\n[\n24\n]\n.\n4\nSteerBench: Evaluating Spoken Steerability\nSteerBench\ntests whether a model can satisfy a spoken steering request while completing a concrete task. It contains\n390\n390\nprompts across tone, persona, style/accent, and speed/length, with\n1,067\n1{,}067\nhuman-authored binary rubrics:\n438\n438\naudio rubrics and\n629\n629\ntext rubrics. The"
+      ],
+      "boundary": "Metadata and selected methods checked; no local training or performance reproduction. Personal deep reading remains NEW.",
+      "engineering_value": "用分量归一化、多阶段连续性奖励分析让话与回答完整性的冲突；当前用于构造沉默、过早结束和误停附和的 reward 反例。"
+    },
+    {
+      "source_id": "arxiv:2604.15804v2",
+      "title": "Qwen3.5-Omni Technical Report",
+      "authors": [
+        "Qwen Team"
+      ],
+      "citation_date": [
+        "2026/04/17"
+      ],
+      "citation_online_date": [
+        "2026/04/21"
+      ],
+      "metadata_url": "https://arxiv.org/abs/2604.15804v2",
+      "method_url": "https://arxiv.org/html/2604.15804v2",
+      "verified_date": "2026-11-05",
+      "decision": "Carry forward existing Deep Dive",
+      "evidence": "Rechecked citation metadata and §4 mechanism text; existing note and April backfill retained.",
+      "boundary": "No new acceptance, no reproduction, streaming disclosure alone does not establish full-duplex RL."
+    },
+    {
+      "source_id": "minicpm-detail-official-docs",
+      "kind": "official engineering documentation",
+      "title": "MiniCPM-o 4.5 official model guide",
+      "authors": [
+        "OpenBMB"
+      ],
+      "publication_date": null,
+      "archive_month": "2026-02",
+      "date_basis": "Version anchor: 2026-02-06 realtime demo news in official model card; method guide read as current snapshot, not claimed unchanged since February.",
+      "method_url": "https://github.com/OpenBMB/MiniCPM-o/blob/main/docs/minicpm_o4dot5_en.md",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "连续音视频输入如何与输出同步，哪些只是推理支持？",
+      "sha256": "f2255e9e511d0d00c627da9d7ba5bd16c776aef8316ebb172d642ffe827b61d0",
+      "evidence_excerpts": [
+        "tes full exploitation of rich multimodal knowledge during training.\n- **Full-Duplex Omni-modal Live Streaming Mechanism.** (1) We turn the offline modality encoder/decoders into online and full-duplex ones for streaming inputs/outputs. The speech token decoder models text and speech tokens in an interleaved fashion to support full-duplex speech generation (i.e., sync timely with new input). This also facilitates more stable long speech generation (e.g., > 1min).\n(2) **We sync all the input and output streams on timeline in milliseconds**, which are jointly modeled by a time-division multiplexing (TDM) mechanism for omni-modality streaming processing in the LLM backbone. It divides parallel omni-modality streams into sequential info groups within small periodic time slices.\n- **Proactive Interaction Mechanism.** The LLM continuously monitors the input video and audio streams, and decides at a frequency of 1Hz to speak or not. This high decision-making frequency together with full-duplex nature are curcial to enable the proactive interaction capability.\n- ",
+        "eams into sequential info groups within small periodic time slices.\n- **Proactive Interaction Mechanism.** The LLM continuously monitors the input video and audio streams, and decides at a frequency of 1Hz to speak or not. This high decision-making frequency together with full-duplex nature are curcial to enable the proactive interaction capability.\n- **Configurable Speech Modeling Design.** We inherit the multimodal system prompt design of MiniCPM-o 2.6, which includes a traditional text system prompt, and a new audio system prompt to determine the assistant voice. This enables cloning new voices and role play in inference time for speech conversation.\n\n\n\n<div align=\"center\">\n  <img src=\"../assets/minicpm-o-45-framework.png\", width=100%>\n</div>\n\n\n### Evaluation\n\n\n<div align=\"center\">\n  <img src=\"../assets/radar_minicpmo4.5.png\", width=80%>\n</div>\n\n\n&emsp;\n<br>\n\n<details>\n<summary>Click to view detailed MiniCPM-o 4.5 evaluation breakdowns.</summary>\n\n<div align=\"center\">\n  <img src=\"../assets/minicpm_o_45_main_exp_table.png\", width=90%>\n</div>\n<strong>No",
+        " notable limitations worth further investigation and improvement.\n- **Foundation Capability.** The full-duplex omni-modality live streaminig capability still needs improvement in its foundation capability.\n- **Unstable Speech Output in Omni Mode.** Speech synthesis can mispronounce characters in full-duplex omni-modal live streaminig mode.\n- **Mixed Language.** The model can sometimes respond with mixed English and Chinese in speech and omni mode.\n- **High-latency on Web Demo.** Users may experience unusual high-latency or even miss part of model output fragments when using our web demo hosted on overseas servers. We recommend deploying the demo locally or with good network connections.\n\n</details>\n\n### Acknowledgements\n\n<details>\n<summary>Click to view acknowledgements.</summary>\n\nWe would like to thank the following projects:\n* [Qwen3](https://huggingface.co/Qwen/Qwen3-8B) for providing language backbone\n* [SigLIP2](https://github.com/google-research/big_vision/blob/main/big_vision/configs/proj/image_text/README_siglip2.md) for providing vision underst"
+      ],
+      "boundary": "Current official documentation only; training recipe not established; no runtime validation.",
+      "engineering_value": "提供连续音视频与语音输出的时间组织及 duplex 推理入口；当前用于接口选型与回放设计，文档本身不建立完整 RL 训练兼容性。"
+    },
+    {
+      "source_id": "oai-vad-official-docs",
+      "kind": "official engineering documentation",
+      "title": "Voice activity detection (VAD)",
+      "authors": [
+        "OpenAI"
+      ],
+      "publication_date": null,
+      "archive_month": "2026-11",
+      "date_basis": "2026-11-05 retrieved documentation snapshot, not original publication date.",
+      "method_url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "VAD 控制接口怎样影响时机与打断？",
+      "sha256": "50e134c3b937f81fecd7e1088d9ab0d6021f66a1562bfb70294adbb4025beabe",
+      "evidence_excerpts": [
+        "_vad`: Automatically chunks the audio based on periods of silence.\n- `semantic_vad`: Chunks the audio when the model believes based on the words said by the user that they have completed their utterance.\n\nFor sessions and models that support VAD, the default value is `server_vad`.\n\nRead below to learn more about the different modes.\n\n## Server VAD\n\nServer VAD is the default mode for speech-to-speech sessions, and for transcription sessions on models that support turn detection. It uses periods of silence to automatically chunk the audio.\n\nYou can adjust the following properties to fine-tune the VAD settings:\n\n- `threshold`: Activation threshold (0 to 1). A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.\n- `prefix_padding_ms`: Amount of audio (in milliseconds) to include before the VAD detected speech.\n- `silence_duration_ms`: Duration of silence (in milliseconds) to detect speech stop. With shorter values turns will be detected more quickly.\n\nHere is an example VAD configuration:\n\n```",
+        "     \"create_response\": true, // only in conversation mode\n          \"interrupt_response\": true, // only in conversation mode\n        },\n      },\n    },\n  },\n}\n```\n\nUse the same `session.audio.input.turn_detection` field in transcription sessions. For `gpt-live-transcribe` and `gpt-realtime-whisper`, omit turn detection or set it to `null`.\n\nThe `create_response` and `interrupt_response` fields are only used in speech-to-speech conversations. In transcription sessions, VAD only controls how audio is chunked.\n\n## Semantic VAD\n\nSemantic VAD is a new mode that uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered.\nThis classifier scores the input audio based on the probability that the user is done speaking. When the probability is low, the model will wait for a timeout, whereas when it is high, there is no need to wait.\nFor example, user audio that trails off would result in a longer timeout than a definitive statement.\n\nWith this mode, the model is less likely to interrupt the user during a speech-t"
+      ],
+      "boundary": "Current official documentation only; training recipe not established; no runtime validation.",
+      "engineering_value": "公开静音与语义 turn detection、自动响应及打断控制；当前用于区分外部控制器行为与模型采样动作，不据 API 行为推断底座训练算法。"
+    },
+    {
+      "source_id": "oai-conversations-official-docs",
+      "kind": "official engineering documentation",
+      "title": "Realtime conversations",
+      "authors": [
+        "OpenAI"
+      ],
+      "publication_date": null,
+      "archive_month": "2026-11",
+      "date_basis": "2026-11-05 retrieved documentation snapshot, not original publication date.",
+      "method_url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "verified_date": "2026-11-05",
+      "decision": "Read",
+      "target_question": "如何区分生成和实际播放，打断后怎样修正会话？",
+      "sha256": "4507281806fd95bb603616caa8adc0f0fc3a0617d9cf55fc8e695efc138155f6",
+      "evidence_excerpts": [
+        "\",\n    \"param\": \"type\",\n    \"event_id\": \"my_awesome_event\"\n  }\n}\n```\n\n## Interruption and Truncation\n\nIn many voice applications the user can interrupt the model while it's speaking. Realtime API handles interruptions when VAD is enabled, in that it detects user speech, cancels the ongoing response, and starts a new one. However in this scenario you will want the model to know where it was interrupted, so it can continue the conversation naturally (for example if the user says \"what was that last thing?\"). We call this **truncating** the model's last response, that is, removing the unplayed portion of the model's last response from the conversation.\n\nIn WebRTC and SIP connections the server manages a buffer of output audio, and thus knows how much audio has been played at a given moment. The server will automatically truncate unplayed audio when there's a user interruption.\n\nWith a WebSocket connection the client manages audio playback, and thus must stop playback and handle truncation. Here's how this procedure works:\n\n1. On `input_audio_buffer.speech_s",
+        "omatically truncate unplayed audio when there's a user interruption.\n\nWith a WebSocket connection the client manages audio playback, and thus must stop playback and handle truncation. Here's how this procedure works:\n\n1. On `input_audio_buffer.speech_started`, immediately stop playback of the model's audio and discard any queued audio for that item. Record how many milliseconds of that item's audio the user actually heard.\n1. Send a [`conversation.item.truncate`](https://developers.openai.com/api/reference/resources/realtime) event with the interrupted item's ID, the audio content index, and that played duration as `audio_end_ms`. This removes the unplayed portion from the conversation.\n1. When VAD interrupts an in-progress response, the server cancels it and sends `response.done` with `response.status` set to `cancelled`. Use that event to observe completion; don't wait for it before stopping playback or sending the truncation event.\n\nHere's an example:\n\n```json\n{\n  \"type\": \"conversation.item.truncate\",\n  \"item_id\": \"item_1234\",\n  \"content_index\": 0,\n  "
+      ],
+      "boundary": "Current official documentation only; training recipe not established; no runtime validation.",
+      "engineering_value": "明确取消和未播音频截断，并区分 WebRTC／SIP 服务端管理与 WebSocket 客户端播放责任；当前用于定义用户实际经历和下一轮上下文。"
+    }
+  ]
+}

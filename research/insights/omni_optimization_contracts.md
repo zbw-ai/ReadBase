@@ -27,6 +27,12 @@ Omni Infra 的首个交付应是一套可重放的目标/状态基线。它能�
 
 ## 验证方式
 
+### 2026-11-05：全双工需要分别记录“尝试”和“实际经历”
+
+依据[全双工专项的公开来源](../../04-rl-infra/topics/full_duplex_voice_rl.md)：四类交互对齐、DuplexPO 与 SteerDuplex 将时机行为作为单独目标；OpenAI 会话文档明确取消后截断未播音频。**本库工程推断**：轨迹既要保存模型完整生成以分析行为和浪费，也要保存实际播放／工具提交边界，以重建下一轮真正经历的状态。两种视图不能互相替代。
+
+据此，首项基建应能重放一个“已生成多句、只播一句就被纠正”的例子；用同一个 ledger 验证 rollout 条件、reward、更新与恢复。反证边界：离线完整播放且无交互／工具副作用时，两种视图可能一致，不必强加复杂执行协议。[O4-a–e](../../practice/experiments/omni_sft_rl_lab.md#duplex-o4)将验证该判断，当前均未执行。
+
 [O1](../../practice/experiments/omni_sft_rl_lab.md)检验目标等价，O2/O3 检验关键路径和收益，O4 检验概率与数据，O5/O6 检验交互和恢复。只有获得结果后，才将具体结论标 VERIFIED；目前仅有设计。
 
 [回核心专题](../../05-embodied-infra/topics/omni_models_infra.md) · [学习路线](../../05-embodied-infra/roadmaps/omni.md) · [Insights](README.md)

@@ -55,6 +55,23 @@
 - **验收**：概率/梯度对照在预定容差内；错误样本不静默进入 loss；失败/超时留在分母。再计 rollout、waveform、tool、reward、group wait、train、weight sync 的关键路径。
 - **Results**：未执行。只有闭环稳定后才另立异步/staleness 对照。
 
+<a id="duplex-o4"></a>
+### O4 全双工子实验：从事件回放到完整会话（2026-11-05）
+
+**O4-a–e 均 NEW／未执行。** 技术设计依据：[全双工训练专题](../../04-rl-infra/topics/full_duplex_voice_rl.md)；交付关口见[D0–D5](../../05-embodied-infra/roadmaps/omni.md#duplex-project)。以下不包含训练命令：模型、运行栈和资源尚未确定。CPU/mock 验证只能证明协议的局部性质，不能标作模型 RL 或业务效果结果。
+
+| 子实验 | Setup／对照 | 故障／反例 | 验收证据 |
+|---|---|---|---|
+| O4-a 因果时间线 | 固定双音轨和视频／工具事件，记录到达、消费、生成、播放／提交；回放保留 clock domain | 故意提前交付未来帧；把未播放的第二句加入用户已知历史；重复／乱序 chunk；工具已提交后音频取消 | 错误能定位到事件与边界；输入只用当时可见数据；未播输出不默认已被用户听见；工具副作用不静默重放 |
+| O4-b 数据与 reward | pause／turn／backchannel／interrupt 四类窗口，各含历史和正反例；另设完整任务 held-out | 一直沉默、抢所有停顿、只说一个字、用户“嗯”就结束、噪声触发动作、声称工具成功 | 各分量及评分分歧可追踪；固定反例揭示 reward 漏洞；session／speaker／脚本不跨 split；任务与完整性有独立护栏 |
+| O4-c Scoring 与 update | 固定同权重、processor、可见前缀、sampling；小路径 oracle 对比 rollout／trainer；text/control/audio mask 单列；同步完整 group | 错 codec／state；遗漏时序符号；把 batch padding 当等待；缺候选；重复 reward；发布一半；非同组 normalization | 有效位置、计数与身份精确匹配；数值／梯度误差满足预设容差；无效项阻止准入；零方差组与基础设施超时有明确算法规则和运维分母 |
+| O4-d 闭环任务 | A 固定用户录音；B 用户 simulator 随模型回复变化。使用相同初始任务分布与可重放 seed，多轮改目标／工具失败后恢复 | 候选未来用户不同却强行共用一份观测；模拟用户过度配合；中途换 policy；丢失 tool commit | 分开报告 A/B 能力边界；held-out 任务、交互、完整性与抽样人评不退化；每个行为可追溯生成版本和环境分支 |
+| O4-e 性能与异步 | 从同步 trace 选一处优化；固定任务、质量、资源、reward／采样规则；若改异步只开放一个边界 | 增加预生成缓存；只消费快 reward；队列无上限；提高吞吐却加重 staleness／取消浪费 | 完整有效 group／秒、gradient-active、p95 等待、样本年龄、版本差、总资源成本与质量一起报告；收益含失败／重试／refit 成本 |
+
+每个 run 至少保留：环境卡、实际命令、数据 split／manifest、事件 ledger、policy bundle、reward 与 mask 定义、原始 trace、统计脚本、失败样本、A/B 变量及判定。先声明数值容差、质量下限、时机事件定义、timeout 和 partial-group 规则；不要看结果后放宽门槛。
+
+恢复另复用 O6，但增加待评分 join、已消费 frontier 与工具提交记录。先以 mock 和隔离环境验证部分失败；同一拓扑恢复通过后，再评估拓扑变化。**当前没有任何子实验结果。**
+
 ## O5｜流式服务质量与吞吐
 
 - **Question**：增加并发或拆分 stage 是否让用户更快听到正确、连续的回复？

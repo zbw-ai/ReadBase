@@ -30,6 +30,7 @@ flowchart TB
 
 | 要理解的关系 | 从哪里读 | 如何验证／应用 |
 |---|---|---|
+| 连续观测 → 发言时机 → 实际播放／工具提交 → RL 信用 | [全双工训练](04-rl-infra/topics/full_duplex_voice_rl.md) ↔ [Omni 模型基础](05-embodied-infra/topics/omni_models_infra.md) ↔ [D0–D5 交付](05-embodied-infra/roadmaps/omni.md#duplex-project) | [O4-a–e](practice/experiments/omni_sft_rl_lab.md#duplex-o4)：因果回放、reward 反例、scoring、完整会话、端到端成本；全部未执行 |
 | Omni 表示/时间轴 → SFT 目标 → RL 策略 → 流式状态 | [Omni 专题](05-embodied-infra/topics/omni_models_infra.md) ↔ [Qwen3.5-Omni 报告](research/tech_reports/qwen35_omni.md) ↔ [学习路线](05-embodied-infra/roadmaps/omni.md) | [目标与状态判断](research/insights/omni_optimization_contracts.md) → [O0–O6](practice/experiments/omni_sft_rl_lab.md)：样本、loss/gradient、logprob、首播与恢复；均未执行 |
 | 模型状态 → 参数分片 → 通信 → 恢复 | [FSDP](02-training-infra/topics/fsdp.md) ↔ [NCCL](01-systems/topics/nccl.md) ↔ [checkpoint](02-training-infra/topics/checkpointing.md) | [A100 E01／E02／E05](practice/experiments/a100_fsdp_io_lab.md)，未执行 |
 | 硬件路径 → Host/I/O → GPU 执行 | [系统基础选读](01-systems/README.md) ↔ [GPU / Roofline](01-systems/topics/transformer_engine.md#gpu-execution) | [E00／E04](practice/experiments/a100_fsdp_io_lab.md)，新硬件/I/O 全文待建设 |

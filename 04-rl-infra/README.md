@@ -14,6 +14,7 @@
 | 4.4 | [权重同步与状态提交](topics/agentic_rl.md#areal-weight-sync-xccl-disk) | 区分传输 artifact、checkpoint 与新版本流量准入 |
 | 4.5 | [MOPD](topics/mopd.md) | 在理解 rollout / training 数据流后，追问 Teacher 服务、routing 与多领域信号怎样影响系统成本 |
 | 4.6 | [Omni 算法与 Infra](../05-embodied-infra/topics/omni_models_infra.md) | Thinker/Talker 的 OPD、DPO、在线 RL 与概率/版本契约；复用同一专题正文 |
+| 4.7 | [全双工多模态语音 Agent RL](topics/full_duplex_voice_rl.md) | 连续时间数据、接话／让话 reward、窗口与完整会话训练，以及可验收的工程交付 |
 
 ## 问题到验证
 

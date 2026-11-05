@@ -1,5 +1,7 @@
 # Historical Backfill By Month
 
+2026-11-05：[全双工语音 Agent 训练专项](../../../04-rl-infra/topics/full_duplex_voice_rl.md)按原始月份补入 Moshi、PersonaPlex、Step-Audio 2 与窗口／交互 RL；MiniCPM-o 按已有版本事件归档，OpenAI 动态文档按[本次版本快照](2026-11.md)登记，均不冒充十一月首发。[来源证据](../audits/2026-11-05-duplex/sources.json)区分论文机制、文档接口与未运行边界，不推进扫描游标。
+
 2026-10-23：[1—9 月具身月报补充](../monthly_reviews.md#embodied-2026)汇入已有记录，并按原始月份登记本次新核验来源；[补充账本](../audits/2026-10-23-embodied-monthly/README.md)区分新增、承接和仍待覆盖的来源。
 
 [具身后续补扫](../embodied_followup_2026-10-13.md)涵盖 2025 历史遗漏与 2026 模型／代码演进，进入[核心 topic](../../../05-embodied-infra/topics/embodied_infra.md)理解机制。
@@ -23,6 +25,8 @@
 ## 月份索引
 
 已开始整理：
+
+- [2026-11](2026-11.md)：OpenAI Realtime 执行协议文档的本次快照；原始发布时间未知
 
 - [2026-10](2026-10.md)：具身数据 streaming、flow convention 与解码正确性
 
